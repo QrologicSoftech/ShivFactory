@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "MiniCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutDashboard.cshtml";
+}
+@*<div id="snackbar"></div>*@
+<div class="col-lg-12 stretch-card">
+    <div class="card">
+        <div class="card-body">
+            @using (Html.BeginForm("AddMiniCategory", "Admin", FormMethod.Get))
+            {
+                <p class="card-description" style=" text-align: end;">
+                    <button type="submit" class="btn btn-primary">
+                        Add Category
+                    </button>
+                </p>
+            }
+            <div class="partialView">
+
+            </div>
+            @*@{ Html.RenderPartial("CategoryPartialView"); }*@
+        </div>
+    </div>
+</div>
+@*<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>*@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        common.RenderPartialView('Admin', 'MiniCategoryPartialView');
+    });
+</script>
+@*@if (TempData["message"] != null)
+{
+    var a = TempData["message"].ToString();
+    <script>
+   // alert("ggggg");
+    debugger;
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    x.innerText = '@TempData["message"]';
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    </script>
+}*@

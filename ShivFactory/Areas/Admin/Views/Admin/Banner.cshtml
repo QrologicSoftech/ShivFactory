@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Banner";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="col-lg-12 stretch-card">
+    <div class="card">
+        <div class="card-body">
+            @using (Html.BeginForm("AddBanner", "Admin", FormMethod.Get))
+            {
+                <p class="card-description" style=" text-align: end;">
+                    <button type="submit" class="btn btn-primary">
+                        Add Banner
+                    </button>
+                </p>
+            }
+            <div class="partialView">
+
+            </div>
+            @*@{ Html.RenderPartial("CategoryPartialView"); }*@
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        common.RenderPartialView('Admin', 'BannerPartialView');
+    });
+</script>
+
+@*@if (TempData["message"] != null)
+{
+    var a = TempData["message"].ToString();
+    <script>
+   // alert("ggggg");
+    debugger;
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    x.innerText = '@TempData["message"]';
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    </script>
+}*@

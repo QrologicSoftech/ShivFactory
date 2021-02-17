@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ShivFactory.Business.Model.BannerModel>
+@{
+    ViewBag.Title = "BannerPartialView";
+}
+
+
+
+<p class="card-description">
+    Banner list
+</p>
+<table class="table table-bordered" id="example">
+    <thead>
+        <tr>
+            <th>Sr No.</th>
+            <th>Banner Name</th>
+            <th>Title</th>
+            <th>Banner Image</th>
+            <th>Add Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int i = 1;
+            foreach (var item in Model)
+            {
+                <tr class="table-info">
+                    <td>@i</td>
+                    <td>@item.Name</td>
+                    <td>@item.Title</td>
+                    <td align="center"><a href="@Url.Content(@item.BannerImage)" target="_blank"><img src="@item.BannerImage" alt="" style="height:40px;width:40px;" /></a></td>
+                    <td>@item.Adddate</td>
+                    <td class="center">
+                        @*<a href="#" class="btn btn-primary bindPopupModal" data-toggle="modal" data-target="#exampleModal" data-ajaxurl="@Url.Action("AddCategory", "Admin", new { id = item.ID })">Edit</a>*@
+                        @Html.ActionLink("Edit", "AddBanner", new { id = item.ID })
+                        @Html.ActionLink("Delete", "DeleteBrand", new { @class = "fa fa-trash", id = item.ID }, new { onclick = "return confirm('Are you sure you wish to delete this article?');" })
+                    </td>
+                </tr>
+                i++;
+            }
+        }
+    </tbody>
+</table>
+
+
+

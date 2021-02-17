@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ShivFactory.Business.Model.BrandModel>
+@{
+    ViewBag.Title = "BrandPartialView";
+}
+<p class="card-description">
+    Brand list
+</p>
+<table class="table table-bordered" id="example">
+    <thead>
+        <tr>
+            <th>Sr No.</th>
+            <th>Brand Name</th>
+            <th>Brand Image</th>
+            <th>Add Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int i = 1;
+            foreach (var item in Model)
+            {
+                <tr class="table-info">
+                    <td>@i</td>
+                    <td>@item.BrandName</td>
+                    <td align="center"><a href="@Url.Content(@item.BrandImage)" target="_blank"><img src="@item.BrandImage" alt="" style="height:40px;width:40px;" /></a></td>
+                    <td>@item.Adddate</td>
+                    <td class="center">
+                        @*<a href="#" class="btn btn-primary bindPopupModal" data-toggle="modal" data-target="#exampleModal" data-ajaxurl="@Url.Action("AddCategory", "Admin", new { id = item.ID })">Edit</a>*@
+                        @Html.ActionLink("Edit", "AddBrand", new { id = item.ID })
+                        @Html.ActionLink("Delete", "DeleteBrand", new { @class = "fa fa-trash", id = item.ID }, new { onclick = "return confirm('Are you sure you wish to delete this article?');" })
+                    </td>
+                </tr>
+                i++;
+            }
+        }
+    </tbody>
+</table>
+

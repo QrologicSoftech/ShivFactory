@@ -1,0 +1,53 @@
+﻿@model ShivFactory.Business.Model.BannerModel
+@{
+    ViewBag.Title = "AddBanner";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="col-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add New Banner</h4>
+                @using (Html.BeginForm("AddBanner", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label>Banner Name</label>
+                        <div class="text-box-1">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Banner Title</label>
+                        <div class="text-box-1">
+                            @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Banner Image</label>
+                        <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                            @Html.TextBoxFor(model => model.PostedFile, new { @class = "form-control file-upload-info", type = "file", accept = "image/*" })
+                            @Html.ValidationMessageFor(model => model.PostedFile, "", new { @class = "text-danger" })
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                            </span>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                <label class="input-group">
+                    @Html.CheckBoxFor(model => model.IsActive.Value, new { @class = "form-check-input" })
+                    Is Active <i class="input-helper"></i>
+                </label>
+            </div>*@
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

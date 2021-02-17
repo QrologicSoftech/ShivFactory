@@ -1,0 +1,78 @@
+﻿@model ShivFactory.Business.Model.CategoryModel
+@*@using Syncfusion.EJ2
+    @using Syncfusion.EJ2.Notifications;*@
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="col-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Add New Category</h4>
+                @using (Html.BeginForm("AddCategory", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label>Category Name</label>
+                        <div class="text-box-1">
+                            @Html.TextBoxFor(model => model.CategoryName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CategoryName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>File upload</label>
+                        <input type="file" name="img[]" class="file-upload-default">
+                        <div class="input-group col-xs-12">
+                            @Html.TextBoxFor(model => model.PostedFile, new { @class = "form-control file-upload-info", type = "file", accept = "image/*" })
+                            @Html.ValidationMessageFor(model => model.PostedFile, "", new { @class = "text-danger" })
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                            </span>
+                        </div>
+                    </div>
+                    @*<div class="form-group">
+                            <label class="input-group">
+                                @Html.CheckBoxFor(model => model.IsActive.Value, new { @class = "form-check-input" })
+                                Is Active <i class="input-helper"></i>
+                            </label>
+                        </div>*@
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<img id="image_preview" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@section ControlsSection{
+        <div class="col-lg-12 control-section toast-default-section">
+            <div class="control_wrapper">
+                @Html.EJS().Toast("toast_default").Title("Adaptive Tiles Meeting").Position(p => p.X("Right")).TimeOut(5000).ContentTemplate(@<div>Conference Room 01 / Building 135 10:00 AM-10:30 AM</div>).Created("created").Icon("e-meeting").BeforeOpen("onBeforeOpen").Close("onclose").Render()
+                <div class="col-lg-12 col-sm-12 col-md-12 center">
+                    <div id="toastBtnDefault" style="margin: auto;text-align: center">
+                        @Html.EJS().Button("toastBtnShow").CssClass("e-btn").Content("Show Toasts").Render()
+                        @Html.EJS().Button("toastBtnHide").CssClass("e-btn").Content("Hide All").Render()
+                    </div>
+                </div>
+            </div>
+        </div>
+    }*@
+
