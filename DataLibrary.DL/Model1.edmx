@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ShivFactoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="db_ShivFactoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -326,7 +326,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ShivFactoryModelStoreContainer">
+        <EntityContainer Name="db_ShivFactoryModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -379,85 +379,38 @@
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ShivFactoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="ShivFactoryEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="ShivFactoryModel.C__MigrationHistory" />
-          <EntitySet Name="AspNetRoles" EntityType="ShivFactoryModel.AspNetRole" />
-          <EntitySet Name="AspNetUserClaims" EntityType="ShivFactoryModel.AspNetUserClaim" />
-          <EntitySet Name="AspNetUserLogins" EntityType="ShivFactoryModel.AspNetUserLogin" />
-          <EntitySet Name="AspNetUsers" EntityType="ShivFactoryModel.AspNetUser" />
-          <EntitySet Name="Banners" EntityType="ShivFactoryModel.Banner" />
-          <EntitySet Name="Brands" EntityType="ShivFactoryModel.Brand" />
-          <EntitySet Name="Categories" EntityType="ShivFactoryModel.Category" />
-          <EntitySet Name="DynamicMenus" EntityType="ShivFactoryModel.DynamicMenu" />
-          <EntitySet Name="MiniCategories" EntityType="ShivFactoryModel.MiniCategory" />
-          <EntitySet Name="SubCategories" EntityType="ShivFactoryModel.SubCategory" />
-          <EntitySet Name="UserDetails" EntityType="ShivFactoryModel.UserDetail" />
-          <EntitySet Name="VendorBankDetails" EntityType="ShivFactoryModel.VendorBankDetail" />
-          <EntitySet Name="VendorBusinessDetails" EntityType="ShivFactoryModel.VendorBusinessDetail" />
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ShivFactoryModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="ShivFactoryModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserDetai__UserI__6477ECF3" Association="ShivFactoryModel.FK__UserDetai__UserI__6477ECF3">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="UserDetail" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SubCatego__Categ__6383C8BA" Association="ShivFactoryModel.FK__SubCatego__Categ__6383C8BA">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="SubCategory" EntitySet="SubCategories" />
-          </AssociationSet>
-          <AssociationSet Name="FK__MiniCateg__SubCa__628FA481" Association="ShivFactoryModel.FK__MiniCateg__SubCa__628FA481">
-            <End Role="SubCategory" EntitySet="SubCategories" />
-            <End Role="MiniCategory" EntitySet="MiniCategories" />
-          </AssociationSet>
-          <AssociationSet Name="FK__VendorBan__UserI__656C112C" Association="ShivFactoryModel.FK__VendorBan__UserI__656C112C">
-            <End Role="UserDetail" EntitySet="UserDetails" />
-            <End Role="VendorBankDetail" EntitySet="VendorBankDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__VendorBus__UserI__66603565" Association="ShivFactoryModel.FK__VendorBus__UserI__66603565">
-            <End Role="UserDetail" EntitySet="UserDetails" />
-            <End Role="VendorBusinessDetail" EntitySet="VendorBusinessDetails" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="ShivFactoryModel.AspNetUserRoles">
-            <End Role="AspNetRole" EntitySet="AspNetRoles" />
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="db_ShivFactoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
             <PropertyRef Name="ContextKey" />
           </Key>
-          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="ShivFactoryModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="AspNetUserClaim">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="ShivFactoryModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="AspNetUserLogin">
           <Key>
@@ -465,16 +418,16 @@
             <PropertyRef Name="ProviderKey" />
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="ShivFactoryModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
         </EntityType>
         <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
           <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -485,11 +438,11 @@
           <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUserClaims" Relationship="ShivFactoryModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
-          <NavigationProperty Name="AspNetUserLogins" Relationship="ShivFactoryModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
-          <NavigationProperty Name="UserDetails" Relationship="ShivFactoryModel.FK__UserDetai__UserI__6477ECF3" FromRole="AspNetUser" ToRole="UserDetail" />
-          <NavigationProperty Name="AspNetRoles" Relationship="ShivFactoryModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="UserDetails" Relationship="Self.FK__UserDetai__UserI__6477ECF3" FromRole="AspNetUsers" ToRole="UserDetails" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
         </EntityType>
         <EntityType Name="Banner">
           <Key>
@@ -527,7 +480,7 @@
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="Adddate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="SubCategories" Relationship="ShivFactoryModel.FK__SubCatego__Categ__6383C8BA" FromRole="Category" ToRole="SubCategory" />
+          <NavigationProperty Name="SubCategories" Relationship="Self.FK__SubCatego__Categ__6383C8BA" FromRole="Category" ToRole="SubCategory" />
         </EntityType>
         <EntityType Name="DynamicMenu">
           <Key>
@@ -557,7 +510,7 @@
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="Adddate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="SubCategory" Relationship="ShivFactoryModel.FK__MiniCateg__SubCa__628FA481" FromRole="MiniCategory" ToRole="SubCategory" />
+          <NavigationProperty Name="SubCategory" Relationship="Self.FK__MiniCateg__SubCa__628FA481" FromRole="MiniCategory" ToRole="SubCategory" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -571,8 +524,8 @@
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="Adddate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Category" Relationship="ShivFactoryModel.FK__SubCatego__Categ__6383C8BA" FromRole="SubCategory" ToRole="Category" />
-          <NavigationProperty Name="MiniCategories" Relationship="ShivFactoryModel.FK__MiniCateg__SubCa__628FA481" FromRole="SubCategory" ToRole="MiniCategory" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__SubCatego__Categ__6383C8BA" FromRole="SubCategory" ToRole="Category" />
+          <NavigationProperty Name="MiniCategories" Relationship="Self.FK__MiniCateg__SubCa__628FA481" FromRole="SubCategory" ToRole="MiniCategory" />
         </EntityType>
         <EntityType Name="UserDetail">
           <Key>
@@ -592,9 +545,9 @@
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="IsDelete" Type="Boolean" />
-          <NavigationProperty Name="AspNetUser" Relationship="ShivFactoryModel.FK__UserDetai__UserI__6477ECF3" FromRole="UserDetail" ToRole="AspNetUser" />
-          <NavigationProperty Name="VendorBankDetails" Relationship="ShivFactoryModel.FK__VendorBan__UserI__656C112C" FromRole="UserDetail" ToRole="VendorBankDetail" />
-          <NavigationProperty Name="VendorBusinessDetails" Relationship="ShivFactoryModel.FK__VendorBus__UserI__66603565" FromRole="UserDetail" ToRole="VendorBusinessDetail" />
+          <NavigationProperty Name="AspNetUser" Relationship="Self.FK__UserDetai__UserI__6477ECF3" FromRole="UserDetails" ToRole="AspNetUsers" />
+          <NavigationProperty Name="VendorBankDetails" Relationship="Self.FK__VendorBan__UserI__656C112C" FromRole="UserDetails" ToRole="VendorBankDetails" />
+          <NavigationProperty Name="VendorBusinessDetails" Relationship="Self.FK__VendorBus__UserI__66603565" FromRole="UserDetails" ToRole="VendorBusinessDetails" />
         </EntityType>
         <EntityType Name="VendorBankDetail">
           <Key>
@@ -613,7 +566,7 @@
           <Property Name="IsDelete" Type="DateTime" Precision="3" />
           <Property Name="AddUpdate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="UserDetail" Relationship="ShivFactoryModel.FK__VendorBan__UserI__656C112C" FromRole="VendorBankDetail" ToRole="UserDetail" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK__VendorBan__UserI__656C112C" FromRole="VendorBankDetails" ToRole="UserDetails" />
         </EntityType>
         <EntityType Name="VendorBusinessDetail">
           <Key>
@@ -632,55 +585,55 @@
           <Property Name="IsDelete" Type="DateTime" Precision="3" />
           <Property Name="AddUpdate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="UserDetail" Relationship="ShivFactoryModel.FK__VendorBus__UserI__66603565" FromRole="VendorBusinessDetail" ToRole="UserDetail" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK__VendorBus__UserI__66603565" FromRole="VendorBusinessDetails" ToRole="UserDetails" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Type="ShivFactoryModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="ShivFactoryModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AspNetUser">
+            <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AspNetUserClaim">
+            <Dependent Role="AspNetUserClaims">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Type="ShivFactoryModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="ShivFactoryModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AspNetUser">
+            <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="AspNetUserLogin">
+            <Dependent Role="AspNetUserLogins">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__UserDetai__UserI__6477ECF3">
-          <End Type="ShivFactoryModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="ShivFactoryModel.UserDetail" Role="UserDetail" Multiplicity="*" />
+          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AspNetUser">
+            <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="UserDetail">
+            <Dependent Role="UserDetails">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__SubCatego__Categ__6383C8BA">
-          <End Type="ShivFactoryModel.Category" Role="Category" Multiplicity="0..1">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="ShivFactoryModel.SubCategory" Role="SubCategory" Multiplicity="*" />
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="ID" />
@@ -691,10 +644,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__MiniCateg__SubCa__628FA481">
-          <End Type="ShivFactoryModel.SubCategory" Role="SubCategory" Multiplicity="0..1">
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="ShivFactoryModel.MiniCategory" Role="MiniCategory" Multiplicity="*" />
+          <End Role="MiniCategory" Type="Self.MiniCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SubCategory">
               <PropertyRef Name="ID" />
@@ -705,247 +658,295 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__VendorBan__UserI__656C112C">
-          <End Type="ShivFactoryModel.UserDetail" Role="UserDetail" Multiplicity="0..1">
+          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="ShivFactoryModel.VendorBankDetail" Role="VendorBankDetail" Multiplicity="*" />
+          <End Role="VendorBankDetails" Type="Self.VendorBankDetail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserDetail">
+            <Principal Role="UserDetails">
               <PropertyRef Name="UserDetailId" />
             </Principal>
-            <Dependent Role="VendorBankDetail">
+            <Dependent Role="VendorBankDetails">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__VendorBus__UserI__66603565">
-          <End Type="ShivFactoryModel.UserDetail" Role="UserDetail" Multiplicity="0..1">
+          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="ShivFactoryModel.VendorBusinessDetail" Role="VendorBusinessDetail" Multiplicity="*" />
+          <End Role="VendorBusinessDetails" Type="Self.VendorBusinessDetail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserDetail">
+            <Principal Role="UserDetails">
               <PropertyRef Name="UserDetailId" />
             </Principal>
-            <Dependent Role="VendorBusinessDetail">
+            <Dependent Role="VendorBusinessDetails">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="AspNetUserRoles">
-          <End Type="ShivFactoryModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
-          <End Type="ShivFactoryModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
+        <EntityContainer Name="ShivFactoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+          <EntitySet Name="Banners" EntityType="Self.Banner" />
+          <EntitySet Name="Brands" EntityType="Self.Brand" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="DynamicMenus" EntityType="Self.DynamicMenu" />
+          <EntitySet Name="MiniCategories" EntityType="Self.MiniCategory" />
+          <EntitySet Name="SubCategories" EntityType="Self.SubCategory" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
+          <EntitySet Name="VendorBankDetails" EntityType="Self.VendorBankDetail" />
+          <EntitySet Name="VendorBusinessDetails" EntityType="Self.VendorBusinessDetail" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserDetai__UserI__6477ECF3" Association="Self.FK__UserDetai__UserI__6477ECF3">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserDetails" EntitySet="UserDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubCatego__Categ__6383C8BA" Association="Self.FK__SubCatego__Categ__6383C8BA">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="SubCategory" EntitySet="SubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MiniCateg__SubCa__628FA481" Association="Self.FK__MiniCateg__SubCa__628FA481">
+            <End Role="SubCategory" EntitySet="SubCategories" />
+            <End Role="MiniCategory" EntitySet="MiniCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VendorBan__UserI__656C112C" Association="Self.FK__VendorBan__UserI__656C112C">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="VendorBankDetails" EntitySet="VendorBankDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VendorBus__UserI__66603565" Association="Self.FK__VendorBus__UserI__66603565">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="VendorBusinessDetails" EntitySet="VendorBusinessDetails" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ShivFactoryModelStoreContainer" CdmEntityContainer="ShivFactoryEntities">
+        <EntityContainerMapping StorageEntityContainer="db_ShivFactoryModelStoreContainer" CdmEntityContainer="ShivFactoryEntities">
           <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="ShivFactoryModel.C__MigrationHistory">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
                 <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="ShivFactoryModel.AspNetRole">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
-            <EntityTypeMapping TypeName="ShivFactoryModel.AspNetUserClaim">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
-            <EntityTypeMapping TypeName="ShivFactoryModel.AspNetUserLogin">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
                 <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="ShivFactoryModel.AspNetUser">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Banners">
-            <EntityTypeMapping TypeName="ShivFactoryModel.Banner">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.Banner">
               <MappingFragment StoreEntitySet="Banner">
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="BannerImage" ColumnName="BannerImage" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BannerImage" ColumnName="BannerImage" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Brands">
-            <EntityTypeMapping TypeName="ShivFactoryModel.Brand">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.Brand">
               <MappingFragment StoreEntitySet="Brand">
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
-                <ScalarProperty Name="BrandImage" ColumnName="BrandImage" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BrandImage" ColumnName="BrandImage" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="ShivFactoryModel.Category">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="CatImage" ColumnName="CatImage" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CatImage" ColumnName="CatImage" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DynamicMenus">
-            <EntityTypeMapping TypeName="ShivFactoryModel.DynamicMenu">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.DynamicMenu">
               <MappingFragment StoreEntitySet="DynamicMenu">
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
-                <ScalarProperty Name="CSSClass" ColumnName="CSSClass" />
-                <ScalarProperty Name="MenuStr" ColumnName="MenuStr" />
-                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
-                <ScalarProperty Name="MneuLevel" ColumnName="MneuLevel" />
-                <ScalarProperty Name="MenuLink" ColumnName="MenuLink" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MenuLink" ColumnName="MenuLink" />
+                <ScalarProperty Name="MneuLevel" ColumnName="MneuLevel" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="MenuStr" ColumnName="MenuStr" />
+                <ScalarProperty Name="CSSClass" ColumnName="CSSClass" />
+                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MiniCategories">
-            <EntityTypeMapping TypeName="ShivFactoryModel.MiniCategory">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.MiniCategory">
               <MappingFragment StoreEntitySet="MiniCategory">
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="MiniCatImage" ColumnName="MiniCatImage" />
-                <ScalarProperty Name="MiniCatName" ColumnName="MiniCatName" />
-                <ScalarProperty Name="SubCatID" ColumnName="SubCatID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="SubCatID" ColumnName="SubCatID" />
+                <ScalarProperty Name="MiniCatName" ColumnName="MiniCatName" />
+                <ScalarProperty Name="MiniCatImage" ColumnName="MiniCatImage" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubCategories">
-            <EntityTypeMapping TypeName="ShivFactoryModel.SubCategory">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.SubCategory">
               <MappingFragment StoreEntitySet="SubCategory">
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="SubCatImage" ColumnName="SubCatImage" />
-                <ScalarProperty Name="SubCatName" ColumnName="SubCatName" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SubCatName" ColumnName="SubCatName" />
+                <ScalarProperty Name="SubCatImage" ColumnName="SubCatImage" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserDetails">
-            <EntityTypeMapping TypeName="ShivFactoryModel.UserDetail">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.UserDetail">
               <MappingFragment StoreEntitySet="UserDetails">
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
-                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-                <ScalarProperty Name="LastLoginIP" ColumnName="LastLoginIP" />
-                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserDetailId" ColumnName="UserDetailId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+                <ScalarProperty Name="LastLoginIP" ColumnName="LastLoginIP" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VendorBankDetails">
-            <EntityTypeMapping TypeName="ShivFactoryModel.VendorBankDetail">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.VendorBankDetail">
               <MappingFragment StoreEntitySet="VendorBankDetails">
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="AddUpdate" ColumnName="AddUpdate" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Branch" ColumnName="Branch" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
-                <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="AddUpdate" ColumnName="AddUpdate" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VendorBusinessDetails">
-            <EntityTypeMapping TypeName="ShivFactoryModel.VendorBusinessDetail">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.VendorBusinessDetail">
               <MappingFragment StoreEntitySet="VendorBusinessDetails">
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="AddUpdate" ColumnName="AddUpdate" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="AddressProofImg" ColumnName="AddressProofImg" />
-                <ScalarProperty Name="PanNo" ColumnName="PanNo" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
-                <ScalarProperty Name="GSTIN" ColumnName="GSTIN" />
-                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="GSTIN" ColumnName="GSTIN" />
+                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PanNo" ColumnName="PanNo" />
+                <ScalarProperty Name="AddressProofImg" ColumnName="AddressProofImg" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="AddUpdate" ColumnName="AddUpdate" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="ShivFactoryModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetUser">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="AspNetRole">
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="db_ShivFactoryModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
