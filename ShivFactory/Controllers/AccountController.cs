@@ -11,6 +11,7 @@ using ShivFactory.Business;
 using ShivFactory.Business.Repository;
 using DataLibrary.DL;
 using System;
+using ShivFactory.Business.Model;
 
 namespace ShivFactory.Controllers
 {
@@ -66,15 +67,14 @@ namespace ShivFactory.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LogInModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
             ManageController manage = new ManageController();
-            // var result = manage.LogIn(model);
+             var result =await manage.LogIn(model);
 
             return View(model);
         }
@@ -132,70 +132,23 @@ namespace ShivFactory.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(CustomerRegister model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
-            //ManageController manage = new ManageController();
-            // var res = manage.AdminRegister(model);
-            //if(res.Result.ResultFlag==true)
-            //{
-            //    RedirectToAction("Login");
-            //}
-            //else
-            //{
-            //    ModelState.AddModelError("", res.Result.Message);
-            //    return View(model);
-            //}
-
-
-
-
-
-
-            var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId,EmailConfirmed=true };
-            var result = await UserManager.CreateAsync(user, model.Password);
-            if (result.Succeeded)
+            
+            var res =await CustomerRegister(model);
+            if (res.ResultFlag == true)
             {
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                var result1 = UserManager.AddToRole(user.Id, UserRoles.Admin);
-                var userDetails = new UserDetail()
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Email = model.EmailId,
-                    Password = model.Password,
-                    Mobile = model.PhoneNumber,
-                    AddDate = DateTime.Now,
-                    IsActive = true,
-                    IsDelete = false,
-                    UserId = user.Id
-                };
-
-                RepoUser ru = new RepoUser();
-                var isSaved = ru.AddOrUpdateUserDetails(userDetails);
-
-                RedirectToAction("Login");
+               return RedirectToAction("Login");
             }
             else
             {
-                ModelState.AddModelError("", result.Errors.FirstOrDefault());
+                ModelState.AddModelError("", res.Message);
                 return View(model);
-
             }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -421,6 +374,223 @@ namespace ShivFactory.Controllers
         {
             return View();
         }
+        #endregion
+
+        #region User Register Api
+
+        #region Admin Register Api
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ResultModel> AdminRegister(CustomerRegister model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId, EmailConfirmed = true };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        UserManager.AddToRole(user.Id, UserRoles.Admin);
+
+                        var userDetails = new UserDetail()
+                        {
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Email = model.EmailId,
+                            Password = model.Password,
+                            Mobile = model.PhoneNumber,
+                            AddDate = DateTime.Now,
+                            IsActive = true,
+                            IsDelete = false,
+                            UserId = user.Id
+                        };
+
+                        RepoUser ru = new RepoUser();
+                        var isSaved = ru.AddOrUpdateUserDetails(userDetails);
+
+                        return new ResultModel
+                        {
+                            ResultFlag = isSaved,
+                            Data = "",
+                            Message = "User successfully Register !!"
+                        };
+                    }
+                    else
+                    {
+                        return new ResultModel
+                        {
+                            ResultFlag = false,
+                            Data = "",
+                            Message = result.Errors.FirstOrDefault()
+                        };
+                    }
+                }
+                else
+                {
+                    return new ResultModel
+                    {
+                        ResultFlag = false,
+                        Data = "",
+                        Message = "Please enter all required fields."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultModel
+                {
+                    ResultFlag = false,
+                    Message = ex.Message
+                };
+            }
+        }
+        #endregion
+
+        #region Vendor Register Api
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ResultModel> VendorRegister(CustomerRegister model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId, EmailConfirmed = true };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        UserManager.AddToRole(user.Id, UserRoles.Vendor);
+
+                        var userDetails = new UserDetail()
+                        {
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Email = model.EmailId,
+                            Password = model.Password,
+                            Mobile = model.PhoneNumber,
+                            AddDate = DateTime.Now,
+                            IsActive = true,
+                            IsDelete = false,
+                            UserId = user.Id
+                        };
+
+                        RepoUser ru = new RepoUser();
+                        var isSaved = ru.AddOrUpdateUserDetails(userDetails);
+
+                        return new ResultModel
+                        {
+                            ResultFlag = isSaved,
+                            Data = "",
+                            Message = "User successfully Register !!"
+                        };
+                    }
+                    else
+                    {
+                        return new ResultModel
+                        {
+                            ResultFlag = false,
+                            Data = "",
+                            Message = result.Errors.FirstOrDefault()
+                        };
+                    }
+                }
+                else
+                {
+                    return new ResultModel
+                    {
+                        ResultFlag = false,
+                        Data = "",
+                        Message = "Please enter all required fields."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultModel
+                {
+                    ResultFlag = false,
+                    Message = ex.Message
+                };
+            }
+        }
+        #endregion
+
+        #region Customer Register Api
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ResultModel> CustomerRegister(CustomerRegister model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId, EmailConfirmed = true };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        UserManager.AddToRole(user.Id, UserRoles.Customer);
+
+                        var userDetails = new UserDetail()
+                        {
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Email = model.EmailId,
+                            Password = model.Password,
+                            Mobile = model.PhoneNumber,
+                            AddDate = DateTime.Now,
+                            IsActive = true,
+                            IsDelete = false,
+                            UserId = user.Id
+                        };
+
+                        RepoUser ru = new RepoUser();
+                        var isSaved = ru.AddOrUpdateUserDetails(userDetails);
+
+                        return new ResultModel
+                        {
+                            ResultFlag = isSaved,
+                            Data = "",
+                            Message = "User successfully Register !!"
+                        };
+                    }
+                    else
+                    {
+                        return new ResultModel
+                        {
+                            ResultFlag = false,
+                            Data = "",
+                            Message = result.Errors.FirstOrDefault()
+                        };
+                    }
+                }
+                else
+                {
+                    return new ResultModel
+                    {
+                        ResultFlag = false,
+                        Data = "",
+                        Message = "Please enter all required fields."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultModel
+                {
+                    ResultFlag = false,
+                    Message = ex.Message
+                };
+            }
+        }
+        #endregion
+
         #endregion
 
         protected override void Dispose(bool disposing)
