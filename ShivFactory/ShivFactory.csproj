@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.AspNetCore.Identity.UI.5.0.3\build\Microsoft.AspNetCore.Identity.UI.props" Condition="Exists('..\packages\Microsoft.AspNetCore.Identity.UI.5.0.3\build\Microsoft.AspNetCore.Identity.UI.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -186,6 +187,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\DefaultConnection.mdf" />
+    <Content Include="App_Data\DefaultConnection_log.ldf">
+      <DependentUpon>DefaultConnection.mdf</DependentUpon>
+    </Content>
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\Antlr3.Runtime.pdb" />
     <Content Include="bin\DataLibrary.DL.dll" />
@@ -443,7 +448,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Vendor\Controllers\" />
     <Folder Include="Areas\Vendor\Data\" />
@@ -509,7 +513,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.AspNetCore.Identity.UI.5.0.3\build\Microsoft.AspNetCore.Identity.UI.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.AspNetCore.Identity.UI.5.0.3\build\Microsoft.AspNetCore.Identity.UI.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.AspNetCore.Identity.UI.5.0.3\build\Microsoft.AspnetCore.Identity.UI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.AspNetCore.Identity.UI.5.0.3\build\Microsoft.AspnetCore.Identity.UI.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.AspNetCore.Identity.UI.5.0.3\build\Microsoft.AspnetCore.Identity.UI.targets" Condition="Exists('..\packages\Microsoft.AspNetCore.Identity.UI.5.0.3\build\Microsoft.AspnetCore.Identity.UI.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -7,6 +7,10 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ShivFactory.Models;
+using ShivFactory.Business.Model;
+using ShivFactory.Business.Repository;
+using ShivFactory.Models.Other;
+using DataLibrary.DL;
 
 namespace ShivFactory.Controllers
 {
@@ -16,6 +20,7 @@ namespace ShivFactory.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        #region Services
         public ManageController()
         {
         }
@@ -32,9 +37,9 @@ namespace ShivFactory.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -49,9 +54,11 @@ namespace ShivFactory.Controllers
                 _userManager = value;
             }
         }
+        #endregion
 
-        //
-        // GET: /Manage/Index
+        #region Microsoft Apis
+
+        #region Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -74,9 +81,9 @@ namespace ShivFactory.Controllers
             };
             return View(model);
         }
+        #endregion
 
-        //
-        // POST: /Manage/RemoveLogin
+        #region RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
@@ -98,16 +105,15 @@ namespace ShivFactory.Controllers
             }
             return RedirectToAction("ManageLogins", new { Message = message });
         }
+        #endregion
 
-        //
-        // GET: /Manage/AddPhoneNumber
+        #region AddPhoneNumber
         public ActionResult AddPhoneNumber()
         {
             return View();
         }
 
-        //
-        // POST: /Manage/AddPhoneNumber
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
@@ -129,9 +135,9 @@ namespace ShivFactory.Controllers
             }
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
+        #endregion
 
-        //
-        // POST: /Manage/EnableTwoFactorAuthentication
+        #region  EnableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
@@ -145,8 +151,7 @@ namespace ShivFactory.Controllers
             return RedirectToAction("Index", "Manage");
         }
 
-        //
-        // POST: /Manage/DisableTwoFactorAuthentication
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DisableTwoFactorAuthentication()
@@ -159,9 +164,9 @@ namespace ShivFactory.Controllers
             }
             return RedirectToAction("Index", "Manage");
         }
+        #endregion
 
-        //
-        // GET: /Manage/VerifyPhoneNumber
+        #region VerifyPhoneNumber
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
@@ -169,8 +174,7 @@ namespace ShivFactory.Controllers
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
 
-        //
-        // POST: /Manage/VerifyPhoneNumber
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
@@ -193,9 +197,9 @@ namespace ShivFactory.Controllers
             ModelState.AddModelError("", "Failed to verify phone");
             return View(model);
         }
+        #endregion
 
-        //
-        // POST: /Manage/RemovePhoneNumber
+        #region RemovePhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemovePhoneNumber()
@@ -212,16 +216,15 @@ namespace ShivFactory.Controllers
             }
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
+        #endregion
 
-        //
-        // GET: /Manage/ChangePassword
+        #region ChangePassword
         public ActionResult ChangePassword()
         {
             return View();
         }
 
-        //
-        // POST: /Manage/ChangePassword
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -243,16 +246,15 @@ namespace ShivFactory.Controllers
             AddErrors(result);
             return View(model);
         }
+        #endregion
 
-        //
-        // GET: /Manage/SetPassword
+        #region SetPassword
         public ActionResult SetPassword()
         {
             return View();
         }
 
-        //
-        // POST: /Manage/SetPassword
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
@@ -275,9 +277,9 @@ namespace ShivFactory.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        #endregion
 
-        //
-        // GET: /Manage/ManageLogins
+        #region ManageLogins
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -299,8 +301,7 @@ namespace ShivFactory.Controllers
             });
         }
 
-        //
-        // POST: /Manage/LinkLogin
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
@@ -309,8 +310,7 @@ namespace ShivFactory.Controllers
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
-        //
-        // GET: /Manage/LinkLoginCallback
+
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
@@ -321,6 +321,7 @@ namespace ShivFactory.Controllers
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
+        #endregion
 
         protected override void Dispose(bool disposing)
         {
@@ -333,7 +334,7 @@ namespace ShivFactory.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -384,6 +385,290 @@ namespace ShivFactory.Controllers
             Error
         }
 
-#endregion
+        #endregion
+
+        #endregion
+
+        #region Accounts Apis
+
+        #region User Register Api
+
+        #region Admin Register Api
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ResultModel> AdminRegister(CustomerRegister model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        var role = await UserManager.AddToRoleAsync(user.Id, UserRoles.Admin);
+                        var userDetails = new UserDetail()
+                        {
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Email = model.EmailId,
+                            Password = model.Password,
+                            Mobile = model.PhoneNumber,
+                            AddDate = DateTime.Now,
+                            IsActive = true,
+                            IsDelete = false,
+                            UserId = user.Id
+                        };
+
+                        RepoUser ru = new RepoUser();
+                        var isSaved = ru.AddOrUpdateUserDetails(userDetails);
+
+                        return new ResultModel
+                        {
+                            ResultFlag = isSaved,
+                            Data = "",
+                            Message = "User successfully Register !!"
+                        };
+                    }
+                    else
+                    {
+                        return new ResultModel
+                        {
+                            ResultFlag = false,
+                            Data = "",
+                            Message = result.Errors.FirstOrDefault()
+                        };
+                    }
+                }
+                else
+                {
+                    return new ResultModel
+                    {
+                        ResultFlag = false,
+                        Data = "",
+                        Message = "Please enter all required fields."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultModel
+                {
+                    ResultFlag = false,
+                    Message = ex.Message
+                };
+            }
+        }
+        #endregion
+
+        #region Vendor Register Api
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ResultModel> VendorRegister(CustomerRegister model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId, EmailConfirmed = true };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        var role = await UserManager.AddToRoleAsync(user.Id, UserRoles.Vendor);
+                        var userDetails = new UserDetail()
+                        {
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Email = model.EmailId,
+                            Password = model.Password,
+                            Mobile = model.PhoneNumber,
+                            AddDate = DateTime.Now,
+                            IsActive = true,
+                            IsDelete = false,
+                            UserId = user.Id
+                        };
+
+                        RepoUser ru = new RepoUser();
+                        var isSaved = ru.AddOrUpdateUserDetails(userDetails);
+
+                        return new ResultModel
+                        {
+                            ResultFlag = isSaved,
+                            Data = "",
+                            Message = "User successfully Register !!"
+                        };
+                    }
+                    else
+                    {
+                        return new ResultModel
+                        {
+                            ResultFlag = false,
+                            Data = "",
+                            Message = result.Errors.FirstOrDefault()
+                        };
+                    }
+                }
+                else
+                {
+                    return new ResultModel
+                    {
+                        ResultFlag = false,
+                        Data = "",
+                        Message = "Please enter all required fields."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultModel
+                {
+                    ResultFlag = false,
+                    Message = ex.Message
+                };
+            }
+        }
+        #endregion
+
+        #region Customer Register Api
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ResultModel> CustomerRegister(CustomerRegister model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId, EmailConfirmed = true };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        var role = await UserManager.AddToRoleAsync(user.Id, UserRoles.Customer);
+                        var userDetails = new UserDetail()
+                        {
+                            FirstName = model.FirstName,
+                            LastName = model.LastName,
+                            Email = model.EmailId,
+                            Password = model.Password,
+                            Mobile = model.PhoneNumber,
+                            AddDate = DateTime.Now,
+                            IsActive = true,
+                            IsDelete = false,
+                            UserId = user.Id
+                        };
+
+                        RepoUser ru = new RepoUser();
+                        var isSaved = ru.AddOrUpdateUserDetails(userDetails);
+
+                        return new ResultModel
+                        {
+                            ResultFlag = isSaved,
+                            Data = "",
+                            Message = "User successfully Register !!"
+                        };
+                    }
+                    else
+                    {
+                        return new ResultModel
+                        {
+                            ResultFlag = false,
+                            Data = "",
+                            Message = result.Errors.FirstOrDefault()
+                        };
+                    }
+                }
+                else
+                {
+                    return new ResultModel
+                    {
+                        ResultFlag = false,
+                        Data = "",
+                        Message = "Please enter all required fields."
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ResultModel
+                {
+                    ResultFlag = false,
+                    Message = ex.Message
+                };
+            }
+        }
+        #endregion
+
+        #endregion
+
+        #region LogInApi
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ResultModel> LogIn(LogInModel model)
+        {
+            try
+            {
+
+
+                string message = "";
+
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, change to shouldLockout: true
+                var result = await SignInManager.PasswordSignInAsync(model.PhoneNumber, model.Password, model.RememberMe, shouldLockout: false);
+                switch (result)
+                {
+                    case SignInStatus.Success:
+
+                        message = "Successfully LogIn.";
+                        break;
+
+                    case SignInStatus.LockedOut:
+                        message = "Account is Lockout, please contact to administration.";
+                        break;
+                    case SignInStatus.RequiresVerification:
+                        message = "Account not approved, please contact to administration.";
+                        break;
+                    case SignInStatus.Failure:
+                        message = "Some unexpected error, Please try again.";
+                        break;
+                    default:
+                        message = "Invalid login attempt.";
+                        break;
+                }
+
+                if (result == SignInStatus.Success)
+                {
+
+                    var user = UserManager.FindByName(model.PhoneNumber);
+                    if (!user.EmailConfirmed)
+                    {
+                        message = "Email not confirmed.";
+                    }
+                    else
+                    {
+
+                    }
+
+                }
+
+                return new ResultModel
+                {
+                    ResultFlag = false,
+                    Message = message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResultModel
+                {
+                    ResultFlag = false,
+                    Message = ex.Message
+                };
+            }
+        }
+        #endregion
+
+        #endregion
     }
 }

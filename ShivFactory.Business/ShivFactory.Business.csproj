@@ -77,11 +77,15 @@
     <Compile Include="Model\BrandModel.cs" />
     <Compile Include="Model\CategoryModel.cs" />
     <Compile Include="Model\ClsVariable.cs" />
+    <Compile Include="Model\Common\ResultModel.cs" />
     <Compile Include="Model\MiniCategoryModel.cs" />
     <Compile Include="Model\SubCategoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Accounts\CustomerRegister.cs" />
+    <Compile Include="Repository\Accounts\LogInModel.cs" />
     <Compile Include="Repository\Category\Category.cs" />
     <Compile Include="Repository\Category\RepoCategory.cs" />
+    <Compile Include="Repository\Users\RepoUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataLibrary.DL\DataLibrary.DL.csproj">

@@ -18,12 +18,12 @@ namespace ShivFactory
            //    defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
            //);
 
-            routes.MapRoute(
-                name: "Admin",
-                url: "Admin/{controller}/{action}/{id}",
-                defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional },
-                 new[] { "ShivFactory.Areas.Admin.Controllers" } // Insert area namespace here
-            );
+            //routes.MapRoute(
+            //    name: "Admin",
+            //    url: "Admin/{controller}/{action}/{id}",
+            //    defaults: new { controller = "Admin", action = "Index", id = UrlParameter.Optional },
+            //     new[] { "ShivFactory.Areas.Admin.Controllers" } // Insert area namespace here
+            //);
 
             routes.MapRoute(
                 name: "Default",

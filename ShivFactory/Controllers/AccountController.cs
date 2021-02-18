@@ -8,8 +8,9 @@ using Microsoft.Owin.Security;
 using ShivFactory.Models;
 using ShivFactory.Models.Other;
 using ShivFactory.Business;
-
-
+using ShivFactory.Business.Repository;
+using DataLibrary.DL;
+using System;
 
 namespace ShivFactory.Controllers
 {
@@ -55,7 +56,7 @@ namespace ShivFactory.Controllers
         }
         #endregion
 
-
+        #region LogIn
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -72,23 +73,10 @@ namespace ShivFactory.Controllers
             {
                 return View(model);
             }
+            ManageController manage = new ManageController();
+            // var result = manage.LogIn(model);
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.PhoneNumber, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
-            }
+            return View(model);
         }
 
         //
@@ -133,44 +121,83 @@ namespace ShivFactory.Controllers
                     return View(model);
             }
         }
+        #endregion
 
-        //
-        // GET: /Account/Register
+        #region User Register
         [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
-        //
-        // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(CustomerRegister model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.PhoneNumber, EmailConfirmed = true };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-
-                    //var roles = await UserManager.AddToRoleAsync(user.Id, UserRoles.Customer);
-                    //var repouser = new using BL.Class1 RepoUser();
-                    //var saved= RepoUser.ad
-                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
-                }
-                AddErrors(result);
+                return View(model);
             }
+            //ManageController manage = new ManageController();
+            // var res = manage.AdminRegister(model);
+            //if(res.Result.ResultFlag==true)
+            //{
+            //    RedirectToAction("Login");
+            //}
+            //else
+            //{
+            //    ModelState.AddModelError("", res.Result.Message);
+            //    return View(model);
+            //}
+
+
+
+
+
+
+            var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId,EmailConfirmed=true };
+            var result = await UserManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                var result1 = UserManager.AddToRole(user.Id, UserRoles.Admin);
+                var userDetails = new UserDetail()
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.EmailId,
+                    Password = model.Password,
+                    Mobile = model.PhoneNumber,
+                    AddDate = DateTime.Now,
+                    IsActive = true,
+                    IsDelete = false,
+                    UserId = user.Id
+                };
+
+                RepoUser ru = new RepoUser();
+                var isSaved = ru.AddOrUpdateUserDetails(userDetails);
+
+                RedirectToAction("Login");
+            }
+            else
+            {
+                ModelState.AddModelError("", result.Errors.FirstOrDefault());
+                return View(model);
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
 
             // If we got this far, something failed, redisplay form
             return View(model);
@@ -188,17 +215,15 @@ namespace ShivFactory.Controllers
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
+        #endregion
 
-        //
-        // GET: /Account/ForgotPassword
+        #region ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
             return View();
         }
 
-        //
-        // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -225,24 +250,23 @@ namespace ShivFactory.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/ForgotPasswordConfirmation
+
+
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
         }
+        #endregion
 
-        //
-        // GET: /Account/ResetPassword
+        #region ResetPassword
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
         }
 
-        //
-        // POST: /Account/ResetPassword
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -267,16 +291,15 @@ namespace ShivFactory.Controllers
             return View();
         }
 
-        //
-        // GET: /Account/ResetPasswordConfirmation
+
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
             return View();
         }
+        #endregion
 
-        //
-        // POST: /Account/ExternalLogin
+        #region ExternalLogin
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -286,8 +309,6 @@ namespace ShivFactory.Controllers
             return new ChallengeResult(provider, Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl }));
         }
 
-        //
-        // GET: /Account/SendCode
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
@@ -301,8 +322,6 @@ namespace ShivFactory.Controllers
             return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
-        //
-        // POST: /Account/SendCode
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -321,8 +340,6 @@ namespace ShivFactory.Controllers
             return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
 
-        //
-        // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
@@ -351,8 +368,6 @@ namespace ShivFactory.Controllers
             }
         }
 
-        //
-        // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -388,9 +403,9 @@ namespace ShivFactory.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
+        #endregion
 
-        //
-        // POST: /Account/LogOff
+        #region LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -398,14 +413,15 @@ namespace ShivFactory.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
+        #endregion
 
-        //
-        // GET: /Account/ExternalLoginFailure
+        #region ExternalLoginFailure
         [AllowAnonymous]
         public ActionResult ExternalLoginFailure()
         {
             return View();
         }
+        #endregion
 
         protected override void Dispose(bool disposing)
         {
