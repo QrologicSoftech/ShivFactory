@@ -326,6 +326,8 @@
     <Content Include="Content\JS\js-dashboard.js" />
     <Content Include="Content\JS\js-settings.js" />
     <Content Include="Content\JS\js-vendor.bundle.base.js" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Content\UploadedImages\50d54ec0-2086-4250-bb01-f5112d7e31e0slider-4.jpg" />
     <Content Include="Content\UploadedImages\544c66be-a742-44b7-9803-55573c55c9c2slider-4.jpg" />
     <Content Include="Content\UploadedImages\bb257012-28bc-40a6-87a1-c36eb5b4a795NoImg.png" />
@@ -403,6 +405,9 @@
     <Content Include="bin\ShivFactory.Business.dll.config" />
     <Content Include="bin\ShivFactory.dll.config" />
     <Content Include="Areas\Admin\Views\Shared\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\NavPartialView.cshtml" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -414,6 +419,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

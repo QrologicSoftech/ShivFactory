@@ -14,22 +14,28 @@ namespace ShivFactory.Business.Factory.Services
 
     public class UserService : IUserService
     {
-        public string SaveImage(HttpPostedFileBase PostedFile)
+       
+        #region Add Or Update Category
+        public bool AddOrUpdateCategory(CategoryModel catModel)
         {
-            //string extension = Path.GetFileName(PostedFile.ContentType).Split('/')[0].ToString();
-            //string fullpath=null;
-
-            //var context = new ShivFactoryEntities();
-            //var res = (from tbl in context.Categories
-            //           orderby tbl.ID
-            //           select  tbl.ID).Max();
-            string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
-            string fullPath = HttpContext.Current.Server.MapPath(path);
-            Guid guid = Guid.NewGuid();
-            string filename = guid + Path.GetFileName(PostedFile.FileName);
-            PostedFile.SaveAs(fullPath + filename);
-            return path + filename;
+            using (var context = new ShivFactoryEntities())
+            {
+                Category category = new Category()
+                {
+                    CategoryName = catModel.CategoryName,
+                    CatImage = catModel.CatImage,
+                    Adddate = DateTime.Now,
+                    LastUpdate = DateTime.Now,
+                    IsActive = true,
+                    IsDelete = false
+                };
+                context.Categories.Add(category);
+                context.SaveChanges();
+                return category.ID;
+            }
         }
+
+        #endregion
 
         #region Category
         public int SaveCategory(CategoryModel catModel)

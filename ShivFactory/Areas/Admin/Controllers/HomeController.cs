@@ -20,6 +20,10 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             return View();
         }
+        public ActionResult NavPartialView()
+        {
+            return View();
+        }
 
 
     }

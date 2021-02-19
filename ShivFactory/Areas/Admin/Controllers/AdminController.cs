@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace ShivFactory.Areas.Admin.Controllers
 {
-    [Authorize(Roles  = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         UserService user = new UserService();
@@ -44,38 +44,48 @@ namespace ShivFactory.Areas.Admin.Controllers
             try
             {
                 if (ModelState.IsValid)
-            {
-                if (model.ID == 0)
                 {
-                    if (postedfile != null)
+                    if (model.ID == 0)
                     {
-                        model.CatImage = user.SaveImage(postedfile);
+                        if (postedfile == null)
+                        {
+                            ModelState.AddModelError("CatImage", "Please select Category Image.");
+                            return View(model);
+                        }
                     }
-                    //else
-                    //{
-                    //    model.CatImage=
-                    //}
-                    var id = user.SaveCategory(model);
-
-                    if (id > 0)
+                    if (model.ID == 0)
                     {
-                        TempData["message"] = "New Category Added Successfully";
-                        ModelState.Clear();
+                        //TempData["ErrorMessage"] = "Going to error";
+                        TempData["SuccessMessage"] = "Successfully done!!";
+                        if (postedfile != null)
+                        {
+                            model.CatImage = user.SaveImage(postedfile);
+                        }
+                        //else
+                        //{
+                        //    model.CatImage=
+                        //}
+                        var id = user.SaveCategory(model);
+
+                        if (id > 0)
+                        {
+                            TempData["message"] = "New Category Added Successfully";
+                            ModelState.Clear();
+                            return RedirectToAction("Category", "Admin");
+                        }
+                    }
+                    else
+                    {
+                        if (postedfile != null)
+                        {
+                            model.CatImage = user.SaveImage(postedfile);
+                        }
+                        var update = user.UpdateCategory(model.ID, model);
+                        TempData["message"] = "Category Updated Successfully";
                         return RedirectToAction("Category", "Admin");
                     }
                 }
-                else
-                {
-                    if (postedfile != null)
-                    {
-                        model.CatImage = user.SaveImage(postedfile);
-                    }
-                    var update = user.UpdateCategory(model.ID, model);
-                    TempData["message"] = "Category Updated Successfully";
-                    return RedirectToAction("Category", "Admin");
-                }
-            }
-            return RedirectToAction("Category", "Admin");
+                return RedirectToAction("Category", "Admin");
             }
             catch (Exception ex)
             {

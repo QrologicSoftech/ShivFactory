@@ -11,8 +11,9 @@ namespace ShivFactory.Business.Model
     public class CategoryModel
     {
         public int ID { get; set; }
-        [Required(ErrorMessage ="Please Enter Category")]
-        public string CategoryName { get; set; }           
+        [Required(ErrorMessage ="Please Enter Category Name.")]
+        public string CategoryName { get; set; }
+        //[Required(ErrorMessage = "Please select Category Image.")]
         public string CatImage { get; set; }
         public bool? IsActive { get; set; }
         public bool? IsDelete { get; set; }

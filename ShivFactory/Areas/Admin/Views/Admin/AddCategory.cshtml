@@ -1,6 +1,4 @@
 ﻿@model ShivFactory.Business.Model.CategoryModel
-@*@using Syncfusion.EJ2
-    @using Syncfusion.EJ2.Notifications;*@
 @{
     ViewBag.Title = "AddCategory";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutDashboard.cshtml";
@@ -30,14 +28,17 @@
                             <span class="input-group-append">
                                 <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
                             </span>
+                            @Html.ValidationMessageFor(model => model.CatImage, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                    @Html.HiddenFor(model => model.ID)
+                    @Html.HiddenFor(model => model.CatImage)
                     @*<div class="form-group">
-                            <label class="input-group">
-                                @Html.CheckBoxFor(model => model.IsActive.Value, new { @class = "form-check-input" })
-                                Is Active <i class="input-helper"></i>
-                            </label>
-                        </div>*@
+                <label class="input-group">
+                    @Html.CheckBoxFor(model => model.IsActive.Value, new { @class = "form-check-input" })
+                    Is Active <i class="input-helper"></i>
+                </label>
+            </div>*@
                     <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                 }

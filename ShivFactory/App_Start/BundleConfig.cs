@@ -25,6 +25,15 @@ namespace ShivFactory
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            //Added for toaster
+            bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
+                       "~/Scripts/toastr.js*",
+                       "~/Scripts/toastrImp.js"));
+            //Modify for toastr
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css",
+                                                                "~/Content/toastr.css"));
+
+
         }
     }
 }
