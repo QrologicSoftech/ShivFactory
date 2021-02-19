@@ -6,12 +6,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ShivFactory.Models;
-using ShivFactory.Models.Other;
 using ShivFactory.Business;
 using ShivFactory.Business.Repository;
 using DataLibrary.DL;
 using System;
 using ShivFactory.Business.Model;
+using ShivFactory.Business.Models.Other;
 
 namespace ShivFactory.Controllers
 {
@@ -71,11 +71,19 @@ namespace ShivFactory.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.ReturnUrl = returnUrl;
                 return View(model);
             }
-            ManageController manage = new ManageController();
-             var result =await manage.LogIn(model);
-
+            var result = await LogInApI(model);
+            if (result.ResultFlag == true)
+            {
+                return RedirectToLocal(result.Data, returnUrl);
+            }
+            else
+            {
+                ModelState.AddModelError("RememberMe", result.Message);
+                return View(model);
+            }
             return View(model);
         }
 
@@ -112,7 +120,7 @@ namespace ShivFactory.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(model.ReturnUrl);
+                    return RedirectToLocal(null, model.ReturnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.Failure:
@@ -138,11 +146,11 @@ namespace ShivFactory.Controllers
             {
                 return View(model);
             }
-            
-            var res =await CustomerRegister(model);
+
+            var res = await CustomerRegister(model);
             if (res.ResultFlag == true)
             {
-               return RedirectToAction("Login");
+                return RedirectToAction("Login");
             }
             else
             {
@@ -307,7 +315,7 @@ namespace ShivFactory.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToLocal(null, returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -347,7 +355,7 @@ namespace ShivFactory.Controllers
                     if (result.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        return RedirectToLocal(returnUrl);
+                        return RedirectToLocal(null, returnUrl);
                     }
                 }
                 AddErrors(result);
@@ -376,6 +384,8 @@ namespace ShivFactory.Controllers
         }
         #endregion
 
+        #region Create api 
+
         #region User Register Api
 
         #region Admin Register Api
@@ -399,6 +409,8 @@ namespace ShivFactory.Controllers
                         {
                             FirstName = model.FirstName,
                             LastName = model.LastName,
+                            Gender = model.Gender,
+                            Address = model.Address,
                             Email = model.EmailId,
                             Password = model.Password,
                             Mobile = model.PhoneNumber,
@@ -470,6 +482,8 @@ namespace ShivFactory.Controllers
                         {
                             FirstName = model.FirstName,
                             LastName = model.LastName,
+                            Gender = model.Gender,
+                            Address = model.Address,
                             Email = model.EmailId,
                             Password = model.Password,
                             Mobile = model.PhoneNumber,
@@ -541,6 +555,8 @@ namespace ShivFactory.Controllers
                         {
                             FirstName = model.FirstName,
                             LastName = model.LastName,
+                            Gender = model.Gender,
+                            Address = model.Address,
                             Email = model.EmailId,
                             Password = model.Password,
                             Mobile = model.PhoneNumber,
@@ -579,6 +595,99 @@ namespace ShivFactory.Controllers
                         Message = "Please enter all required fields."
                     };
                 }
+            }
+            catch (Exception ex)
+            {
+                return new ResultModel
+                {
+                    ResultFlag = false,
+                    Message = ex.Message
+                };
+            }
+        }
+        #endregion
+
+        #endregion
+
+        #region LogInApi
+        [AllowAnonymous]
+        public async Task<ResultModel> LogInApI(LogInModel model)
+        {
+            try
+            {
+                string message = "";
+
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, change to shouldLockout: true
+                var user = UserManager.FindByName(model.PhoneNumber);
+                if (user == null)
+                {
+                    message = "Invalid UserName";
+                }
+                else
+                {
+                    var result = await SignInManager.PasswordSignInAsync(model.PhoneNumber, model.Password, model.RememberMe, shouldLockout: false);
+                    switch (result)
+                    {
+                        case SignInStatus.Success:
+
+                            message = "Successfully LogIn.";
+                            break;
+
+                        case SignInStatus.LockedOut:
+                            message = "Account is Lockout, please contact to administration.";
+                            break;
+                        case SignInStatus.RequiresVerification:
+                            message = "Account not approved, please contact to administration.";
+                            break;
+                        case SignInStatus.Failure:
+                            message = "Invalid password.";
+                            break;
+                        default:
+                            message = "Invalid login attempt.";
+                            break;
+                    }
+
+                    if (result == SignInStatus.Success)
+                    {
+                        if (!user.EmailConfirmed)
+                        {
+                            message = "Email not confirmed.";
+                        }
+                        else
+                        {
+                            RepoUser ru = new RepoUser();
+                            var userDetails = ru.GetUserDetailsBYUserId(user.Id);
+                            var role = UserManager.GetRoles(user.Id).FirstOrDefault();
+                            var token = UserManager.GenerateUserToken("", user.Id);
+                            var res = new LogInResponse
+                            {
+                                UserId = user.Id,
+                                UserName = user.UserName,
+                                Role = role,
+                                FirstName = userDetails.FirstName,
+                                LastName = userDetails.LastName,
+                                Gender = userDetails.Gender,
+                                EmailId = userDetails.Email,
+                                Address = userDetails.Address,
+                                Mobile = userDetails.Mobile
+                            };
+                            return new ResultModel
+                            {
+                                ResultFlag = true,
+                                Data = res,
+                                Message = "User Successfully Login"
+                            };
+
+                        }
+
+                    }
+                }
+                return new ResultModel
+                {
+                    ResultFlag = false,
+                    Message = message
+                };
             }
             catch (Exception ex)
             {
@@ -633,12 +742,28 @@ namespace ShivFactory.Controllers
             }
         }
 
-        private ActionResult RedirectToLocal(string returnUrl)
+        private ActionResult RedirectToLocal(LogInResponse res, string returnUrl)
         {
+            RepoCookie co = new RepoCookie();
+            co.AddCookiesValues(res);
+
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
             }
+            else if (res.Role == UserRoles.Admin)
+            {
+                return RedirectToAction("Index", "Home", new { Area = "Admin" });
+            }
+            else if (res.Role == UserRoles.Vendor)
+            {
+                return RedirectToAction("Index", "Home", new { Area = "Vendor" });
+            }
+            else if (res.Role == UserRoles.Customer)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return RedirectToAction("Index", "Home");
         }
 

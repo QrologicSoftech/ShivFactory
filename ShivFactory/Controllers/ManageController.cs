@@ -9,7 +9,6 @@ using Microsoft.Owin.Security;
 using ShivFactory.Models;
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Repository;
-using ShivFactory.Models.Other;
 using DataLibrary.DL;
 
 namespace ShivFactory.Controllers
@@ -54,6 +53,11 @@ namespace ShivFactory.Controllers
                 _userManager = value;
             }
         }
+        #endregion
+
+        #region Accounts Apis    
+       
+
         #endregion
 
         #region Microsoft Apis
@@ -325,13 +329,29 @@ namespace ShivFactory.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && _userManager != null)
+            if (disposing)
             {
-                _userManager.Dispose();
-                _userManager = null;
+                if (_userManager != null)
+                {
+                    _userManager.Dispose();
+                    _userManager = null;
+                }
+
+                if (_signInManager != null)
+                {
+                    _signInManager.Dispose();
+                    _signInManager = null;
+                }
             }
 
-            base.Dispose(disposing);
+            //base.Dispose(disposing);
+            //if (disposing && _userManager != null)
+            //{
+            //    _userManager.Dispose();
+            //    _userManager = null;
+            //}
+
+            //base.Dispose(disposing);
         }
 
         #region Helpers
@@ -389,75 +409,6 @@ namespace ShivFactory.Controllers
 
         #endregion
 
-        #region Accounts Apis       
-
-        #region LogInApi
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<ResultModel> LogIn(LogInModel model)
-        {
-            try
-            {
-
-
-                string message = "";
-
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, change to shouldLockout: true
-                var result = await SignInManager.PasswordSignInAsync(model.PhoneNumber, model.Password, model.RememberMe, shouldLockout: false);
-                switch (result)
-                {
-                    case SignInStatus.Success:
-
-                        message = "Successfully LogIn.";
-                        break;
-
-                    case SignInStatus.LockedOut:
-                        message = "Account is Lockout, please contact to administration.";
-                        break;
-                    case SignInStatus.RequiresVerification:
-                        message = "Account not approved, please contact to administration.";
-                        break;
-                    case SignInStatus.Failure:
-                        message = "Some unexpected error, Please try again.";
-                        break;
-                    default:
-                        message = "Invalid login attempt.";
-                        break;
-                }
-
-                if (result == SignInStatus.Success)
-                {
-
-                    var user = UserManager.FindByName(model.PhoneNumber);
-                    if (!user.EmailConfirmed)
-                    {
-                        message = "Email not confirmed.";
-                    }
-                    else
-                    {
-
-                    }
-
-                }
-
-                return new ResultModel
-                {
-                    ResultFlag = false,
-                    Message = message
-                };
-            }
-            catch (Exception ex)
-            {
-                return new ResultModel
-                {
-                    ResultFlag = false,
-                    Message = ex.Message
-                };
-            }
-        }
-        #endregion
-
-        #endregion
+        
     }
 }

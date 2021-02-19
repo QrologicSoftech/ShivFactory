@@ -79,12 +79,15 @@
     <Compile Include="Model\ClsVariable.cs" />
     <Compile Include="Model\Common\ResultModel.cs" />
     <Compile Include="Model\MiniCategoryModel.cs" />
+    <Compile Include="Model\Other\Constrant.cs" />
     <Compile Include="Model\SubCategoryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Accounts\CustomerRegister.cs" />
     <Compile Include="Repository\Accounts\LogInModel.cs" />
     <Compile Include="Repository\Category\Category.cs" />
     <Compile Include="Repository\Category\RepoCategory.cs" />
+    <Compile Include="Repository\Common\Cookie.cs" />
+    <Compile Include="Repository\Users\LogInResponse.cs" />
     <Compile Include="Repository\Users\RepoUser.cs" />
   </ItemGroup>
   <ItemGroup>

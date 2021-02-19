@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace ShivFactory.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class HomeController : Controller
     {
         // GET: Admin/Home

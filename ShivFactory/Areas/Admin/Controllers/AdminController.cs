@@ -1,5 +1,6 @@
 ﻿using ShivFactory.Business.Factory.Services;
 using ShivFactory.Business.Model;
+using ShivFactory.Business.Models.Other;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace ShivFactory.Areas.Admin.Controllers
 {
+    [Authorize(Roles  = "Admin")]
     public class AdminController : Controller
     {
         UserService user = new UserService();

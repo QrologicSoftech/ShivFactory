@@ -35,6 +35,8 @@ namespace DataLibrary.DL
         public Nullable<System.DateTime> LastUpdate { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> IsDelete { get; set; }
+        public string Gender { get; set; }
+        public string Address { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

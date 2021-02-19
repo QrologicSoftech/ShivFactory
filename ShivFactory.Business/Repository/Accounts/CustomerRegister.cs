@@ -36,5 +36,6 @@ namespace ShivFactory.Business.Repository
         public string LastName { get; set; }
         [Required(ErrorMessage = "Gender Required!")]
         public string Gender { get; set; }
+        public string Address { get; set; }
     }
 }

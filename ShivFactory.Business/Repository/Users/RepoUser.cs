@@ -21,6 +21,8 @@ namespace ShivFactory.Business.Repository
             {
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
+                user.Address = model.Address;
+                user.Gender = model.Gender;
                 user.Mobile = model.Mobile;
                 user.Email = model.Email;
                 user.LastUpdate = DateTime.Now;
@@ -30,6 +32,14 @@ namespace ShivFactory.Business.Repository
                 db.UserDetails.Add(model);
             }
             return db.SaveChanges() > 0;
+        }
+        #endregion
+
+        #region Get UserDetails by UserId
+        public UserDetail GetUserDetailsBYUserId(string userId)
+        {
+            var user = db.UserDetails.Where(a => a.UserId == userId).FirstOrDefault();
+            return user;
         }
         #endregion
     }

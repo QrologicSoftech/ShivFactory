@@ -1,6 +1,9 @@
-﻿
+﻿@using ShivFactory.Business.Repository;
+@using ShivFactory.Business.Models.Other;
 @{
     Layout = null;
+    RepoCookie repoCookie = new RepoCookie();
+    var UserName = repoCookie.GetCookiesValue(CookieName.FirstName) + " " + repoCookie.GetCookiesValue(CookieName.LastName);
 }
 
 
@@ -117,7 +120,7 @@
                                         <img src="~/Content/AdminImg/faces-face1.jpg" alt="image"><span class="availability-status online"></span>
                                     </div>
                                     <div class="nav-profile-text">
-                                        <p class="text-black">David Greymaax</p>
+                                        <p class="text-black">@UserName</p>
                                     </div>
                                 </a>
                                 <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
@@ -307,9 +310,7 @@
                 </div>
             </nav>
         </div>
-        SnackBar
         <div id="snackbar">Test</div>
-
         @RenderBody()
     </div>
     <footer class="footer">

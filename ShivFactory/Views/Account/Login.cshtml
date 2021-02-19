@@ -13,7 +13,7 @@
                             <div class="card-body">
                                 <h4 class="card-title text-center">@ViewBag.Title</h4>
 
-                                @using (Html.BeginForm("LogIn", "Account", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal", id = "myform" }))
+                                @using (Html.BeginForm("LogIn", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal", id = "myform" }))
                                 {
                                     <div class="form-group">
                                         <label>UserName<span style="color:red">*</span></label>
@@ -50,7 +50,7 @@
                                             </label>
                                         </div>
                                     </div>
-
+                                    @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
                                     <div class="mt-3">
                                         <button type="submit" class="btn btn-block btn-gradient-primary mr-2"> Login</button>
                                     </div>
