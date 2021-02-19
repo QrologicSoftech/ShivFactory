@@ -753,11 +753,11 @@ namespace ShivFactory.Controllers
             }
             else if (res.Role == UserRoles.Admin)
             {
-                return RedirectToAction("Index", "Home", new { Area = "Admin" });
+                return RedirectToAction("Index", "Admin", new { Area = "Admin" });
             }
             else if (res.Role == UserRoles.Vendor)
             {
-                return RedirectToAction("Index", "Home", new { Area = "Vendor" });
+                return RedirectToAction("Index", "Vendor", new { Area = "Vendor" });
             }
             else if (res.Role == UserRoles.Customer)
             {
