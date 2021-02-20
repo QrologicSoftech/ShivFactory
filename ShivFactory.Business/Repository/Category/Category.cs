@@ -15,7 +15,7 @@ namespace ShivFactory.Business.Repository
         public string CategoryName { get; set; }
         public string ImagePath { get; set; }
         public bool? IsActive { get; set; }
-        [Required(ErrorMessage = "Please upload image")]
+        //[Required(ErrorMessage = "Please upload image")]
         public HttpPostedFileBase PostedFile { get; set; }
     }
 }

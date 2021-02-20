@@ -5,20 +5,11 @@
     RepoCookie repoCookie = new RepoCookie();
     var UserName = repoCookie.GetCookiesValue(CookieName.FirstName) + " " + repoCookie.GetCookiesValue(CookieName.LastName);
 }
-
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-
-    <link rel="stylesheet" href="~/Content/CSS/demo_3-style.css">
-    <link href="~/Content/CSS/css-materialdesignicons.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/Content/CSS/css-font-awesome.min.css">
-    <link href="~/Content/CSS/buttons.dataTables.min.css" rel="stylesheet" />
-    <link href="~/Content/CSS/jquery.dataTables.min.css" rel="stylesheet" />
-
 </head>
 <body>
     <div class="container-scroller">
@@ -152,15 +143,28 @@
             </div>
         </div>
     </footer>
+
+    <link href="~/Content/toastr.css" rel="stylesheet" />
     <script src="~/Content/JS/js-vendor.bundle.base.js"></script>
+    <script src="~/Content/JS/datatables.net-jquery.dataTables.js"></script>
+    <script src="~/Content/JS/datatables.net-bs4-dataTables.bootstrap4.js"></script>
+    <link href="~/Content/CSS/datatables.net-bs4-dataTables.bootstrap4.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="~/Content/CSS/demo_3-style.css">
+    <link href="~/Content/CSS/css-materialdesignicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/CSS/css-font-awesome.min.css">
+    @*<link href="~/Content/CSS/buttons.dataTables.min.css" rel="stylesheet" />
+        <link href="~/Content/CSS/jquery.dataTables.min.css" rel="stylesheet" />*@
+    @*<script src="~/Content/JS/dataTableAndTools.js"></script>*@
+
     <script src="~/Content/JS/chart.js-Chart.min.js"></script>
     <script src="~/Content/JS/js-settings.js"></script>
     <script src="~/Content/JS/js-dashboard.js"></script>
-    <script src="~/Content/JS/dataTableAndTools.js"></script>
+
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Content/JS/Global.js"></script>
-
     <script src="~/Content/JS/CommonFunction.js"></script>
     <script src="~/Content/JS/Common.js"></script>
 

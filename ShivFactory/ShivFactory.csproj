@@ -297,6 +297,8 @@
     <Content Include="Content\CSS\buttons.dataTables.min.css" />
     <Content Include="Content\CSS\css-font-awesome.min.css" />
     <Content Include="Content\CSS\css-materialdesignicons.min.css" />
+    <Content Include="Content\CSS\css-vendor.bundle.base.css" />
+    <Content Include="Content\CSS\datatables.net-bs4-dataTables.bootstrap4.css" />
     <Content Include="Content\CSS\demo_3-style.css" />
     <Content Include="Content\CSS\jquery.dataTables.min.css" />
     <Content Include="Content\fonts\fonts-fontawesome-webfont.svg" />
@@ -318,9 +320,11 @@
     <Content Include="Content\fonts\img-visa.svg" />
     <Content Include="Content\fonts\samples-weather.svg" />
     <Content Include="Content\JS\chart.js-Chart.min.js" />
-    <Content Include="Content\JS\dataTableAndTools.js" />
     <Content Include="Content\JS\Common.js" />
     <Content Include="Content\JS\CommonFunction.js" />
+    <Content Include="Content\JS\dataTableAndTools.js" />
+    <Content Include="Content\JS\datatables.net-bs4-dataTables.bootstrap4.js" />
+    <Content Include="Content\JS\datatables.net-jquery.dataTables.js" />
     <Content Include="Content\JS\Global.js" />
     <Content Include="Content\JS\jquery-3.5.1.js" />
     <Content Include="Content\JS\js-dashboard.js" />

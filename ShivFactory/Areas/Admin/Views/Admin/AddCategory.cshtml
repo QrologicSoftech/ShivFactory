@@ -1,4 +1,4 @@
-﻿@model ShivFactory.Business.Model.CategoryModel
+﻿@model ShivFactory.Business.Repository.CategoryModel
 @{
     ViewBag.Title = "AddCategory";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutDashboard.cshtml";
@@ -22,27 +22,27 @@
                     <div class="form-group">
                         <label>File upload</label>
                         <input type="file" name="img[]" class="file-upload-default">
-                        <div class="input-group col-xs-12">
+                        <div class="ajax-file-upload-container">
                             @Html.TextBoxFor(model => model.PostedFile, new { @class = "form-control file-upload-info", type = "file", accept = "image/*" })
                             @Html.ValidationMessageFor(model => model.PostedFile, "", new { @class = "text-danger" })
-                            <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                            </span>
-                            @Html.ValidationMessageFor(model => model.CatImage, "", new { @class = "text-danger" })
+                            @*<span class="input-group-append">
+            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+        </span>*@
+                            <div class="form-check">
+                               
+                                <label class="form-check-label text-muted">
+                                    @Html.CheckBoxFor(x => x.IsActive.Value, new { @type = "checkbox", @class = "form-check-input" })I agree to all Terms &amp; Conditions <i class="input-helper"></i>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                    @Html.HiddenFor(model => model.ID)
-                    @Html.HiddenFor(model => model.CatImage)
-                    @*<div class="form-group">
-                <label class="input-group">
-                    @Html.CheckBoxFor(model => model.IsActive.Value, new { @class = "form-check-input" })
-                    Is Active <i class="input-helper"></i>
-                </label>
-            </div>*@
-                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
-                }
-            </div>
+                    @Html.HiddenFor(model => model.CategoryId)
+                    @Html.HiddenFor(model => model.ImagePath)
+                   
+                        <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                        <button class="btn btn-light" type="reset">Cancel</button>
+                        }
+                    </div>
         </div>
     </div>
 </div>
