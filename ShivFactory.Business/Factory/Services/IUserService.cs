@@ -10,16 +10,6 @@ namespace ShivFactory.Business.Factory.Services
 {
     public interface IUserService
     {
-        string SaveImage(HttpPostedFileBase PostedFile);
-        #region Category
-        int SaveCategory(CategoryModel catModel);
-        CategoryModel GetCategoryById(int id);
-        List<CategoryModel> GetAllCategory();
-        bool UpdateCategory(int id, CategoryModel model);
-        bool DeleteCategory(int id);
-
-        #endregion
-
         #region SubCategory
         int SaveSubCategory(SubCategoryModel SubcatModel);
         SubCategoryModel GetSubCategoryById(int id);

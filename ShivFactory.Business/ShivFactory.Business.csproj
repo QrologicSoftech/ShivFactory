@@ -75,7 +75,6 @@
     <Compile Include="Factory\Services\UserService.cs" />
     <Compile Include="Model\BannerModel.cs" />
     <Compile Include="Model\BrandModel.cs" />
-    <Compile Include="Model\CategoryModel.cs" />
     <Compile Include="Model\ClsVariable.cs" />
     <Compile Include="Model\Common\ResultModel.cs" />
     <Compile Include="Model\MiniCategoryModel.cs" />
@@ -87,6 +86,7 @@
     <Compile Include="Repository\Category\Category.cs" />
     <Compile Include="Repository\Category\RepoCategory.cs" />
     <Compile Include="Repository\Common\Cookie.cs" />
+    <Compile Include="Repository\Common\RepoCommon.cs" />
     <Compile Include="Repository\Users\LogInResponse.cs" />
     <Compile Include="Repository\Users\RepoUser.cs" />
   </ItemGroup>

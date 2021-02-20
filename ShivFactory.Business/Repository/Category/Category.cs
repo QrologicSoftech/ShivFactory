@@ -6,14 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace ShivFactory.Business.Repository.Category
+namespace ShivFactory.Business.Repository
 {
-    class Category
+    public class CategoryModel
     {
         public int CategoryId { get; set; }
         [Required(ErrorMessage = "Please enter category name")]
         public string CategoryName { get; set; }
-        public string CatImage { get; set; }
+        public string ImagePath { get; set; }
         public bool? IsActive { get; set; }
         [Required(ErrorMessage = "Please upload image")]
         public HttpPostedFileBase PostedFile { get; set; }

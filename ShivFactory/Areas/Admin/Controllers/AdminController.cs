@@ -1,6 +1,9 @@
-﻿using ShivFactory.Business.Factory.Services;
+﻿using DataLibrary.DL;
+using ShivFactory.Business.Factory.Services;
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
+using ShivFactory.Business.Repository;
+using ShivFactory.Business.Repository.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +21,7 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             return View();
         }
+
         #region Category
 
         public ActionResult Category()
@@ -26,16 +30,35 @@ namespace ShivFactory.Areas.Admin.Controllers
         }
         public ActionResult CategoryPartialView()
         {
-            var categories = user.GetAllCategory();
-            return View(categories);
+            try
+            {
+                RepoCategory repoCategory = new RepoCategory();
+                var categories = repoCategory.GetAllCategory();
+                return View(categories);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(new List<Category>());
+            }
         }
         public ActionResult AddCategory(int? id)
         {
-            if (id > 0)
+            try
             {
-                var editCategory = user.GetCategoryById(id.Value);
-                return View(editCategory);
+                if (id > 0)
+                {
+                    RepoCategory repoCategory = new RepoCategory();
+                    var category = repoCategory.GetCategoryByCategoryId(id.Value);
+                    return View(category);
+                }
+
             }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+
             return View();
         }
         [HttpPost]
@@ -43,65 +66,64 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
-                    if (model.ID == 0)
-                    {
-                        if (postedfile == null)
-                        {
-                            ModelState.AddModelError("CatImage", "Please select Category Image.");
-                            return View(model);
-                        }
-                    }
-                    if (model.ID == 0)
-                    {
-                        //TempData["ErrorMessage"] = "Going to error";
-                        TempData["SuccessMessage"] = "Successfully done!!";
-                        if (postedfile != null)
-                        {
-                            model.CatImage = user.SaveImage(postedfile);
-                        }
-                        //else
-                        //{
-                        //    model.CatImage=
-                        //}
-                        var id = user.SaveCategory(model);
+                    return View(model);
+                }
 
-                        if (id > 0)
-                        {
-                            TempData["message"] = "New Category Added Successfully";
-                            ModelState.Clear();
-                            return RedirectToAction("Category", "Admin");
-                        }
-                    }
-                    else
-                    {
-                        if (postedfile != null)
-                        {
-                            model.CatImage = user.SaveImage(postedfile);
-                        }
-                        var update = user.UpdateCategory(model.ID, model);
-                        TempData["message"] = "Category Updated Successfully";
-                        return RedirectToAction("Category", "Admin");
-                    }
+                if (model.CategoryId == 0 && postedfile == null)
+                {
+
+                    ModelState.AddModelError("CatImage", "Please select Category Image.");
+                    return View(model);
+                }
+
+                // save image file
+                RepoCommon common = new RepoCommon();
+                model.ImagePath = common.SaveImage(postedfile);
+
+                RepoCategory repoCategory = new RepoCategory();
+                var isSaved = repoCategory.AddOrUpdateCategory(model);
+
+                if (isSaved)
+                {
+                    TempData["SuccessMessage"] = "Category add or update successfully!!";
+                    return RedirectToAction("Category", "Admin");
+                }
+                else
+                {
+                    TempData["SuccessMessage"] = "Failled to add or update category";
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(model);
+            }
+        }
+
+        public ActionResult DeleteCategory(int id)
+        {
+            try
+            {
+                RepoCategory repoCategory = new RepoCategory();
+                var isDelete = repoCategory.DeleteCategoryByCategoryId(id);
+                if (isDelete)
+                {
+                    TempData["SuccessMessage"] = "Category deleted successfully!!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to delete category";
                 }
                 return RedirectToAction("Category", "Admin");
             }
             catch (Exception ex)
             {
-                return View();
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("Category", "Admin");
             }
-        }
-        public ActionResult DeleteCategory(int id)
-        {
-            var isDelete = user.DeleteCategory(id);
-            TempData["message"] = "Category Deleted Successfully";
-            if (!isDelete)
-            {
-                //show error message
-                TempData["message"] = "Unable To delete Category!";
-            }
-            return RedirectToAction("Category", "Admin");
         }
 
         #endregion
@@ -120,8 +142,8 @@ namespace ShivFactory.Areas.Admin.Controllers
         }
         public ActionResult AddSubCategory(int? id)
         {
-
-            ViewBag.category = new SelectList(user.GetAllCategory(), "ID", "CategoryName");
+            RepoCategory repoCategory = new RepoCategory();
+            ViewBag.category = repoCategory.GetCategoryDDl();
             if (id > 0)
             {
                 var editSubCategory = user.GetSubCategoryById(id.Value);
@@ -140,7 +162,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 {
                     if (postedfile != null)
                     {
-                        model.SubCatImage = user.SaveImage(postedfile);
+                        //model.SubCatImage = user.SaveImage(postedfile);
                     }
                     //else
                     //{
@@ -157,7 +179,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 {
                     if (postedfile != null)
                     {
-                        model.SubCatImage = user.SaveImage(postedfile);
+                        //model.SubCatImage = user.SaveImage(postedfile);
                     }
                     var update = user.UpdateSubCategory(model.ID, model);
                     TempData["message"] = "Added";
