@@ -42,34 +42,3 @@
         common.RenderPartialView('Admin', 'CategoryPartialView');
     });
 </script>
-<style>
-       .page-loading {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    overflow: hidden;
-    background: rgba(51, 51, 51, 1.00);
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    z-index: -1;
-    }
-</style>
-
-    
-    <script type="text/javascript">
-        document.onreadystatechange = function () {
-            if (document.readyState !== "complete") {
-                document.querySelector(
-                    "body").style.visibility = "hidden";
-                document.querySelector(
-                    "#loader").style.visibility = "visible";
-            } else {
-                document.querySelector(
-                    "#loader").style.display = "none";
-                document.querySelector(
-                    "body").style.visibility = "visible";
-            }
-        }; 
-    </script>
