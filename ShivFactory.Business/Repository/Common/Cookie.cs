@@ -1,6 +1,7 @@
 ﻿using ShivFactory.Business.Models.Other;
 using System;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ShivFactory.Business.Repository
 {
@@ -85,13 +86,20 @@ namespace ShivFactory.Business.Repository
     {
         public void AddSessionValues()
         {
-            HttpContext.Current.Session["UserName"] = HttpContext.Current.Request.Cookies["UserName"].Value;
-            HttpContext.Current.Session["UserId"] = HttpContext.Current.Request.Cookies["UserId"].Value;
-            HttpContext.Current.Session["Role"] = HttpContext.Current.Request.Cookies["Role"].Value;
-            HttpContext.Current.Session["FirstName"] = HttpContext.Current.Request.Cookies["FirstName"].Value;
-            HttpContext.Current.Session["LastName"] = HttpContext.Current.Request.Cookies["LastName"].Value;
-            HttpContext.Current.Session["EmailId"] = HttpContext.Current.Request.Cookies["EmailId"].Value;
-            HttpContext.Current.Session["Mobile"] = HttpContext.Current.Request.Cookies["Mobile"].Value;
+            if (string.IsNullOrEmpty(HttpContext.Current.Request.Cookies[CookieName.UserName].Value.ToString()))
+            {
+                ActionExecutingContext filterContextORG = new ActionExecutingContext();
+                filterContextORG.Result = new RedirectResult("~/Account/LogIn");
+                return;
+            }
+
+            HttpContext.Current.Session[CookieName.UserName] = HttpContext.Current.Request.Cookies[CookieName.UserName].Value;
+            HttpContext.Current.Session[CookieName.UserId] = HttpContext.Current.Request.Cookies[CookieName.UserId].Value;
+            HttpContext.Current.Session[CookieName.Role] = HttpContext.Current.Request.Cookies[CookieName.Role].Value;
+            HttpContext.Current.Session[CookieName.FirstName] = HttpContext.Current.Request.Cookies[CookieName.FirstName].Value;
+            HttpContext.Current.Session[CookieName.LastName] = HttpContext.Current.Request.Cookies[CookieName.LastName].Value;
+            HttpContext.Current.Session[CookieName.EmailId] = HttpContext.Current.Request.Cookies[CookieName.EmailId].Value;
+            HttpContext.Current.Session[CookieName.Mobile] = HttpContext.Current.Request.Cookies[CookieName.Mobile].Value;
             HttpContext.Current.Session.Timeout = 60;
         }
         public void AddSessionValue(string sessionName, string value)
@@ -101,6 +109,10 @@ namespace ShivFactory.Business.Repository
         }
         public string GetSessionValue(string sessionName)
         {
+            if (string.IsNullOrEmpty(HttpContext.Current.Session[CookieName.UserName].ToString()))
+            {
+                AddSessionValues();
+            }
             var val = HttpContext.Current.Session[sessionName].ToString();
             return val;
         }

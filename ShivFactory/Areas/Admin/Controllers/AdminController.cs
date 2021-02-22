@@ -8,10 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static ShivFactory.FilterConfig;
 
 namespace ShivFactory.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin"), UserSessionActionFilter]
     public class AdminController : Controller
     {
         // GET: Admin/Admin
