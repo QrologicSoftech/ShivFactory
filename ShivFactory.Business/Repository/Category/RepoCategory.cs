@@ -61,7 +61,7 @@ namespace ShivFactory.Business.Repository
                 CategoryId = a.ID,
                 CategoryName = a.CategoryName,
                 ImagePath = a.CatImage,
-                IsActive = a.IsActive
+                IsActive = a.IsActive.Value
             }).FirstOrDefault();
 
             return category;

@@ -8,14 +8,15 @@ using System.Web;
 
 namespace ShivFactory.Business.Repository
 {
-    public class CategoryModel
+    public class SubCategoryModel
     {
+        [Required(ErrorMessage = "Please select category")]
         public int CategoryId { get; set; }
-        [Required(ErrorMessage = "Please enter category name")]
-        public string CategoryName { get; set; }
+        public int SubCategoryId { get; set; }
+        [Required(ErrorMessage = "Please enter subCategory name")]
+        public string SubCategoryName { get; set; }
         public string ImagePath { get; set; }
         public bool IsActive { get; set; }
-        //[Required(ErrorMessage = "Please upload image")]
         public HttpPostedFileBase PostedFile { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using DataLibrary.DL;
-using ShivFactory.Business.Factory.Services;
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
 using ShivFactory.Business.Repository;
@@ -15,7 +14,6 @@ namespace ShivFactory.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        UserService user = new UserService();
         // GET: Admin/Admin
         public ActionResult Index()
         {
@@ -74,7 +72,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 if (model.CategoryId == 0 && postedfile == null)
                 {
 
-                    ModelState.AddModelError("PostedFile", "Please select Category Image.");
+                    ModelState.AddModelError("PostedFile", "Please upload Category Image.");
                     return View(model);
                 }
                 if (model.CategoryId == 0 && postedfile != null)
@@ -131,77 +129,116 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #endregion
 
-
         #region SubCategory
 
-        //public ActionResult SubCategory()
-        //{
-        //    return View();
-        //}
-        //public ActionResult SubCategoryPartialView()
-        //{
-        //    var subcategory = user.GetAllSubCategory();
-        //    return View(subcategory);
-        //}
-        //public ActionResult AddSubCategory(int? id)
-        //{
-        //    RepoCategory repoCategory = new RepoCategory();
-        //    ViewBag.category = repoCategory.GetCategoryDDl();
-        //    if (id > 0)
-        //    {
-        //        var editSubCategory = user.GetSubCategoryById(id.Value);
-        //        return View("AddSubCategory", editSubCategory);
-        //    }
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult AddSubCategory(SubCategoryModel model, HttpPostedFileBase postedfile)
-        //{
-        //    //try
-        //    //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (model.ID == 0)
-        //        {
-        //            if (postedfile != null)
-        //            {
-        //                //model.SubCatImage = user.SaveImage(postedfile);
-        //            }
-        //            //else
-        //            //{
-        //            //    model.CatImage=
-        //            //}
-        //            var id = user.SaveSubCategory(model);
-        //            if (id > 0)
-        //            {
-        //                ModelState.Clear();
-        //                return RedirectToAction("SubCategory", "Admin");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            if (postedfile != null)
-        //            {
-        //                //model.SubCatImage = user.SaveImage(postedfile);
-        //            }
-        //            var update = user.UpdateSubCategory(model.ID, model);
-        //            TempData["message"] = "Added";
-        //            return RedirectToAction("SubCategory", "Admin");
-        //        }
-        //    }
-        //    return RedirectToAction("SubCategory", "Admin");
-        //    //}
-        //    //catch (Exception ex)
-        //    //{
-        //    //    return View();
-        //    //}
-        //}
+        public ActionResult SubCategory()
+        {
+            return View();
+        }
+        public ActionResult SubCategoryPartialView()
+        {
+            try
+            {
+                RepoSubcategory rsCategory = new RepoSubcategory();
+                var categories = rsCategory.GetAllSubCategory();
+                return View(categories);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(new List<SubCategory>());
+            }
+        }
+        public ActionResult AddSubCategory(int? id)
+        {
+            try
+            {
+                RepoCategory repoCategory = new RepoCategory();
+                ViewBag.category = repoCategory.GetCategoryDDl();
 
-        //public ActionResult DeleteSubCategory(int id)
-        //{
-        //    var deletecat = user.RemoveSubCategory(id);
-        //    return RedirectToAction("SubCategory", "Admin");
-        //}
+                if (id > 0)
+                {
+                    RepoSubcategory rsCategory = new RepoSubcategory();
+                    var category = rsCategory.GetSubCategoryById(id.Value);
+                    return View(category);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddSubCategory(SubCategoryModel model, HttpPostedFileBase postedfile)
+        {
+            try
+            {
+                RepoCategory repoCategory = new RepoCategory();
+                ViewBag.category = repoCategory.GetCategoryDDl();
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                if (model.SubCategoryId == 0 && postedfile == null)
+                {
+                    ModelState.AddModelError("PostedFile", "Please upload Category Image.");
+                    return View(model);
+                }
+                if (model.SubCategoryId == 0 && postedfile != null)
+                {
+
+                    // save image file
+                    RepoCommon common = new RepoCommon();
+                    model.ImagePath = common.SaveImage(postedfile);
+                }
+
+                RepoSubcategory rsCategory = new RepoSubcategory();
+                var isSaved = rsCategory.AddOrUpdateSubCategory(model);
+
+                if (isSaved)
+                {
+                    TempData["SuccessMessage"] = "SubCategory add or update successfully!!";
+                    return RedirectToAction("SubCategory", "Admin");
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to add or update subcategory";
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(model);
+            }
+        }
+
+        public ActionResult DeleteSubCategory(int id)
+        {
+            try
+            {
+                RepoSubcategory rsCategory = new RepoSubcategory();
+                var isDelete = rsCategory.DeleteSubCategoryById(id);
+                if (isDelete)
+                {
+                    TempData["SuccessMessage"] = "SubCategory deleted successfully!!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to delete subcategory";
+                }
+                return RedirectToAction("SubCategory", "Admin");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("SubCategory", "Admin");
+            }
+        }
 
         #endregion
 
