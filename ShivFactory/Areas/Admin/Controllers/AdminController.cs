@@ -242,7 +242,7 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #endregion
 
-        #region SubCategory
+        #region MiniCategory
 
         //public ActionResult MiniCategory()
         //{
