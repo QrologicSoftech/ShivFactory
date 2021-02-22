@@ -8,7 +8,7 @@ namespace ShivFactory.Business.Repository
     {
         public void AddCookiesValues(LogInResponse model)
         {
-            HttpCookie username = new HttpCookie(CookieName.UserName,model.UserName);
+            HttpCookie username = new HttpCookie(CookieName.UserName, model.UserName);
             username.Expires = DateTime.Now.AddMonths(1);
             HttpContext.Current.Response.Cookies.Add(username);
 
@@ -46,6 +46,37 @@ namespace ShivFactory.Business.Repository
         {
             var val = HttpContext.Current.Request.Cookies[cookieName].Value;
             return val;
+        }
+
+        public void ClearCookiesValues()
+        {
+            HttpCookie username = new HttpCookie(CookieName.UserName, null);
+            username.Expires = DateTime.Now.AddDays(-1);
+            HttpContext.Current.Response.Cookies.Add(username);
+
+            HttpCookie userid = new HttpCookie(CookieName.UserId, null);
+            userid.Expires = DateTime.Now.AddDays(-1);
+            HttpContext.Current.Response.Cookies.Add(userid);
+
+            HttpCookie role = new HttpCookie(CookieName.Role, null);
+            role.Expires = DateTime.Now.AddDays(-1);
+            HttpContext.Current.Response.Cookies.Add(role);
+
+            HttpCookie firstName = new HttpCookie(CookieName.FirstName, null);
+            firstName.Expires = DateTime.Now.AddDays(-1);
+            HttpContext.Current.Response.Cookies.Add(firstName);
+
+            HttpCookie lastName = new HttpCookie(CookieName.LastName, null);
+            lastName.Expires = DateTime.Now.AddDays(-1);
+            HttpContext.Current.Response.Cookies.Add(lastName);
+
+            HttpCookie emailId = new HttpCookie(CookieName.EmailId, null);
+            emailId.Expires = DateTime.Now.AddDays(-1);
+            HttpContext.Current.Response.Cookies.Add(emailId);
+
+            HttpCookie mobile = new HttpCookie(CookieName.Mobile, null);
+            mobile.Expires = DateTime.Now.AddDays(-1);
+            HttpContext.Current.Response.Cookies.Add(mobile);
         }
 
     }

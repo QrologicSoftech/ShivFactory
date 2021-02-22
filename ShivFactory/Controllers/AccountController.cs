@@ -12,6 +12,7 @@ using DataLibrary.DL;
 using System;
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
+using System.Security.Claims;
 
 namespace ShivFactory.Controllers
 {
@@ -367,11 +368,13 @@ namespace ShivFactory.Controllers
         #endregion
 
         #region LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            RepoCookie co = new RepoCookie();
+            co.ClearCookiesValues();
+            Session.Abandon();
+
             return RedirectToAction("Index", "Home");
         }
         #endregion
@@ -672,6 +675,15 @@ namespace ShivFactory.Controllers
                                 Address = userDetails.Address,
                                 Mobile = userDetails.Mobile
                             };
+
+                            // add authontication
+                            ClaimsIdentity identity = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie);
+                            identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.UserName));
+                            identity.AddClaim(new Claim(ClaimTypes.Role, role));
+                            identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
+                            AuthenticationManager.SignIn(identity);
+
+
                             return new ResultModel
                             {
                                 ResultFlag = true,
