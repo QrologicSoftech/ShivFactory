@@ -3,6 +3,8 @@ using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
 using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.Common;
+using ShivFactory.Business.Repository.DimensionMaster;
+using ShivFactory.Business.Repository.WeightMaster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -181,6 +183,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 ViewBag.category = repoCategory.GetCategoryDDl();
                 if (!ModelState.IsValid)
                 {
+                    TempData["ErrorMessage"] = "Invalid Details!!";
                     return View(model);
                 }
 
@@ -267,8 +270,8 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             try
             {
-                RepoMinicategory repoCategory = new RepoMinicategory();
-                ViewBag.subcategory = repoCategory.GetMiniCategoryDDl();
+                RepoSubcategory repoCategory = new RepoSubcategory();
+                ViewBag.SubCategoryId = repoCategory.GetSubCategoryDDl();
 
                 if (id > 0)
                 {
@@ -290,11 +293,10 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             try
             {
-                RepoMinicategory repoCategory = new RepoMinicategory();
-                ViewBag.SubCategoryId = repoCategory.GetMiniCategoryDDl();
-                if (ModelState.IsValid)
-                {
-                    TempData["ErrorMessage"] = "Please Enter Valid Details.";
+                RepoSubcategory repoCategory = new RepoSubcategory();
+                ViewBag.SubCategoryId = repoCategory.GetSubCategoryDDl();
+                if (!ModelState.IsValid)
+                {                    
                     return View(model);
                 }
 
@@ -317,7 +319,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 if (isSaved)
                 {
                     TempData["SuccessMessage"] = "MiniCategory add or update successfully!!";
-                    return RedirectToAction("SubCategory", "Admin");
+                    return RedirectToAction("MiniCategory", "Admin");
                 }
                 else
                 {
@@ -340,7 +342,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 var isDelete = rsCategory.DeleteSubCategoryById(id);
                 if (isDelete)
                 {
-                    TempData["SuccessMessage"] = "SubCategory deleted successfully!!";
+                    TempData["SuccessMessage"] = "MiniCategory deleted successfully!!";
                 }
                 else
                 {
@@ -351,84 +353,9 @@ namespace ShivFactory.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = ex.Message;
-                return RedirectToAction("SubCategory", "Admin");
+                return RedirectToAction("MiniCategory", "Admin");
             }
         }
-
-        #endregion
-
-        #region MiniCategory
-
-        //public ActionResult MiniCategory()
-        //{
-        //    return View();
-        //}
-        //public ActionResult MiniCategoryPartialView()
-        //{
-        //    var subcategory = user.GetAllMiniCategory();
-        //    return View(subcategory);
-        //}
-        //public ActionResult AddMiniCategory(int? id)
-        //{
-        //    ViewBag.MiniCategory = new SelectList(user.GetAllSubCategory(), "ID", "SubCatName");
-        //    if (id > 0)
-        //    {
-        //        var editMiniCategory = user.GetMiniCategoryById(id.Value);
-        //        return View("AddMiniCategory", editMiniCategory);
-        //    }
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult AddMiniCategory(MiniCategoryModel model, HttpPostedFileBase postedfile)
-        //{
-        //    //try
-        //    //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (model.ID == 0)
-        //        {
-        //            if (postedfile != null)
-        //            {
-        //                model.MiniCatImage = user.SaveImage(postedfile);
-        //            }
-        //            //else
-        //            //{
-        //            //    model.CatImage=
-        //            //}
-        //            var id = user.SaveMiniCategory(model);
-
-        //            if (id > 0)
-        //            {
-        //                TempData["message"] = "Sub Category Added Successfully!";
-        //                ModelState.Clear();
-        //                return RedirectToAction("MiniCategory", "Admin");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            if (postedfile != null)
-        //            {
-        //                model.MiniCatImage = user.SaveImage(postedfile);
-        //            }
-        //            var update = user.UpdateMiniCategory(model.ID, model);
-        //            TempData["message"] = "Sub Category updated Successfully!";
-        //            return RedirectToAction("MiniCategory", "Admin");
-        //        }
-        //    }
-        //    return RedirectToAction("MiniCategory", "Admin");
-        //    //}
-        //    //catch (Exception ex)
-        //    //{
-        //    //    return View();
-        //    //}
-        //}
-
-        //public ActionResult DeleteMiniCategory(int id)
-        //{
-        //    var deletecat = user.RemoveMiniCategory(id);
-        //    TempData["message"] = "Category Deleted Successfully";
-        //    return RedirectToAction("MiniCategory", "Admin");
-        //}
 
         #endregion
 
@@ -573,6 +500,206 @@ namespace ShivFactory.Areas.Admin.Controllers
         //    TempData["message"] = "Banner Removed Successfuly!";
         //    return RedirectToAction("Banner", "Admin");
         //}
+
+        #endregion
+
+        #region DimensionMaster
+
+        public ActionResult DimensionMaster()
+        {
+            return View();
+        }
+        public ActionResult DimensionMasterPartialView()
+        {
+            try
+            {
+                RepoDimension rsCategory = new RepoDimension();
+                var dimensions = rsCategory.GetAllDimensionMaster();
+                return View(dimensions);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(new List<DimensionMaster>());
+            }
+        }
+        public ActionResult AddDimensionMaster(int? id)
+        {
+            try
+            {
+                RepoDimension rsDimension = new RepoDimension();
+                ViewBag.Dimension = rsDimension.GetDimensionMasterDDl();
+
+                if (id > 0)
+                {
+                    RepoDimension rsCategory = new RepoDimension();
+                    var dimension = rsCategory.GetDimensionMasterById(id.Value);
+                    return View(dimension);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddDimensionMaster(DimensionModel model)
+        {
+            try
+            {
+                RepoDimension rsDimension = new RepoDimension();
+                ViewBag.Dimension = rsDimension.GetDimensionMasterDDl();
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                var isSaved = rsDimension.AddOrUpdateDimensionMaster(model);
+
+                if (isSaved)
+                {
+                    TempData["SuccessMessage"] = "Dimension add or update successfully!!";
+                    return RedirectToAction("DimensionMaster", "Admin");
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to add or update Dimension";
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(model);
+            }
+        }
+
+        public ActionResult DeleteDimensionMaster(int id)
+        {
+            try
+            {
+                RepoDimension rsDimension = new RepoDimension();
+                var isDelete = rsDimension.DeleteDimensionMasterById(id);
+                if (isDelete)
+                {
+                    TempData["SuccessMessage"] = "Dimension deleted successfully!!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to delete Dimension";
+                }
+                return RedirectToAction("DimensionMaster", "Admin");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("DimensionMaster", "Admin");
+            }
+        }
+
+
+        #endregion
+
+
+        #region WeightMaster
+
+        public ActionResult WeightMaster()
+        {
+            return View();
+        }
+        public ActionResult WeightMasterMasterPartialView()
+        {
+            try
+            {
+                RepoWeightMaster rsCategory = new RepoWeightMaster();
+                var weight = rsCategory.GetAllWeightMaster();
+                return View(weight);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(new List<DimensionMaster>());
+            }
+        }
+        public ActionResult AddWeightMaster(int? id)
+        {
+            try
+            {
+                RepoWeightMaster rsCategory = new RepoWeightMaster();
+                ViewBag.Dimension = rsCategory.GetweightMasterDDl();
+
+                if (id > 0)
+                {
+                    var dimension = rsCategory.GetWeightMasterById(id.Value);
+                    return View(dimension);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddWeightMaster(WeightModel model)
+        {
+            try
+            {
+                RepoWeightMaster rsDimension = new RepoWeightMaster();
+                ViewBag.Dimension = rsDimension.GetweightMasterDDl();
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                var isSaved = rsDimension.AddOrUpdateWeightMaster(model);
+
+                if (isSaved)
+                {
+                    TempData["SuccessMessage"] = "Weight add or update successfully!!";
+                    return RedirectToAction("WeightMaster", "Admin");
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to add or update Dimension";
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(model);
+            }
+        }
+
+        public ActionResult DeleteWeightMaster(int id)
+        {
+            try
+            {
+                RepoWeightMaster rsDimension = new RepoWeightMaster();
+                var isDelete = rsDimension.DeleteWeightMasterById(id);
+                if (isDelete)
+                {
+                    TempData["SuccessMessage"] = "Weight deleted successfully!!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to delete Weight";
+                }
+                return RedirectToAction("WeightMaster", "Admin");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("WeightMaster", "Admin");
+            }
+        }
+
 
         #endregion
     }

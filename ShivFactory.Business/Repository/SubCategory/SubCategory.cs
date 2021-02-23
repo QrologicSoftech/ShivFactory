@@ -12,7 +12,7 @@ namespace ShivFactory.Business.Repository
     {
         [Required(ErrorMessage = "Please select category")]
         public int CategoryId { get; set; }
-        public int SubCategoryId { get; set; }
+        public int? SubCategoryId { get; set; }
         [Required(ErrorMessage = "Please enter subCategory name")]
         public string SubCategoryName { get; set; }
         public string ImagePath { get; set; }

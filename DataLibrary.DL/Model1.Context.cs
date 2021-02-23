@@ -39,5 +39,7 @@ namespace DataLibrary.DL
         public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<VendorBankDetail> VendorBankDetails { get; set; }
         public virtual DbSet<VendorBusinessDetail> VendorBusinessDetails { get; set; }
+        public virtual DbSet<DimensionMaster> DimensionMasters { get; set; }
+        public virtual DbSet<WeightMaster> WeightMasters { get; set; }
     }
 }

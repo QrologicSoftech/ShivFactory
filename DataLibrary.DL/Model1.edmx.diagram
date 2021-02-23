@@ -27,6 +27,8 @@
         <AssociationConnector Association="db_ShivFactoryModel.FK__VendorBan__UserI__656C112C" ManuallyRouted="false" />
         <AssociationConnector Association="db_ShivFactoryModel.FK__VendorBus__UserI__66603565" ManuallyRouted="false" />
         <AssociationConnector Association="db_ShivFactoryModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.DimensionMaster" Width="1.5" PointX="12.375" PointY="4.75" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.WeightMaster" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

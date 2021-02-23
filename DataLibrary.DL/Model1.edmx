@@ -103,6 +103,13 @@
           <Property Name="Adddate" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
         </EntityType>
+        <EntityType Name="DimensionMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="DynamicMenu">
           <Key>
             <PropertyRef Name="ID" />
@@ -201,6 +208,13 @@
           <Property Name="IsDelete" Type="datetime" />
           <Property Name="AddUpdate" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="WeightMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="FK__MiniCateg__SubCa__628FA481">
           <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1">
@@ -338,12 +352,14 @@
           <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DimensionMaster" EntityType="Self.DimensionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DynamicMenu" EntityType="Self.DynamicMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MiniCategory" EntityType="Self.MiniCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorBankDetails" EntityType="Self.VendorBankDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorBusinessDetails" EntityType="Self.VendorBusinessDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeightMaster" EntityType="Self.WeightMaster" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__MiniCateg__SubCa__628FA481" Association="Self.FK__MiniCateg__SubCa__628FA481">
             <End Role="SubCategory" EntitySet="SubCategory" />
             <End Role="MiniCategory" EntitySet="MiniCategory" />
@@ -739,7 +755,23 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="DimensionMasters" EntityType="db_ShivFactoryModel.DimensionMaster" />
+          <EntitySet Name="WeightMasters" EntityType="db_ShivFactoryModel.WeightMaster" />
         </EntityContainer>
+        <EntityType Name="DimensionMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="WeightMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -954,6 +986,22 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="DimensionMasters">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.DimensionMaster">
+              <MappingFragment StoreEntitySet="DimensionMaster">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeightMasters">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.WeightMaster">
+              <MappingFragment StoreEntitySet="WeightMaster">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

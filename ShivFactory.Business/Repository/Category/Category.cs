@@ -10,7 +10,7 @@ namespace ShivFactory.Business.Repository
 {
     public class CategoryModel
     {
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
         [Required(ErrorMessage = "Please enter category name")]
         public string CategoryName { get; set; }
         public string ImagePath { get; set; }

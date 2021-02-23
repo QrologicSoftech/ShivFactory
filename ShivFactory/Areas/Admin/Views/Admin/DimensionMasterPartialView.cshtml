@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DataLibrary.DL.DimensionMaster>
+@{
+    ViewBag.Title = "DimensionPartialView";
+}
+
+<div class="row overflow-auto">
+    <div class="col-12">
+        <table class="table datatable" cellspacing="0" width="100%">
+            <thead>
+                <tr class="bg-primary text-white">
+                    <th>Sr No.</th>
+                    <th>Dimension Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{int index = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@index</td>
+                            <td>@item.Name</td>
+                            <td >
+                                <button class="btn btn-light">
+                                    <i class="mdi mdi-database-edit text-primary"></i>
+                                    @Html.ActionLink("Edit", "AddDimensionMaster", new { Area = "Admin", id = item.Id })
+                                </button>
+                                <button class="btn btn-light">
+                                    <i class="mdi mdi-close text-danger"></i>
+                                    @Html.ActionLink("Delete", "DeleteDimensionMaster", new { Area = "Admin", @class = "fa fa-trash", id = item.Id }, new { onclick = "return confirm('Are you sure to delete this category?');" })
+                                </button>
+                            </td>
+                        </tr>
+                        index++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.datatable').DataTable();
+    });
+</script>
