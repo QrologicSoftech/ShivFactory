@@ -1,40 +1,66 @@
-﻿@model IEnumerable<ShivFactory.Business.Model.MiniCategoryModel>
+﻿@*@model IEnumerable<ShivFactory.Business.Model.MiniCategoryModel>*@
+@model IEnumerable<DataLibrary.DL.MiniCategory>
 @{
     ViewBag.Title = "MiniCategoryPartialView";
 }
 
-<p class="card-description">
-    Mini Category list
-</p>
-<table class="table table-bordered" id="example">
-    <thead>
-        <tr>
-            <th>Sr No.</th>
-            <th>MiniCategory Name</th>
-            <th>MiniCategory Image</th>
-            <th>Add Date</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
 
-        @{int i = 1;
-            foreach (var item in Model)
-            {
-                <tr class="table-info">
-                    <td>@i</td>
-                    <td>@item.MiniCatName</td>
-                    <td align="center"><a href="@Url.Content(@item.MiniCatImage)" target="_blank"><img src="@item.MiniCatImage" alt="" style="height:40px;width:40px;" /></a></td>
-                    <td>@item.Adddate</td>
-                    <td class="center">
-                        @*<a href="#" class="btn btn-primary bindPopupModal" data-toggle="modal" data-target="#exampleModal" data-ajaxurl="@Url.Action("AddCategory", "Admin", new { id = item.ID })">Edit</a>*@
-                        @Html.ActionLink("Edit", "AddMiniCategory", new { id = item.ID })
-                        @Html.ActionLink("Delete", "DeleteMiniCategory", new { @class = "fa fa-trash", id = item.ID }, new { onclick = "return confirm('Are you sure you wish to delete this article?');" })
-                    </td>
+<div class="row overflow-auto">
+    <div class="col-12">
+        <table class="table datatable" cellspacing="0" width="100%">
+            <thead>
+                <tr class="bg-primary text-white">
+                    <th>Sr No.</th>
+                    <th>Sub Category</th>
+                    <th>Mini Category</th>
+                    <th>Image</th>
+                    <th>Is Active</th>
+                    <th>Add Date</th>
+                    <th>Actions</th>
                 </tr>
-                i++;
-            }
-        }
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+
+                @{int index = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            @{
+                                var category = item.SubCatID != null ? item.SubCategory.SubCatName : "";
+                                var status = item.IsActive == true ? "Active" : "InActive";
+                                var addDate = item.Adddate != null ? item.Adddate?.ToString("dd/MM/yyyy") : "";
+                                var className = item.IsActive == true ? "badge badge-success" : "badge badge-danger";
+                            }
+                            <td>@index</td>
+                            <td>@category</td>
+                            <td>@item.MiniCatName</td>
+                            <td>
+                                <a href="@Url.Content(@item.MiniCatImage)" target="_blank"><img src="@item.MiniCatImage" alt="" style="height:40px;width:40px;" /></a>
+                            </td>
+                            <td> <label class="@className">@status</label></td>
+                            <td>@addDate</td>
+                            <td class="text-right">
+                                <button class="btn btn-light">
+                                    <i class="mdi mdi-database-edit text-primary"></i>
+                                    @Html.ActionLink("Edit", "AddMiniCategory", new { Area = "Admin", id = item.ID })
+                                </button>
+                                <button class="btn btn-light">
+                                    <i class="mdi mdi-close text-danger"></i>
+                                    @Html.ActionLink("Delete", "DeleteMiniCategory", new { Area = "Admin", @class = "fa fa-trash", id = item.ID }, new { onclick = "return confirm('Are you sure to delete this subcategory?');" })
+                                </button>
+                            </td>
+                        </tr>
+                        index++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.datatable').DataTable();
+    });
+</script>
 

@@ -71,11 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Model\BannerModel.cs" />
-    <Compile Include="Model\BrandModel.cs" />
-    <Compile Include="Model\ClsVariable.cs" />
     <Compile Include="Model\Common\ResultModel.cs" />
-    <Compile Include="Model\MiniCategoryModel.cs" />
     <Compile Include="Model\Other\Constrant.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +81,8 @@
     <Compile Include="Repository\Category\RepoCategory.cs" />
     <Compile Include="Repository\Common\Cookie.cs" />
     <Compile Include="Repository\Common\RepoCommon.cs" />
+    <Compile Include="Repository\MiniCategory\MiniCategoryModel.cs" />
+    <Compile Include="Repository\MiniCategory\RepoMinicategory.cs" />
     <Compile Include="Repository\SubCategory\RepoSubcategory.cs" />
     <Compile Include="Repository\SubCategory\SubCategory.cs" />
     <Compile Include="Repository\SubCategory\SubCategoryResponse.cs" />

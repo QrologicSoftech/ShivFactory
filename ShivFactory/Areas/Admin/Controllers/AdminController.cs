@@ -245,6 +245,119 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #region MiniCategory
 
+        public ActionResult MiniCategory()
+        {
+            return View();
+        }
+        public ActionResult MiniCategoryPartialView()
+        {
+            try
+            {
+                RepoMinicategory rsCategory = new RepoMinicategory();
+                var categories = rsCategory.GetAllMiniCategory();
+                return View(categories);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(new List<MiniCategory>());
+            }
+        }
+        public ActionResult AddMiniCategory(int? id)
+        {
+            try
+            {
+                RepoMinicategory repoCategory = new RepoMinicategory();
+                ViewBag.subcategory = repoCategory.GetMiniCategoryDDl();
+
+                if (id > 0)
+                {
+                    RepoMinicategory rsCategory = new RepoMinicategory();
+                    var category = rsCategory.GetMiniCategoryById(id.Value);
+                    return View(category);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddMiniCategory(MiniCategoryModel model, HttpPostedFileBase postedfile)
+        {
+            try
+            {
+                RepoMinicategory repoCategory = new RepoMinicategory();
+                ViewBag.SubCategoryId = repoCategory.GetMiniCategoryDDl();
+                if (ModelState.IsValid)
+                {
+                    TempData["ErrorMessage"] = "Please Enter Valid Details.";
+                    return View(model);
+                }
+
+                if (model.MiniCategoryId == 0 && postedfile == null)
+                {
+                    ModelState.AddModelError("PostedFile", "Please upload Category Image.");
+                    return View(model);
+                }
+                if (postedfile != null)
+                {
+
+                    // save image file
+                    RepoCommon common = new RepoCommon();
+                    model.ImagePath = common.SaveImage(postedfile);
+                }
+
+                RepoMinicategory rsCategory = new RepoMinicategory();
+                var isSaved = rsCategory.AddOrUpdateMiniCategory(model);
+
+                if (isSaved)
+                {
+                    TempData["SuccessMessage"] = "MiniCategory add or update successfully!!";
+                    return RedirectToAction("SubCategory", "Admin");
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to add or update Minicategory";
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(model);
+            }
+        }
+
+        public ActionResult DeleteMiniCategory(int id)
+        {
+            try
+            {
+                RepoSubcategory rsCategory = new RepoSubcategory();
+                var isDelete = rsCategory.DeleteSubCategoryById(id);
+                if (isDelete)
+                {
+                    TempData["SuccessMessage"] = "SubCategory deleted successfully!!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to delete subcategory";
+                }
+                return RedirectToAction("SubCategory", "Admin");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("SubCategory", "Admin");
+            }
+        }
+
+        #endregion
+        #region MiniCategory
+
         //public ActionResult MiniCategory()
         //{
         //    return View();
