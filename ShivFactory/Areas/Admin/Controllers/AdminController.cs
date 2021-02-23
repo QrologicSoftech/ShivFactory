@@ -76,7 +76,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                     ModelState.AddModelError("PostedFile", "Please upload Category Image.");
                     return View(model);
                 }
-                if (model.CategoryId == 0 && postedfile != null)
+                if (postedfile != null)
                 {
 
                     // save image file
@@ -189,7 +189,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                     ModelState.AddModelError("PostedFile", "Please upload Category Image.");
                     return View(model);
                 }
-                if (model.SubCategoryId == 0 && postedfile != null)
+                if (postedfile != null)
                 {
 
                     // save image file
@@ -356,6 +356,7 @@ namespace ShivFactory.Areas.Admin.Controllers
         }
 
         #endregion
+
         #region MiniCategory
 
         //public ActionResult MiniCategory()
