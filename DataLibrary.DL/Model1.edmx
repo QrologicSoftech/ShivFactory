@@ -103,6 +103,13 @@
           <Property Name="Adddate" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
         </EntityType>
+        <EntityType Name="ColorMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="DimensionMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -139,6 +146,25 @@
           <Property Name="Adddate" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
+          <Property Name="SalePrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ListPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MainImage" Type="varchar" MaxLength="100" />
+          <Property Name="Image1" Type="varchar" MaxLength="100" />
+          <Property Name="Image2" Type="varchar" MaxLength="100" />
+          <Property Name="Image3" Type="varchar" MaxLength="100" />
+          <Property Name="Image4" Type="varchar" MaxLength="100" />
+          <Property Name="Image5" Type="varchar" MaxLength="100" />
+          <Property Name="Image6" Type="varchar" MaxLength="100" />
+          <Property Name="Category" Type="int" />
+          <Property Name="SubCategory" Type="int" />
+          <Property Name="MiniCategory" Type="int" />
+        </EntityType>
         <EntityType Name="SubCategory">
           <Key>
             <PropertyRef Name="ID" />
@@ -151,6 +177,9 @@
           <Property Name="IsDelete" Type="bit" />
           <Property Name="Adddate" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="GST" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SGST" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="IGST" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="UserDetails">
           <Key>
@@ -342,6 +371,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_MiniCategory">
+          <End Role="MiniCategory" Type="Self.MiniCategory" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MiniCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="MiniCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_SubCategory">
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SubCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="db_ShivFactoryModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -352,9 +417,11 @@
           <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ColorMaster" EntityType="Self.ColorMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DimensionMaster" EntityType="Self.DimensionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DynamicMenu" EntityType="Self.DynamicMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MiniCategory" EntityType="Self.MiniCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorBankDetails" EntityType="Self.VendorBankDetails" Schema="dbo" store:Type="Tables" />
@@ -395,6 +462,18 @@
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_MiniCategory" Association="Self.FK_Product_MiniCategory">
+            <End Role="MiniCategory" EntitySet="MiniCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_SubCategory" Association="Self.FK_Product_SubCategory">
+            <End Role="SubCategory" EntitySet="SubCategory" />
+            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -498,6 +577,7 @@
           <Property Name="Adddate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="SubCategories" Relationship="Self.FK__SubCatego__Categ__6383C8BA" FromRole="Category" ToRole="SubCategory" />
+          <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="DynamicMenu">
           <Key>
@@ -528,6 +608,7 @@
           <Property Name="Adddate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="SubCategory" Relationship="Self.FK__MiniCateg__SubCa__628FA481" FromRole="MiniCategory" ToRole="SubCategory" />
+          <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_MiniCategory" FromRole="MiniCategory" ToRole="Product" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -543,6 +624,10 @@
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Category" Relationship="Self.FK__SubCatego__Categ__6383C8BA" FromRole="SubCategory" ToRole="Category" />
           <NavigationProperty Name="MiniCategories" Relationship="Self.FK__MiniCateg__SubCa__628FA481" FromRole="SubCategory" ToRole="MiniCategory" />
+          <Property Name="GST" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SGST" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IGST" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="SubCategory" ToRole="Product" />
         </EntityType>
         <EntityType Name="UserDetail">
           <Key>
@@ -757,6 +842,20 @@
           </AssociationSet>
           <EntitySet Name="DimensionMasters" EntityType="db_ShivFactoryModel.DimensionMaster" />
           <EntitySet Name="WeightMasters" EntityType="db_ShivFactoryModel.WeightMaster" />
+          <EntitySet Name="ColorMasters" EntityType="db_ShivFactoryModel.ColorMaster" />
+          <EntitySet Name="Products" EntityType="db_ShivFactoryModel.Product" />
+          <AssociationSet Name="FK_Product_Category" Association="db_ShivFactoryModel.FK_Product_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_MiniCategory" Association="db_ShivFactoryModel.FK_Product_MiniCategory">
+            <End Role="MiniCategory" EntitySet="MiniCategories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_SubCategory" Association="db_ShivFactoryModel.FK_Product_SubCategory">
+            <End Role="SubCategory" EntitySet="SubCategories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DimensionMaster">
           <Key>
@@ -772,6 +871,71 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="ColorMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ListPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MainImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image6" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Category" Type="Int32" />
+          <Property Name="SubCategory" Type="Int32" />
+          <Property Name="MiniCategory" Type="Int32" />
+          <NavigationProperty Name="Category1" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="MiniCategory1" Relationship="db_ShivFactoryModel.FK_Product_MiniCategory" FromRole="Product" ToRole="MiniCategory" />
+          <NavigationProperty Name="SubCategory1" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
+        </EntityType>
+        <Association Name="FK_Product_Category">
+          <End Type="db_ShivFactoryModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="db_ShivFactoryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_MiniCategory">
+          <End Type="db_ShivFactoryModel.MiniCategory" Role="MiniCategory" Multiplicity="0..1" />
+          <End Type="db_ShivFactoryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MiniCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="MiniCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_SubCategory">
+          <End Type="db_ShivFactoryModel.SubCategory" Role="SubCategory" Multiplicity="0..1" />
+          <End Type="db_ShivFactoryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SubCategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -907,6 +1071,9 @@
           <EntitySetMapping Name="SubCategories">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.SubCategory">
               <MappingFragment StoreEntitySet="SubCategory">
+                <ScalarProperty Name="IGST" ColumnName="IGST" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="SubCatName" ColumnName="SubCatName" />
@@ -999,6 +1166,34 @@
               <MappingFragment StoreEntitySet="WeightMaster">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ColorMasters">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.ColorMaster">
+              <MappingFragment StoreEntitySet="ColorMaster">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="MiniCategory" ColumnName="MiniCategory" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Image6" ColumnName="Image6" />
+                <ScalarProperty Name="Image5" ColumnName="Image5" />
+                <ScalarProperty Name="Image4" ColumnName="Image4" />
+                <ScalarProperty Name="Image3" ColumnName="Image3" />
+                <ScalarProperty Name="Image2" ColumnName="Image2" />
+                <ScalarProperty Name="Image1" ColumnName="Image1" />
+                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

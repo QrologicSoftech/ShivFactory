@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Add New Color";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">@ViewBag.Title</h4>
+                            <div class="row grid-margin">
+                                <div class="col-12">
+                                    <div class="card-description">
+                                        @using (Html.BeginForm("AddColorMaster", "Admin", new { Area = "Admin" }, FormMethod.Get))
+                                        {
+                                            <p class="card-description" style=" text-align: end;">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Add Color
+                                                </button>
+                                            </p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="partialView">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        common.RenderPartialView('Admin', 'ColorMasterPartialView');
+    });
+</script>

@@ -2,6 +2,7 @@
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
 using ShivFactory.Business.Repository;
+using ShivFactory.Business.Repository.ColorMaster;
 using ShivFactory.Business.Repository.Common;
 using ShivFactory.Business.Repository.DimensionMaster;
 using ShivFactory.Business.Repository.WeightMaster;
@@ -697,6 +698,105 @@ namespace ShivFactory.Areas.Admin.Controllers
             {
                 TempData["ErrorMessage"] = ex.Message;
                 return RedirectToAction("WeightMaster", "Admin");
+            }
+        }
+
+
+        #endregion
+
+        #region ColorMaster
+
+        public ActionResult ColorMaster()
+        {
+            return View();
+        }
+        public ActionResult ColorMasterPartialView()
+        {
+            try
+            {
+                RepoColorMaster rsCategory = new RepoColorMaster();
+                var weight = rsCategory.GetAllColorMaster();
+                return View(weight);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(new List<DimensionMaster>());
+            }
+        }
+        public ActionResult AddColorMaster(int? id)
+        {
+            try
+            {
+                RepoColorMaster rsCategory = new RepoColorMaster();
+                ViewBag.Dimension = rsCategory.GetColorMasterDDl();
+
+                if (id > 0)
+                {
+                    var dimension = rsCategory.GetColorMasterById(id.Value);
+                    return View(dimension);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddColorMaster(ColorModel model)
+        {
+            try
+            {
+                RepoColorMaster rsDimension = new RepoColorMaster();
+                ViewBag.Dimension = rsDimension.GetAllColorMaster();
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                var isSaved = rsDimension.AddOrUpdateColorMaster(model);
+
+                if (isSaved)
+                {
+                    TempData["SuccessMessage"] = "Color add or update successfully!!";
+                    return RedirectToAction("ColorMaster", "Admin");
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to add or update Color";
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(model);
+            }
+        }
+
+        public ActionResult DeleteColorMaster(int id)
+        {
+            try
+            {
+                RepoColorMaster rsDimension = new RepoColorMaster();
+                var isDelete = rsDimension.DeleteColorMasterById(id);
+                if (isDelete)
+                {
+                    TempData["SuccessMessage"] = "Color deleted successfully!!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to delete Color";
+                }
+                return RedirectToAction("ColorMaster", "Admin");
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return RedirectToAction("ColorMaster", "Admin");
             }
         }
 

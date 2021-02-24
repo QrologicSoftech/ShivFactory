@@ -397,6 +397,11 @@
     <Content Include="Areas\Admin\Views\Admin\WeightMaster.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\WeightMasterMasterPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AddWeightMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ColorMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ColorMasterPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AddColorMaster.cshtml" />
+    <Content Include="Areas\Vendor\Views\Shared\_LayoutDashboard.cshtml" />
+    <Content Include="Areas\Vendor\Views\Home\NavPartialView.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -447,7 +452,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Vendor\Data\" />
-    <Folder Include="Areas\Vendor\Views\Shared\" />
     <Folder Include="Areas\Vendor\Views\Vendor\" />
     <Folder Include="Content\UploadedImages\AdminImages\Category\" />
   </ItemGroup>

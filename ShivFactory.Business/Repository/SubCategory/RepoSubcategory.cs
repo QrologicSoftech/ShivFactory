@@ -26,6 +26,9 @@ namespace ShivFactory.Business.Repository
                 subCategory.SubCatImage = model.ImagePath;
                 subCategory.LastUpdate = DateTime.Now;
                 subCategory.IsActive = model.IsActive;
+                subCategory.GST = model.GST;
+                subCategory.SGST = model.SGST;
+                subCategory.IGST = model.IGST;
             }
             else
             {
@@ -36,8 +39,11 @@ namespace ShivFactory.Business.Repository
                     SubCatImage = model.ImagePath,
                     Adddate = DateTime.Now,
                     IsActive = model.IsActive,
-                    IsDelete = false
-                });
+                    IsDelete = false,
+                    GST = model.GST,
+                    SGST = model.SGST,
+                    IGST = model.IGST
+            });
             }
             return db.SaveChanges() > 0;
         }

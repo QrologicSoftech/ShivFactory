@@ -12,6 +12,9 @@
                     <th>Category</th>
                     <th>Sub Category</th>
                     <th>Image</th>
+                    <th>GST</th>
+                    <th>SGST</th>
+                    <th>IGST</th>
                     <th>Is Active</th>
                     <th>Add Date</th>
                     <th>Actions</th>
@@ -22,32 +25,36 @@
                 @{int index = 1;
                     foreach (var item in Model)
                     {
-                        <tr>
-                            @{
-                                var category = item.Category != null ? item.Category.CategoryName : "";
-                                var status = item.IsActive == true ? "Active" : "InActive";
-                                var addDate = item.Adddate != null ? item.Adddate?.ToString("dd/MM/yyyy") : "";
-                                var className = item.IsActive == true ? "badge badge-success" : "badge badge-danger";
-                            }
-                            <td>@index</td>
-                            <td>@category</td>
-                            <td>@item.SubCatName</td>
-                            <td>
-                                <a href="@Url.Content(@item.SubCatImage)" target="_blank"><img src="@item.SubCatImage" alt="" style="height:40px;width:40px;" /></a>
-                            </td>
-                            <td> <label class="@className">@status</label></td>
-                            <td>@addDate</td>
-                            <td class="text-right">
-                                <button class="btn btn-light">
-                                    <i class="mdi mdi-database-edit text-primary"></i>
-                                    @Html.ActionLink("Edit", "AddSubCategory", new { Area = "Admin", id = item.ID })
-                                </button>
-                                <button class="btn btn-light">
-                                    <i class="mdi mdi-close text-danger"></i>
-                                    @Html.ActionLink("Delete", "DeleteSubCategory", new { Area = "Admin", @class = "fa fa-trash", id = item.ID }, new { onclick = "return confirm('Are you sure to delete this subcategory?');" })
-                                </button>
-                            </td>
-                        </tr>
+                                <tr>
+                                    @{
+                                        var category = item.Category != null ? item.Category.CategoryName : "";
+                                        var status = item.IsActive == true ? "Active" : "InActive";
+                                        var addDate = item.Adddate != null ? item.Adddate?.ToString("dd/MM/yyyy") : "";
+                                        var className = item.IsActive == true ? "badge badge-success" : "badge badge-danger";
+                                        var subCatImage = item.SubCatImage == null ? "/Content/UploadedImages/61644ecb-1f1d-418a-8ed1-09c1e4cc05781-2.jpg" : item.SubCatImage;
+                                        }
+                                    <td>@index</td>
+                                    <td>@category</td>
+                                    <td>@item.SubCatName</td>
+                                    <td>
+                                        <a href="@Url.Content(subCatImage)" target="_blank"><img src="@subCatImage" alt="" style="height:40px;width:40px;" /></a>
+                                    </td>
+                                    <td>@item.GST</td>
+                                    <td>@item.SGST</td>
+                                    <td>@item.IGST</td>
+                                    <td> <label class="@className">@status</label></td>
+                                    <td>@addDate</td>
+                                    <td class="text-right">
+                                        <button class="btn btn-light">
+                                            <i class="mdi mdi-database-edit text-primary"></i>
+                                            @Html.ActionLink("Edit", "AddSubCategory", new { Area = "Admin", id = item.ID })
+                                        </button>
+                                        <button class="btn btn-light">
+                                            <i class="mdi mdi-close text-danger"></i>
+                                            @Html.ActionLink("Delete", "DeleteSubCategory", new { Area = "Admin", @class = "fa fa-trash", id = item.ID }, new { onclick = "return confirm('Are you sure to delete this subcategory?');" })
+                                        </button>
+                                    </td>
+                                </tr>
                         index++;
                     }
                 }

@@ -14,6 +14,12 @@ namespace DataLibrary.DL
     
     public partial class MiniCategory
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MiniCategory()
+        {
+            this.Products = new HashSet<Product>();
+        }
+    
         public int ID { get; set; }
         public Nullable<int> SubCatID { get; set; }
         public string MiniCatName { get; set; }
@@ -24,5 +30,7 @@ namespace DataLibrary.DL
         public Nullable<System.DateTime> LastUpdate { get; set; }
     
         public virtual SubCategory SubCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

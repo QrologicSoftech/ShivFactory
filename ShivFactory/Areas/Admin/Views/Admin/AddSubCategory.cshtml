@@ -24,34 +24,34 @@
                             <div class="card-body">
                                 @using (Html.BeginForm("AddSubCategory", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
                                 {
-                                <div class="row">
-                                    <div class="col-lg-4 col-sm-4">
-                                        <div class="form-group">
-                                            <label>Sub Category Name</label>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Sub Category Name</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.SubCategoryName, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.SubCategoryName, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            @Html.TextBoxFor(model => model.SubCategoryName, new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => model.SubCategoryName, "", new { @class = "text-danger" })
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Category</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.DropDownListFor(model => model.CategoryId, ViewBag.category as SelectList, "Select", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>IsActive</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.CheckBoxFor(x => x.IsActive, new { @style = "height: 30px; width:30px;" })
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-4 col-sm-4">
-                                        <div class="form-group">
-                                            <label>Category</label>
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.DropDownListFor(model => model.CategoryId, ViewBag.category as SelectList, "Select", new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-4">
-                                        <div class="form-group">
-                                            <label>IsActive</label>
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.CheckBoxFor(x => x.IsActive, new { @style = "height: 30px; width:30px;" })
-                                        </div>
-                                    </div>
-                                </div>
 
                                     <div class="row">
                                         <div class="col-lg-6 col-sm-6">
@@ -73,6 +73,36 @@
                                         </div>
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>GST</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.GST, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.GST, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>SGST</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.SGST, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.SGST, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>IGST</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.IGST, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.IGST, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                    </div>
                                     @Html.HiddenFor(model => model.SubCategoryId)
                                     @Html.HiddenFor(model => model.ImagePath)
 

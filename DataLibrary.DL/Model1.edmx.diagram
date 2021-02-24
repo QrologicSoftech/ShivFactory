@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8c0ff7f9ee1247b3b273bbd0cffbb6f3" Name="Diagram1">
+      <Diagram DiagramId="8c0ff7f9ee1247b3b273bbd0cffbb6f3" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="db_ShivFactoryModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.AspNetRole" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
@@ -29,6 +29,11 @@
         <AssociationConnector Association="db_ShivFactoryModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.DimensionMaster" Width="1.5" PointX="12.375" PointY="4.75" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.WeightMaster" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.ColorMaster" Width="1.5" PointX="12.375" PointY="7.75" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.Product" Width="1.5" PointX="14.5" PointY="0.75" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_Category" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_MiniCategory" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_SubCategory" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

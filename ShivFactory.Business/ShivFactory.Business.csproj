@@ -79,6 +79,8 @@
     <Compile Include="Repository\Accounts\LogInModel.cs" />
     <Compile Include="Repository\Category\Category.cs" />
     <Compile Include="Repository\Category\RepoCategory.cs" />
+    <Compile Include="Repository\ColorMaster\ColorModel.cs" />
+    <Compile Include="Repository\ColorMaster\RepoColorMaster.cs" />
     <Compile Include="Repository\Common\Cookie.cs" />
     <Compile Include="Repository\Common\RepoCommon.cs" />
     <Compile Include="Repository\DimensionMaster\DimensionModel.cs" />

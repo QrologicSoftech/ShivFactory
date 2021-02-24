@@ -18,5 +18,18 @@ namespace ShivFactory.Business.Repository
         public string ImagePath { get; set; }
         public bool IsActive { get; set; }
         public HttpPostedFileBase PostedFile { get; set; }
+
+        [Required(ErrorMessage = "GST Required")]
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid GST")]
+        [Range(0, int.MaxValue)]
+        public decimal GST { get; set;  }
+        [Required(ErrorMessage = "SGST Required")]
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid SGST")]
+        [Range(0, int.MaxValue)]
+        public decimal SGST { get; set; }
+        [Required(ErrorMessage = "IGST Required")]
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid IGST")]
+        [Range(0, int.MaxValue)]
+        public decimal IGST { get; set; }
     }
 }

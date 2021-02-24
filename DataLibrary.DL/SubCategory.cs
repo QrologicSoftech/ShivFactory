@@ -18,6 +18,7 @@ namespace DataLibrary.DL
         public SubCategory()
         {
             this.MiniCategories = new HashSet<MiniCategory>();
+            this.Products = new HashSet<Product>();
         }
     
         public int ID { get; set; }
@@ -28,9 +29,14 @@ namespace DataLibrary.DL
         public Nullable<bool> IsDelete { get; set; }
         public Nullable<System.DateTime> Adddate { get; set; }
         public Nullable<System.DateTime> LastUpdate { get; set; }
+        public Nullable<decimal> GST { get; set; }
+        public Nullable<decimal> SGST { get; set; }
+        public Nullable<decimal> IGST { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MiniCategory> MiniCategories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }
