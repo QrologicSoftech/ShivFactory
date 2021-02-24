@@ -164,6 +164,10 @@
           <Property Name="Category" Type="int" />
           <Property Name="SubCategory" Type="int" />
           <Property Name="MiniCategory" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="AddUpdate" Type="datetime" />
+          <Property Name="LastUpdate" Type="datetime" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -899,6 +903,10 @@
           <NavigationProperty Name="Category1" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="MiniCategory1" Relationship="db_ShivFactoryModel.FK_Product_MiniCategory" FromRole="Product" ToRole="MiniCategory" />
           <NavigationProperty Name="SubCategory1" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="AddUpdate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK_Product_Category">
           <End Type="db_ShivFactoryModel.Category" Role="Category" Multiplicity="0..1" />
@@ -1180,6 +1188,10 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddUpdate" ColumnName="AddUpdate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="MiniCategory" ColumnName="MiniCategory" />
                 <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
                 <ScalarProperty Name="Category" ColumnName="Category" />

@@ -17,7 +17,7 @@ namespace ShivFactory.Areas.Vendor
             context.MapRoute(
                 "Vendor_default",
                 "Vendor/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller="Vendor", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

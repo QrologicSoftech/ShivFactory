@@ -28,6 +28,10 @@ namespace DataLibrary.DL
         public Nullable<int> Category { get; set; }
         public Nullable<int> SubCategory { get; set; }
         public Nullable<int> MiniCategory { get; set; }
+        public string Description { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<System.DateTime> AddUpdate { get; set; }
+        public Nullable<System.DateTime> LastUpdate { get; set; }
     
         public virtual Category Category1 { get; set; }
         public virtual MiniCategory MiniCategory1 { get; set; }

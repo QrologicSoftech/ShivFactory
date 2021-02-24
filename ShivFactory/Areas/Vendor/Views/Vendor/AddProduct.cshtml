@@ -1,0 +1,246 @@
+﻿@model ShivFactory.Business.Repository.Product.ProductModel
+@{
+    ViewBag.Title = "Add Product";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">@ViewBag.Title</h4>
+                            <div class="row grid-margin">
+                                <div class="col-12">
+                                    <div class="wrapper d-flex" style=" text-align: start;">
+                                        <a class="btn btn-sm btn-gradient-primary mr-2" href="~/Admin/Admin/SubCategory">  Back to List </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapper border-top">
+                            <div class="card-body">
+                                @using (Html.BeginForm("AddProduct", "Vendor", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
+                                {
+                                    <div class="row">
+                                        <div class="col-lg-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Product Name</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label>Product Description</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @cols = 100, @rows = 5 })
+                                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Category</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.DropDownListFor(model => model.Category, ViewBag.category as SelectList, "Select", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Sub Category</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.DropDownListFor(model => model.SubCategory, ViewBag.subcategory as SelectList, "Select", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.SubCategory, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Mini Category</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.DropDownListFor(model => model.MiniCategory, ViewBag.miniCategory as SelectList, "Select", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.MiniCategory, "", new { @class = "text-danger" })
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Main Image</label>
+                                                <input type="file" name="img[]" class="file-upload-default">
+                                            </div>
+                                            <div class="ajax-file-upload-container form-group">
+                                                @Html.TextBoxFor(model => model.MainImage, new { @class = "form-control file-upload-info", type = "file", accept = "image/*" })
+                                                @Html.ValidationMessageFor(model => model.MainImage, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            @{ var display = Model != null && Model.PostedFile != null ? "display:block" : "display:none";
+                                                var imgPath = Model != null && Model.PostedFile != null ? Model.ImagePath : "";}
+                                            <div class="form-group">
+                                                <img src="@imgPath" id="Img" runat="server" style="border: 1px solid #eee3e3; @display;" height="100" width="100" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Image1</label>
+                                                <input type="file" name="img[]" class="file-upload-default">
+                                            </div>
+                                            <div class="ajax-file-upload-container form-group">
+                                                @Html.TextBoxFor(model => model.ImageFile1, new { @class = "form-control file-upload-info", type = "file", accept = "image/*" })
+                                                @Html.ValidationMessageFor(model => model.ImageFile1, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            @{ var image1 = Model != null && Model.Image1 != null ? "display:block" : "display:none";
+                                                var imgPath1 = Model != null && Model.Image1 != null ? Model.ImagePath : "";}
+                                            <div class="form-group">
+                                                <img src="@imgPath" id="Img" runat="server" style="border: 1px solid #eee3e3; @display;" height="100" width="100" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Image 2</label>
+                                                <input type="file" name="img[]" class="file-upload-default">
+                                            </div>
+                                            <div class="ajax-file-upload-container form-group">
+                                                @Html.TextBoxFor(model => model.ImageFile2, new { @class = "form-control file-upload-info", type = "file", accept = "image/*" })
+                                                @Html.ValidationMessageFor(model => model.ImageFile2, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            @{ var image2 = Model != null && Model.Image2 != null ? "display:block" : "display:none";
+                                                var imgPath2 = Model != null && Model.Image2 != null ? Model.ImagePath : "";}
+                                            <div class="form-group">
+                                                <img src="@imgPath" id="Img" runat="server" style="border: 1px solid #eee3e3; @display;" height="100" width="100" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Image 3</label>
+                                                <input type="file" name="img[]" class="file-upload-default">
+                                            </div>
+                                            <div class="ajax-file-upload-container form-group">
+                                                @Html.TextBoxFor(model => model.ImageFile3, new { @class = "form-control file-upload-info", type = "file", accept = "image/*" })
+                                                @Html.ValidationMessageFor(model => model.ImageFile3, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            @{ var display3 = Model != null && Model.Image3 != null ? "display:block" : "display:none";
+                                                var imgPath3 = Model != null && Model.Image3 != null ? Model.ImagePath : "";}
+                                            <div class="form-group">
+                                                <img src="@imgPath" id="Img" runat="server" style="border: 1px solid #eee3e3; @display;" height="100" width="100" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Image 4</label>
+                                                <input type="file" name="img[]" class="file-upload-default">
+                                            </div>
+                                            <div class="ajax-file-upload-container form-group">
+                                                @Html.TextBoxFor(model => model.ImageFile4, new { @class = "form-control file-upload-info", type = "file", accept = "image/*" })
+                                                @Html.ValidationMessageFor(model => model.ImageFile4, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            @{ var image4 = Model != null && Model.Image4 != null ? "display:block" : "display:none";
+                                                var imgPath4 = Model != null && Model.Image4 != null ? Model.ImagePath : "";}
+                                            <div class="form-group">
+                                                <img src="@imgPath" id="Img" runat="server" style="border: 1px solid #eee3e3; @display;" height="100" width="100" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Image 5</label>
+                                                <input type="file" name="img[]" class="file-upload-default">
+                                            </div>
+                                            <div class="ajax-file-upload-container form-group">
+                                                @Html.TextBoxFor(model => model.ImageFile5, new { @class = "form-control file-upload-info", type = "file", accept = "image/*" })
+                                                @Html.ValidationMessageFor(model => model.ImageFile5, "", new { @class = "text-danger" })
+                                            </div>
+
+                                            @{ var image5 = Model != null && Model.Image5 != null ? "display:block" : "display:none";
+                                                var imgPath5 = Model != null && Model.Image5 != null ? Model.ImagePath : "";}
+                                            <div class="form-group">
+                                                <img src="@imgPath" id="Img" runat="server" style="border: 1px solid #eee3e3; @display;" height="100" width="100" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Sell Price</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.SalePrice, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.SalePrice, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>List Price</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.ListPrice, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.ListPrice, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>IsActive</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.CheckBoxFor(x => x.IsActive, new { @style = "height: 30px; width:30px;" })
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    @Html.HiddenFor(model => model.ProductId)
+                                    @Html.HiddenFor(model => model.ImagePath)
+
+                                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                    <button class="btn btn-light" type="reset">Cancel</button>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#Img').attr('src', e.target.result);
+                $("#Img").css("display", "block");
+            }
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+    $("#PostedFile").change(function () {
+        readURL(this);
+    });
+</script>

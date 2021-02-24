@@ -148,7 +148,8 @@ namespace ShivFactory.Controllers
                 return View(model);
             }
 
-            var res = await CustomerRegister(model);
+            //  var res = await CustomerRegister(model); VendorRegister
+            var res = await VendorRegister(model); 
             if (res.ResultFlag == true)
             {
                 return RedirectToAction("Login");
