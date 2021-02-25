@@ -3,8 +3,10 @@ using ShivFactory.Business.Repository.Common;
 using ShivFactory.Business.Repository.Product;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace ShivFactory.Areas.Vendor.Controllers
@@ -68,12 +70,18 @@ namespace ShivFactory.Areas.Vendor.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
+                RepoCategory repoCategory = new RepoCategory();
+                ViewBag.category = repoCategory.GetCategoryDDl();
+                RepoSubcategory reposubCategory = new RepoSubcategory();
+                ViewBag.subcategory = reposubCategory.GetSubCategoryDDl();
+                RepoMinicategory repominiCategory = new RepoMinicategory();
+                ViewBag.minicategory = repominiCategory.GetMiniCategoryDDl();
+                if (ModelState.IsValid)
                 {
                     return View(model);
                 }
 
-                if (model.ProductId == 0 && postedfile == null)
+                    if (model.ProductId == 0 && postedfile == null)
                 {
 
                     ModelState.AddModelError("PostedFile", "Please upload Product Image.");
@@ -81,12 +89,17 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 }
                 if (postedfile != null)
                 {
-
-                    // save image file
-                    RepoCommon common = new RepoCommon();
-                    model.MainImage = common.SaveImage(postedfile);
+                   RepoCommon common = new RepoCommon();
+                    model.ImagePath = common.SaveImage(postedfile); 
                 }
+                string filestr = "";
+                List<string> imagePathlist = new List<string>();
+                if  (model.files!=null)
+                {
+                    RepoCommon common = new RepoCommon();
+                    model.imgPathList = common.SaveProductMultipleImage(model.files);
 
+                }
                 RepoProduct repoProduct = new RepoProduct();
                 var isSaved = repoProduct.AddOrUpdateProduct(model);
 

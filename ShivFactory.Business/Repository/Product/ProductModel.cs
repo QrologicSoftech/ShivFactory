@@ -22,20 +22,10 @@ namespace ShivFactory.Business.Repository.Product
 		[Required(ErrorMessage = "List Price Required")]
 		public decimal ListPrice { get; set; }
 		[Required(ErrorMessage = " Image Required")]
-		public string MainImage { get; set; }
+		public string ImagePath { get; set; }
 
-		[Required(ErrorMessage = " Image Required")]
-		public string Image1 { get; set; }
-		[Required(ErrorMessage = " Image Required")]
-		public string Image2 { get; set; }
-		[Required(ErrorMessage = " Image Required")]
-		public string Image3 { get; set; }
-		[Required(ErrorMessage = " Image Required")]
-		public string Image4 { get; set; }
-		[Required(ErrorMessage = " Image Required")]
-		public string Image5 { get; set; }
-		[Required(ErrorMessage = " Image Required")]
-		public string Image6 { get; set; }
+		//[Required(ErrorMessage = " Image Required")]
+		
 		[Required(ErrorMessage = "Please select category")]
 		public int Category { get; set; }
 		[Required(ErrorMessage = "Please select Sub category")]
@@ -43,15 +33,10 @@ namespace ShivFactory.Business.Repository.Product
 		[Required(ErrorMessage = "Please select Mini category")]
 		public int MiniCategory { get; set; }
 		public bool IsActive { get; set; }
-		public string ImagePath { get; set; }
+		
+		public List<string> imgPathList { get; set;  }
+		public HttpPostedFileBase[] PostedFile { get; set; }
 
-		public HttpPostedFileBase PostedFile { get; set; }
-
-		public HttpPostedFileBase ImageFile1 { get; set; }
-		public HttpPostedFileBase ImageFile2 { get; set; }
-		public HttpPostedFileBase ImageFile3 { get; set; }
-		public HttpPostedFileBase ImageFile4 { get; set; }
-		public HttpPostedFileBase ImageFile5 { get; set; }
-		public HttpPostedFileBase ImageFile6 { get; set; }
+		public List<HttpPostedFileBase> files { get; set; }
 	}
 }

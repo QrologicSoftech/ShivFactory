@@ -5,7 +5,6 @@
         var ddlSubCategory = $(subcat_id);
         var ddlminiCategory = $(mini_id);
         var selectedCatId = $(cat_id + " :selected").attr('value');
-        debugger;
         //if (! typeof selectedCatId === "undefined") {
             common.ShowLoader(subcat_id);
             var data = { "categoryId": selectedCatId };

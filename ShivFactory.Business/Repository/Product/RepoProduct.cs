@@ -21,20 +21,46 @@ namespace ShivFactory.Business.Repository.Product
             if (Product != null)
             {
                 Product.ProductName = model.ProductName;
-                Product.MainImage = model.ImagePath;
+                Product.Description = model.Description;
                 Product.AddUpdate = DateTime.Now;
                 Product.IsActive = model.IsActive;
+                Product.SalePrice = model.SalePrice;
+                Product.ListPrice = model.ListPrice;
+                Product.Category = model.Category;
+                Product.SubCategory = model.SubCategory;
+                Product.MiniCategory = model.MiniCategory;
+                Product.MainImage = model.ImagePath;
+                if (model.imgPathList.Count > 0)
+                {
+                    Product.Image1 = model.imgPathList[0];
+                    Product.Image2 = model.imgPathList[1];
+                    Product.Image3 = model.imgPathList[2];
+                    Product.Image4 = model.imgPathList[3];
+                    Product.Image5 = model.imgPathList[4];
+                }
             }
             else
             {
                 db.Products.Add(new DataLibrary.DL.Product()
                 {
                     ProductName = model.ProductName,
-                    MainImage = model.ImagePath,
+                    Description = model.Description,
                     AddUpdate = DateTime.Now,
                     IsActive = true,
-                  
-                });
+                    SalePrice = model.SalePrice,
+                ListPrice = model.ListPrice,
+                Category = model.Category,
+                SubCategory = model.SubCategory,
+                MiniCategory = model.MiniCategory,
+                MainImage = model.ImagePath,
+                    Image1 = model.imgPathList[0],
+                    Image2 = model.imgPathList[1],
+                    Image3 = model.imgPathList[2],
+                    Image4 = model.imgPathList[3],
+                    Image5 = model.imgPathList[4]
+                
+
+            });
             }
             return db.SaveChanges() > 0;
         }

@@ -20,5 +20,25 @@ namespace ShivFactory.Business.Repository.Common
             PostedFile.SaveAs(fullPath + filename);
             return path + filename;
         }
+
+        public List<string> SaveProductMultipleImage(List<HttpPostedFileBase> postedFilelist)
+        {
+            List<string> imagePathlist = new List<string>();
+            string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
+            string fullPath = HttpContext.Current.Server.MapPath(path);
+            foreach (var file in postedFilelist)
+            {
+                if (file != null)
+                {
+                    Guid guid = Guid.NewGuid();
+                    string filename = guid + Path.GetFileName(file.FileName);
+                    file.SaveAs(fullPath + filename);
+                    string folderpath = path + filename;
+                    imagePathlist.Add(folderpath);
+                }
+                else { imagePathlist.Add("");  }
+            }
+            return imagePathlist;
+        }
     }
 }
