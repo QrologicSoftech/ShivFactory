@@ -1,9 +1,11 @@
 ﻿@using ShivFactory.Business.Repository;
 @using ShivFactory.Business.Models.Other;
+@using System.Configuration;
 @{
     Layout = null;
     RepoCookie repoCookie = new RepoCookie();
     var UserName = repoCookie.GetCookiesValue(CookieName.FirstName) + " " + repoCookie.GetCookiesValue(CookieName.LastName);
+   var version = ConfigurationManager.AppSettings["jsversion"].ToString();
 }
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
@@ -18,7 +20,7 @@
         background: url('//i.stack.imgur.com/FhHRx.gif') no-repeat center center;
     }
 </style>
-<script src="http:s//code.jquery.com/jquery-1.8.2.js"></script>
+<script src="https://code.jquery.com/jquery-1.8.2.js"></script>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
