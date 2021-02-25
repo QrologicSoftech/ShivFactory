@@ -10,14 +10,14 @@
                 .remove()
                 .end()
             if (typeof result !== 'undefined' && result.length > 0) {
-            $.each(result, function (Value, Text) {
-                ddlSubCategory.append($('<option></option>').val(Text.Value).html(Text.Text));
+                $.each(result, function (Value, Text) {
+                    ddlSubCategory.append($('<option></option>').val(Text.Value).html(Text.Text));
                 });
                 common.HideLoader(subcat_id);
             } else {
                 ddlSubCategory.append($('<option></option>').val('-1').html('Selelct'));
             }
-            });
+        });
     },
     BindMiniCategoryBySubCatId: function (subcat_id, mini_id) {
         //alert("Cat Id" + $(subcat_id + " :selected").attr('value'))
@@ -31,15 +31,15 @@
                 .end()
             if (typeof result !== 'undefined' && result.length > 0) {
                 $.each(result, function (Value, Text) {
-                ddlMiniCategory.append($('<option></option>').val(Text.Value).html(Text.Text));
-            });
-            common.HideLoader(mini_id);
+                    ddlMiniCategory.append($('<option></option>').val(Text.Value).html(Text.Text));
+                });
+                common.HideLoader(mini_id);
             } else {
                 ddlMiniCategory.append($('<option></option>').val('-1').html('Select'));
             }
-            });
-    
-    },
+        });
+
+    }
 
 }
 
