@@ -131,26 +131,28 @@ namespace ShivFactory.Areas.Vendor.Controllers
             }
         }
 
+        public ActionResult GetSubcategoryByCategoryId(string categoryId)
+        {
 
-        //[AcceptVerbs(HttpVerbs.Get)]
-        //public ActionResult GetSubcategoryByCategoryId(string categoryId)
-        //{
-        //    if (String.IsNullOrEmpty(categoryId))
-        //    {
-        //        throw new ArgumentNullException("categoryId");
-        //    }
-        //    int id = 0;
-        //    bool isValid = Int32.TryParse(categoryId, out id);
-        //    RepoSubcategory _repository = new RepoSubcategory(); 
-        //    var subCategory = _repository.GetSubCategoryById(id);
-        //    var result = (from s in subCategory
-        //                  select new
-        //                  {
-        //                      Text = a.SubCatName,
-        //                      Value = a.ID
-        //                  }).ToList();
-        //    return Json(result, JsonRequestBehavior.AllowGet);
-        //}
+            int id = 0;
+            bool isValid = Int32.TryParse(categoryId, out id);
+            RepoSubcategory _repository = new RepoSubcategory();
+            var subCategory = _repository.GetSubCategoryDDl(id);
+            return Json(subCategory, JsonRequestBehavior.AllowGet);
+        }
+
+
+        //[AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult GetMinicategoryBySubCategoryId(string subcategoryId)
+        {
+            
+            int id = 0;
+            bool isValid = Int32.TryParse(subcategoryId, out id);
+            RepoMinicategory _repository = new RepoMinicategory();
+            var subCategory = _repository.GetMiniCategoryDDl(id);
+            return Json(subCategory, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
 

@@ -52,7 +52,7 @@
                                                 <label>Category</label>
                                             </div>
                                             <div class="form-group">
-                                                @Html.DropDownListFor(model => model.Category, ViewBag.category as SelectList, "Select", new { @class = "form-control" })
+                                                @Html.DropDownListFor(model => model.Category, ViewBag.category as SelectList, "Select", new { @class = "form-control",id="Category", onchange = "product.BindSubCategoryByCatId('#Category', '#SubCategory','#MiniCategory')" })
                                                 @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
@@ -61,7 +61,7 @@
                                                 <label>Sub Category</label>
                                             </div>
                                             <div class="form-group">
-                                                @Html.DropDownListFor(model => model.SubCategory, ViewBag.subcategory as SelectList, "Select", new { @class = "form-control" })
+                                                @Html.DropDownListFor(model => model.SubCategory, ViewBag.subcategory as SelectList, "Select", new { @class = "form-control",id="SubCategory" ,onchange= "product.BindMiniCategoryBySubCatId('#SubCategory', '#MiniCategory')" })
                                                 @Html.ValidationMessageFor(model => model.SubCategory, "", new { @class = "text-danger" })
 
                                             </div>
@@ -72,7 +72,7 @@
                                                 <label>Mini Category</label>
                                             </div>
                                             <div class="form-group">
-                                                @Html.DropDownListFor(model => model.MiniCategory, ViewBag.miniCategory as SelectList, "Select", new { @class = "form-control" })
+                                                @Html.DropDownListFor(model => model.MiniCategory, ViewBag.miniCategory as SelectList, "Select", new { @class = "form-control" , id = "MiniCategory" })
                                                 @Html.ValidationMessageFor(model => model.MiniCategory, "", new { @class = "text-danger" })
 
                                             </div>
@@ -244,3 +244,4 @@
         readURL(this);
     });
 </script>
+

@@ -14,8 +14,9 @@ namespace ShivFactory.Business.Repository.Product
 		[Required(ErrorMessage = "Product Name required")]
 		public string ProductName { get; set; }
 		[Required(ErrorMessage = "Product Description required")]
-		public string Description { get; set; }
 		[MaxLength(100, ErrorMessage = "Description cannot be longer than 100 characters.")]
+		
+		public string Description { get; set; }
 		[Required(ErrorMessage = "Sale Price Required")]
 		public decimal SalePrice { get; set; }
 		[Required(ErrorMessage = "List Price Required")]

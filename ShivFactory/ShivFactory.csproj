@@ -309,6 +309,7 @@
     <Content Include="Content\JS\js-dashboard.js" />
     <Content Include="Content\JS\js-settings.js" />
     <Content Include="Content\JS\js-vendor.bundle.base.js" />
+    <Content Include="Content\JS\Product.js" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\UploadedImages\50d54ec0-2086-4250-bb01-f5112d7e31e0slider-4.jpg" />

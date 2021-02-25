@@ -72,6 +72,20 @@ namespace ShivFactory.Business.Repository
             return subCategory;
 
         }
+
+
+        public List<SubCategory> GetSubCategoryByCatId(int subCategoryId)
+        {
+            var query = from SubCategory in db.SubCategories
+                        where SubCategory.CategoryID == subCategoryId
+                        select SubCategory;
+            var subCategory = query.ToList<SubCategory>();
+            return subCategory;
+
+       
+
+        }
+        
         #endregion
 
         #region Delete SubCategory By Id
