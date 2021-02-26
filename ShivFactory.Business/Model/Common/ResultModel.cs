@@ -12,4 +12,14 @@ namespace ShivFactory.Business.Model
         public dynamic Data { get; set; }
         public string Message { get; set; }
     }
+    public class ServerSidePagination
+    {
+        public string searchText { get; set; }
+        public int CurrentPageIndex { get; set; }
+        public int Skip { get; set; }
+        public int PageSize { get; set; }
+        public int TotalRecords { get; set; }
+        public string SortColumn { get; set; }
+        public string SortDirection { get; set; }
+    }
 }
