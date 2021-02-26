@@ -1,11 +1,10 @@
-﻿@model IEnumerable<DataLibrary.DL.Category>
-@{
+﻿@{
     ViewBag.Title = "CategoryPartialView";
 }
 
 <div class="row overflow-auto">
     <div class="col-12">
-        <table class="table datatable" cellspacing="0" width="100%">
+        <table class="table datatable" cellspacing="0" width="100%" id="category">
             <thead>
                 <tr class="bg-primary text-white">
                     <th>Sr No.</th>
@@ -16,45 +15,38 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
-
-                @{int index = 1;
-                    foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@index</td>
-                            <td>@item.CategoryName</td>
-                            <td>
-                            <a href="@Url.Content(@item.CatImage)" target="_blank"><img src="@item.CatImage" alt="" style="height:40px;width:40px;" /></a>
-                            </td>
-                            @{
-                                var status = item.IsActive == true ? "Active" : "InActive";
-                                var addDate = item.Adddate != null ? item.Adddate?.ToString("dd/MM/yyyy") : "";
-                                var className = item.IsActive == true ? "badge badge-success" : "badge badge-danger"; 
-                            }
-                            <td> <label class="@className">@status</label></td>
-                            <td>@addDate</td>
-                            <td class="text-right">
-                                <button class="btn btn-light">
-                                    <i class="mdi mdi-database-edit text-primary"></i>
-                                    @Html.ActionLink("Edit", "AddCategory", new { Area = "Admin", id = item.ID })
-                                </button>
-                                <button class="btn btn-light">
-                                    <i class="mdi mdi-close text-danger"></i>
-                                    @Html.ActionLink("Delete", "DeleteCategory", new { Area = "Admin", @class = "fa fa-trash", id = item.ID }, new { onclick = "return confirm('Are you sure to delete this category?');" })
-                                </button>
-                            </td>
-                        </tr>
-                        index++;
-                    }
-                }
-            </tbody>
         </table>
     </div>
 </div>
 
 <script>
     $(document).ready(function () {
-        $('.datatable').DataTable();
+
+        // Prepare columns
+        let columns = [
+            { "data": 'SrNo', "name": "SrNo" },
+            { "data": 'CategoryName', "name": "CategoryName" },
+            {
+                "data": "ImagePath", "name": "ImagePath", "defaultContent": "<i>-</i>", "orderable": false,
+                "render": function (data, type, row, meta) {
+                    return '<a href="' + data + '" target="_blank"><img src="' + data + '" alt="" style="height:40px;width:40px;"></a>';
+                }
+            },
+            { "data": 'IsActive', "name": "IsActive", },
+            { "data": 'AddDate', "name": "AddDate", },
+            {
+                "data": "CategoryId", "name": "CategoryId", "defaultContent": "<i>-</i>", "orderable": false,
+                "render": function (data, type, row, meta) {
+
+                    return '<button class="btn btn-light"><i class= "mdi mdi-database-edit text-primary" ></i><a href="/Admin/Admin/AddCategory/' + data + '">Edit</a></button >'
+
+                        + '<button class="btn btn-light">'
+                        + '<i class="mdi mdi-close text-danger" ></i >'
+                        + '  <a href="/Admin/Admin/DeleteCategory/' + data + '"?class=fa%20fa-trash" onclick="return confirm(`Are you sure to delete this Category?`);">Delete</a>'
+                        + '</button >';
+                }
+            }
+        ];
+        common.BindServerSideTable('#category', columns, '/Admin/Admin/LoadCategoryData');
     });
 </script>

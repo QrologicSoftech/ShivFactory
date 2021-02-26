@@ -1,8 +1,12 @@
 ﻿using DataLibrary.DL;
 using ShivFactory.Business.Model;
+using ShivFactory.Business.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,6 +14,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;
+
 
 namespace ShivFactory.Business.Repository
 {
@@ -90,6 +95,44 @@ namespace ShivFactory.Business.Repository
                 Value = a.ID
             }).AsNoTracking().ToList();
             return new SelectList(caterories, "Value", "Text");
+        }
+        #endregion
+
+        #region GetAllCategory
+        public List<CategoryResponse> GetAllCategories(PaginationRequest model, out int totalRecords)
+        {
+            var categories = new List<CategoryResponse>();
+            totalRecords = 0;
+
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@Action", "GetAllCategory"));
+            parameters.Add(new SqlParameter("@SearchText", model.searchText));
+            parameters.Add(new SqlParameter("@Skip", model.Skip));
+            parameters.Add(new SqlParameter("@Take", model.PageSize));
+            parameters.Add(new SqlParameter("@OrderColumn", model.SortColumn));
+            parameters.Add(new SqlParameter("@OrderDir", model.SortDirection));
+
+            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, "ManageCategory", parameters.ToArray());
+            if (ds.Tables != null && ds.Tables[0].Rows.Count > 0)
+            {
+                totalRecords = ds.Tables[0].Rows[0]["TotalRow"] != DBNull.Value ? Convert.ToInt32(ds.Tables[0].Rows[0]["TotalRow"].ToString()) : 0;
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    categories.Add(new CategoryResponse()
+                    {
+                        SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
+                        CategoryId = row["CategoryId"] != DBNull.Value ? Convert.ToInt32(row["CategoryId"]) : 0,
+                        CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
+                        ImagePath = row["ImagePath"] != DBNull.Value ? row["ImagePath"].ToString() : "",
+                        IsActive = row["IsActive"] != DBNull.Value ? Convert.ToBoolean(row["IsActive"]) : false,
+                        AddDate = row["Adddate"] != DBNull.Value ? Convert.ToDateTime(row["Adddate"]).ToString("dd/MM/yyyy") : ""
+                    });
+                }
+
+            }
+
+            return categories;
         }
         #endregion
     }

@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Services;
+using System.Web.Services;
 using static ShivFactory.FilterConfig;
 
 namespace ShivFactory.Areas.Admin.Controllers
@@ -30,6 +32,41 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult LoadCategoryData()
+        {
+            try
+            {
+                // Initialization.  
+                var search = Request.Form.GetValues("search[value]")[0];
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                //Find Order Column  
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+                // Prepair model  
+                PaginationRequest model = new PaginationRequest()
+                {
+                    searchText = search,
+                    Skip = start != null ? Convert.ToInt32(start) : 0,
+                    PageSize = length != null ? Convert.ToInt32(length) : 0,
+                    SortColumn = sortColumn,
+                    SortDirection = sortColumnDir
+                };
+                int recordsTotal = 0;
+                RepoCategory repoCategory = new RepoCategory();
+                var categoryList = repoCategory.GetAllCategories(model, out recordsTotal);
+
+                return Json(new { data = categoryList, draw = draw, recordsFiltered = categoryList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult CategoryPartialView()
         {
             try
@@ -51,7 +88,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 if (id > 0)
                 {
                     RepoCategory repoCategory = new RepoCategory();
-                    var category = repoCategory.GetCategoryByCategoryId(id.Value);
+                    var category = repoCategory.GetCategoryByCategoryId(Convert.ToInt32(id));
                     return View(category);
                 }
 
@@ -113,7 +150,7 @@ namespace ShivFactory.Areas.Admin.Controllers
             try
             {
                 RepoCategory repoCategory = new RepoCategory();
-                var isDelete = repoCategory.DeleteCategoryByCategoryId(id);
+                var isDelete = repoCategory.DeleteCategoryByCategoryId(Convert.ToInt32(id));
                 if (isDelete)
                 {
                     TempData["SuccessMessage"] = "Category deleted successfully!!";
@@ -297,7 +334,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 RepoSubcategory repoCategory = new RepoSubcategory();
                 ViewBag.SubCategoryId = repoCategory.GetSubCategoryDDl();
                 if (!ModelState.IsValid)
-                {                    
+                {
                     return View(model);
                 }
 
@@ -604,7 +641,6 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #endregion
 
-
         #region WeightMaster
 
         public ActionResult WeightMaster()
@@ -802,7 +838,5 @@ namespace ShivFactory.Areas.Admin.Controllers
 
 
         #endregion
-
-
     }
 }
