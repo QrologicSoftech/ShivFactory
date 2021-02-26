@@ -81,12 +81,11 @@ namespace ShivFactory.Areas.Vendor.Controllers
                     return View(model);
                 }
 
-                    if (model.ProductId == 0 && postedfile == null)
-                {
-
-                    ModelState.AddModelError("PostedFile", "Please upload Product Image.");
-                    return View(model);
-                }
+            if (model.ProductId == 0 && postedfile == null)
+               {
+                   ModelState.AddModelError("PostedFile", "Please upload Product Image.");
+                  return View(model);
+               }
                 if (postedfile != null)
                 {
                    RepoCommon common = new RepoCommon();

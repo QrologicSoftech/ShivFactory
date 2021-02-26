@@ -193,6 +193,7 @@
     <Content Include="App_Data\DefaultConnection_log.ldf">
       <DependentUpon>DefaultConnection.mdf</DependentUpon>
     </Content>
+    <Content Include="Areas\Vendor\Views\Vendor\HtmlPage1.html" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\DataLibrary.DL.dll" />
     <Content Include="bin\DataLibrary.DL.pdb" />

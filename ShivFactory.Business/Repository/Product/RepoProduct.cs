@@ -41,6 +41,15 @@ namespace ShivFactory.Business.Repository.Product
             }
             else
             {
+                string imgpth1 = "", imgpth2 = "", imgpth3 = "", imgpth4 = "", imgpth5 = ""; 
+                if (!(model.imgPathList==null))
+                {
+                    imgpth1 = model.imgPathList[0];
+                    imgpth2 = model.imgPathList[1];
+                    imgpth3 = model.imgPathList[2];
+                    imgpth4 = model.imgPathList[3];
+                    imgpth5 = model.imgPathList[4];
+                }
                 db.Products.Add(new DataLibrary.DL.Product()
                 {
                     ProductName = model.ProductName,
@@ -53,14 +62,14 @@ namespace ShivFactory.Business.Repository.Product
                 SubCategory = model.SubCategory,
                 MiniCategory = model.MiniCategory,
                 MainImage = model.ImagePath,
-                    Image1 = model.imgPathList[0],
-                    Image2 = model.imgPathList[1],
-                    Image3 = model.imgPathList[2],
-                    Image4 = model.imgPathList[3],
-                    Image5 = model.imgPathList[4]
-                
+                    Image1 = imgpth1,
+                    Image2 = imgpth2,
+                    Image3 = imgpth3,
+                    Image4 = imgpth4,
+                    Image5 = imgpth5
 
-            });
+
+                });
             }
             return db.SaveChanges() > 0;
         }
@@ -82,7 +91,16 @@ namespace ShivFactory.Business.Repository.Product
                 ProductId = a.ProductId,
                 ProductName = a.ProductName,
                 ImagePath = a.MainImage,
-                IsActive = a.IsActive.Value
+                IsActive = a.IsActive.Value,
+                Description = a.Description,
+                
+                SalePrice = Convert.ToDecimal(a.SalePrice),
+                ListPrice = Convert.ToDecimal(a.ListPrice),
+                Category = (int)a.Category,
+                SubCategory = (int)a.SubCategory,
+                MiniCategory = (int)a.MiniCategory
+               
+               
             }).FirstOrDefault();
 
             return Product;

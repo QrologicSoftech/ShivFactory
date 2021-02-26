@@ -35,7 +35,7 @@ namespace ShivFactory.Business.Repository.Product
 		public bool IsActive { get; set; }
 		
 		public List<string> imgPathList { get; set;  }
-		public HttpPostedFileBase[] PostedFile { get; set; }
+		public HttpPostedFileBase  PostedFile { get; set; }
 
 		public List<HttpPostedFileBase> files { get; set; }
 	}

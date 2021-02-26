@@ -3,6 +3,9 @@
     ViewBag.Title = "Add Product";
     Layout = "~/Areas/Vendor/Views/Shared/_LayoutDashboard.cshtml";
 }
+<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 <div class="container-fluid page-body-wrapper">
     <div class="main-panel">
@@ -11,207 +14,401 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">@ViewBag.Title</h4>
+                            <h4 class="card-title">
+                                @ViewBag.Title
+                            </h4>
+                                <!--<div style=" text-align: right;">-->
+                                    @*class="wrapper d-flex"*@
+                                    <!--<a class="btn btn-sm btn-gradient-primary mr-2" href="~/Vendor/Vendor/Product">  Back to List </a>
+                                </div>-->
                             <div class="row grid-margin">
-                                <div class="col-12">
-                                    <div class="wrapper d-flex" style=" text-align: start;">
-                                        <a class="btn btn-sm btn-gradient-primary mr-2" href="~/Admin/Admin/SubCategory">  Back to List </a>
-                                    </div>
-                                </div>
+                                  <div class="col-12">
+                           <div class="wrapper d-flex" style=" text-align: start;">
+            <a class="btn btn-sm btn-gradient-primary mr-2" href="~/Vendor/Vendor/Product">  Back to List </a>
+        </div>
                             </div>
+                        </div>
                         </div>
                         <div class="wrapper border-top">
-                            <div class="card-body">
-                                @using (Html.BeginForm("AddProduct", "Vendor", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
-                                {
-                                    <div class="row">
-                                        <div class="col-lg-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label>Product Name</label>
-                                            </div>
-                                            <div class="form-group">
-                                                @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label>Product Description</label>
-                                            </div>
-                                            <div class="form-group">
-                                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @cols = 100, @rows = 5 })
-                                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-
-                                        <div class="col-lg-4 col-sm-4">
-                                            <div class="form-group">
-                                                <label>Category</label>
-                                            </div>
-                                            <div class="form-group">
-                                                @Html.DropDownListFor(model => model.Category, ViewBag.category as SelectList, "Select", new { @class = "form-control", id = "Category", onchange = "product.BindSubCategoryByCatId('#Category', '#SubCategory','#MiniCategory')" })
-                                                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-4">
-                                            <div class="form-group">
-                                                <label>Sub Category</label>
-                                            </div>
-                                            <div class="form-group">
-                                                @Html.DropDownListFor(model => model.SubCategory, ViewBag.subcategory as SelectList, "Select", new { @class = "form-control", id = "SubCategory", onchange = "product.BindMiniCategoryBySubCatId('#SubCategory', '#MiniCategory')" })
-
-                                                @Html.ValidationMessageFor(model => model.SubCategory, "", new { @class = "text-danger" })
-
-                                            </div>
-                                        </div>
-
-                                        <div class="col-lg-4 col-sm-4">
-                                            <div class="form-group">
-                                                <label>Mini Category</label>
-                                            </div>
-                                            <div class="form-group">
-                                                @Html.DropDownListFor(model => model.MiniCategory, ViewBag.miniCategory as SelectList, "Select", new { @class = "form-control", id = "MiniCategory" })
-
-                                                @Html.ValidationMessageFor(model => model.MiniCategory, "", new { @class = "text-danger" })
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-
-                                        <div class="col-lg-4 col-sm-4">
-                                            <div class="form-group">
-                                                <label>Main Image</label>
-                                                <input type="file" name="img[]" class="file-upload-default">
-                                            </div>
-                                            <div class="ajax-file-upload-container form-group">
-                                                @Html.TextBoxFor(model => model.PostedFile, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview')" })
-                                                @Html.ValidationMessageFor(model => model.PostedFile, "", new { @class = "text-danger" })
-                                            </div>
-
-                                        <div class="form-group">
-                                            <img id="imagePreview" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
-                                           
-                                        </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-4">
-                                            <div class="form-group">
-                                                <label>Image1</label>
-                                            </div>
-                                            <div class="ajax-file-upload-container form-group">
-                                                @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview1')" })
-                                                @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
-                                            </div>
-                                            
-                                        <div class="form-group">
-                                            <img id="imagePreview1" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
-                                        </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-4">
-                                            <div class="form-group">
-                                                <label>Image 2</label>
-                                            </div>
-                                            <div class="ajax-file-upload-container form-group">
-                                                @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview2')" })
-                                                @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
-                                            </div>
-
-                                        <div class="form-group">
-                                            <img id="imagePreview2" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
-                                        </div>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row">
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Image 3</label>
-                                                    
+                            <div data-role="main" class="ui-content">
+                                <div class="card-body">
+                                    @using (Html.BeginForm("AddProduct", "Vendor", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
+                                    {
+                                        <fieldset data-role="collapsible">
+                                            <legend>Product Details</legend>
+                                            <div class="row">
+                                                <div class="col-lg-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Product Name</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                                                    </div>
                                                 </div>
-                                                <div class="ajax-file-upload-container form-group">
-                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview3')" })
-                                                    @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
-                                                </div>
-                                                <div class="form-group">
-                                                    <img id="imagePreview3" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Image 4</label>
-                                                    <input type="file" name="img4[]" class="file-upload-default">
-                                                </div>
-                                                <div class="ajax-file-upload-container form-group">
-                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview4')" })
-                                                    @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
-                                                </div>
-
-                                                
-                                                <div class="form-group">
-                                                    <img id="imagePreview4" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Image 5</label>
-                                                    <input type="file" name="img5[]" class="file-upload-default">
-                                                </div>
-                                                <div class="ajax-file-upload-container form-group">
-                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview5')" })
-                                                    @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
-                                                </div>
-                                              
-                                                <div class="form-group">
-                                                    <img id="imagePreview5" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+                                                <div class="col-lg-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Product Description</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @cols = 100, @rows = 5 })
+                                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                                    </div>
                                                 </div>
                                             </div>
 
-                                        </div>
+                                            <div class="row">
 
-                                    <div class="row">
-                                        <div class="col-lg-4 col-sm-4">
-                                            <div class="form-group">
-                                                <label>Sell Price</label>
-                                            </div>
-                                            <div class="form-group">
-                                                @Html.TextBoxFor(model => model.SalePrice, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.SalePrice, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-4">
-                                            <div class="form-group">
-                                                <label>List Price</label>
-                                            </div>
-                                            <div class="form-group">
-                                                @Html.TextBoxFor(model => model.ListPrice, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(model => model.ListPrice, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-sm-4">
-                                            <div class="form-group">
-                                                <label>IsActive</label>
-                                            </div>
-                                            <div class="form-group">
-                                                @Html.CheckBoxFor(x => x.IsActive, new { @style = "height: 30px; width:30px;" })
-                                            </div>
-                                        </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Category</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.DropDownListFor(model => model.Category, ViewBag.category as SelectList, "Select", new { @class = "form-control", id = "Category", onchange = "product.BindSubCategoryByCatId('#Category', '#SubCategory','#MiniCategory')" })
+                                                        @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Sub Category</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.DropDownListFor(model => model.SubCategory, ViewBag.subcategory as SelectList, "Select", new { @class = "form-control", id = "SubCategory", onchange = "product.BindMiniCategoryBySubCatId('#SubCategory', '#MiniCategory')" })
 
-                                    </div>
-                                    @Html.HiddenFor(model => model.ProductId)
-                                    @Html.HiddenFor(model => model.ImagePath)
+                                                        @Html.ValidationMessageFor(model => model.SubCategory, "", new { @class = "text-danger" })
 
-                                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                                    <button class="btn btn-light" type="reset">Cancel</button>
+                                                    </div>
+                                                </div>
 
-                                }
-                            </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Mini Category</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.DropDownListFor(model => model.MiniCategory, ViewBag.miniCategory as SelectList, "Select", new { @class = "form-control", id = "MiniCategory" })
+
+                                                        @Html.ValidationMessageFor(model => model.MiniCategory, "", new { @class = "text-danger" })
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Main Image</label>
+                                                    </div>
+                                                    <div class="ajax-file-upload-container form-group">
+                                                        @Html.TextBoxFor(model => model.PostedFile, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview')" })
+                                                        @Html.ValidationMessageFor(model => model.PostedFile, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <img id="imagePreview" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Image1</label>
+                                                    </div>
+                                                    <div class="ajax-file-upload-container form-group">
+                                                        @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview1')" })
+                                                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <img id="imagePreview1" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Image 2</label>
+                                                    </div>
+                                                    <div class="ajax-file-upload-container form-group">
+                                                        @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview2')" })
+                                                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <img id="imagePreview2" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Image 3</label>
+
+                                                    </div>
+                                                    <div class="ajax-file-upload-container form-group">
+                                                        @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview3')" })
+                                                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <img id="imagePreview3" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Image 4</label>
+                                                       </div>
+                                                    <div class="ajax-file-upload-container form-group">
+                                                        @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview4')" })
+                                                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <img id="imagePreview4" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Image 5</label>
+                                                    </div>
+                                                    <div class="ajax-file-upload-container form-group">
+                                                        @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview5')" })
+                                                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <img id="imagePreview5" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            @*<div class="row">
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Sell Price</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.TextBoxFor(model => model.SalePrice, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.SalePrice, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>List Price</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.TextBoxFor(model => model.ListPrice, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.ListPrice, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>IsActive</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.CheckBoxFor(x => x.IsActive, new { @style = "height: 30px; width:30px;" })
+                                                    </div>
+                                                </div>
+
+                                            </div>*@
+                                            @Html.HiddenFor(model => model.ProductId)
+                                            @Html.HiddenFor(model => model.ImagePath)
+
+                                            @*<button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                            <button class="btn btn-light" type="reset">Cancel</button>*@
+                                        </fieldset>
+
+                                        <fieldset data-role="collapsible">
+                                            <legend>Product Image</legend>
+                                            @*<div class="row">
+                                                <div class="col-lg-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Product Name</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>Product Description</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @cols = 100, @rows = 5 })
+                                                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Category</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.DropDownListFor(model => model.Category, ViewBag.category as SelectList, "Select", new { @class = "form-control", id = "Category", onchange = "product.BindSubCategoryByCatId('#Category', '#SubCategory','#MiniCategory')" })
+                                                        @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Sub Category</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.DropDownListFor(model => model.SubCategory, ViewBag.subcategory as SelectList, "Select", new { @class = "form-control", id = "SubCategory", onchange = "product.BindMiniCategoryBySubCatId('#SubCategory', '#MiniCategory')" })
+
+                                                        @Html.ValidationMessageFor(model => model.SubCategory, "", new { @class = "text-danger" })
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Mini Category</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.DropDownListFor(model => model.MiniCategory, ViewBag.miniCategory as SelectList, "Select", new { @class = "form-control", id = "MiniCategory" })
+
+                                                        @Html.ValidationMessageFor(model => model.MiniCategory, "", new { @class = "text-danger" })
+
+                                                    </div>
+                                                </div>
+                                            </div>*@
+
+                                            @*<div class="row">
+
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Main Image</label>
+                                                        <input type="file" name="img[]" class="file-upload-default">
+                                                    </div>
+                                                    <div class="ajax-file-upload-container form-group">
+                                                        @Html.TextBoxFor(model => model.PostedFile, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview')" })
+                                                        @Html.ValidationMessageFor(model => model.PostedFile, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <img id="imagePreview" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Image1</label>
+                                                    </div>
+                                                    <div class="ajax-file-upload-container form-group">
+                                                        @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview1')" })
+                                                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <img id="imagePreview1" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Image 2</label>
+                                                    </div>
+                                                    <div class="ajax-file-upload-container form-group">
+                                                        @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview2')" })
+                                                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <img id="imagePreview2" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Image 3</label>
+
+                                                    </div>
+                                                    <div class="ajax-file-upload-container form-group">
+                                                        @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview3')" })
+                                                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <img id="imagePreview3" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Image 4</label>
+                                                        <input type="file" name="img4[]" class="file-upload-default">
+                                                    </div>
+                                                    <div class="ajax-file-upload-container form-group">
+                                                        @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview4')" })
+                                                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <img id="imagePreview4" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Image 5</label>
+                                                        <input type="file" name="img5[]" class="file-upload-default">
+                                                    </div>
+                                                    <div class="ajax-file-upload-container form-group">
+                                                        @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview5')" })
+                                                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <img id="imagePreview5" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
+                                                    </div>
+                                                </div>
+
+                                            </div>*@
+
+                                            <div class="row">
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>Sell Price</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.TextBoxFor(model => model.SalePrice, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.SalePrice, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>List Price</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.TextBoxFor(model => model.ListPrice, new { @class = "form-control" })
+                                                        @Html.ValidationMessageFor(model => model.ListPrice, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-4">
+                                                    <div class="form-group">
+                                                        <label>IsActive</label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.CheckBoxFor(x => x.IsActive, new { @style = "height: 30px; width:30px;" })
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            @Html.HiddenFor(model => model.ProductId)
+                                            @Html.HiddenFor(model => model.ImagePath)
+
+                                            <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                            <button class="btn btn-light" type="reset">Cancel</button>
+                                        </fieldset>
+                                    }
+                                </div>
+
+                                </div>
+</div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
