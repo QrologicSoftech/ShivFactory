@@ -21,10 +21,7 @@ namespace ShivFactory.Business.Repository.Product
 		public decimal SalePrice { get; set; }
 		[Required(ErrorMessage = "List Price Required")]
 		public decimal ListPrice { get; set; }
-		[Required(ErrorMessage = " Image Required")]
 		public string ImagePath { get; set; }
-
-		//[Required(ErrorMessage = " Image Required")]
 		
 		[Required(ErrorMessage = "Please select category")]
 		public int Category { get; set; }
@@ -33,7 +30,22 @@ namespace ShivFactory.Business.Repository.Product
 		[Required(ErrorMessage = "Please select Mini category")]
 		public int MiniCategory { get; set; }
 		public bool IsActive { get; set; }
-		
+
+		public DateTime AddUpdate { get; set; }
+		public DateTime LastUpdate { get; set; }
+		public int StockCount { get; set; }
+		public DateTime MgfDate { get; set; }
+		public string ShellLife { get; set; }
+		public string ProductWarning { get; set; }
+		public string MgfDetail { get; set; }
+		public decimal localshipingcharge { get; set; }
+		public decimal zonalshipingcharge { get; set; }
+		public decimal nationalshippingcharge { get; set; }
+		public decimal Length { get; set; }
+		public decimal Breadth { get; set; }
+		public decimal Height { get; set; }
+		public string InactiveReason { get; set; }
+
 		public List<string> imgPathList { get; set;  }
 		public HttpPostedFileBase  PostedFile { get; set; }
 

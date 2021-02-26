@@ -30,6 +30,19 @@ namespace ShivFactory.Business.Repository.Product
                 Product.SubCategory = model.SubCategory;
                 Product.MiniCategory = model.MiniCategory;
                 Product.MainImage = model.ImagePath;
+                Product.Length = model.Length;
+                Product.Breadth = model.Breadth;
+                Product.Height = model.Height;
+                
+                Product.MgfDetail = model.MgfDetail;
+                Product.localshipingcharge = model.localshipingcharge;
+                Product.zonalshipingcharge = model.zonalshipingcharge;
+                Product.nationalshippingcharge = model.nationalshippingcharge;
+
+                Product.StockCount = model.StockCount;
+                Product.ShellLife = model.ShellLife;
+                Product.ProductWarning = model.ProductWarning; 
+
                 if (model.imgPathList.Count > 0)
                 {
                     Product.Image1 = model.imgPathList[0];
@@ -66,10 +79,22 @@ namespace ShivFactory.Business.Repository.Product
                     Image2 = imgpth2,
                     Image3 = imgpth3,
                     Image4 = imgpth4,
-                    Image5 = imgpth5
+                    Image5 = imgpth5,
+                    Length = model.Length,
+                Breadth = model.Breadth ,
+                Height = model.Height ,
+
+                MgfDetail = model.MgfDetail ,
+                localshipingcharge = model.localshipingcharge ,
+                zonalshipingcharge = model.zonalshipingcharge ,
+                nationalshippingcharge = model.nationalshippingcharge ,
+
+                StockCount = model.StockCount ,
+                ShellLife = model.ShellLife ,
+                ProductWarning = model.ProductWarning 
 
 
-                });
+            });
             }
             return db.SaveChanges() > 0;
         }

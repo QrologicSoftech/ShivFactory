@@ -32,6 +32,18 @@ namespace DataLibrary.DL
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> AddUpdate { get; set; }
         public Nullable<System.DateTime> LastUpdate { get; set; }
+        public Nullable<int> StockCount { get; set; }
+        public Nullable<System.DateTime> MgfDate { get; set; }
+        public string ShellLife { get; set; }
+        public string ProductWarning { get; set; }
+        public string MgfDetail { get; set; }
+        public Nullable<decimal> localshipingcharge { get; set; }
+        public Nullable<decimal> zonalshipingcharge { get; set; }
+        public Nullable<decimal> nationalshippingcharge { get; set; }
+        public Nullable<decimal> Length { get; set; }
+        public Nullable<decimal> Breadth { get; set; }
+        public Nullable<decimal> Height { get; set; }
+        public string InactiveReason { get; set; }
     
         public virtual Category Category1 { get; set; }
         public virtual MiniCategory MiniCategory1 { get; set; }

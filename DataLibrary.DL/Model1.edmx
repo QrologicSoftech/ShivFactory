@@ -168,6 +168,18 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="AddUpdate" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="StockCount" Type="int" />
+          <Property Name="MgfDate" Type="datetime" />
+          <Property Name="ShellLife" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductWarning" Type="nvarchar" MaxLength="500" />
+          <Property Name="MgfDetail" Type="nvarchar" MaxLength="500" />
+          <Property Name="localshipingcharge" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="zonalshipingcharge" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="nationalshippingcharge" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Length" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Breadth" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Height" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="InactiveReason" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -907,6 +919,18 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="AddUpdate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="StockCount" Type="Int32" />
+          <Property Name="MgfDate" Type="DateTime" Precision="3" />
+          <Property Name="ShellLife" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductWarning" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MgfDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="localshipingcharge" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="zonalshipingcharge" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="nationalshippingcharge" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Length" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Breadth" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Height" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="InactiveReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Product_Category">
           <End Type="db_ShivFactoryModel.Category" Role="Category" Multiplicity="0..1" />
@@ -1188,6 +1212,18 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="InactiveReason" ColumnName="InactiveReason" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Breadth" ColumnName="Breadth" />
+                <ScalarProperty Name="Length" ColumnName="Length" />
+                <ScalarProperty Name="nationalshippingcharge" ColumnName="nationalshippingcharge" />
+                <ScalarProperty Name="zonalshipingcharge" ColumnName="zonalshipingcharge" />
+                <ScalarProperty Name="localshipingcharge" ColumnName="localshipingcharge" />
+                <ScalarProperty Name="MgfDetail" ColumnName="MgfDetail" />
+                <ScalarProperty Name="ProductWarning" ColumnName="ProductWarning" />
+                <ScalarProperty Name="ShellLife" ColumnName="ShellLife" />
+                <ScalarProperty Name="MgfDate" ColumnName="MgfDate" />
+                <ScalarProperty Name="StockCount" ColumnName="StockCount" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="AddUpdate" ColumnName="AddUpdate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />

@@ -97,7 +97,6 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 {
                     RepoCommon common = new RepoCommon();
                     model.imgPathList = common.SaveProductMultipleImage(model.files);
-
                 }
                 RepoProduct repoProduct = new RepoProduct();
                 var isSaved = repoProduct.AddOrUpdateProduct(model);
