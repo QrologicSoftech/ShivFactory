@@ -94,17 +94,6 @@
                                             </div>
 
                                             <div class="row">
-                                                <div class="col-sm-4">
-                                                    <img id="imagePreview" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
-                                                    @Html.TextBoxFor(model => model.PostedFile, new { name = "files", @class = "form-control col-lg-10", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview')" })
-                                                    @Html.ValidationMessageFor(model => model.PostedFile, "", new { @class = "text-danger" })
-                                                </div>
-                                                <label class="col-sm-2 control-label">Image</label>
-                                                <div class="col-sm-4">
-                                                    <img id="imagePreview1" class="img-preview img-preview-sm img-thumbnail" style="display:none;" />
-                                                    @Html.TextBoxFor(model => model.files, new { name = "files", @class = "form-control col-lg-10", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview1')" })
-                                                    @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
-                                                </div>
                                                 <div class="col-lg-4 col-sm-4">
                                                     <div class="form-group">
                                                         <label>Main Image</label>
