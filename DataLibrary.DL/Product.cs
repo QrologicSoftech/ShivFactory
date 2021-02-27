@@ -44,6 +44,8 @@ namespace DataLibrary.DL
         public Nullable<decimal> Breadth { get; set; }
         public Nullable<decimal> Height { get; set; }
         public string InactiveReason { get; set; }
+        public string dimension { get; set; }
+        public string productweight { get; set; }
     
         public virtual Category Category1 { get; set; }
         public virtual MiniCategory MiniCategory1 { get; set; }

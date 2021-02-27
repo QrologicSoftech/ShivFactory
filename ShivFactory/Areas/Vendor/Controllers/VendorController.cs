@@ -1,6 +1,8 @@
 ﻿using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.Common;
+using ShivFactory.Business.Repository.DimensionMaster;
 using ShivFactory.Business.Repository.Product;
+using ShivFactory.Business.Repository.WeightMaster;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -76,6 +78,12 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 ViewBag.subcategory = reposubCategory.GetSubCategoryDDl();
                 RepoMinicategory repominiCategory = new RepoMinicategory();
                 ViewBag.minicategory = repominiCategory.GetMiniCategoryDDl();
+
+                RepoDimension repodim = new RepoDimension();
+                RepoWeightMaster repoweigth = new RepoWeightMaster();
+                 ViewBag.dimension = repodim.GetDimensionMasterDDl();
+                 ViewBag.weight = repoweigth.GetweightMasterDDl(); 
+
                 if (ModelState.IsValid)
                 {
                     return View(model);

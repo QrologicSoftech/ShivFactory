@@ -180,6 +180,8 @@
           <Property Name="Breadth" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Height" Type="decimal" Precision="18" Scale="0" />
           <Property Name="InactiveReason" Type="nvarchar" MaxLength="500" />
+          <Property Name="dimension" Type="varchar" MaxLength="50" />
+          <Property Name="productweight" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -931,6 +933,8 @@
           <Property Name="Breadth" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Height" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="InactiveReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="dimension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="productweight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Product_Category">
           <End Type="db_ShivFactoryModel.Category" Role="Category" Multiplicity="0..1" />
@@ -1212,6 +1216,8 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="productweight" ColumnName="productweight" />
+                <ScalarProperty Name="dimension" ColumnName="dimension" />
                 <ScalarProperty Name="InactiveReason" ColumnName="InactiveReason" />
                 <ScalarProperty Name="Height" ColumnName="Height" />
                 <ScalarProperty Name="Breadth" ColumnName="Breadth" />

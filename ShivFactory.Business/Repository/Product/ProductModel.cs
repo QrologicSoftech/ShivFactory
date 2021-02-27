@@ -18,9 +18,9 @@ namespace ShivFactory.Business.Repository.Product
 		
 		public string Description { get; set; }
 		[Required(ErrorMessage = "Sale Price Required")]
-		public decimal SalePrice { get; set; }
+		public decimal? SalePrice { get; set; }
 		[Required(ErrorMessage = "List Price Required")]
-		public decimal ListPrice { get; set; }
+		public decimal? ListPrice { get; set; }
 		public string ImagePath { get; set; }
 		
 		[Required(ErrorMessage = "Please select category")]
@@ -33,22 +33,31 @@ namespace ShivFactory.Business.Repository.Product
 
 		public DateTime AddUpdate { get; set; }
 		public DateTime LastUpdate { get; set; }
-		public int StockCount { get; set; }
+		public int? StockCount { get; set; }
 		public DateTime MgfDate { get; set; }
 		public string ShellLife { get; set; }
 		public string ProductWarning { get; set; }
 		public string MgfDetail { get; set; }
-		public decimal localshipingcharge { get; set; }
-		public decimal zonalshipingcharge { get; set; }
-		public decimal nationalshippingcharge { get; set; }
-		public decimal Length { get; set; }
-		public decimal Breadth { get; set; }
-		public decimal Height { get; set; }
+		public decimal? localshipingcharge { get; set; }
+		public decimal? zonalshipingcharge { get; set; }
+		public decimal? nationalshippingcharge { get; set; }
+		public decimal? Length { get; set; }
+		public decimal? Breadth { get; set; }
+		public decimal? Height { get; set; }
 		public string InactiveReason { get; set; }
 
 		public List<string> imgPathList { get; set;  }
 		public HttpPostedFileBase  PostedFile { get; set; }
 
 		public List<HttpPostedFileBase> files { get; set; }
+
+		public string Image1Path { get; set; }
+		public string Image2Path { get; set; }
+		public string Image3Path { get; set; }
+		public string Image4Path { get; set; }
+		public string Image5Path { get; set; }
+
+		public string dimension { get; set;  }
+		public string productweight { get; set; }
 	}
 }

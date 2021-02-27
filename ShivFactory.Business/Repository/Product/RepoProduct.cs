@@ -118,14 +118,32 @@ namespace ShivFactory.Business.Repository.Product
                 ImagePath = a.MainImage,
                 IsActive = a.IsActive.Value,
                 Description = a.Description,
-                
-                SalePrice = Convert.ToDecimal(a.SalePrice),
-                ListPrice = Convert.ToDecimal(a.ListPrice),
+
+                Image1Path = a.Image1,
+                Image2Path = a.Image2,
+                Image3Path = a.Image3,
+                Image4Path = a.Image4,
+                Image5Path = a.Image5,
+
+                SalePrice = (Decimal)(a.SalePrice),
+                ListPrice = (Decimal)(a.ListPrice),
                 Category = (int)a.Category,
                 SubCategory = (int)a.SubCategory,
-                MiniCategory = (int)a.MiniCategory
-               
-               
+                MiniCategory = (int)a.MiniCategory,
+
+
+                Length = (Decimal)a.Length,
+                Breadth = (Decimal)a.Breadth,
+                Height = (Decimal)a.Height,
+
+                MgfDetail = a.MgfDetail,
+                localshipingcharge = (Decimal)a.localshipingcharge,
+                zonalshipingcharge = (Decimal)a.zonalshipingcharge,
+                nationalshippingcharge = (Decimal)a.nationalshippingcharge,
+
+                StockCount = (int)a.StockCount,
+                ShellLife = a.ShellLife,
+                ProductWarning = a.ProductWarning
             }).FirstOrDefault();
 
             return Product;
