@@ -146,11 +146,11 @@
             @{
                 if (role == UserRoles.Admin)
                 {
-                    Html.RenderPartial(Url.Content("Admin/Home/NavPartialView"));
+                    Html.RenderPartial(Url.Content("../Home/NavPartialView"));
                 }
                 else
                 {
-                    Html.RenderPartial(Url.Content("Vendor/Home/NavPartialView"));
+                    Html.RenderPartial(Url.Content("../Home/NavPartialView"));
                 }
             }
         </div>
