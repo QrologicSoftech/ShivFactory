@@ -29,7 +29,7 @@
             {
                 "data": "ImagePath", "name": "ImagePath", "defaultContent": "<i>-</i>", "orderable": false,
                 "render": function (data, type, row, meta) {
-                    return '<a href="' + data + '" target="_blank"><img src="' + data + '" alt="" style="height:40px;width:40px;"></a>';
+                    return '<a onclick="return LoadDiv(`' + data + '`);" target="_blank"><img src="' + data + '" alt="" style="height:40px;width:40px;"></a>';
                 }
             },
             { "data": 'IsActive', "name": "IsActive", },

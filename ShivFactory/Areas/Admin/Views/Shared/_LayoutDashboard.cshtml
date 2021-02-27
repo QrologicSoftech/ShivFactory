@@ -5,7 +5,7 @@
     Layout = null;
     RepoCookie repoCookie = new RepoCookie();
     var UserName = repoCookie.GetCookiesValue(CookieName.FirstName) + " " + repoCookie.GetCookiesValue(CookieName.LastName);
-   var version = ConfigurationManager.AppSettings["jsversion"].ToString();
+    var version = ConfigurationManager.AppSettings["jsversion"].ToString();
 }
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
@@ -141,7 +141,10 @@
                 </div>
             </nav>
             @*Render navvar Partial view*@
-            @{ Html.RenderPartial(Url.Content("../Home/NavPartialView")); }
+            @{
+
+                Html.RenderPartial(Url.Content("../Home/NavPartialView"));
+            }
         </div>
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
@@ -198,6 +201,104 @@
             toastr.error('@TempData["ErrorMessage"].ToString()');
         </script>
     }
+
+
+
+
+
+
+
+
+
+    <div id="Imagemodal" class="Imagemodal">
+        <div id="modal-content" class="modal-content">
+            <table style="height: 100%; width: 85%; margin:0 auto;">
+                <tr>
+                    <td valign="middle" align="center">
+                        <img id="imgFull" alt="" />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" valign="bottom">
+                        <input type="button" class="btn btn-primary" value="close" onclick="HideDiv()" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+
+
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .Imagemodal {
+            display: none;
+            top: 0px;
+            left: 0px;
+            background-color: black;
+            z-index: 100;
+            opacity: 0.8;
+            filter: alpha(opacity=60);
+            -moz-opacity: 0.8;
+            min-height: 100%;
+        }
+
+            .Imagemodal .modal-content {
+                left: 50% !important;
+                top: 90px;
+                transform: translate(-50%, 0%);
+                display: block;
+                z-index: 1000;
+                position: fixed;
+                background-color: White;
+                height: auto;
+                width: auto;
+                padding: 20px;
+                border: solid 1px black;
+            }
+
+        .modal-content img {
+            display: block;
+            height: auto;
+            width: 100%;
+            max-height: 450px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function LoadDiv(url) {
+            var bcgDiv = document.getElementById("Imagemodal");
+            $("#imgFull").attr('src', url);
+            var width = document.body.clientWidth;
+            if (document.body.clientHeight > document.body.scrollHeight) {
+                bcgDiv.style.height = document.body.clientHeight + "px";
+            }
+            else {
+                bcgDiv.style.height = document.body.scrollHeight + "px";
+            }
+            bcgDiv.style.width = "100%";
+            bcgDiv.style.display = "block";
+            return false;
+        }
+        function HideDiv() {
+            $("#Imagemodal").hide();
+        }
+    </script>
+
+
+
+
+
+
+
+
+
 </body>
 </html>
 
