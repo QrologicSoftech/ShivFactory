@@ -197,8 +197,14 @@
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\DataLibrary.DL.dll" />
     <Content Include="bin\DataLibrary.DL.pdb" />
+    <Content Include="bin\Docker.DotNet.dll" />
+    <Content Include="bin\Docker.DotNet.pdb" />
+    <Content Include="bin\DocumentFormat.OpenXml.dll" />
+    <Content Include="bin\DocumentFormat.OpenXml.xml" />
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\Microsoft.AspNet.FriendlyUrls.dll" />
+    <Content Include="bin\Microsoft.AspNet.FriendlyUrls.xml" />
     <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.Owin.dll" />
@@ -259,6 +265,9 @@
     <Content Include="bin\ShivFactory.Business.pdb" />
     <Content Include="bin\ShivFactory.dll" />
     <Content Include="bin\ShivFactory.pdb" />
+    <Content Include="bin\System.Buffers.dll" />
+    <Content Include="bin\System.Buffers.xml" />
+    <Content Include="bin\System.Linq.Dynamic.dll" />
     <Content Include="bin\System.Web.Helpers.dll" />
     <Content Include="bin\System.Web.Mvc.dll" />
     <Content Include="bin\System.Web.Optimization.dll" />
@@ -300,6 +309,7 @@
     <Content Include="Content\fonts\img-visa.svg" />
     <Content Include="Content\fonts\samples-weather.svg" />
     <Content Include="Content\JS\chart.js-Chart.min.js" />
+    <Content Include="Content\JS\dttable.js" />
     <Content Include="Content\JS\Product.js" />
     <Content Include="Content\JS\Common.js" />
     <Content Include="Content\JS\CommonFunction.js" />

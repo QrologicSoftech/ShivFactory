@@ -30,7 +30,7 @@ using System.Data.SqlClient;
 using System.Xml;
 
 
-namespace ShivFactory.Models
+namespace ShivFactory.Business.Models
 {
     /// <summary>
     /// The SqlHelper class is intended to encapsulate high performance, scalable best practices for 

@@ -125,11 +125,7 @@ var dtTable = {
                 "url": url,
                 "data": { dbFilter: filter }, // https://datatables.net/reference/option/ajax.data
                 "type": 'POST',
-                "datatype": 'json',
-                "success": function (e) {
-                    debugger;
-                    let cc = e.data;
-                }
+                "datatype": 'json'
             },
             "columns": columns,  // https://datatables.net/examples/ajax/objects.html
             "footerCallback": function () // https://datatables.net/examples/advanced_init/footer_callback.html
@@ -142,7 +138,7 @@ var dtTable = {
             }
         });
 
-        dtTable.$.fn.dataTable.SearchAfterDelay(table);
+        $.fn.dataTable.SearchAfterDelay(table);
 
         // Don't show alert. Show error instead
         $.fn.dataTable.ext.errMode = 'none';
@@ -212,6 +208,7 @@ var dtTable = {
 
 // Ref - https://datatables.net/forums/discussion/33028/searchdelay-for-server-side-issue
 $.fn.dataTable.SearchAfterDelay = function (table, delayTime = 500) {
+    
     const tableId = table.settings()[0].sTableId;
     $(`.dataTables_filter input[aria-controls="${tableId}"]`) // select the correct input field
         .unbind() // Unbind previous default bindings
