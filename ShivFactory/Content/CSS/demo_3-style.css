@@ -7826,8 +7826,8 @@ input[type="button"].btn-block {
 
         .nav-tabs .nav-link.active,
         .nav-tabs .nav-item.show .nav-link {
-            color: #343a40;
-            background-color: #ffffff;
+            color: #ffffff /*#343a40*/;
+            background-color: #b66dff;
             border-color: #ebedf2 #ebedf2 #ffffff;
         }
 
@@ -18912,6 +18912,7 @@ code {
     line-height: 1;
     vertical-align: top;
     margin-bottom: .5rem;
+    color:black;
 }
 
 .form-group.has-danger .form-control, .form-group.has-danger .asColorPicker-input, .form-group.has-danger .dataTables_wrapper select, .dataTables_wrapper .form-group.has-danger select, .form-group.has-danger .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text], .jsgrid .jsgrid-table .jsgrid-filter-row .form-group.has-danger input[type=text],
@@ -27702,4 +27703,8 @@ footer {
 .bootstrap4 #toast_default .e-meeting::before {
     content: "\e763";
     font-size: 20px;
+}
+.input-validation-error {
+    border: 1px solid #ff0000;
+    background-color: #ffeeee;
 }

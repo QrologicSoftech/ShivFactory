@@ -33,6 +33,8 @@ namespace ShivFactory.Business.Repository.Product
 
 		public DateTime AddUpdate { get; set; }
 		public DateTime LastUpdate { get; set; }
+		[Required(ErrorMessage ="Specify the quantities to sell out")]
+		[Range(1,10)]
 		public int? StockCount { get; set; }
 		public DateTime MgfDate { get; set; }
 		public string ShellLife { get; set; }
@@ -41,9 +43,9 @@ namespace ShivFactory.Business.Repository.Product
 		public decimal? localshipingcharge { get; set; }
 		public decimal? zonalshipingcharge { get; set; }
 		public decimal? nationalshippingcharge { get; set; }
-		public decimal? Length { get; set; }
-		public decimal? Breadth { get; set; }
-		public decimal? Height { get; set; }
+		public string Length { get; set; }
+		public string Breadth { get; set; }
+		public string Height { get; set; }
 		public string InactiveReason { get; set; }
 
 		public List<string> imgPathList { get; set;  }

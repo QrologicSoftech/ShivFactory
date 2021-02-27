@@ -40,9 +40,9 @@ namespace DataLibrary.DL
         public Nullable<decimal> localshipingcharge { get; set; }
         public Nullable<decimal> zonalshipingcharge { get; set; }
         public Nullable<decimal> nationalshippingcharge { get; set; }
-        public Nullable<decimal> Length { get; set; }
-        public Nullable<decimal> Breadth { get; set; }
-        public Nullable<decimal> Height { get; set; }
+        public string Length { get; set; }
+        public string Breadth { get; set; }
+        public string Height { get; set; }
         public string InactiveReason { get; set; }
         public string dimension { get; set; }
         public string productweight { get; set; }

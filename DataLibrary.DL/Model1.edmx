@@ -176,9 +176,9 @@
           <Property Name="localshipingcharge" Type="decimal" Precision="18" Scale="0" />
           <Property Name="zonalshipingcharge" Type="decimal" Precision="18" Scale="0" />
           <Property Name="nationalshippingcharge" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Length" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Breadth" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Height" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Length" Type="varchar" MaxLength="50" />
+          <Property Name="Breadth" Type="varchar" MaxLength="50" />
+          <Property Name="Height" Type="varchar" MaxLength="50" />
           <Property Name="InactiveReason" Type="nvarchar" MaxLength="500" />
           <Property Name="dimension" Type="varchar" MaxLength="50" />
           <Property Name="productweight" Type="varchar" MaxLength="50" />
@@ -874,7 +874,7 @@
             <End Role="SubCategory" EntitySet="SubCategories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="DimensionMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -914,9 +914,6 @@
           <Property Name="Category" Type="Int32" />
           <Property Name="SubCategory" Type="Int32" />
           <Property Name="MiniCategory" Type="Int32" />
-          <NavigationProperty Name="Category1" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
-          <NavigationProperty Name="MiniCategory1" Relationship="db_ShivFactoryModel.FK_Product_MiniCategory" FromRole="Product" ToRole="MiniCategory" />
-          <NavigationProperty Name="SubCategory1" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="AddUpdate" Type="DateTime" Precision="3" />
@@ -929,12 +926,15 @@
           <Property Name="localshipingcharge" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="zonalshipingcharge" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="nationalshippingcharge" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Length" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Breadth" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Height" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Length" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Breadth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Height" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="InactiveReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="dimension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="productweight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category1" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="MiniCategory1" Relationship="db_ShivFactoryModel.FK_Product_MiniCategory" FromRole="Product" ToRole="MiniCategory" />
+          <NavigationProperty Name="SubCategory1" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
         </EntityType>
         <Association Name="FK_Product_Category">
           <End Type="db_ShivFactoryModel.Category" Role="Category" Multiplicity="0..1" />
@@ -972,7 +972,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

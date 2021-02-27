@@ -132,9 +132,9 @@ namespace ShivFactory.Business.Repository.Product
                 MiniCategory = (int)a.MiniCategory,
 
 
-                Length = (Decimal)a.Length,
-                Breadth = (Decimal)a.Breadth,
-                Height = (Decimal)a.Height,
+                Length = a.Length,
+                Breadth = a.Breadth,
+                Height = a.Height,
 
                 MgfDetail = a.MgfDetail,
                 localshipingcharge = (Decimal)a.localshipingcharge,

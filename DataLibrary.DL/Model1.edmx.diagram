@@ -30,7 +30,7 @@
         <EntityTypeShape EntityType="db_ShivFactoryModel.DimensionMaster" Width="1.5" PointX="12.375" PointY="4.75" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.WeightMaster" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.ColorMaster" Width="1.5" PointX="12.375" PointY="7.75" />
-        <EntityTypeShape EntityType="db_ShivFactoryModel.Product" Width="1.5" PointX="14.5" PointY="0.75" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.Product" Width="1.5" PointX="15.5" PointY="0.75" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_Product_Category" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_Product_MiniCategory" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_Product_SubCategory" />
