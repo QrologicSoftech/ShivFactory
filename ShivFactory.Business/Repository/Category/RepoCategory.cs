@@ -122,7 +122,7 @@ namespace ShivFactory.Business.Repository
                     categories.Add(new CategoryResponse()
                     {
                         SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
-                        CategoryId = row["CategoryId"] != DBNull.Value ? Convert.ToInt32(row["CategoryId"]) : 0,
+                        Id = row["CategoryId"] != DBNull.Value ? Convert.ToInt32(row["CategoryId"]) : 0,
                         CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
                         ImagePath = row["ImagePath"] != DBNull.Value ? row["ImagePath"].ToString() : "",
                         IsActive = row["IsActive"] != DBNull.Value ? Convert.ToBoolean(row["IsActive"]) : false,
