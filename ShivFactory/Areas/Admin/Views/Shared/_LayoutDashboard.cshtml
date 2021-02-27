@@ -6,6 +6,8 @@
     RepoCookie repoCookie = new RepoCookie();
     var UserName = repoCookie.GetCookiesValue(CookieName.FirstName) + " " + repoCookie.GetCookiesValue(CookieName.LastName);
     var version = ConfigurationManager.AppSettings["jsversion"].ToString();
+    var role = repoCookie.GetCookiesValue(CookieName.Role); 
+
 }
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
@@ -142,8 +144,7 @@
             </nav>
             @*Render navvar Partial view*@
             @{
-
-                Html.RenderPartial(Url.Content("../Home/NavPartialView"));
+                    Html.RenderPartial(Url.Content("../Home/NavPartialView"));
             }
         </div>
         @Styles.Render("~/Content/css")
