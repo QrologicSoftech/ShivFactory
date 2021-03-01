@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace ShivFactory.Business.Repository.Brand
+namespace ShivFactory.Business.Repository
 {
     public class ClsBrand
     {

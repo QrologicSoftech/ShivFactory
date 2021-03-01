@@ -46,7 +46,7 @@
     },
     ShowMessage: function (data) {
         if (data.ResultFlag) {
-            toastr.success(result.Message);
+            toastr.success(data.Message);
         }
         else { toastr.error(data.Message); }
         

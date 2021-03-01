@@ -15,8 +15,9 @@ namespace DataLibrary.DL
     public partial class Brand
     {
         public int ID { get; set; }
-        public string BrandImage { get; set; }
         public string BrandName { get; set; }
+        public Nullable<int> CategoryId { get; set; }
+        public string ImagePath { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> IsDelete { get; set; }
         public Nullable<System.DateTime> Adddate { get; set; }

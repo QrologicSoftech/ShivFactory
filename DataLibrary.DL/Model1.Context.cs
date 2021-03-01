@@ -31,7 +31,6 @@ namespace DataLibrary.DL
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Banner> Banners { get; set; }
-        public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<DynamicMenu> DynamicMenus { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
@@ -44,5 +43,6 @@ namespace DataLibrary.DL
         public virtual DbSet<BankerMaster> BankerMasters { get; set; }
         public virtual DbSet<MiniCategory> MiniCategories { get; set; }
         public virtual DbSet<SubCategory> SubCategories { get; set; }
+        public virtual DbSet<Brand> Brands { get; set; }
     }
 }
