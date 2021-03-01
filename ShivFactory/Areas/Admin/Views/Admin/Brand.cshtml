@@ -1,30 +1,38 @@
 ﻿
 @{
     ViewBag.Title = "Brand";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutDashboard.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-lg-12 stretch-card">
-    <div class="card">
-        <div class="card-body">
-            @using (Html.BeginForm("AddBrand", "Admin", FormMethod.Get))
-            {
-                <p class="card-description" style=" text-align: end;">
-                    <button type="submit" class="btn btn-primary">
-                        Add Brand
-                    </button>
-                </p>
-            }
-            <div class="partialView">
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">@ViewBag.Title</h4>
+                            <div class="row grid-margin">
+                                <div class="col-12">
+                                    <div class="card-description">
+                                        @using (Html.BeginForm("AddBrand", "Admin", new { Area = "Admin" }, FormMethod.Get))
+                                        {
+                                            <p class="card-description" style=" text-align: end;">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Add Brand
+                                                </button>
+                                            </p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="partialView">
+                                @{ Html.RenderPartial(Url.Content("BrandPartialView")); }
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        common.RenderPartialView('Admin', 'BrandPartialView');
-    });
-</script>
-

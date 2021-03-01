@@ -1,5 +1,18 @@
-﻿@model IEnumerable<ShivFactory.Business.Model.BrandModel>
+﻿@using ShivFactory.Business.Repository
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
 @{
+    JObject obj = JObject.Parse(JsonConvert.SerializeObject(new CategoryResponse(), Formatting.Indented, new JsonSerializerSettings
+    { PreserveReferencesHandling = PreserveReferencesHandling.Objects }));
+    obj.Remove("$id");
+
+    List<string> termsList = new List<string>();
+    foreach (var columnName in obj)
+    {
+        termsList.Add(columnName.Key.Trim());
+    }
+    string[] columnArray = termsList.ToArray();
+
     ViewBag.Title = "BrandPartialView";
 }
 <p class="card-description">
