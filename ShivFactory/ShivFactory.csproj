@@ -407,9 +407,9 @@
     <Content Include="Areas\Admin\Views\Admin\Dimension.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\DimensionPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AddDimension.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\WeightMaster.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\WeightMasterMasterPartialView.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\AddWeightMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Weight.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\WeightPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AddWeight.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ColorMaster.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ColorMasterPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AddColorMaster.cshtml" />

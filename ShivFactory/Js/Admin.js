@@ -96,6 +96,21 @@ var Admin = {
         }
     },
 
+    DeleteWeight: function (weightId) {
+
+        if (confirm("Are you sure want to delete this Weight parameter?")) {
+            data = {
+                "id": weightId
+            }
+            ajax.doPostAjax(`/${adminArea}/${adminController}/DeleteWeight`, data, function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    location.reload();
+                }
+            });
+        }
+    },
+
 }
 
 

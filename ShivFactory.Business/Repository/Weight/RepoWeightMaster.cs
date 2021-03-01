@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace ShivFactory.Business.Repository.WeightMaster
+namespace ShivFactory.Business.Repository
 {
     public class RepoWeightMaster
     {
@@ -15,17 +15,18 @@ namespace ShivFactory.Business.Repository.WeightMaster
         #endregion
 
         #region Add Or Update DimensionMaster
-        public bool AddOrUpdateWeightMaster(WeightModel model)
+        public bool AddOrUpdateWeight(WeightModel model)
         {
-            var dimensionMaster = db.WeightMasters.Where(a => a.Id == model.Id).FirstOrDefault();
+            var dimensionMaster = db.WeightMasters.Where(a => a.Name == model.Name).FirstOrDefault();
             if (dimensionMaster != null)
             {
-                dimensionMaster.Id = model.Id;
                 dimensionMaster.Name = model.Name;
+                db.SaveChanges();
+                return true;
             }
             else
             {
-                dimensionMaster = db.WeightMasters.Add(new DataLibrary.DL.WeightMaster
+                dimensionMaster = db.WeightMasters.Add(new WeightMaster
                 {
                     Id = model.Id,
                     Name = model.Name,
@@ -36,11 +37,10 @@ namespace ShivFactory.Business.Repository.WeightMaster
 
         #endregion
 
-
-        #region Get DimensionMaster By Id
-        public WeightModel GetWeightMasterById(int weightMasterId)
+        #region Get Dimension By Id
+        public WeightModel GetWeightById(int weightId)
         {
-            var weightMasters = db.WeightMasters.Where(x => x.Id == weightMasterId).Select(a => new WeightModel()
+            var weightMasters = db.WeightMasters.Where(x => x.Id == weightId).Select(a => new WeightModel()
             {
                 Id = a.Id,
                 Name = a.Name
@@ -51,15 +51,15 @@ namespace ShivFactory.Business.Repository.WeightMaster
         }
         #endregion
 
-        #region Get All DimensionMaster
-        public List<DataLibrary.DL.WeightMaster> GetAllWeightMaster()
+        #region Get All Dimension
+        public List<WeightMaster> GetAllWeight()
         {
             return db.WeightMasters.Where(a => a.Name != null).ToList();
         }
         #endregion
 
         #region Delete SubCategory By Id
-        public bool DeleteWeightMasterById(int weightMasterId)
+        public bool DeleteWeightById(int weightMasterId)
         {
             var weightMasters = db.WeightMasters.Where(x => x.Id == weightMasterId).FirstOrDefault();
             if (weightMasters != null)
@@ -70,18 +70,18 @@ namespace ShivFactory.Business.Repository.WeightMaster
         }
         #endregion
 
-        #region Get DimensionMaster DDl
+        #region Get Dimension DDl
 
-        public SelectList GetweightMasterDDl()
+        public SelectList GetweightDDl()
         {
-            dynamic weightMaster;
+            dynamic weight;
 
-            weightMaster = db.WeightMasters.Where(a => a.Name != null).Select(a => new
+            weight = db.WeightMasters.Where(a => a.Name != null).Select(a => new
             {
                 Text = a.Name,
                 Value = a.Id
             }).ToList();
-            return new SelectList(weightMaster, "Value", "Text");
+            return new SelectList(weight, "Value", "Text");
         }
         #endregion
     }

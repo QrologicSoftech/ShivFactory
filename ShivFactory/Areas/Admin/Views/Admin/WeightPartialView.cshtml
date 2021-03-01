@@ -24,11 +24,10 @@
                             <td>
                                 <button class="btn btn-light">
                                     <i class="mdi mdi-database-edit text-primary"></i>
-                                    @Html.ActionLink("Edit", "AddWeightMaster", new { Area = "Admin", id = item.Id })
+                                    @Html.ActionLink("Edit", "AddWeight", new { Area = "Admin", id = item.Id })
                                 </button>
-                                <button class="btn btn-light">
-                                    <i class="mdi mdi-close text-danger"></i>
-                                    @Html.ActionLink("Delete", "DeleteWeightMaster", new { Area = "Admin", @class = "fa fa-trash", id = item.Id }, new { onclick = "return confirm('Are you sure to delete this category?');" })
+                                <button class="btn btn-light" onclick="Admin.DeleteWeight(@item.Id);">
+                                    <i class="mdi mdi-close text-danger">Delete</i>
                                 </button>
                             </td>
                         </tr>

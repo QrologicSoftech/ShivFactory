@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShivFactory.Business.Repository.WeightMaster
+namespace ShivFactory.Business.Repository
 {
   public  class WeightModel
     {

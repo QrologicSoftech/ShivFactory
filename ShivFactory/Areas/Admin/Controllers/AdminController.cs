@@ -4,7 +4,6 @@ using ShivFactory.Business.Models.Other;
 using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.ColorMaster;
 using ShivFactory.Business.Repository.Common;
-using ShivFactory.Business.Repository.WeightMaster;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -849,16 +848,16 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #region WeightMaster
 
-        public ActionResult WeightMaster()
+        public ActionResult Weight()
         {
             return View();
         }
-        public ActionResult WeightMasterMasterPartialView()
+        public ActionResult WeightPartialView()
         {
             try
             {
                 RepoWeightMaster rsCategory = new RepoWeightMaster();
-                var weight = rsCategory.GetAllWeightMaster();
+                var weight = rsCategory.GetAllWeight();
                 return View(weight);
             }
             catch (Exception ex)
@@ -867,16 +866,16 @@ namespace ShivFactory.Areas.Admin.Controllers
                 return View(new List<DimensionMaster>());
             }
         }
-        public ActionResult AddWeightMaster(int? id)
+        public ActionResult AddWeight(int? id)
         {
             try
             {
                 RepoWeightMaster rsCategory = new RepoWeightMaster();
-                ViewBag.Dimension = rsCategory.GetweightMasterDDl();
+                ViewBag.Dimension = rsCategory.GetweightDDl();
 
                 if (id > 0)
                 {
-                    var dimension = rsCategory.GetWeightMasterById(id.Value);
+                    var dimension = rsCategory.GetWeightById(id.Value);
                     return View(dimension);
                 }
 
@@ -889,23 +888,23 @@ namespace ShivFactory.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddWeightMaster(WeightModel model)
+        public ActionResult AddWeight(WeightModel model)
         {
             try
             {
                 RepoWeightMaster rsDimension = new RepoWeightMaster();
-                ViewBag.Dimension = rsDimension.GetweightMasterDDl();
+                ViewBag.Dimension = rsDimension.GetweightDDl();
                 if (!ModelState.IsValid)
                 {
                     return View(model);
                 }
 
-                var isSaved = rsDimension.AddOrUpdateWeightMaster(model);
+                var isSaved = rsDimension.AddOrUpdateWeight(model);
 
                 if (isSaved)
                 {
                     TempData["SuccessMessage"] = "Weight add or update successfully!!";
-                    return RedirectToAction("WeightMaster", "Admin");
+                    return RedirectToAction("Weight", "Admin");
                 }
                 else
                 {
@@ -920,26 +919,28 @@ namespace ShivFactory.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult DeleteWeightMaster(int id)
+        public ActionResult DeleteWeight(int id)
         {
             try
             {
                 RepoWeightMaster rsDimension = new RepoWeightMaster();
-                var isDelete = rsDimension.DeleteWeightMasterById(id);
-                if (isDelete)
+                var isDelete = rsDimension.DeleteWeightById(id);
+
+                return Json(new ResultModel
                 {
-                    TempData["SuccessMessage"] = "Weight deleted successfully!!";
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Failled to delete Weight";
-                }
-                return RedirectToAction("WeightMaster", "Admin");
+                    ResultFlag = isDelete,
+                    Data = null,
+                    Message = isDelete ? "Weight deleted successfully!!" : "Failled to delete weight."
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = ex.Message;
-                return RedirectToAction("WeightMaster", "Admin");
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 
