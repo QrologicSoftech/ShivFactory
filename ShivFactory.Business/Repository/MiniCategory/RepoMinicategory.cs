@@ -21,9 +21,9 @@ namespace ShivFactory.Business.Repository
             var miniCategory = db.MiniCategories.Where(a => a.ID == model.MiniCategoryId).FirstOrDefault();
             if (miniCategory != null)
             {
-                miniCategory.SubCatID = model.SubCategoryId;
-                miniCategory.MiniCatName = model.MiniCategoryName;
-                miniCategory.MiniCatImage = model.ImagePath;
+                miniCategory.SubCategoryId = model.SubCategoryId;
+                miniCategory.MiniCategoryName = model.MiniCategoryName;
+                miniCategory.ImagePath = model.ImagePath;
                 miniCategory.LastUpdate = DateTime.Now;
                 miniCategory.IsActive = model.IsActive;
             }
@@ -31,9 +31,9 @@ namespace ShivFactory.Business.Repository
             {
                 db.MiniCategories.Add(new MiniCategory()
                 {
-                    SubCatID = model.SubCategoryId,
-                    MiniCatName = model.MiniCategoryName,
-                    MiniCatImage = model.ImagePath,
+                    SubCategoryId = model.SubCategoryId,
+                    MiniCategoryName = model.MiniCategoryName,
+                    ImagePath = model.ImagePath,
                     Adddate = DateTime.Now,
                     IsActive = model.IsActive,
                     IsDelete = false
@@ -57,9 +57,9 @@ namespace ShivFactory.Business.Repository
             var subCategory = db.MiniCategories.Where(x => x.ID == miniCategoryId).Select(a => new MiniCategoryModel()
             {
                 MiniCategoryId = a.ID,
-                SubCategoryId = a.SubCatID.Value,
-                MiniCategoryName = a.MiniCatName,
-                ImagePath = a.MiniCatImage,
+                SubCategoryId = a.SubCategoryId.Value,
+                MiniCategoryName = a.MiniCategoryName,
+                ImagePath = a.ImagePath,
                 IsActive = a.IsActive.Value
             }).FirstOrDefault();
 
@@ -93,15 +93,15 @@ namespace ShivFactory.Business.Repository
             {
                 miniCaterories = db.MiniCategories.Where(a => a.IsActive == true && a.IsDelete == false).Select(a => new
                 {
-                    Text = a.MiniCatName,
+                    Text = a.MiniCategoryName,
                     Value = a.ID
                 }).AsNoTracking().ToList();
             }
             else
             {
-                miniCaterories = db.MiniCategories.Where(a => a.IsActive == true && a.IsDelete == false && a.SubCatID == subcategoryId).Select(a => new
+                miniCaterories = db.MiniCategories.Where(a => a.IsActive == true && a.IsDelete == false && a.SubCategoryId == subcategoryId).Select(a => new
                 {
-                    Text = a.MiniCatName,
+                    Text = a.MiniCategoryName,
                     Value = a.ID
                 }).AsNoTracking().ToList();
             }

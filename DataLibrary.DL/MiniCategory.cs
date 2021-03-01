@@ -21,9 +21,9 @@ namespace DataLibrary.DL
         }
     
         public int ID { get; set; }
-        public Nullable<int> SubCatID { get; set; }
-        public string MiniCatName { get; set; }
-        public string MiniCatImage { get; set; }
+        public Nullable<int> SubCategoryId { get; set; }
+        public string MiniCategoryName { get; set; }
+        public string ImagePath { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> IsDelete { get; set; }
         public Nullable<System.DateTime> Adddate { get; set; }

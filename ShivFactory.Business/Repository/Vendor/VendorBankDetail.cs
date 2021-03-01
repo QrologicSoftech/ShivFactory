@@ -16,8 +16,8 @@ namespace ShivFactory.Business.Repository.Vendor
 		[Required(ErrorMessage="Accounder Holder Name Required")]
 		public string AccountHolderName { get; set; }
 
-		[Required(ErrorMessage = "Must be Valid AccountNumber Required")]
-		[RegularExpression("^\d{9,18}$", ErrorMessage ="Invalid Format")]
+		[Required(ErrorMessage = "Must be Valid and  Account Required")]
+		[RegularExpression("^d{9,18}$", ErrorMessage ="Invalid Format")]
 		public string AccountNumber { get; set; }
 
 		[Required(ErrorMessage = "Must be Valid Bank ")]

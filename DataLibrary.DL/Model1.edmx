@@ -66,6 +66,20 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="BankerMaster">
+          <Key>
+            <PropertyRef Name="BankerMasterID" />
+          </Key>
+          <Property Name="BankerMasterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankerMasterName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="IsAdmin" Type="bit" />
+        </EntityType>
         <EntityType Name="Banner">
           <Key>
             <PropertyRef Name="ID" />
@@ -138,9 +152,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SubCatID" Type="int" />
-          <Property Name="MiniCatName" Type="nvarchar" MaxLength="100" />
-          <Property Name="MiniCatImage" Type="nvarchar" MaxLength="250" />
+          <Property Name="SubCategoryId" Type="int" />
+          <Property Name="MiniCategoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsDelete" Type="bit" />
           <Property Name="Adddate" Type="datetime" />
@@ -189,8 +203,8 @@
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryID" Type="int" />
-          <Property Name="SubCatName" Type="nvarchar" MaxLength="100" />
-          <Property Name="SubCatImage" Type="nvarchar" MaxLength="250" />
+          <Property Name="SubCategoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsDelete" Type="bit" />
           <Property Name="Adddate" Type="datetime" />
@@ -255,6 +269,9 @@
           <Property Name="IsDelete" Type="datetime" />
           <Property Name="AddUpdate" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="PIN" Type="varchar" MaxLength="10" />
+          <Property Name="Signature" Type="nvarchar" MaxLength="500" />
+          <Property Name="Logo" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="WeightMaster">
           <Key>
@@ -273,7 +290,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MiniCategory">
-              <PropertyRef Name="SubCatID" />
+              <PropertyRef Name="SubCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -445,6 +462,17 @@
           <EntitySet Name="VendorBankDetails" EntityType="Self.VendorBankDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorBusinessDetails" EntityType="Self.VendorBusinessDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WeightMaster" EntityType="Self.WeightMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankerMaster" EntityType="Self.BankerMaster" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BankerMaster].[BankerMasterID] AS [BankerMasterID], 
+    [BankerMaster].[BankerMasterName] AS [BankerMasterName], 
+    [BankerMaster].[IsDelete] AS [IsDelete], 
+    [BankerMaster].[IsActive] AS [IsActive], 
+    [BankerMaster].[AddDate] AS [AddDate], 
+    [BankerMaster].[LastUpdate] AS [LastUpdate], 
+    [BankerMaster].[IsAdmin] AS [IsAdmin]
+    FROM [dbo].[BankerMaster] AS [BankerMaster]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK__MiniCateg__SubCa__628FA481" Association="Self.FK__MiniCateg__SubCa__628FA481">
             <End Role="SubCategory" EntitySet="SubCategory" />
             <End Role="MiniCategory" EntitySet="MiniCategory" />
@@ -594,8 +622,8 @@
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="Adddate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="SubCategories" Relationship="Self.FK__SubCatego__Categ__6383C8BA" FromRole="Category" ToRole="SubCategory" />
           <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="SubCategories" Relationship="db_ShivFactoryModel.FK__SubCatego__Categ__6383C8BA" FromRole="Category" ToRole="SubCategory" />
         </EntityType>
         <EntityType Name="DynamicMenu">
           <Key>
@@ -612,40 +640,6 @@
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="IsDelete" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="MiniCategory">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubCatID" Type="Int32" />
-          <Property Name="MiniCatName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MiniCatImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="IsDelete" Type="Boolean" />
-          <Property Name="Adddate" Type="DateTime" Precision="3" />
-          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="SubCategory" Relationship="Self.FK__MiniCateg__SubCa__628FA481" FromRole="MiniCategory" ToRole="SubCategory" />
-          <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_MiniCategory" FromRole="MiniCategory" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="SubCategory">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryID" Type="Int32" />
-          <Property Name="SubCatName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SubCatImage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="IsDelete" Type="Boolean" />
-          <Property Name="Adddate" Type="DateTime" Precision="3" />
-          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Category" Relationship="Self.FK__SubCatego__Categ__6383C8BA" FromRole="SubCategory" ToRole="Category" />
-          <NavigationProperty Name="MiniCategories" Relationship="Self.FK__MiniCateg__SubCa__628FA481" FromRole="SubCategory" ToRole="MiniCategory" />
-          <Property Name="GST" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="SGST" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="IGST" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="SubCategory" ToRole="Product" />
         </EntityType>
         <EntityType Name="UserDetail">
           <Key>
@@ -708,6 +702,9 @@
           <Property Name="AddUpdate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="UserDetail" Relationship="Self.FK__VendorBus__UserI__66603565" FromRole="VendorBusinessDetails" ToRole="UserDetails" />
+          <Property Name="PIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Signature" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -748,34 +745,6 @@
             </Principal>
             <Dependent Role="UserDetails">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__SubCatego__Categ__6383C8BA">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="SubCategory">
-              <PropertyRef Name="CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__MiniCateg__SubCa__628FA481">
-          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="MiniCategory" Type="Self.MiniCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubCategory">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="MiniCategory">
-              <PropertyRef Name="SubCatID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -821,8 +790,6 @@
           <EntitySet Name="Brands" EntityType="Self.Brand" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="DynamicMenus" EntityType="Self.DynamicMenu" />
-          <EntitySet Name="MiniCategories" EntityType="Self.MiniCategory" />
-          <EntitySet Name="SubCategories" EntityType="Self.SubCategory" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
           <EntitySet Name="VendorBankDetails" EntityType="Self.VendorBankDetail" />
           <EntitySet Name="VendorBusinessDetails" EntityType="Self.VendorBusinessDetail" />
@@ -837,14 +804,6 @@
           <AssociationSet Name="FK__UserDetai__UserI__6477ECF3" Association="Self.FK__UserDetai__UserI__6477ECF3">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__SubCatego__Categ__6383C8BA" Association="Self.FK__SubCatego__Categ__6383C8BA">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="SubCategory" EntitySet="SubCategories" />
-          </AssociationSet>
-          <AssociationSet Name="FK__MiniCateg__SubCa__628FA481" Association="Self.FK__MiniCateg__SubCa__628FA481">
-            <End Role="SubCategory" EntitySet="SubCategories" />
-            <End Role="MiniCategory" EntitySet="MiniCategories" />
           </AssociationSet>
           <AssociationSet Name="FK__VendorBan__UserI__656C112C" Association="Self.FK__VendorBan__UserI__656C112C">
             <End Role="UserDetails" EntitySet="UserDetails" />
@@ -865,6 +824,17 @@
           <AssociationSet Name="FK_Product_Category" Association="db_ShivFactoryModel.FK_Product_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="BankerMasters" EntityType="db_ShivFactoryModel.BankerMaster" />
+          <EntitySet Name="MiniCategories" EntityType="db_ShivFactoryModel.MiniCategory" />
+          <EntitySet Name="SubCategories" EntityType="db_ShivFactoryModel.SubCategory" />
+          <AssociationSet Name="FK__SubCatego__Categ__6383C8BA" Association="db_ShivFactoryModel.FK__SubCatego__Categ__6383C8BA">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="SubCategory" EntitySet="SubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MiniCateg__SubCa__628FA481" Association="db_ShivFactoryModel.FK__MiniCateg__SubCa__628FA481">
+            <End Role="SubCategory" EntitySet="SubCategories" />
+            <End Role="MiniCategory" EntitySet="MiniCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_MiniCategory" Association="db_ShivFactoryModel.FK_Product_MiniCategory">
             <End Role="MiniCategory" EntitySet="MiniCategories" />
@@ -945,6 +915,80 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="Category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BankerMaster">
+          <Key>
+            <PropertyRef Name="BankerMasterID" />
+          </Key>
+          <Property Name="BankerMasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankerMasterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="IsAdmin" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="MiniCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubCategoryId" Type="Int32" />
+          <Property Name="MiniCategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="Adddate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="SubCategory" Relationship="db_ShivFactoryModel.FK__MiniCateg__SubCa__628FA481" FromRole="MiniCategory" ToRole="SubCategory" />
+          <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_MiniCategory" FromRole="MiniCategory" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="SubCategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="Adddate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="GST" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SGST" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="IGST" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Category" Relationship="db_ShivFactoryModel.FK__SubCatego__Categ__6383C8BA" FromRole="SubCategory" ToRole="Category" />
+          <NavigationProperty Name="MiniCategories" Relationship="db_ShivFactoryModel.FK__MiniCateg__SubCa__628FA481" FromRole="SubCategory" ToRole="MiniCategory" />
+          <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="SubCategory" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK__SubCatego__Categ__6383C8BA">
+          <End Type="db_ShivFactoryModel.Category" Role="Category" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_ShivFactoryModel.SubCategory" Role="SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MiniCateg__SubCa__628FA481">
+          <End Type="db_ShivFactoryModel.SubCategory" Role="SubCategory" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_ShivFactoryModel.MiniCategory" Role="MiniCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MiniCategory">
+              <PropertyRef Name="SubCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1090,37 +1134,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MiniCategories">
-            <EntityTypeMapping TypeName="db_ShivFactoryModel.MiniCategory">
-              <MappingFragment StoreEntitySet="MiniCategory">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="SubCatID" ColumnName="SubCatID" />
-                <ScalarProperty Name="MiniCatName" ColumnName="MiniCatName" />
-                <ScalarProperty Name="MiniCatImage" ColumnName="MiniCatImage" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SubCategories">
-            <EntityTypeMapping TypeName="db_ShivFactoryModel.SubCategory">
-              <MappingFragment StoreEntitySet="SubCategory">
-                <ScalarProperty Name="IGST" ColumnName="IGST" />
-                <ScalarProperty Name="SGST" ColumnName="SGST" />
-                <ScalarProperty Name="GST" ColumnName="GST" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-                <ScalarProperty Name="SubCatName" ColumnName="SubCatName" />
-                <ScalarProperty Name="SubCatImage" ColumnName="SubCatImage" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserDetails">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.UserDetail">
               <MappingFragment StoreEntitySet="UserDetails">
@@ -1165,6 +1178,9 @@
           <EntitySetMapping Name="VendorBusinessDetails">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.VendorBusinessDetail">
               <MappingFragment StoreEntitySet="VendorBusinessDetails">
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Signature" ColumnName="Signature" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="FirmName" ColumnName="FirmName" />
@@ -1248,6 +1264,50 @@
                 <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankerMasters">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.BankerMaster">
+              <MappingFragment StoreEntitySet="BankerMaster">
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="BankerMasterName" ColumnName="BankerMasterName" />
+                <ScalarProperty Name="BankerMasterID" ColumnName="BankerMasterID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MiniCategories">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.MiniCategory">
+              <MappingFragment StoreEntitySet="MiniCategory">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="MiniCategoryName" ColumnName="MiniCategoryName" />
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubCategories">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.SubCategory">
+              <MappingFragment StoreEntitySet="SubCategory">
+                <ScalarProperty Name="IGST" ColumnName="IGST" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+                <ScalarProperty Name="GST" ColumnName="GST" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

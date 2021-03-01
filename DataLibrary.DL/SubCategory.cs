@@ -23,8 +23,8 @@ namespace DataLibrary.DL
     
         public int ID { get; set; }
         public Nullable<int> CategoryID { get; set; }
-        public string SubCatName { get; set; }
-        public string SubCatImage { get; set; }
+        public string SubCategoryName { get; set; }
+        public string ImagePath { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<bool> IsDelete { get; set; }
         public Nullable<System.DateTime> Adddate { get; set; }

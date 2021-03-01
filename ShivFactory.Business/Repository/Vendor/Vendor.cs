@@ -22,7 +22,7 @@ namespace ShivFactory.Business.Repository.Vendor
 		public string City { get; set; }
 		public string State { get; set; }
 
-		[Required(ErrorMessage ="PAN Number Required"]
+		[Required(ErrorMessage ="PAN Number Required")]
 		[RegularExpression("[A-Z]{5}[0-9]{4}[A-Z]{1}",ErrorMessage ="Invalid Format")]
 		public string PanNo { get; set; }
 		public string AddressProofImg { get; set; }

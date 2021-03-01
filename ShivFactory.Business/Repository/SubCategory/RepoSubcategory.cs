@@ -22,8 +22,8 @@ namespace ShivFactory.Business.Repository
             if (subCategory != null)
             {
                 subCategory.CategoryID = model.CategoryId;
-                subCategory.SubCatName = model.SubCategoryName;
-                subCategory.SubCatImage = model.ImagePath;
+                subCategory.SubCategoryName = model.SubCategoryName;
+                subCategory.ImagePath = model.ImagePath;
                 subCategory.LastUpdate = DateTime.Now;
                 subCategory.IsActive = model.IsActive;
                 subCategory.GST = model.GST;
@@ -35,8 +35,8 @@ namespace ShivFactory.Business.Repository
                 db.SubCategories.Add(new SubCategory()
                 {
                     CategoryID = model.CategoryId,
-                    SubCatName = model.SubCategoryName,
-                    SubCatImage = model.ImagePath,
+                    SubCategoryName = model.SubCategoryName,
+                    ImagePath = model.ImagePath,
                     Adddate = DateTime.Now,
                     IsActive = model.IsActive,
                     IsDelete = false,
@@ -64,8 +64,8 @@ namespace ShivFactory.Business.Repository
             {
                 CategoryId = a.CategoryID.Value,
                 SubCategoryId = a.ID,
-                SubCategoryName = a.SubCatName,
-                ImagePath = a.SubCatImage,
+                SubCategoryName = a.SubCategoryName,
+                ImagePath = a.ImagePath,
                 IsActive = a.IsActive.Value
             }).FirstOrDefault();
 
@@ -113,7 +113,7 @@ namespace ShivFactory.Business.Repository
             {
                 subCaterories = db.SubCategories.Where(a => a.IsActive == true && a.IsDelete == false).Select(a => new
                 {
-                    Text = a.SubCatName,
+                    Text = a.SubCategoryName,
                     Value = a.ID
                 }).AsNoTracking().ToList();
             }
@@ -121,7 +121,7 @@ namespace ShivFactory.Business.Repository
             {
                 subCaterories = db.SubCategories.Where(a => a.IsActive == true && a.IsDelete == false && a.CategoryID == categoryId).Select(a => new
                 {
-                    Text = a.SubCatName,
+                    Text = a.SubCategoryName,
                     Value = a.ID
                 }).AsNoTracking().ToList();
             }

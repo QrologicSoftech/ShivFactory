@@ -62,6 +62,9 @@
     <Compile Include="AspNetUserLogin.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="BankerMaster.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Banner.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

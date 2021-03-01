@@ -34,8 +34,6 @@ namespace DataLibrary.DL
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<DynamicMenu> DynamicMenus { get; set; }
-        public virtual DbSet<MiniCategory> MiniCategories { get; set; }
-        public virtual DbSet<SubCategory> SubCategories { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
         public virtual DbSet<VendorBankDetail> VendorBankDetails { get; set; }
         public virtual DbSet<VendorBusinessDetail> VendorBusinessDetails { get; set; }
@@ -43,5 +41,8 @@ namespace DataLibrary.DL
         public virtual DbSet<WeightMaster> WeightMasters { get; set; }
         public virtual DbSet<ColorMaster> ColorMasters { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<BankerMaster> BankerMasters { get; set; }
+        public virtual DbSet<MiniCategory> MiniCategories { get; set; }
+        public virtual DbSet<SubCategory> SubCategories { get; set; }
     }
 }

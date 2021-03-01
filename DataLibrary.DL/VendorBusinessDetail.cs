@@ -27,6 +27,9 @@ namespace DataLibrary.DL
         public Nullable<System.DateTime> IsDelete { get; set; }
         public Nullable<System.DateTime> AddUpdate { get; set; }
         public Nullable<System.DateTime> LastUpdate { get; set; }
+        public string PIN { get; set; }
+        public string Signature { get; set; }
+        public string Logo { get; set; }
     
         public virtual UserDetail UserDetail { get; set; }
     }
