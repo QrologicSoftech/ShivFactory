@@ -24,11 +24,10 @@
                             <td>
                                 <button class="btn btn-light">
                                     <i class="mdi mdi-database-edit text-primary"></i>
-                                    @Html.ActionLink("Edit", "AddColorMaster", new { Area = "Admin", id = item.Id })
+                                    @Html.ActionLink("Edit", "AddColor", new { Area = "Admin", id = item.Id })
                                 </button>
                                 <button class="btn btn-light">
-                                    <i class="mdi mdi-close text-danger"></i>
-                                    @Html.ActionLink("Delete", "DeleteColorMaster", new { Area = "Admin", @class = "fa fa-trash", id = item.Id }, new { onclick = "return confirm('Are you sure to delete this category?');" })
+                                    <i class="mdi mdi-close text-danger" onclick="Admin.DeleteColor(@item.Id);">Delete</i>
                                 </button>
                             </td>
                         </tr>

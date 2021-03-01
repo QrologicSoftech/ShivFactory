@@ -15,7 +15,7 @@
                             <div class="row grid-margin">
                                 <div class="col-12">
                                     <div class="card-description">
-                                        @using (Html.BeginForm("AddColorMaster", "Admin", new { Area = "Admin" }, FormMethod.Get))
+                                        @using (Html.BeginForm("AddColor", "Admin", new { Area = "Admin" }, FormMethod.Get))
                                         {
                                             <p class="card-description" style=" text-align: end;">
                                                 <button type="submit" class="btn btn-primary">
@@ -39,6 +39,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        common.RenderPartialView('Admin', 'ColorMasterPartialView');
+        common.RenderPartialView('Admin', 'ColorPartialView');
     });
 </script>

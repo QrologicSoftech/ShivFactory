@@ -410,9 +410,9 @@
     <Content Include="Areas\Admin\Views\Admin\Weight.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\WeightPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AddWeight.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\ColorMaster.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\ColorMasterPartialView.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\AddColorMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Color.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ColorPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AddColor.cshtml" />
     <Content Include="Areas\Vendor\Views\Shared\_LayoutDashboard.cshtml" />
     <Content Include="Areas\Vendor\Views\Home\NavPartialView.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\Index.cshtml" />

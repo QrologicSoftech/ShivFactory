@@ -110,6 +110,20 @@ var Admin = {
             });
         }
     },
+    DeleteColor: function (colorId) {
+
+        if (confirm("Are you sure want to delete this color?")) {
+            data = {
+                "id": colorId
+            }
+            ajax.doPostAjax(`/${adminArea}/${adminController}/DeleteColor`, data, function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    location.reload();
+                }
+            });
+        }
+    },
 
 }
 

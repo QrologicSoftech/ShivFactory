@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShivFactory.Business.Repository.ColorMaster
+namespace ShivFactory.Business.Repository
 {
  public class ColorModel
     {

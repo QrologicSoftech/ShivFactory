@@ -2,7 +2,6 @@
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
 using ShivFactory.Business.Repository;
-using ShivFactory.Business.Repository.ColorMaster;
 using ShivFactory.Business.Repository.Common;
 using System;
 using System.Collections.Generic;
@@ -949,16 +948,16 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #region ColorMaster
 
-        public ActionResult ColorMaster()
+        public ActionResult Color()
         {
             return View();
         }
-        public ActionResult ColorMasterPartialView()
+        public ActionResult ColorPartialView()
         {
             try
             {
                 RepoColorMaster rsCategory = new RepoColorMaster();
-                var weight = rsCategory.GetAllColorMaster();
+                var weight = rsCategory.GetAllColor();
                 return View(weight);
             }
             catch (Exception ex)
@@ -967,16 +966,16 @@ namespace ShivFactory.Areas.Admin.Controllers
                 return View(new List<DimensionMaster>());
             }
         }
-        public ActionResult AddColorMaster(int? id)
+        public ActionResult AddColor(int? id)
         {
             try
             {
                 RepoColorMaster rsCategory = new RepoColorMaster();
-                ViewBag.Dimension = rsCategory.GetColorMasterDDl();
+                ViewBag.Dimension = rsCategory.GetColorDDl();
 
                 if (id > 0)
                 {
-                    var dimension = rsCategory.GetColorMasterById(id.Value);
+                    var dimension = rsCategory.GetColorById(id.Value);
                     return View(dimension);
                 }
 
@@ -989,23 +988,23 @@ namespace ShivFactory.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddColorMaster(ColorModel model)
+        public ActionResult AddColor(ColorModel model)
         {
             try
             {
                 RepoColorMaster rsDimension = new RepoColorMaster();
-                ViewBag.Dimension = rsDimension.GetAllColorMaster();
+                ViewBag.Dimension = rsDimension.GetAllColor();
                 if (!ModelState.IsValid)
                 {
                     return View(model);
                 }
 
-                var isSaved = rsDimension.AddOrUpdateColorMaster(model);
+                var isSaved = rsDimension.AddOrUpdateColor(model);
 
                 if (isSaved)
                 {
                     TempData["SuccessMessage"] = "Color add or update successfully!!";
-                    return RedirectToAction("ColorMaster", "Admin");
+                    return RedirectToAction("Color", "Admin");
                 }
                 else
                 {
@@ -1020,26 +1019,28 @@ namespace ShivFactory.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult DeleteColorMaster(int id)
+        public ActionResult DeleteColor(int id)
         {
             try
             {
                 RepoColorMaster rsDimension = new RepoColorMaster();
-                var isDelete = rsDimension.DeleteColorMasterById(id);
-                if (isDelete)
+                var isDelete = rsDimension.DeleteColorById(id);
+
+                return Json(new ResultModel
                 {
-                    TempData["SuccessMessage"] = "Color deleted successfully!!";
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Failled to delete Color";
-                }
-                return RedirectToAction("ColorMaster", "Admin");
+                    ResultFlag = isDelete,
+                    Data = null,
+                    Message = isDelete ? "Color deleted successfully!!" : "Failled to delete color."
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = ex.Message;
-                return RedirectToAction("ColorMaster", "Admin");
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 
