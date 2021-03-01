@@ -1,7 +1,11 @@
 ﻿using DataLibrary.DL;
+using ShivFactory.Business.Model;
+using ShivFactory.Business.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -127,6 +131,48 @@ namespace ShivFactory.Business.Repository
             }
 
             return new SelectList(subCaterories, "Value", "Text");
+        }
+        #endregion
+
+        #region GetAllSubCategory
+        public List<SubCategoryResponse> GetAllSubCategories(PaginationRequest model, out int totalRecords)
+        {
+            var categories = new List<SubCategoryResponse>();
+            totalRecords = 0;
+
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@Action", "GetAllSubCategory"));
+            parameters.Add(new SqlParameter("@SearchText", model.searchText));
+            parameters.Add(new SqlParameter("@Skip", model.Skip));
+            parameters.Add(new SqlParameter("@Take", model.PageSize));
+            parameters.Add(new SqlParameter("@OrderColumn", model.SortColumn));
+            parameters.Add(new SqlParameter("@OrderDir", model.SortDirection));
+
+            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, "ManageSubCategory", parameters.ToArray());
+            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                totalRecords = ds.Tables[0].Rows[0]["TotalRow"] != DBNull.Value ? Convert.ToInt32(ds.Tables[0].Rows[0]["TotalRow"].ToString()) : 0;
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    categories.Add(new SubCategoryResponse()
+                    {
+                        SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
+                        Id = row["Id"] != DBNull.Value ? Convert.ToInt32(row["Id"]) : 0,
+                        ImagePath = row["ImagePath"] != DBNull.Value ? row["ImagePath"].ToString() : "",
+                        SubCategoryName = row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
+                        GST = row["GST"] != DBNull.Value ? row["GST"].ToString() : "",
+                        SGST = row["SGST"] != DBNull.Value ? row["SGST"].ToString() : "",
+                        IGST = row["IGST"] != DBNull.Value ? row["IGST"].ToString() : "",
+                        IsActive = row["IsActive"] != DBNull.Value ? Convert.ToBoolean(row["IsActive"]) : false,
+                        AddDate = row["Adddate"] != DBNull.Value ? Convert.ToDateTime(row["Adddate"]).ToString("dd/MM/yyyy") : "",
+                        CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : ""
+                    });
+                }
+
+            }
+
+            return categories;
         }
         #endregion
     }

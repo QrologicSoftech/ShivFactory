@@ -178,6 +178,40 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             return View();
         }
+
+        public ActionResult LoadSubCategoryData()
+        {
+            try
+            {
+                // Initialization.  
+                var search = Request.Form.GetValues("search[value]")[0];
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                //Find Order Column  
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+                // Prepair model  
+                PaginationRequest model = new PaginationRequest()
+                {
+                    searchText = search,
+                    Skip = start != null ? Convert.ToInt32(start) : 0,
+                    PageSize = length != null ? Convert.ToInt32(length) : 0,
+                    SortColumn = sortColumn,
+                    SortDirection = sortColumnDir
+                };
+                int recordsTotal = 0;
+                RepoSubcategory reposubCategory = new RepoSubcategory();
+                var categoryList = reposubCategory.GetAllSubCategories(model, out recordsTotal);
+
+                return Json(new { data = categoryList, draw = draw, recordsFiltered = categoryList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
         public ActionResult SubCategoryPartialView()
         {
             try
@@ -202,7 +236,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 if (id > 0)
                 {
                     RepoSubcategory rsCategory = new RepoSubcategory();
-                    var category = rsCategory.GetSubCategoryById(id.Value);
+                    var category = rsCategory.GetSubCategoryById(Convert.ToInt32(id));
                     return View(category);
                 }
 
@@ -267,20 +301,21 @@ namespace ShivFactory.Areas.Admin.Controllers
             {
                 RepoSubcategory rsCategory = new RepoSubcategory();
                 var isDelete = rsCategory.DeleteSubCategoryById(id);
-                if (isDelete)
+                return Json(new ResultModel
                 {
-                    TempData["SuccessMessage"] = "SubCategory deleted successfully!!";
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Failled to delete subcategory";
-                }
-                return RedirectToAction("SubCategory", "Admin");
+                    ResultFlag = isDelete,
+                    Data = null,
+                    Message = isDelete ? "SubCategory deleted successfully!!" : "Failled to delete subcategory"
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = ex.Message;
-                return RedirectToAction("SubCategory", "Admin");
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -291,6 +326,40 @@ namespace ShivFactory.Areas.Admin.Controllers
         public ActionResult MiniCategory()
         {
             return View();
+        }
+
+        public ActionResult LoadMiniCategoryData()
+        {
+            try
+            {
+                // Initialization.  
+                var search = Request.Form.GetValues("search[value]")[0];
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                //Find Order Column  
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+                // Prepair model  
+                PaginationRequest model = new PaginationRequest()
+                {
+                    searchText = search,
+                    Skip = start != null ? Convert.ToInt32(start) : 0,
+                    PageSize = length != null ? Convert.ToInt32(length) : 0,
+                    SortColumn = sortColumn,
+                    SortDirection = sortColumnDir
+                };
+                int recordsTotal = 0;
+                RepoMinicategory repominiCategory = new RepoMinicategory();
+                var categoryList = repominiCategory.GetAllMiniCategories(model, out recordsTotal);
+
+                return Json(new { data = categoryList, draw = draw, recordsFiltered = categoryList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
         }
         public ActionResult MiniCategoryPartialView()
         {
@@ -380,20 +449,23 @@ namespace ShivFactory.Areas.Admin.Controllers
             {
                 RepoSubcategory rsCategory = new RepoSubcategory();
                 var isDelete = rsCategory.DeleteSubCategoryById(id);
-                if (isDelete)
+
+                return Json(new ResultModel
                 {
-                    TempData["SuccessMessage"] = "MiniCategory deleted successfully!!";
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Failled to delete subcategory";
-                }
-                return RedirectToAction("SubCategory", "Admin");
+                    ResultFlag = isDelete,
+                    Data = null,
+                    Message = isDelete ? "MiniCategory deleted successfully!!" : "Failled to delete miniCategory"
+                }, JsonRequestBehavior.AllowGet);
+
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = ex.Message;
-                return RedirectToAction("MiniCategory", "Admin");
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 

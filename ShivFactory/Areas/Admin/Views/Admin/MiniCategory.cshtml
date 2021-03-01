@@ -27,7 +27,7 @@
                                 </div>
                             </div>
                             <div class="partialView">
-
+                                @{ Html.RenderPartial(Url.Content("MiniCategoryPartialView")); }
                             </div>
                         </div>
                     </div>
@@ -39,6 +39,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        common.RenderPartialView('Admin', 'MiniCategoryPartialView');
+       // Admin.RenderPartialView('MiniCategoryPartialView');
     });
 </script>

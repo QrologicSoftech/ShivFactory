@@ -8,12 +8,15 @@ namespace ShivFactory.Business.Repository
 {
     public class SubCategoryResponse
     {
-        public int CategoryId { get; set; }
-        public int SubCategoryId { get; set; }
-        public string CategoryName { get; set; }
-        public string SubCategoryName { get; set; }
+        public int SrNo { get; set; }
+        public int Id { get; set; }
         public string ImagePath { get; set; }
+        public string SubCategoryName { get; set; }
+        public string GST { get; set; }
+        public string SGST { get; set; }
+        public string IGST { get; set; }
         public bool IsActive { get; set; }
-        public string Adddate { get; set; }
+        public string AddDate { get; set; }
+        public string CategoryName { get; set; }
     }
 }

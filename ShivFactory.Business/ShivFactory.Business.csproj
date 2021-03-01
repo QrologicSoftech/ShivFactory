@@ -111,6 +111,7 @@
     <Compile Include="Repository\DimensionMaster\DimensionModel.cs" />
     <Compile Include="Repository\DimensionMaster\RepoDimension.cs" />
     <Compile Include="Repository\MiniCategory\MiniCategoryModel.cs" />
+    <Compile Include="Repository\MiniCategory\MiniCategoryResponse.cs" />
     <Compile Include="Repository\MiniCategory\RepoMinicategory.cs" />
     <Compile Include="Repository\Product\ProductModel.cs" />
     <Compile Include="Repository\Product\RepoProduct.cs" />
