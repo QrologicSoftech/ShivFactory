@@ -223,7 +223,7 @@ namespace ShivFactory.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = ex.Message;
-                return View(new List<SubCategory>());
+                return View(new List<Brand>());
             }
         }
         public ActionResult AddSubCategory(int? id)
@@ -473,72 +473,128 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #region Brand
 
-        //public ActionResult Brand()
-        //{
-        //    return View();
-        //}
-        //public ActionResult BrandPartialView()
-        //{
-        //    var brand = user.GetAllBrand();
-        //    return View(brand);
-        //}
-        //public ActionResult AddBrand(int? id)
-        //{
-        //    if (id > 0)
-        //    {
-        //        var editBrand = user.GetBrandById(id.Value);
-        //        return View("AddBrand", editBrand);
-        //    }
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult AddBrand(BrandModel model, HttpPostedFileBase postedfile)
-        //{
-        //    //try
-        //    //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (model.ID == 0)
-        //        {
-        //            if (postedfile != null)
-        //            {
-        //                model.BrandImage = user.SaveImage(postedfile);
-        //            }
-        //            //else
-        //            //{
-        //            //    model.CatImage=
-        //            //}
-        //            var id = user.SaveBrand(model);
-        //            if (id > 0)
-        //            {
-        //                ModelState.Clear();
-        //                return RedirectToAction("Brand", "Admin");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            if (postedfile != null)
-        //            {
-        //                model.BrandImage = user.SaveImage(postedfile);
-        //            }
-        //            var update = user.UpdateBrand(model.ID, model);
-        //            TempData["message"] = "Added";
-        //            return RedirectToAction("Brand", "Admin");
-        //        }
-        //    }
-        //    return RedirectToAction("Brand", "Admin");
-        //    //}
-        //    //catch (Exception ex)
-        //    //{
-        //    //    return View();
-        //    //}
-        //}
+        public ActionResult Brand()
+        {
+            return View();
+        }
+        public ActionResult BrandPartialView()
+        {
+            return View();
+        }
+        public ActionResult LoadBrandData()
+        {
+            try
+            {
+                // Initialization.  
+                var search = Request.Form.GetValues("search[value]")[0];
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                //Find Order Column  
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
 
-        //public ActionResult DeleteBrand(int id)
-        //{
-        //    var deletecat = user.RemoveBrand(id);
-        //    return RedirectToAction("Brand", "Admin");
-        //}
+                // Prepair model  
+                PaginationRequest model = new PaginationRequest()
+                {
+                    searchText = search,
+                    Skip = start != null ? Convert.ToInt32(start) : 0,
+                    PageSize = length != null ? Convert.ToInt32(length) : 0,
+                    SortColumn = sortColumn,
+                    SortDirection = sortColumnDir
+                };
+                int recordsTotal = 0;
+                RepoBrand repoBrand = new RepoBrand();
+                var brands = repoBrand.GetAllBrands(model, out recordsTotal);
+
+                return Json(new { data = brands, draw = draw, recordsFiltered = brands.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public ActionResult AddBrand(int? id)
+        {
+            RepoCategory repoCategory = new RepoCategory();
+            ViewBag.category = repoCategory.GetCategoryDDl();
+            if (id > 0)
+            {
+                RepoBrand repoBrand = new RepoBrand();
+                var brand = repoBrand.GetBrandById(Convert.ToInt32(id));
+                return View("AddBrand", brand);
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddBrand(ClsBrand model, HttpPostedFileBase postedfile)
+        {
+            try
+            {
+                RepoCategory repoCategory = new RepoCategory();
+                ViewBag.category = repoCategory.GetCategoryDDl();
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                if (model.Id == 0 && postedfile == null)
+                {
+                    ModelState.AddModelError("PostedFile", "Please upload brand Image.");
+                    return View(model);
+                }
+                if (postedfile != null)
+                {
+
+                    // save image file
+                    RepoCommon common = new RepoCommon();
+                    model.ImagePath = common.SaveImage(postedfile);
+                }
+
+                RepoBrand repoBrand = new RepoBrand();
+                var isSaved = repoBrand.AddOrUpdateBrand(model);
+
+                if (isSaved)
+                {
+                    TempData["SuccessMessage"] = "Brand add or update successfully!!";
+                    return RedirectToAction("Brand", "Admin");
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to add or update brand";
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(model);
+            }
+        }
+
+        public ActionResult DeleteBrand(int id)
+        {
+            try
+            {
+                RepoBrand repoBrand = new RepoBrand();
+                var isDelete = repoBrand.DeleteBrandById(id);
+                return Json(new ResultModel
+                {
+                    ResultFlag = isDelete,
+                    Data = null,
+                    Message = isDelete ? "Brand deleted successfully!!" : "Failled to delete brand"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         #endregion
 
