@@ -44,6 +44,13 @@
 
         dtTable.bindDataToTable(url, null, columns, tableId, tableId, null,true,true);
     },
+    ShowMessage: function (data) {
+        if (data.ResultFlag) {
+            toastr.success(result.Message);
+        }
+        else { toastr.error(data.Message); }
+        
+    },
 
 
 }

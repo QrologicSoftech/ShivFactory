@@ -151,20 +151,22 @@ namespace ShivFactory.Areas.Admin.Controllers
             {
                 RepoCategory repoCategory = new RepoCategory();
                 var isDelete = repoCategory.DeleteCategoryByCategoryId(Convert.ToInt32(id));
-                if (isDelete)
+
+                return Json(new ResultModel
                 {
-                    TempData["SuccessMessage"] = "Category deleted successfully!!";
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Failled to delete category";
-                }
-                return RedirectToAction("Category", "Admin");
+                    ResultFlag = isDelete,
+                    Data = null,
+                    Message = isDelete ? "Category deleted successfully!!" : "Failled to delete category"
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = ex.Message;
-                return RedirectToAction("Category", "Admin");
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 

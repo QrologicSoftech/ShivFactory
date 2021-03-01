@@ -36,13 +36,13 @@
         </table>
     </div>
 </div>
-
+<script src="~/Js/Admin.js"></script>
 <script>
     $(document).ready(function () {
 
         var stringArray = @Html.Raw(Json.Encode(columnArray));
 
-        commonFunction.GetColumnArray(stringArray, true, '/Admin/Admin/AddCategory','/Admin/Admin/DeleteCategory', function (result) {
+        commonFunction.GetColumnArray(stringArray, true, '/Admin/Admin/AddCategory','Admin.DeleteCategory', function (result) {
             common.BindServerSideTable('#serverSideTable', result, '/Admin/Admin/LoadCategoryData');
         })
     });
