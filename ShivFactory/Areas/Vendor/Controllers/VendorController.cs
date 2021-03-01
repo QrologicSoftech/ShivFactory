@@ -1,6 +1,5 @@
 ﻿using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.Common;
-using ShivFactory.Business.Repository.DimensionMaster;
 using ShivFactory.Business.Repository.Product;
 using ShivFactory.Business.Repository.WeightMaster;
 using System;
@@ -81,7 +80,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
 
                 RepoDimension repodim = new RepoDimension();
                 RepoWeightMaster repoweigth = new RepoWeightMaster();
-                 ViewBag.dimension = repodim.GetDimensionMasterDDl();
+                 ViewBag.dimension = repodim.GetDimensionDDl();
                  ViewBag.weight = repoweigth.GetweightMasterDDl(); 
 
                 if (ModelState.IsValid)

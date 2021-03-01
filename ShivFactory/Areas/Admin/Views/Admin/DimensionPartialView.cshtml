@@ -1,0 +1,47 @@
+﻿@using ShivFactory.Business.Repository
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@{
+    JObject obj = JObject.Parse(JsonConvert.SerializeObject(new DimensionResponse(), Formatting.Indented, new JsonSerializerSettings
+    { PreserveReferencesHandling = PreserveReferencesHandling.Objects }));
+    obj.Remove("$id");
+
+    List<string> termsList = new List<string>();
+    foreach (var columnName in obj)
+    {
+        termsList.Add(columnName.Key.Trim());
+    }
+    string[] columnArray = termsList.ToArray();
+
+    ViewBag.Title = "DimensionPartialView";
+}
+
+<div class="row overflow-auto">
+    <div class="col-12">
+        <table class="table datatable" cellspacing="0" width="100%" id="serverSideTable">
+            <thead>
+                <tr class="bg-primary text-white">
+                    @foreach (var columnName in obj)
+                    {
+                        if (columnName.Key.Trim() != "Id")
+                        {
+                            <th>@columnName.Key.Trim()</th>
+                        }
+                    }
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        var stringArray = @Html.Raw(Json.Encode(columnArray));
+
+        commonFunction.GetColumnArray(stringArray, true, '/Admin/Admin/AddDimension','Admin.DeleteDimension', function (result) {
+            common.BindServerSideTable('#serverSideTable', result, '/Admin/Admin/LoadDimensionData');
+        })
+    });
+</script>

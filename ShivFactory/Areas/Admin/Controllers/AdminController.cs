@@ -4,7 +4,6 @@ using ShivFactory.Business.Models.Other;
 using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.ColorMaster;
 using ShivFactory.Business.Repository.Common;
-using ShivFactory.Business.Repository.DimensionMaster;
 using ShivFactory.Business.Repository.WeightMaster;
 using System;
 using System.Collections.Generic;
@@ -662,7 +661,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                     return View(model);
                 }
 
-                if (model.Id==0 && postedfile == null)
+                if (model.Id == 0 && postedfile == null)
                 {
                     ModelState.AddModelError("PostedFile", "Please upload banner Image.");
                     return View(model);
@@ -723,37 +722,60 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #endregion
 
-        #region DimensionMaster
+        #region Dimension
 
-        public ActionResult DimensionMaster()
+        public ActionResult Dimension()
         {
             return View();
         }
-        public ActionResult DimensionMasterPartialView()
+        public ActionResult DimensionPartialView()
+        {
+            return View();
+        }
+        public ActionResult LoadDimensionData()
         {
             try
             {
-                RepoDimension rsCategory = new RepoDimension();
-                var dimensions = rsCategory.GetAllDimensionMaster();
-                return View(dimensions);
+                // Initialization.  
+                var search = Request.Form.GetValues("search[value]")[0];
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                //Find Order Column  
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+                // Prepair model  
+                PaginationRequest model = new PaginationRequest()
+                {
+                    searchText = search,
+                    Skip = start != null ? Convert.ToInt32(start) : 0,
+                    PageSize = length != null ? Convert.ToInt32(length) : 0,
+                    SortColumn = sortColumn,
+                    SortDirection = sortColumnDir
+                };
+                int recordsTotal = 0;
+                RepoDimension dimension = new RepoDimension();
+                var dimensionsList = dimension.GetAllDimensions(model, out recordsTotal);
+
+                return Json(new { data = dimensionsList, draw = draw, recordsFiltered = dimensionsList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = ex.Message;
-                return View(new List<DimensionMaster>());
+                return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
-        public ActionResult AddDimensionMaster(int? id)
+        public ActionResult AddDimension(int? id)
         {
             try
             {
                 RepoDimension rsDimension = new RepoDimension();
-                ViewBag.Dimension = rsDimension.GetDimensionMasterDDl();
+                ViewBag.Dimension = rsDimension.GetDimensionDDl();
 
                 if (id > 0)
                 {
                     RepoDimension rsCategory = new RepoDimension();
-                    var dimension = rsCategory.GetDimensionMasterById(id.Value);
+                    var dimension = rsCategory.GetDimensionById(Convert.ToInt32(id));
                     return View(dimension);
                 }
 
@@ -766,23 +788,23 @@ namespace ShivFactory.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult AddDimensionMaster(DimensionModel model)
+        public ActionResult AddDimension(DimensionModel model)
         {
             try
             {
                 RepoDimension rsDimension = new RepoDimension();
-                ViewBag.Dimension = rsDimension.GetDimensionMasterDDl();
+                ViewBag.Dimension = rsDimension.GetDimensionDDl();
                 if (!ModelState.IsValid)
                 {
                     return View(model);
                 }
 
-                var isSaved = rsDimension.AddOrUpdateDimensionMaster(model);
+                var isSaved = rsDimension.AddOrUpdateDimension(model);
 
                 if (isSaved)
                 {
                     TempData["SuccessMessage"] = "Dimension add or update successfully!!";
-                    return RedirectToAction("DimensionMaster", "Admin");
+                    return RedirectToAction("Dimension", "Admin");
                 }
                 else
                 {
@@ -797,26 +819,28 @@ namespace ShivFactory.Areas.Admin.Controllers
             }
         }
 
-        public ActionResult DeleteDimensionMaster(int id)
+        public ActionResult DeleteDimension(int id)
         {
             try
             {
                 RepoDimension rsDimension = new RepoDimension();
-                var isDelete = rsDimension.DeleteDimensionMasterById(id);
-                if (isDelete)
+                var isDelete = rsDimension.DeleteDimensionById(id);
+
+                return Json(new ResultModel
                 {
-                    TempData["SuccessMessage"] = "Dimension deleted successfully!!";
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Failled to delete Dimension";
-                }
-                return RedirectToAction("DimensionMaster", "Admin");
+                    ResultFlag = isDelete,
+                    Data = null,
+                    Message = isDelete ? "Dimension deleted successfully!!" : "Failled to delete dimension"
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = ex.Message;
-                return RedirectToAction("DimensionMaster", "Admin");
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 

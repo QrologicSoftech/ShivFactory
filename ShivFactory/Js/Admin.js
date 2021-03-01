@@ -81,6 +81,21 @@ var Admin = {
         }
     },
 
+    DeleteDimension: function (dimensionId) {
+
+        if (confirm("Are you sure want to delete this Dimension?")) {
+            data = {
+                "id": dimensionId
+            }
+            ajax.doPostAjax(`/${adminArea}/${adminController}/DeleteDimension`, data, function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    location.reload();
+                }
+            });
+        }
+    },
+
 }
 
 

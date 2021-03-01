@@ -114,8 +114,9 @@
     <Compile Include="Repository\ColorMaster\RepoColorMaster.cs" />
     <Compile Include="Repository\Common\Cookie.cs" />
     <Compile Include="Repository\Common\RepoCommon.cs" />
-    <Compile Include="Repository\DimensionMaster\DimensionModel.cs" />
-    <Compile Include="Repository\DimensionMaster\RepoDimension.cs" />
+    <Compile Include="Repository\Dimension\DimensionModel.cs" />
+    <Compile Include="Repository\Dimension\DimensionResponse.cs" />
+    <Compile Include="Repository\Dimension\RepoDimension.cs" />
     <Compile Include="Repository\MiniCategory\MiniCategoryModel.cs" />
     <Compile Include="Repository\MiniCategory\MiniCategoryResponse.cs" />
     <Compile Include="Repository\MiniCategory\RepoMinicategory.cs" />

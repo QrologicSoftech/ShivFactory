@@ -1,4 +1,4 @@
-﻿@model ShivFactory.Business.Repository.DimensionMaster.DimensionModel
+﻿@model ShivFactory.Business.Repository.DimensionModel
 @{
     ViewBag.Title = "Add New Dimension";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,14 +14,14 @@
                             <div class="row grid-margin">
                                 <div class="col-12">
                                     <div class="wrapper d-flex" style=" text-align: start;">
-                                        <a class="btn btn-sm btn-gradient-primary mr-2" href="~/Admin/Admin/Category">  Back to List </a>
+                                        <a class="btn btn-sm btn-gradient-primary mr-2" href="~/Admin/Admin/Dimension">  Back to List </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="wrapper border-top">
                             <div class="card-body">
-                                @using (Html.BeginForm("AddDimensionMaster", "Admin", FormMethod.Post, new {id = "myform", @class = "forms-sample" }))
+                                @using (Html.BeginForm("AddDimension", "Admin", FormMethod.Post, new { id = "myform", @class = "forms-sample" }))
                                 {
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -33,13 +33,10 @@
                                                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-
                                     </div>
-
-
+                                    @Html.HiddenFor(model => model.Id)
                                     <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
                                     <button class="btn btn-light" type="reset">Cancel</button>
-
                                 }
                             </div>
                         </div>
@@ -49,28 +46,3 @@
         </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript">
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#Img').attr('src', e.target.result);
-                $("#Img").css("display", "block");
-            }
-            reader.readAsDataURL(input.files[0]); // convert to base64 string
-        }
-    }
-    $("#PostedFile").change(function () {
-        readURL(this);
-    });
-</script>
-
-
-
-
-
-
-
-

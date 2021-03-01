@@ -404,9 +404,9 @@
     <Content Include="Areas\Admin\Views\Home\NavPartialView.cshtml" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
-    <Content Include="Areas\Admin\Views\Admin\DimensionMaster.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\DimensionMasterPartialView.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\AddDimensionMaster.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Dimension.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\DimensionPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AddDimension.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\WeightMaster.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\WeightMasterMasterPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AddWeightMaster.cshtml" />
