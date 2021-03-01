@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShivFactory.Business.Repository.Brand
 {
-    class BrandResponse
+    public class BrandResponse
     {
     }
 }
