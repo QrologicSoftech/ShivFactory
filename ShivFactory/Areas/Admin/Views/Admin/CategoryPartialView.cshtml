@@ -1,17 +1,35 @@
-﻿@{
+﻿@using ShivFactory.Business.Repository
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+
+@{
+
+    JObject obj = JObject.Parse(JsonConvert.SerializeObject(new CategoryResponse(), Formatting.Indented, new JsonSerializerSettings
+    { PreserveReferencesHandling = PreserveReferencesHandling.Objects }));
+    obj.Remove("$id");
+
+    List<string> termsList = new List<string>();
+    foreach (var columnName in obj)
+    {
+        termsList.Add(columnName.Key.Trim());
+    }
+    string[] columnArray = termsList.ToArray();
+
     ViewBag.Title = "CategoryPartialView";
 }
 
 <div class="row overflow-auto">
     <div class="col-12">
-        <table class="table datatable" cellspacing="0" width="100%" id="category">
+        <table class="table datatable" cellspacing="0" width="100%" id="serverSideTable">
             <thead>
                 <tr class="bg-primary text-white">
-                    <th>Sr No.</th>
-                    <th>Category Name</th>
-                    <th>Category Image</th>
-                    <th>Is Active</th>
-                    <th>Add Date</th>
+                    @foreach (var columnName in obj)
+                    {
+                        if (columnName.Key.Trim() != "Id")
+                        {
+                            <th>@columnName.Key.Trim()</th>
+                        }
+                    }
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -22,31 +40,10 @@
 <script>
     $(document).ready(function () {
 
-        // Prepare columns
-        let columns = [
-            { "data": 'SrNo', "name": "SrNo" },
-            { "data": 'CategoryName', "name": "CategoryName" },
-            {
-                "data": "ImagePath", "name": "ImagePath", "defaultContent": "<i>-</i>", "orderable": false,
-                "render": function (data, type, row, meta) {
-                    return '<a onclick="return LoadDiv(`' + data + '`);" target="_blank"><img src="' + data + '" alt="" style="height:40px;width:40px;"></a>';
-                }
-            },
-            { "data": 'IsActive', "name": "IsActive", },
-            { "data": 'AddDate', "name": "AddDate", },
-            {
-                "data": "CategoryId", "name": "CategoryId", "defaultContent": "<i>-</i>", "orderable": false,
-                "render": function (data, type, row, meta) {
+        var stringArray = @Html.Raw(Json.Encode(columnArray));
 
-                    return '<button class="btn btn-light"><i class= "mdi mdi-database-edit text-primary" ></i><a href="/Admin/Admin/AddCategory/' + data + '">Edit</a></button >'
-
-                        + '<button class="btn btn-light">'
-                        + '<i class="mdi mdi-close text-danger" ></i >'
-                        + '  <a href="/Admin/Admin/DeleteCategory/' + data + '"?class=fa%20fa-trash" onclick="return confirm(`Are you sure to delete this Category?`);">Delete</a>'
-                        + '</button >';
-                }
-            }
-        ];
-        common.BindServerSideTable('#category', columns, '/Admin/Admin/LoadCategoryData');
+        commonFunction.GetColumnArray(stringArray, true, '/Admin/Admin/AddCategory','/Admin/Admin/DeleteCategory', function (result) {
+            common.BindServerSideTable('#serverSideTable', result, '/Admin/Admin/LoadCategoryData');
+        })
     });
 </script>
