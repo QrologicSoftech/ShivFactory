@@ -11,7 +11,6 @@
                 if (result.ResultFlag) {
                     location.reload();
                 }
-
             });
         }
     }
