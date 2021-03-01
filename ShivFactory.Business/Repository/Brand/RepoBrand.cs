@@ -53,6 +53,7 @@ namespace ShivFactory.Business.Repository
         {
             var brand = db.Brands.Where(x => x.ID == Id).Select(a => new ClsBrand()
             {
+                Id=a.ID,
                 CategoryId = a.CategoryId.Value,
                 BrandName = a.BrandName,
                 ImagePath = a.ImagePath,

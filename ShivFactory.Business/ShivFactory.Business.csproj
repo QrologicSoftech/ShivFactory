@@ -101,6 +101,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Accounts\CustomerRegister.cs" />
     <Compile Include="Repository\Accounts\LogInModel.cs" />
+    <Compile Include="Repository\Banner\BannerResponse.cs" />
+    <Compile Include="Repository\Banner\ClsBanner.cs" />
+    <Compile Include="Repository\Banner\RepoBanner.cs" />
     <Compile Include="Repository\Brand\BrandResponse.cs" />
     <Compile Include="Repository\Brand\ClsBrand.cs" />
     <Compile Include="Repository\Brand\RepoBrand.cs" />

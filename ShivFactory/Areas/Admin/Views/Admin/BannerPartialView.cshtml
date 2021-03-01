@@ -1,45 +1,47 @@
-﻿@model IEnumerable<ShivFactory.Business.Model.BannerModel>
+﻿@using ShivFactory.Business.Repository
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
 @{
+    JObject obj = JObject.Parse(JsonConvert.SerializeObject(new BannerResponse(), Formatting.Indented, new JsonSerializerSettings
+    { PreserveReferencesHandling = PreserveReferencesHandling.Objects }));
+    obj.Remove("$id");
+
+    List<string> termsList = new List<string>();
+    foreach (var columnName in obj)
+    {
+        termsList.Add(columnName.Key.Trim());
+    }
+    string[] columnArray = termsList.ToArray();
+
     ViewBag.Title = "BannerPartialView";
 }
 
-
-
-<p class="card-description">
-    Banner list
-</p>
-<table class="table table-bordered" id="example">
-    <thead>
-        <tr>
-            <th>Sr No.</th>
-            <th>Banner Name</th>
-            <th>Title</th>
-            <th>Banner Image</th>
-            <th>Add Date</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{int i = 1;
-            foreach (var item in Model)
-            {
-                <tr class="table-info">
-                    <td>@i</td>
-                    <td>@item.Name</td>
-                    <td>@item.Title</td>
-                    <td align="center"><a href="@Url.Content(@item.BannerImage)" target="_blank"><img src="@item.BannerImage" alt="" style="height:40px;width:40px;" /></a></td>
-                    <td>@item.Adddate</td>
-                    <td class="center">
-                        @*<a href="#" class="btn btn-primary bindPopupModal" data-toggle="modal" data-target="#exampleModal" data-ajaxurl="@Url.Action("AddCategory", "Admin", new { id = item.ID })">Edit</a>*@
-                        @Html.ActionLink("Edit", "AddBanner", new { id = item.ID })
-                        @Html.ActionLink("Delete", "DeleteBrand", new { @class = "fa fa-trash", id = item.ID }, new { onclick = "return confirm('Are you sure you wish to delete this article?');" })
-                    </td>
+<div class="row overflow-auto">
+    <div class="col-12">
+        <table class="table datatable" cellspacing="0" width="100%" id="serverSideTable">
+            <thead>
+                <tr class="bg-primary text-white">
+                    @foreach (var columnName in obj)
+                    {
+                        if (columnName.Key.Trim() != "Id")
+                        {
+                            <th>@columnName.Key.Trim()</th>
+                        }
+                    }
+                    <th>Actions</th>
                 </tr>
-                i++;
-            }
-        }
-    </tbody>
-</table>
+            </thead>
+        </table>
+    </div>
+</div>
 
+<script>
+    $(document).ready(function () {
 
+        var stringArray = @Html.Raw(Json.Encode(columnArray));
 
+        commonFunction.GetColumnArray(stringArray, true, '/Admin/Admin/AddBanner','Admin.DeleteBanner', function (result) {
+            common.BindServerSideTable('#serverSideTable', result, '/Admin/Admin/LoadBannerData');
+        })
+    });
+</script>

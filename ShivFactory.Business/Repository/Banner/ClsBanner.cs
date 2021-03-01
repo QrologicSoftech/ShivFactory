@@ -8,12 +8,12 @@ using System.Web;
 
 namespace ShivFactory.Business.Repository
 {
-    public class ClsBrand
+    public class ClsBanner
     {
-        public int? CategoryId { get; set; }
         public int Id { get; set; }
-        [Required(ErrorMessage = "Please enter brand name!!")]
-        public string BrandName { get; set; }
+        [Required(ErrorMessage = "Please enter banner name!!")]
+        public string BannerName { get; set; }
+        public string Title { get; set; }
         public string ImagePath { get; set; }
         public bool IsActive { get; set; }
         public HttpPostedFileBase PostedFile { get; set; }

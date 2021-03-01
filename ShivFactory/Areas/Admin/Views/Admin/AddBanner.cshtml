@@ -1,48 +1,107 @@
-﻿@*@model ShivFactory.Business.Model.BannerModel
+﻿@model ShivFactory.Business.Repository.ClsBanner
 @{
-    ViewBag.Title = "AddBanner";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutDashboard.cshtml";
+    ViewBag.Title = "Add Banner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="col-12 grid-margin stretch-card">
-    <div class="col-6 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Add New Banner</h4>
-                @using (Html.BeginForm("AddBanner", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        <label>Banner Name</label>
-                        <div class="text-box-1">
-                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">@ViewBag.Title</h4>
+                            <div class="row grid-margin">
+                                <div class="col-12">
+                                    <div class="wrapper d-flex" style=" text-align: start;">
+                                        <a class="btn btn-sm btn-gradient-primary mr-2" href="~/Admin/Admin/Banner">  Back to List </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapper border-top">
+                            <div class="card-body">
+                                @using (Html.BeginForm("AddBanner", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
+                                {
+                                    <div class="row">
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Banner Name</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.BannerName, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.BannerName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>Title</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <label>IsActive</label>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.CheckBoxFor(x => x.IsActive, new { @style = "height: 30px; width:30px;" })
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-6 col-sm-6">
+                                            <div class="form-group">
+                                                <label>File upload</label>
+                                                <input type="file" name="img[]" class="file-upload-default">
+                                            </div>
+                                            <div class="ajax-file-upload-container form-group">
+                                                @Html.TextBoxFor(model => model.PostedFile, new { @class = "form-control file-upload-info", type = "file", accept = "image/*" })
+                                                @Html.ValidationMessageFor(model => model.PostedFile, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-sm-6">
+                                            @{ var display = Model != null && Model.ImagePath != null ? "display:block" : "display:none";
+                                                var imgPath = Model != null && Model.ImagePath != null ? Model.ImagePath : "";}
+                                            <div class="form-group">
+                                                <img src="@imgPath" id="Img" runat="server" style="border: 1px solid #eee3e3; @display;" height="100" width="100" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @Html.HiddenFor(model => model.Id)
+                                    @Html.HiddenFor(model => model.ImagePath)
+
+                                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                    <button class="btn btn-light" type="reset">Cancel</button>
+
+                                }
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label>Banner Title</label>
-                        <div class="text-box-1">
-                            @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Banner Image</label>
-                        <input type="file" name="img[]" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                            @Html.TextBoxFor(model => model.PostedFile, new { @class = "form-control file-upload-info", type = "file", accept = "image/*" })
-                            @Html.ValidationMessageFor(model => model.PostedFile, "", new { @class = "text-danger" })
-                            <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                            </span>
-                        </div>
-                    </div>
-                   
-                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                    <button class="btn btn-light">Cancel</button>
-                }
+                </div>
             </div>
         </div>
     </div>
-</div>*@
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
+            reader.onload = function (e) {
+                $('#Img').attr('src', e.target.result);
+                $("#Img").css("display", "block");
+            }
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+    $("#PostedFile").change(function () {
+        readURL(this);
+    });
+</script>

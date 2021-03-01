@@ -66,6 +66,20 @@ var Admin = {
             });
         }
     },
+    DeleteBanner: function (BannerId) {
+
+        if (confirm("Are you sure want to delete this Banner?")) {
+            data = {
+                "id": BannerId
+            }
+            ajax.doPostAjax(`/${adminArea}/${adminController}/DeleteBanner`, data, function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    location.reload();
+                }
+            });
+        }
+    },
 
 }
 
