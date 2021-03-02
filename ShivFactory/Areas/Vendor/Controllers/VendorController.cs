@@ -41,8 +41,8 @@ namespace ShivFactory.Areas.Vendor.Controllers
         {
             try
             {
-                
-               int venderId= repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
+
+                int venderId = repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
                 RepoProduct repoProduct = new RepoProduct();
                 var categories = repoProduct.GetAllProduct(venderId);
                 return View(categories);
@@ -57,12 +57,14 @@ namespace ShivFactory.Areas.Vendor.Controllers
         {
             try
             {
+                RepoBrand repoBrand = new RepoBrand();
+                ViewBag.Brands = repoBrand.GetBrandDDl();
                 RepoCategory repoCategory = new RepoCategory();
-                ViewBag.category = repoCategory.GetCategoryDDl();
+                ViewBag.Category = repoCategory.GetCategoryDDl();
                 RepoSubcategory reposubCategory = new RepoSubcategory();
-                ViewBag.subcategory = reposubCategory.GetSubCategoryDDl();
+                ViewBag.SubCategory = reposubCategory.GetSubCategoryDDl();
                 RepoMinicategory repominiCategory = new RepoMinicategory();
-                ViewBag.minicategory = repominiCategory.GetMiniCategoryDDl();
+                ViewBag.MiniCategory = repominiCategory.GetMiniCategoryDDl();
                 if (id > 0)
                 {
                     RepoProduct repoProduct = new RepoProduct();
@@ -76,7 +78,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 TempData["ErrorMessage"] = ex.Message;
             }
             ClsProduct model = new ClsProduct();
-            model.VendorId= repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
+            model.VendorId = repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
             return View(model);
         }
         [HttpPost]
@@ -84,44 +86,53 @@ namespace ShivFactory.Areas.Vendor.Controllers
         {
             try
             {
+                RepoBrand repoBrand = new RepoBrand();
+                ViewBag.Brands = repoBrand.GetBrandDDl();
                 RepoCategory repoCategory = new RepoCategory();
-                ViewBag.category = repoCategory.GetCategoryDDl();
+                ViewBag.Category = repoCategory.GetCategoryDDl();
                 RepoSubcategory reposubCategory = new RepoSubcategory();
-                ViewBag.subcategory = reposubCategory.GetSubCategoryDDl();
+                ViewBag.SubCategory = reposubCategory.GetSubCategoryDDl();
                 RepoMinicategory repominiCategory = new RepoMinicategory();
-                ViewBag.minicategory = repominiCategory.GetMiniCategoryDDl();
+                ViewBag.MiniCategory = repominiCategory.GetMiniCategoryDDl();
 
-                RepoDimension repodim = new RepoDimension();
-                RepoWeightMaster repoweigth = new RepoWeightMaster();
-                 ViewBag.dimension = repodim.GetDimensionDDl();
-                 ViewBag.weight = repoweigth.GetweightDDl(); 
+                //RepoDimension repodim = new RepoDimension();
+                //RepoWeightMaster repoweigth = new RepoWeightMaster();
+                //ViewBag.dimension = repodim.GetDimensionDDl();
+                //ViewBag.weight = repoweigth.GetweightDDl();
 
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     return View(model);
                 }
 
-            if (model.ProductId == 0 && postedfile == null)
-               {
-                   ModelState.AddModelError("PostedFile", "Please upload Product Image.");
-                  return View(model);
-               }
+                if (model.ProductId == 0 && postedfile == null)
+                {
+                    ModelState.AddModelError("PostedFile", "Please upload Product Image.");
+                    return View(model);
+                }
                 RepoCommon common = new RepoCommon();
                 if (postedfile != null)
                 {
-                    model.MainImage = common.SaveImage(postedfile); 
+                    model.MainImage = common.SaveImage(postedfile);
                 }
-               
-                foreach( var file in model.files)
+                int index = 0;
+                foreach (var file in model.files)
                 {
-                    //model.Image1 = common.SaveImage(postedfile);
+                    string imagePath = common.SaveImage(file);
+                    if (index == 0) { model.Image1 = imagePath; }
+                    else if (index == 1) { model.Image2 = imagePath; }
+                    else if (index == 2) { model.Image3 = imagePath; }
+                    else if (index == 3) { model.Image4 = imagePath; }
+                    else if (index == 4) { model.Image5 = imagePath; }
+                    else if (index == 5) { model.Image6 = imagePath; }
+                    index++;
                 }
 
-                List<string> imagePathlist = new List<string>();
-                if  (model.files!=null)
-                {
-                    model.imgPathList = common.SaveProductMultipleImage(model.files);
-                }
+                //List<string> imagePathlist = new List<string>();
+                //if (model.files != null)
+                //{
+                //    model.imgPathList = common.SaveProductMultipleImage(model.files);
+                //}
                 RepoProduct repoProduct = new RepoProduct();
                 var isSaved = repoProduct.AddOrUpdateProduct(model);
 
@@ -175,10 +186,10 @@ namespace ShivFactory.Areas.Vendor.Controllers
             var subCategory = _repository.GetSubCategoryDDl(id);
             return Json(subCategory, JsonRequestBehavior.AllowGet);
         }
-        
+
         public ActionResult GetMinicategoryBySubCategoryId(string subcategoryId)
         {
-            
+
             int id = 0;
             Int32.TryParse(subcategoryId, out id);
             RepoMinicategory _repository = new RepoMinicategory();
