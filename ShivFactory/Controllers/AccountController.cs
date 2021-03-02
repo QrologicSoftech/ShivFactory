@@ -13,6 +13,8 @@ using System;
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
 using System.Security.Claims;
+using ShivFactory.Business.Repository.Accounts;
+using ShivFactory.Business.Repository.SMS;
 
 namespace ShivFactory.Controllers
 {
@@ -815,5 +817,78 @@ namespace ShivFactory.Controllers
         #endregion
 
 
+        #region New Register
+        [AllowAnonymous]
+        public ActionResult MobileVerify()
+        {
+            return View(); 
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult MobileVerify(MobileVerify model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            else
+            {
+                string message = "";
+                var user = UserManager.FindByName(model.PhoneNumber);
+                if (user == null)
+                {
+                    message = "Mobile Number does not exist";
+                    return RedirectToAction("SendOTP", "Account", new { phonenumber = model.PhoneNumber });
+                }
+                else
+                {
+                    message = "Mobile Number Already Exist. ";
+                    ModelState.AddModelError("PhoneNumber", message);
+                    return View(model);
+
+                }
+            }
+        }
+
+        [AllowAnonymous]
+        public ActionResult SendOTP(string phonenumber)
+        {
+            // call sms api to  parma phonenumber ; 
+            TempData["OTP"] = true;
+
+            ModelState.AddModelError("code", "Please Enter the OTP Verification code to validate Mobile Number !");
+            return View(); 
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult SendOTP(SMS model)
+        {
+            // call sms api to  parma phonenumber ; 
+            if (model != null && model.code.ToString().Equals("123456"))
+            {
+                return RedirectToAction("RegisterVendor", "Account");
+            }
+            else {
+                ModelState.AddModelError("code", "Enter OTP To validate Mobile Nmber");
+                return View(model);
+            }
+            
+        }
+
+        [AllowAnonymous]
+        public ActionResult RegisterVendor()
+        {
+            return View(); 
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult RegisterVendor(CustomerRegister model)
+        {
+            return View(model);
+        }
+        #endregion
     }
 }

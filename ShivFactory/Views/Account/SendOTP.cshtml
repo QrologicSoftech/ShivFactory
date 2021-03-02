@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 @using ShivFactory.Models
@@ -42,7 +41,7 @@
 
 
                                                 @Html.TextBoxFor(m => m.code, new { @class = "form-control form-control-lg border-left-0", @placeholder = "OTP" })<span class="form-control form-control-lg border-left-0" id="timer" style="@display"></span><span class="btn btn-rounded form-control-lg border-left-0" id="timer" style="@display_btn"></span>
-                                                }
+                                            }
                                         </div>
                                         @Html.ValidationMessageFor(m => m.code, "", new { @class = "text-danger" })
                                     </div>
