@@ -109,10 +109,10 @@ namespace ShivFactory.Business.Repository
         }
         public string GetSessionValue(string sessionName)
         {
-            if (string.IsNullOrEmpty(HttpContext.Current.Session[CookieName.UserName].ToString()))
+            if (HttpContext.Current.Session[CookieName.UserName]==null)
             {
                 AddSessionValues();
-            }
+            }            
             var val = HttpContext.Current.Session[sessionName].ToString();
             return val;
         }
