@@ -15,9 +15,20 @@ namespace DataLibrary.DL
     public partial class Product
     {
         public int ProductId { get; set; }
+        public Nullable<int> VendorId { get; set; }
         public string ProductName { get; set; }
         public Nullable<decimal> SalePrice { get; set; }
         public Nullable<decimal> ListPrice { get; set; }
+        public Nullable<decimal> LocalShipingCharge { get; set; }
+        public Nullable<decimal> ZonalShipingCharge { get; set; }
+        public Nullable<decimal> NationalShippingCharge { get; set; }
+        public Nullable<int> StockCount { get; set; }
+        public Nullable<System.DateTime> MgfDate { get; set; }
+        public string MgfDetail { get; set; }
+        public string ShellLife { get; set; }
+        public string ProductWarning { get; set; }
+        public string Description { get; set; }
+        public string EstimateDeliveryTime { get; set; }
         public string MainImage { get; set; }
         public string Image1 { get; set; }
         public string Image2 { get; set; }
@@ -25,30 +36,30 @@ namespace DataLibrary.DL
         public string Image4 { get; set; }
         public string Image5 { get; set; }
         public string Image6 { get; set; }
-        public Nullable<int> Category { get; set; }
-        public Nullable<int> SubCategory { get; set; }
-        public Nullable<int> MiniCategory { get; set; }
-        public string Description { get; set; }
+        public Nullable<int> BrandId { get; set; }
+        public Nullable<int> CategoryId { get; set; }
+        public Nullable<int> SubCategoryId { get; set; }
+        public Nullable<int> MiniCategoryId { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<System.DateTime> AddUpdate { get; set; }
+        public Nullable<System.DateTime> AddDate { get; set; }
         public Nullable<System.DateTime> LastUpdate { get; set; }
-        public Nullable<int> StockCount { get; set; }
-        public Nullable<System.DateTime> MgfDate { get; set; }
-        public string ShellLife { get; set; }
-        public string ProductWarning { get; set; }
-        public string MgfDetail { get; set; }
-        public Nullable<decimal> localshipingcharge { get; set; }
-        public Nullable<decimal> zonalshipingcharge { get; set; }
-        public Nullable<decimal> nationalshippingcharge { get; set; }
-        public string Length { get; set; }
-        public string Breadth { get; set; }
-        public string Height { get; set; }
+        public string ProductLength { get; set; }
+        public string ProductWidth { get; set; }
+        public string ProductHeight { get; set; }
+        public string ProductWeight { get; set; }
+        public string PackageLength { get; set; }
+        public string PackageWidth { get; set; }
+        public string PackageHeight { get; set; }
+        public string PackageWeight { get; set; }
+        public string ProductColors { get; set; }
         public string InactiveReason { get; set; }
-        public string dimension { get; set; }
-        public string productweight { get; set; }
+        public bool ApprovedByAdmin { get; set; }
+        public Nullable<bool> IsReturnable { get; set; }
+        public int ReturnDays { get; set; }
     
-        public virtual Category Category1 { get; set; }
-        public virtual MiniCategory MiniCategory1 { get; set; }
-        public virtual SubCategory SubCategory1 { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual MiniCategory MiniCategory { get; set; }
+        public virtual Vendor Vendor { get; set; }
+        public virtual SubCategory SubCategory { get; set; }
     }
 }

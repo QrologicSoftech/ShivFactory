@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Model\Common\ResultModel.cs" />
+    <Compile Include="Model\Common\Utility.cs" />
     <Compile Include="Model\Other\Constrant.cs" />
     <Compile Include="Model\SqlHelper.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />

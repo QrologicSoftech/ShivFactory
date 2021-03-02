@@ -166,37 +166,47 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             <PropertyRef Name="ProductId" />
           </Key>
           <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorId" Type="int" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="100" />
           <Property Name="SalePrice" Type="decimal" Precision="18" Scale="0" />
           <Property Name="ListPrice" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="MainImage" Type="varchar" MaxLength="100" />
-          <Property Name="Image1" Type="varchar" MaxLength="100" />
-          <Property Name="Image2" Type="varchar" MaxLength="100" />
-          <Property Name="Image3" Type="varchar" MaxLength="100" />
-          <Property Name="Image4" Type="varchar" MaxLength="100" />
-          <Property Name="Image5" Type="varchar" MaxLength="100" />
-          <Property Name="Image6" Type="varchar" MaxLength="100" />
-          <Property Name="Category" Type="int" />
-          <Property Name="SubCategory" Type="int" />
-          <Property Name="MiniCategory" Type="int" />
-          <Property Name="Description" Type="nvarchar" MaxLength="500" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="AddUpdate" Type="datetime" />
-          <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="LocalShipingCharge" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ZonalShipingCharge" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NationalShippingCharge" Type="decimal" Precision="18" Scale="0" />
           <Property Name="StockCount" Type="int" />
           <Property Name="MgfDate" Type="datetime" />
-          <Property Name="ShellLife" Type="nvarchar" MaxLength="50" />
-          <Property Name="ProductWarning" Type="nvarchar" MaxLength="500" />
           <Property Name="MgfDetail" Type="nvarchar" MaxLength="500" />
-          <Property Name="localshipingcharge" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="zonalshipingcharge" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="nationalshippingcharge" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Length" Type="varchar" MaxLength="50" />
-          <Property Name="Breadth" Type="varchar" MaxLength="50" />
-          <Property Name="Height" Type="varchar" MaxLength="50" />
+          <Property Name="ShellLife" Type="nvarchar" MaxLength="250" />
+          <Property Name="ProductWarning" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="EstimateDeliveryTime" Type="nvarchar" MaxLength="300" />
+          <Property Name="MainImage" Type="nvarchar(max)" />
+          <Property Name="Image1" Type="nvarchar(max)" />
+          <Property Name="Image2" Type="nvarchar(max)" />
+          <Property Name="Image3" Type="nvarchar(max)" />
+          <Property Name="Image4" Type="nvarchar(max)" />
+          <Property Name="Image5" Type="nvarchar(max)" />
+          <Property Name="Image6" Type="nvarchar(max)" />
+          <Property Name="BrandId" Type="int" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="SubCategoryId" Type="int" />
+          <Property Name="MiniCategoryId" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="ProductLength" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductWidth" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductHeight" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductWeight" Type="nvarchar" MaxLength="50" />
+          <Property Name="PackageLength" Type="nvarchar" MaxLength="50" />
+          <Property Name="PackageWidth" Type="nvarchar" MaxLength="50" />
+          <Property Name="PackageHeight" Type="nvarchar" MaxLength="50" />
+          <Property Name="PackageWeight" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductColors" Type="nvarchar(max)" />
           <Property Name="InactiveReason" Type="nvarchar" MaxLength="500" />
-          <Property Name="dimension" Type="varchar" MaxLength="50" />
-          <Property Name="productweight" Type="varchar" MaxLength="50" />
+          <Property Name="ApprovedByAdmin" Type="bit" Nullable="false" />
+          <Property Name="IsReturnable" Type="bit" />
+          <Property Name="ReturnDays" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -253,12 +263,12 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="AddUpdate" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
         </EntityType>
-        <EntityType Name="VendorBusinessDetails">
+        <EntityType Name="Vendors">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="VendorId" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserID" Type="int" />
+          <Property Name="VendorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
           <Property Name="FirmName" Type="nvarchar" MaxLength="150" />
           <Property Name="GSTIN" Type="nvarchar" MaxLength="20" />
           <Property Name="FullAddress" Type="nvarchar(max)" />
@@ -292,6 +302,20 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Principal>
             <Dependent Role="MiniCategory">
               <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__VendorI__2739D489">
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="VendorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -338,16 +362,16 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__VendorBus__UserI__66603565">
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="VendorBusinessDetails" Type="Self.VendorBusinessDetails" Multiplicity="*" />
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserDetails">
-              <PropertyRef Name="UserDetailId" />
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="VendorBusinessDetails">
-              <PropertyRef Name="UserID" />
+            <Dependent Role="Vendors">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -415,7 +439,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="Category" />
+              <PropertyRef Name="CategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -427,7 +451,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="MiniCategory" />
+              <PropertyRef Name="MiniCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -439,7 +463,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="SubCategory" />
+              <PropertyRef Name="SubCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -461,7 +485,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorBankDetails" EntityType="Self.VendorBankDetails" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="VendorBusinessDetails" EntityType="Self.VendorBusinessDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendors" EntityType="Self.Vendors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WeightMaster" EntityType="Self.WeightMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankerMaster" EntityType="Self.BankerMaster" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -478,6 +502,10 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             <End Role="SubCategory" EntitySet="SubCategory" />
             <End Role="MiniCategory" EntitySet="MiniCategory" />
           </AssociationSet>
+          <AssociationSet Name="FK__Product__VendorI__2739D489" Association="Self.FK__Product__VendorI__2739D489">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK__SubCatego__Categ__6383C8BA" Association="Self.FK__SubCatego__Categ__6383C8BA">
             <End Role="Category" EntitySet="Category" />
             <End Role="SubCategory" EntitySet="SubCategory" />
@@ -491,8 +519,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             <End Role="VendorBankDetails" EntitySet="VendorBankDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__VendorBus__UserI__66603565" Association="Self.FK__VendorBus__UserI__66603565">
-            <End Role="UserDetails" EntitySet="UserDetails" />
-            <End Role="VendorBusinessDetails" EntitySet="VendorBusinessDetails" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Vendors" EntitySet="Vendors" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -586,6 +614,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
           <NavigationProperty Name="UserDetails" Relationship="Self.FK__UserDetai__UserI__6477ECF3" FromRole="AspNetUsers" ToRole="UserDetails" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="Vendors" Relationship="db_ShivFactoryModel.FK__VendorBus__UserI__66603565" FromRole="AspNetUser" ToRole="Vendor" />
         </EntityType>
         <EntityType Name="Banner">
           <Key>
@@ -611,8 +640,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="IsDelete" Type="Boolean" />
           <Property Name="Adddate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
           <NavigationProperty Name="SubCategories" Relationship="db_ShivFactoryModel.FK__SubCatego__Categ__6383C8BA" FromRole="Category" ToRole="SubCategory" />
+          <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="DynamicMenu">
           <Key>
@@ -650,7 +679,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="IsDelete" Type="Boolean" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK__UserDetai__UserI__6477ECF3" FromRole="UserDetails" ToRole="AspNetUsers" />
           <NavigationProperty Name="VendorBankDetails" Relationship="Self.FK__VendorBan__UserI__656C112C" FromRole="UserDetails" ToRole="VendorBankDetails" />
-          <NavigationProperty Name="VendorBusinessDetails" Relationship="Self.FK__VendorBus__UserI__66603565" FromRole="UserDetails" ToRole="VendorBusinessDetails" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -672,28 +700,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="AddUpdate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="UserDetail" Relationship="Self.FK__VendorBan__UserI__656C112C" FromRole="VendorBankDetails" ToRole="UserDetails" />
-        </EntityType>
-        <EntityType Name="VendorBusinessDetail">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="FirmName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="GSTIN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="FullAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PanNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="AddressProofImg" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="DateTime" Precision="3" />
-          <Property Name="IsDelete" Type="DateTime" Precision="3" />
-          <Property Name="AddUpdate" Type="DateTime" Precision="3" />
-          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="UserDetail" Relationship="Self.FK__VendorBus__UserI__66603565" FromRole="VendorBusinessDetails" ToRole="UserDetails" />
-          <Property Name="PIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Signature" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Logo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -751,20 +757,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VendorBus__UserI__66603565">
-          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="VendorBusinessDetails" Type="Self.VendorBusinessDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserDetails">
-              <PropertyRef Name="UserDetailId" />
-            </Principal>
-            <Dependent Role="VendorBusinessDetails">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AspNetUserRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
@@ -780,7 +772,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySet Name="DynamicMenus" EntityType="Self.DynamicMenu" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
           <EntitySet Name="VendorBankDetails" EntityType="Self.VendorBankDetail" />
-          <EntitySet Name="VendorBusinessDetails" EntityType="Self.VendorBusinessDetail" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -797,10 +788,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             <End Role="UserDetails" EntitySet="UserDetails" />
             <End Role="VendorBankDetails" EntitySet="VendorBankDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__VendorBus__UserI__66603565" Association="Self.FK__VendorBus__UserI__66603565">
-            <End Role="UserDetails" EntitySet="UserDetails" />
-            <End Role="VendorBusinessDetails" EntitySet="VendorBusinessDetails" />
-          </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -808,11 +795,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySet Name="DimensionMasters" EntityType="db_ShivFactoryModel.DimensionMaster" />
           <EntitySet Name="WeightMasters" EntityType="db_ShivFactoryModel.WeightMaster" />
           <EntitySet Name="ColorMasters" EntityType="db_ShivFactoryModel.ColorMaster" />
-          <EntitySet Name="Products" EntityType="db_ShivFactoryModel.Product" />
-          <AssociationSet Name="FK_Product_Category" Association="db_ShivFactoryModel.FK_Product_Category">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
           <EntitySet Name="BankerMasters" EntityType="db_ShivFactoryModel.BankerMaster" />
           <EntitySet Name="MiniCategories" EntityType="db_ShivFactoryModel.MiniCategory" />
           <EntitySet Name="SubCategories" EntityType="db_ShivFactoryModel.SubCategory" />
@@ -824,15 +806,29 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             <End Role="SubCategory" EntitySet="SubCategories" />
             <End Role="MiniCategory" EntitySet="MiniCategories" />
           </AssociationSet>
+          <EntitySet Name="Brands" EntityType="db_ShivFactoryModel.Brand" />
+          <EntitySet Name="Products" EntityType="db_ShivFactoryModel.Product" />
+          <EntitySet Name="Vendors" EntityType="db_ShivFactoryModel.Vendor" />
+          <AssociationSet Name="FK__VendorBus__UserI__66603565" Association="db_ShivFactoryModel.FK__VendorBus__UserI__66603565">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Vendor" EntitySet="Vendors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="db_ShivFactoryModel.FK_Product_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_MiniCategory" Association="db_ShivFactoryModel.FK_Product_MiniCategory">
             <End Role="MiniCategory" EntitySet="MiniCategories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__VendorI__2739D489" Association="db_ShivFactoryModel.FK__Product__VendorI__2739D489">
+            <End Role="Vendor" EntitySet="Vendors" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_SubCategory" Association="db_ShivFactoryModel.FK_Product_SubCategory">
             <End Role="SubCategory" EntitySet="SubCategories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <EntitySet Name="Brands" EntityType="db_ShivFactoryModel.Brand" />
           </EntityContainer>
         <EntityType Name="DimensionMaster">
           <Key>
@@ -855,58 +851,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ProductId" />
-          </Key>
-          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ListPrice" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="MainImage" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Image1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Image2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Image3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Image4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Image5" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Image6" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Category" Type="Int32" />
-          <Property Name="SubCategory" Type="Int32" />
-          <Property Name="MiniCategory" Type="Int32" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="AddUpdate" Type="DateTime" Precision="3" />
-          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
-          <Property Name="StockCount" Type="Int32" />
-          <Property Name="MgfDate" Type="DateTime" Precision="3" />
-          <Property Name="ShellLife" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProductWarning" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="MgfDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="localshipingcharge" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="zonalshipingcharge" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="nationalshippingcharge" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Length" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Breadth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Height" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="InactiveReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="dimension" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="productweight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Category1" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
-          <NavigationProperty Name="MiniCategory1" Relationship="db_ShivFactoryModel.FK_Product_MiniCategory" FromRole="Product" ToRole="MiniCategory" />
-          <NavigationProperty Name="SubCategory1" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
-        </EntityType>
-        <Association Name="FK_Product_Category">
-          <End Type="db_ShivFactoryModel.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="db_ShivFactoryModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="Category" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="BankerMaster">
           <Key>
             <PropertyRef Name="BankerMasterID" />
@@ -981,30 +925,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Product_MiniCategory">
-          <End Type="db_ShivFactoryModel.MiniCategory" Role="MiniCategory" Multiplicity="0..1" />
-          <End Type="db_ShivFactoryModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MiniCategory">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="MiniCategory" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_SubCategory">
-          <End Type="db_ShivFactoryModel.SubCategory" Role="SubCategory" Multiplicity="0..1" />
-          <End Type="db_ShivFactoryModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubCategory">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="SubCategory" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="ID" />
@@ -1018,6 +938,144 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="Adddate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorId" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ListPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="LocalShipingCharge" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ZonalShipingCharge" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NationalShippingCharge" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="StockCount" Type="Int32" />
+          <Property Name="MgfDate" Type="DateTime" Precision="3" />
+          <Property Name="MgfDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ShellLife" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProductWarning" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EstimateDeliveryTime" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="MainImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image6" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BrandId" Type="Int32" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="SubCategoryId" Type="Int32" />
+          <Property Name="MiniCategoryId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="ProductLength" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductWidth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductHeight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PackageLength" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PackageWidth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PackageHeight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PackageWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductColors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InactiveReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedByAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="IsReturnable" Type="Boolean" />
+          <Property Name="ReturnDays" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="MiniCategory" Relationship="db_ShivFactoryModel.FK_Product_MiniCategory" FromRole="Product" ToRole="MiniCategory" />
+          <NavigationProperty Name="Vendor" Relationship="db_ShivFactoryModel.FK__Product__VendorI__2739D489" FromRole="Product" ToRole="Vendor" />
+          <NavigationProperty Name="SubCategory" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="VendorId" />
+          </Key>
+          <Property Name="VendorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FirmName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="GSTIN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="FullAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PanNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AddressProofImg" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="DateTime" Precision="3" />
+          <Property Name="AddUpdate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="PIN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Signature" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="db_ShivFactoryModel.FK__VendorBus__UserI__66603565" FromRole="Vendor" ToRole="AspNetUser" />
+          <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK__Product__VendorI__2739D489" FromRole="Vendor" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK__VendorBus__UserI__66603565">
+          <End Type="db_ShivFactoryModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_ShivFactoryModel.Vendor" Role="Vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vendor">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Category">
+          <End Type="db_ShivFactoryModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="db_ShivFactoryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_MiniCategory">
+          <End Type="db_ShivFactoryModel.MiniCategory" Role="MiniCategory" Multiplicity="0..1" />
+          <End Type="db_ShivFactoryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MiniCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="MiniCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__VendorI__2739D489">
+          <End Type="db_ShivFactoryModel.Vendor" Role="Vendor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_ShivFactoryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_SubCategory">
+          <End Type="db_ShivFactoryModel.SubCategory" Role="SubCategory" Multiplicity="0..1" />
+          <End Type="db_ShivFactoryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1164,28 +1222,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VendorBusinessDetails">
-            <EntityTypeMapping TypeName="db_ShivFactoryModel.VendorBusinessDetail">
-              <MappingFragment StoreEntitySet="VendorBusinessDetails">
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
-                <ScalarProperty Name="Signature" ColumnName="Signature" />
-                <ScalarProperty Name="PIN" ColumnName="PIN" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
-                <ScalarProperty Name="GSTIN" ColumnName="GSTIN" />
-                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="PanNo" ColumnName="PanNo" />
-                <ScalarProperty Name="AddressProofImg" ColumnName="AddressProofImg" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="AddUpdate" ColumnName="AddUpdate" />
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="db_ShivFactoryModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -1215,44 +1251,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
               <MappingFragment StoreEntitySet="ColorMaster">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="db_ShivFactoryModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="productweight" ColumnName="productweight" />
-                <ScalarProperty Name="dimension" ColumnName="dimension" />
-                <ScalarProperty Name="InactiveReason" ColumnName="InactiveReason" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="Breadth" ColumnName="Breadth" />
-                <ScalarProperty Name="Length" ColumnName="Length" />
-                <ScalarProperty Name="nationalshippingcharge" ColumnName="nationalshippingcharge" />
-                <ScalarProperty Name="zonalshipingcharge" ColumnName="zonalshipingcharge" />
-                <ScalarProperty Name="localshipingcharge" ColumnName="localshipingcharge" />
-                <ScalarProperty Name="MgfDetail" ColumnName="MgfDetail" />
-                <ScalarProperty Name="ProductWarning" ColumnName="ProductWarning" />
-                <ScalarProperty Name="ShellLife" ColumnName="ShellLife" />
-                <ScalarProperty Name="MgfDate" ColumnName="MgfDate" />
-                <ScalarProperty Name="StockCount" ColumnName="StockCount" />
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-                <ScalarProperty Name="AddUpdate" ColumnName="AddUpdate" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="MiniCategory" ColumnName="MiniCategory" />
-                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
-                <ScalarProperty Name="Category" ColumnName="Category" />
-                <ScalarProperty Name="Image6" ColumnName="Image6" />
-                <ScalarProperty Name="Image5" ColumnName="Image5" />
-                <ScalarProperty Name="Image4" ColumnName="Image4" />
-                <ScalarProperty Name="Image3" ColumnName="Image3" />
-                <ScalarProperty Name="Image2" ColumnName="Image2" />
-                <ScalarProperty Name="Image1" ColumnName="Image1" />
-                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
-                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
-                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1311,6 +1309,76 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="BrandName" ColumnName="BrandName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ReturnDays" ColumnName="ReturnDays" />
+                <ScalarProperty Name="IsReturnable" ColumnName="IsReturnable" />
+                <ScalarProperty Name="ApprovedByAdmin" ColumnName="ApprovedByAdmin" />
+                <ScalarProperty Name="InactiveReason" ColumnName="InactiveReason" />
+                <ScalarProperty Name="ProductColors" ColumnName="ProductColors" />
+                <ScalarProperty Name="PackageWeight" ColumnName="PackageWeight" />
+                <ScalarProperty Name="PackageHeight" ColumnName="PackageHeight" />
+                <ScalarProperty Name="PackageWidth" ColumnName="PackageWidth" />
+                <ScalarProperty Name="PackageLength" ColumnName="PackageLength" />
+                <ScalarProperty Name="ProductWeight" ColumnName="ProductWeight" />
+                <ScalarProperty Name="ProductHeight" ColumnName="ProductHeight" />
+                <ScalarProperty Name="ProductWidth" ColumnName="ProductWidth" />
+                <ScalarProperty Name="ProductLength" ColumnName="ProductLength" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="MiniCategoryId" ColumnName="MiniCategoryId" />
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="Image6" ColumnName="Image6" />
+                <ScalarProperty Name="Image5" ColumnName="Image5" />
+                <ScalarProperty Name="Image4" ColumnName="Image4" />
+                <ScalarProperty Name="Image3" ColumnName="Image3" />
+                <ScalarProperty Name="Image2" ColumnName="Image2" />
+                <ScalarProperty Name="Image1" ColumnName="Image1" />
+                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
+                <ScalarProperty Name="EstimateDeliveryTime" ColumnName="EstimateDeliveryTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProductWarning" ColumnName="ProductWarning" />
+                <ScalarProperty Name="ShellLife" ColumnName="ShellLife" />
+                <ScalarProperty Name="MgfDetail" ColumnName="MgfDetail" />
+                <ScalarProperty Name="MgfDate" ColumnName="MgfDate" />
+                <ScalarProperty Name="StockCount" ColumnName="StockCount" />
+                <ScalarProperty Name="NationalShippingCharge" ColumnName="NationalShippingCharge" />
+                <ScalarProperty Name="ZonalShipingCharge" ColumnName="ZonalShipingCharge" />
+                <ScalarProperty Name="LocalShipingCharge" ColumnName="LocalShipingCharge" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendors">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendors">
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Signature" ColumnName="Signature" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddUpdate" ColumnName="AddUpdate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="AddressProofImg" ColumnName="AddressProofImg" />
+                <ScalarProperty Name="PanNo" ColumnName="PanNo" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="GSTIN" ColumnName="GSTIN" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

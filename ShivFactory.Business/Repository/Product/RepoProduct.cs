@@ -1,12 +1,13 @@
 ﻿using DataLibrary.DL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace ShivFactory.Business.Repository.Product
+namespace ShivFactory.Business.Repository
 {
     public class RepoProduct
     {
@@ -15,86 +16,106 @@ namespace ShivFactory.Business.Repository.Product
         #endregion
 
         #region Add Or Update Product
-        public bool AddOrUpdateProduct(ProductModel model)
+        public bool AddOrUpdateProduct(ClsProduct model)
         {
             var Product = db.Products.Where(a => a.ProductId == model.ProductId).FirstOrDefault();
             if (Product != null)
             {
+                Product.VendorId = model.VendorId;
                 Product.ProductName = model.ProductName;
-                Product.Description = model.Description;
-                Product.AddUpdate = DateTime.Now;
-                Product.IsActive = model.IsActive;
                 Product.SalePrice = model.SalePrice;
                 Product.ListPrice = model.ListPrice;
-                Product.Category = model.Category;
-                Product.SubCategory = model.SubCategory;
-                Product.MiniCategory = model.MiniCategory;
-                Product.MainImage = model.ImagePath;
-                Product.Length = model.Length;
-                Product.Breadth = model.Breadth;
-                Product.Height = model.Height;
-                
-                Product.MgfDetail = model.MgfDetail;
-                Product.localshipingcharge = model.localshipingcharge;
-                Product.zonalshipingcharge = model.zonalshipingcharge;
-                Product.nationalshippingcharge = model.nationalshippingcharge;
-
+                Product.LocalShipingCharge = model.LocalShipingCharge;
+                Product.ZonalShipingCharge = model.ZonalShipingCharge;
+                Product.NationalShippingCharge = model.NationalShippingCharge;
                 Product.StockCount = model.StockCount;
+                Product.MgfDate = model.MgfDate;
+                Product.MgfDetail = model.MgfDetail;
                 Product.ShellLife = model.ShellLife;
-                Product.ProductWarning = model.ProductWarning; 
+                Product.ProductWarning = model.ProductWarning;
+                Product.Description = model.Description;
+                Product.EstimateDeliveryTime = model.EstimateDeliveryTime;
 
-                if (model.imgPathList.Count > 0)
-                {
-                    Product.Image1 = model.imgPathList[0];
-                    Product.Image2 = model.imgPathList[1];
-                    Product.Image3 = model.imgPathList[2];
-                    Product.Image4 = model.imgPathList[3];
-                    Product.Image5 = model.imgPathList[4];
-                }
+                Product.MainImage = model.MainImage;
+                Product.Image1 = model.Image1;
+                Product.Image2 = model.Image2;
+                Product.Image3 = model.Image3;
+                Product.Image4 = model.Image4;
+                Product.Image5 = model.Image5;
+                Product.Image6 = model.Image6;
+
+                Product.BrandId = model.BrandId;
+                Product.CategoryId = model.CategoryId;
+                Product.SubCategoryId = model.SubCategoryId;
+                Product.MiniCategoryId = model.MiniCategoryId;
+                Product.IsActive = model.IsActive;
+                Product.ProductLength = model.ProductLength;
+                Product.ProductWidth = model.ProductWidth;
+                Product.ProductHeight = model.ProductHeight;
+                Product.ProductWeight = model.ProductWeight;
+                Product.PackageLength = model.PackageLength;
+                Product.PackageWidth = model.PackageWidth;
+                Product.PackageHeight = model.PackageHeight;
+                Product.PackageWeight = model.PackageWeight;
+                Product.ProductColors = model.ProductColors;
+                Product.ApprovedByAdmin = false;
+                Product.IsReturnable = model.IsReturnable;
+                Product.ReturnDays = model.ReturnDays;
+                Product.LastUpdate = DateTime.Now;
             }
             else
             {
-                string imgpth1 = "", imgpth2 = "", imgpth3 = "", imgpth4 = "", imgpth5 = ""; 
-                if (!(model.imgPathList==null))
+                if (!(model.imgPathList == null))
                 {
-                    imgpth1 = model.imgPathList[0];
-                    imgpth2 = model.imgPathList[1];
-                    imgpth3 = model.imgPathList[2];
-                    imgpth4 = model.imgPathList[3];
-                    imgpth5 = model.imgPathList[4];
+                    model.Image1 = model.imgPathList[0];
+                    model.Image2 = model.imgPathList[1];
+                    model.Image3 = model.imgPathList[2];
+                    model.Image4 = model.imgPathList[3];
+                    model.Image5 = model.imgPathList[4];
+                    model.Image6 = model.imgPathList[5];
                 }
-                db.Products.Add(new DataLibrary.DL.Product()
+                db.Products.Add(new Product
                 {
+                    VendorId = model.VendorId,
                     ProductName = model.ProductName,
-                    Description = model.Description,
-                    AddUpdate = DateTime.Now,
-                    IsActive = true,
                     SalePrice = model.SalePrice,
-                ListPrice = model.ListPrice,
-                Category = model.Category,
-                SubCategory = model.SubCategory,
-                MiniCategory = model.MiniCategory,
-                MainImage = model.ImagePath,
-                    Image1 = imgpth1,
-                    Image2 = imgpth2,
-                    Image3 = imgpth3,
-                    Image4 = imgpth4,
-                    Image5 = imgpth5,
-                    Length = model.Length,
-                Breadth = model.Breadth ,
-                Height = model.Height ,
-
-                MgfDetail = model.MgfDetail ,
-                localshipingcharge = model.localshipingcharge ,
-                zonalshipingcharge = model.zonalshipingcharge ,
-                nationalshippingcharge = model.nationalshippingcharge ,
-
-                StockCount = model.StockCount ,
-                ShellLife = model.ShellLife ,
-                ProductWarning = model.ProductWarning 
-
-
-            });
+                    ListPrice = model.ListPrice,
+                    LocalShipingCharge = model.LocalShipingCharge,
+                    ZonalShipingCharge = model.ZonalShipingCharge,
+                    NationalShippingCharge = model.NationalShippingCharge,
+                    StockCount = model.StockCount,
+                    MgfDate = model.MgfDate,
+                    MgfDetail = model.MgfDetail,
+                    ShellLife = model.ShellLife,
+                    ProductWarning = model.ProductWarning,
+                    Description = model.Description,
+                    EstimateDeliveryTime = model.EstimateDeliveryTime,
+                    MainImage = model.MainImage,
+                    Image1 = model.Image1,
+                    Image2 = model.Image2,
+                    Image3 = model.Image3,
+                    Image4 = model.Image4,
+                    Image5 = model.Image5,
+                    Image6 = model.Image6,
+                    BrandId = model.BrandId,
+                    CategoryId = model.CategoryId,
+                    SubCategoryId = model.SubCategoryId,
+                    MiniCategoryId = model.MiniCategoryId,
+                    IsActive = model.IsActive,
+                    ProductLength = model.ProductLength,
+                    ProductWidth = model.ProductWidth,
+                    ProductHeight = model.ProductHeight,
+                    ProductWeight = model.ProductWeight,
+                    PackageLength = model.PackageLength,
+                    PackageWidth = model.PackageWidth,
+                    PackageHeight = model.PackageHeight,
+                    PackageWeight = model.PackageWeight,
+                    ProductColors = model.ProductColors,
+                    ApprovedByAdmin = false,
+                    IsReturnable = model.IsReturnable,
+                    ReturnDays = model.ReturnDays,
+                    AddDate = DateTime.Now
+                });
             }
             return db.SaveChanges() > 0;
         }
@@ -102,49 +123,56 @@ namespace ShivFactory.Business.Repository.Product
         #endregion
 
         #region GetAllProduct
-        public List<DataLibrary.DL.Product> GetAllProduct()
+        public List<DataLibrary.DL.Product> GetAllProduct(int? vendorId)
         {
-            return db.Products.ToList();
+            return db.Products.Where(a=>a.VendorId==vendorId).AsNoTracking().ToList();
         }
         #endregion
 
         #region Get Product By ProductId
-        public ProductModel GetProductByProductId(int ProductId)
+        public ClsProduct GetProductByProductId(int ProductId)
         {
-            var Product = db.Products.Where(x => x.ProductId == ProductId).Select(a => new ProductModel()
+            var Product = db.Products.Where(x => x.ProductId == ProductId).Select(a => new ClsProduct()
             {
                 ProductId = a.ProductId,
+                VendorId = a.VendorId,
                 ProductName = a.ProductName,
-                ImagePath = a.MainImage,
-                IsActive = a.IsActive.Value,
-                Description = a.Description,
-
-                Image1Path = a.Image1,
-                Image2Path = a.Image2,
-                Image3Path = a.Image3,
-                Image4Path = a.Image4,
-                Image5Path = a.Image5,
-
-                SalePrice = (Decimal)(a.SalePrice),
-                ListPrice = (Decimal)(a.ListPrice),
-                Category = (int)a.Category,
-                SubCategory = (int)a.SubCategory,
-                MiniCategory = (int)a.MiniCategory,
-
-
-                Length = a.Length,
-                Breadth = a.Breadth,
-                Height = a.Height,
-
+                SalePrice = a.SalePrice.Value,
+                ListPrice = a.ListPrice.Value,
+                LocalShipingCharge = a.LocalShipingCharge.Value,
+                ZonalShipingCharge = a.ZonalShipingCharge.Value,
+                NationalShippingCharge = a.NationalShippingCharge.Value,
+                StockCount = a.StockCount.Value,
+                MgfDate = a.MgfDate,
                 MgfDetail = a.MgfDetail,
-                localshipingcharge = (Decimal)a.localshipingcharge,
-                zonalshipingcharge = (Decimal)a.zonalshipingcharge,
-                nationalshippingcharge = (Decimal)a.nationalshippingcharge,
-
-                StockCount = (int)a.StockCount,
                 ShellLife = a.ShellLife,
-                ProductWarning = a.ProductWarning
-            }).FirstOrDefault();
+                ProductWarning = a.ProductWarning,
+                Description = a.Description,
+                EstimateDeliveryTime = a.EstimateDeliveryTime,
+                MainImage = a.MainImage,
+                Image1 = a.Image1,
+                Image2 = a.Image2,
+                Image3 = a.Image3,
+                Image4 = a.Image4,
+                Image5 = a.Image5,
+                Image6 = a.Image6,
+                BrandId = a.BrandId,
+                CategoryId = a.CategoryId,
+                SubCategoryId = a.SubCategoryId,
+                MiniCategoryId = a.MiniCategoryId,
+                IsActive = a.IsActive ?? false,
+                ProductLength = a.ProductLength,
+                ProductWidth = a.ProductWidth,
+                ProductHeight = a.ProductHeight,
+                ProductWeight = a.ProductWeight,
+                PackageLength = a.PackageLength,
+                PackageWidth = a.PackageWidth,
+                PackageHeight = a.PackageHeight,
+                PackageWeight = a.PackageWeight,
+                ProductColors = a.ProductColors,
+                IsReturnable = a.IsReturnable ?? false,
+                ReturnDays = a.ReturnDays
+            }).AsNoTracking().FirstOrDefault();
 
             return Product;
 
@@ -160,18 +188,6 @@ namespace ShivFactory.Business.Repository.Product
                 db.Products.Remove(Product);
             }
             return db.SaveChanges() > 0;
-        }
-        #endregion
-
-        #region Get Product DDl
-        public SelectList GetProductDDl()
-        {
-            var caterories = db.Products.Where(a => a.IsActive == true).Select(a => new
-            {
-                Text = a.ProductName,
-                Value = a.ProductId
-            }).ToList();
-            return new SelectList(caterories, "Value", "Text");
         }
         #endregion
     }

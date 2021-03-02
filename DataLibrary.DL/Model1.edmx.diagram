@@ -15,26 +15,27 @@
         <EntityTypeShape EntityType="db_ShivFactoryModel.DynamicMenu" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.UserDetail" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.VendorBankDetail" Width="1.5" PointX="7.5" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_ShivFactoryModel.VendorBusinessDetail" Width="1.5" PointX="7.5" PointY="11.25" IsExpanded="true" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="db_ShivFactoryModel.FK__UserDetai__UserI__6477ECF3" ManuallyRouted="false" />
         <AssociationConnector Association="db_ShivFactoryModel.FK__VendorBan__UserI__656C112C" ManuallyRouted="false" />
-        <AssociationConnector Association="db_ShivFactoryModel.FK__VendorBus__UserI__66603565" ManuallyRouted="false" />
         <AssociationConnector Association="db_ShivFactoryModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.DimensionMaster" Width="1.5" PointX="12.875" PointY="5.875" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.WeightMaster" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.ColorMaster" Width="1.5" PointX="12.375" PointY="7.75" />
-        <EntityTypeShape EntityType="db_ShivFactoryModel.Product" Width="1.5" PointX="15.5" PointY="0.75" />
-        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_Category" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.BankerMaster" Width="1.5" PointX="12.375" PointY="10.75" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.MiniCategory" Width="1.5" PointX="12.25" PointY="14.375" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.SubCategory" Width="1.5" PointX="10" PointY="14" />
         <AssociationConnector Association="db_ShivFactoryModel.FK__SubCatego__Categ__6383C8BA" />
         <AssociationConnector Association="db_ShivFactoryModel.FK__MiniCateg__SubCa__628FA481" />
-        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_MiniCategory" />
-        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_SubCategory" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.Brand" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.Product" Width="1.5" PointX="15.5" PointY="6" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.Vendor" Width="1.5" PointX="13.25" PointY="0.75" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK__VendorBus__UserI__66603565" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_Category" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_MiniCategory" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK__Product__VendorI__2739D489" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_SubCategory" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

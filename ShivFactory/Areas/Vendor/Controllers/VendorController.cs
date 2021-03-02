@@ -1,12 +1,13 @@
 ﻿using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.Common;
-using ShivFactory.Business.Repository.Product;
+using ShivFactory.Business.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace ShivFactory.Areas.Vendor.Controllers
@@ -14,10 +15,20 @@ namespace ShivFactory.Areas.Vendor.Controllers
     [Authorize(Roles = "Vendor")]
     public class VendorController : Controller
     {
+        #region Services
+        Utility utils = new Utility();
+        RepoVendor repoVender = new RepoVendor();
+
+        #endregion
+
         // GET: Vendor/Vendor
         public ActionResult Index()
         {
             return View();
+        }
+        public void VenderId()
+        {
+
         }
 
         #region Product
@@ -30,8 +41,10 @@ namespace ShivFactory.Areas.Vendor.Controllers
         {
             try
             {
+                
+               int venderId= repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
                 RepoProduct repoProduct = new RepoProduct();
-                var categories = repoProduct.GetAllProduct();
+                var categories = repoProduct.GetAllProduct(venderId);
                 return View(categories);
             }
             catch (Exception ex)
@@ -62,11 +75,12 @@ namespace ShivFactory.Areas.Vendor.Controllers
             {
                 TempData["ErrorMessage"] = ex.Message;
             }
-
-            return View();
+            ClsProduct model = new ClsProduct();
+            model.VendorId= repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
+            return View(model);
         }
         [HttpPost]
-        public ActionResult AddProduct(ProductModel model, HttpPostedFileBase postedfile)
+        public ActionResult AddProduct(ClsProduct model, HttpPostedFileBase postedfile)
         {
             try
             {
@@ -92,16 +106,20 @@ namespace ShivFactory.Areas.Vendor.Controllers
                    ModelState.AddModelError("PostedFile", "Please upload Product Image.");
                   return View(model);
                }
+                RepoCommon common = new RepoCommon();
                 if (postedfile != null)
                 {
-                   RepoCommon common = new RepoCommon();
-                    model.ImagePath = common.SaveImage(postedfile); 
+                    model.MainImage = common.SaveImage(postedfile); 
                 }
-                string filestr = "";
+               
+                foreach( var file in model.files)
+                {
+                    //model.Image1 = common.SaveImage(postedfile);
+                }
+
                 List<string> imagePathlist = new List<string>();
                 if  (model.files!=null)
                 {
-                    RepoCommon common = new RepoCommon();
                     model.imgPathList = common.SaveProductMultipleImage(model.files);
                 }
                 RepoProduct repoProduct = new RepoProduct();
@@ -152,26 +170,22 @@ namespace ShivFactory.Areas.Vendor.Controllers
         {
 
             int id = 0;
-            bool isValid = Int32.TryParse(categoryId, out id);
+            Int32.TryParse(categoryId, out id);
             RepoSubcategory _repository = new RepoSubcategory();
             var subCategory = _repository.GetSubCategoryDDl(id);
             return Json(subCategory, JsonRequestBehavior.AllowGet);
         }
-
-
-        //[AcceptVerbs(HttpVerbs.Post)]
+        
         public ActionResult GetMinicategoryBySubCategoryId(string subcategoryId)
         {
             
             int id = 0;
-            bool isValid = Int32.TryParse(subcategoryId, out id);
+            Int32.TryParse(subcategoryId, out id);
             RepoMinicategory _repository = new RepoMinicategory();
             var subCategory = _repository.GetMiniCategoryDDl(id);
             return Json(subCategory, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
-
-
     }
 }

@@ -12,10 +12,16 @@ namespace DataLibrary.DL
     using System;
     using System.Collections.Generic;
     
-    public partial class VendorBusinessDetail
+    public partial class Vendor
     {
-        public int ID { get; set; }
-        public Nullable<int> UserID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Vendor()
+        {
+            this.Products = new HashSet<Product>();
+        }
+    
+        public int VendorId { get; set; }
+        public string UserId { get; set; }
         public string FirmName { get; set; }
         public string GSTIN { get; set; }
         public string FullAddress { get; set; }
@@ -31,6 +37,8 @@ namespace DataLibrary.DL
         public string Signature { get; set; }
         public string Logo { get; set; }
     
-        public virtual UserDetail UserDetail { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

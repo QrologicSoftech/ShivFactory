@@ -18,7 +18,6 @@ namespace DataLibrary.DL
         public UserDetail()
         {
             this.VendorBankDetails = new HashSet<VendorBankDetail>();
-            this.VendorBusinessDetails = new HashSet<VendorBusinessDetail>();
         }
     
         public int UserDetailId { get; set; }
@@ -41,7 +40,5 @@ namespace DataLibrary.DL
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VendorBankDetail> VendorBankDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VendorBusinessDetail> VendorBusinessDetails { get; set; }
     }
 }
