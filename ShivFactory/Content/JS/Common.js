@@ -2,7 +2,7 @@
 
     RenderPartialView: function (controller, PartialView) {
         common.ShowLoader('.partialView');
-        ajax.doGetAjax(`/${controller}/${controller}/${PartialView}`, function (result) {
+        ajax.doGetAjax(`/${controller}/${PartialView}`, function (result) {
             common.HideLoader('.partialView');
             $('.partialView').html(result);
         })
