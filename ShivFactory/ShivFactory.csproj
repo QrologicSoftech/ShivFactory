@@ -465,6 +465,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\MobileVerify.cshtml" />
+    <Content Include="Views\Account\RegisterVendor.cshtml" />
+    <Content Include="Views\Account\SendOTP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
