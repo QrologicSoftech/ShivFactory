@@ -47,14 +47,12 @@
                                     <div class="nav-profile-img">
                                         @*<img src="~/Content/AdminImg/faces-face1.jpg" />*@
                                         <img id="imgFileUpload" src="~/Content/AdminImg/faces-face1.jpg" alt="image" onclick="Admin.ChangeProfileImagee();"><span class="availability-status online"></span>
-                                        <span id="spnFilePath"></span>
-                                        <input type="file" id="FileUpload1" style="display: none" />
                                     </div>
                                     <div class="nav-profile-text">
                                         <p class="text-black">@UserName</p>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu navbar-dropdown" >
+                                <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
                                     <a class="dropdown-item" href="#">
                                         <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log
                                     </a>
@@ -168,7 +166,7 @@
         @RenderSection("scripts", required: false)
     </div>
 
-   
+
     <footer class="footer">
         <div class="container">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
@@ -224,7 +222,14 @@
 
 
 
+  
 
+    <div id="Modal" class="Imagemodal">
+        <div class="modal-content">
+          
+          
+        </div>
+    </div>
 
     <div id="Imagemodal" class="Imagemodal">
         <div id="modal-content" class="modal-content">

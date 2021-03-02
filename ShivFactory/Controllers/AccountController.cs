@@ -695,7 +695,6 @@ namespace ShivFactory.Controllers
                             };
 
                         }
-
                     }
                 }
                 return new ResultModel

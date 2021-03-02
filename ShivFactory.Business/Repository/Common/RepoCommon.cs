@@ -40,5 +40,41 @@ namespace ShivFactory.Business.Repository.Common
             }
             return imagePathlist;
         }
+
+        public bool checkfile(string userimgpath)
+        {
+            try
+            {
+            //find and  delete image 
+            if (!System.IO.File.Exists(userimgpath))
+            {
+                return false;
+            }
+            return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public bool deletefile(string userimgpath)
+        {
+            try
+            {
+                //string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
+                //string fullPath = HttpContext.Current.Server.MapPath(path);
+                //find and  delete image 
+
+                System.IO.File.Delete(userimgpath);
+                    return true;
+                }
+            catch(Exception e)
+            {
+                return false;
+            }
+            
+
+        }
     }
 }

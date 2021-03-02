@@ -112,6 +112,7 @@
     <Compile Include="Repository\Category\Category.cs" />
     <Compile Include="Repository\Category\CategoryResponse.cs" />
     <Compile Include="Repository\Category\RepoCategory.cs" />
+    <Compile Include="Repository\ChangeProfileImage\UserProfileImage.cs" />
     <Compile Include="Repository\Color\ColorModel.cs" />
     <Compile Include="Repository\Color\RepoColorMaster.cs" />
     <Compile Include="Repository\Common\Cookie.cs" />
@@ -124,6 +125,8 @@
     <Compile Include="Repository\MiniCategory\RepoMinicategory.cs" />
     <Compile Include="Repository\Product\ProductModel.cs" />
     <Compile Include="Repository\Product\RepoProduct.cs" />
+    <Compile Include="Repository\Profile\UserProfile.cs" />
+    <Compile Include="Repository\Profile\RepoProfile.cs" />
     <Compile Include="Repository\SMS\SMS.cs" />
     <Compile Include="Repository\SubCategory\RepoSubcategory.cs" />
     <Compile Include="Repository\SubCategory\SubCategory.cs" />

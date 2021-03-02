@@ -1,4 +1,5 @@
 ﻿using DataLibrary.DL;
+using ShivFactory.Business.Repository.ChangeProfileImage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,5 +43,20 @@ namespace ShivFactory.Business.Repository
             return user;
         }
         #endregion
+
+        #region Get UserDetails by UserId
+        public bool UpdateUserImage(UserProfileImage model)
+        {
+            var user = db.UserDetails.Where(a => a.UserId == model.UserId).FirstOrDefault();
+            if (user != null)
+            {
+                user.UserImage = model.ImagePath; 
+                user.LastUpdate = DateTime.Now;
+            }
+            
+            return db.SaveChanges() > 0;
+        }
+        #endregion
+
     }
 }

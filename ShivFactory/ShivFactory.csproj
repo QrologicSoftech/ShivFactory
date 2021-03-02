@@ -469,6 +469,7 @@
     <Content Include="Views\Account\SendOTP.cshtml" />
     <Content Include="Views\Account\RegisterVendor.cshtml" />
     <Content Include="Views\Home\ChangeProfileImage.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

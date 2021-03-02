@@ -1,8 +1,8 @@
-﻿@model ShivFactory.Business.Repository.Users.UserImage
+﻿
+@model ShivFactory.Business.Repository.ChangeProfileImage.UserProfileImage
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Change Profile Image";
 }
-
 <div class="container-fluid page-body-wrapper">
     <div class="main-panel">
         <div class="content-wrapper">
@@ -11,17 +11,10 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">@ViewBag.Title</h4>
-                            <div class="row grid-margin">
-                                <div class="col-12">
-                                    <div class="wrapper d-flex" style=" text-align: start;">
-                                        <a class="btn btn-sm btn-gradient-primary mr-2" href="~/Admin/Admin/Banner">  Back to List </a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <div class="wrapper border-top">
                             <div class="card-body">
-                                @using (Html.BeginForm("ChangeProfileImage", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
+                                @using (Html.BeginForm("ChangeProfileImage", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
                                 {
 
                                     <div class="row">
@@ -39,12 +32,12 @@
                                             @{ var display = Model != null && Model.ImagePath != null ? "display:block" : "display:none";
                                                 var imgPath = Model != null && Model.ImagePath != null ? Model.ImagePath : "";}
                                             <div class="form-group">
-                                                <img src="@imgPath" id="Img" runat="server" style="border: 1px solid #eee3e3; @display;" height="100" width="100" />
+                                                <img src="@imgPath" id="Img" runat="server" style="border: 1px solid #eee3e3; @display;" height="100px" width="100px" />
                                             </div>
                                         </div>
                                     </div>
 
-                                    @Html.HiddenFor(model => model.Id)
+                                    @Html.HiddenFor(model => model.UserId)
                                     @Html.HiddenFor(model => model.ImagePath)
 
                                     <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
