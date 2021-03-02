@@ -125,6 +125,20 @@ var Admin = {
         }
     },
 
+    ChangeProfileImagee: function () {
+
+        if (confirm("Are you sure want to Change  this image?")) {
+            ajax.doPostAjax(`/${adminArea}/${adminController}/ChangeProfileImage`, "", function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    location.reload();
+                }
+            });
+        }
+    },
+
+       
+
 }
 
 

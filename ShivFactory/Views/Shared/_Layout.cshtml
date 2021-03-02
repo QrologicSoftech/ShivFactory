@@ -9,8 +9,8 @@
     var role = repoCookie.GetCookiesValue(CookieName.Role);
 
 }
+<script src="~/Js/Admin.js?ver=@version"></script>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
-
 <style>
     .loader-spinner {
         position: fixed;
@@ -46,13 +46,15 @@
                                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                                     <div class="nav-profile-img">
                                         @*<img src="~/Content/AdminImg/faces-face1.jpg" />*@
-                                        <img src="~/Content/AdminImg/faces-face1.jpg" alt="image"><span class="availability-status online"></span>
+                                        <img id="imgFileUpload" src="~/Content/AdminImg/faces-face1.jpg" alt="image" onclick="Admin.ChangeProfileImagee();"><span class="availability-status online"></span>
+                                        <span id="spnFilePath"></span>
+                                        <input type="file" id="FileUpload1" style="display: none" />
                                     </div>
                                     <div class="nav-profile-text">
                                         <p class="text-black">@UserName</p>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                                <div class="dropdown-menu navbar-dropdown" >
                                     <a class="dropdown-item" href="#">
                                         <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log
                                     </a>
@@ -165,6 +167,8 @@
         @Scripts.Render("~/bundles/toastr")
         @RenderSection("scripts", required: false)
     </div>
+
+   
     <footer class="footer">
         <div class="container">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
@@ -179,7 +183,7 @@
     <script src="~/Content/JS/datatables.net-jquery.dataTables.js?ver=@version"></script>
     <script src="~/Content/JS/datatables.net-bs4-dataTables.bootstrap4.js?ver=@version"></script>
     <link href="~/Content/CSS/datatables.net-bs4-dataTables.bootstrap4.css?ver=@version" rel="stylesheet" />
-    <script src="~/Js/Admin.js?ver=@version"></script>
+
 
     <link rel="stylesheet" href="~/Content/CSS/demo_3-style.css?ver=@version">
     <link href="~/Content/CSS/css-materialdesignicons.min.css?ver=@version" rel="stylesheet" />
@@ -241,7 +245,6 @@
 
 
 
-
     <style type="text/css">
         body {
             margin: 0;
@@ -253,7 +256,7 @@
             display: none;
             top: 0px;
             left: 0px;
-            background-color: black;
+            /* background-color: black;*/
             z-index: 100;
             opacity: 0.8;
             filter: alpha(opacity=60);
@@ -272,7 +275,7 @@
                 height: auto;
                 width: auto;
                 padding: 20px;
-                border: solid 1px black;
+                border: solid 1px #9c9fa6;
             }
 
         .modal-content img {

@@ -26,5 +26,16 @@ namespace ShivFactory.Controllers
 
             return View();
         }
+
+        public ActionResult ChangeProfileImage()
+        {
+            return View(); 
+        }
+
+        [HttpPost]
+        public ActionResult ChangeProfileImagee()
+        {
+            return View(); 
+        }
     }
 }
