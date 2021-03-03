@@ -57,7 +57,7 @@
                                         <i class="mdi mdi-cached mr-2 text-success"></i> Activity Log
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="~/Account/LogOff">
+                                    <a class="dropdown-item" href="~/Home/UserProfile">
                                         <i class="mdi mdi-face-profile mr-2 text-primary"></i> Profile
                                     </a>
                                     <div class="dropdown-divider"></div>
@@ -150,11 +150,12 @@
             @{
                 if (role == UserRoles.Admin)
                 {
-                    Html.RenderPartial(Url.Content("../Home/NavPartialView"));
+                    Html.RenderPartial(Url.Content("../Admin/Home/NavPartialView"));
+                    
                 }
-                else
+                else if(role == UserRoles.Vendor)
                 {
-                    Html.RenderPartial(Url.Content("../Home/NavPartialView"));
+                    Html.RenderPartial(Url.Content("../Vendor/Home/NavPartialView"));
                 }
             }
         </div>
