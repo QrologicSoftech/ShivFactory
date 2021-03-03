@@ -33,7 +33,7 @@ namespace ShivFactory.Business.Repository
                 Product.ZonalShipingCharge = model.ZonalShipingCharge;
                 Product.NationalShippingCharge = model.NationalShippingCharge;
                 Product.StockCount = model.StockCount;
-                Product.MgfDate = model.MgfDate;
+                Product.MgfDate = model.MgfDate != null ? Convert.ToDateTime(model.MgfDate) : Product.MgfDate;
                 Product.MgfDetail = model.MgfDetail;
                 Product.ShellLife = model.ShellLife;
                 Product.ProductWarning = model.ProductWarning;
@@ -79,7 +79,7 @@ namespace ShivFactory.Business.Repository
                     ZonalShipingCharge = model.ZonalShipingCharge,
                     NationalShippingCharge = model.NationalShippingCharge,
                     StockCount = model.StockCount,
-                    MgfDate = model.MgfDate,
+                    MgfDate = model.MgfDate!=null? Convert.ToDateTime(model.MgfDate):new DateTime(),
                     MgfDetail = model.MgfDetail,
                     ShellLife = model.ShellLife,
                     ProductWarning = model.ProductWarning,
@@ -139,7 +139,7 @@ namespace ShivFactory.Business.Repository
                 ZonalShipingCharge = a.ZonalShipingCharge ?? 0,
                 NationalShippingCharge = a.NationalShippingCharge ?? 0,
                 StockCount = a.StockCount ?? 0,
-                MgfDate = a.MgfDate,
+                MgfDate = a.MgfDate.ToString(),
                 MgfDetail = a.MgfDetail,
                 ShellLife = a.ShellLife,
                 ProductWarning = a.ProductWarning,
@@ -176,7 +176,10 @@ namespace ShivFactory.Business.Repository
                 IsReturnable = a.IsReturnable ?? false,
                 ReturnDays = a.ReturnDays
             }).AsNoTracking().FirstOrDefault();
-
+            if(Product!=null&& !string.IsNullOrEmpty(Product.MgfDate))
+            {
+                Product.MgfDate = Product.MgfDate!=null? Convert.ToDateTime(Product.MgfDate).ToString("yyyy-MM-dd"):"";
+            }
             return Product;
 
         }
