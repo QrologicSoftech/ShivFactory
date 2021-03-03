@@ -2,7 +2,6 @@
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
 using ShivFactory.Business.Repository;
-using ShivFactory.Business.Repository.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

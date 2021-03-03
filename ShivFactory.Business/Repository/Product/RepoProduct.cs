@@ -1,7 +1,11 @@
 ﻿using DataLibrary.DL;
+using ShivFactory.Business.Model;
+using ShivFactory.Business.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,48 +69,6 @@ namespace ShivFactory.Business.Repository
             }
             else
             {
-                var product=new Product()
-                {
-                    VendorId = model.VendorId,
-                    ProductName = model.ProductName,
-                    SalePrice = model.SalePrice,
-                    ListPrice = model.ListPrice,
-                    LocalShipingCharge = model.LocalShipingCharge,
-                    ZonalShipingCharge = model.ZonalShipingCharge,
-                    NationalShippingCharge = model.NationalShippingCharge,
-                    StockCount = model.StockCount,
-                    MgfDate = model.MgfDate,
-                    MgfDetail = model.MgfDetail,
-                    ShellLife = model.ShellLife,
-                    ProductWarning = model.ProductWarning,
-                    Description = model.Description,
-                    EstimateDeliveryTime = model.EstimateDeliveryTime,
-                    MainImage = model.MainImage,
-                    Image1 = model.Image1,
-                    Image2 = model.Image2,
-                    Image3 = model.Image3,
-                    Image4 = model.Image4,
-                    Image5 = model.Image5,
-                    Image6 = model.Image6,
-                    BrandId = model.BrandId,
-                    CategoryId = model.CategoryId,
-                    SubCategoryId = model.SubCategoryId,
-                    MiniCategoryId = model.MiniCategoryId,
-                    IsActive = model.IsActive,
-                    ProductLength = model.ProductLength,
-                    ProductWidth = model.ProductWidth,
-                    ProductHeight = model.ProductHeight,
-                    ProductWeight = model.ProductWeight,
-                    PackageLength = model.PackageLength,
-                    PackageWidth = model.PackageWidth,
-                    PackageHeight = model.PackageHeight,
-                    PackageWeight = model.PackageWeight,
-                    ProductColors = model.ProductColors,
-                    ApprovedByAdmin = false,
-                    IsReturnable = model.IsReturnable,
-                    ReturnDays = model.ReturnDays,
-                    AddDate = DateTime.Now
-                };
                 db.Products.Add(new Product
                 {
                     VendorId = model.VendorId,
@@ -158,7 +120,7 @@ namespace ShivFactory.Business.Repository
         #region GetAllProduct
         public List<DataLibrary.DL.Product> GetAllProduct(int? vendorId)
         {
-            return db.Products.Where(a=>a.VendorId==vendorId).AsNoTracking().ToList();
+            return db.Products.Where(a => a.VendorId == vendorId).AsNoTracking().ToList();
         }
         #endregion
 
@@ -221,6 +183,58 @@ namespace ShivFactory.Business.Repository
                 db.Products.Remove(Product);
             }
             return db.SaveChanges() > 0;
+        }
+        #endregion
+
+        #region GetAllProducts
+        public List<ProductResponse> GetAllProducts(int vendorId, PaginationRequest model, out int totalRecords)
+        {
+            var products = new List<ProductResponse>();
+            totalRecords = 0;
+
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@Action", "GetAllProducts"));
+            parameters.Add(new SqlParameter("@SearchText", model.searchText));
+            parameters.Add(new SqlParameter("@Skip", model.Skip));
+            parameters.Add(new SqlParameter("@Take", model.PageSize));
+            parameters.Add(new SqlParameter("@OrderColumn", model.SortColumn));
+            parameters.Add(new SqlParameter("@OrderDir", model.SortDirection));
+            parameters.Add(new SqlParameter("@VendorId", vendorId));
+
+            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, "ManageProduct", parameters.ToArray());
+            if (ds.Tables != null && ds.Tables[0].Rows.Count > 0)
+            {
+                totalRecords = ds.Tables[0].Rows[0]["TotalRow"] != DBNull.Value ? Convert.ToInt32(ds.Tables[0].Rows[0]["TotalRow"].ToString()) : 0;
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    products.Add(new ProductResponse()
+                    {
+                        SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
+                        Id = row["ProductId"] != DBNull.Value ? Convert.ToInt32(row["ProductId"]) : 0,
+                        ImagePath = row["MainImage"] != DBNull.Value ? row["MainImage"].ToString() : "",
+                        ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
+                        SalePrice = row["SalePrice"] != DBNull.Value ? Convert.ToDecimal(row["SalePrice"]) : 0,
+                        ListPrice = row["ListPrice"] != DBNull.Value ? Convert.ToDecimal(row["ListPrice"]) : 0,
+                        LocalShipingCharge = row["LocalShipingCharge"] != DBNull.Value ? Convert.ToDecimal(row["LocalShipingCharge"]) : 0,
+                        ZonalShipingCharge = row["ZonalShipingCharge"] != DBNull.Value ? Convert.ToDecimal(row["ZonalShipingCharge"]) : 0,
+                        NationalShippingCharge = row["NationalShippingCharge"] != DBNull.Value ? Convert.ToDecimal(row["NationalShippingCharge"]) : 0,
+                        StockCount = row["StockCount"] != DBNull.Value ? Convert.ToInt32(row["StockCount"]) : 0,
+                        EstimateDeliveryTime = row["EstimateDeliveryTime"] != DBNull.Value ? row["EstimateDeliveryTime"].ToString() : "",
+                        ReturnDays = row["ReturnDays"] != DBNull.Value ? Convert.ToInt32(row["ReturnDays"]) : 0,
+                        CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
+                        SubCategoryName = row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
+                        BrandName = row["BrandName"] != DBNull.Value ? row["BrandName"].ToString() : "",
+                        IsActive = row["IsActive"] != DBNull.Value ? Convert.ToBoolean(row["IsActive"]) : false,
+                        AddDate = row["AddDate"] != DBNull.Value ? Convert.ToDateTime(row["AddDate"]).ToString("dd/MM/yyyy") : "",
+                        ApprovedByAdmin = row["ApprovedByAdmin"] != DBNull.Value ? Convert.ToBoolean(row["ApprovedByAdmin"]) : false,
+                        InactiveReason = row["InactiveReason"] != DBNull.Value ? row["InactiveReason"].ToString() : ""
+                    });
+                }
+
+            }
+
+            return products;
         }
         #endregion
     }

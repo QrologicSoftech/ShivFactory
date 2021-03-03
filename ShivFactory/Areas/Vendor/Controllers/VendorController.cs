@@ -1,5 +1,4 @@
 ﻿using ShivFactory.Business.Repository;
-using ShivFactory.Business.Repository;
 using ShivFactory.Business.Model;
 using System;
 using System.Collections.Generic;
@@ -38,6 +37,42 @@ namespace ShivFactory.Areas.Vendor.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult LoadProductData()
+        {
+            try
+            {
+                // Initialization.  
+                var search = Request.Form.GetValues("search[value]")[0];
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                //Find Order Column  
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+                // Prepair model  
+                PaginationRequest model = new PaginationRequest()
+                {
+                    searchText = search,
+                    Skip = start != null ? Convert.ToInt32(start) : 0,
+                    PageSize = length != null ? Convert.ToInt32(length) : 0,
+                    SortColumn = sortColumn,
+                    SortDirection = sortColumnDir
+                };
+                int recordsTotal = 0;
+                int venderId = repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
+                RepoProduct repoProduct = new RepoProduct();
+                var productList = repoProduct.GetAllProducts(venderId, model, out recordsTotal);
+
+                return Json(new { data = productList, draw = draw, recordsFiltered = productList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         public ActionResult ProductPartialView()
         {
             try
@@ -152,24 +187,27 @@ namespace ShivFactory.Areas.Vendor.Controllers
 
         public ActionResult DeleteProduct(int id)
         {
+
             try
             {
                 RepoProduct repoProduct = new RepoProduct();
                 var isDelete = repoProduct.DeleteProductByProductId(id);
-                if (isDelete)
+
+                return Json(new ResultModel
                 {
-                    TempData["SuccessMessage"] = "Product deleted successfully!!";
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Failled to delete Product";
-                }
-                return RedirectToAction("Product", "Vendor");
+                    ResultFlag = isDelete,
+                    Data = null,
+                    Message = isDelete ? "Product deleted successfully!!" : "Failled to delete product."
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = ex.Message;
-                return RedirectToAction("Product", "Vendor");
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 

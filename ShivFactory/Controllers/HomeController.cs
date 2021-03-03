@@ -3,7 +3,6 @@ using ShivFactory.Business.Model;
 using ShivFactory.Business.Model.Common;
 using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.ChangeProfileImage;
-using ShivFactory.Business.Repository.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -124,6 +124,7 @@
     <Compile Include="Repository\MiniCategory\MiniCategoryResponse.cs" />
     <Compile Include="Repository\MiniCategory\RepoMinicategory.cs" />
     <Compile Include="Repository\Product\ProductModel.cs" />
+    <Compile Include="Repository\Product\ProductResponse.cs" />
     <Compile Include="Repository\Product\RepoProduct.cs" />
     <Compile Include="Repository\Profile\UserProfile.cs" />
     <Compile Include="Repository\Profile\RepoProfile.cs" />
