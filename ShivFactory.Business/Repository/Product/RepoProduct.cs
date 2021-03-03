@@ -65,15 +65,48 @@ namespace ShivFactory.Business.Repository
             }
             else
             {
-                if (!(model.imgPathList == null))
+                var product=new Product()
                 {
-                    model.Image1 = model.imgPathList[0];
-                    model.Image2 = model.imgPathList[1];
-                    model.Image3 = model.imgPathList[2];
-                    model.Image4 = model.imgPathList[3];
-                    model.Image5 = model.imgPathList[4];
-                    model.Image6 = model.imgPathList[5];
-                }
+                    VendorId = model.VendorId,
+                    ProductName = model.ProductName,
+                    SalePrice = model.SalePrice,
+                    ListPrice = model.ListPrice,
+                    LocalShipingCharge = model.LocalShipingCharge,
+                    ZonalShipingCharge = model.ZonalShipingCharge,
+                    NationalShippingCharge = model.NationalShippingCharge,
+                    StockCount = model.StockCount,
+                    MgfDate = model.MgfDate,
+                    MgfDetail = model.MgfDetail,
+                    ShellLife = model.ShellLife,
+                    ProductWarning = model.ProductWarning,
+                    Description = model.Description,
+                    EstimateDeliveryTime = model.EstimateDeliveryTime,
+                    MainImage = model.MainImage,
+                    Image1 = model.Image1,
+                    Image2 = model.Image2,
+                    Image3 = model.Image3,
+                    Image4 = model.Image4,
+                    Image5 = model.Image5,
+                    Image6 = model.Image6,
+                    BrandId = model.BrandId,
+                    CategoryId = model.CategoryId,
+                    SubCategoryId = model.SubCategoryId,
+                    MiniCategoryId = model.MiniCategoryId,
+                    IsActive = model.IsActive,
+                    ProductLength = model.ProductLength,
+                    ProductWidth = model.ProductWidth,
+                    ProductHeight = model.ProductHeight,
+                    ProductWeight = model.ProductWeight,
+                    PackageLength = model.PackageLength,
+                    PackageWidth = model.PackageWidth,
+                    PackageHeight = model.PackageHeight,
+                    PackageWeight = model.PackageWeight,
+                    ProductColors = model.ProductColors,
+                    ApprovedByAdmin = false,
+                    IsReturnable = model.IsReturnable,
+                    ReturnDays = model.ReturnDays,
+                    AddDate = DateTime.Now
+                };
                 db.Products.Add(new Product
                 {
                     VendorId = model.VendorId,
