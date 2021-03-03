@@ -12,25 +12,10 @@
     var role = repoCookie.GetCookiesValue(CookieName.Role);
 
     Utility util = new Utility();
-    RepoUser repoUser = new RepoUser();
-    RepoCommon rc = new RepoCommon();
-    var UserImage = "";
-    string UserId = util.GetCurrentUserId();
-    UserDetail userDetail = repoUser.GetUserDetailsBYUserId(UserId);
-    if (userDetail != null && userDetail.UserImage.Length > 0)
-    {
-        //bool exist = rc.checkfile(userDetail.UserImage);
-        //if (exist)
-        //{
-        //    UserImage = userDetail.UserImage;
-        //}
-        //else {
-        //    UserImage = ""; // 
-        //}
-    }
+    RepoUser repoUser = new RepoUser(); 
+    var UserImage = repoUser.GetUserImage(util.GetCurrentUserId());
 
 }
-<script src="~/Js/Admin.js?ver=@version"></script>
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <style>
     .loader-spinner {
@@ -67,7 +52,7 @@
                                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                                     <div class="nav-profile-img">
                                         @*<img src="~/Content/AdminImg/faces-face1.jpg" />*@
-                                        <img id="imgFileUpload" src="~/Content/AdminImg/faces-face1.jpg" alt="image" onclick="Admin.ChangeProfileImagee();"><span class="availability-status online"></span>
+                                        <img id="imgFileUpload" src="@UserImage" alt="image" onclick="Admin.ChangeProfileImagee();"><span class="availability-status online"></span>
                                     </div>
                                     <div class="nav-profile-text">
                                         <p class="text-black">@UserName</p>
@@ -221,6 +206,8 @@
     <script src="~/Content/JS/Global.js?ver=@version"></script>
     <script src="~/Content/JS/CommonFunction.js?ver=@version"></script>
     <script src="~/Content/JS/Common.js?ver=@version"></script>
+    <script src="~/Js/Vendor.js?ver=@version"></script>
+    <script src="~/Js/Admin.js?ver=@version"></script>
 
     @*Showing toaster message*@
     <script src="~/Scripts/toastr.js?ver=@version"></script>
@@ -240,7 +227,7 @@
 
     <div id="Modal">
         <div id="modal-content">
-            
+
 
         </div>
     </div>

@@ -44,7 +44,7 @@ namespace ShivFactory.Business.Repository
         }
         #endregion
 
-        #region Get UserDetails by UserId
+        #region update UserImage by UserId
         public bool UpdateUserImage(UserProfileImage model)
         {
             var user = db.UserDetails.Where(a => a.UserId == model.UserId).FirstOrDefault();
@@ -60,5 +60,14 @@ namespace ShivFactory.Business.Repository
         }
         #endregion
 
+        #region
+        public string GetUserImage(string userId)
+        {
+            var image = db.UserDetails.Where(a => a.UserId == userId).Select(a => a.UserImage).FirstOrDefault();
+            RepoCommon repoCommon = new RepoCommon();
+            return  repoCommon.checkfile(image);
+           
+        }
+        #endregion
     }
 }
