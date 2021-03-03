@@ -71,19 +71,22 @@ namespace ShivFactory.Controllers
 
         public ActionResult UserProfile()
         {
-            UserProfile model = new UserProfile();
+         
             Utility util = new Utility();
-            model.UserId = util.GetCurrentUserId();
-            RepoCommon rc = new RepoCommon();
-            RepoUser ru = new RepoUser();
-            UserDetail userDetail = ru.GetUserDetailsBYUserId(model.UserId);
-            return View(); 
+            RepoProfile repoProfile = new RepoProfile();
+            var  userDetail = repoProfile.GetUserDetailsBYUserId(util.GetCurrentUserId());
+            return View(userDetail); 
         }
 
         [HttpPost]
         public ActionResult UserProfile(UserProfile model)
         {
             return View();
+        }
+
+        public ActionResult AccountDetails()
+        {
+            return View(); 
         }
     }
 }

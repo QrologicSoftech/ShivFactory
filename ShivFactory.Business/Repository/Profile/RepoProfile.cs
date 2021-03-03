@@ -14,10 +14,16 @@ namespace ShivFactory.Business.Repository
         #endregion
 
         #region Get UserDetails by UserId
-        public UserDetail GetUserDetailsBYUserId(string userId)
+        public UserProfile GetUserDetailsBYUserId(string userId)
         {
             var user = db.UserDetails.Where(a => a.UserId == userId).FirstOrDefault();
-            return user;
+            var userProfileResonse = new UserProfile {
+                UserId = user.UserId,
+                FirstName = user.FirstName,
+                LastName = user.LastName
+                }; 
+
+            return userProfileResonse;
         }
         #endregion
     }

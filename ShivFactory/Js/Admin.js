@@ -128,12 +128,7 @@ var Admin = {
     ChangeProfileImagee: function () {
 
         if (confirm("Are you sure want to Change  this image?")) {
-            $("#Modal").show();
-            common.ShowLoader('#Modal');
-            ajax.doGetAjax(`/Home/ChangeProfileImage`, function (result) {
-                common.HideLoader('#Modal');
-                $('#Modal').children('#modal-content').html(result);
-            });
+                location.href("/Home/ChangeProfileImage"); 
         }
     },
 
