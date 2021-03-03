@@ -104,7 +104,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 if (id > 0)
                 {
                     RepoProduct repoProduct = new RepoProduct();
-                    var Product = repoProduct.GetProductByProductId(id.Value);
+                    var Product = repoProduct.GetProductByProductId(Convert.ToInt32(id));
                     return View(Product);
                 }
 
@@ -146,24 +146,41 @@ namespace ShivFactory.Areas.Vendor.Controllers
                     ModelState.AddModelError("PostedFile", "Please upload Product Image.");
                     return View(model);
                 }
+                int index = 0;
+                bool isReturn = false;
+                foreach (var image in model.files)
+                {
+                    if (image == null && model.ProductId == 0)
+                    {
+                        isReturn = true;
+                        ModelState.AddModelError($"Image{index + 1}", "Please upload Product Image.");
+                    }
+                    index++;
+                }
+                if (isReturn) { return View(model); }
+
                 RepoCommon common = new RepoCommon();
                 if (postedfile != null)
                 {
                     model.MainImage = common.SaveImage(postedfile);
                 }
-                int index = 0;
+
+                index = 0;
                 foreach (var file in model.files)
                 {
-                    string imagePath = common.SaveImage(file);
-                    if (index == 0) { model.Image1 = imagePath; }
-                    else if (index == 1) { model.Image2 = imagePath; }
-                    else if (index == 2) { model.Image3 = imagePath; }
-                    else if (index == 3) { model.Image4 = imagePath; }
-                    else if (index == 4) { model.Image5 = imagePath; }
-                    else if (index == 5) { model.Image6 = imagePath; }
+                    if (file != null)
+                    {
+                        string imagePath = common.SaveImage(file);
+                        if (index == 0) { model.Image1 = imagePath; }
+                        else if (index == 1) { model.Image2 = imagePath; }
+                        else if (index == 2) { model.Image3 = imagePath; }
+                        else if (index == 3) { model.Image4 = imagePath; }
+                        else if (index == 4) { model.Image5 = imagePath; }
+                        else if (index == 5) { model.Image6 = imagePath; }
+                    }
                     index++;
                 }
-                
+
                 RepoProduct repoProduct = new RepoProduct();
                 var isSaved = repoProduct.AddOrUpdateProduct(model);
 

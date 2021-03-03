@@ -26,7 +26,7 @@ namespace ShivFactory.Business.Repository
         public decimal NationalShippingCharge { get; set; }
         [Required(ErrorMessage = "Stock required"), Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int StockCount { get; set; }
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-MMM-yyyy}")]
         public DateTime? MgfDate { get; set; }
         [MaxLength(100, ErrorMessage = "Field cannot be longer than 100 characters.")]
         public string MgfDetail { get; set; }
@@ -46,7 +46,7 @@ namespace ShivFactory.Business.Repository
         public string Image4 { get; set; }
         public string Image5 { get; set; }
         public string Image6 { get; set; }
-        [Required(ErrorMessage = "Please select Brand!")]
+        //[Required(ErrorMessage = "Please select Brand!")]
         public int? BrandId { get; set; }
         [Required(ErrorMessage = "Please select Category!")]
         public int? CategoryId { get; set; }

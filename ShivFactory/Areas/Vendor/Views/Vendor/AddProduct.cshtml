@@ -453,7 +453,7 @@
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
                                                     @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview1')" })
-                                                    @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    @Html.ValidationMessageFor(model => model.Image1, "", new { @class = "text-danger" })
                                                 </div>
 
                                                 <div class="form-group">
@@ -468,7 +468,7 @@
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
                                                     @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview2')" })
-                                                    @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    @Html.ValidationMessageFor(model => model.Image2, "", new { @class = "text-danger" })
                                                 </div>
 
                                                 <div class="form-group">
@@ -488,12 +488,12 @@
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
                                                     @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview3')" })
-                                                    @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    @Html.ValidationMessageFor(model => model.Image3, "", new { @class = "text-danger" })
                                                 </div>
                                                 <div class="form-group">
                                                     @{ var display3 = Model != null && Model.Image3 != null ? "display:block" : "display:none";
                                                         var img3Path = Model != null && Model.Image3 != null ? Model.Image3 : "";}
-                                                    <img id="imagePreview3" class="img-preview img-preview-sm img-thumbnail" style="@display3" />
+                                                    <img id="imagePreview3" src="@img3Path" class="img-preview img-preview-sm img-thumbnail" style="@display3" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-sm-4">
@@ -503,14 +503,14 @@
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
                                                     @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview4')" })
-                                                    @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    @Html.ValidationMessageFor(model => model.Image4, "", new { @class = "text-danger" })
                                                 </div>
 
 
                                                 <div class="form-group">
                                                     @{ var display4 = Model != null && Model.Image4 != null ? "display:block" : "display:none";
                                                         var img4Path = Model != null && Model.Image4 != null ? Model.Image4 : "";}
-                                                    <img id="imagePreview4" class="img-preview img-preview-sm img-thumbnail" style="@display4" />
+                                                    <img id="imagePreview4" src="@img4Path" class="img-preview img-preview-sm img-thumbnail" style="@display4" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-sm-4">
@@ -520,13 +520,13 @@
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
                                                     @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview5')" })
-                                                    @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    @Html.ValidationMessageFor(model => model.Image5, "", new { @class = "text-danger" })
                                                 </div>
 
                                                 <div class="form-group">
                                                     @{ var display5 = Model != null && Model.Image5 != null ? "display:block" : "display:none";
                                                         var img5Path = Model != null && Model.Image5 != null ? Model.Image5 : "";}
-                                                    <img id="imagePreview5" class="img-preview img-preview-sm img-thumbnail" style="@display5" />
+                                                    <img id="imagePreview5" src="@img5Path" class="img-preview img-preview-sm img-thumbnail" style="@display5" />
                                                 </div>
                                             </div>
 
@@ -545,7 +545,7 @@
                                     </div>
 
                                     <div class="clearfix"></div>
-                                    <input name="DueDate" type="date" id="datepicker" class="form-control" />
+                                   
                                 </div>
                                     }
                                 </section>
