@@ -50,6 +50,8 @@ namespace ShivFactory.Business.Repository
             var user = db.UserDetails.Where(a => a.UserId == model.UserId).FirstOrDefault();
             if (user != null)
             {
+                RepoCommon rc = new RepoCommon();
+                bool delete = rc.deletefile(user.UserImage);
                 user.UserImage = model.ImagePath; 
                 user.LastUpdate = DateTime.Now;
             }

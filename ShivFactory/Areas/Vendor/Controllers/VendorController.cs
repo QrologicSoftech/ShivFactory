@@ -1,5 +1,5 @@
 ﻿using ShivFactory.Business.Repository;
-using ShivFactory.Business.Repository.Common;
+using ShivFactory.Business.Repository;
 using ShivFactory.Business.Model;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Web.Hosting;
 using System.Web.Mvc;
+using ShivFactory.Business.Model.Common;
 
 namespace ShivFactory.Areas.Vendor.Controllers
 {

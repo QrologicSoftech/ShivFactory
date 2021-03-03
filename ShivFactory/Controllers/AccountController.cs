@@ -677,6 +677,7 @@ namespace ShivFactory.Controllers
                                 EmailId = userDetails.Email,
                                 Address = userDetails.Address,
                                 Mobile = userDetails.Mobile
+                                
                             };
 
                             // add authontication

@@ -130,9 +130,9 @@ var Admin = {
         if (confirm("Are you sure want to Change  this image?")) {
             $("#Modal").show();
             common.ShowLoader('#Modal');
-            ajax.doPostAjax(`/Home/ChangeProfileImage`, "", function (result) {
+            ajax.doGetAjax(`/Home/ChangeProfileImage`, function (result) {
                 common.HideLoader('#Modal');
-                $('#Modal').children('.modal-content').html(result);
+                $('#Modal').children('#modal-content').html(result);
             });
         }
     },

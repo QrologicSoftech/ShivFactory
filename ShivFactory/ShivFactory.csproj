@@ -172,8 +172,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
-    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Vendor\Controllers\HomeController.cs" />
     <Compile Include="Areas\Vendor\Controllers\VendorController.cs" />
     <Compile Include="Areas\Vendor\VendorAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />

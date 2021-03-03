@@ -7,15 +7,22 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 
-namespace ShivFactory.Business.Repository.Common
+namespace ShivFactory.Business.Repository
 {
     public class RepoCommon
     {
+
+        public string GetTimestamp(DateTime value)
+        {
+            return value.ToString("yyyyMMddHHmmssffff");
+        }
+
         public string SaveImage(HttpPostedFileBase PostedFile)
         {
             string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
             string fullPath = HttpContext.Current.Server.MapPath(path);
-            Guid guid = Guid.NewGuid();
+         
+            string guid = DateTime.Now.ToString("yyyyMMddHHmmssffff");
             string filename = guid + Path.GetFileName(PostedFile.FileName);
             PostedFile.SaveAs(fullPath + filename);
             return path + filename;
@@ -30,7 +37,8 @@ namespace ShivFactory.Business.Repository.Common
             {
                 if (file != null)
                 {
-                    Guid guid = Guid.NewGuid();
+                    //Guid guid = Guid.NewGuid();
+                    string guid = DateTime.Now.ToString("yyyyMMddHHmmssffff");
                     string filename = guid + Path.GetFileName(file.FileName);
                     file.SaveAs(fullPath + filename);
                     string folderpath = path + filename;
@@ -41,20 +49,26 @@ namespace ShivFactory.Business.Repository.Common
             return imagePathlist;
         }
 
-        public bool checkfile(string userimgpath)
+        public string  checkfile(string userimgpath)
         {
             try
             {
-            //find and  delete image 
-            if (!System.IO.File.Exists(userimgpath))
-            {
-                return false;
-            }
-            return true;
+                string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
+                string fullPath = HttpContext.Current.Server.MapPath(path);
+                string[] image = userimgpath.Split('/');
+                //find and  delete image 
+                if (System.IO.File.Exists(fullPath+image[3]))
+                {
+                    return userimgpath;
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
             catch (Exception e)
             {
-                return false;
+                return string.Empty;  ;
             }
         }
 
@@ -62,11 +76,11 @@ namespace ShivFactory.Business.Repository.Common
         {
             try
             {
-                //string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
-                //string fullPath = HttpContext.Current.Server.MapPath(path);
-                //find and  delete image 
+                string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
+                string fullPath = HttpContext.Current.Server.MapPath(path);
+                string[] image = userimgpath.Split('/');
 
-                System.IO.File.Delete(userimgpath);
+                System.IO.File.Delete(fullPath+image);
                     return true;
                 }
             catch(Exception e)

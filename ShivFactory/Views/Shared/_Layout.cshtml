@@ -1,12 +1,33 @@
 ﻿@using ShivFactory.Business.Repository;
 @using ShivFactory.Business.Models.Other;
+@using ShivFactory.Business.Model.Common
+@using DataLibrary.DL;
 @using System.Configuration;
+
 @{
     Layout = null;
     RepoCookie repoCookie = new RepoCookie();
     var UserName = repoCookie.GetCookiesValue(CookieName.FirstName) + " " + repoCookie.GetCookiesValue(CookieName.LastName);
     var version = ConfigurationManager.AppSettings["jsversion"].ToString();
     var role = repoCookie.GetCookiesValue(CookieName.Role);
+
+    Utility util = new Utility();
+    RepoUser repoUser = new RepoUser();
+    RepoCommon rc = new RepoCommon();
+    var UserImage = "";
+    string UserId = util.GetCurrentUserId();
+    UserDetail userDetail = repoUser.GetUserDetailsBYUserId(UserId);
+    if (userDetail != null && userDetail.UserImage.Length > 0)
+    {
+        //bool exist = rc.checkfile(userDetail.UserImage);
+        //if (exist)
+        //{
+        //    UserImage = userDetail.UserImage;
+        //}
+        //else {
+        //    UserImage = ""; // 
+        //}
+    }
 
 }
 <script src="~/Js/Admin.js?ver=@version"></script>
@@ -150,12 +171,11 @@
             @{
                 if (role == UserRoles.Admin)
                 {
-                    Html.RenderPartial(Url.Content("../Admin/Home/NavPartialView"));
-                    
+                    Html.RenderPartial("~/Areas/Admin/Views/Home/NavPartialView.cshtml");
                 }
-                else if(role == UserRoles.Vendor)
+                else if (role == UserRoles.Vendor)
                 {
-                    Html.RenderPartial(Url.Content("../Vendor/Home/NavPartialView"));
+                    Html.RenderPartial("~/Areas/Admin/Views/Home/NavPartialView.cshtml");
                 }
             }
         </div>
@@ -218,17 +238,10 @@
     }
 
 
+    <div id="Modal">
+        <div id="modal-content">
+            Hello
 
-
-
-
-
-  
-
-    <div id="Modal" class="Imagemodal">
-        <div class="modal-content">
-          
-          
         </div>
     </div>
 
@@ -278,7 +291,7 @@
                 z-index: 1000;
                 position: fixed;
                 background-color: White;
-                height: auto;
+                min-height: auto;
                 width: auto;
                 padding: 20px;
                 border: solid 1px #9c9fa6;
@@ -287,7 +300,7 @@
         .modal-content img {
             display: block;
             height: auto;
-            width: 100%;
+            width: auto;
             max-height: 450px;
         }
     </style>

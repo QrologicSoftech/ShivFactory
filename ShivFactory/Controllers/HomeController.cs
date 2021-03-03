@@ -1,5 +1,6 @@
 ﻿using DataLibrary.DL;
 using ShivFactory.Business.Model;
+using ShivFactory.Business.Model.Common;
 using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.ChangeProfileImage;
 using ShivFactory.Business.Repository.Common;
@@ -33,36 +34,40 @@ namespace ShivFactory.Controllers
             return View();
         }
 
-        [AllowAnonymous]
         public ActionResult ChangeProfileImage()
         {
             UserProfileImage model = new UserProfileImage(); 
             Utility util = new Utility();
-          model.UserId = util.GetCurrentUserId();
-            return View(model); 
+
+            model.UserId = util.GetCurrentUserId();
+            RepoUser ru = new RepoUser();
+            UserDetail userDetail = ru.GetUserDetailsBYUserId(model.UserId);
+            if (userDetail != null)
+            {
+                model.ImagePath = userDetail.UserImage; 
+               
+            }
+            return View(model);
         }
 
         [HttpPost]
         public ActionResult ChangeProfileImage(UserProfileImage model)
         {
-            RepoCommon rc = new RepoCommon();
-            RepoUser ru = new RepoUser();
-            UserDetail userDetail = ru.GetUserDetailsBYUserId(model.UserId);
-            if (userDetail != null && userDetail.UserImage.Length > 0)
+            if (!ModelState.IsValid)
             {
-                bool exist = rc.checkfile(userDetail.UserImage);
-                if (exist)
-                {
-                    bool delete = rc.deletefile(userDetail.UserImage);
-                }
+                return View(model);
+            }
+            else
+            {
+                RepoCommon repoCommon = new RepoCommon();
+                RepoUser repoUser = new RepoUser();
+                // save new img
+                model.ImagePath = repoCommon.SaveImage(model.PostedFile);
+                bool update = repoUser.UpdateUserImage(model);
+                TempData["SuccessMessage"] = "Profile Image Updated Successfully";
+                return View();
             }
             
-                // save new img
-                model.ImagePath =   rc.SaveImage(model.PostedFile);
-                bool update = ru.UpdateUserImage(model); 
-                TempData["SuccessMessage"] = "Profile Image Updated Successfully";
-            
-            return View(); 
         }
 
         public ActionResult UserProfile()

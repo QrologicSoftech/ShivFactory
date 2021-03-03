@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShivFactory.Business.Model
+namespace ShivFactory.Business.Model.Common
 {
     public class Utility
     {
