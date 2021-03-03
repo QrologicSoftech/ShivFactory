@@ -890,5 +890,11 @@ namespace ShivFactory.Controllers
             return View(model);
         }
         #endregion
+
+        [AllowAnonymous]
+        public ActionResult SignUp()
+        {
+            return View();
+        }
     }
 }

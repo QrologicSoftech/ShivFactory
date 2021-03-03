@@ -275,8 +275,11 @@
     <Content Include="bin\System.Web.WebPages.dll" />
     <Content Include="bin\System.Web.WebPages.Razor.dll" />
     <Content Include="bin\WebGrease.dll" />
+    <Content Include="Content\AdminImg\bank-account.png" />
     <Content Include="Content\AdminImg\dashboard-circle.svg" />
     <Content Include="Content\AdminImg\faces-face1.jpg" />
+    <Content Include="Content\AdminImg\gstin.png" />
+    <Content Include="Content\AdminImg\products-sell.png" />
     <Content Include="Content\AdminImg\shiv  factory logo.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -473,6 +476,7 @@
     <Content Include="Views\Account\RegisterVendor.cshtml" />
     <Content Include="Views\Home\ChangeProfileImage.cshtml" />
     <Content Include="Views\Home\UserProfile.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

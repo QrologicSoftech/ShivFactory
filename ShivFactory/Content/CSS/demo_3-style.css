@@ -2672,7 +2672,7 @@ optgroup,
 textarea {
     margin: 0;
     font-family: inherit;
-    font-size: inherit;
+    /*font-size: inherit;*/
     line-height: inherit;
 }
 
@@ -27722,3 +27722,462 @@ footer {
     margin: 0 2px;
     font-size: 10px;
 }
+/*////////////////////////////////manoj Sir work////////////////////////////*/
+
+.header-logo {
+    height: 60px;
+    width: 100%;
+    background-color: #fff;
+}
+
+    .header-logo img {
+        height: 60px;
+        margin: 8px 0px 11px 10px;
+    }
+
+.header-text {
+    overflow-y: auto;
+    background: linear-gradient(rgb(0, 120, 212) 0%, rgba(0, 120, 212, 0.9) 100%);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.text-box {
+    display: flex;
+    flex-direction: row;
+    padding: 60px 10%;
+}
+
+.box-divicon {
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 35px 71px 50px 70px;
+    border-radius: 5px;
+    min-width: 474px;
+    box-shadow: rgb(34 34 34 / 30%) 0px 3px 5px -1px, rgb(34 34 34 / 30%) 0px 6px 10px 0px, rgb(34 34 34 / 30%) 0px 1px 18px
+}
+
+    .box-divicon h3 {
+        height: 36px;
+        color: rgb(34, 34, 34);
+        font-size: 26px;
+        white-space: nowrap;
+        margin-bottom: 30px;
+    }
+
+.input-text {
+    position: relative;
+}
+
+    .input-text .labelbtn {
+        position: absolute;
+        cursor: default;
+        height: 30px;
+        border: 1px solid transparent;
+        background-color: transparent;
+        color: rgb(99, 99, 99);
+    }
+
+    .input-text .wrapper-1 {
+        margin: 10px;
+        overflow: visible;
+        text-align: unset;
+    }
+
+    .input-text .input-btom {
+        margin-bottom: 20px;
+    }
+
+    .input-text .wrapper-1 .gezlls-1 {
+        height: 30px;
+        width: 100%;
+        padding: 0px 8px 2px;
+        box-sizing: border-box;
+        border-radius: 2px;
+        color: rgb(99, 99, 99);
+        border: 1px solid rgb(223, 225, 229);
+        background-color: rgb(255, 255, 255);
+    }
+
+    .input-text input {
+        height: 35px;
+    }
+
+    .input-text form {
+        margin-left: -9px;
+        margin-right: -11px;
+        color: rgb(34, 34, 34);
+    }
+
+.ijsebp-1 .eyu {
+    padding-left: 8px;
+    padding-right: 9px;
+    height: 30px;
+    border-radius: 2px;
+    cursor: pointer;
+    min-width: 90px;
+    white-space: nowrap;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(51, 146, 243);
+    background-color: rgb(51, 146, 243);
+}
+
+    .ijsebp-1 .eyu:disabled, .eyu[disabled] {
+        cursor: not-allowed;
+    }
+
+    .ijsebp-1 .eyu:disabled, .eyu[disabled] {
+        background-clip: padding-box;
+        color: rgba(141, 141, 141, 0.9);
+        border-color: rgba(51, 146, 243, 0.3);
+        background-color: rgba(51, 146, 243, 0.3);
+    }
+
+.ijsebp-1 .showbtn {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 35px;
+    border-width: 0px 0px 0px 1px;
+    border-top-style: initial;
+    border-right-style: initial;
+    border-bottom-style: initial;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-image: initial;
+    border-left-style: solid;
+    border-left-color: rgb(223, 225, 229);
+    background-color: transparent;
+    padding: 8px 13px 9px 12px;
+    color: rgb(51, 146, 243);
+}
+
+    .ijsebp-1 .showbtn:disabled {
+        color: rgb(141, 141, 141);
+    }
+
+
+
+
+
+
+
+
+
+
+.jazogj {
+    overflow-y: auto;
+    background: linear-gradient(rgb(77 77 77) 0%, rgb(77 77 77) 100%);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.kyojis {
+    display: flex;
+    flex-direction: row;
+    padding: 60px 10%;
+}
+
+.fckjvf {
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    padding: 35px 71px 50px 70px;
+    border-radius: 5px;
+    min-width: 474px;
+    box-shadow: rgb(34 34 34 / 30%) 0px 3px 5px -1px, rgb(34 34 34 / 30%) 0px 6px 10px 0px, rgb(34 34 34 / 30%) 0px 1px 18px 0px;
+}
+
+.gliaon {
+    height: 36px;
+    color: rgb(34, 34, 34);
+    font-size: 26px;
+    font-weight: 600;
+    white-space: nowrap;
+    margin-bottom: 30px;
+}
+
+.craeze {
+    position: relative;
+}
+
+.foxupi .labelbtn {
+    position: absolute;
+    cursor: default;
+    height: 35px;
+    border: 1px solid transparent;
+    background-color: transparent;
+    color: rgb(99, 99, 99);
+}
+
+.foxupi form {
+    margin-left: -9px;
+    margin-right: -11px;
+    color: rgb(34, 34, 34);
+}
+
+.ijsebp {
+    margin: 10px;
+    overflow: visible;
+    text-align: unset;
+}
+
+.foxupi .wrapper {
+    margin-bottom: 20px;
+}
+
+.gezlls {
+    height: 30px;
+    width: 100%;
+    padding: 0px 8px 2px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    color: rgb(99, 99, 99);
+    border: 1px solid #ddd;
+    background-color: rgb(255, 255, 255);
+    max-width: 100%;
+}
+
+.foxupi input {
+    height: 35px;
+    border: 1px solid #ddd;
+}
+
+.eazyuu {
+    padding-left: 8px;
+    padding-right: 9px;
+    height: 30px;
+    border-radius: 2px;
+    cursor: pointer;
+    min-width: 90px;
+    white-space: nowrap;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(51, 146, 243);
+    background-color: rgb(51, 146, 243);
+}
+    /*button[disabled], html input[disabled] {
+    cursor: default;
+}*/
+
+    /*.eazyuu:disabled, .eazyuu[disabled] {
+    cursor: not-allowed;
+}*/
+    .eazyuu:disabled, .eazyuu[disabled] {
+        background-clip: padding-box;
+        color: rgba(141, 141, 141, 0.9);
+        border-color: rgba(51, 146, 243, 0.3);
+        background-color: rgba(51, 146, 243, 0.3);
+    }
+
+.foxupi .showbtn {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 35px;
+    border-width: 0px 0px 0px 1px;
+    border-top-style: initial;
+    border-right-style: initial;
+    border-bottom-style: initial;
+    border-top-color: initial;
+    border-right-color: initial;
+    border-bottom-color: initial;
+    border-image: initial;
+    border-left-style: solid;
+    border-left-color: rgb(223, 225, 229);
+    background-color: transparent;
+    padding: 8px 13px 9px 12px;
+    color: rgb(51, 146, 243);
+}
+
+    .foxupi .showbtn:disabled {
+        color: rgb(141, 141, 141);
+    }
+
+.myzbk {
+    color: rgb(255, 123, 123);
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.foxupi .wrapper .form-error {
+    color: rgb(255, 97, 89);
+}
+
+.craeze {
+    position: relative;
+}
+/*.sc-fzqaui {
+    margin: 20px 0px;
+}*/
+
+/* Chrome, Safari, Edge, Opera */
+.sc-fzoxkx input::-webkit-outer-spin-button,
+.sc-fzoxkx input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.sc-fzoxkx input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.eogdzk {
+    color: rgb(141, 141, 141);
+    font-size: 11px;
+    line-height: 15px;
+    width: 100%;
+}
+
+.enzijk {
+    display: inline-block;
+    border-radius: 2px;
+    text-decoration: none;
+    white-space: nowrap;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    min-width: 15px;
+    height: 15px;
+    color: rgb(51, 146, 243);
+    border: none;
+    background: transparent;
+}
+
+.foxupi .save {
+    width: 100%;
+    white-space: nowrap;
+    color: rgb(255, 255, 255);
+    background-color: rgb(51, 146, 243);
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 16px;
+    border-radius: 2px;
+    border-color: rgb(51, 146, 243);
+}
+
+    .foxupi .save:disabled {
+        opacity: 0.5;
+    }
+
+.jhqzjv {
+    margin-top: 10px;
+}
+
+.eogdzk {
+    color: rgb(141, 141, 141);
+    font-size: 11px;
+    line-height: 15px;
+    width: 100%;
+}
+
+
+
+.hctkjm {
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    height: 100%;
+    color: rgb(255, 255, 255);
+    margin-left: 10%;
+}
+
+.knkljw {
+    height: 60px;
+    width: 514px;
+    font-size: 22px;
+    line-height: 30px;
+}
+
+.hfpotr {
+    margin: 30px 0px 15px;
+    height: 20px;
+    width: 400px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.jxqfab {
+    width: 100%;
+    position: relative;
+    float: left;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.gxatj {
+    margin: 0px 30px;
+    text-align: center;
+    float: left;
+}
+
+    .gxatj div {
+        height: 20px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 18px;
+        text-align: center;
+    }
+
+    .gxatj .gstin-label {
+        padding: 17px 0px;
+    }
+
+.himzko {
+    float: left;
+    box-sizing: border-box;
+    height: 70px;
+    opacity: 0.5;
+    border: 0.5px solid rgb(255, 255, 255);
+}
+
+.bivoqy {
+    height: 17px;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    line-height: 24px;
+    display: inline-block;
+}
+
+.ctzjfv {
+    margin: 30px 0px 12px;
+    opacity: 0.5;
+    box-sizing: border-box;
+    border: 0.5px solid rgb(255, 255, 255);
+}
+
+.hfpotr {
+    margin: 30px 0px 15px;
+    height: 20px;
+    width: 400px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.hculgs {
+    margin: 0px 0px 10px;
+    width: 100%;
+}
+
+.fzqonm {
+    color: rgb(255, 97, 89);
+    font-size: 11px;
+    margin: 5px 0px 10px;
+}
+
+.sc-fzoyhe.gxatj .imp-icon {
+    width: 100px;
+}
+
+    .sc-fzoyhe.gxatj .imp-icon img {
+        width: 50%;
+    }
