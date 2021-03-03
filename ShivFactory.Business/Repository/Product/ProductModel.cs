@@ -24,8 +24,9 @@ namespace ShivFactory.Business.Repository
         public decimal ZonalShipingCharge { get; set; }
         [Required(ErrorMessage = "National Shiping Charge required"), DataType(DataType.Currency, ErrorMessage = "National Shiping Charge is a decimal value.")]
         public decimal NationalShippingCharge { get; set; }
-        [Required(ErrorMessage = "Stock required"), DataType(DataType.Custom, ErrorMessage = "Stock is a number,minimum value is 0.")]
+        [Required(ErrorMessage = "Stock required"), Range(0, int.MaxValue, ErrorMessage = "Please enter valid integer Number")]
         public int StockCount { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MMM/yyyy}")]
         public DateTime? MgfDate { get; set; }
         [MaxLength(100, ErrorMessage = "Field cannot be longer than 100 characters.")]
         public string MgfDetail { get; set; }

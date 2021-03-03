@@ -21,10 +21,16 @@
                                             <a href="#step1" class="nav-link active" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1"> <b>Vital Info </b></a>
                                         </li>
                                         <li role="presentation" class="nav-item">
-                                            <a href="#step2" class="nav-link disabled" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2"><b> Dimension</b></a>
+                                            <a href="#step2" class="nav-link disabled" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2"> <b>Price </b></a>
                                         </li>
                                         <li role="presentation" class="nav-item">
-                                            <a href="#step3" class="nav-link disabled" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3"> <b>Price </b></a>
+                                            <a href="#step3" class="nav-link disabled" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3"><b> Dimension</b></a>
+                                        </li>
+                                        <li role="presentation" class="nav-item">
+                                            <a href="#step4" class="nav-link disabled" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4"><b>Details</b></a>
+                                        </li>
+                                        <li role="presentation" class="nav-item">
+                                            <a href="#step5" class="nav-link disabled" data-toggle="tab" aria-controls="step5" role="tab" title="Step 5"><b> Others</b></a>
                                         </li>
                                         <li role="presentation" class="nav-item">
                                             <a href="#complete" class="nav-link disabled" data-toggle="tab" aria-controls="complete" role="tab" title="Complete"><b>Image </b> </a>
@@ -39,10 +45,55 @@
                                             <div class="tab-pane active" role="tabpanel" id="step1">
                                                 <h4><b>Basic Details </b></h4>
                                                 <p></p>
+
                                                 <div class="row">
                                                     <div class="col-lg-4 col-sm-4">
                                                         <div class="form-group">
-                                                            <label>Product Name <b style="color:red">*</b></label>
+                                                            <label>Brand</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.DropDownListFor(model => model.BrandId, ViewBag.Brands as SelectList, "Select", new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Category</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.DropDownListFor(model => model.CategoryId, ViewBag.Category as SelectList, "Select", new { @class = "form-control", id = "Category", onchange = "product.BindSubCategoryByCatId('#Category', '#SubCategory','#MiniCategory')" })
+                                                            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Sub Category</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.DropDownListFor(model => model.SubCategoryId, ViewBag.SubCategory as SelectList, "Select", new { @class = "form-control", id = "SubCategory", onchange = "product.BindMiniCategoryBySubCatId('#SubCategory', '#MiniCategory')" })
+
+                                                            @Html.ValidationMessageFor(model => model.SubCategoryId, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Mini Category</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.DropDownListFor(model => model.MiniCategoryId, ViewBag.MiniCategory as SelectList, "Select", new { @class = "form-control", id = "MiniCategory" })
+
+                                                            @Html.ValidationMessageFor(model => model.MiniCategoryId, "", new { @class = "text-danger" })
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Product Name </label><enum><b>*</b></enum>
                                                         </div>
                                                         <div class="form-group">
                                                             @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control", @autocomplete = "off" })
@@ -50,114 +101,30 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-lg-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <label>Product Description<b style="color:red">*</b></label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <label>Product Manufacturer Details</label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.TextAreaFor(model => model.MgfDetail, new { @class = "form-control", @autocomplete = "off" })
-                                                            @Html.ValidationMessageFor(model => model.MgfDetail, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
                                                 </div>
 
-                                                <div class="row">
 
-                                                    <div class="col-lg-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <label>Category<b style="color:red">*</b></label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.DropDownListFor(model => model.Category, ViewBag.category as SelectList, "Select", new { @class = "form-control", id = "Category", onchange = "product.BindSubCategoryByCatId('#Category', '#SubCategory','#MiniCategory')" })
-                                                            @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <label>Sub Category<b style="color:red">*</b></label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.DropDownListFor(model => model.SubCategory, ViewBag.subcategory as SelectList, "Select", new { @class = "form-control", id = "SubCategory", onchange = "product.BindMiniCategoryBySubCatId('#SubCategory', '#MiniCategory')" })
-
-                                                            @Html.ValidationMessageFor(model => model.SubCategory, "", new { @class = "text-danger" })
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <label>Mini Category<b style="color:red">*</b></label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.DropDownListFor(model => model.MiniCategory, ViewBag.miniCategory as SelectList, "Select", new { @class = "form-control", id = "MiniCategory" })
-
-                                                            @Html.ValidationMessageFor(model => model.MiniCategory, "", new { @class = "text-danger" })
-
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <button type="button" class="btn btn-primary next-step float-right">Next</button>
                                             </div>
 
                                             <div class="tab-pane" role="tabpanel" id="step2">
-                                                <h4><b>Product Dimensions</b> </h4>
+                                                <h4><b>Price</b> </h4>
                                                 <p></p>
-
-                                                <p><b>Dimensions and Measurement</b></p>
-                                                <div class="row">
-                                                    <div class="col-lg-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <label>Length</label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(model => model.Length, new { @class = "form-control", @autocomplete = "off" })
-                                                            @Html.ValidationMessageFor(model => model.StockCount, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <label>Breadth</label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(model => model.Breadth, new { @class = "form-control", @rows = 5 })
-                                                            @Html.ValidationMessageFor(model => model.Breadth, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <label>Height</label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(model => model.Height, new { @class = "form-control", @autocomplete = "off" })
-                                                            @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <p><b>Shipping Charges</b></p>
                                                 <div class="row">
                                                     <div class="col-lg-4 col-sm-4">
                                                         <div class="form-group">
-                                                            <label>Local shipping charge</label>
+                                                            <label>Local shipping charge</label><enum><b>*</b></enum>
                                                         </div>
                                                         <div class="form-group">
-                                                            @Html.TextBoxFor(model => model.localshipingcharge, new { @class = "form-control", @autocomplete = "off" })
-                                                            @Html.ValidationMessageFor(model => model.localshipingcharge, "", new { @class = "text-danger" })
+                                                            @Html.TextBoxFor(model => model.LocalShipingCharge, new { @class = "form-control", @autocomplete = "off" })
+                                                            @Html.ValidationMessageFor(model => model.LocalShipingCharge, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-sm-4">
                                                         <div class="form-group">
-                                                            <label>Zonal shipping charge</label>
+                                                            <label>Zonal shipping charge</label><enum><b>*</b></enum>
                                                         </div>
                                                         <div class="form-group">
                                                             @Html.TextBoxFor(model => model.ZonalShipingCharge, new { @class = "form-control" })
@@ -166,7 +133,7 @@
                                                     </div>
                                                     <div class="col-lg-4 col-sm-4">
                                                         <div class="form-group">
-                                                            <label>National shipping charge</label>
+                                                            <label>National shipping charge</label><enum><b>*</b></enum>
                                                         </div>
                                                         <div class="form-group">
                                                             @Html.TextBoxFor(model => model.NationalShippingCharge, new { @class = "form-control", @autocomplete = "off" })
@@ -174,11 +141,157 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Sell Price</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.SalePrice, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.SalePrice, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>
+                                                                List Price<enum><b>*</b></enum>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.ListPrice, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.ListPrice, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <ul class="float-right">
+                                                    <li class="list-inline-item">
+                                                        <button type="button" class="btn btn-outline-primary prev-step">Previous</button>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <button type="button" class="btn btn-primary next-step">Next</button>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+                                            <div class="tab-pane" role="tabpanel" id="step3">
+                                                <h4><b>Dimensions</b> </h4>
+                                                <p></p>
+
+                                                <p><b>Product Dimensions</b></p>
+                                                <div class="row">
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Length</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.ProductLength, new { @class = "form-control", @autocomplete = "off" })
+                                                            <span class="">Product length as '40cm'</span>
+                                                            @Html.ValidationMessageFor(model => model.ProductLength, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Width</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.ProductWidth, new { @class = "form-control", @rows = 5 })
+                                                            @Html.ValidationMessageFor(model => model.ProductWidth, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Height</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.ProductHeight, new { @class = "form-control", @autocomplete = "off" })
+                                                            @Html.ValidationMessageFor(model => model.ProductHeight, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <p><b>Package Dimensions</b></p>
+                                                <div class="row">
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Length</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.PackageLength, new { @class = "form-control", @autocomplete = "off" })
+                                                            <span class="">Package length as '40cm'</span>
+                                                            @Html.ValidationMessageFor(model => model.PackageLength, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Width</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.PackageWidth, new { @class = "form-control", @rows = 5 })
+                                                            @Html.ValidationMessageFor(model => model.PackageWidth, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Height</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.PackageHeight, new { @class = "form-control", @autocomplete = "off" })
+                                                            @Html.ValidationMessageFor(model => model.PackageHeight, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <p><b>Misc Details </b></p>
                                                 <div class="row">
                                                     <div class="col-lg-4 col-sm-4">
                                                         <div class="form-group">
-                                                            <label>Total No. of Stock to sell</label>
+                                                            <label>Product Weight</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.ProductWeight, new { @class = "form-control", @autocomplete = "off" })
+                                                            @Html.ValidationMessageFor(model => model.ProductWeight, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Package Weight</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.PackageWeight, new { @class = "form-control", @autocomplete = "off" })
+                                                            @Html.ValidationMessageFor(model => model.PackageWeight, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <ul class="float-right">
+                                                    <li class="list-inline-item">
+                                                        <button type="button" class="btn btn-outline-primary prev-step">Previous</button>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <button type="button" class="btn btn-primary next-step">Next</button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="tab-pane" role="tabpanel" id="step4">
+                                                <h4><b>Product Details</b> </h4>
+                                                <p></p>
+
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Total No. of Stock to sell</label><enum><b>*</b></enum>
                                                         </div>
                                                         <div class="form-group">
                                                             @Html.TextBoxFor(model => model.StockCount, new { @class = "form-control", @autocomplete = "off" })
@@ -191,20 +304,57 @@
                                                             <label>Shell Life</label>
                                                         </div>
                                                         <div class="form-group">
-                                                            @Html.TextBoxFor(model => model.ShellLife, new { @class = "form-control", @rows = 5 })
+                                                            @Html.TextBoxFor(model => model.ShellLife, new { @class = "form-control" })
                                                             @Html.ValidationMessageFor(model => model.ShellLife, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Mgf Date</label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.MgfDate, new { @class = "form-control datetime", @readonly = "true" })
+                                                            @Html.ValidationMessageFor(model => model.MgfDate, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Product Manufacturer Details</label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(model => model.MgfDetail, new { @class = "form-control", @autocomplete = "off", @rows = 5 })
+                                                            @Html.ValidationMessageFor(model => model.MgfDetail, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-lg-4 col-sm-4">
                                                         <div class="form-group">
                                                             <label>Product Warning</label>
                                                         </div>
                                                         <div class="form-group">
-                                                            @Html.TextBoxFor(model => model.ProductWarning, new { @class = "form-control", @autocomplete = "off" })
+                                                            @Html.TextAreaFor(model => model.ProductWarning, new { @class = "form-control", @rows = 5, @autocomplete = "off" })
                                                             @Html.ValidationMessageFor(model => model.ProductWarning, "", new { @class = "text-danger" })
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Product Description</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 5, @autocomplete = "off" })
+                                                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
                                                 </div>
+
                                                 <ul class="float-right">
                                                     <li class="list-inline-item">
                                                         <button type="button" class="btn btn-outline-primary prev-step">Previous</button>
@@ -215,30 +365,11 @@
                                                 </ul>
                                             </div>
 
-                                            <div class="tab-pane" role="tabpanel" id="step3">
-                                                <h4><b>Price</b> </h4>
+                                            <div class="tab-pane" role="tabpanel" id="step5">
+                                                <h4><b>Others</b> </h4>
                                                 <p></p>
+
                                                 <div class="row">
-                                                    <div class="col-lg-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <label>Sell Price<b style="color:red">*</b></label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(model => model.SalePrice, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(model => model.SalePrice, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4 col-sm-4">
-                                                        <div class="form-group">
-                                                            <label>
-                                                                List Price<b style="color:red">*</b>
-                                                            </label>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            @Html.TextBoxFor(model => model.ListPrice, new { @class = "form-control" })
-                                                            @Html.ValidationMessageFor(model => model.ListPrice, "", new { @class = "text-danger" })
-                                                        </div>
-                                                    </div>
                                                     <div class="col-lg-4 col-sm-4">
                                                         <div class="form-group">
                                                             <label>IsActive</label>
@@ -247,8 +378,37 @@
                                                             @Html.CheckBoxFor(x => x.IsActive, new { @style = "height: 30px; width:30px;" })
                                                         </div>
                                                     </div>
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>IsReturnable</label>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.CheckBoxFor(x => x.IsReturnable, new { @style = "height: 30px; width:30px;" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Returninig Days</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.ReturnDays, new { @class = "form-control", @autocomplete = "off" })
+                                                            @Html.ValidationMessageFor(model => model.ReturnDays, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>Estimate Delivery Time</label><enum><b>*</b></enum>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            @Html.TextBoxFor(model => model.EstimateDeliveryTime, new { @class = "form-control", @autocomplete = "off" })
+                                                            @Html.ValidationMessageFor(model => model.EstimateDeliveryTime, "", new { @class = "text-danger", @placeholder = "10 Days" })
+                                                        </div>
+                                                    </div>
 
                                                 </div>
+
+
                                                 <ul class="float-right">
                                                     <li class="list-inline-item">
                                                         <button type="button" class="btn btn-outline-primary prev-step">Previous</button>
@@ -257,7 +417,6 @@
                                                         <button type="button" class="btn btn-primary next-step">Next</button>
                                                     </li>
                                                 </ul>
-
                                             </div>
 
                                             <div class="tab-pane" role="tabpanel" id="complete">
@@ -273,7 +432,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-4 col-sm-4">
                                                         <div class="form-group">
-                                                            <label>Main Image<b style="color:red">*</b></label>
+                                                            <label>Main Image</label><enum><b>*</b></enum>
                                                             <input type="file" name="img[]" class="file-upload-default">
                                                         </div>
                                                         <div class="ajax-file-upload-container form-group">
@@ -376,16 +535,17 @@
                                                     <li class="list-inline-item">
                                                         <button type="button" class="btn btn-outline-primary prev-step">Previous</button>
                                                     </li>
+                                                    @*<li class="list-inline-item">
+                                                            <button type="button" class="btn btn-outline-primary next-step">Skip</button>
+                                                        </li>*@
                                                     <li class="list-inline-item">
-                                                        <button type="button" class="btn btn-outline-primary next-step">Skip</button>
-                                                    </li>
-                                                    <li class="list-inline-item">
-                                                        <button type="submit" class="btn btn-primary btn-info-full next-step">Save and continue</button>
+                                                        <button type="submit" class="btn btn-primary btn-info-full next-step">Save</button>
                                                     </li>
                                                 </ul>
                                             </div>
 
                                             <div class="clearfix"></div>
+
                                         </div>
                                     }
                                 </section>
@@ -481,3 +641,4 @@
     }
 
 </script>
+
