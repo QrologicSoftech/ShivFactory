@@ -324,7 +324,9 @@
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\UploadedImages\50d54ec0-2086-4250-bb01-f5112d7e31e0slider-4.jpg" />
     <Content Include="Content\UploadedImages\544c66be-a742-44b7-9803-55573c55c9c2slider-4.jpg" />
+    <Content Include="Content\UploadedImages\a9369af4-5998-4dc4-859a-f0995d9e37dcbanner-6.jpg" />
     <Content Include="Content\UploadedImages\bb257012-28bc-40a6-87a1-c36eb5b4a795NoImg.png" />
+    <Content Include="Content\UploadedImages\Images\NoImg.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -475,7 +477,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Vendor\Data\" />
-    <Folder Include="Content\UploadedImages\AdminImages\Category\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

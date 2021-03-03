@@ -191,7 +191,7 @@ namespace ShivFactory.Business.Repository
         {
             var products = new List<ProductResponse>();
             totalRecords = 0;
-
+            RepoCommon common = new RepoCommon();
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@Action", "GetAllProducts"));
             parameters.Add(new SqlParameter("@SearchText", model.searchText));
@@ -212,7 +212,7 @@ namespace ShivFactory.Business.Repository
                     {
                         SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
                         Id = row["ProductId"] != DBNull.Value ? Convert.ToInt32(row["ProductId"]) : 0,
-                        ImagePath = row["MainImage"] != DBNull.Value ? row["MainImage"].ToString() : "",
+                        ImagePath = row["MainImage"] != DBNull.Value ? common.checkfile(row["MainImage"].ToString()) : common.checkfile(""),
                         ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
                         SalePrice = row["SalePrice"] != DBNull.Value ? Convert.ToDecimal(row["SalePrice"]) : 0,
                         ListPrice = row["ListPrice"] != DBNull.Value ? Convert.ToDecimal(row["ListPrice"]) : 0,

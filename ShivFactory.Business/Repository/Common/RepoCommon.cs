@@ -63,12 +63,12 @@ namespace ShivFactory.Business.Repository
                 }
                 else
                 {
-                    return string.Empty;
+                    return "/Content/UploadedImages/Images/NoImg.png";
                 }
             }
             catch (Exception e)
             {
-                return string.Empty;  ;
+                return "/Content/UploadedImages/Images/NoImg.png";
             }
         }
 
