@@ -128,12 +128,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
                     else if (index == 5) { model.Image6 = imagePath; }
                     index++;
                 }
-
-                //List<string> imagePathlist = new List<string>();
-                //if (model.files != null)
-                //{
-                //    model.imgPathList = common.SaveProductMultipleImage(model.files);
-                //}
+                
                 RepoProduct repoProduct = new RepoProduct();
                 var isSaved = repoProduct.AddOrUpdateProduct(model);
 
