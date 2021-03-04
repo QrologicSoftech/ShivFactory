@@ -2,7 +2,7 @@
 @using Newtonsoft.Json;
 @using Newtonsoft.Json.Linq;
 @{
-    JObject obj = JObject.Parse(JsonConvert.SerializeObject(new ProductResponse(), Formatting.Indented, new JsonSerializerSettings
+    JObject obj = JObject.Parse(JsonConvert.SerializeObject(new UnApprovedProductResponse(), Formatting.Indented, new JsonSerializerSettings
     { PreserveReferencesHandling = PreserveReferencesHandling.Objects }));
     obj.Remove("$id");
 
@@ -23,8 +23,12 @@
 <script>
     $(document).ready(function () {
         var list = [
-            { Name: 'Approved', Value: 'Admin.ApprovedProduct();' },
-            { Name: 'UnApproved', Value: 'Admin.UnApprovedProduct();' }
+            { Name: 'View', Value: 'Admin.GetProductImages();', Header: "Image" },
+            { Name: 'View', Value: 'Admin.GetProductBasicInfo();', Header: "BasicInfo" },
+            { Name: 'View', Value: 'Admin.GetProductDetails();', Header: "Details" },
+            { Name: 'View', Value: 'Admin.GetProductDimension();', Header: "Dimension" },
+            { Name: 'Approved', Value: 'Admin.ApprovedProduct();', Header:"Approved" },
+            { Name: 'UnApproved', Value: 'Admin.UnApprovedProduct();', Header: "UnApproved" }
         ];
          var stringArray = @Html.Raw(Json.Encode(columnArray));
 

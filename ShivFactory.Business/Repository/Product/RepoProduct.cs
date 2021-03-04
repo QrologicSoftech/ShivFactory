@@ -197,8 +197,8 @@ namespace ShivFactory.Business.Repository
         }
         #endregion
 
-        #region GetAllProducts
-        public List<ProductResponse> GetAllProducts(int vendorId, PaginationRequest model, out int totalRecords)
+        #region GetAllProductsByVendorId
+        public List<ProductResponse> GetAllProductsByVendorId(int vendorId, PaginationRequest model, out int totalRecords)
         {
             var products = new List<ProductResponse>();
             totalRecords = 0;
@@ -239,6 +239,47 @@ namespace ShivFactory.Business.Repository
                         IsActive = row["IsActive"] != DBNull.Value ? Convert.ToBoolean(row["IsActive"]) : false,
                         AddDate = row["AddDate"] != DBNull.Value ? Convert.ToDateTime(row["AddDate"]).ToString("dd/MM/yyyy") : "",
                         ApprovedByAdmin = row["ApprovedByAdmin"] != DBNull.Value ? Convert.ToBoolean(row["ApprovedByAdmin"]) : false,
+                        InactiveReason = row["InactiveReason"] != DBNull.Value ? row["InactiveReason"].ToString() : ""
+                    });
+                }
+
+            }
+
+            return products;
+        }
+        #endregion
+
+        #region GetAllUnApprovedProducts
+        public List<UnApprovedProductResponse> GetAllUnApprovedProducts(PaginationRequest model, out int totalRecords)
+        {
+            var products = new List<UnApprovedProductResponse>();
+            totalRecords = 0;
+            RepoCommon common = new RepoCommon();
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@Action", "GetAllUnApprovedProducts"));
+            parameters.Add(new SqlParameter("@SearchText", model.searchText));
+            parameters.Add(new SqlParameter("@Skip", model.Skip));
+            parameters.Add(new SqlParameter("@Take", model.PageSize));
+            parameters.Add(new SqlParameter("@OrderColumn", model.SortColumn));
+            parameters.Add(new SqlParameter("@OrderDir", model.SortDirection));
+            parameters.Add(new SqlParameter("@VendorId", 0));
+
+            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, "ManageProduct", parameters.ToArray());
+            if (ds.Tables != null && ds.Tables[0].Rows.Count > 0)
+            {
+                totalRecords = ds.Tables[0].Rows[0]["TotalRow"] != DBNull.Value ? Convert.ToInt32(ds.Tables[0].Rows[0]["TotalRow"].ToString()) : 0;
+
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    products.Add(new UnApprovedProductResponse()
+                    {
+                        SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
+                        Id = row["ProductId"] != DBNull.Value ? Convert.ToInt32(row["ProductId"]) : 0,
+                        ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
+                        CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
+                        SubCategoryName = row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
+                        BrandName = row["BrandName"] != DBNull.Value ? row["BrandName"].ToString() : "",
+                        AddDate = row["AddDate"] != DBNull.Value ? Convert.ToDateTime(row["AddDate"]).ToString("dd/MM/yyyy") : "",
                         InactiveReason = row["InactiveReason"] != DBNull.Value ? row["InactiveReason"].ToString() : ""
                     });
                 }

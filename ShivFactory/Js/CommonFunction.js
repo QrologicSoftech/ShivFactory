@@ -95,17 +95,15 @@ var commonFunction = {
             }
         });
 
-        if (ActionArray) {
-            let actions = '';
-            ActionArray.forEach((item) => {
-                actions += `<button class="btn btn-light" onclick="${item.Value}">${item.Name}</button >`;
-            });
-
+        ActionArray.forEach((item) => {
             columns.push({
-                "data": "", "orderable": false,
-                "render": function () { return actions; }
+                "data": "", "name": item.Header, "orderable": false,
+                "render": function () {
+                    return`<button class="btn btn-light" onclick="${item.Value}">${item.Name}</button >`;
+                }
             });
-        }
+        });
+
         common.HideLoader('.datatable');
         return callback(columns);
     }

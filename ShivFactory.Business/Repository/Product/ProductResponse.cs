@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShivFactory.Business.Repository
 {
+    #region ProductResponse
     public class ProductResponse
     {
         public int SrNo { get; set; }
@@ -28,4 +29,19 @@ namespace ShivFactory.Business.Repository
         public bool ApprovedByAdmin { get; set; }
         public string InactiveReason { get; set; }
     }
+    #endregion
+
+    #region UnApprovedProductResponse
+    public class UnApprovedProductResponse
+    {
+        public int SrNo { get; set; }
+        public int Id { get; set; }
+        public string ProductName { get; set; }
+        public string CategoryName { get; set; }
+        public string SubCategoryName { get; set; }
+        public string BrandName { get; set; }
+        public string AddDate { get; set; }
+        public string InactiveReason { get; set; }
+    }
+    #endregion
 }

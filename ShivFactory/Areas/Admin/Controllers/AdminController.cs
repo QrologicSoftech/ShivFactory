@@ -1074,9 +1074,9 @@ namespace ShivFactory.Areas.Admin.Controllers
                     SortDirection = sortColumnDir
                 };
                 int recordsTotal = 0;
-                int venderId = 1;//repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
+               
                 RepoProduct repoProduct = new RepoProduct();
-                var productList = repoProduct.GetAllProducts(venderId, model, out recordsTotal);
+                var productList = repoProduct.GetAllUnApprovedProducts(model, out recordsTotal);
 
                 return Json(new { data = productList, draw = draw, recordsFiltered = productList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
             }

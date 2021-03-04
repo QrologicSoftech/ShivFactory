@@ -26,7 +26,10 @@
             if (item == 'Id') { return; }
             tr += `<th>${item}</th>`;
         });
-        if (actionArray) { tr += `<th>Action</th>`; }
+        
+        actionArray.forEach((item) => {
+            tr += `<th>${item.Header}</th>`;
+        });
 
 
         // Create table
@@ -40,8 +43,9 @@
                         </table>
                     </div>`;
         $(`#${divId}`).html(table);
+       
         // Prepare columns
-        commonFunction.GetColumnForDataTable(ColumnArray, actionArray, '', function (result) {
+        commonFunction.GetColumnForDataTable(ColumnArray, actionArray, true, function (result) {
             dtTable.bindDataToTable(url, null, result, rowId, '#datatable', `#${divId}`, null, true, true);
         })
     },
