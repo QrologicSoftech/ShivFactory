@@ -192,6 +192,7 @@
     <Content Include="App_Data\DefaultConnection_log.ldf">
       <DependentUpon>DefaultConnection.mdf</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Admin\UnApprovedProductPartialView.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\HtmlPage1.html" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\DataLibrary.DL.dll" />
@@ -406,7 +407,6 @@
     <Content Include="bin\ShivFactory.Business.dll.config" />
     <Content Include="bin\ShivFactory.dll.config" />
     <Content Include="Areas\Admin\Views\Shared\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\NavPartialView.cshtml" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="Areas\Admin\Views\Admin\Dimension.cshtml" />
@@ -419,13 +419,14 @@
     <Content Include="Areas\Admin\Views\Admin\ColorPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AddColor.cshtml" />
     <Content Include="Areas\Vendor\Views\Shared\_LayoutDashboard.cshtml" />
-    <Content Include="Areas\Vendor\Views\Home\NavPartialView.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\Index.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\Product.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\ProductPartialView.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\AddProduct.cshtml" />
     <Content Include="Areas\Vendor\Views\Home\dashBoard.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AdminNavPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Products.cshtml" />
+    <Content Include="Areas\Vendor\Views\Vendor\VendorNavPartialView.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
