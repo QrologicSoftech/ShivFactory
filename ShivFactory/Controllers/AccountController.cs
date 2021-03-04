@@ -13,7 +13,7 @@ using System;
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
 using System.Security.Claims;
-using ShivFactory.Business.Repository.Accounts;
+using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.SMS;
 
 namespace ShivFactory.Controllers
@@ -150,8 +150,8 @@ namespace ShivFactory.Controllers
                 return View(model);
             }
 
-            //  var res = await CustomerRegister(model); VendorRegister
-            var res = await VendorRegister(model); 
+             var res = await CustomerRegister(model); 
+           // var res = await VendorRegister(model); 
             if (res.ResultFlag == true)
             {
                 return RedirectToAction("Login");
@@ -470,7 +470,7 @@ namespace ShivFactory.Controllers
         #region Vendor Register Api
         [AllowAnonymous]
         [HttpPost]
-        public async Task<ResultModel> VendorRegister(CustomerRegister model)
+        public async Task<ResultModel> VendorRegister(VendorRegister model)
         {
             try
             {
@@ -487,9 +487,9 @@ namespace ShivFactory.Controllers
                         var userDetails = new UserDetail()
                         {
                             FirstName = model.FirstName,
-                            LastName = model.LastName,
-                            Gender = model.Gender,
-                            Address = model.Address,
+                            //LastName = model.LastName,
+                            //Gender = model.Gender,
+                            //Address = model.Address,
                             Email = model.EmailId,
                             Password = model.Password,
                             Mobile = model.PhoneNumber,
@@ -826,67 +826,95 @@ namespace ShivFactory.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult MobileVerify(MobileVerify model)
+        public ActionResult MobileVerify(VendorRegister model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValidField("PhoneNumber"))
             {
                 return View(model);
             }
             else
             {
-                string message = "";
                 var user = UserManager.FindByName(model.PhoneNumber);
                 if (user == null)
                 {
-                    message = "Mobile Number does not exist";
-                    return RedirectToAction("SendOTP", "Account", new { phonenumber = model.PhoneNumber });
+                    RepoCommon repoCommon = new RepoCommon(); 
+                    string otp= repoCommon.sendOtpSMS(model.PhoneNumber);
+                    model.isOTPSend = true;
+                    
+                   TempData["SuccessMessage"] = "We have sent an One Time Password (OTP) in a SMS to this mobile number."; 
+                 
+                    return View(model);
+                   
                 }
                 else
                 {
-                    message = "Mobile Number Already Exist. ";
-                    ModelState.AddModelError("PhoneNumber", message);
+                    ModelState.AddModelError("PhoneNumber", "Mobile number already exist. ");
                     return View(model);
 
                 }
             }
         }
 
-        [AllowAnonymous]
-        public ActionResult SendOTP(string phonenumber)
-        {
-            // call sms api to  parma phonenumber ; 
-            TempData["OTP"] = true;
 
-            ModelState.AddModelError("code", "Please Enter the OTP Verification code to validate Mobile Number !");
-            return View(); 
-        }
 
-        [AllowAnonymous]
-        [HttpPost]
-        public ActionResult SendOTP(SMS model)
-        {
-            // call sms api to  parma phonenumber ; 
-            if (model != null && model.code.ToString().Equals("123456"))
-            {
-                return RedirectToAction("RegisterVendor", "Account");
-            }
-            else {
-                ModelState.AddModelError("code", "Enter OTP To validate Mobile Nmber");
-                return View(model);
-            }
-            
-        }
+        //[AllowAnonymous]
+        //public ActionResult SendOTP(string phonenumber)
+        //{
+        //    // call sms api to  parma phonenumber ; 
+        //    TempData["OTP"] = true;
+
+        //    ModelState.AddModelError("code", "Please Enter the OTP Verification code to validate Mobile Number !");
+        //    return View(); 
+        //}
+
+        //[AllowAnonymous]
+        //[HttpPost]
+        //public ActionResult SendOTP(SMS model)
+        //{
+        //    // call sms api to  parma phonenumber ; 
+        //    if (model != null && model.code.ToString().Equals("123456"))
+        //    {
+        //        return RedirectToAction("RegisterVendor", "Account");
+        //    }
+        //    else {
+        //        ModelState.AddModelError("code", "Enter OTP To validate Mobile Nmber");
+        //        return View(model);
+        //    }
+
+        //}
 
         [AllowAnonymous]
         public ActionResult RegisterVendor()
         {
-            return View(); 
+            return View();
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public ActionResult RegisterVendor(CustomerRegister model)
+        public async Task<ActionResult> RegisterVendorAsync(VendorRegister model)
         {
+            RepoCommon repoCommon = new RepoCommon();
+
+            if (repoCommon.VerifyOTP(model.code))
+            {
+                model.Password = "Abc@123$";
+                model.ConfirmPassword = "Abc@123$";
+
+                var res = await VendorRegister(model);
+                if (res.ResultFlag == true)
+                {
+                    return RedirectToAction("ResetPassword");
+                }
+                else
+                {
+                    ModelState.AddModelError("", res.Message);
+                    return View(model);
+                }
+            }
+            else {
+                ModelState.AddModelError("code", "Enter valid OTP code");
+                return View(model);
+            }
             return View(model);
         }
         #endregion

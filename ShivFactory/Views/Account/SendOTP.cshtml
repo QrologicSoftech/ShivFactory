@@ -62,13 +62,13 @@
 <script>
     let timerOn = true;
 
-    function timer(remaining) {
+    function timer(remaining, id, timerOn) {
         var m = Math.floor(remaining / 60);
         var s = remaining % 60;
 
         m = m < 10 ? '0' + m : m;
         s = s < 10 ? '0' + s : s;
-        document.getElementById('timer').innerHTML = m + ':' + s;
+        document.getElementById(id).innerHTML = m + ':' + s;
         remaining -= 1;
 
         if (remaining >= 0 && timerOn) {
@@ -87,7 +87,7 @@
         alert('Timeout for otp');
     }
 
-    timer(120);
+    timer(120, 'timer', true);
 </script>
 
 <link href="~/Content/CSS/css-font-awesome.min.css" rel="stylesheet" />

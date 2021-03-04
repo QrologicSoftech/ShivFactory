@@ -425,6 +425,7 @@
     <Content Include="Areas\Vendor\Views\Vendor\ProductPartialView.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\AddProduct.cshtml" />
     <Content Include="Areas\Vendor\Views\Home\dashBoard.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AdminNavPartialView.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -477,6 +478,8 @@
     <Content Include="Views\Home\ChangeProfileImage.cshtml" />
     <Content Include="Views\Home\UserProfile.cshtml" />
     <Content Include="Views\Account\SignUp.cshtml" />
+    <Content Include="Views\Home\AccountDetails.cshtml" />
+    <Content Include="Views\Shared\_Accounts_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

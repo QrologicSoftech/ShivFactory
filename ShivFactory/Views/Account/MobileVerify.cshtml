@@ -1,53 +1,140 @@
 ﻿@using ShivFactory.Models
-@model ShivFactory.Business.Repository.Accounts.MobileVerify
+@model ShivFactory.Business.Repository.VendorRegister
 @{
     ViewBag.Title = "Create Your Seller Account";
-    Layout = null;
+    Layout = "~/Views/Shared/_Accounts_Layout.cshtml";
 }
-<div class="container-scroller">
-    <div class="container-fluid page-body-wrapper">
-        <div class="main-panel">
-            <div class="content-wrapper">
-                <div class="row">
-                    <div class="col-md-12 grid-margin stretch-card" style="padding: 0 20% 0;">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title text-center">@ViewBag.Title</h4>
+ 
+            <div class="sc-fzojmp kyojis">
+                <div class="sc-fzqbkg fckjvf">
+                    <div class="sc-fzqpzz gliaon">Create your Seller Account</div>
+                    <div class="sc-fzpkqz foxupi">
+                        @using (Html.BeginForm("MobileVerify", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "otpform" }))
+                        {
+                            <div class="sc-fzoxkx craeze">
 
-                                @using (Html.BeginForm("MobileVerify", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "myform" }))
-                                {
-                                    <div class="form-group">
-                                        <label>Mobile Number<span style="color:red">*</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend bg-transparent">
-                                                <span class="input-group-text bg-transparent border-right-0">
-                                                    <i class="mdi mdi-account-outline text-primary"></i>
-                                                </span>
-                                            </div>
-                                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control form-control-lg border-left-0", @placeholder = "Username" })
+                                <button class="labelbtn">+91 - </button>
+                                <div class="style-elementwrapper ijsebp wrapper">
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "styles-styledinput gezlls quantity", @placeholder = "Enter Your Mobile Number", @type = "number", @maxlength = "10", @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @style = "padding: 0px 105px 0px 40px;" })
 
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                    <div class="sc-fzqmdd fzqonm freebie">
+                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "sc-fzqmdd fzqonm freebie" })
                                     </div>
-                                    <div class="mt-3">
-                                        <button type="submit" class="btn btn-block btn-gradient-primary mr-2"> Verify Mobile</button>
-                                    </div>
-
-                                    <div class="text-center mt-4 font-weight-light">
-                                        Already have an account? <a href="/Account/MobileVerify" class="text-primary">Login</a>
-                                    </div>
-                                }
+                                </div>
+                                <div class="style-elementwrapper ijsebp">
+                                    <button type="submit" class="basebutton primarybtn-primarybtndetails eazyuu showbtn">Send OTP</button>
+                                </div>
                             </div>
+                        }
+                        @using (Html.BeginForm("RegisterVendorAsync", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "regiterfrom" }))
+                        {
+                            
+                    <div class="sc-fzoxkx craeze">
+                      
+                        @Html.HiddenFor(model => model.isOTPSend)
+                        @Html.HiddenFor(model => model.PhoneNumber)
+
+                        <div class="style-elementwrapper ijsebp wrapper">
+                            @{
+                                var displaytimer = "none";
+                                if (Model!=null && Model.isOTPSend.Equals(true))
+                                {
+                                    displaytimer = "visible";
+                                  
+                                }
+
+                                @Html.TextBoxFor(m => m.code, new { @class = "styles-styledinput gezlls", @placeholder = "Enter OTP", @type = "number" }) <span class="form-control form-control-lg border-left-0" id="timer" style="@displaytimer"></span>
+                                @*<span class="btn btn-rounded form-control-lg border-left-0" id="timer" style="@display_btn"></span>*@
+                            }
+
+                            <div class="error-formerror myzbk form-error">
+                                @Html.ValidationMessageFor(model => model.code, "", new { @class = "sc-fzqmdd fzqonm freebie" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                           
+                            <div class="style-elementwrapper ijsebp wrapper">
+                                @Html.TextBoxFor(m => m.EmailId, new { @class = "styles-styledinput gezlls", @placeholder = "Enter Your Email Address", @type = "text" })
+                             
+                                <div class="error-formerror myzbk form-error">
+                                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "sc-fzqmdd fzqonm freebie" })
+                                </div>
+                            </div>
+                          
+                            <div class="style-elementwrapper ijsebp wrapper">
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "styles-styledinput gezlls", @placeholder = "Enter Your Full Name", @type = "text" })
+                              
+                                <div class="error-formerror myzbk form-error">
+                                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "sc-fzqmdd fzqonm freebie" })
+                                </div>
+                            </div>
+                          
+                            <div class="sc-fzoxkx craeze">
+                            </div>
+                            <div class="sc-fznyyp kdoamq">
+                                <div class="sc-fzqaui eogdzk">
+                                    By filling this form, I agree to <a class="baselink-sc tertiarylink-sc enzijk" style="cursor: pointer;">Terms of Use</a>
+                                </div>
+                            </div>
+                                    var display = Model != null && Model.isOTPSend == true ? "" : "disabled";
+                            <button @display  class="basebutton primarybtn-primarybtndetails eazyuu save" type="submit" style=" height: 40px; padding-left: 15px; padding-right: 16px; text-transform: uppercase;">Sign Up</button>
+                        
+                        }
+                        <div class="sc-fzpiso jhqzjv">
+                            <div class="sc-fzqaui eogdzk">
+                                Already a Seller? <a href="#" class="baselink-sc tertiarylink-sc enzijk">Login Here</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="sc-fazpkjw hctkjm">
+                    <div>
+                        <div class="sc-fzokki knkljw">Sell to crores of customers on Shiv Factory, right from your doorstep!</div>
+                        <div class="sc-fzoyki hfpotr">All you need to sell on Shiv Factory is</div>
+                        <div class="sc-fznzof jxqfab">
+                            <div class="sc-fzoyhe gxatj">
+                                <div class="imp-icon">
+                                    <img src="/Content/AdminImg/gstin.png">
+                                    <div class="gstin-label">GSTIN*</div>
+                                </div>
+
+
+                            </div>
+                            <div class="sc-fzqmaw himzko">
+                            </div>
+                            <div class="sc-fzoyhe gxatj">
+                                <div class="imp-icon">
+                                    <img src="/Content/AdminImg/bank-account.png">
+                                    <div class="gstin-label">Bank Account</div>
+                                </div>
+
+                            </div>
+                            <div class="sc-fzqmaw himzko"></div>
+                            <div class="sc-fzoyhe gxatj">
+                                <div class="imp-icon">
+                                    <img src="/Content/AdminImg/products-sell.png">
+                                    <div class="gstin-label">Products to sell</div>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="sc-fznmnq bivoqy">*GSTIN is not required for sellers who only sell books</span>
+                        <div class="sc-fzoydu ctzjfv"></div>
+                        <div class="sc-fzoyki hfpotr">How will this information be used?</div>
+                        <div class="sc-fzqabl hculgs">
+                            You can use your email address or mobile number as 'Username' to login to your  Seller Account.
+                            Please note, the 'Username' and 'Password' used here are only to access your  Seller Account and can’t be used on ShivFactory shopping destination.
+                        </div>
+                        <div class="sc-fzoydu ctzjfv">
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-
-<link href="~/Content/CSS/css-font-awesome.min.css" rel="stylesheet" />
-
-<link href="~/Content/CSS/demo_3-style.css" rel="stylesheet" />
-<link href="~/Content/CSS/css-materialdesignicons.min.css" rel="stylesheet" />
+   
+<script>
+    $(document).ready(function () {
+        common.Timer(120, 'timer', true);
+    });
+</script>

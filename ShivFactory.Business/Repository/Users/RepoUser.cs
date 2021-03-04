@@ -69,5 +69,14 @@ namespace ShivFactory.Business.Repository
            
         }
         #endregion
+
+
+        #region Get UserDetails by EmailId
+        public UserDetail GetUserDetailsBYEmailId(string emailID)
+        {
+            var user = db.UserDetails.Where(a => a.Email == emailID).FirstOrDefault();
+            return user;
+        }
+        #endregion
     }
 }

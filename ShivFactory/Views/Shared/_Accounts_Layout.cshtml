@@ -2,11 +2,13 @@
 @{
     var version = ConfigurationManager.AppSettings["jsversion"].ToString();
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link href="~/Content/CSS/demo_3-style.css?ver=@version" rel="stylesheet" />
 <link href="~/Content/toastr.css?ver=@version" rel="stylesheet" />
 <link href="~/Content/Site.css?ver=@version" rel="stylesheet" />
 <link href="~/Content/toastr.min.css?ver=@version" rel="stylesheet" />
 <script src="~/Js/Common.js?ver=@version"></script>
+<script src="~/Scripts/toastr.js?ver=@version"></script>
 <style>
     body {
         padding: 0px;
@@ -29,7 +31,7 @@
 
         </div>
     </section>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    
 
     @*Showing toaster message*@
     @if (TempData["SuccessMessage"] != null)
