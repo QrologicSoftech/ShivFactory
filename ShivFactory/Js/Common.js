@@ -8,12 +8,18 @@
         })
     },
     ShowLoader: function (idOrClass) {
-        $(idOrClass).addClass('loader-spinner');
+        if (idOrClass && idOrClass != undefined) {
+            $(idOrClass).addClass('loader-spinner');
+        }
+        else { $('#loader').addClass('loader-spinner');}
     },
     HideLoader: function (idOrClass) {
-        $(idOrClass).removeClass('loader-spinner');
+        if (idOrClass && idOrClass != undefined) {
+            $(idOrClass).removeClass('loader-spinner');
+        }
+        else { $('#loader').removeClass('loader-spinner'); }
     },
- 
+
     BindDatatable: function (divId, url, ColumnArray, Isorderable = true) {
 
         let tr = '';
@@ -42,14 +48,14 @@
 
     BindServerSideTable: function (tableId, columns, url) {
 
-        dtTable.bindDataToTable(url, null, columns, tableId, tableId, null,true,true);
+        dtTable.bindDataToTable(url, null, columns, tableId, tableId, null, true, true);
     },
     ShowMessage: function (data) {
         if (data.ResultFlag) {
             toastr.success(data.Message);
         }
         else { toastr.error(data.Message); }
-        
+
     },
 
 

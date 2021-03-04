@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Add Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
+ }
 <div class="container-fluid page-body-wrapper">
     <div class="main-panel">
         <div class="content-wrapper">
@@ -442,7 +442,7 @@
 
                                                 <div class="form-group">
                                                     @{ var display = Model != null && Model.MainImage != null ? "display:block" : "display:none";
-                                                        var imgPath = Model != null && Model.MainImage != null ? Model.MainImage : "";}
+        var imgPath = Model != null && Model.MainImage != null ? Model.MainImage : "";}
                                                     <img id="imagePreview" src="@imgPath" class="img-preview img-preview-sm img-thumbnail" style="@display" />
 
                                                 </div>
@@ -458,7 +458,7 @@
 
                                                 <div class="form-group">
                                                     @{ var display1 = Model != null && Model.Image1 != null ? "display:block" : "display:none";
-                                                        var img1Path = Model != null && Model.Image1 != null ? Model.Image1 : "";}
+        var img1Path = Model != null && Model.Image1 != null ? Model.Image1 : "";}
                                                     <img id="imagePreview1" src="@img1Path" class="img-preview img-preview-sm img-thumbnail" style="@display1" />
                                                 </div>
                                             </div>
@@ -473,7 +473,7 @@
 
                                                 <div class="form-group">
                                                     @{ var display2 = Model != null && Model.Image2 != null ? "display:block" : "display:none";
-                                                        var img2Path = Model != null && Model.Image2 != null ? Model.Image2 : "";}
+        var img2Path = Model != null && Model.Image2 != null ? Model.Image2 : "";}
                                                     <img id="imagePreview2" src="@img2Path" class="img-preview img-preview-sm img-thumbnail" style="@display2" />
                                                 </div>
                                             </div>
@@ -492,7 +492,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     @{ var display3 = Model != null && Model.Image3 != null ? "display:block" : "display:none";
-                                                        var img3Path = Model != null && Model.Image3 != null ? Model.Image3 : "";}
+        var img3Path = Model != null && Model.Image3 != null ? Model.Image3 : "";}
                                                     <img id="imagePreview3" src="@img3Path" class="img-preview img-preview-sm img-thumbnail" style="@display3" />
                                                 </div>
                                             </div>
@@ -509,7 +509,7 @@
 
                                                 <div class="form-group">
                                                     @{ var display4 = Model != null && Model.Image4 != null ? "display:block" : "display:none";
-                                                        var img4Path = Model != null && Model.Image4 != null ? Model.Image4 : "";}
+        var img4Path = Model != null && Model.Image4 != null ? Model.Image4 : "";}
                                                     <img id="imagePreview4" src="@img4Path" class="img-preview img-preview-sm img-thumbnail" style="@display4" />
                                                 </div>
                                             </div>
@@ -525,7 +525,7 @@
 
                                                 <div class="form-group">
                                                     @{ var display5 = Model != null && Model.Image5 != null ? "display:block" : "display:none";
-                                                        var img5Path = Model != null && Model.Image5 != null ? Model.Image5 : "";}
+        var img5Path = Model != null && Model.Image5 != null ? Model.Image5 : "";}
                                                     <img id="imagePreview5" src="@img5Path" class="img-preview img-preview-sm img-thumbnail" style="@display5" />
                                                 </div>
                                             </div>
@@ -610,6 +610,7 @@
 </script>
 <script>
     $(document).ready(function () {
+
         //Initialize tooltips
         $('.nav-tabs > li a[title]').tooltip();
 
@@ -620,11 +621,18 @@
                 return false;
             }
         });
-
+        
         $(".next-step").click(function (e) {
-            var $active = $('.nav-tabs li>.active');
-            $active.parent().next().find('.nav-link').removeClass('disabled');
-            nextTab($active);
+            common.ShowLoader();
+            var levelId = $(this).parent('Div').attr('id');
+            product.NextLevel(levelId, function (res) {
+                if (res) {
+                    var $active = $('.nav-tabs li>.active');
+                    $active.parent().next().find('.nav-link').removeClass('disabled');
+                    nextTab($active);
+                }
+                common.HideLoader(); 
+            });
         });
 
         $(".prev-step").click(function (e) {

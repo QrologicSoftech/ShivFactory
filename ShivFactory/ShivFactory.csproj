@@ -312,9 +312,9 @@
     <Content Include="Content\fonts\samples-weather.svg" />
     <Content Include="Content\JS\chart.js-Chart.min.js" />
     <Content Include="Content\JS\dttable.js" />
-    <Content Include="Content\JS\Product.js" />
-    <Content Include="Content\JS\Common.js" />
-    <Content Include="Content\JS\CommonFunction.js" />
+    <Content Include="Js\Product.js" />
+    <Content Include="Js\Common.js" />
+    <Content Include="Js\CommonFunction.js" />
     <Content Include="Content\JS\dataTableAndTools.js" />
     <Content Include="Content\JS\datatables.net-bs4-dataTables.bootstrap4.js" />
     <Content Include="Content\JS\datatables.net-jquery.dataTables.js" />
