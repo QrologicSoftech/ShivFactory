@@ -13,8 +13,6 @@ using System;
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
 using System.Security.Claims;
-
-using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.SMS;
 
 namespace ShivFactory.Controllers
@@ -227,9 +225,9 @@ namespace ShivFactory.Controllers
 
         #region ResetPassword
         [AllowAnonymous]
-        public ActionResult ResetPassword(string code)
+        public ActionResult ResetPassword(ResetPasswordViewModel model)
         {
-            return code == null ? View("Error") : View();
+            return model == null ? View("Error") : View();
         }
 
 
@@ -509,7 +507,7 @@ namespace ShivFactory.Controllers
                         return new ResultModel
                         {
                             ResultFlag = isSaved,
-                            Data = "",
+                            Data = user.Id,
                             Message = "User successfully Register !!"
                         };
                     }
@@ -879,7 +877,13 @@ namespace ShivFactory.Controllers
                 var res = await VendorRegister(model);
                 if (res.ResultFlag == true)
                 {
-                    var token = UserManager.GeneratePasswordResetToken(user.Id);
+                    string usrid = (string)res.Data; 
+                    var token = UserManager.GeneratePasswordResetToken(usrid);
+                    ResetPasswordViewModel reset = new ResetPasswordViewModel
+                    {
+                        PhoneNumber = model.PhoneNumber,
+                        Code=token,
+                    }; 
                     return RedirectToAction("ResetPassword");
                 }
                 else
