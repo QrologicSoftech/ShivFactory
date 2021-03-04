@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShivFactory.Business.Repository
 {
-   public  class Vendor
+   public  class clsVendor
     {
 		public int ID { get; set; }
 		
