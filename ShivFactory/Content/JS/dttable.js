@@ -109,7 +109,7 @@ var dtTable = {
         return typeof i === 'string' ? i.replace(/[\%]/g, '') * 1 : typeof i === 'number' ? i : 0;
     },
 
-    bindDataToTable: (url, filter, columns, tableId, divId, setFooter, enableOrdering = false, enableSearching = true, callback, callbackArgs) => {
+    bindDataToTable: (url, filter, columns, rowId, tableId, divId, setFooter, enableOrdering = false, enableSearching = true, callback, callbackArgs) => {
         var table = $(tableId).DataTable({
             "processing": true,
             "serverSide": true,
@@ -127,7 +127,10 @@ var dtTable = {
                 "type": 'POST',
                 "datatype": 'json'
             },
-            "columns": columns,  // https://datatables.net/examples/ajax/objects.html
+            "columns": columns, // https://datatables.net/examples/ajax/objects.html
+
+            "rowId": rowId,//https://datatables.net/forums/discussion/comment/186130/#Comment_186130
+
             "footerCallback": function () // https://datatables.net/examples/advanced_init/footer_callback.html
             {
                 if (setFooter) // Check if not null or undefined
@@ -208,7 +211,7 @@ var dtTable = {
 
 // Ref - https://datatables.net/forums/discussion/33028/searchdelay-for-server-side-issue
 $.fn.dataTable.SearchAfterDelay = function (table, delayTime = 500) {
-    
+
     const tableId = table.settings()[0].sTableId;
     $(`.dataTables_filter input[aria-controls="${tableId}"]`) // select the correct input field
         .unbind() // Unbind previous default bindings
