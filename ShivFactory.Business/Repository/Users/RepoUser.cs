@@ -78,5 +78,18 @@ namespace ShivFactory.Business.Repository
             return user;
         }
         #endregion
+
+        #region update UserPassword by UserId
+        public bool UpdateUserPassword(string userID,string password)
+        {
+            var user = db.UserDetails.Where(a => a.UserId == userID).FirstOrDefault();
+            if (user != null)
+            {
+                user.Password = password; 
+                user.LastUpdate = DateTime.Now;
+            }
+            return db.SaveChanges() > 0;
+        }
+        #endregion
     }
 }

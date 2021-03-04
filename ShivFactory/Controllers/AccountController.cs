@@ -225,9 +225,9 @@ namespace ShivFactory.Controllers
 
         #region ResetPassword
         [AllowAnonymous]
-        public ActionResult ResetPassword(ResetPasswordViewModel model)
+        public ActionResult ResetPassword(string code )
         {
-            return model == null ? View("Error") : View();
+            return code == null ? View("Error") : View();
         }
 
 
@@ -250,7 +250,26 @@ namespace ShivFactory.Controllers
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("ResetPasswordConfirmation", "Account");
+                
+                RepoUser repoUser = new RepoUser();
+                bool isPasswordUpdate = repoUser.UpdateUserPassword(user.Id, model.Password);
+                if (isPasswordUpdate)
+                {
+                  
+                    LogInModel loginmodel = new LogInModel
+                    {
+
+                        PhoneNumber = model.PhoneNumber,
+                         Password = model.Password
+                    };
+                    var loginresult = await LogInApI(loginmodel);
+                    if (loginresult.ResultFlag == true)
+                    {
+                        return RedirectToLocal(loginresult.Data, "");
+                    }
+                    
+                   
+                }
             }
             AddErrors(result);
             return View();
@@ -811,9 +830,6 @@ namespace ShivFactory.Controllers
                 }
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
-
-
-
         }
 
         #endregion
@@ -884,19 +900,18 @@ namespace ShivFactory.Controllers
                         PhoneNumber = model.PhoneNumber,
                         Code=token,
                     }; 
-                    return RedirectToAction("ResetPassword");
+                    return RedirectToAction("ResetPassword","Account",reset);
                 }
                 else
                 {
-                    ModelState.AddModelError("", res.Message);
-                    return View(model);
+                    return RedirectToAction("MobileVerify", "Account");
                 }
             }
             else {
                 ModelState.AddModelError("code", "Enter valid OTP code");
                 return View(model);
             }
-            return View(model);
+            
         }
         #endregion
 
@@ -905,5 +920,9 @@ namespace ShivFactory.Controllers
         {
             return View();
         }
+
+
+        
+
     }
 }
