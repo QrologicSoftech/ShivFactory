@@ -1,0 +1,49 @@
+﻿@using System.Configuration;
+@{
+    var version = ConfigurationManager.AppSettings["jsversion"].ToString();
+}
+<link href="~/Content/CSS/demo_3-style.css?ver=@version" rel="stylesheet" />
+<link href="~/Content/toastr.css?ver=@version" rel="stylesheet" />
+<link href="~/Content/Site.css?ver=@version" rel="stylesheet" />
+<link href="~/Content/toastr.min.css?ver=@version" rel="stylesheet" />
+<script src="~/Js/Common.js?ver=@version"></script>
+<style>
+    body {
+        padding: 0px;
+    }
+</style>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>ShivFactory</title>
+</head>
+<body>
+    <div id="loader" class="center"></div>
+    <section>
+        <header class="header-logo">
+            <img src="/Content/AdminImg/shiv  factory logo.png">
+        </header>
+        <div class="sc-fzolej jazogj">
+
+            @RenderBody()
+
+        </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    @*Showing toaster message*@
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+    toastr.success('@TempData["SuccessMessage"].ToString()');
+        </script>
+    }
+    else if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            toastr.error('@TempData["ErrorMessage"].ToString()');
+        </script>
+    }
+</body>
+</html>
+
