@@ -35,7 +35,14 @@ namespace ShivFactory.Business.Repository
         #region Add Or Update VendorDetails
         public bool AddVendor(Vendor model)
         {
-            db.Vendors.Add(model);
+            var user = db.Vendors.Where(a => a.UserId == model.UserId).FirstOrDefault();
+            if (user != null)
+            {
+            }
+            else
+            {
+                db.Vendors.Add(model);
+            }
             return db.SaveChanges() > 0;
         }
         #endregion

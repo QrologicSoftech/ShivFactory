@@ -500,9 +500,10 @@ namespace ShivFactory.Controllers
 
                         RepoUser ru = new RepoUser();
                         var isSaved = ru.AddOrUpdateUserDetails(userDetails);
-                        Business.Repository.Vendor vendor = new Business.Repository.Vendor();
-                        vendor.UserID = userDetails.UserId;  
+                        Vendor vendor = new Vendor();
+                        vendor.UserId = userDetails.UserId;  
                         RepoVendor repoVendor = new RepoVendor();
+                        repoVendor.AddVendor(vendor);
                         
 
                         return new ResultModel
