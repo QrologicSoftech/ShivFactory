@@ -128,6 +128,7 @@
     <Compile Include="Repository\Product\RepoProduct.cs" />
     <Compile Include="Repository\Profile\UserProfile.cs" />
     <Compile Include="Repository\Profile\RepoProfile.cs" />
+    <Compile Include="Repository\Profile\UserProfileResponse.cs" />
     <Compile Include="Repository\SMS\SMS.cs" />
     <Compile Include="Repository\SubCategory\RepoSubcategory.cs" />
     <Compile Include="Repository\SubCategory\SubCategory.cs" />
