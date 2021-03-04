@@ -1,0 +1,33 @@
+﻿@using ShivFactory.Business.Repository
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@{
+    JObject obj = JObject.Parse(JsonConvert.SerializeObject(new ProductResponse(), Formatting.Indented, new JsonSerializerSettings
+    { PreserveReferencesHandling = PreserveReferencesHandling.Objects }));
+    obj.Remove("$id");
+
+    List<string> termsList = new List<string>();
+    foreach (var columnName in obj)
+    {
+        termsList.Add(columnName.Key.Trim());
+    }
+    string[] columnArray = termsList.ToArray();
+
+    ViewBag.Title = "UnApprovedProductPartialView";
+}
+<div class="row overflow-auto">
+    <div class="col-12" id="TableDiv">
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var list = [
+            { Name: 'Approved', Value: 'Admin.ApprovedProduct();' },
+            { Name: 'UnApproved', Value: 'Admin.UnApprovedProduct();' }
+        ];
+         var stringArray = @Html.Raw(Json.Encode(columnArray));
+
+        common.BindDatatable('TableDiv', '/Admin/Admin/LoadProductData', stringArray, 'Id', list);
+    });
+</script>

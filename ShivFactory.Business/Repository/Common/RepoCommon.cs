@@ -53,6 +53,7 @@ namespace ShivFactory.Business.Repository
         {
             try
             {
+                if (string.IsNullOrEmpty(userimgpath)) { return "/Content/UploadedImages/Images/NoImg.png"; }
                 string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
                 string fullPath = HttpContext.Current.Server.MapPath(path);
                 string[] image = userimgpath.Split('/');
