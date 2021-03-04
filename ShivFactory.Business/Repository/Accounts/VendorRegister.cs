@@ -35,8 +35,9 @@ namespace ShivFactory.Business.Repository
         public string EmailId { get; set; }
         [Required(ErrorMessage = "FirstName Required!")]
         public string FirstName { get; set; }
+        public string UserId { get; set; }
         //public string LastName { get; set; }
-    
+
         //public string Gender { get; set; }
         //public string Address { get; set; }
     }

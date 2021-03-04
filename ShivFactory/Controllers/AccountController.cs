@@ -13,6 +13,7 @@ using System;
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
 using System.Security.Claims;
+
 using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.SMS;
 
@@ -247,6 +248,7 @@ namespace ShivFactory.Controllers
                 // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
+           
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
@@ -474,7 +476,7 @@ namespace ShivFactory.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (ModelState.IsValidField("FirstName") && ModelState.IsValidField("Email") && ModelState.IsValidField("PhoneNumber"))
                 {
 
                     var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId, EmailConfirmed = true };
@@ -487,9 +489,6 @@ namespace ShivFactory.Controllers
                         var userDetails = new UserDetail()
                         {
                             FirstName = model.FirstName,
-                            //LastName = model.LastName,
-                            //Gender = model.Gender,
-                            //Address = model.Address,
                             Email = model.EmailId,
                             Password = model.Password,
                             Mobile = model.PhoneNumber,
@@ -501,6 +500,10 @@ namespace ShivFactory.Controllers
 
                         RepoUser ru = new RepoUser();
                         var isSaved = ru.AddOrUpdateUserDetails(userDetails);
+                        Business.Repository.Vendor vendor = new Business.Repository.Vendor();
+                        vendor.UserID = userDetails.UserId;  
+                        RepoVendor repoVendor = new RepoVendor();
+                        
 
                         return new ResultModel
                         {
@@ -840,7 +843,6 @@ namespace ShivFactory.Controllers
                     RepoCommon repoCommon = new RepoCommon(); 
                     string otp= repoCommon.sendOtpSMS(model.PhoneNumber);
                     model.isOTPSend = true;
-                    
                    TempData["SuccessMessage"] = "We have sent an One Time Password (OTP) in a SMS to this mobile number."; 
                  
                     return View(model);
@@ -855,33 +857,6 @@ namespace ShivFactory.Controllers
             }
         }
 
-
-
-        //[AllowAnonymous]
-        //public ActionResult SendOTP(string phonenumber)
-        //{
-        //    // call sms api to  parma phonenumber ; 
-        //    TempData["OTP"] = true;
-
-        //    ModelState.AddModelError("code", "Please Enter the OTP Verification code to validate Mobile Number !");
-        //    return View(); 
-        //}
-
-        //[AllowAnonymous]
-        //[HttpPost]
-        //public ActionResult SendOTP(SMS model)
-        //{
-        //    // call sms api to  parma phonenumber ; 
-        //    if (model != null && model.code.ToString().Equals("123456"))
-        //    {
-        //        return RedirectToAction("RegisterVendor", "Account");
-        //    }
-        //    else {
-        //        ModelState.AddModelError("code", "Enter OTP To validate Mobile Nmber");
-        //        return View(model);
-        //    }
-
-        //}
 
         [AllowAnonymous]
         public ActionResult RegisterVendor()
@@ -903,6 +878,7 @@ namespace ShivFactory.Controllers
                 var res = await VendorRegister(model);
                 if (res.ResultFlag == true)
                 {
+                    var token = UserManager.GeneratePasswordResetToken(user.Id);
                     return RedirectToAction("ResetPassword");
                 }
                 else

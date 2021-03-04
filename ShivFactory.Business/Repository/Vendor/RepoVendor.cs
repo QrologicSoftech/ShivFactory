@@ -32,5 +32,13 @@ namespace ShivFactory.Business.Repository
 
         #endregion
 
+        #region Add Or Update VendorDetails
+        public bool AddVendor(Vendor model)
+        {
+            db.Vendors.Add(model);
+            return db.SaveChanges() > 0;
+        }
+        #endregion
+
     }
 }

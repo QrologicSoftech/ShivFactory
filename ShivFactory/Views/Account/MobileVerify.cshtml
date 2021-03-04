@@ -28,30 +28,36 @@
                         }
                         @using (Html.BeginForm("RegisterVendorAsync", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "regiterfrom" }))
                         {
-                            
+
                     <div class="sc-fzoxkx craeze">
-                      
+
                         @Html.HiddenFor(model => model.isOTPSend)
                         @Html.HiddenFor(model => model.PhoneNumber)
+                        @{
 
-                        <div class="style-elementwrapper ijsebp wrapper">
-                            @{
-                                var displaytimer = "none";
-                                if (Model!=null && Model.isOTPSend.Equals(true))
-                                {
-                                    displaytimer = "visible";
-                                  
-                                }
+                                                <div class="sc-fzoxkx craeze">
 
-                                @Html.TextBoxFor(m => m.code, new { @class = "styles-styledinput gezlls", @placeholder = "Enter OTP", @type = "number" }) <span class="form-control form-control-lg border-left-0" id="timer" style="@displaytimer"></span>
-                                @*<span class="btn btn-rounded form-control-lg border-left-0" id="timer" style="@display_btn"></span>*@
-                            }
+                                                    @{ var displaytimer = "none";
+                                                        if (Model != null && Model.isOTPSend.Equals(true))
+                                                        {
+                                                            displaytimer = "visible";
+                                                        }
+                                                    }
 
-                            <div class="error-formerror myzbk form-error">
-                                @Html.ValidationMessageFor(model => model.code, "", new { @class = "sc-fzqmdd fzqonm freebie" })
-                            </div>
-                        </div>
+                                                    <div class="style-elementwrapper ijsebp wrapper">
+                                                        @Html.TextBoxFor(m => m.code, new { @class = "styles-styledinput gezlls quantity", @placeholder = "Enter OTP", @type = "number",  @style = "padding: 0px 105px 0px 40px;" })
 
+                                                        <div class="sc-fzqmdd fzqonm freebie">
+                                                            @Html.ValidationMessageFor(model => model.code, "", new { @class = "sc-fzqmdd fzqonm freebie" })
+                                                        </div>
+                                                    </div>
+                                                   <div class="style-elementwrapper ijsebp">
+                                                        <span class="basebutton primarybtn-primarybtndetails eazyuu showbtn" id="timer" style="@displaytimer"></span>
+                                                    </div>
+                                                </div>
+                           
+
+                        }
                     </div>
 
                            
