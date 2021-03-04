@@ -25,7 +25,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col-md-2"><input type="button" style="margin-top:27px" class="btn- btn-primary" value="View" onclick="common.RenderPartialView('Home','AccountDetails')" /></div>
+                                <div class="col-md-2"><a href ="/Home/AccountDetails"style="margin-top:27px" class="btn- btn-primary">View </a> @*onclick="common.RenderPartialView('Home','AccountDetails')"*@ </div>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                                         </p>
                                     </div>
                                 </div>
-                                <div class="col-md-2"><input type="button" style="margin-top:27px" class="btn- btn-primary" value="View" /></div>
+                                <div class="col-md-2"><input type="button" style="margin-top:27px" class="btn- btn-primary" value="View" onclick="common.RenderPartialView('Home','AccountDetails')" /></div>
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                 </div>
 </div>
 
-
+<div class="partialView" id="partialView"></div>
 
 @*<script src="~/Content/JS/CommonFunction.js"></script>
 
