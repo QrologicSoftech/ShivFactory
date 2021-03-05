@@ -1046,6 +1046,8 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #endregion
 
+        #region Product
+
         public ActionResult Products()
         {
             return View();
@@ -1085,5 +1087,25 @@ namespace ShivFactory.Areas.Admin.Controllers
                 return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+        #region Product Details
+
+        [HttpPost]        
+        public ActionResult ProductImage(int productId)
+        {
+            try
+            {
+                RepoProduct repoProduct = new RepoProduct();
+                var images = repoProduct.GetProductImagesByProductId(productId);
+                return View(images);
+            }
+            catch(Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+            return View(new List<string>());
+        }
+
+        #endregion
+#endregion
     }
 }

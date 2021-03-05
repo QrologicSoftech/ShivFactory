@@ -1,0 +1,33 @@
+﻿@model  List<string>
+@{
+    Layout = null;
+}
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Product Images</h3>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="row">
+                                    @foreach (var imgPath in Model)
+                                    {
+                                        <div class="col-lg-4 col-sm-4">
+                                            <div class="form-group">
+                                                <img id="imagePreview" src="@imgPath" class="img-preview img-preview-sm img-thumbnail" />
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

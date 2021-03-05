@@ -181,6 +181,7 @@
     <link rel="stylesheet" href="~/Content/CSS/demo_3-style.css?ver=@version">
     <link href="~/Content/CSS/css-materialdesignicons.min.css?ver=@version" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/CSS/css-font-awesome.min.css?ver=@version">
+    <link href="~/Content/CSS/ModelPopup.css?ver=@version" rel="stylesheet" />
     <script src="~/Content/JS/dttable.js?ver=@version"></script>
     @*<link href="~/Content/CSS/buttons.dataTables.min.css" rel="stylesheet" />
         <link href="~/Content/CSS/jquery.dataTables.min.css" rel="stylesheet" />*@
@@ -216,10 +217,10 @@
     }
 
 
-    <div id="Modal">
-        <div id="modal-content">
-
-
+    <div id="Modal" class="modal">
+        <div class="modal-header">
+            <button class="modal-close" onclick="commonFunction.HideModel('#Modal');"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <div class="modal-body"></div>
         </div>
     </div>
 
@@ -233,7 +234,7 @@
                 </tr>
                 <tr>
                     <td align="center" valign="bottom">
-                        <input type="button" class="btn btn-primary" value="close" onclick="HideDiv()" />
+                        <input type="button" class="btn btn-primary" value="close" onclick="commonFunction.HideModel('#Imagemodal');" />
                     </td>
                 </tr>
             </table>
@@ -242,66 +243,8 @@
 
 
 
-    <style type="text/css">
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-        }
 
-        .Imagemodal {
-            display: none;
-            top: 0px;
-            left: 0px;
-            /* background-color: black;*/
-            z-index: 100;
-            opacity: 0.8;
-            filter: alpha(opacity=60);
-            -moz-opacity: 0.8;
-            min-height: 100%;
-        }
 
-            .Imagemodal .modal-content {
-                left: 50% !important;
-                top: 90px;
-                transform: translate(-50%, 0%);
-                display: block;
-                z-index: 1000;
-                position: fixed;
-                background-color: White;
-                min-height: auto;
-                width: auto;
-                padding: 20px;
-                border: solid 1px #9c9fa6;
-            }
-
-        .modal-content img {
-            display: block;
-            height: auto;
-            width: auto;
-            max-height: 450px;
-        }
-    </style>
-
-    <script type="text/javascript">
-        function LoadDiv(url) {
-            var bcgDiv = document.getElementById("Imagemodal");
-            $("#imgFull").attr('src', url);
-            var width = document.body.clientWidth;
-            if (document.body.clientHeight > document.body.scrollHeight) {
-                bcgDiv.style.height = document.body.clientHeight + "px";
-            }
-            else {
-                bcgDiv.style.height = document.body.scrollHeight + "px";
-            }
-            bcgDiv.style.width = "100%";
-            bcgDiv.style.display = "block";
-            return false;
-        }
-        function HideDiv() {
-            $("#Imagemodal").hide();
-        }
-    </script>
 
 
 

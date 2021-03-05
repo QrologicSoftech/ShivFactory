@@ -128,11 +128,26 @@ var Admin = {
     ChangeProfileImagee: function () {
 
         if (confirm("Are you sure want to Change  this image?")) {
-                location.href("/Home/ChangeProfileImage"); 
+            location.href("/Home/ChangeProfileImage");
         }
     },
+    GetProductImages: function (element) {
+        let productId = $(element).closest('tr').attr('Id');
+        if (productId == undefined || productId == null) { return false; }
+        common.ShowLoader();
+        data = {
+            "productId": productId
+        }
+        ajax.doPostAjax(`/${adminArea}/${adminController}/ProductImage`, data, function (result) {
+            if (result) {
+                $('#Modal').children('div').children('div').html(result);
+                $('#Modal').show();
+            }
+            common.HideLoader();
+        });
+    },
 
-       
+
 
 }
 
