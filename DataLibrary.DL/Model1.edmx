@@ -250,7 +250,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserID" Type="nvarchar" MaxLength="256" />
+          <Property Name="UserID" Type="int" />
           <Property Name="AccountHolderName" Type="nvarchar" MaxLength="150" />
           <Property Name="AccountNumber" Type="nvarchar" MaxLength="20" />
           <Property Name="BankName" Type="nvarchar" MaxLength="150" />
@@ -1025,7 +1025,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" />
           <Property Name="AccountHolderName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="AccountNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="BankName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />

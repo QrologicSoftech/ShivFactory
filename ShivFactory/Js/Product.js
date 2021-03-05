@@ -25,17 +25,6 @@
                 common.HideLoader(subcat_id);
             }
         });
-        //} else {
-        //    ddlSubCategory.find('option')
-        //        .remove()
-        //        .end()
-        //    ddlSubCategory.append($('<option></option>').val('-1').html('Select'));
-
-        //    ddlminiCategory.find('option')
-        //        .remove()
-        //        .end()
-        //    ddlminiCategory.append($('<option></option>').val('-1').html('Select'));
-        //}
     },
     BindMiniCategoryBySubCatId: function (subcat_id, mini_id) {
         var selectedSubCatId = $(subcat_id + " :selected").attr('value');

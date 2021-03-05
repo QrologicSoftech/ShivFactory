@@ -15,7 +15,7 @@ namespace DataLibrary.DL
     public partial class VendorBankDetail
     {
         public int ID { get; set; }
-        public string UserID { get; set; }
+        public Nullable<int> UserID { get; set; }
         public string AccountHolderName { get; set; }
         public string AccountNumber { get; set; }
         public string BankName { get; set; }

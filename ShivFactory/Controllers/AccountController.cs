@@ -521,8 +521,9 @@ namespace ShivFactory.Controllers
                         vendor.UserId = userDetails.UserId;  
                         RepoVendor repoVendor = new RepoVendor();
                         repoVendor.AddVendor(vendor);
+                        int vendorID = repoVendor.GetVendorIdByUserId(user.Id);
                         DataLibrary.DL.VendorBankDetail vendorBankdtls = new DataLibrary.DL.VendorBankDetail();
-                        vendorBankdtls.UserID = userDetails.UserId; 
+                        vendorBankdtls.UserID = vendorID; 
                         repoVendor.AddVendorBankDetails(vendorBankdtls);
 
 

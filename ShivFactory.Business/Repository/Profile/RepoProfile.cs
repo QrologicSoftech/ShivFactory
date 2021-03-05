@@ -38,7 +38,7 @@ namespace ShivFactory.Business.Repository
                 AddressProofImg = vendor.AddressProofImg
                 //,
 
-
+                // Add by Checking USerRoles 
                 //AccountHolderName = vendorbank.AccountHolderName,
                 //AccountNumber = vendorbank.AccountNumber,
                 //BankName = vendorbank.BankName,
