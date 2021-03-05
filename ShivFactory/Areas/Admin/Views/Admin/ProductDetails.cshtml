@@ -1,0 +1,63 @@
+﻿@model ShivFactory.Business.Repository.Admin.ProductDetailResponse
+@{
+    Layout = null;
+}
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper">
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Details</h4>
+                                <div class="form-group">
+                                    @Html.NameFor(m => Model.MgfDate) : @Model.MgfDate
+                                </div>
+                                <div class="form-group">
+                                    @Html.NameFor(m => Model.ShellLife) : @Model.ShellLife
+                                </div>
+                                <div class="form-group">
+                                    @Html.NameFor(m => Model.ProductColors) : @Model.ProductColors
+                                </div>
+                                <div class="form-group">
+                                    @Html.NameFor(m => Model.StockCount) :  @Model.StockCount
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">MgfDetail</h4>
+                                <div class="form-group">
+                                    @Model.MgfDetail
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">ProductWarning</h4>
+                                <div class="form-group">
+                                    @Model.ProductWarning
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Description</h4>
+                                <div class="form-group">
+                                    @Model.Description
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

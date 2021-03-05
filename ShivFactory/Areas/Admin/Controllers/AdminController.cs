@@ -1115,17 +1115,52 @@ namespace ShivFactory.Areas.Admin.Controllers
             try
             {
                 RepoProductDetails productDetail = new RepoProductDetails();
-                var images = productDetail.GetProductImagesByProductId(productId);
-                return View(images);
+                var basicInfo = productDetail.GetProductBasicInfoByProductId(productId);
+                return View(basicInfo);
             }
             catch (Exception ex)
             {
                 TempData["ErrorMessage"] = ex.Message;
             }
-            return View(new List<string>());
+            return View();
         }
         #endregion
 
+        #region Product Details
+        [HttpPost]
+        public ActionResult ProductDetails(int productId)
+        {
+            try
+            {
+                RepoProductDetails productDetail = new RepoProductDetails();
+                var detailInfo = productDetail.GetProductDetailByProductId(productId);
+                return View(detailInfo);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+            return View();
+        }
+        #endregion
+
+        #region Product Dimension
+        [HttpPost]
+        public ActionResult ProductDimension(int productId)
+        {
+            try
+            {
+                RepoProductDetails productDetail = new RepoProductDetails();
+                var detailInfo = productDetail.GetProductDimensionByProductId(productId);
+                return View(detailInfo);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+            return View();
+        }
+        #endregion
         #endregion
         #endregion
     }

@@ -1,4 +1,4 @@
-﻿@using ShivFactory.Business.Repository
+﻿@using ShivFactory.Business.Repository.Admin
 @using Newtonsoft.Json;
 @using Newtonsoft.Json.Linq;
 @{
@@ -25,11 +25,11 @@
     $(document).ready(function () {
         var list = [
             { Name: 'View', Value: 'Admin.GetProductImages(this);', Header: "Image" },
-            { Name: 'View', Value: 'Admin.GetProductBasicInfo();', Header: "BasicInfo" },
-            { Name: 'View', Value: 'Admin.GetProductDetails();', Header: "Details" },
-            { Name: 'View', Value: 'Admin.GetProductDimension();', Header: "Dimension" },
-            { Name: 'Approved', Value: 'Admin.ApprovedProduct();', Header:"Approved" },
-            { Name: 'UnApproved', Value: 'Admin.UnApprovedProduct();', Header: "UnApproved" }
+            { Name: 'View', Value: 'Admin.GetProductBasicInfo(this);', Header: "BasicInfo" },
+            { Name: 'View', Value: 'Admin.GetProductDetails(this);', Header: "Details" },
+            { Name: 'View', Value: 'Admin.GetProductDimension(this);', Header: "Dimension" },
+            { Name: 'Approved', Value: 'Admin.ApprovedProduct(this);', Header:"Approved" },
+            { Name: 'UnApproved', Value: 'Admin.UnApprovedProduct(this);', Header: "UnApproved" }
         ];
          var stringArray = @Html.Raw(Json.Encode(columnArray));
 

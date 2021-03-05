@@ -148,6 +148,22 @@ var Admin = {
         });
     },
 
+    GetProductBasicInfo: function (element) {
+        let productId = $(element).closest('tr').attr('Id');
+        if (productId == undefined || productId == null) { return false; }
+        common.ShowLoader();
+        data = {
+            "productId": productId
+        }
+        ajax.doPostAjax(`/${adminArea}/${adminController}/ProductBasicInfo`, data, function (result) {
+            if (result) {
+                $('#Modal').children('div').children('div').html(result);
+                $('#Modal').show();
+            }
+            common.HideLoader();
+        });
+    },
+
 }
 
 

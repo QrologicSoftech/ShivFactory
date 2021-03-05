@@ -1,4 +1,4 @@
-﻿@model ShivFactory.Business.Repository.Admin.ProductBasicInfoResponse
+﻿@model ShivFactory.Business.Repository.Admin.ProductDimensionResponse
 @{
     Layout = null;
 }
@@ -10,43 +10,37 @@
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title text-center">Price and Shipping Charge</h4>
+                                <h4 class="card-title text-center">Product</h4>
                                 <div class="form-group">
-                                    @Html.NameFor(m => Model.SalePrice) : @Model.SalePrice
+                                    @Html.NameFor(m => Model.ProductLength) : @Model.ProductLength
                                 </div>
                                 <div class="form-group">
-                                    @Html.NameFor(m => Model.ListPrice) : @Model.ListPrice
+                                    @Html.NameFor(m => Model.ProductWidth) : @Model.ProductWidth
                                 </div>
                                 <div class="form-group">
-                                    @Html.NameFor(m => Model.LocalShipingCharge) :  @Model.LocalShipingCharge
+                                    @Html.NameFor(m => Model.ProductHeight) : @Model.ProductHeight
                                 </div>
                                 <div class="form-group">
-                                    @Html.NameFor(m => Model.ZonalShipingCharge) : @Model.ZonalShipingCharge
-                                </div>
-                                <div class="form-group">
-                                    @Html.NameFor(m => Model.NationalShippingCharge) : @Model.NationalShippingCharge
+                                    @Html.NameFor(m => Model.ProductWeight) :  @Model.ProductWeight
                                 </div>
                             </div>
-                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title text-center">Others</h4>
+                                <h4 class="card-title text-center">Package</h4>
                                 <div class="form-group">
-                                    @Html.NameFor(m => Model.VendorName) : @Model.VendorName
+                                    @Html.NameFor(m => Model.PackageLength) : @Model.PackageLength
                                 </div>
                                 <div class="form-group">
-                                    @Html.NameFor(m => Model.EstimateDeliveryTime) : @Model.EstimateDeliveryTime
+                                    @Html.NameFor(m => Model.PackageWidth) : @Model.PackageWidth
                                 </div>
                                 <div class="form-group">
-                                    @Html.NameFor(m => Model.IsReturnable) : @Model.IsReturnable
+                                    @Html.NameFor(m => Model.PackageHeight) : @Model.PackageHeight
                                 </div>
                                 <div class="form-group">
-                                    @Html.NameFor(m => Model.ReturnDays) : @Model.ReturnDays
-                                </div>
-                                <div class="form-group">
-                                    @Html.NameFor(m => Model.IsActive) : @Model.IsActive
+                                    @Html.NameFor(m => Model.PackageWeight) :  @Model.PackageWeight
                                 </div>
                             </div>
                         </div>
