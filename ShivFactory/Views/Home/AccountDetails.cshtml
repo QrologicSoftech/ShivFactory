@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/Js/Profile.js"></script>
+
 
 <div class="container-scroller">
     <div class="container-fluid page-body-wrapper">
@@ -12,8 +12,8 @@
                     <div class="col-md-4 grid-margin stretch-card">
 
                         <div class="card">
-                            <a href="#" class="text-right">
-                                <button class="btn-default" type="button" onclick="profile.BindBasicDetail();" value="Edit">Edit</button>
+                            <a href="#" class="text-right" onclick="profile.BindBasicDetail();">Edit</a>
+                                @*<button class="btn-default" type="button" onclick="profile.BindBasicDetail();" value="Edit">Edit</button>*@
                             </a>
                             <div class="card-body">
                                 <h4 class="card-title text-center">Profile Details</h4>
@@ -73,7 +73,7 @@
                     <div class="col-md-4 grid-margin stretch-card">
 
                         <div class="card">
-                            <a href="#" class="text-right" value="Edit">Edit</a>
+                            <a href="#" class="text-right" value="Edit" onclick="profile.BindVendorDetail();">Edit</a>
                             <div class="card-body">
                                 <h4 class="card-title text-center">Vendor Details</h4>
                                 @*<p class="card-title text-left">Display information </p>*@

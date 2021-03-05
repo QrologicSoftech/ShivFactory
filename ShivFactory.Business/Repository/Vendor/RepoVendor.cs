@@ -33,11 +33,16 @@ namespace ShivFactory.Business.Repository
         #endregion
 
         #region Add Or Update VendorDetails
-        public bool AddVendor(Vendor model)
+        public bool AddOrUpdateVendor(Vendor model)
         {
             var vendor = db.Vendors.Where(a => a.UserId == model.UserId).FirstOrDefault();
             if (vendor != null)
             {
+                vendor.FirmName = model.FirmName;
+                vendor.GSTIN = model.GSTIN;
+                vendor.PanNo = model.PanNo;
+                vendor.City = model.City;
+                vendor.State = model.State;
             }
             else
             {

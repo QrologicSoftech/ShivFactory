@@ -69,19 +69,98 @@ namespace ShivFactory.Controllers
             
         }
 
-        public ActionResult UserProfile()
+
+        #region UserProfile
+        public ActionResult GetCurrentUserDetails()
         {
-         
-            Utility util = new Utility();
-            RepoProfile repoProfile = new RepoProfile();
-            var  userDetail = repoProfile.GetUserDetailsBYUserId(util.GetCurrentUserId());
-            return View(userDetail); 
+            try
+            {
+                // Call for Vendor only 
+                Utility util = new Utility();
+                RepoProfile repoProfile = new RepoProfile();
+                var userDetail = repoProfile.GetUserDetailsBYUserId(util.GetCurrentUserId());
+                
+                return Json(new ResultModel
+                {
+                    ResultFlag = userDetail!=null? true: false,
+                    Data = userDetail,
+                    Message = userDetail!=null ? "User details find successfully!!": "Failled to find user details!!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+            
+            
         }
 
-        [HttpPost]
-        public ActionResult UserProfile(UserProfile model)
+        public ActionResult SaveCurrentUserBasicDetails()
         {
-            return View();
+            try
+            {
+
+                // Call for Customer and Vendor only 
+                UserDetail userDetail = new UserDetail(); 
+                Utility util = new Utility();
+                RepoUser repoUser = new RepoUser();
+                 bool isUpdate = repoUser.AddOrUpdateUserDetails(userDetail);
+
+                return Json(new ResultModel
+                {
+                    ResultFlag = isUpdate,
+                    Data = "",
+                    Message = isUpdate == true ? "User details Update successfully!!" : "Failled to Update user details!!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
+
+
+        public ActionResult SaveCurrentVendorDetails()
+        {
+            try
+            {
+
+                // Call for Customer and Vendor only 
+                Vendor vendorDetail = new Vendor();
+                Utility util = new Utility();
+                RepoVendor repoUser = new RepoVendor();
+                bool isUpdate = repoUser.AddOrUpdateVendor(vendorDetail);
+
+                return Json(new ResultModel
+                {
+                    ResultFlag = isUpdate,
+                    Data = "",
+                    Message = isUpdate == true ? "User details Update successfully!!" : "Failled to Update user details!!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+
         }
 
         public ActionResult AccountDetails()
@@ -94,5 +173,9 @@ namespace ShivFactory.Controllers
             // 
             return View(userProfiledetails);
         }
+
+        #endregion
     }
+
+
 }
