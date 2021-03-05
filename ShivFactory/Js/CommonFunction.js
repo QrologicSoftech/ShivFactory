@@ -32,7 +32,7 @@ var commonFunction = {
                 columns.push({
                     "data": "ImagePath", "name": "ImagePath", "defaultContent": "<i>-</i>", "orderable": false,
                     "render": function (data, type, row, meta) {
-                        return '<a onclick="return LoadDiv(`' + data + '`);" target="_blank"><img src="' + data + '" alt="" style="height:40px;width:40px;"></a>';
+                        return '<a onclick="return commonFunction.ShowImage(`' + data + '`);" target="_blank"><img src="' + data + '" alt="" style="height:40px;width:40px;"></a>';
                     }
                 });
             }
@@ -86,7 +86,7 @@ var commonFunction = {
                 columns.push({
                     "data": "ImagePath", "name": "ImagePath", "defaultContent": "<i>-</i>", "orderable": false,
                     "render": function (data, type, row, meta) {
-                        return '<a onclick="return LoadDiv(`' + data + '`);" target="_blank"><img src="' + data + '" alt="" style="height:40px;width:40px;"></a>';
+                        return '<a onclick="return commonFunction.ShowImage(`' + data + '`);" target="_blank"><img src="' + data + '" alt="" style="height:40px;width:40px;"></a>';
                     }
                 });
             }
@@ -99,13 +99,31 @@ var commonFunction = {
             columns.push({
                 "data": "", "name": item.Header, "orderable": false,
                 "render": function () {
-                    return`<button class="btn btn-light" onclick="${item.Value}">${item.Name}</button >`;
+                    return `<button class="btn btn-light" onclick="${item.Value}">${item.Name}</button >`;
                 }
             });
         });
 
         common.HideLoader('.datatable');
         return callback(columns);
+    },
+
+    HideModel: function (element) {
+        $(element).hide();
+    },
+    ShowImage: function (url) {
+        var bcgDiv = document.getElementById("Imagemodal");
+        $("#imgFull").attr('src', url);
+        var width = document.body.clientWidth;
+        if (document.body.clientHeight > document.body.scrollHeight) {
+            bcgDiv.style.height = document.body.clientHeight + "px";
+        }
+        else {
+            bcgDiv.style.height = document.body.scrollHeight + "px";
+        }
+        bcgDiv.style.width = "100%";
+        bcgDiv.style.display = "block";
+        return false;
     }
 
 }

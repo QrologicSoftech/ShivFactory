@@ -79,7 +79,7 @@ namespace ShivFactory.Business.Repository
                     ZonalShipingCharge = model.ZonalShipingCharge,
                     NationalShippingCharge = model.NationalShippingCharge,
                     StockCount = model.StockCount,
-                    MgfDate = model.MgfDate!=null? Convert.ToDateTime(model.MgfDate):new DateTime(),
+                    MgfDate = model.MgfDate != null ? Convert.ToDateTime(model.MgfDate) : new DateTime(),
                     MgfDetail = model.MgfDetail,
                     ShellLife = model.ShellLife,
                     ProductWarning = model.ProductWarning,
@@ -133,7 +133,7 @@ namespace ShivFactory.Business.Repository
                 ProductId = a.ProductId,
                 VendorId = a.VendorId,
                 ProductName = a.ProductName,
-                SalePrice = a.SalePrice??0,
+                SalePrice = a.SalePrice ?? 0,
                 ListPrice = a.ListPrice ?? 0,
                 LocalShipingCharge = a.LocalShipingCharge ?? 0,
                 ZonalShipingCharge = a.ZonalShipingCharge ?? 0,
@@ -152,7 +152,7 @@ namespace ShivFactory.Business.Repository
                 //Image4 = repoCommon.checkfile(a.Image4),
                 //Image5 = repoCommon.checkfile(a.Image5),
                 //Image6 = repoCommon.checkfile(a.Image6),
-                MainImage =a.MainImage,
+                MainImage = a.MainImage,
                 Image1 = a.Image1,
                 Image2 = a.Image2,
                 Image3 = a.Image3,
@@ -176,9 +176,9 @@ namespace ShivFactory.Business.Repository
                 IsReturnable = a.IsReturnable ?? false,
                 ReturnDays = a.ReturnDays
             }).AsNoTracking().FirstOrDefault();
-            if(Product!=null&& !string.IsNullOrEmpty(Product.MgfDate))
+            if (Product != null && !string.IsNullOrEmpty(Product.MgfDate))
             {
-                Product.MgfDate = Product.MgfDate!=null? Convert.ToDateTime(Product.MgfDate).ToString("yyyy-MM-dd"):"";
+                Product.MgfDate = Product.MgfDate != null ? Convert.ToDateTime(Product.MgfDate).ToString("yyyy-MM-dd") : "";
             }
             return Product;
 
@@ -287,6 +287,26 @@ namespace ShivFactory.Business.Repository
             }
 
             return products;
+        }
+        #endregion
+
+        #region Get Product Images By ProductId
+        public List<string> GetProductImagesByProductId(int ProductId)
+        {
+            var images = new List<string>();
+            RepoCommon repoCommon = new RepoCommon();
+            var Product = db.Products.Where(x => x.ProductId == ProductId).AsNoTracking().FirstOrDefault();
+            if (Product != null)
+            {
+                images.Add(repoCommon.checkfile(Product.MainImage));
+                images.Add(repoCommon.checkfile(Product.Image1));
+                images.Add(repoCommon.checkfile(Product.Image2));
+                images.Add(repoCommon.checkfile(Product.Image3));
+                images.Add(repoCommon.checkfile(Product.Image4));
+                images.Add(repoCommon.checkfile(Product.Image5));
+            }
+            return images;
+
         }
         #endregion
     }

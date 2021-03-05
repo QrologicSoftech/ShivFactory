@@ -15,6 +15,7 @@
 
     ViewBag.Title = "UnApprovedProductPartialView";
 }
+
 <div class="row overflow-auto">
     <div class="col-12" id="TableDiv">
     </div>
@@ -23,7 +24,7 @@
 <script>
     $(document).ready(function () {
         var list = [
-            { Name: 'View', Value: 'Admin.GetProductImages();', Header: "Image" },
+            { Name: 'View', Value: 'Admin.GetProductImages(this);', Header: "Image" },
             { Name: 'View', Value: 'Admin.GetProductBasicInfo();', Header: "BasicInfo" },
             { Name: 'View', Value: 'Admin.GetProductDetails();', Header: "Details" },
             { Name: 'View', Value: 'Admin.GetProductDimension();', Header: "Dimension" },
