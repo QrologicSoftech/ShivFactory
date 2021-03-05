@@ -34,7 +34,6 @@ namespace DataLibrary.DL
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<DynamicMenu> DynamicMenus { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
-        public virtual DbSet<VendorBankDetail> VendorBankDetails { get; set; }
         public virtual DbSet<DimensionMaster> DimensionMasters { get; set; }
         public virtual DbSet<WeightMaster> WeightMasters { get; set; }
         public virtual DbSet<ColorMaster> ColorMasters { get; set; }
@@ -44,5 +43,6 @@ namespace DataLibrary.DL
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Vendor> Vendors { get; set; }
+        public virtual DbSet<VendorBankDetail> VendorBankDetails { get; set; }
     }
 }

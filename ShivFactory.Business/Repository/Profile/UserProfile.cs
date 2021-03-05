@@ -25,6 +25,31 @@ namespace ShivFactory.Business.Repository
 		public DateTime LastUpdate { get; set; }
 		public bool IsActive { get; set; }
 		public bool IsDelete { get; set; }
+		public string FirmName { get; set; }
+
+	// Vendor Details
+		public string GSTIN { get; set; }
+		public string FullAddress { get; set; }
+		public string City { get; set; }
+		public string State { get; set; }
+		public string PanNo { get; set; }
+		public string AddressProofImg { get; set; }
+		public DateTime IsVendorActive { get; set; }
+		public DateTime AddUpdate { get; set; }
+		public DateTime LastUpdateVendor { get; set; }
+		public string PIN { get; set; }
+		public string Signature { get; set; }
+
+		public string Logo { get; set; }
+
+		//Vendor Bank Details
+		public string AccountHolderName { get; set; }
+		public string AccountNumber { get; set; }
+		public string BankName { get; set; }
+		public string IFSCCode { get; set; }
+		public string Branch { get; set; }
+
+
 
 	}
 }

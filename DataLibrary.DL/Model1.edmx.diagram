@@ -14,11 +14,9 @@
         <EntityTypeShape EntityType="db_ShivFactoryModel.Category" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.DynamicMenu" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.UserDetail" Width="1.5" PointX="5.25" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="db_ShivFactoryModel.VendorBankDetail" Width="1.5" PointX="7.5" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="db_ShivFactoryModel.FK__UserDetai__UserI__6477ECF3" ManuallyRouted="false" />
-        <AssociationConnector Association="db_ShivFactoryModel.FK__VendorBan__UserI__656C112C" ManuallyRouted="false" />
         <AssociationConnector Association="db_ShivFactoryModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.DimensionMaster" Width="1.5" PointX="12.875" PointY="5.875" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.WeightMaster" Width="1.5" PointX="0.75" PointY="3.75" />
@@ -36,6 +34,7 @@
         <AssociationConnector Association="db_ShivFactoryModel.FK_Product_MiniCategory" />
         <AssociationConnector Association="db_ShivFactoryModel.FK__Product__VendorI__2739D489" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_Product_SubCategory" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.VendorBankDetail" Width="1.5" PointX="7.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

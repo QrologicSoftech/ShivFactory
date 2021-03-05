@@ -250,7 +250,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserID" Type="int" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="256" />
           <Property Name="AccountHolderName" Type="nvarchar" MaxLength="150" />
           <Property Name="AccountNumber" Type="nvarchar" MaxLength="20" />
           <Property Name="BankName" Type="nvarchar" MaxLength="150" />
@@ -344,20 +344,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Principal>
             <Dependent Role="UserDetails">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__VendorBan__UserI__656C112C">
-          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="VendorBankDetails" Type="Self.VendorBankDetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserDetails">
-              <PropertyRef Name="UserDetailId" />
-            </Principal>
-            <Dependent Role="VendorBankDetails">
-              <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -513,10 +499,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <AssociationSet Name="FK__UserDetai__UserI__6477ECF3" Association="Self.FK__UserDetai__UserI__6477ECF3">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__VendorBan__UserI__656C112C" Association="Self.FK__VendorBan__UserI__656C112C">
-            <End Role="UserDetails" EntitySet="UserDetails" />
-            <End Role="VendorBankDetails" EntitySet="VendorBankDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__VendorBus__UserI__66603565" Association="Self.FK__VendorBus__UserI__66603565">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -678,28 +660,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="IsDelete" Type="Boolean" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK__UserDetai__UserI__6477ECF3" FromRole="UserDetails" ToRole="AspNetUsers" />
-          <NavigationProperty Name="VendorBankDetails" Relationship="Self.FK__VendorBan__UserI__656C112C" FromRole="UserDetails" ToRole="VendorBankDetails" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="VendorBankDetail">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="Int32" />
-          <Property Name="AccountHolderName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="AccountNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="BankName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="IFSCCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Branch" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="DateTime" Precision="3" />
-          <Property Name="IsDelete" Type="DateTime" Precision="3" />
-          <Property Name="AddUpdate" Type="DateTime" Precision="3" />
-          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="UserDetail" Relationship="Self.FK__VendorBan__UserI__656C112C" FromRole="VendorBankDetails" ToRole="UserDetails" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -743,20 +705,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VendorBan__UserI__656C112C">
-          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="VendorBankDetails" Type="Self.VendorBankDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserDetails">
-              <PropertyRef Name="UserDetailId" />
-            </Principal>
-            <Dependent Role="VendorBankDetails">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AspNetUserRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
@@ -771,7 +719,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="DynamicMenus" EntityType="Self.DynamicMenu" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
-          <EntitySet Name="VendorBankDetails" EntityType="Self.VendorBankDetail" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -783,10 +730,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <AssociationSet Name="FK__UserDetai__UserI__6477ECF3" Association="Self.FK__UserDetai__UserI__6477ECF3">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="UserDetails" EntitySet="UserDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK__VendorBan__UserI__656C112C" Association="Self.FK__VendorBan__UserI__656C112C">
-            <End Role="UserDetails" EntitySet="UserDetails" />
-            <End Role="VendorBankDetails" EntitySet="VendorBankDetails" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -829,6 +772,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             <End Role="SubCategory" EntitySet="SubCategories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
+          <EntitySet Name="VendorBankDetails" EntityType="db_ShivFactoryModel.VendorBankDetail" />
           </EntityContainer>
         <EntityType Name="DimensionMaster">
           <Key>
@@ -1076,6 +1020,24 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="VendorBankDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="AccountHolderName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="AccountNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BankName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IFSCCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Branch" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="DateTime" Precision="3" />
+          <Property Name="AddUpdate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1200,25 +1162,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VendorBankDetails">
-            <EntityTypeMapping TypeName="db_ShivFactoryModel.VendorBankDetail">
-              <MappingFragment StoreEntitySet="VendorBankDetails">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
-                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
-                <ScalarProperty Name="BankName" ColumnName="BankName" />
-                <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Branch" ColumnName="Branch" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="AddUpdate" ColumnName="AddUpdate" />
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1379,6 +1322,25 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
                 <ScalarProperty Name="FirmName" ColumnName="FirmName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VendorBankDetails">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.VendorBankDetail">
+              <MappingFragment StoreEntitySet="VendorBankDetails">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddUpdate" ColumnName="AddUpdate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="IFSCCode" ColumnName="IFSCCode" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

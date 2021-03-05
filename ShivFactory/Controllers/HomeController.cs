@@ -86,7 +86,13 @@ namespace ShivFactory.Controllers
 
         public ActionResult AccountDetails()
         {
-            return View(); 
+
+            //Basic Details
+            Utility util = new Utility();
+            RepoProfile repoProfile = new RepoProfile();
+            var userProfiledetails = repoProfile.GetUserDetailsBYUserId(util.GetCurrentUserId());
+            // 
+            return View(userProfiledetails);
         }
     }
 }

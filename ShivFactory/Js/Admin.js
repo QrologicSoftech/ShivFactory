@@ -128,7 +128,7 @@ var Admin = {
     ChangeProfileImagee: function () {
 
         if (confirm("Are you sure want to Change  this image?")) {
-                location.href("/Home/ChangeProfileImage"); 
+            window.location.href("Home/ChangeProfileImage"); 
         }
     },
 

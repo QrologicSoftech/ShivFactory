@@ -15,7 +15,7 @@ namespace DataLibrary.DL
     public partial class VendorBankDetail
     {
         public int ID { get; set; }
-        public Nullable<int> UserID { get; set; }
+        public string UserID { get; set; }
         public string AccountHolderName { get; set; }
         public string AccountNumber { get; set; }
         public string BankName { get; set; }
@@ -27,7 +27,5 @@ namespace DataLibrary.DL
         public Nullable<System.DateTime> IsDelete { get; set; }
         public Nullable<System.DateTime> AddUpdate { get; set; }
         public Nullable<System.DateTime> LastUpdate { get; set; }
-    
-        public virtual UserDetail UserDetail { get; set; }
     }
 }

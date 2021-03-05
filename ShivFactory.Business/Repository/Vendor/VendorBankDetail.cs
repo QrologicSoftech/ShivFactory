@@ -11,7 +11,7 @@ namespace ShivFactory.Business.Repository
     {
 
 		public int ID { get; set; }
-		public int UserID { get; set; }
+		public string UserID { get; set; }
 
 		[Required(ErrorMessage="Accounder Holder Name Required")]
 		public string AccountHolderName { get; set; }

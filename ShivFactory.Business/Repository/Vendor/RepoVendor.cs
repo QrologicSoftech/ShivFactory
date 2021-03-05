@@ -35,8 +35,8 @@ namespace ShivFactory.Business.Repository
         #region Add Or Update VendorDetails
         public bool AddVendor(Vendor model)
         {
-            var user = db.Vendors.Where(a => a.UserId == model.UserId).FirstOrDefault();
-            if (user != null)
+            var vendor = db.Vendors.Where(a => a.UserId == model.UserId).FirstOrDefault();
+            if (vendor != null)
             {
             }
             else
@@ -45,6 +45,32 @@ namespace ShivFactory.Business.Repository
             }
             return db.SaveChanges() > 0;
         }
+        #endregion
+
+        #region Add Or Update VendorDetails
+        public bool AddVendorBankDetails(DataLibrary.DL.VendorBankDetail model)
+        {
+            var vendorbankdetails = db.VendorBankDetails.Where(a => a.UserID == model.UserID).FirstOrDefault();
+            if (vendorbankdetails != null)
+            {
+            }
+            else
+            {
+                db.VendorBankDetails.Add(model);
+            }
+            return db.SaveChanges() > 0;
+        }
+        #endregion
+
+        #region Get VendorDetails By UserId
+        public Vendor GetVendorDetailsByUserId(string userId)
+        {
+            var vendor = db.Vendors.Where(a => a.UserId == userId).FirstOrDefault();
+                return vendor;
+         
+          
+        }
+
         #endregion
 
     }

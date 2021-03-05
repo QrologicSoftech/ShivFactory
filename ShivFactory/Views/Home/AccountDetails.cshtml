@@ -1,44 +1,68 @@
 ﻿@model ShivFactory.Business.Repository.UserProfile
 @{
-
     Layout = "~/Views/Shared/_Layout.cshtml";
-
 }
-
 
 <div class="container-scroller">
     <div class="container-fluid page-body-wrapper">
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row">
-
-
                     <div class="col-md-4 grid-margin stretch-card">
 
                         <div class="card">
                             <a href="#" class="text-right" value="Edit">Edit</a>
                             <div class="card-body">
-                                <h4 class="card-title text-center">Display information</h4>
+                                <h4 class="card-title text-center">Profile Details</h4>
                                 @*<p class="card-title text-left">Display information </p>*@
 
                                 <div class="form-group-lg">
                                     <label>
                                         Display Name<span style="color:red">*</span>
-
-                                        <span style="color:grey">Shiv Factory</span>
+                                        <span style="color:grey">@Model.FirstName &nbsp;@Model.LastName</span>
                                     </label>
                                 </div>
 
                                 <div class="form-group-lg">
                                     <div class="form-group-lg">
                                         <label>
-                                            Business Description<span style="color:red">*</span>
-
-                                            <span style="color:grey">Qrologic</span>
+                                            Email<span style="color:red">*</span>
+                                            <span style="color:grey">@Model.Email</span>
                                         </label>
                                     </div>
                                 </div>
 
+                                <div class="form-group-lg">
+                                    <div class="form-group-lg">
+                                        <label>
+                                            Mobile<span style="color:red">*</span>
+                                            <span style="color:grey">@Model.Mobile</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-lg">
+                                    <div class="form-group-lg">
+                                        <label>
+                                            Address<span style="color:red">*</span>
+                                            <span style="color:grey">@Model.Address</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group-lg">
+                                    <div class="form-group-lg">
+                                        <label>
+                                            User  Profile<span style="color:red">*</span>
+
+                                            <span style="color:grey">
+                                               @{   
+                                                   var imgpath = @Model != null && @Model.UserImage != null ? Model.UserImage : "~/Content/UploadedImages/Images/NoImg.png";
+                                                         }
+                                                <img src="@imgpath" height="25px" width="25px" />
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -48,47 +72,73 @@
                         <div class="card">
                             <a href="#" class="text-right" value="Edit">Edit</a>
                             <div class="card-body">
-                                <h4 class="card-title text-center">Pick-Up Address</h4>
+                                <h4 class="card-title text-center">Vendor Details</h4>
                                 @*<p class="card-title text-left">Display information </p>*@
+
+                                <div class="form-group-lg">
+                                    <label>
+                                        Display Name<span style="color:red">*</span>
+                                        <span style="color:grey">@Model.FirmName </span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group-lg">
+                                    <div class="form-group-lg">
+                                        <label>
+                                            GST<span style="color:red">*</span>
+                                            <span style="color:grey">@Model.GSTIN</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-lg">
+                                    <div class="form-group-lg">
+                                        <label>
+                                            PAN<span style="color:red">*</span>
+                                            <span style="color:grey">@Model.PanNo</span>
+                                        </label>
+                                    </div>
+                                </div>
 
                                 <div class="form-group-lg">
                                     <label>
                                         Address Line1
-
-                                        <span style="color:grey">Shiv Factory</span>
-                                    </label>
-
-                                    <label>
-                                        Address Line2
-
-                                        <span style="color:grey">Shiv Factory</span>
-                                    </label>
-
-                                    <label>
-                                        PinCode<span style="color:red">*</span>
-
-                                        <span style="color:grey">302004</span>
-                                    </label>
-
-                                    <label>
-                                        Pick-Up City<span style="color:red">*</span>
-
-                                        <span style="color:grey">JAIPUR</span>
+                                        <span style="color:grey">@Model.Address</span>
                                     </label>
                                 </div>
-
                                 <div class="form-group-lg">
                                     <div class="form-group-lg">
                                         <label>
-                                            Business Description<span style="color:red">*</span>
+                                            PinCode<span style="color:red">*</span>
 
-                                            <span style="color:grey">Qrologic</span>
+                                            <span style="color:grey">123456</span>
                                         </label>
                                     </div>
                                 </div>
+                                <div class="form-group-lg">
+                                    <div class="form-group-lg">
+                                        <label>
+                                            Pick-Up City<span style="color:red">*</span>
 
+                                            <span style="color:grey">@Model.City</span>
+                                        </label>
+                                    </div></div>
+
+                                    <div class="form-group-lg">
+                                        <div class="form-group-lg">
+                                            <label>
+                                                Business Logo<span style="color:red">*</span>
+
+                                                <span style="color:grey">
+                                                    @{var logo = @Model != null && @Model.Logo != null ? Model.Logo : "~/Content/UploadedImages/Images/NoImg.png";}
+                                                    <img src="@logo" height="25px" width="25px" />
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
-                        </div>
                     </div>
 
 
@@ -97,27 +147,45 @@
                         <div class="card">
                             <a href="#" class="text-right" value="Edit">Edit</a>
                             <div class="card-body">
-                                <h4 class="card-title text-center">Display information</h4>
+                                <h4 class="card-title text-center">Bank Details</h4>
                                 @*<p class="card-title text-left">Display information </p>*@
 
                                 <div class="form-group-lg">
                                     <label>
-                                        Display Name<span style="color:red">*</span>
+                                        Account Holder Name Name<span style="color:red">*</span>
 
-                                        <span style="color:grey">Shiv Factory</span>
+                                        <span style="color:grey">SBI</span>
                                     </label>
                                 </div>
 
                                 <div class="form-group-lg">
                                     <div class="form-group-lg">
                                         <label>
-                                            Business Description<span style="color:red">*</span>
+                                            Account Number<span style="color:red">*</span>
 
                                             <span style="color:grey">Qrologic</span>
                                         </label>
                                     </div>
                                 </div>
+                                <div class="form-group-lg">
+                                    <div class="form-group-lg">
+                                        <label>
+                                            IFSC Code<span style="color:red">*</span>
 
+                                            <span style="color:grey">XXXXXX</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-lg">
+                                    <div class="form-group-lg">
+                                        <label>
+                                            Branch<span style="color:red">*</span>
+
+                                            <span style="color:grey">JAIPUR</span>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
