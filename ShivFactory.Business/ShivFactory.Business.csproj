@@ -128,6 +128,9 @@
     <Compile Include="Repository\Product\ProductModel.cs" />
     <Compile Include="Repository\Product\ProductResponse.cs" />
     <Compile Include="Repository\Product\RepoProduct.cs" />
+    <Compile Include="Repository\Profile\clsUserBasicDetails.cs" />
+    <Compile Include="Repository\Profile\clsVendorBankDetails.cs" />
+    <Compile Include="Repository\Profile\clsVendorBasicDetails.cs" />
     <Compile Include="Repository\Profile\UserProfile.cs" />
     <Compile Include="Repository\Profile\RepoProfile.cs" />
     <Compile Include="Repository\Profile\UserProfileResponse.cs" />
