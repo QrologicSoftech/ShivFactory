@@ -143,5 +143,32 @@ namespace ShivFactory.Business.Repository.Admin
 
         }
         #endregion
+
+        #region Approved Product By Admin
+        public bool ApprovedProductByAdmin(int ProductId)
+        {
+            var product = db.Products.Where(x => x.ProductId == ProductId).FirstOrDefault();
+            if (product != null)
+            {
+                product.ApprovedByAdmin = true;
+                return db.SaveChanges() > 0;
+            }
+            return false;
+        }
+        #endregion
+
+        #region Reject Product By Admin
+        public bool RejectProductByAdmin(int ProductId, string rejectRegion)
+        {
+            var product = db.Products.Where(x => x.ProductId == ProductId).FirstOrDefault();
+            if (product != null)
+            {
+                product.ApprovedByAdmin = false;
+                product.InactiveReason = rejectRegion;
+                return db.SaveChanges() > 0;
+            }
+            return false;
+        }
+        #endregion
     }
 }

@@ -128,11 +128,13 @@ var Admin = {
     ChangeProfileImagee: function () {
 
         if (confirm("Are you sure want to Change  this image?")) {
-            window.location.href("Home/ChangeProfileImage"); 
+            window.location.href("Home/ChangeProfileImage");
         }
     },
 
-   GetProductImages: function (element) {
+    //  Vendor products function  Start
+
+    GetProductImages: function (element) {
         let productId = $(element).closest('tr').attr('Id');
         if (productId == undefined || productId == null) { return false; }
         common.ShowLoader();
@@ -163,7 +165,123 @@ var Admin = {
             common.HideLoader();
         });
     },
+    GetProductDetails: function (element) {
+        let productId = $(element).closest('tr').attr('Id');
+        if (productId == undefined || productId == null) { return false; }
+        common.ShowLoader();
+        data = {
+            "productId": productId
+        }
+        ajax.doPostAjax(`/${adminArea}/${adminController}/ProductDetails`, data, function (result) {
+            if (result) {
+                $('#Modal').children('div').children('div').html(result);
+                $('#Modal').show();
+            }
+            common.HideLoader();
+        });
+    },
+    GetProductDimension: function (element) {
+        let productId = $(element).closest('tr').attr('Id');
+        if (productId == undefined || productId == null) { return false; }
+        common.ShowLoader();
+        data = {
+            "productId": productId
+        }
+        ajax.doPostAjax(`/${adminArea}/${adminController}/ProductDimension`, data, function (result) {
+            if (result) {
+                $('#Modal').children('div').children('div').html(result);
+                $('#Modal').show();
+            }
+            common.HideLoader();
+        });
+    },
 
+    ApprovedProduct: function (element) {
+        if (confirm("Are you sure want to approved this product?")) {
+            let productId = $(element).closest('tr').attr('Id');
+            if (productId == undefined || productId == null) { return false; }
+            common.ShowLoader();
+            data = {
+                "productId": productId
+            }
+            ajax.doPostAjax(`/${adminArea}/${adminController}/ApprovedProduct`, data, function (result) {
+                if (result.ResultFlag) {
+                    location.reload();
+                }
+                common.ShowMessage(result);
+            });
+        }
+    },
+
+    UnApprovedProduct: function (element) {
+        if (confirm("Are you sure want to reject this product?")) {
+            let productId = $(element).closest('tr').attr('Id');
+            if (productId == undefined || productId == null) { return false; }
+            common.ShowLoader();
+            let html = `<div class="container">
+    <div class="container-fluid page-body-wrapper">
+        <div class="main-panel">
+            <div class="content-wrapper">
+<input type="hidden" id="RejectProductId" value="${productId}"/>
+                <div class="row">
+                    <div class="col-md-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Reject region</h4>
+                               <textarea type="text" class="form-control col-md-12" placeholder="Product reject region" id="txtProductReject" maxlength="200"></textarea> 
+                              </div>
+                             <button type="button" class="btn btn-block btn-gradient-primary" onclick="Admin.RejectProduct();"> Update</button>
+                            </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+            $('#Modal').children('div').children('div').html(html);
+            $('#Modal').show();
+            common.HideLoader();
+        }
+    },
+    RejectProduct: function (element) {
+       
+        let rejectRegion = $("#txtProductReject").val();
+        if (rejectRegion == undefined || rejectRegion == "" || rejectRegion == null) {
+            toastr.error("Please enter reject region.");
+            return false;
+        }
+        if (rejectRegion.length > 200)
+        {
+            toastr.error("The field value characters are less than or equal to 200 characters.");
+            return false;
+        }
+
+        let productId = $("#RejectProductId").val();
+        if (productId == undefined || productId == null) { return false; }
+        common.ShowLoader();
+        data = {
+            "productId": productId,
+            "rejectRegion": rejectRegion
+        }
+        ajax.doPostAjax(`/${adminArea}/${adminController}/RejectProduct`, data, function (result) {
+            if (result.ResultFlag) {
+                commonFunction.HideModel('#Modal');
+                location.reload();
+            }
+            common.ShowMessage(result);
+            common.HideLoader();
+        });
+    },
+
+
+
+
+
+
+
+
+
+    //  Vendor products functions  End
 }
 
 

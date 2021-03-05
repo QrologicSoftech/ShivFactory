@@ -1162,6 +1162,60 @@ namespace ShivFactory.Areas.Admin.Controllers
         }
         #endregion
         #endregion
+
+        #region  Approved Product
+        public ActionResult ApprovedProduct(int productId)
+        {
+            try
+            {
+                RepoProductDetails productDetails = new RepoProductDetails();
+                var isApproved = productDetails.ApprovedProductByAdmin(productId);
+                return Json(new ResultModel
+                {
+                    ResultFlag = isApproved,
+                    Data = null,
+                    Message = isApproved ? "Product approved successfully!!" : "Failled to approved product."
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+        #region  Approved Product
+        public ActionResult RejectProduct(int productId,string rejectRegion)
+        {
+            try
+            {
+                RepoProductDetails productDetails = new RepoProductDetails();
+                var isApproved = productDetails.RejectProductByAdmin(productId, rejectRegion);
+                return Json(new ResultModel
+                {
+                    ResultFlag = isApproved,
+                    Data = null,
+                    Message = isApproved ? "Product reject successfully!!" : "Failled to reject product."
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
+
         #endregion
     }
 }
