@@ -2,6 +2,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Js/Profile.js"></script>
 
 <div class="container-scroller">
     <div class="container-fluid page-body-wrapper">
@@ -11,7 +12,9 @@
                     <div class="col-md-4 grid-margin stretch-card">
 
                         <div class="card">
-                            <a href="#" class="text-right" value="Edit">Edit</a>
+                            <a href="#" class="text-right">
+                                <button class="btn-default" type="button" onclick="profile.BindBasicDetail();" value="Edit">Edit</button>
+                            </a>
                             <div class="card-body">
                                 <h4 class="card-title text-center">Profile Details</h4>
                                 @*<p class="card-title text-left">Display information </p>*@
@@ -54,12 +57,12 @@
                                         <label>
                                             User  Profile<span style="color:red">*</span>
 
-                                            <span style="color:grey">
-                                               @{   
-                                                   var imgpath = @Model != null && @Model.UserImage != null ? Model.UserImage : "~/Content/UploadedImages/Images/NoImg.png";
-                                                         }
+                                            @*<span style="color:grey">
+                                                @{
+                                                    var imgpath = @Model != null && @Model.UserImage != null ? Model.UserImage : "~/Content/UploadedImages/Images/NoImg.png";
+                                                }
                                                 <img src="@imgpath" height="25px" width="25px" />
-                                            </span>
+                                            </span>*@
                                         </label>
                                     </div>
                                 </div>
@@ -122,23 +125,24 @@
 
                                             <span style="color:grey">@Model.City</span>
                                         </label>
-                                    </div></div>
-
-                                    <div class="form-group-lg">
-                                        <div class="form-group-lg">
-                                            <label>
-                                                Business Logo<span style="color:red">*</span>
-
-                                                <span style="color:grey">
-                                                    @{var logo = @Model != null && @Model.Logo != null ? Model.Logo : "~/Content/UploadedImages/Images/NoImg.png";}
-                                                    <img src="@logo" height="25px" width="25px" />
-                                                </span>
-                                            </label>
-                                        </div>
                                     </div>
-
                                 </div>
+
+                                <div class="form-group-lg">
+                                    <div class="form-group-lg">
+                                        <label>
+                                            Business Logo<span style="color:red">*</span>
+
+                                            @*<span style="color:grey">
+                                                @{var logo = @Model != null && @Model.Logo != null ? Model.Logo : "~/Content/UploadedImages/Images/NoImg.png";}
+                                                <img src="@logo" height="25px" width="25px" />
+                                            </span>*@
+                                        </label>
+                                    </div>
+                                </div>
+
                             </div>
+                        </div>
                     </div>
 
 
