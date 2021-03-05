@@ -293,6 +293,7 @@
     <Content Include="Content\CSS\datatables.net-bs4-dataTables.bootstrap4.css" />
     <Content Include="Content\CSS\demo_3-style.css" />
     <Content Include="Content\CSS\jquery.dataTables.min.css" />
+    <Content Include="Content\CSS\ModelPopup.css" />
     <Content Include="Content\fonts\fonts-fontawesome-webfont.svg" />
     <Content Include="Content\fonts\fonts-Simple-Line-Icons.svg" />
     <Content Include="Content\fonts\images-alert.svg" />
@@ -428,6 +429,7 @@
     <Content Include="Areas\Admin\Views\Admin\Products.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\VendorNavPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ProductImage.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ProductBasicInfo.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

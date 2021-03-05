@@ -2,6 +2,7 @@
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
 using ShivFactory.Business.Repository;
+using ShivFactory.Business.Repository.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -1077,8 +1078,8 @@ namespace ShivFactory.Areas.Admin.Controllers
                 };
                 int recordsTotal = 0;
                
-                RepoProduct repoProduct = new RepoProduct();
-                var productList = repoProduct.GetAllUnApprovedProducts(model, out recordsTotal);
+                RepoProductDetails productDetails = new RepoProductDetails();
+                var productList = productDetails.GetAllUnApprovedProducts(model, out recordsTotal);
 
                 return Json(new { data = productList, draw = draw, recordsFiltered = productList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
             }
@@ -1089,13 +1090,14 @@ namespace ShivFactory.Areas.Admin.Controllers
         }
         #region Product Details
 
+        #region ProductImage
         [HttpPost]        
         public ActionResult ProductImage(int productId)
         {
             try
             {
-                RepoProduct repoProduct = new RepoProduct();
-                var images = repoProduct.GetProductImagesByProductId(productId);
+                RepoProductDetails productDetails = new RepoProductDetails();
+                var images = productDetails.GetProductImagesByProductId(productId);
                 return View(images);
             }
             catch(Exception ex)
@@ -1104,8 +1106,27 @@ namespace ShivFactory.Areas.Admin.Controllers
             }
             return View(new List<string>());
         }
+        #endregion
+
+        #region Product BasicInfo
+        [HttpPost]
+        public ActionResult ProductBasicInfo(int productId)
+        {
+            try
+            {
+                RepoProductDetails productDetail = new RepoProductDetails();
+                var images = productDetail.GetProductImagesByProductId(productId);
+                return View(images);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+            return View(new List<string>());
+        }
+        #endregion
 
         #endregion
-#endregion
+        #endregion
     }
 }
