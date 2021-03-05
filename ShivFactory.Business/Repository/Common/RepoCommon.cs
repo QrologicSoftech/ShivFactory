@@ -95,6 +95,8 @@ namespace ShivFactory.Business.Repository
         #region Call SMS OTP API 
         public string sendOtpSMS(string mobilenumber)
         { // put in try when sms
+            Random generator = new Random();
+            int r = generator.Next(100000, 1000000);
             return "123456"; 
         }
 
