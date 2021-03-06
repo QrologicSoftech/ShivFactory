@@ -2,6 +2,7 @@
 using ShivFactory.Business.Repository.ChangeProfileImage;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,18 @@ namespace ShivFactory.Business.Repository
     {
         #region Entity
         ShivFactoryEntities db = new ShivFactoryEntities();
+        #endregion
+
+        #region User Is Delete
+        public bool UserIsDelete(string userId)
+        {
+            var user = db.UserDetails.Where(a => a.UserId == userId && a.IsDelete==true).AsNoTracking().FirstOrDefault();
+            if (user != null)
+            {
+                return true;
+            }
+            return false;
+        }
         #endregion
 
         #region Add Or Update UserDetails
@@ -58,7 +71,7 @@ namespace ShivFactory.Business.Repository
         }
         #endregion
 
-        #region
+        #region GetUserImage
         public string GetUserImage(string userId)
         {
             var image = db.UserDetails.Where(a => a.UserId == userId).Select(a => a.UserImage).FirstOrDefault();
