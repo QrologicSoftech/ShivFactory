@@ -133,7 +133,7 @@ var profile = {
                                                     <i class="mdi mdi-email-outline text-primary"></i>
                                                 </span>
                                             </div>
-                                            <input class="form-control form-control-lg border-left-0"  id="VendorAddress" name="VendorAddress" placeholder="Vendor Address" type="text" value="${user.FullAddress}" />
+                                            <input class="form-control form-control-lg border-left-0"  id="FullAddress" name="FullAddress" placeholder="Vendor Address" type="text" value="${user.FullAddress}" />
                                         </div>
                                      
                                     </div>
