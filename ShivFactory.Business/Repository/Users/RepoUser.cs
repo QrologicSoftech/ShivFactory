@@ -24,8 +24,6 @@ namespace ShivFactory.Business.Repository
                 user.LastName = model.LastName;
                 user.Address = model.Address;
                 user.Gender = model.Gender;
-                user.Mobile = model.Mobile;
-                user.Email = model.Email;
                 user.LastUpdate = DateTime.Now;
             }
             else

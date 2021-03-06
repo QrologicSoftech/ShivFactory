@@ -25,9 +25,10 @@ namespace ShivFactory.Business.Repository
 		public DateTime LastUpdate { get; set; }
 		public bool IsActive { get; set; }
 		public bool IsDelete { get; set; }
+
+		// Vendor Details
 		public string FirmName { get; set; }
 
-	// Vendor Details
 		public string GSTIN { get; set; }
 		public string FullAddress { get; set; }
 		public string City { get; set; }

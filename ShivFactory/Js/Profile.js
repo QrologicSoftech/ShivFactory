@@ -17,40 +17,39 @@ var profile = {
                                         <div class="input-group">
                                             <input class="form-control form-control-lg border-left-0" data-val="true" data-val-required="FirstName Required!" id="FirstName" name="FirstName" placeholder="FirstName" type="text" value="${user.FirstName}" />
                                         </div>
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+                                      
                                     </div>
                                     <div class="form-group">
                                         <label>LastName<span style="color:red">*</span></label>
                                         <div class="input-group">
                                             <input class="form-control form-control-lg border-left-0" id="LastName" name="LastName" placeholder="LastName" type="text" value="${user.LastName}" />
                                         </div>
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="LastName" data-valmsg-replace="true"></span>
+                                       
                                     </div>
                                    
                                     <div class="form-group">
-                                        <label>Email<span style="color:red">*</span></label>
+                                        <label>Address<span style="color:red">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-prepend bg-transparent">
                                                 <span class="input-group-text bg-transparent border-right-0">
                                                     <i class="mdi mdi-email-outline text-primary"></i>
                                                 </span>
                                             </div>
-                                            <input class="form-control form-control-lg border-left-0" data-val="true" data-val-email="Invalid Email Address" data-val-required="Email Required!" id="EmailId" name="EmailId" placeholder="Email" type="text" value="${user.Email}" />
+                                            <input class="form-control form-control-lg border-left-0" data-val="true"  data-val-required="User Address Required!" id="UserAddress" name="UserAddress" placeholder="UserAddress" type="text" value="${user.Address}" />
                                         </div>
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="EmailId" data-valmsg-replace="true"></span>
+                                       
                                     </div>
                                     
                                       <div class="form-group">
-                                        <label>Mobile<span style="color:red">*</span></label>
+                                        <label>Gender<span style="color:red">*</span></label>
                                         <div class="input-group">
                                             <div class="input-group-prepend bg-transparent">
                                                 <span class="input-group-text bg-transparent border-right-0">
-                                                    <i class="mdi mdi-email-outline text-primary"></i>
+                                                   
                                                 </span>
                                             </div>
-                                            <input class="form-control form-control-lg border-left-0"  id="EmailId" name="Mobile" placeholder="Mobile" type="text" value="${user.Mobile}" />
+                                           <input type="radio" id="male" name="gender" value="Male"> &nbsp; &nbsp;&nbsp; <input type="radio" id="female" name="gender" value="Female">
                                         </div>
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="EmailId" data-valmsg-replace="true"></span>
                                     </div>
                                     
                                     <div class="mt-3">
@@ -66,16 +65,25 @@ var profile = {
         });
     },  
     UpdateBasicDetails: function () {
-       
-        //if (!$('FirstName').val()){
-        //    $('FirstName').addClass("error");
-        //} else{
-        //    $('FirstName').removeClass("error");
-        //}
-        //then call api to save 
-
+        
+        if (profile.ValidateBasicDetail()) {
+            data = {
+                "FirstName": $('#FirstName').val(),
+                "LastName": $('#LastName').val(),
+                "Gender": $('#gender').val(),
+                "Address": $('#UserAddress').val()
+            }
+            ajax.doPostAjax(`/${homeController}/SaveCurrentUserBasicDetails`, data, function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    location.reload();
+                }
+            });
+        }
 
     },
+
+    
 
     BindVendorDetail: function () {
 
@@ -94,14 +102,14 @@ var profile = {
                                         <div class="input-group">
                                             <input class="form-control form-control-lg border-left-0" data-val="true" data-val-required="FirmName Required!" id="FirmName" name="FirmName" placeholder="FirmName" type="text" value="${user.FirstName}" />
                                         </div>
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+                                     
                                     </div>
                                     <div class="form-group">
                                         <label>GST<span style="color:red">*</span></label>
                                         <div class="input-group">
                                             <input class="form-control form-control-lg border-left-0" id="GST" name="GST" placeholder="GST" type="text" value="${user.GSTIN}" />
                                         </div>
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="GST" data-valmsg-replace="true"></span>
+                                    
                                     </div>
                                    
                                     <div class="form-group">
@@ -125,11 +133,22 @@ var profile = {
                                                     <i class="mdi mdi-email-outline text-primary"></i>
                                                 </span>
                                             </div>
-                                            <input class="form-control form-control-lg border-left-0"  id="Address" name="Address" placeholder="Address" type="text" value="${user.FullAddress}" />
+                                            <input class="form-control form-control-lg border-left-0"  id="VendorAddress" name="VendorAddress" placeholder="Vendor Address" type="text" value="${user.FullAddress}" />
                                         </div>
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="Address" data-valmsg-replace="true"> Address Required</span>
+                                     
                                     </div>
-
+ <div class="form-group">
+                                        <label>PIN<span style="color:red">*</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend bg-transparent">
+                                                <span class="input-group-text bg-transparent border-right-0">
+                                                    <i class="mdi mdi-email-outline text-primary"></i>
+                                                </span>
+                                            </div>
+                                            <input class="form-control form-control-lg border-left-0"  id="PIN" name="PIN" placeholder="PIN" type="text" value="${user.PIN}" />
+                                        </div>
+                                      
+                                    </div>
                                     
  <div class="form-group">
                                         <label>City<span style="color:red">*</span></label>
@@ -141,7 +160,7 @@ var profile = {
                                             </div>
                                             <input class="form-control form-control-lg border-left-0"  id="City" name="City" placeholder="City" type="text" value="${user.City}" />
                                         </div>
-                                        <span class="field-validation-valid text-danger">City Required</span>
+                                   
                                     </div>
 
  <div class="form-group">
@@ -154,7 +173,7 @@ var profile = {
                                             </div>
                                             <input class="form-control form-control-lg border-left-0"  id="State" name="State" placeholder="State" type="text" value="${user.State}" />
                                         </div>
-                                        <span class="field-validation-valid text-danger" ></span>
+                                       
                                     </div>
                                     <div class="mt-3">
                                         <button type="submit" onclick="profile.UpdateVendorDetails();" class="btn btn-block btn-gradient-primary mr-2">Update</button>
@@ -170,13 +189,23 @@ var profile = {
     },  
     UpdateVendorDetails: function () {
 
-        //if (!$('FirstName').val()){
-        //    $('FirstName').addClass("error");
-        //} else{
-        //    $('FirstName').removeClass("error");
-        //}
-        //then call api to save 
-
+        if (profile.ValidateVendorDetail()) {
+            data = {
+                "FirmName": $('#FirmName').val(),
+                "GSTIN": $('#GSTIN').val(),
+                "PanNo": $('#PAN').val(),
+                "FullAddress": $('#FullAddress').val(),
+                "City": $('#City').val(),
+                "State": $('#State').val(),
+                "PIN": $('#PIN').val()
+            }
+            ajax.doPostAjax(`/${homeController}/SaveCurrentVendorDetails`, data, function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    location.reload();
+                }
+            });
+        }
 
     },
     BindVendorBankDetails: function () {
@@ -196,14 +225,14 @@ var profile = {
                                         <div class="input-group">
                                             <input class="form-control form-control-lg border-left-0" data-val="true" data-val-required="FirmName Required!" id="AccountHolderName" name="AccountHolderName" placeholder="Account Holder Name" type="text" value="${user.AccountHolderName}" />
                                         </div>
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="FirstName" data-valmsg-replace="true"></span>
+                                    
                                     </div>
                                     <div class="form-group">
                                         <label>Acccount Number<span style="color:red">*</span></label>
                                         <div class="input-group">
                                             <input class="form-control form-control-lg border-left-0" id="AccountNumber" name="AccountNumber" placeholder="AccountNumber" type="text" value="${user.AccountNumber}" />
                                         </div>
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="GST" data-valmsg-replace="true"></span>
+                                       
                                     </div>
                                    
                                     <div class="form-group">
@@ -216,7 +245,7 @@ var profile = {
                                             </div>
                                             <input class="form-control form-control-lg border-left-0" data-val="true"  id="BankName" name="BankName" placeholder="BankName" type="text" value="${user.BankName}" />
                                         </div>
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="PAN" data-valmsg-replace="true"></span>
+                                     
                                     </div>
                                     
                                       <div class="form-group">
@@ -229,7 +258,7 @@ var profile = {
                                             </div>
                                             <input class="form-control form-control-lg border-left-0"  id="IFSCCode" name="IFSCCode" placeholder="IFSCCode" type="text" value="${user.IFSCCode}" />
                                         </div>
-                                        <span class="field-validation-valid text-danger" data-valmsg-for="Address" data-valmsg-replace="true"> Address Required</span>
+                                       
                                     </div>
                                     <div class="mt-3">
                                         <button type="submit" onclick="profile.UpdateVendorBankDetails();" class="btn btn-block btn-gradient-primary mr-2">Update</button>
@@ -246,6 +275,45 @@ var profile = {
 
     UpdateVendorBankDetails: function () {
 
+    },
+    ValidateBasicDetail: function () {
+        if ($('#FirstName').val() == null || $('#FirstName').val() == 'undefined') {
+            toastr.error('Enter First Name!');
+            return false;
+        } else if ($('#LastName').val() == null || $('#LastName').val() == 'undefined') {
+            toastr.error('Enter Last Name!');
+            return false;
+        } else if ($('#UserAddress').val() == null || $('#UserAddress').val() == 'undefined') {
+            toastr.error('Enter Last Name!');
+            return false;
+        }
+       
+        return true;
+    },
+    ValidateVendorDetail: function () {
+        if ($('#FirmName').val() == null || $('#FirmName').val() == 'undefined') {
+            toastr.error('Enter Last Name!');
+            return false;
+        } else if ($('#GST').val() == null || $('#GST').val() == 'undefined') {
+            toastr.error('Enter GST !');
+            return false;
+        } else if ($('#PAN').val() == null || $('#PAN').val() == 'undefined') {
+            toastr.error('Enter PAN !');
+            return false;
+        } else if ($('#FullAddress').val() == null || $('#FullAddress').val() == 'undefined') {
+            toastr.error('Enter Address !');
+            return false;
+        } else if ($('#City').val() == null || $('#City').val() == 'undefined') {
+            toastr.error('Enter City !');
+            return false;
+        } else if ($('#State').val() == null || $('#State').val() == 'undefined') {
+            toastr.error('Enter State !');
+            return false;
+        } else if ($('#PIN').val() == null || $('#PIN').val() == 'undefined') {
+            toastr.error('Enter PIN !');
+            return false;
+        }
+        return true;
     }
 
    

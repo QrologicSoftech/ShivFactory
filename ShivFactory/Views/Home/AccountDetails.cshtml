@@ -27,20 +27,20 @@
                                         </p>
                                     </div>
                                     <div class="colo-md-12">
-                                        <span class="help-text light">Email</span>
+                                        <span class="help-text light">Gender</span>
 
                                         <p>
-                                            <span class="help-text">@Model.Email  </span>
+                                            <span class="help-text">@Model.Gender  </span>
                                         </p>
                                     </div>
 
-                                    <div class="colo-md-12">
+                                    @*<div class="colo-md-12">
                                         <span class="help-text light">Mobile</span>
 
                                         <p>
                                             <span class="help-text">@Model.Mobile  </span>
                                         </p>
-                                    </div>
+                                    </div>*@
                                     <div class="colo-md-12">
                                         <span class="help-text light">Address</span>
 
@@ -49,13 +49,7 @@
                                         </p>
                                     </div>
 
-                                    <div class="colo-md-12">
-                                        <span class="help-text light"> Profile Image</span>
-
-                                        <p>
-                                            <span class="help-text">@Model.Email  </span>
-                                        </p>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="panel-footer text-center load-more" style="display: none;">
@@ -71,13 +65,10 @@
                         </div>
                     </div>
                     <div class="col-md-4 col-lg-4 col-sm-6 card-1">
-                        @*<div class="card-content secondary-header">
-                            Display information <span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_display_details_click" analytics-label="edit_display_details" onclick="profile.BindBasicDetail();">Edit</span></span>
-                        </div>*@
                         <div class="panel panel-default card-detail">
                             <div class="panel-body">
                                 <div class="card-content secondary-header">
-                                    Vendor Details<span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_display_details_click" analytics-label="edit_display_details" onclick="profile.BindBasicDetail();">Edit</span></span>
+                                    Vendor Details<span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click"  onclick="profile.BindVendorDetail();">Edit</span></span>
                                 </div>
 
                                 <div class="card-content pb20">
@@ -107,7 +98,7 @@
                                         <span class="help-text light">Address Line1</span>
 
                                         <p class="help-text">
-                                            @Model.Address
+                                            @Model.FullAddress
                                         </p>
                                     </div>
 
@@ -115,7 +106,8 @@
                                         <span class="help-text light">Pincode</span>
 
                                         <p class="help-text">
-                                            123456
+                                            @Model.PIN
+
                                         </p>
                                     </div>
 
@@ -163,21 +155,17 @@
                                         <p>
                                             <span class="help-text">+9876543210 </span>
                                             <span class="icon icon-success"></span>
-                                            
                                         </p>
                                     </div>
                                     <div class="colo-md-12">
                                         <span class="help-text light">Your Email address</span>
-
                                         <p>
                                             <span class="help-text">shivfactory@gmail.com </span>
                                             <span class="icon icon-success"></span>
-                                            
                                         </p>
                                     </div>
                                     <div class="colo-md-12">
                                         <span class="help-text light">Password</span>
-
                                         <p>
                                             <span class="help-text">***** </span>
                                         </p>

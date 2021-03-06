@@ -840,7 +840,7 @@ namespace ShivFactory.Controllers
         #endregion
 
 
-        #region New Register
+        #region Register Vendor
         [AllowAnonymous]
         public ActionResult MobileVerify()
         {
@@ -878,11 +878,11 @@ namespace ShivFactory.Controllers
         }
 
 
-        [AllowAnonymous]
-        public ActionResult RegisterVendor()
-        {
-            return View();
-        }
+        //[AllowAnonymous]
+        //public ActionResult RegisterVendor()
+        //{
+        //    return View();
+        //}
 
         [AllowAnonymous]
         [HttpPost]
@@ -920,11 +920,7 @@ namespace ShivFactory.Controllers
         }
         #endregion
 
-        [AllowAnonymous]
-        public ActionResult SignUp()
-        {
-            return View();
-        }
+     
 
 
         
