@@ -9,39 +9,36 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3>Product Colors</h3>
-                            <input type="hidden" id="hndProductId" value="@ViewBag.ProductId" />
+                            <div class="row">
+                                <h3 class="col-md-4">Product Colors</h3>
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for color" title="Type in a color name" class="col-sm-3 form-control" style="margin-top: -10px;">
+                                <input type="hidden" id="hndProductId" value="@ViewBag.ProductId" />
+                            </div>
                         </div>
                         <div class="container">
-                                <div class="row">
-                                    @foreach (var color in Model)
+                            
+                            <div class="row" id="colorRow">
+                                @foreach (var color in Model)
+                                {
+                                    var check = "";
+                                    if (!string.IsNullOrEmpty(ViewBag.ProductColors) && ViewBag.ProductColors.Contains(color.Name))
                                     {
-                                        var check = "";
-                                        if (!string.IsNullOrEmpty(ViewBag.ProductColors) && ViewBag.ProductColors.Contains(color.Name))
-                                        {
-                                            check = "checked";
-                                        }
-                                        //foreach (var productColor in ViewBag.ProductColors)
-                                        //{
-                                        //    if(color.Name.ToLower()==productColor.ToLower())
-                                        //    {
-                                        //        check = "checked";
-                                        //    }
-                                        //}
-                                        <div class="col-lg-2 col-sm-2">
-                                            <div class="form-group form-check">
-                                                <label class="form-check-label text-muted">
-                                                    <input type="checkbox" value="@color.Name" @check class="form-check-input productColor"> @color.Name <i class="input-helper"></i>
-                                                </label>
-                                            </div>
-                                        </div>
+                                        check = "checked";
                                     }
-                            </div>
-                                <div class="row">
-                                    <div class="my-3">
-                                        <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" onclick="Vendor.UpdateProductColors();">Update</button>
+                                    <div class="col-lg-2 col-sm-2">
+                                        <div class="form-group form-check">
+                                            <label class="form-check-label text-muted">
+                                                <input type="checkbox" value="@color.Name" @check class="form-check-input productColor"> @color.Name <i class="input-helper"></i>
+                                            </label>
+                                        </div>
                                     </div>
+                                }
+                            </div>
+                            <div class="row">
+                                <div class="my-3">
+                                    <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" onclick="Vendor.UpdateProductColors();">Update</button>
                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -49,3 +46,20 @@
         </div>
     </div>
 </div>
+<script>
+    function myFunction() {
+        var filter, row, div, a, i, txtValue;
+        filter = document.getElementById("myInput").value.toUpperCase();
+        row = document.getElementById("colorRow");
+        div = row.getElementsByTagName("div");
+        for (i = 0; i < div.length; i++) {
+            a = div[i].getElementsByTagName("input")[0];
+            txtValue = a.value || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                div[i].style.display = "";
+            } else {
+                div[i].style.display = "none";
+            }
+        }
+    }
+</script>
