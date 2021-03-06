@@ -433,6 +433,7 @@
     <Content Include="Areas\Admin\Views\Admin\ProductImage.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ProductBasicInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ProductDimension.cshtml" />
+    <Content Include="Areas\Vendor\Views\Vendor\ProductColors.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

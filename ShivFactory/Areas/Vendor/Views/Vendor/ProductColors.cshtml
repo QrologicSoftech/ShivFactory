@@ -1,0 +1,47 @@
+﻿@model  List<ShivFactory.Business.Repository.ColorResponse>
+@{
+    Layout = null;
+}
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Product Colors</h3>
+                        </div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="row">
+                                    @foreach (var color in Model)
+                                    {
+                                        var check= "";
+                                        if (ViewBag.ProductColors.Contains(color.Name))
+                                        {
+                                            check = "checked";
+                                        }
+                                        //foreach (var productColor in ViewBag.ProductColors)
+                                        //{
+                                        //    if(color.Name.ToLower()==productColor.ToLower())
+                                        //    {
+                                        //        check = "checked";
+                                        //    }
+                                        //}
+                                        <div class="col-lg-2 col-sm-2">
+                                            <div class="form-group">
+                                                <label class="form-check-label text-muted">
+                                                    <input type="checkbox" value="@color" @check class="form-check-input"> @color.Name <i class="input-helper"></i>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

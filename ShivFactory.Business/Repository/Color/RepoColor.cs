@@ -1,6 +1,7 @@
 ﻿using DataLibrary.DL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using System.Web.Mvc;
 
 namespace ShivFactory.Business.Repository
 {
-    public class RepoColorMaster
+    public class RepoColor
     {
         #region Parameters
         ShivFactoryEntities db = new ShivFactoryEntities();
@@ -37,7 +38,7 @@ namespace ShivFactory.Business.Repository
 
         #endregion
 
-        #region Get Dimension By Id
+        #region Get Color By Id
         public ColorModel GetColorById(int ColorMasterId)
         {
             var ColorMasters = db.ColorMasters.Where(x => x.Id == ColorMasterId).Select(a => new ColorModel()
@@ -51,14 +52,17 @@ namespace ShivFactory.Business.Repository
         }
         #endregion
 
-        #region Get All Dimension
-        public List<ColorMaster> GetAllColor()
+        #region Get All Colors
+        public List<ColorResponse> GetAllColor()
         {
-            return db.ColorMasters.Where(a => a.Name != null).ToList();
+            return db.ColorMasters.Select(a=> new ColorResponse() {
+                Id=a.Id,
+                Name=a.Name
+            }).AsNoTracking().ToList();
         }
         #endregion
 
-        #region Delete SubCategory By Id
+        #region Delete Color By Id
         public bool DeleteColorById(int ColorMasterId)
         {
             var ColorMasters = db.ColorMasters.Where(x => x.Id == ColorMasterId).FirstOrDefault();
@@ -70,7 +74,7 @@ namespace ShivFactory.Business.Repository
         }
         #endregion
 
-        #region Get DimensionMaster DDl
+        #region Get Color DDl
 
         public SelectList GetColorDDl()
         {

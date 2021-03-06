@@ -248,5 +248,14 @@ namespace ShivFactory.Business.Repository
             return products;
         }
         #endregion        
+
+        #region Get Product color By ProductId
+        public string GetProductColorByProductId(int ProductId)
+        {
+            var ProductColor = db.Products.Where(x => x.ProductId == ProductId).Select(p => p.ProductColors).FirstOrDefault();
+            return ProductColor;
+
+        }
+        #endregion
     }
 }

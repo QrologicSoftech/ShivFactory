@@ -845,7 +845,7 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #endregion
 
-        #region WeightMaster
+        #region Weight
 
         public ActionResult Weight()
         {
@@ -946,7 +946,7 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #endregion
 
-        #region ColorMaster
+        #region Color
 
         public ActionResult Color()
         {
@@ -956,7 +956,7 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             try
             {
-                RepoColorMaster rsCategory = new RepoColorMaster();
+                RepoColor rsCategory = new RepoColor();
                 var weight = rsCategory.GetAllColor();
                 return View(weight);
             }
@@ -970,7 +970,7 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             try
             {
-                RepoColorMaster rsCategory = new RepoColorMaster();
+                RepoColor rsCategory = new RepoColor();
                 ViewBag.Dimension = rsCategory.GetColorDDl();
 
                 if (id > 0)
@@ -992,7 +992,7 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             try
             {
-                RepoColorMaster rsDimension = new RepoColorMaster();
+                RepoColor rsDimension = new RepoColor();
                 ViewBag.Dimension = rsDimension.GetAllColor();
                 if (!ModelState.IsValid)
                 {
@@ -1023,7 +1023,7 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             try
             {
-                RepoColorMaster rsDimension = new RepoColorMaster();
+                RepoColor rsDimension = new RepoColor();
                 var isDelete = rsDimension.DeleteColorById(id);
 
                 return Json(new ResultModel

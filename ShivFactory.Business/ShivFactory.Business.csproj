@@ -116,7 +116,8 @@
     <Compile Include="Repository\Category\RepoCategory.cs" />
     <Compile Include="Repository\ChangeProfileImage\UserProfileImage.cs" />
     <Compile Include="Repository\Color\ColorModel.cs" />
-    <Compile Include="Repository\Color\RepoColorMaster.cs" />
+    <Compile Include="Repository\Color\ColorResponse.cs" />
+    <Compile Include="Repository\Color\RepoColor.cs" />
     <Compile Include="Repository\Common\Cookie.cs" />
     <Compile Include="Repository\Common\RepoCommon.cs" />
     <Compile Include="Repository\Dimension\DimensionModel.cs" />

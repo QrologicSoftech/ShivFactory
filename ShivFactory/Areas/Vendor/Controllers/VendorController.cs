@@ -228,6 +228,23 @@ namespace ShivFactory.Areas.Vendor.Controllers
             }
         }
 
+        public ActionResult ProductColors(int productId)
+        {
+            try
+            {
+                RepoProduct repoProduct = new RepoProduct();
+                ViewBag.ProductColors = repoProduct.GetProductColorByProductId(productId);
+                RepoColor repoColor = new RepoColor();
+                var colors = repoColor.GetAllColor();
+                return View(colors);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(new List<ColorResponse>());
+            }
+        }
+
         public ActionResult GetSubcategoryByCategoryId(string categoryId)
         {
 
