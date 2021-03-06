@@ -1,4 +1,4 @@
-﻿let homeArea = 'Home', homeController = 'Home' ,PartialView ='GetCurrentUserDetails';
+﻿let homeArea = 'Home', homeController = 'Home',accountController='Account' ,PartialView ='GetCurrentUserDetails';
 var profile = {
 
     BindBasicDetail: function () {
@@ -76,7 +76,7 @@ var profile = {
             ajax.doPostAjax(`/${homeController}/SaveCurrentUserBasicDetails`, data, function (result) {
                 common.ShowMessage(result);
                 if (result.ResultFlag) {
-                    location.reload();
+                    commonFunction.HideModel('#Modal');
                 }
             });
         }
@@ -202,7 +202,7 @@ var profile = {
             ajax.doPostAjax(`/${homeController}/SaveCurrentVendorDetails`, data, function (result) {
                 common.ShowMessage(result);
                 if (result.ResultFlag) {
-                    location.reload();
+                    commonFunction.HideModel('#Modal');
                 }
             });
         }
@@ -276,46 +276,7 @@ var profile = {
     UpdateVendorBankDetails: function () {
 
     },
-    ValidateBasicDetail: function () {
-        if ($('#FirstName').val() == null || $('#FirstName').val() == 'undefined') {
-            toastr.error('Enter First Name!');
-            return false;
-        } else if ($('#LastName').val() == null || $('#LastName').val() == 'undefined') {
-            toastr.error('Enter Last Name!');
-            return false;
-        } else if ($('#UserAddress').val() == null || $('#UserAddress').val() == 'undefined') {
-            toastr.error('Enter Last Name!');
-            return false;
-        }
-
-        return true;
-    },
-    ValidateVendorDetail: function () {
-        if ($('#FirmName').val() == null || $('#FirmName').val() == 'undefined') {
-            toastr.error('Enter Last Name!');
-            return false;
-        } else if ($('#GST').val() == null || $('#GST').val() == 'undefined') {
-            toastr.error('Enter GST !');
-            return false;
-        } else if ($('#PAN').val() == null || $('#PAN').val() == 'undefined') {
-            toastr.error('Enter PAN !');
-            return false;
-        } else if ($('#FullAddress').val() == null || $('#FullAddress').val() == 'undefined') {
-            toastr.error('Enter Address !');
-            return false;
-        } else if ($('#City').val() == null || $('#City').val() == 'undefined') {
-            toastr.error('Enter City !');
-            return false;
-        } else if ($('#State').val() == null || $('#State').val() == 'undefined') {
-            toastr.error('Enter State !');
-            return false;
-        } else if ($('#PIN').val() == null || $('#PIN').val() == 'undefined') {
-            toastr.error('Enter PIN !');
-            return false;
-        }
-        return true;
-    },
-
+  
     BindUserPasswordDetails: function () {
         common.ShowLoader();
         var form;
@@ -353,19 +314,60 @@ var profile = {
 
     UpdateUserPasswordDetails: function () {
         if (profile.ValidateUserPasswordDetail()) {
-            debugger;
             data = {
-                "Password": $('#Password').val(),
+                "NewPassword": $('#Password').val(),
                 "ConfirmPassword": $('#ConfirmPassword').val()
             }
-            ajax.doPostAjax(`/AccountController/UpdateCurrentUserPassword`, data, function (result) {
+            alert(data);
+            ajax.doPostAjax(`/${accountController}/UpdateCurrentUserPassword`, data, function (result) {
                 common.ShowMessage(result);
                 if (result.ResultFlag) {
-                    location.reload();
+                    commonFunction.HideModel('#Modal');
                 }
             });
         }
 
+    },
+
+    ValidateBasicDetail: function () {
+        if ($('#FirstName').val() == null || $('#FirstName').val() == 'undefined') {
+            toastr.error('Enter First Name!');
+            return false;
+        } else if ($('#LastName').val() == null || $('#LastName').val() == 'undefined') {
+            toastr.error('Enter Last Name!');
+            return false;
+        } else if ($('#UserAddress').val() == null || $('#UserAddress').val() == 'undefined') {
+            toastr.error('Enter Last Name!');
+            return false;
+        }
+
+        return true;
+    },
+
+    ValidateVendorDetail: function () {
+        if ($('#FirmName').val() == null || $('#FirmName').val() == 'undefined') {
+            toastr.error('Enter Last Name!');
+            return false;
+        } else if ($('#GST').val() == null || $('#GST').val() == 'undefined') {
+            toastr.error('Enter GST !');
+            return false;
+        } else if ($('#PAN').val() == null || $('#PAN').val() == 'undefined') {
+            toastr.error('Enter PAN !');
+            return false;
+        } else if ($('#FullAddress').val() == null || $('#FullAddress').val() == 'undefined') {
+            toastr.error('Enter Address !');
+            return false;
+        } else if ($('#City').val() == null || $('#City').val() == 'undefined') {
+            toastr.error('Enter City !');
+            return false;
+        } else if ($('#State').val() == null || $('#State').val() == 'undefined') {
+            toastr.error('Enter State !');
+            return false;
+        } else if ($('#PIN').val() == null || $('#PIN').val() == 'undefined') {
+            toastr.error('Enter PIN !');
+            return false;
+        }
+        return true;
     },
 
     ValidateUserPasswordDetail: function () {
@@ -378,11 +380,8 @@ var profile = {
         } else if ($('#Password').val() != $('#ConfirmPassword').val()) {
             toastr.error('Password and Confirm Password Mismatch !');
             return false;
-
         }
-
+        return true;
 
     }
 }
-
-

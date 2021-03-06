@@ -33,6 +33,7 @@ namespace ShivFactory.Controllers
             return View();
         }
 
+        #region Change Profile Image
         public ActionResult ChangeProfileImage()
         {
             UserProfileImage model = new UserProfileImage(); 
@@ -68,7 +69,7 @@ namespace ShivFactory.Controllers
             }
             
         }
-
+        #endregion
 
         #region UserProfile or AccountDetails
         public ActionResult GetCurrentUserDetails()

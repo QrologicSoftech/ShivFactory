@@ -1,6 +1,10 @@
-﻿@model ShivFactory.Business.Repository.UserProfile
+﻿
+@using ShivFactory.Business.Repository;
+@using ShivFactory.Business.Models.Other;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    RepoCookie repoCookie = new RepoCookie();
+    var role = repoCookie.GetCookiesValue(CookieName.Role);
 }
 
 
@@ -35,12 +39,12 @@
                                     </div>
 
                                     @*<div class="colo-md-12">
-                                        <span class="help-text light">Mobile</span>
+                                            <span class="help-text light">Mobile</span>
 
-                                        <p>
-                                            <span class="help-text">@Model.Mobile  </span>
-                                        </p>
-                                    </div>*@
+                                            <p>
+                                                <span class="help-text">@Model.Mobile  </span>
+                                            </p>
+                                        </div>*@
                                     <div class="colo-md-12">
                                         <span class="help-text light">Address</span>
 
@@ -49,7 +53,7 @@
                                         </p>
                                     </div>
 
-                                    
+
                                 </div>
                             </div>
                             <div class="panel-footer text-center load-more" style="display: none;">
@@ -65,86 +69,16 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-lg-4 col-sm-6 card-1" id="vendorCard">
-                        <div class="panel panel-default card-detail">
-                            <div class="panel-body">
-                                <div class="card-content secondary-header">
-                                    Vendor Details<span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click" onclick="profile.BindVendorDetail();">Edit</span></span>
-                                </div>
-
-                                <div class="card-content pb20">
-                                    <div></div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">Business Name</span>
-
-                                        <p class="help-text">
-                                            @Model.FirmName
-                                        </p>
-                                    </div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">GST</span>
-
-                                        <p class="help-text">
-                                            @Model.GSTIN
-                                        </p>
-                                    </div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">PAN</span>
-
-                                        <p class="help-text">
-                                            @Model.PanNo
-                                        </p>
-                                    </div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">Address Line1</span>
-
-                                        <p class="help-text">
-                                            @Model.FullAddress
-                                        </p>
-                                    </div>
-
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">Pincode</span>
-
-                                        <p class="help-text">
-                                            @Model.PIN
-
-                                        </p>
-                                    </div>
-
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">Pick Up City</span>
-
-                                        <p class="help-text">
-                                            @Model.City
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel-footer text-center load-more" id="vendorBtn">
-                                <span class="load-more-text more" >
-                                    More
-                                    <i class="fa fa-angle-down"></i>
-                                </span>
-                                <span class="load-more-text less">
-                                    Less
-                                    <i class="fa fa-angle-up"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-
                     <div class="col-md-4 col-lg-4 col-sm-6 card-1">
                         <div class="panel panel-default card-detail">
                             <div class="panel-body">
                                 <div class="card-content secondary-header">
-                                    Security <span class="pull-right text-primary edit-link"  data-config-id="accountInfo"><span analytics-on="click" analytics-category="Manage_Profile"  analytics-action="change_password_click" analytics-label="change_password_account" onclick="profile.BindUserPasswordDetails();">Change Password</span></span>
+                                    Security <span class="pull-right text-primary edit-link" data-config-id="accountInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="change_password_click" analytics-label="change_password_account" onclick="profile.BindUserPasswordDetails();">Change Password</span></span>
                                 </div>
 
                                 <div class="card-content pb20">
                                     <div></div>
-                                   
+
                                     <div class="colo-md-12">
                                         <span class="help-text light">Your Mobile Number</span>
 
@@ -183,120 +117,194 @@
                     </div>
 
 
-                    <div class="col-md-4 col-lg-4 col-sm-6 card-1" id="Contact">
-                        <div class="panel panel-default card-detail">
-                            <div class="panel-body">
-                                <div class="card-content secondary-header">
-                                    Contact Details <span class="pull-right text-primary edit-link" data-config-id="accountPrimaryContactInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_primary_contact_click" analytics-label="edit_primary_contact">Edit</span></span>
+                    @{
+                        if (role == UserRoles.Vendor)
+                        {
+
+                            <div class="col-md-4 col-lg-4 col-sm-6 card-1" id="vendorCard">
+                                <div class="panel panel-default card-detail">
+                                    <div class="panel-body">
+                                        <div class="card-content secondary-header">
+                                            Vendor Details<span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click" onclick="profile.BindVendorDetail();">Edit</span></span>
+                                        </div>
+
+                                        <div class="card-content pb20">
+                                            <div></div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">Business Name</span>
+
+                                                <p class="help-text">
+                                                    @Model.FirmName
+                                                </p>
+                                            </div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">GST</span>
+
+                                                <p class="help-text">
+                                                    @Model.GSTIN
+                                                </p>
+                                            </div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">PAN</span>
+
+                                                <p class="help-text">
+                                                    @Model.PanNo
+                                                </p>
+                                            </div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">Address Line1</span>
+
+                                                <p class="help-text">
+                                                    @Model.FullAddress
+                                                </p>
+                                            </div>
+
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">Pincode</span>
+
+                                                <p class="help-text">
+                                                    @Model.PIN
+
+                                                </p>
+                                            </div>
+
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">Pick Up City</span>
+
+                                                <p class="help-text">
+                                                    @Model.City
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer text-center load-more" id="vendorBtn">
+                                        <span class="load-more-text more">
+                                            More
+                                            <i class="fa fa-angle-down"></i>
+                                        </span>
+                                        <span class="load-more-text less">
+                                            Less
+                                            <i class="fa fa-angle-up"></i>
+                                        </span>
+                                    </div>
                                 </div>
+                            </div>
 
-                                <div class="card-content pb20">
-                                    <div></div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">Your Name</span>
+                            <div class="col-md-4 col-lg-4 col-sm-6 card-1" id="Contact">
+                                <div class="panel panel-default card-detail">
+                                    <div class="panel-body">
+                                        <div class="card-content secondary-header">
+                                            Contact Details <span class="pull-right text-primary edit-link" data-config-id="accountPrimaryContactInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_primary_contact_click" analytics-label="edit_primary_contact"></span></span>
+                                        </div>
 
-                                        <p>
-                                            <span class="help-text">Shiv Factory </span>
-                                        </p>
+                                        <div class="card-content pb20">
+                                            <div></div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">Your Name</span>
+
+                                                <p>
+                                                    <span class="help-text">@Model.FirmName </span>
+                                                </p>
+                                            </div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">Your Mobile Number</span>
+
+                                                <p>
+                                                    <span class="help-text">@Model.Mobile </span>
+                                                    <span class="icon icon-success"></span>
+                                                </p>
+                                            </div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">Your Email address</span>
+
+                                                <p>
+                                                    <span class="help-text">@Model.Email </span>
+                                                    <span class="icon icon-success"></span>
+                                                </p>
+                                            </div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">Preferred Time slot for calls</span>
+
+                                                <p>
+                                                    <span class="help-text">
+                                                        10:00
+                                                        to 18:00
+                                                    </span>
+                                                </p>
+                                            </div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">Preferred Language</span>
+
+                                                <p>
+                                                    <span class="help-text">English </span>
+                                                </p>
+                                            </div>
+
+                                        </div>
                                     </div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">Your Mobile Number</span>
-
-                                        <p>
-                                            <span class="help-text">+919876543210 </span>
-                                            <span class="icon icon-success"></span>
-                                        </p>
+                                    <div class="panel-footer text-center load-more" id="contactBtn">
+                                        <span class="load-more-text more">
+                                            More
+                                            <i class="fa fa-angle-down"></i>
+                                        </span>
+                                        <span class="load-more-text less">
+                                            Less
+                                            <i class="fa fa-angle-up"></i>
+                                        </span>
                                     </div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">Your Email address</span>
+                                </div>
+                            </div>
 
-                                        <p>
-                                            <span class="help-text">shivfactory@gmail.com </span>
-                                            <span class="icon icon-success"></span>
-                                        </p>
-                                    </div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">Preferred Time slot for calls</span>
+                            <div class="col-md-4 col-lg-4 col-sm-6 card-1">
+                                <div class="panel panel-default card-detail">
+                                    <div class="panel-body">
+                                        <div class="card-content secondary-header">
+                                            Bank Details <span class="pull-right text-primary edit-link" data-config-id="accountPrimaryContactInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_primary_contact_click" analytics-label="edit_primary_contact">Edit</span></span>
+                                        </div>
 
-                                        <p>
-                                            <span class="help-text">
-                                                10:00
-                                                to 18:00
-                                            </span>
-                                        </p>
-                                    </div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">Preferred Language</span>
+                                        <div class="card-content pb20">
+                                            <div></div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">Account Holder Name</span>
 
-                                        <p>
-                                            <span class="help-text">English </span>
-                                        </p>
+                                                <p>
+                                                    <span class="help-text">Shiv Factory </span>
+                                                </p>
+                                            </div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">Account Number</span>
+
+                                                <p>
+                                                    <span class="help-text">+919876543210 </span>
+                                                    <span class="icon icon-success"></span>
+                                                </p>
+                                            </div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">IFSC code</span>
+
+                                                <p>
+                                                    <span class="help-text">ABC0000321 </span>
+                                                    <span class="icon icon-success"></span>
+                                                </p>
+                                            </div>
+                                            <div class="colo-md-12">
+                                                <span class="help-text light">City</span>
+
+                                                <p>
+                                                    <span class="help-text">
+                                                        JAIPUR
+                                                    </span>
+                                                </p>
+                                            </div>
+
+
+                                        </div>
                                     </div>
 
                                 </div>
                             </div>
-                            <div class="panel-footer text-center load-more" id="contactBtn">
-                                <span class="load-more-text more">
-                                    More
-                                    <i class="fa fa-angle-down"></i>
-                                </span>
-                                <span class="load-more-text less">
-                                    Less
-                                    <i class="fa fa-angle-up"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-lg-4 col-sm-6 card-1">
-                        <div class="panel panel-default card-detail">
-                            <div class="panel-body">
-                                <div class="card-content secondary-header">
-                                    Bank Details <span class="pull-right text-primary edit-link" data-config-id="accountPrimaryContactInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_primary_contact_click" analytics-label="edit_primary_contact">Edit</span></span>
-                                </div>
-
-                                <div class="card-content pb20">
-                                    <div></div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">Account Holder Name</span>
-
-                                        <p>
-                                            <span class="help-text">Shiv Factory </span>
-                                        </p>
-                                    </div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">Account Number</span>
-
-                                        <p>
-                                            <span class="help-text">+919876543210 </span>
-                                            <span class="icon icon-success"></span>
-                                        </p>
-                                    </div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">IFSC code</span>
-
-                                        <p>
-                                            <span class="help-text">ABC0000321 </span>
-                                            <span class="icon icon-success"></span>
-                                        </p>
-                                    </div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">City</span>
-
-                                        <p>
-                                            <span class="help-text">
-                                                JAIPUR
-                                            </span>
-                                        </p>
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
+                        }
+                    }
 
                 </div>
             </div>

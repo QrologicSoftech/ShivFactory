@@ -1,4 +1,5 @@
 ﻿using DataLibrary.DL;
+using ShivFactory.Business.Models.Other;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,35 +17,57 @@ namespace ShivFactory.Business.Repository
         #region Get UserDetails by UserId
         public UserProfile GetUserDetailsBYUserId(string userId)
         {
+            UserProfile userProfileResonse ;
+            RepoCookie repoCookie = new RepoCookie();
+            var role = repoCookie.GetCookiesValue(CookieName.Role);
             var user = db.UserDetails.Where(a => a.UserId == userId).FirstOrDefault();
-            var vendor = db.Vendors.Where(vndr => vndr.UserId == userId).FirstOrDefault();
-            //var vendorbank = db.VendorBankDetails.Where(vndrbnk=> vndrbnk.UserID ==userId).FirstOrDefault();
-            var userProfileResonse = new UserProfile {
-                UserId = user.UserId,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Address = user.Address,
-                Email = user.Email,
-                Mobile = user.Mobile,
-                Gender = user.Gender,
-                UserImage = user.UserImage,
+            if (role == UserRoles.Vendor)
+            {
+                var vendor = db.Vendors.Where(vndr => vndr.UserId == userId).FirstOrDefault();
+                //var vendorbank = db.VendorBankDetails.Where(vndrbnk=> vndrbnk.UserID ==userId).FirstOrDefault();
+                 userProfileResonse = new UserProfile
+                {
+                    UserId = user.UserId,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Address = user.Address,
+                    Email = user.Email,
+                    Mobile = user.Mobile,
+                    Gender = user.Gender,
+                    UserImage = user.UserImage,
 
-                FirmName = vendor.FirmName,
-                GSTIN = vendor.GSTIN,
-                FullAddress = vendor.FullAddress,
-                City = vendor.City,
-                State = vendor.State,
-                PanNo = vendor.PanNo,
-                AddressProofImg = vendor.AddressProofImg
-                //,
+                    FirmName = vendor.FirmName,
+                    GSTIN = vendor.GSTIN,
+                    FullAddress = vendor.FullAddress,
+                    City = vendor.City,
+                    State = vendor.State,
+                    PanNo = vendor.PanNo,
+                    AddressProofImg = vendor.AddressProofImg
+                    //,
 
-                // Add by Checking USerRoles 
-                //AccountHolderName = vendorbank.AccountHolderName,
-                //AccountNumber = vendorbank.AccountNumber,
-                //BankName = vendorbank.BankName,
-                //IFSCCode = vendorbank.IFSCCode,
-                //Branch = vendorbank.Branch,
-            };
+                    // Add by Checking USerRoles 
+                    //AccountHolderName = vendorbank.AccountHolderName,
+                    //AccountNumber = vendorbank.AccountNumber,
+                    //BankName = vendorbank.BankName,
+                    //IFSCCode = vendorbank.IFSCCode,
+                    //Branch = vendorbank.Branch,
+                };
+            }
+            else {
+
+                 userProfileResonse = new UserProfile
+                {
+                    UserId = user.UserId,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Address = user.Address,
+                    Email = user.Email,
+                    Mobile = user.Mobile,
+                    Gender = user.Gender,
+                    UserImage = user.UserImage,
+
+                };
+            }
           
             return userProfileResonse;
         }
