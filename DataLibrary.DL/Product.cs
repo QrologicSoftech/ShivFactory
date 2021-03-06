@@ -53,7 +53,7 @@ namespace DataLibrary.DL
         public string PackageWeight { get; set; }
         public string ProductColors { get; set; }
         public string InactiveReason { get; set; }
-        public bool ApprovedByAdmin { get; set; }
+        public Nullable<bool> ApprovedByAdmin { get; set; }
         public Nullable<bool> IsReturnable { get; set; }
         public int ReturnDays { get; set; }
     

@@ -62,7 +62,7 @@ namespace ShivFactory.Business.Repository
                 Product.PackageHeight = model.PackageHeight;
                 Product.PackageWeight = model.PackageWeight;
                 Product.ProductColors = model.ProductColors;
-                Product.ApprovedByAdmin = false;
+                Product.ApprovedByAdmin = null;
                 Product.IsReturnable = model.IsReturnable;
                 Product.ReturnDays = model.ReturnDays;
                 Product.LastUpdate = DateTime.Now;
@@ -106,7 +106,7 @@ namespace ShivFactory.Business.Repository
                     PackageHeight = model.PackageHeight,
                     PackageWeight = model.PackageWeight,
                     ProductColors = model.ProductColors,
-                    ApprovedByAdmin = false,
+                    ApprovedByAdmin = null,
                     IsReturnable = model.IsReturnable,
                     ReturnDays = model.ReturnDays,
                     AddDate = DateTime.Now
@@ -257,6 +257,7 @@ namespace ShivFactory.Business.Repository
 
         }
         #endregion
+
         #region Update Product color By ProductId
         public bool UpdateProductColorByProductId(int ProductId, string colors)
         {

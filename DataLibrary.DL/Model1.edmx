@@ -204,7 +204,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="PackageWeight" Type="nvarchar" MaxLength="50" />
           <Property Name="ProductColors" Type="nvarchar(max)" />
           <Property Name="InactiveReason" Type="nvarchar" MaxLength="500" />
-          <Property Name="ApprovedByAdmin" Type="bit" Nullable="false" />
+          <Property Name="ApprovedByAdmin" Type="bit" />
           <Property Name="IsReturnable" Type="bit" />
           <Property Name="ReturnDays" Type="int" Nullable="false" />
         </EntityType>
@@ -925,7 +925,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="PackageWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProductColors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="InactiveReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ApprovedByAdmin" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedByAdmin" Type="Boolean" />
           <Property Name="IsReturnable" Type="Boolean" />
           <Property Name="ReturnDays" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Category" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Product" ToRole="Category" />

@@ -26,7 +26,7 @@ var Vendor = {
     },
     EditProduct: function (element) {
 
-        if (confirm("Are you sure want to edit this product? <br> after update product need to approved for listing")) {
+        if (confirm("Are you sure want to edit this product? \n after update product need to approved for listing")) {
 
             var productId = $(element).closest('tr').attr('Id');
 
