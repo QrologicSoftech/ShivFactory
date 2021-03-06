@@ -486,6 +486,7 @@
     <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Home\AccountDetails.cshtml" />
     <Content Include="Views\Shared\_Accounts_Layout.cshtml" />
+    <Content Include="Views\Home\AccDetailpage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

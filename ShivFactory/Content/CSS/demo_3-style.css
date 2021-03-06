@@ -2918,7 +2918,7 @@ mark,
     border: 1px solid #dee2e6;
     border-radius: 0.25rem;
     max-width: 168px;
-    max-height:100px;
+    max-height: 100px;
     height: auto;
 }
 
@@ -27717,6 +27717,7 @@ footer {
     border: 1px solid #ff0000;
     /*background-color: #ffeeee;*/
 }
+
 .form-group enum {
     color: red;
     margin: 0 2px;
@@ -28190,4 +28191,124 @@ footer {
     height: 100%;
     z-index: 1000;
     background: url('//i.stack.imgur.com/FhHRx.gif') no-repeat center center;
+}
+
+
+/*///////////////////////////////////Manoj Sir Work AccountDetails /////////////////////////////////////////////*/
+
+.cardComposite-default .card-1 {
+    padding: 0px 10px;
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+    box-shadow: 0 1px 1px rgb(0 0 0 / 5%);
+}
+
+.panel-default {
+    border-color: #ddd;
+}
+
+.cardComposite-default .card-1 .card-detail {
+    padding: 15px;
+    position: relative;
+    box-shadow: rgb(223 225 229) 0px 1px 2px 0px;
+}
+
+.panel-body {
+    padding: 15px;
+}
+
+.cardComposite-default .card-1 .card-detail .panel-body {
+    height: 230px;
+    overflow: hidden;
+    padding: 0px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.panel-footer {
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.cardComposite-default .card-1 .card-detail .panel-footer, .cardComposite-default .card-1 .card-detail .panel-secondaryFooter {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+    .cardComposite-default .card-1 .card-detail .panel-footer .load-more-text, .cardComposite-default .card-1 .card-detail .panel-secondaryFooter .load-more-text {
+        cursor: pointer;
+        color: rgb(51, 146, 243);
+    }
+
+        .cardComposite-default .card-1 .card-detail .panel-footer .load-more-text.more, .cardComposite-default .card-1 .card-detail .panel-secondaryFooter .load-more-text.more {
+            display: inline-block;
+        }
+
+.cardComposite-default .secondary-header {
+    font-size: 15px;
+    font-weight: bold;
+    font-family: "Riona Sans Light", sans-serif;
+    padding-bottom: 5px;
+}
+
+.cardComposite-default .text-primary {
+    color: rgb(51, 146, 243) !important;
+    cursor: pointer;
+}
+
+.cardComposite-default .card-1 .card-detail .panel-body .edit-link {
+    font-size: 13px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.cardComposite-default .help-text {
+    font-size: 12px;
+    font-family: "Riona Sans", sans-serif;
+}
+
+.cardComposite-default .light {
+    color: rgb(141, 141, 141);
+}
+
+.cardComposite-default .icon {
+    background: url(/Content/AdminImg/manage_profile_sprite_v3.png) no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+}
+
+.cardComposite-default .icon-success {
+    background-position: -5px -643px;
+}
+
+.cardComposite-default .card-1 .show-more .panel-footer .load-more-text.more {
+    display: none;
+}
+
+.cardComposite-default .card-1 .card-detail .panel-footer .load-more-text.less, .cardComposite-default .card-1 .card-detail .panel-secondaryFooter .load-more-text.less {
+    display: none;
+}
+
+.cardComposite-default .card-1 .show-more .panel-body {
+    height: auto;
+    margin-bottom: 30px;
+}
+
+.cardComposite-default .card-1 .show-more .panel-footer .load-more-text.less {
+    display: inline-block;
 }

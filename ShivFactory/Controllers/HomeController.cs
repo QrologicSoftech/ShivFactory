@@ -174,6 +174,11 @@ namespace ShivFactory.Controllers
             return View(userProfiledetails);
         }
 
+
+        public ActionResult AccDetailpage()
+        {
+            return View(); 
+        }
         #endregion
     }
 

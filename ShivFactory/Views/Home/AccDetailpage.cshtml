@@ -13,7 +13,7 @@
                         <div class="panel panel-default card-detail">
                             <div class="panel-body">
                                 <div class="card-content secondary-header">
-                                    Basic information <span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_display_details_click" analytics-label="edit_display_details" onclick="profile.BindBasicDetail();">Edit</span></span>
+                                    Display information <span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_display_details_click" analytics-label="edit_display_details">Edit</span></span>
                                 </div>
 
                                 <div class="card-content pb20">
@@ -71,13 +71,10 @@
                         </div>
                     </div>
                     <div class="col-md-4 col-lg-4 col-sm-6 card-1">
-                        @*<div class="card-content secondary-header">
-                            Display information <span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_display_details_click" analytics-label="edit_display_details" onclick="profile.BindBasicDetail();">Edit</span></span>
-                        </div>*@
                         <div class="panel panel-default card-detail">
                             <div class="panel-body">
                                 <div class="card-content secondary-header">
-                                    Vendor Details<span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_display_details_click" analytics-label="edit_display_details" onclick="profile.BindBasicDetail();">Edit</span></span>
+                                    Vendor Details
                                 </div>
 
                                 <div class="card-content pb20">
@@ -144,7 +141,7 @@
                         <div class="panel panel-default card-detail">
                             <div class="panel-body">
                                 <div class="card-content secondary-header">
-                                    Login Details <span class="pull-right text-primary edit-link" data-config-id="accountLoginInfo"><span analytics-on="click" analytics-category="Manage_Profile"  analytics-action="change_password_click" analytics-label="change_password_account" onclick="profile.BindBasicDetail();">Change Password</span></span>
+                                    Login Details <span class="pull-right text-primary edit-link" data-config-id="accountLoginInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="change_password_click" analytics-label="change_password_account">Change Password</span></span>
                                 </div>
 
                                 <div class="card-content pb20">
@@ -163,7 +160,10 @@
                                         <p>
                                             <span class="help-text">+9876543210 </span>
                                             <span class="icon icon-success"></span>
-                                            
+                                            <span class="pull-right text-primary field-edit-link verify-detail" data-config-id="registered_phone" data-id="+919782265250" analytics-on="click" data-emailid="rituvashisth92@gmail.com" analytics-category="Manage_Profile" analytics-action="edit_registered_phone_click" analytics-label="edit_registered_phone">
+                                                EDIT
+                                                <span class="spinner" style="display: none;"><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                                            </span>
                                         </p>
                                     </div>
                                     <div class="colo-md-12">
@@ -172,7 +172,10 @@
                                         <p>
                                             <span class="help-text">shivfactory@gmail.com </span>
                                             <span class="icon icon-success"></span>
-                                            
+                                            <span class="pull-right text-primary field-edit-link verify-detail" data-config-id="registered_email" data-id="rituvashisth92@gmail.com" analytics-on="click" data-emailid="" analytics-category="Manage_Profile" analytics-action="edit_registered_email_click" analytics-label="edit_registered_email">
+                                                EDIT
+                                                <span class="spinner" style="display: none;"><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                                            </span>
                                         </p>
                                     </div>
                                     <div class="colo-md-12">
@@ -299,15 +302,15 @@
 
                                         <p>
                                             <span class="help-text">
-                                                JAIPUR
+                                               JAIPUR
                                             </span>
                                         </p>
                                     </div>
-
+                                    
 
                                 </div>
                             </div>
-
+                         
                         </div>
                     </div>
 
@@ -318,9 +321,9 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(".load-more").click(function (e) {
-        e.stopPropagation();
-        $("#menu-3 .card-detail").toggleClass("show-more");
-    });
+        $(".load-more").click(function (e) {
+            e.stopPropagation();
+            $("#menu-3 .card-detail").toggleClass("show-more");
+        });
 
 </script>
