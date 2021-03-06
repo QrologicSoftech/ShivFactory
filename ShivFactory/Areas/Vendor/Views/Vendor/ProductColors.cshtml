@@ -10,14 +10,14 @@
                     <div class="card">
                         <div class="card-body">
                             <h3>Product Colors</h3>
+                            <input type="hidden" id="hndProductId" value="@ViewBag.ProductId" />
                         </div>
                         <div class="container">
-                            <div class="row">
                                 <div class="row">
                                     @foreach (var color in Model)
                                     {
-                                        var check= "";
-                                        if (ViewBag.ProductColors.Contains(color.Name))
+                                        var check = "";
+                                        if (!string.IsNullOrEmpty(ViewBag.ProductColors) && ViewBag.ProductColors.Contains(color.Name))
                                         {
                                             check = "checked";
                                         }
@@ -29,15 +29,19 @@
                                         //    }
                                         //}
                                         <div class="col-lg-2 col-sm-2">
-                                            <div class="form-group">
+                                            <div class="form-group form-check">
                                                 <label class="form-check-label text-muted">
-                                                    <input type="checkbox" value="@color" @check class="form-check-input"> @color.Name <i class="input-helper"></i>
+                                                    <input type="checkbox" value="@color.Name" @check class="form-check-input productColor"> @color.Name <i class="input-helper"></i>
                                                 </label>
                                             </div>
                                         </div>
                                     }
-                                </div>
                             </div>
+                                <div class="row">
+                                    <div class="my-3">
+                                        <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" onclick="Vendor.UpdateProductColors();">Update</button>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                 </div>

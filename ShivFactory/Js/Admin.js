@@ -243,7 +243,7 @@ var Admin = {
             common.HideLoader();
         }
     },
-    RejectProduct: function (element) {
+    RejectProduct: function () {
        
         let rejectRegion = $("#txtProductReject").val();
         if (rejectRegion == undefined || rejectRegion == "" || rejectRegion == null) {

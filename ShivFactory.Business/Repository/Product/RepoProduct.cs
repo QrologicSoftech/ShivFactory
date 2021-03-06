@@ -252,8 +252,21 @@ namespace ShivFactory.Business.Repository
         #region Get Product color By ProductId
         public string GetProductColorByProductId(int ProductId)
         {
-            var ProductColor = db.Products.Where(x => x.ProductId == ProductId).Select(p => p.ProductColors).FirstOrDefault();
+            var ProductColor = db.Products.Where(x => x.ProductId == ProductId).Select(p => p.ProductColors).AsNoTracking().FirstOrDefault();
             return ProductColor;
+
+        }
+        #endregion
+        #region Update Product color By ProductId
+        public bool UpdateProductColorByProductId(int ProductId, string colors)
+        {
+            var Product = db.Products.Where(x => x.ProductId == ProductId).FirstOrDefault();
+            if (Product != null)
+            {
+                Product.ProductColors = colors;
+                return db.SaveChanges() > 0;
+            }
+            return false;
 
         }
         #endregion

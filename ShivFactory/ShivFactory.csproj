@@ -195,6 +195,7 @@
     <Content Include="Areas\Admin\Views\Admin\ProductDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\UnApprovedProductPartialView.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\HtmlPage1.html" />
+    <Content Include="Areas\Vendor\Views\Vendor\ProductColors.cshtml" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\DataLibrary.DL.dll" />
     <Content Include="bin\DataLibrary.DL.pdb" />
@@ -433,7 +434,6 @@
     <Content Include="Areas\Admin\Views\Admin\ProductImage.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ProductBasicInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ProductDimension.cshtml" />
-    <Content Include="Areas\Vendor\Views\Vendor\ProductColors.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -232,6 +232,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
         {
             try
             {
+                ViewBag.ProductId = productId;
                 RepoProduct repoProduct = new RepoProduct();
                 ViewBag.ProductColors = repoProduct.GetProductColorByProductId(productId);
                 RepoColor repoColor = new RepoColor();
@@ -244,6 +245,31 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 return View(new List<ColorResponse>());
             }
         }
+        #region  Update Product Colors
+        public ActionResult UpdateProductColor(int productId, string colors)
+        {
+            try
+            {
+                RepoProduct repotProduct = new RepoProduct();
+                var isApproved = repotProduct.UpdateProductColorByProductId(productId, colors);
+                return Json(new ResultModel
+                {
+                    ResultFlag = isApproved,
+                    Data = null,
+                    Message = isApproved ? "Product colors successfully updated!!" : "Failled to update product colors."
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
 
         public ActionResult GetSubcategoryByCategoryId(string categoryId)
         {
