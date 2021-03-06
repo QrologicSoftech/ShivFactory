@@ -14,6 +14,7 @@ using ShivFactory.Business.Model;
 using ShivFactory.Business.Models.Other;
 using System.Security.Claims;
 using ShivFactory.Business.Repository.SMS;
+using ShivFactory.Business.Model.Common;
 
 namespace ShivFactory.Controllers
 {
@@ -682,13 +683,17 @@ namespace ShivFactory.Controllers
 
                     if (result == SignInStatus.Success)
                     {
+                        RepoUser ru = new RepoUser();
                         if (!user.EmailConfirmed)
                         {
                             message = "Email not confirmed.";
                         }
+                        else if (ru.UserIsDelete(user.Id))
+                        {
+                            message = "Your accounts blocked, please contact administrator.";
+                        }
                         else
                         {
-                            RepoUser ru = new RepoUser();
                             var userDetails = ru.GetUserDetailsBYUserId(user.Id);
                             var role = UserManager.GetRoles(user.Id).FirstOrDefault();
                             var token = UserManager.GenerateUserToken("", user.Id);
@@ -739,6 +744,42 @@ namespace ShivFactory.Controllers
                 };
             }
         }
+        #endregion
+
+        #region ChangePassword Api
+        public ActionResult UpdateCurrentUserPassword(SetPasswordViewModel model)
+        {
+            var isChange = false; string message = "";
+            try
+            {
+                Utility util = new Utility();
+                string userid = util.GetCurrentUserId();
+                var token = UserManager.GeneratePasswordResetToken(userid);
+                var result = UserManager.ResetPasswordAsync(userid, token, model.NewPassword);
+                if (result.Result.Succeeded)
+                {
+                    RepoUser repoUser = new RepoUser();
+                     isChange = repoUser.UpdateUserPassword(userid, model.NewPassword);
+                    message = isChange ? "Password Update successfully!!" : "Failled to Update Password";
+                } else
+                {
+                    message = result.Result.Errors.FirstOrDefault();
+                }
+               
+            }
+            catch (Exception ex)
+            {
+              message=  ex.Message.ToString();
+            }
+
+            return Json(new ResultModel
+            {
+                ResultFlag = isChange,
+                Data = null,
+                Message = message,
+            }, JsonRequestBehavior.AllowGet);
+        }
+        
         #endregion
 
         #endregion

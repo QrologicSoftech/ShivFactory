@@ -8,7 +8,7 @@ var profile = {
             if (result.ResultFlag == false) { common.ShowMessage(result); }
             let user = result.Data;
             // Create table
-             form = `<div class="col-md-12 grid-margin stretch-card" style="padding: 0 20% 0;">
+            form = `<div class="col-md-12 grid-margin stretch-card" style="padding: 0 20% 0;">
                         <div class="card">
                             <div class="card-body">
                                 <p class="card-description text-center"> Update Details</p>
@@ -59,13 +59,13 @@ var profile = {
                           </div>
                         </div>
                     </div>`;
-        common.HideLoader(); 
-        $('#Modal').children('div').children('div').html(form);
-        $('#Modal').show();
+            common.HideLoader();
+            $('#Modal').children('div').children('div').html(form);
+            $('#Modal').show();
         });
-    },  
+    },
     UpdateBasicDetails: function () {
-        
+
         if (profile.ValidateBasicDetail()) {
             data = {
                 "FirstName": $('#FirstName').val(),
@@ -83,7 +83,7 @@ var profile = {
 
     },
 
-    
+
 
     BindVendorDetail: function () {
 
@@ -186,13 +186,13 @@ var profile = {
             $('#Modal').children('div').children('div').html(form);
             $('#Modal').show();
         });
-    },  
+    },
     UpdateVendorDetails: function () {
 
         if (profile.ValidateVendorDetail()) {
             data = {
                 "FirmName": $('#FirmName').val(),
-                "GSTIN": $('#GSTIN').val(),
+                "GSTIN": $('#GST').val(),
                 "PanNo": $('#PAN').val(),
                 "FullAddress": $('#FullAddress').val(),
                 "City": $('#City').val(),
@@ -287,7 +287,7 @@ var profile = {
             toastr.error('Enter Last Name!');
             return false;
         }
-       
+
         return true;
     },
     ValidateVendorDetail: function () {
@@ -314,9 +314,75 @@ var profile = {
             return false;
         }
         return true;
-    }
+    },
 
-   
+    BindUserPasswordDetails: function () {
+        common.ShowLoader();
+        var form;
+        // Create table
+        form = `<div class="col-md-12 grid-margin stretch-card" style="padding: 0 20% 0;">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-description text-center"> Change Password</p>
+			                                   <div class="form-group">
+                                        <label>Password<span style="color:red">*</span></label>
+                                        <div class="input-group">
+                                            <input class="form-control form-control-lg border-left-0" data-val="true"  id="Password" name="Password" placeholder="Enter Password" type="password" />
+                                        </div>
+                                    
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Confirm Password<span style="color:red">*</span></label>
+                                        <div class="input-group">
+                                            <input class="form-control form-control-lg border-left-0" id="ConfirmPassword" name="ConfirmPassword" placeholder="Confirm Password" type="password"  />
+                                        </div>
+                                       
+                                    </div>
+                                    </div>
+                                    <div class="mt-3">
+                                        <button type="submit" onclick="profile.UpdateUserPasswordDetails();" class="btn btn-block btn-gradient-primary mr-2">Update</button>
+                                    </div>
+                          </div>
+                        </div>
+                    </div>`;
+        common.HideLoader();
+        $('#Modal').children('div').children('div').html(form);
+        $('#Modal').show();
+
+    },
+
+    UpdateUserPasswordDetails: function () {
+        if (profile.ValidateUserPasswordDetail()) {
+            debugger;
+            data = {
+                "Password": $('#Password').val(),
+                "ConfirmPassword": $('#ConfirmPassword').val()
+            }
+            ajax.doPostAjax(`/AccountController/UpdateCurrentUserPassword`, data, function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    location.reload();
+                }
+            });
+        }
+
+    },
+
+    ValidateUserPasswordDetail: function () {
+        if ($('#Password').val() == null || $('#Password').val() == 'undefined') {
+            toastr.error('Enter Password!');
+            return false;
+        } else if ($('#ConfirmPassword').val() == null || $('#ConfirmPassword').val() == 'undefined') {
+            toastr.error('Enter Confirm Password !');
+            return false;
+        } else if ($('#Password').val() != $('#ConfirmPassword').val()) {
+            toastr.error('Password and Confirm Password Mismatch !');
+            return false;
+
+        }
+
+
+    }
 }
 
 

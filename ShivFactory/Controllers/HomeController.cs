@@ -161,7 +161,10 @@ namespace ShivFactory.Controllers
                     GSTIN = model.GSTIN,
                     PanNo = model.PanNo,
                     City = model.City,
-                    State = model.State
+                    State = model.State,
+                    PIN=model.PIN,
+                    FullAddress = model.FullAddress,
+                    UserId = util.GetCurrentUserId()
                 });
 
                 return Json(new ResultModel

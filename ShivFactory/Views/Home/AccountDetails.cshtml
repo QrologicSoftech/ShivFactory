@@ -64,11 +64,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-lg-4 col-sm-6 card-1">
+
+                    <div class="col-md-4 col-lg-4 col-sm-6 card-1" id="vendorCard">
                         <div class="panel panel-default card-detail">
                             <div class="panel-body">
                                 <div class="card-content secondary-header">
-                                    Vendor Details<span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click"  onclick="profile.BindVendorDetail();">Edit</span></span>
+                                    Vendor Details<span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click" onclick="profile.BindVendorDetail();">Edit</span></span>
                                 </div>
 
                                 <div class="card-content pb20">
@@ -120,8 +121,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel-footer text-center load-more" style="display: none;">
-                                <span class="load-more-text more">
+                            <div class="panel-footer text-center load-more" id="vendorBtn">
+                                <span class="load-more-text more" >
                                     More
                                     <i class="fa fa-angle-down"></i>
                                 </span>
@@ -132,35 +133,30 @@
                             </div>
                         </div>
                     </div>
+
+
                     <div class="col-md-4 col-lg-4 col-sm-6 card-1">
                         <div class="panel panel-default card-detail">
                             <div class="panel-body">
                                 <div class="card-content secondary-header">
-                                    Login Details <span class="pull-right text-primary edit-link" data-config-id="accountLoginInfo"><span analytics-on="click" analytics-category="Manage_Profile"  analytics-action="change_password_click" analytics-label="change_password_account" onclick="profile.BindBasicDetail();">Change Password</span></span>
+                                    Security <span class="pull-right text-primary edit-link"  data-config-id="accountInfo"><span analytics-on="click" analytics-category="Manage_Profile"  analytics-action="change_password_click" analytics-label="change_password_account" onclick="profile.BindUserPasswordDetails();">Change Password</span></span>
                                 </div>
 
                                 <div class="card-content pb20">
                                     <div></div>
-                                    <div class="colo-md-12">
-                                        <span class="help-text light">Display Name</span>
-
-                                        <p>
-                                            <span class="help-text">Shiv Factory </span>
-                                            <span class="icon icon-success"></span>
-                                        </p>
-                                    </div>
+                                   
                                     <div class="colo-md-12">
                                         <span class="help-text light">Your Mobile Number</span>
 
                                         <p>
-                                            <span class="help-text">+9876543210 </span>
+                                            <span class="help-text">@Model.Mobile </span>
                                             <span class="icon icon-success"></span>
                                         </p>
                                     </div>
                                     <div class="colo-md-12">
                                         <span class="help-text light">Your Email address</span>
                                         <p>
-                                            <span class="help-text">shivfactory@gmail.com </span>
+                                            <span class="help-text">@Model.Email </span>
                                             <span class="icon icon-success"></span>
                                         </p>
                                     </div>
@@ -185,7 +181,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-lg-4 col-sm-6 card-1" id="menu-3">
+
+
+                    <div class="col-md-4 col-lg-4 col-sm-6 card-1" id="Contact">
                         <div class="panel panel-default card-detail">
                             <div class="panel-body">
                                 <div class="card-content secondary-header">
@@ -237,7 +235,7 @@
 
                                 </div>
                             </div>
-                            <div class="panel-footer text-center load-more">
+                            <div class="panel-footer text-center load-more" id="contactBtn">
                                 <span class="load-more-text more">
                                     More
                                     <i class="fa fa-angle-down"></i>
@@ -250,7 +248,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-lg-4 col-sm-6 card-1" id="menu-3">
+                    <div class="col-md-4 col-lg-4 col-sm-6 card-1">
                         <div class="panel panel-default card-detail">
                             <div class="panel-body">
                                 <div class="card-content secondary-header">
@@ -306,9 +304,14 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(".load-more").click(function (e) {
+    $("#vendorBtn").click(function (e) {
         e.stopPropagation();
-        $("#menu-3 .card-detail").toggleClass("show-more");
+        $("#vendorCard .card-detail").toggleClass("show-more");
+    });
+
+    $("#contactBtn").click(function (e) {
+        e.stopPropagation();
+        $("#Contact .card-detail").toggleClass("show-more");
     });
 
 </script>
