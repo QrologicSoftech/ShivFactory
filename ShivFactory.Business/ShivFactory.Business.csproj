@@ -139,11 +139,13 @@
     <Compile Include="Repository\SubCategory\RepoSubcategory.cs" />
     <Compile Include="Repository\SubCategory\SubCategory.cs" />
     <Compile Include="Repository\SubCategory\SubCategoryResponse.cs" />
+    <Compile Include="Repository\Users\CustomerResponse.cs" />
     <Compile Include="Repository\Users\LogInResponse.cs" />
     <Compile Include="Repository\Users\RepoUser.cs" />
     <Compile Include="Repository\Vendor\RepoVendor.cs" />
     <Compile Include="Repository\Vendor\Vendor.cs" />
     <Compile Include="Repository\Vendor\VendorBankDetail.cs" />
+    <Compile Include="Repository\Vendor\VendorResponse.cs" />
     <Compile Include="Repository\Weight\RepoWeightMaster.cs" />
     <Compile Include="Repository\Weight\WeightModel.cs" />
   </ItemGroup>

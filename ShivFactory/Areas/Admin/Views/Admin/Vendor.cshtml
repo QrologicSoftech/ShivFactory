@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Vendors";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">@ViewBag.Title</h4>
+                            <div class="row grid-margin">
+                                <div class="col-12">
+                                    <div class="card-description">
+                                        @using (Html.BeginForm("AddVendor", "Admin", new { Area = "Admin" }, FormMethod.Get))
+                                        {
+                                            <p class="card-description" style=" text-align: end;">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Add Vendor
+                                                </button>
+                                            </p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="partialView">
+                                @{ Html.RenderPartial(Url.Content("VendorPartialView")); }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
