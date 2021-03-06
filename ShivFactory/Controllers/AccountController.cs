@@ -271,8 +271,9 @@ namespace ShivFactory.Controllers
                    
                 }
             }
-            AddErrors(result);
-            return View();
+            ModelState.AddModelError("Password", result.Errors.FirstOrDefault());
+            //AddErrors(result);
+            return View(model);
         }
 
 
