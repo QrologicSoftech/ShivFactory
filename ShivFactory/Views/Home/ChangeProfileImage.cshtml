@@ -2,7 +2,7 @@
 @model ShivFactory.Business.Repository.ChangeProfileImage.UserProfileImage
 @{
     ViewBag.Title = "Change Profile Image";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
 <div class="container-fluid page-body-wrapper">
@@ -33,7 +33,7 @@
                                             @{ var display = Model != null && Model.ImagePath != null ? "display:block" : "display:none";
                                                 var imgPath = Model != null && Model.ImagePath != null ? Model.ImagePath : "";}
                                             <div class="form-group">
-                                                <img src="@imgPath" id="Img" runat="server" style="border: 1px solid #eee3e3; @display;" height="25%" width="25%" />
+                                                <img src="@imgPath" id="Img" runat="server" style="border: 1px solid #eee3e3; @display;" height="100px" width="100px" />
                                             </div>
                                         </div>
                                     </div>

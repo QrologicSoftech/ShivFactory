@@ -13,49 +13,40 @@ var profile = {
                             <div class="card-body">
                                 <p class="card-description text-center"> Update Details</p>
 			                                   <div class="form-group">
-                                        <label>FirstName<span style="color:red">*</span></label>
+                                        
                                         <div class="input-group">
-                                            <input class="form-control form-control-lg border-left-0" data-val="true" data-val-required="FirstName Required!" id="FirstName" name="FirstName" placeholder="FirstName" type="text" value="${user.FirstName}" />
+                                           <label class="form-control form-control-lg">FirstName </label>&nbsp;&nbsp;<input class="form-control form-control-lg border-left-0" data-val="true" data-val-required="FirstName Required!" id="FirstName" name="FirstName" placeholder="FirstName" type="text" value="${user.FirstName}" />
                                         </div>
-                                      
+                                     
                                     </div>
                                     <div class="form-group">
-                                        <label>LastName<span style="color:red">*</span></label>
+                                       
                                         <div class="input-group">
-                                            <input class="form-control form-control-lg border-left-0" id="LastName" name="LastName" placeholder="LastName" type="text" value="${user.LastName}" />
+                                           <label class="form-control form-control-lg">LastName</label>&nbsp;&nbsp;<input class="form-control form-control-lg border-left-0" id="LastName" name="LastName" placeholder="LastName" type="text" value="${user.LastName}" />
                                         </div>
                                        
                                     </div>
                                    
                                     <div class="form-group">
-                                        <label>Address<span style="color:red">*</span></label>
+                                       
                                         <div class="input-group">
-                                            <div class="input-group-prepend bg-transparent">
-                                                <span class="input-group-text bg-transparent border-right-0">
-                                                    <i class="mdi mdi-email-outline text-primary"></i>
-                                                </span>
-                                            </div>
-                                            <input class="form-control form-control-lg border-left-0" data-val="true"  data-val-required="User Address Required!" id="UserAddress" name="UserAddress" placeholder="UserAddress" type="text" value="${user.Address}" />
+                                           
+                                           <label class="form-control form-control-lg">Address</label> &nbsp;&nbsp;<input class="form-control form-control-lg border-left-0" data-val="true"  data-val-required="User Address Required!" id="UserAddress" name="UserAddress" placeholder="UserAddress" type="text" value="${user.Address}" />
                                         </div>
                                        
                                     </div>
                                     
                                       <div class="form-group">
-                                        <label>Gender<span style="color:red">*</span></label>
+                                       
                                         <div class="input-group">
-                                            <div class="input-group-prepend bg-transparent">
-                                                <span class="input-group-text bg-transparent border-right-0">
-                                                   
-                                                </span>
-                                            </div>
-                                           <input type="radio" id="male" name="gender" value="Male"> &nbsp; &nbsp;&nbsp; <input type="radio" id="female" name="gender" value="Female">
-                                        </div>
+                                         <label class="form-control form-control-lg"> Gender <input type="radio" class="form-radio-input" id="male" name="gender" value="Male" >Male</input>  &nbsp; &nbsp;&nbsp; <input type="radio" id="female" name="gender" value="Female">Female</input> 
+</label>                                        
+</div>
                                     </div>
                                     
                                     <div class="mt-3">
                                         <button type="submit" onclick="profile.UpdateBasicDetails();" class="btn btn-block btn-gradient-primary mr-2">Update</button>
                                     </div>
-
                           </div>
                         </div>
                     </div>`;
@@ -65,12 +56,11 @@ var profile = {
         });
     },
     UpdateBasicDetails: function () {
-
         if (profile.ValidateBasicDetail()) {
             data = {
                 "FirstName": $('#FirstName').val(),
                 "LastName": $('#LastName').val(),
-                "Gender": $('#gender').val(),
+                "Gender": $('input[name="gender"]:checked').val(),
                 "Address": $('#UserAddress').val()
             }
             ajax.doPostAjax(`/${homeController}/SaveCurrentUserBasicDetails`, data, function (result) {

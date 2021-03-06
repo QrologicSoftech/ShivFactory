@@ -80,7 +80,6 @@ namespace ShivFactory.Business.Repository
                 string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
                 string fullPath = HttpContext.Current.Server.MapPath(path);
                 string[] image = userimgpath.Split('/');
-
                 System.IO.File.Delete(fullPath+image);
                     return true;
                 }
