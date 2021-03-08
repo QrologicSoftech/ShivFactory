@@ -1,0 +1,356 @@
+﻿@model ShivFactory.Business.Repository.Admin.Customer
+@{
+    ViewBag.Title = "Add New Vendor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="col-12 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">@ViewBag.Title</h4>
+                                    <div class="row grid-margin">
+                                        <div class="col-4">
+                                            <div class="wrapper d-flex" style=" text-align: start;">
+                                                <a class="btn btn-sm btn-gradient-primary mr-2" href="~/Admin/Admin/Category">  Back to List </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @using (Html.BeginForm("RegisterVendor", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-sample", id = "myform" }))
+                                    {
+                                        <p class="card-description"> Account info </p>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">User Name</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @placeholder = "UserName" })
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Email</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control", @placeholder = "Email Name" })
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Password</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Password", @type = "password" })
+                                                    </div>  @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Confirm Password</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm Password", @type = "password" })
+                                                    </div>  @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="card-description"> User Details </p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">First Name</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                                                    </div>  @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Last Name</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                                                    </div>  @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Gender</label>
+                                                    <div class="col-sm-9">
+                                                        <select class="form-control"><option>Male</option><option>Female</option></select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Address</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Address" })
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.EmailId, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>File upload</label>
+                                                    <input type="file" name="img[]" class="file-upload-default">
+                                                </div>
+                                                <div class="ajax-file-upload-container form-group">
+                                                    @Html.TextBoxFor(model => model.PostedFile, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview')" })
+                                                    @Html.ValidationMessageFor(model => model.PostedFile, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-sm-6">
+                                                @{ var display = Model != null && Model.UserImage != null ? "display:block" : "display:none";
+                                                    var imgPath = Model != null && Model.UserImage != null ? Model.UserImage : "";}
+                                                <div class="form-group">
+                                                    <img id="imagePreview" src="@imgPath"  runat="server" style="border: 1px solid #eee3e3; @display;" height="100" width="100" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <p class="card-description"> Business Info </p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Firm Name</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.FirmName, new { @class = "form-control", @placeholder = "Firm Name" })
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.FirmName, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Address</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.FullAddress, new { @class = "form-control", @placeholder = "Firm Address" })
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.FullAddress, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">PAN</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.PanNo, new { @class = "form-control", @placeholder = "PAN" })
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.PanNo, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">GST</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.GSTIN, new { @class = "form-control", @placeholder = "GST" })
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.GSTIN, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">City</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.City, new { @class = "form-control", @placeholder = "City" })
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">State</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.State, new { @class = "form-control", @placeholder = "State" })
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Address Proof</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview1')" })
+                                                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                        @Html.HiddenFor(model => model.AddressProofImg)
+
+
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @{ var display1 = Model != null && Model.AddressProofImg != null ? "display:block" : "display:none";
+                                                            var img1Path = Model != null && Model.AddressProofImg != null ? Model.AddressProofImg : "";}
+                                                        <img id="imagePreview1" src="@img1Path" class="img-preview img-preview-sm img-thumbnail" style="@display1" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label">Signature</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview2')" })
+                                                        @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+
+                                                        @Html.HiddenFor(model => model.Signature)
+
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        @{ var displaysign = Model != null && Model.Signature != null ? "display:block" : "display:none";
+                                                            var imgsignPath = Model != null && Model.Signature != null ? Model.Signature : "";}
+                                                        <img id="imagePreview2" src="@imgsignPath" class="img-preview img-preview-sm img-thumbnail" style="@displaysign" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Logo</label>
+                                                <div class="col-sm-9">
+                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview3')" })
+                                                    @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+                                                    @Html.HiddenFor(model => model.Logo)
+                                                </div>
+
+                                                <div class="form-group">
+                                                    @{ var displaylogo = Model != null && Model.Logo != null ? "display:block" : "display:none";
+                                                        var imglogoPath = Model != null && Model.Logo != null ? Model.Signature : "";}
+                                                    <img id="imagePreview3" src="@imglogoPath" class="img-preview img-preview-sm img-thumbnail" style="@imglogoPath" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                            <p class="card-description"> Bank Information </p>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Account Holder Name</label>
+                                                        <div class="col-sm-9">
+                                                            @Html.TextBoxFor(m => m.AccountHolderName, new { @class = "form-control", @placeholder = "Account Holder Name" })
+                                                        </div>  @Html.ValidationMessageFor(model => model.AccountHolderName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Account Number</label>
+                                                        <div class="col-sm-9">
+                                                            @Html.TextBoxFor(m => m.AccountNumber, new { @class = "form-control", @placeholder = "Account Number" })
+                                                        </div>  @Html.ValidationMessageFor(model => model.AccountNumber, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">IFSC Code</label>
+                                                        <div class="col-sm-9">
+                                                            @Html.TextBoxFor(m => m.IFSCCode, new { @class = "form-control", @placeholder = "IFSC Code" })
+                                                        </div>
+                                                        @Html.ValidationMessageFor(model => model.IFSCCode, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-3 col-form-label">Bank Name</label>
+                                                        <div class="col-sm-9">
+                                                            <select class="form-control"><option>Bank 1</option><option>Bank 2</option></select>
+                                                        </div>
+                                                        @*@Html.DropDownListFor(m => m.BankName, "SELECT", new { @class = "form-control", @placeholder = "Address" })*@
+                                                        @Html.ValidationMessageFor(model => model.BankName, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @*<div class="row">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">Bank Proof</label>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview1')" })
+                    @Html.ValidationMessageFor(model => model.Ban, "", new { @class = "text-danger" })
+
+                </div>
+               </div>
+
+        </div>*@
+
+
+                                            <div class="row">
+                                                <div class="mt-3">
+                                                    <button type="submit" class="btn btn-block btn-gradient-primary mr-2">SAVE</button>
+                                                </div>
+
+                                            </div>
+
+
+
+                                            }`
+                                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function readfile(input, w) {
+        if (input.files && input.files[0]) {
+            var fileReader = new FileReader(),
+                files = input.files,
+                file;
+            if (!files.length) {
+                return;
+            }
+            file = files[0];
+            //var size = parseFloat(file.size).toFixed(2);
+            if (/^image\/\w+$/.test(file.type)) {
+                fileReader.onload = function (e) {
+                    $('#' + w + '').attr('src', e.target.result);
+                    $('#' + w + '').attr('style', 'display:block');
+                    var image = new Image();
+                    image.src = $('#' + w + '').attr("src");
+                    image.onload = function () {
+                        //alert('width: ' + this.width + ' and height: ' + this.height);
+                    };
+                }
+                fileReader.readAsDataURL(input.files[0]);
+            } else {
+                $('#' + w + '').attr('src', '');
+                $('#' + w + '').attr('style', 'display:none');
+                alert("Please choose an image file.");
+                $("#PostedFile").val('');
+            }
+        }
+    }
+
+</script>

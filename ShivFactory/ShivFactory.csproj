@@ -444,6 +444,9 @@
     <Content Include="Areas\Admin\Views\Admin\ProductDimension.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Vendor.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\VendorPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Customer.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\CustomerPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\RegisterVendor.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -492,12 +495,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\MobileVerify.cshtml" />
     <Content Include="Views\Account\SendOTP.cshtml" />
-    <Content Include="Views\Account\RegisterVendor.cshtml" />
     <Content Include="Views\Home\ChangeProfileImage.cshtml" />
-    <Content Include="Views\Account\SignUp.cshtml" />
     <Content Include="Views\Home\AccountDetails.cshtml" />
     <Content Include="Views\Shared\_Accounts_Layout.cshtml" />
-    <Content Include="Views\Home\AccDetailpage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

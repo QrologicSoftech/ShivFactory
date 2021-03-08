@@ -1,0 +1,31 @@
+﻿@using ShivFactory.Business.Repository
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@{
+    JObject obj = JObject.Parse(JsonConvert.SerializeObject(new CustomerResponse(), Formatting.Indented, new JsonSerializerSettings
+    { PreserveReferencesHandling = PreserveReferencesHandling.Objects }));
+    obj.Remove("$id");
+
+    List<string> termsList = new List<string>();
+    foreach (var columnName in obj)
+    {
+        termsList.Add(columnName.Key.Trim());
+    }
+    string[] columnArray = termsList.ToArray();
+
+    ViewBag.Title = "CustomerPartialView";
+}
+<div class="row overflow-auto">
+    <div class="col-12" id="TableDiv">
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var list = [
+            { Name: 'Block', Value: 'Admin.BlockCustomer(this);', Header: "Block" }
+        ];
+         var stringArray = @Html.Raw(Json.Encode(columnArray));
+        common.BindDatatable('TableDiv', '/Admin/Admin/GetCustomerData', stringArray, 'Id', list);
+    });
+</script>

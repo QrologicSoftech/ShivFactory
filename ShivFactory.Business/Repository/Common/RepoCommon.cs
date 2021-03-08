@@ -17,6 +17,7 @@ namespace ShivFactory.Business.Repository
             return value.ToString("yyyyMMddHHmmssffff");
         }
 
+        #region save Image from http posted
         public string SaveImage(HttpPostedFileBase PostedFile)
         {
             string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
@@ -48,7 +49,8 @@ namespace ShivFactory.Business.Repository
             }
             return imagePathlist;
         }
-
+        #endregion
+        #region check file exist or not 
         public string  checkfile(string userimgpath)
         {
             try
@@ -73,6 +75,8 @@ namespace ShivFactory.Business.Repository
             }
         }
 
+        #endregion check file 
+        #region delete file from path 
         public bool deletefile(string userimgpath)
         {
             try
@@ -90,6 +94,7 @@ namespace ShivFactory.Business.Repository
             
 
         }
+        #endregion
 
         #region Call SMS OTP API 
         public string sendOtpSMS(string mobilenumber)
@@ -109,6 +114,27 @@ namespace ShivFactory.Business.Repository
                 return false; 
             }
             
+        }
+        #endregion
+
+        #region Convert Base64 to image 
+        public string  Base64ToImage(string base64String)
+        {
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+
+            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+            ms.Write(imageBytes, 0, imageBytes.Length);
+            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+
+            string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
+            string fullPath = HttpContext.Current.Server.MapPath(path);
+
+            string guid = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+           // string filename = guid + Path.GetFileName(base64String.FileName);
+            image.Save(fullPath+guid);
+            return fullPath + guid;
+            // return image;
+            //image.Save("sss",Ima)
         }
         #endregion
     }

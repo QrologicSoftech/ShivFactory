@@ -53,12 +53,16 @@ namespace ShivFactory.Business.Repository
         }
         #endregion
 
-        #region Add Or Update VendorDetails
+        #region Add Or Update VendorBankDetails
         public bool AddVendorBankDetails(DataLibrary.DL.VendorBankDetail model)
         {
             var vendorbankdetails = db.VendorBankDetails.Where(a => a.UserID == model.UserID).FirstOrDefault();
             if (vendorbankdetails != null)
             {
+                vendorbankdetails.AccountHolderName = model.AccountHolderName;
+                vendorbankdetails.AccountNumber = model.AccountNumber;
+                vendorbankdetails.IFSCCode = model.IFSCCode;
+                vendorbankdetails.BankName = model.BankName;
             }
             else
             {

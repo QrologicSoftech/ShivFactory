@@ -228,7 +228,8 @@ namespace ShivFactory.Controllers
         [AllowAnonymous]
         public ActionResult ResetPassword(string code )
         {
-            return code == null ? View("Error") : View();
+            ResetPasswordViewModel resetmodel = (ResetPasswordViewModel)TempData["reset"];
+            return View(resetmodel);
         }
 
 
@@ -918,13 +919,6 @@ namespace ShivFactory.Controllers
             }
         }
 
-
-        //[AllowAnonymous]
-        //public ActionResult RegisterVendor()
-        //{
-        //    return View();
-        //}
-
         [AllowAnonymous]
         [HttpPost]
         public async Task<ActionResult> RegisterVendorAsync(VendorRegister model)
@@ -945,8 +939,10 @@ namespace ShivFactory.Controllers
                     {
                         PhoneNumber = model.PhoneNumber,
                         Code=token,
-                    }; 
-                    return RedirectToAction("ResetPassword","Account",reset);
+                    };
+                    TempData["reset"] = reset;
+                    return Redirect(Url.Action("ResetPassword", "Account"));
+                    //return RedirectToAction("ResetPassword","Account",reset);
                 }
                 else
                 {

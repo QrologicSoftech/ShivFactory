@@ -1,4 +1,4 @@
-﻿let adminArea = 'Admin', adminController = 'Admin', apiController ='SystemController';
+﻿let adminArea = 'Admin', adminController = 'Admin', apiController ='System';
 
 var Admin = {
 
@@ -278,12 +278,12 @@ var Admin = {
     BlockUser: function (element) {
         if (confirm("Are you sure want to block this customer? \n after block user can't able to login.")) {
             let userId = $(element).closest('tr').attr('Id');
-            if (userId == undefined || userId == null) { return false; }
+            if (userId == 'undefined' || userId == null) { return false; }
             common.ShowLoader();
             data = {
                 "userId": userId
             }
-            ajax.doPostAjax(`/${apiController}/DeleteBanner`, data, function (result) {
+            ajax.doPostAjax(`/${apiController}/BlockUser`, data, function (result) {
                 debugger;
                 if (result.ResultFlag) {
                     location.reload();
@@ -292,6 +292,7 @@ var Admin = {
             });
         }
     },
+
 }
 
 

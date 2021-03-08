@@ -17,58 +17,48 @@ namespace ShivFactory.Business.Repository
         #region Get UserDetails by UserId
         public UserProfile GetUserDetailsBYUserId(string userId)
         {
-            UserProfile userProfileResonse ;
+            UserProfile userProfileResonse = new UserProfile();
             RepoCookie repoCookie = new RepoCookie();
             var role = repoCookie.GetCookiesValue(CookieName.Role);
             var user = db.UserDetails.Where(a => a.UserId == userId).FirstOrDefault();
+            if (user != null)
+            {
+                userProfileResonse = new UserProfile
+                {
+                    UserId = user.UserId,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Address = user.Address,
+                    Email = user.Email,
+                    Mobile = user.Mobile,
+                    Gender = user.Gender,
+                    UserImage = user.UserImage,
+                };
+            }
             if (role == UserRoles.Vendor)
             {
                 var vendor = db.Vendors.Where(vndr => vndr.UserId == userId).FirstOrDefault();
-                //var vendorbank = db.VendorBankDetails.Where(vndrbnk=> vndrbnk.UserID ==userId).FirstOrDefault();
-                 userProfileResonse = new UserProfile
+                if (vendor != null)
                 {
-                    UserId = user.UserId,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Address = user.Address,
-                    Email = user.Email,
-                    Mobile = user.Mobile,
-                    Gender = user.Gender,
-                    UserImage = user.UserImage,
+                    userProfileResonse.FirmName = vendor.FirmName;
+                    userProfileResonse.GSTIN = vendor.GSTIN;
+                    userProfileResonse.FullAddress = vendor.FullAddress;
+                    userProfileResonse.City = vendor.City;
+                    userProfileResonse.State = vendor.State;
+                    userProfileResonse.PanNo = vendor.PanNo;
+                    userProfileResonse.AddressProofImg = vendor.AddressProofImg;
+                }
 
-                    FirmName = vendor.FirmName,
-                    GSTIN = vendor.GSTIN,
-                    FullAddress = vendor.FullAddress,
-                    City = vendor.City,
-                    State = vendor.State,
-                    PanNo = vendor.PanNo,
-                    AddressProofImg = vendor.AddressProofImg
-                    //,
-
-                    // Add by Checking USerRoles 
-                    //AccountHolderName = vendorbank.AccountHolderName,
-                    //AccountNumber = vendorbank.AccountNumber,
-                    //BankName = vendorbank.BankName,
-                    //IFSCCode = vendorbank.IFSCCode,
-                    //Branch = vendorbank.Branch,
-                };
-            }
-            else {
-
-                 userProfileResonse = new UserProfile
+                var vendorbank = db.VendorBankDetails.Where(bnk => bnk.ID == vendor.VendorId).FirstOrDefault();
+                if (vendorbank != null)
                 {
-                    UserId = user.UserId,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Address = user.Address,
-                    Email = user.Email,
-                    Mobile = user.Mobile,
-                    Gender = user.Gender,
-                    UserImage = user.UserImage,
-
-                };
+                    userProfileResonse.AccountHolderName = vendorbank.AccountHolderName;
+                    userProfileResonse.AccountNumber = vendorbank.AccountNumber;
+                    userProfileResonse.BankName = vendorbank.BankName;
+                    userProfileResonse.IFSCCode = vendorbank.IFSCCode;
+                    userProfileResonse.Branch = vendorbank.Branch;
+                }
             }
-          
             return userProfileResonse;
         }
         #endregion

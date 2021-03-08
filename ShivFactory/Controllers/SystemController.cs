@@ -12,10 +12,8 @@ namespace ShivFactory.Controllers
 {
     public class SystemController : ApiController
     {
-
-        public ResultModel DeleteBanner(string userId)
+        public ResultModel BlockUser(string userId)
         {
-
             try
             {
                 RepoUser repoUser = new RepoUser();

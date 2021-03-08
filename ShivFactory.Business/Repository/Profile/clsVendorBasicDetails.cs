@@ -17,5 +17,7 @@ namespace ShivFactory.Business.Repository
 		public string PanNo { get; set; }
 		public string PIN { get; set; }
 
+		public string AddressProof { get; set; }
+
 	}
 }

@@ -153,6 +153,8 @@ namespace ShivFactory.Controllers
         {
             try
             {
+                RepoCommon repoCommon = new RepoCommon();
+                model.FullAddress = repoCommon.Base64ToImage(model.AddressProof); 
                 Vendor vendorDetail = new Vendor();
                 Utility util = new Utility();
                 RepoVendor repoUser = new RepoVendor();
@@ -186,10 +188,45 @@ namespace ShivFactory.Controllers
             }
                 }
 
-        public ActionResult AccDetailpage()
+
+        public ActionResult UpdateVendorBankDetails(clsVendorBankDetails model)
         {
-            return View(); 
+            try
+            {
+                Vendor vendorDetail = new Vendor();
+                Utility util = new Utility();
+                RepoVendor repoVendor = new RepoVendor();
+                int vendorID = repoVendor.GetVendorIdByUserId(util.GetCurrentUserId());
+                bool isUpdate = repoVendor.AddVendorBankDetails(new DataLibrary.DL.VendorBankDetail()
+                {
+                    AccountHolderName = model.AccountHolderName,
+                    AccountNumber = model.AccountNumber,
+                    IFSCCode = model.IFSCCode,
+                    BankName = model.BankName,
+                    UserID=vendorID
+                });
+
+                return Json(new ResultModel
+                {
+                    ResultFlag = isUpdate,
+                    Data = "",
+                    Message = isUpdate == true ? "User Bank details Update successfully!!" : "Failled to Update user Bank details!!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+
         }
+
+
         #endregion
     }
 

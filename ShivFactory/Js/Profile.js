@@ -150,7 +150,6 @@ var profile = {
                                             </div>
                                             <input class="form-control form-control-lg border-left-0"  id="City" name="City" placeholder="City" type="text" value="${user.City}" />
                                         </div>
-                                   
                                     </div>
 
  <div class="form-group">
@@ -162,6 +161,22 @@ var profile = {
                                                 </span>
                                             </div>
                                             <input class="form-control form-control-lg border-left-0"  id="State" name="State" placeholder="State" type="text" value="${user.State}" />
+                                        </div>
+                                       
+                                    </div>
+
+<div class="form-group">
+                                        <label>Address Proof<span style="color:red">*</span></label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend bg-transparent">
+                                                <span class="input-group-text bg-transparent border-right-0">
+                                                    <i class="mdi mdi-email-outline text-primary"></i>
+                                                </span>
+                                            </div>
+                                            <input type="file" name="img[]" id="fileupload" onchange = "profile.readfile(this,'imagePreview')" />
+ <div class="input-group">
+                                                    <img id="imagePreview"   runat="server" style="border: 1px solid #eee3e3; @display;" height="100" width="100" />
+                                                </div>
                                         </div>
                                        
                                     </div>
@@ -178,7 +193,7 @@ var profile = {
         });
     },
     UpdateVendorDetails: function () {
-
+        console.log($('#imagePreview').attr('src'));
         if (profile.ValidateVendorDetail()) {
             data = {
                 "FirmName": $('#FirmName').val(),
@@ -187,7 +202,8 @@ var profile = {
                 "FullAddress": $('#FullAddress').val(),
                 "City": $('#City').val(),
                 "State": $('#State').val(),
-                "PIN": $('#PIN').val()
+                "PIN": $('#PIN').val(),
+                "AddressProof": $('#imagePreview').attr('src')
             }
             ajax.doPostAjax(`/${homeController}/SaveCurrentVendorDetails`, data, function (result) {
                 common.ShowMessage(result);
@@ -264,7 +280,20 @@ var profile = {
     },
 
     UpdateVendorBankDetails: function () {
-
+        if (profile.ValidateBankDetail()) {
+            data = {
+                "AccountHolderName": $('#AccountHolderName').val(),
+                "AccountNumber": $('#AccountNumber').val(),
+                "BankName": $('#BankName').val(),
+                "IFSCCode": $('#IFSCCode').val()
+            }
+            ajax.doPostAjax(`/${homeController}/UpdateVendorBankDetails`, data, function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    commonFunction.HideModel('#Modal');
+                }
+            });
+        }
     },
   
     BindUserPasswordDetails: function () {
@@ -356,7 +385,24 @@ var profile = {
         } else if ($('#PIN').val() == null || $('#PIN').val() == 'undefined') {
             toastr.error('Enter PIN !');
             return false;
+        } else if ($('#imagePreview').attr('src') == null || ($('#imagePreview').attr('src') == 'undefined')) {
+            toastr.error('Upload Address Proof!');
         }
+        return true;
+    },
+
+     ValidateBankDetail: function () {
+         if ($('#AccountHolderName').val() == null || $('#AccountHolderName').val() == 'undefined') {
+             toastr.error('Enter Account Holder Name!');
+            return false;
+         } else if ($('#AccountNumber').val() == null || $('#AccountNumber').val() == 'undefined') {
+             toastr.error('Enter Account Number!');
+            return false;
+         } else if ($('#BankName').val() == null || $('#IFSCCode').val() == 'undefined') {
+             toastr.error('Enter Bank Name !');
+            return false;
+        }
+
         return true;
     },
 
@@ -373,5 +419,38 @@ var profile = {
         }
         return true;
 
+    },
+
+    readfile: function (input, w) {
+        if (input.files && input.files[0]) {
+            var fileReader = new FileReader(),
+                files = input.files,
+                file;
+            if (!files.length) {
+                return;
+            }
+            file = files[0];
+            //var size = parseFloat(file.size).toFixed(2);
+            if (/^image\/\w+$/.test(file.type)) {
+                fileReader.onload = function (e) {
+                    $('#' + w + '').attr('src', e.target.result);
+                    $('#' + w + '').attr('style', 'display:block');
+                    var image = new Image();
+                    image.src = $('#' + w + '').attr("src");
+                    image.onload = function () {
+                        //alert('width: ' + this.width + ' and height: ' + this.height);
+                    };
+                }
+                fileReader.readAsDataURL(input.files[0]);
+            } else {
+                $('#' + w + '').attr('src', '');
+                $('#' + w + '').attr('style', 'display:none');
+                alert("Please choose an image file.");
+                //$("#PostedFile").val('');
+            }
+        }
     }
+
+
+
 }

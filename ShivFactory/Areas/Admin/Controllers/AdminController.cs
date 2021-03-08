@@ -1262,6 +1262,61 @@ namespace ShivFactory.Areas.Admin.Controllers
                 return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+        public ActionResult RegisterVendor()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RegisterVendor(Customer model)
+        {
+            return View(model);
+        }
+        #endregion
+
+        #region Customers
+        public ActionResult Customer()
+        {
+            return View();
+        }
+        public ActionResult CustomerPartialView()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult GetCustomerData()
+        {
+            try
+            {
+                // Initialization.  
+                var search = Request.Form.GetValues("search[value]")[0];
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                //Find Order Column  
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+                // Prepair model  
+                PaginationRequest model = new PaginationRequest()
+                {
+                    searchText = search,
+                    Skip = start != null ? Convert.ToInt32(start) : 0,
+                    PageSize = length != null ? Convert.ToInt32(length) : 0,
+                    SortColumn = sortColumn,
+                    SortDirection = sortColumnDir
+                };
+                int recordsTotal = 0;
+
+                RepoUser repoUser = new RepoUser();
+                var users = repoUser.GetAllCustomers(model, UserRoles.Customer, out recordsTotal);
+
+                return Json(new { data = users, draw = draw, recordsFiltered = users.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
         #endregion
     }
 }

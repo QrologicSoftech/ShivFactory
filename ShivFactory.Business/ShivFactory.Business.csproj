@@ -103,6 +103,7 @@
     <Compile Include="Repository\Accounts\CustomerRegister.cs" />
     <Compile Include="Repository\Accounts\LogInModel.cs" />
     <Compile Include="Repository\Accounts\VendorRegister.cs" />
+    <Compile Include="Repository\Admin\Customer\Customer.cs" />
     <Compile Include="Repository\Admin\Product\RepoProductDetails.cs" />
     <Compile Include="Repository\Admin\Product\ResponseModel.cs" />
     <Compile Include="Repository\Banner\BannerResponse.cs" />

@@ -259,7 +259,7 @@
                                 <div class="panel panel-default card-detail">
                                     <div class="panel-body">
                                         <div class="card-content secondary-header">
-                                            Bank Details <span class="pull-right text-primary edit-link" data-config-id="accountPrimaryContactInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_primary_contact_click" analytics-label="edit_primary_contact">Edit</span></span>
+                                            Bank Details <span class="pull-right text-primary edit-link" data-config-id="accountPrimaryContactInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_primary_contact_click" analytics-label="edit_primary_contact" onclick="profile.BindVendorBankDetails()" >Edit</span></span>
                                         </div>
 
                                         <div class="card-content pb20">
@@ -268,14 +268,14 @@
                                                 <span class="help-text light">Account Holder Name</span>
 
                                                 <p>
-                                                    <span class="help-text">Shiv Factory </span>
+                                                    <span class="help-text">@Model.AccountHolderName </span>
                                                 </p>
                                             </div>
                                             <div class="colo-md-12">
                                                 <span class="help-text light">Account Number</span>
 
                                                 <p>
-                                                    <span class="help-text">+919876543210 </span>
+                                                    <span class="help-text">@Model.AccountNumber</span>
                                                     <span class="icon icon-success"></span>
                                                 </p>
                                             </div>
@@ -283,16 +283,16 @@
                                                 <span class="help-text light">IFSC code</span>
 
                                                 <p>
-                                                    <span class="help-text">ABC0000321 </span>
+                                                    <span class="help-text">@Model.IFSCCode </span>
                                                     <span class="icon icon-success"></span>
                                                 </p>
                                             </div>
                                             <div class="colo-md-12">
-                                                <span class="help-text light">City</span>
+                                                <span class="help-text light">Bank Name</span>
 
                                                 <p>
                                                     <span class="help-text">
-                                                        JAIPUR
+                                                        @Model.BankName
                                                     </span>
                                                 </p>
                                             </div>

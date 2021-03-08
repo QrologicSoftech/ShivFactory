@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Vendors";
+    ViewBag.Title = "Customer";
 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -14,21 +14,21 @@
                         <div class="card-body">
                             <h4 class="card-title">@ViewBag.Title</h4>
                             <div class="row grid-margin">
-                                @*<div class="col-12">
+                                <div class="col-12">
                                     <div class="card-description">
-                                        @using (Html.BeginForm("RegisterVendor", "Admin", new { Area = "Admin" }, FormMethod.Get))
+                                        @using (Html.BeginForm("AddCustomer", "Admin", new { Area = "Admin" }, FormMethod.Get))
                                         {
                                             <p class="card-description" style=" text-align: end;">
                                                 <button type="submit" class="btn btn-primary">
-                                                    Add Vendor
+                                                    Add Customer
                                                 </button>
                                             </p>
                                         }
                                     </div>
-                                </div>*@
+                                </div>
                             </div>
                             <div class="partialView">
-                                @{ Html.RenderPartial(Url.Content("VendorPartialView")); }
+                                @{ Html.RenderPartial(Url.Content("CustomerPartialView")); }
                             </div>
                         </div>
                     </div>
