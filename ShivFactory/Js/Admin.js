@@ -1,4 +1,4 @@
-﻿let adminArea = 'Admin', adminController = 'Admin', apiController ='System';
+﻿let adminArea = 'Admin', adminController = 'Admin', apiController = 'System', manageController = 'Manage';
 
 var Admin = {
 
@@ -283,7 +283,7 @@ var Admin = {
             data = {
                 "userId": userId
             }
-            ajax.doPostAjax(`/${apiController}/BlockUser`, data, function (result) {
+            ajax.doPostAjax(`/${manageController}/BlockUser`, data, function (result) {
                 debugger;
                 if (result.ResultFlag) {
                     location.reload();

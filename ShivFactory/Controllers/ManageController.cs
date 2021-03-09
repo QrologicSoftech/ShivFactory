@@ -56,8 +56,30 @@ namespace ShivFactory.Controllers
         #endregion
 
         #region Accounts Apis    
-       
 
+        public ActionResult BlockUser(string userId)
+        {
+            try
+            {
+                RepoUser repoUser = new RepoUser();
+                var isBlock = repoUser.BlockUserByUserId(userId);
+                return Json(new ResultModel
+                {
+                    ResultFlag = isBlock,
+                    Data = null,
+                    Message = isBlock ? "User blocked successfully!!" : "Failled to block user."
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
         #endregion
 
         #region Microsoft Apis
