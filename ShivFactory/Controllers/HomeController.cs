@@ -111,6 +111,10 @@ namespace ShivFactory.Controllers
             return View(userProfiledetails);
         }
 
+        public ActionResult DemoAccDetail()
+        {
+            return View(); 
+        }
         public ActionResult SaveCurrentUserBasicDetails(clsUserBasicDetails model)
         {
             try
@@ -154,7 +158,7 @@ namespace ShivFactory.Controllers
             try
             {
                 RepoCommon repoCommon = new RepoCommon();
-                model.FullAddress = repoCommon.Base64ToImage(model.AddressProof); 
+                var imgpath  = repoCommon.Base64ToImage(model.AddressProof); 
                 Vendor vendorDetail = new Vendor();
                 Utility util = new Utility();
                 RepoVendor repoUser = new RepoVendor();
@@ -167,6 +171,7 @@ namespace ShivFactory.Controllers
                     State = model.State,
                     PIN=model.PIN,
                     FullAddress = model.FullAddress,
+                    AddressProofImg=imgpath,
                     UserId = util.GetCurrentUserId()
                 });
 
@@ -193,6 +198,8 @@ namespace ShivFactory.Controllers
         {
             try
             {
+                RepoCommon repoCommon = new RepoCommon();
+                var imgpath = repoCommon.Base64ToImage(model.BankProof);
                 Vendor vendorDetail = new Vendor();
                 Utility util = new Utility();
                 RepoVendor repoVendor = new RepoVendor();
@@ -203,7 +210,8 @@ namespace ShivFactory.Controllers
                     AccountNumber = model.AccountNumber,
                     IFSCCode = model.IFSCCode,
                     BankName = model.BankName,
-                    UserID=vendorID
+                    UserID=vendorID,
+                    BankProofImg = imgpath
                 });
 
                 return Json(new ResultModel

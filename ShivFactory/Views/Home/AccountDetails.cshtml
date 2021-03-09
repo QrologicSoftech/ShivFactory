@@ -1,5 +1,4 @@
-﻿
-@using ShivFactory.Business.Repository;
+﻿@using ShivFactory.Business.Repository;
 @using ShivFactory.Business.Models.Other;
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -125,7 +124,7 @@
                                 <div class="panel panel-default card-detail">
                                     <div class="panel-body">
                                         <div class="card-content secondary-header">
-                                            Vendor Details<span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click" onclick="profile.BindVendorDetail();">Edit</span></span>
+                                            Vendor Details<small class="ml-4 text-muted"><i class="mdi mdi-clock mr-1"></i>Verification Pending</small><span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo"><span analytics-on="click" onclick="profile.BindVendorDetail();">Edit</span></span>
                                         </div>
 
                                         <div class="card-content pb20">
@@ -259,7 +258,8 @@
                                 <div class="panel panel-default card-detail">
                                     <div class="panel-body">
                                         <div class="card-content secondary-header">
-                                            Bank Details <span class="pull-right text-primary edit-link" data-config-id="accountPrimaryContactInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_primary_contact_click" analytics-label="edit_primary_contact" onclick="profile.BindVendorBankDetails()" >Edit</span></span>
+                                            @*@{ @Model.IsActiveBank == null ? "Verification Pending" : "Verified"}*@
+                                            Bank Details  <small class="ml-4 text-muted"><i class="mdi mdi-clock mr-1"></i>Verification Pending</small><span class="pull-right text-primary edit-link" data-config-id="accountPrimaryContactInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_primary_contact_click" analytics-label="edit_primary_contact" onclick="profile.BindVendorBankDetails()">Edit</span></span>
                                         </div>
 
                                         <div class="card-content pb20">

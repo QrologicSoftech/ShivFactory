@@ -49,7 +49,7 @@ namespace ShivFactory.Business.Repository
                     userProfileResonse.AddressProofImg = vendor.AddressProofImg;
                 }
 
-                var vendorbank = db.VendorBankDetails.Where(bnk => bnk.ID == vendor.VendorId).FirstOrDefault();
+                var vendorbank = db.VendorBankDetails.Where(a => a.UserID == vendor.VendorId).FirstOrDefault();
                 if (vendorbank != null)
                 {
                     userProfileResonse.AccountHolderName = vendorbank.AccountHolderName;
@@ -57,6 +57,7 @@ namespace ShivFactory.Business.Repository
                     userProfileResonse.BankName = vendorbank.BankName;
                     userProfileResonse.IFSCCode = vendorbank.IFSCCode;
                     userProfileResonse.Branch = vendorbank.Branch;
+                  //  userProfileResonse.IsActiveBank = false; //vendorbank.IsActive; 
                 }
             }
             return userProfileResonse;

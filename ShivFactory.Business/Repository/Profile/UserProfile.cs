@@ -40,7 +40,6 @@ namespace ShivFactory.Business.Repository
 		public DateTime LastUpdateVendor { get; set; }
 		public string PIN { get; set; }
 		public string Signature { get; set; }
-
 		public string Logo { get; set; }
 
 		//Vendor Bank Details
@@ -49,6 +48,8 @@ namespace ShivFactory.Business.Repository
 		public string BankName { get; set; }
 		public string IFSCCode { get; set; }
 		public string Branch { get; set; }
+		public bool IsActiveBank { get; set;  }
+
 
 
 

@@ -262,6 +262,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="IsDelete" Type="datetime" />
           <Property Name="AddUpdate" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="BankProofImg" Type="nvarchar(max)" />
+          <Property Name="Narration" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Vendors">
           <Key>
@@ -1037,6 +1039,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="IsDelete" Type="DateTime" Precision="3" />
           <Property Name="AddUpdate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <Property Name="BankProofImg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Narration" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1328,6 +1332,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySetMapping Name="VendorBankDetails">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.VendorBankDetail">
               <MappingFragment StoreEntitySet="VendorBankDetails">
+                <ScalarProperty Name="Narration" ColumnName="Narration" />
+                <ScalarProperty Name="BankProofImg" ColumnName="BankProofImg" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="AddUpdate" ColumnName="AddUpdate" />
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />

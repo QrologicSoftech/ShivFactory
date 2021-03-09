@@ -1,0 +1,483 @@
+﻿@model ShivFactory.Business.Repository.UserProfile
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper">
+        <div class="main-panel cardComposite-default">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-sm-6 card-1">
+                        <div class="panel panel-default card-detail">
+                            <div class="panel-body">
+                                <div class="card-content secondary-header">
+                                    Display information
+                                    <span class="pull-right text-primary edit-link" data-config-id="accountDetailsDisplayInfo">
+                                        <span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_display_details_click" analytics-label="edit_display_details" data-toggle="modal" data-target="#myModal1">Edit</span>
+                                        @*<a href="#" data-toggle="modal" data-target="#myModal1">subscribe</a>*@
+                                    </span>
+                                </div>
+
+                                <div class="card-content pb20">
+                                    <div></div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Display Name</span>
+
+                                        <p>
+                                            <span class="help-text">Shiv Factory </span>
+                                            <span class="icon icon-success"></span>
+                                        </p>
+                                    </div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Business Description</span>
+
+                                        <p>
+                                            <span class="help-text">Qrologic  </span>
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="panel-footer text-center load-more" style="display: none;">
+                                <span class="load-more-text more">
+                                    More
+                                    <i class="fa fa-angle-down"></i>
+                                </span>
+                                <span class="load-more-text less">
+                                    Less
+                                    <i class="fa fa-angle-up"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 card-1">
+                        <div class="panel panel-default card-detail">
+                            <div class="panel-body">
+                                <div class="card-content secondary-header">
+                                    Pick up Address
+                                </div>
+
+                                <div class="card-content pb20">
+                                    <div></div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Address Line 1</span>
+
+                                        <p class="help-text">
+                                            Shiv Factory
+                                        </p>
+                                    </div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Address Line 2</span>
+
+                                        <p class="help-text">
+                                            Shiv Factory
+                                        </p>
+                                    </div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Pin code</span>
+
+                                        <p class="help-text">
+                                            302004
+                                        </p>
+                                    </div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Your pickup city</span>
+
+                                        <p class="help-text">
+                                            JAIPUR
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer text-center load-more" style="display: none;">
+                                <span class="load-more-text more">
+                                    More
+                                    <i class="fa fa-angle-down"></i>
+                                </span>
+                                <span class="load-more-text less">
+                                    Less
+                                    <i class="fa fa-angle-up"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 card-1">
+                        <div class="panel panel-default card-detail">
+                            <div class="panel-body">
+                                <div class="card-content secondary-header">
+                                    Login Details
+                                    <span class="pull-right text-primary edit-link" data-config-id="accountLoginInfo">
+                                        <span analytics-on="click" analytics-category="Manage_Profile" analytics-action="change_password_click" analytics-label="change_password_account" data-toggle="modal" data-target="#myModal2">Change Password</span>
+                                    </span>
+                                </div>
+
+                                <div class="card-content pb20">
+                                    <div></div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Display Name</span>
+
+                                        <p>
+                                            <span class="help-text">Shiv Factory </span>
+                                            <span class="icon icon-success"></span>
+                                        </p>
+                                    </div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Your Mobile Number</span>
+
+                                        <p>
+                                            <span class="help-text">+9876543210 </span>
+                                            <span class="icon icon-success"></span>
+                                            <span class="pull-right text-primary field-edit-link verify-detail" data-config-id="registered_phone" data-id="+919782265250" analytics-on="click" data-emailid="rituvashisth92@gmail.com" analytics-category="Manage_Profile" analytics-action="edit_registered_phone_click" analytics-label="edit_registered_phone" data-toggle="modal" data-target="#myModal3">
+                                                EDIT
+                                                <span class="spinner" style="display: none;"><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Your Email address</span>
+
+                                        <p>
+                                            <span class="help-text">shivfactory@gmail.com </span>
+                                            <span class="icon icon-success"></span>
+                                            <span class="pull-right text-primary field-edit-link verify-detail" data-config-id="registered_email" data-id="rituvashisth92@gmail.com" analytics-on="click" data-emailid="" analytics-category="Manage_Profile" analytics-action="edit_registered_email_click" analytics-label="edit_registered_email" data-toggle="modal" data-target="#myModal4">
+                                                EDIT
+                                                <span class="spinner" style="display: none;"><i class="fa fa-circle-o-notch fa-spin"></i></span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Password</span>
+
+                                        <p>
+                                            <span class="help-text">***** </span>
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="panel-footer text-center load-more" style="display: none;">
+                                <span class="load-more-text more">
+                                    More
+                                    <i class="fa fa-angle-down"></i>
+                                </span>
+                                <span class="load-more-text less">
+                                    Less
+                                    <i class="fa fa-angle-up"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 card-1" id="menu-3">
+                        <div class="panel panel-default card-detail">
+                            <div class="panel-body">
+                                <div class="card-content secondary-header">
+                                    Contact Details <span class="pull-right text-primary edit-link" data-config-id="accountPrimaryContactInfo"><span analytics-on="click" analytics-category="Manage_Profile" analytics-action="edit_primary_contact_click" analytics-label="edit_primary_contact" data-toggle="modal" data-target="#myModal5">Edit</span></span>
+                                </div>
+
+                                <div class="card-content pb20">
+                                    <div></div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Your Name</span>
+
+                                        <p>
+                                            <span class="help-text">Shiv Factory </span>
+                                        </p>
+                                    </div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Your Mobile Number</span>
+
+                                        <p>
+                                            <span class="help-text">+919876543210 </span>
+                                            <span class="icon icon-success"></span>
+                                        </p>
+                                    </div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Your Email address</span>
+
+                                        <p>
+                                            <span class="help-text">shivfactory@gmail.com </span>
+                                            <span class="icon icon-success"></span>
+                                        </p>
+                                    </div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Preferred Time slot for calls</span>
+
+                                        <p>
+                                            <span class="help-text">
+                                                10:00
+                                                to 18:00
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div class="colo-md-12">
+                                        <span class="help-text light">Preferred Language</span>
+
+                                        <p>
+                                            <span class="help-text">English </span>
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="panel-footer text-center load-more">
+                                <span class="load-more-text more">
+                                    More
+                                    <i class="fa fa-angle-down"></i>
+                                </span>
+                                <span class="load-more-text less">
+                                    Less
+                                    <i class="fa fa-angle-up"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal bnr-modal fade" id="myModal1" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-font">
+                    <span class="">Store Details</span>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            </div>
+            <div class="form-text-acount">
+                <form class="form-horizontal" name="personal-details" autocomplete="off">
+                    <div class="form-fields">
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <label class="control-label required" for="display_name">Display Name</label>
+                                </div>
+
+                                <div class="col-sm-7">
+                                    <div>
+                                        <input type="text" value="Shiv Factory " name="display_name" class="form-control" id="display_name" maxlength="22">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <label class="control-label required" for="display_name">Business Description</label>
+                                </div>
+
+                                <div class="col-sm-7">
+                                    <div>
+                                        <textarea class="form-control" maxlength="1000" name="description">Qrologic </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer form-submit col-md-12 col-sm-12">
+                        <div class="action-btn">
+                            <span uif-append="close" class="inline-block">
+                                <div class="" uif-fbtype="wrapper" uif-uqid="5c2b854c-9b45-d9c7-3f62-de0812f1ea94">
+
+                                    <input type="button" value="Cancel" name="close" class="btn close-btn btn-default" id="close" analytics-on="click" analytics-category="Manage_Profile" analytics-action="close_modal_store_detail_click" analytics-label="close_modal_store_detail" analytics-state="tracked" data-dismiss="modal">
+
+                                </div>
+                            </span>
+                            <span uif-append="submit" class="inline-block">
+                                <div class="" uif-fbtype="wrapper" uif-uqid="6462377d-bf38-793c-d2cf-820cae24a976">
+
+                                    <input type="submit" value="Save" name="submit" class="btn submit-btn btn-primary" id="save" validation-on-click="true" analytics-on="click" analytics-category="Manage_Profile" analytics-action="save_modal_store_detail_click" analytics-label="save_modal_store_detail" analytics-state="tracked">
+
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal bnr-modal fade" id="myModal2" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-font">
+                    <span class="">Change Password</span>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            </div>
+            <div class="form-text-acount">
+                <form class="form-horizontal" name="personal-details" autocomplete="off">
+                    <div class="form-fields">
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <label class="control-label required" for="display_name">Enter old password</label>
+                                </div>
+
+                                <div class="col-sm-7">
+                                    <div>
+                                        <input type="text" value="" name="display_name" class="form-control" id="display_name" maxlength="22">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <label class="control-label required" for="display_name">Enter new password</label>
+                                </div>
+
+                                <div class="col-sm-7">
+                                    <div>
+                                        <textarea class="form-control" maxlength="1000" name="description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <label class="control-label required" for="display_name">Confirm new password</label>
+                                </div>
+
+                                <div class="col-sm-7">
+                                    <div>
+                                        <textarea class="form-control" maxlength="1000" name="description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer form-submit col-md-12 col-sm-12">
+                        <div class="action-btn">
+                            <span uif-append="close" class="inline-block">
+                                <div class="" uif-fbtype="wrapper" uif-uqid="5c2b854c-9b45-d9c7-3f62-de0812f1ea94">
+
+                                    <input type="button" value="Cancel" name="close" class="btn close-btn btn-default" id="close" analytics-on="click" analytics-category="Manage_Profile" analytics-action="close_modal_store_detail_click" analytics-label="close_modal_store_detail" analytics-state="tracked" data-dismiss="modal">
+
+                                </div>
+                            </span>
+                            <span uif-append="submit" class="inline-block">
+                                <div class="" uif-fbtype="wrapper" uif-uqid="6462377d-bf38-793c-d2cf-820cae24a976">
+
+                                    <input type="submit" value="Save" name="submit" class="btn submit-btn btn-primary" id="save" validation-on-click="true" analytics-on="click" analytics-category="Manage_Profile" analytics-action="save_modal_store_detail_click" analytics-label="save_modal_store_detail" analytics-state="tracked">
+
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal bnr-modal fade" id="myModal3" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-font">
+                    <span class="">Edit Registered Mobile Number</span>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            </div>
+            <div class="form-text-acount">
+                <form class="form-horizontal serve-old" name="personal-details" autocomplete="off">
+                    <p>
+                        As a safety precaution, we will be sending you an authentication code to verify your identity. Please choose
+                        where you would like to receive it :
+                    </p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal bnr-modal fade" id="myModal4" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-font">
+                    <span class="">Account Authentication</span>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            </div>
+            <div class="form-text-acount">
+                <form class="form-horizontal serve-old" name="personal-details" autocomplete="off">
+                    <p>
+                        Your Current Email address is <b>"rituvashisth92@gmail.com"</b>
+                    </p>
+                    <div class="form-fields">
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="control-label required" for="display_name">Enter New Email Address</label>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div>
+                                        <input type="text" value="" name="display_name" class="form-control" id="display_name" maxlength="22">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer form-submit col-md-12 col-sm-12">
+                        <div class="action-btn">
+                            <span uif-append="close" class="inline-block">
+                                <div class="" uif-fbtype="wrapper" uif-uqid="5c2b854c-9b45-d9c7-3f62-de0812f1ea94">
+
+                                    <input type="button" value="Cancel" name="close" class="btn close-btn btn-default" id="close" analytics-on="click" analytics-category="Manage_Profile" analytics-action="close_modal_store_detail_click" analytics-label="close_modal_store_detail" analytics-state="tracked" data-dismiss="modal">
+
+                                </div>
+                            </span>
+                            <span uif-append="submit" class="inline-block">
+                                <div class="" uif-fbtype="wrapper" uif-uqid="6462377d-bf38-793c-d2cf-820cae24a976">
+
+                                    <input type="submit" value="Save" name="submit" class="btn submit-btn btn-primary" id="save" validation-on-click="true" analytics-on="click" analytics-category="Manage_Profile" analytics-action="save_modal_store_detail_click" analytics-label="save_modal_store_detail" analytics-state="tracked">
+
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal bnr-modal fade" id="myModal5" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-font">
+                    <span class="">Edit Registered Mobile Number</span>
+                </div>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            </div>
+            <div class="form-text-acount">
+                <form class="form-horizontal serve-old" name="personal-details" autocomplete="off">
+                    <p>
+                        As a safety precaution, we will be sending you an authentication code to verify your identity. Please choose
+                        where you would like to receive it :
+                    </p>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

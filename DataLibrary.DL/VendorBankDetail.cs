@@ -27,5 +27,7 @@ namespace DataLibrary.DL
         public Nullable<System.DateTime> IsDelete { get; set; }
         public Nullable<System.DateTime> AddUpdate { get; set; }
         public Nullable<System.DateTime> LastUpdate { get; set; }
+        public string BankProofImg { get; set; }
+        public string Narration { get; set; }
     }
 }

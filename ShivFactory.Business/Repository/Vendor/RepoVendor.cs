@@ -44,6 +44,11 @@ namespace ShivFactory.Business.Repository
                 vendor.PanNo = model.PanNo;
                 vendor.City = model.City;
                 vendor.State = model.State;
+                vendor.AddressProofImg = model.FullAddress;
+                vendor.PIN = model.PIN;
+                vendor.FullAddress = model.FullAddress;
+                vendor.LastUpdate = DateTime.Now; 
+             
             }
             else
             {
@@ -63,6 +68,8 @@ namespace ShivFactory.Business.Repository
                 vendorbankdetails.AccountNumber = model.AccountNumber;
                 vendorbankdetails.IFSCCode = model.IFSCCode;
                 vendorbankdetails.BankName = model.BankName;
+                vendorbankdetails.LastUpdate = DateTime.Now;
+               vendorbankdetails.BankProofImg = model.BankProofImg; 
             }
             else
             {
