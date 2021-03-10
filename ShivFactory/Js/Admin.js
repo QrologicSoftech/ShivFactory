@@ -125,7 +125,7 @@ var Admin = {
         }
     },
 
-    ChangeProfileImagee: function () {
+    ChangeProfileImage: function () {
 
         if (confirm("Are you sure want to Change  this image?")) {
             window.location.replace("/Home/ChangeProfileImage");

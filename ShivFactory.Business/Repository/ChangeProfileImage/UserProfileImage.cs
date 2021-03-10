@@ -9,11 +9,11 @@ namespace ShivFactory.Business.Repository.ChangeProfileImage
 {
   public class UserProfileImage
     {
-        public string UserId { get; set;  }
-        
+        public string UserId { get; set;  }        
         public string ImagePath { get; set; }
-
         [Required(ErrorMessage="Choosen Image is manadatory")]
         public System.Web.HttpPostedFileBase PostedFile { get; set; }
+        public string ReturnUrl { get; set; }
+
     }
 }

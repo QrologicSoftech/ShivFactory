@@ -36,7 +36,8 @@ namespace ShivFactory.Controllers
         #region Change Profile Image
         public ActionResult ChangeProfileImage()
         {
-            UserProfileImage model = new UserProfileImage(); 
+            UserProfileImage model = new UserProfileImage();
+            model.ReturnUrl = Request.UrlReferrer.AbsolutePath.ToString();
             Utility util = new Utility();
 
             model.UserId = util.GetCurrentUserId();
@@ -44,8 +45,8 @@ namespace ShivFactory.Controllers
             UserDetail userDetail = ru.GetUserDetailsBYUserId(model.UserId);
             if (userDetail != null)
             {
-                model.ImagePath = userDetail.UserImage; 
-               
+                model.ImagePath = userDetail.UserImage;
+
             }
             return View(model);
         }
@@ -64,10 +65,20 @@ namespace ShivFactory.Controllers
                 // save new img
                 model.ImagePath = repoCommon.SaveImage(model.PostedFile);
                 bool update = repoUser.UpdateUserImage(model);
-                TempData["SuccessMessage"] = "Profile Image Updated Successfully";
-                return View();
+                if (update)
+                {
+                    TempData["SuccessMessage"] = "Profile successfully updated!!";
+                    if (Url.IsLocalUrl(model.ReturnUrl))
+                    {
+                        return Redirect(model.ReturnUrl);
+                    }
+                    return View();                    
+                }
+
+                TempData["ErrorMessage"] = "Failled to update profile.";
+                return View(model);
             }
-            
+
         }
         #endregion
 
@@ -80,12 +91,12 @@ namespace ShivFactory.Controllers
                 Utility util = new Utility();
                 RepoProfile repoProfile = new RepoProfile();
                 var userDetail = repoProfile.GetUserDetailsBYUserId(util.GetCurrentUserId());
-                
+
                 return Json(new ResultModel
                 {
-                    ResultFlag = userDetail!=null? true: false,
+                    ResultFlag = userDetail != null ? true : false,
                     Data = userDetail,
-                    Message = userDetail!=null ? "User details find successfully!!": "Failled to find user details!!"
+                    Message = userDetail != null ? "User details find successfully!!" : "Failled to find user details!!"
                 }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -97,8 +108,8 @@ namespace ShivFactory.Controllers
                     Message = ex.Message
                 }, JsonRequestBehavior.AllowGet);
             }
-            
-            
+
+
         }
 
         public ActionResult AccountDetails()
@@ -113,7 +124,7 @@ namespace ShivFactory.Controllers
 
         public ActionResult DemoAccDetail()
         {
-            return View(); 
+            return View();
         }
         public ActionResult SaveCurrentUserBasicDetails(clsUserBasicDetails model)
         {
@@ -158,7 +169,7 @@ namespace ShivFactory.Controllers
             try
             {
                 RepoCommon repoCommon = new RepoCommon();
-                var imgpath  = repoCommon.Base64ToImage(model.AddressProof); 
+                var imgpath = repoCommon.Base64ToImage(model.AddressProof);
                 Vendor vendorDetail = new Vendor();
                 Utility util = new Utility();
                 RepoVendor repoUser = new RepoVendor();
@@ -169,9 +180,9 @@ namespace ShivFactory.Controllers
                     PanNo = model.PanNo,
                     City = model.City,
                     State = model.State,
-                    PIN=model.PIN,
+                    PIN = model.PIN,
                     FullAddress = model.FullAddress,
-                    AddressProofImg=imgpath,
+                    AddressProofImg = imgpath,
                     UserId = util.GetCurrentUserId()
                 });
 
@@ -191,7 +202,7 @@ namespace ShivFactory.Controllers
                     Message = ex.Message
                 }, JsonRequestBehavior.AllowGet);
             }
-                }
+        }
 
 
         public ActionResult UpdateVendorBankDetails(clsVendorBankDetails model)
@@ -210,7 +221,7 @@ namespace ShivFactory.Controllers
                     AccountNumber = model.AccountNumber,
                     IFSCCode = model.IFSCCode,
                     BankName = model.BankName,
-                    UserID=vendorID,
+                    UserID = vendorID,
                     BankProofImg = imgpath
                 });
 

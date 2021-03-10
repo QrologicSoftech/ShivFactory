@@ -22,7 +22,7 @@ namespace ShivFactory.Business.Repository
         {
             string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
             string fullPath = HttpContext.Current.Server.MapPath(path);
-         
+
             string guid = DateTime.Now.ToString("yyyyMMddHHmmssffff");
             string filename = guid + Path.GetFileName(PostedFile.FileName);
             PostedFile.SaveAs(fullPath + filename);
@@ -45,13 +45,13 @@ namespace ShivFactory.Business.Repository
                     string folderpath = path + filename;
                     imagePathlist.Add(folderpath);
                 }
-                else { imagePathlist.Add("");  }
+                else { imagePathlist.Add(""); }
             }
             return imagePathlist;
         }
         #endregion
         #region check file exist or not 
-        public string  checkfile(string userimgpath)
+        public string checkfile(string userimgpath)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace ShivFactory.Business.Repository
                 string fullPath = HttpContext.Current.Server.MapPath(path);
                 string[] image = userimgpath.Split('/');
                 //find and  delete image 
-                if (System.IO.File.Exists(fullPath+image[3]))
+                if (System.IO.File.Exists(fullPath + image[3]))
                 {
                     return userimgpath;
                 }
@@ -81,17 +81,19 @@ namespace ShivFactory.Business.Repository
         {
             try
             {
-                string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
-                string fullPath = HttpContext.Current.Server.MapPath(path);
-                string[] image = userimgpath.Split('/');
-                System.IO.File.Delete(fullPath+image);
+                var filePath = HttpContext.Current.Server.MapPath(userimgpath);
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
                     return true;
                 }
-            catch(Exception e)
+                return false;
+            }
+            catch (Exception e)
             {
                 return false;
             }
-            
+
 
         }
         #endregion
@@ -101,24 +103,25 @@ namespace ShivFactory.Business.Repository
         { // put in try when sms
             Random generator = new Random();
             int r = generator.Next(100000, 1000000);
-            return "123456"; 
+            return "123456";
         }
 
         public bool VerifyOTP(string code)
         {
-            try {
+            try
+            {
                 return true;
             }
             catch (Exception e)
             {
-                return false; 
+                return false;
             }
-            
+
         }
         #endregion
 
         #region Convert Base64 to image 
-        public string  Base64ToImage(string base64String)
+        public string Base64ToImage(string base64String)
         {
             string[] strings = base64String.Split(',');
             string extension;
@@ -143,7 +146,7 @@ namespace ShivFactory.Business.Repository
             string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
             string fullPath = HttpContext.Current.Server.MapPath(path);
 
-            string guid = DateTime.Now.ToString("yyyyMMddHHmmssffff")+"."+extension;
+            string guid = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "." + extension;
             image.Save(fullPath + guid);
             return path + guid;
             // return image;
