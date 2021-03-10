@@ -50,32 +50,27 @@ namespace ShivFactory.Business.Repository
             return imagePathlist;
         }
         #endregion
+
         #region check file exist or not 
         public string checkfile(string userimgpath)
         {
+            var noImagePath = "/Content/UploadedImages/Images/NoImg.png";
             try
             {
-                if (string.IsNullOrEmpty(userimgpath)) { return "/Content/UploadedImages/Images/NoImg.png"; }
-                string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
-                string fullPath = HttpContext.Current.Server.MapPath(path);
-                string[] image = userimgpath.Split('/');
-                //find and  delete image 
-                if (System.IO.File.Exists(fullPath + image[3]))
+                if (!string.IsNullOrEmpty(userimgpath) && File.Exists(HttpContext.Current.Server.MapPath(userimgpath)))
                 {
                     return userimgpath;
                 }
-                else
-                {
-                    return "/Content/UploadedImages/Images/NoImg.png";
-                }
+                return noImagePath;
             }
             catch (Exception e)
             {
-                return "/Content/UploadedImages/Images/NoImg.png";
+                return noImagePath;
             }
         }
 
         #endregion check file 
+
         #region delete file from path 
         public bool deletefile(string userimgpath)
         {
@@ -149,8 +144,6 @@ namespace ShivFactory.Business.Repository
             string guid = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "." + extension;
             image.Save(fullPath + guid);
             return path + guid;
-            // return image;
-            //image.Save("sss",Ima)
         }
         #endregion
     }
