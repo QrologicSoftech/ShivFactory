@@ -623,9 +623,11 @@
         });
         
         $(".next-step").click(function (e) {
-            common.ShowLoader();
-            var levelId = $(this).parent('Div').attr('id');
+            common.ShowLoader();           
+            var levelId =  $(this).closest('div').attr('id');
+            //var levelId = $(this).parent.find('Div').attr('id');
             product.NextLevel(levelId, function (res) {
+                
                 if (res) {
                     var $active = $('.nav-tabs li>.active');
                     $active.parent().next().find('.nav-link').removeClass('disabled');

@@ -53,6 +53,7 @@
         return callback(result);
     },
     ValidateProductStep1: function (callback) {
+
         return callback("true");
     }
 

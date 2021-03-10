@@ -26,9 +26,9 @@ namespace ShivFactory.Areas.Vendor.Controllers
         {
             return View();
         }
-        public void VenderId()
+        public int GetVendorId()
         {
-
+            return repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
         }
 
         #region Product
@@ -61,7 +61,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
                     SortDirection = sortColumnDir
                 };
                 int recordsTotal = 0;
-                int venderId = repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
+                int venderId = GetVendorId();
                 RepoProduct repoProduct = new RepoProduct();
                 var productList = repoProduct.GetAllProductsByVendorId(venderId, model, out recordsTotal);
 
