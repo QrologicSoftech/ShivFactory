@@ -84,7 +84,14 @@ namespace ShivFactory.Controllers
             }
             else
             {
-                ModelState.AddModelError("RememberMe", result.Message);
+                if (result.Message.ToLower() == "invalid username")
+                {
+                    ModelState.AddModelError("PhoneNumber", result.Message);
+                }
+                else if (result.Message.ToLower() == "invalid password.")
+                {
+                    ModelState.AddModelError("Password", result.Message);
+                }
                 return View(model);
             }
             return View(model);
@@ -905,16 +912,15 @@ namespace ShivFactory.Controllers
                     RepoCommon repoCommon = new RepoCommon(); 
                     string otp= repoCommon.sendOtpSMS(model.PhoneNumber);
                     model.isOTPSend = true;
-                   TempData["SuccessMessage"] = "We have sent an One Time Password (OTP) in a SMS to this mobile number."; 
-                 
+                    TempData["SuccessMessage"] = "We have sent an One Time Password (OTP) in a SMS to this mobile number.";
+                    TempData["showbtn"] = true;
                     return View(model);
-                   
                 }
                 else
                 {
+                    TempData["showbtn"] = false; 
                     ModelState.AddModelError("PhoneNumber", "Mobile number already exist. ");
                     return View(model);
-
                 }
             }
         }

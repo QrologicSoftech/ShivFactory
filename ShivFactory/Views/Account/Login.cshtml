@@ -1,75 +1,91 @@
 ﻿@using ShivFactory.Models
 @model ShivFactory.Business.Repository.LogInModel
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Login to your Account";
+    Layout = "~/Views/Shared/_Accounts_Layout.cshtml";
 }
-<div class="container-scroller">
-    <div class="container-fluid page-body-wrapper">
-        <div class="main-panel">
-            <div class="content-wrapper">
-                <div class="row">
-                    <div class="col-md-12 grid-margin stretch-card" style="padding: 0 20% 0;">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title text-center">@ViewBag.Title</h4>
 
-                                @using (Html.BeginForm("LogIn", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal", id = "myform" }))
-                                {
-                                    <div class="form-group">
-                                        <label>UserName<span style="color:red">*</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend bg-transparent">
-                                                <span class="input-group-text bg-transparent border-right-0">
-                                                    <i class="mdi mdi-account-outline text-primary"></i>
-                                                </span>
-                                            </div>
-                                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control form-control-lg border-left-0", @placeholder = "Username" })
+<div class="sc-fzojmp kyojis">
+    <div class="sc-fzqbkg fckjvf">
+        <div class="sc-fzqpzz gliaon"> @ViewBag.Title</div>
+        <div class="sc-fzpkqz foxupi">
 
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-                                    </div>
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "login" }))
+            {
+                <div class="style-elementwrapper ijsebp wrapper">
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "styles-styledinput gezlls", @placeholder = "Enter Your UserName", @type = "text" })
 
-                                    <div class="form-group">
-                                        <label>Password<span style="color:red">*</span></label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend bg-transparent">
-                                                <span class="input-group-text bg-transparent border-right-0">
-                                                    <i class="mdi mdi-lock-outline text-primary"></i>
-                                                </span>
-                                            </div>
-                                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control form-control-lg border-left-0", @placeholder = "Password" })
-                                        </div>
-                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                    </div>
+                    <div class="error-formerror myzbk form-error">
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "sc-fzqmdd fzqonm freebie" })
+                    </div>
+                </div>
+                <div class="style-elementwrapper ijsebp wrapper">
+                    @Html.TextBoxFor(m => m.Password, new { @class = "styles-styledinput gezlls", @placeholder = "Enter Your Password", @type = "password" })
 
-                                    <div class="mb-4">
-                                        <div class="form-check">
-                                            <label class="form-check-label text-muted">
-                                                @Html.CheckBoxFor(m => m.RememberMe, new { @class = "form-check-input" })
-                                                @Html.LabelFor(m => m.RememberMe)
-                                            </label>
-                                        </div>
-                                    </div>
-                                    @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
-                                    <div class="mt-3">
-                                        <button type="submit" class="btn btn-block btn-gradient-primary mr-2"> Login</button>
-                                    </div>
+                    <div class="error-formerror myzbk form-error">
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "sc-fzqmdd fzqonm freebie" })
+                    </div>
+                    @*@Html.CheckBoxFor(m => m.RememberMe) @Html.Label("Remember Me")*@
+                </div>
+                @*<div class="sc-fzpiso jhqzjv">
+                  
+                 </div>*@
+                    <button class="basebutton primarybtn-primarybtndetails eazyuu save" type="submit" style=" height: 40px; padding-left: 15px; padding-right: 16px; text-transform: uppercase;">Sign Up</button>
 
-                                    <div class="text-center mt-4 font-weight-light">
-                                        Already have an account? <a href="/Account/Register" class="text-primary">SIGN UP</a>
-                                    </div>
-                                }
-                            </div>
+                    }
+                    <div class="sc-fzpiso jhqzjv">
+                        <div class="sc-fzqaui eogdzk">
+                            Become a Seller? <a href="/Account/MobileVerify" class="baselink-sc tertiarylink-sc enzijk">Register Here</a>
                         </div>
                     </div>
                 </div>
+
+            </div>
+    <div class="sc-fazpkjw hctkjm">
+        <div>
+            <div class="sc-fzokki knkljw">Sell to crores of customers on Shiv Factory, right from your doorstep!</div>
+            <div class="sc-fzoyki hfpotr">All you need to sell on Shiv Factory is</div>
+            <div class="sc-fznzof jxqfab">
+                <div class="sc-fzoyhe gxatj">
+                    <div class="imp-icon">
+                        <img src="/Content/AdminImg/gstin.png">
+                        <div class="gstin-label">GSTIN*</div>
+                    </div>
+
+
+                </div>
+                <div class="sc-fzqmaw himzko">
+                </div>
+                <div class="sc-fzoyhe gxatj">
+                    <div class="imp-icon">
+                        <img src="/Content/AdminImg/bank-account.png">
+                        <div class="gstin-label">Bank Account</div>
+                    </div>
+
+                </div>
+                <div class="sc-fzqmaw himzko"></div>
+                <div class="sc-fzoyhe gxatj">
+                    <div class="imp-icon">
+                        <img src="/Content/AdminImg/products-sell.png">
+                        <div class="gstin-label">Products to sell</div>
+                    </div>
+                </div>
+            </div>
+            <span class="sc-fznmnq bivoqy">*GSTIN is not required for sellers who only sell books</span>
+            <div class="sc-fzoydu ctzjfv"></div>
+            <div class="sc-fzoyki hfpotr">How will this information be used?</div>
+            <div class="sc-fzqabl hculgs">
+                You can use your email address or mobile number as 'Username' to login to your  Seller Account.
+                Please note, the 'Username' and 'Password' used here are only to access your  Seller Account and can’t be used on ShivFactory shopping destination.
+            </div>
+            <div class="sc-fzoydu ctzjfv">
             </div>
         </div>
     </div>
 </div>
 
-
-<link href="~/Content/CSS/css-font-awesome.min.css" rel="stylesheet" />
-
-<link href="~/Content/CSS/demo_3-style.css" rel="stylesheet" />
-<link href="~/Content/CSS/css-materialdesignicons.min.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        common.Timer(120, 'timer', true);
+    });
+</script>

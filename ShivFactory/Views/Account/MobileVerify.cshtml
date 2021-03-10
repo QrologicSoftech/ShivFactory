@@ -15,14 +15,19 @@
 
                                 <button class="labelbtn">+91 - </button>
                                 <div class="style-elementwrapper ijsebp wrapper">
-                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "styles-styledinput gezlls quantity", @placeholder = "Enter Your Mobile Number", @type = "number", @maxlength = "10", @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);", @style = "padding: 0px 105px 0px 40px;" })
+                                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "styles-styledinput gezlls quantity",
+                                   @placeholder = "Enter Your Mobile Number", @type = "number", @maxlength = "10",@minlength="10",
+                                   @oninput = "javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);",
+                                   @style = "padding: 0px 105px 0px 40px;",
+                                   @onkeyup= "javascript: this.value.length == this.minLength? $('.showbtn').removeAttr('disabled') :$('.showbtn').attr('disabled','') ;"
+                               })
 
                                     <div class="sc-fzqmdd fzqonm freebie">
                                         @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "sc-fzqmdd fzqonm freebie" })
                                     </div>
                                 </div>
-                                <div class="style-elementwrapper ijsebp">
-                                    <button type="submit" class="basebutton primarybtn-primarybtndetails eazyuu showbtn">Send OTP</button>
+                                <div class="style-elementwrapper ijsebp" >
+                                    <button disabled type="submit" class="basebutton primarybtn-primarybtndetails eazyuu showbtn">Send OTP</button>
                                 </div>
                             </div>
                         }
@@ -90,7 +95,7 @@
                         }
                         <div class="sc-fzpiso jhqzjv">
                             <div class="sc-fzqaui eogdzk">
-                                Already a Seller? <a href="#" class="baselink-sc tertiarylink-sc enzijk">Login Here</a>
+                                Already Registered ? <a href="/Account/Login" class="baselink-sc tertiarylink-sc enzijk">Login Here</a>
                             </div>
                         </div>
                     </div>
