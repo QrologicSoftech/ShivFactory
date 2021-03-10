@@ -1218,7 +1218,7 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #endregion
 
-        #region Vendors
+        #region Vendors and Do not add Vendor from admin as per discuss with sir 
         public ActionResult Vendor()
         {
             return View();
@@ -1318,5 +1318,152 @@ namespace ShivFactory.Areas.Admin.Controllers
             }
         }
         #endregion
+
+        //#region Varients
+
+        //public ActionResult Varient()
+        //{
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult LoadVarientData()
+        //{
+        //    try
+        //    {
+        //        // Initialization.  
+        //        var search = Request.Form.GetValues("search[value]")[0];
+        //        var draw = Request.Form.GetValues("draw").FirstOrDefault();
+        //        var start = Request.Form.GetValues("start").FirstOrDefault();
+        //        var length = Request.Form.GetValues("length").FirstOrDefault();
+        //        //Find Order Column  
+        //        var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+        //        var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+        //        // Prepair model  
+        //        PaginationRequest model = new PaginationRequest()
+        //        {
+        //            searchText = search,
+        //            Skip = start != null ? Convert.ToInt32(start) : 0,
+        //            PageSize = length != null ? Convert.ToInt32(length) : 0,
+        //            SortColumn = sortColumn,
+        //            SortDirection = sortColumnDir
+        //        };
+        //        int recordsTotal = 0;
+        //        RepoCategory repoCategory = new RepoCategory();
+        //        var categoryList = repoCategory.GetAllCategories(model, out recordsTotal);
+
+        //        return Json(new { data = categoryList, draw = draw, recordsFiltered = categoryList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
+        //public ActionResult VarientPartialView()
+        //{
+        //    try
+        //    {
+        //        RepoCategory repoCategory = new RepoCategory();
+        //        var categories = repoCategory.GetAllCategory();
+        //        return View(categories);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TempData["ErrorMessage"] = ex.Message;
+        //        return View(new List<Category>());
+        //    }
+        //}
+        //public ActionResult AddVarient(int? id)
+        //{
+        //    try
+        //    {
+        //        if (id > 0)
+        //        {
+        //            RepoCategory repoCategory = new RepoCategory();
+        //            var category = repoCategory.GetCategoryByCategoryId(Convert.ToInt32(id));
+        //            return View(category);
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TempData["ErrorMessage"] = ex.Message;
+        //    }
+
+        //    return View();
+        //}
+        //[HttpPost]
+        //public ActionResult AddVarient(CategoryModel model, HttpPostedFileBase postedfile)
+        //{
+        //    try
+        //    {
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return View(model);
+        //        }
+
+        //        if (model.CategoryId == 0 && postedfile == null)
+        //        {
+
+        //            ModelState.AddModelError("PostedFile", "Please upload Category Image.");
+        //            return View(model);
+        //        }
+        //        if (postedfile != null)
+        //        {
+
+        //            // save image file
+        //            RepoCommon common = new RepoCommon();
+        //            model.ImagePath = common.SaveImage(postedfile);
+        //        }
+
+        //        RepoCategory repoCategory = new RepoCategory();
+        //        var isSaved = repoCategory.AddOrUpdateCategory(model);
+
+        //        if (isSaved)
+        //        {
+        //            TempData["SuccessMessage"] = "Category add or update successfully!!";
+        //            return RedirectToAction("Category", "Admin");
+        //        }
+        //        else
+        //        {
+        //            TempData["ErrorMessage"] = "Failled to add or update category";
+        //            return View(model);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TempData["ErrorMessage"] = ex.Message;
+        //        return View(model);
+        //    }
+        //}
+
+        //public ActionResult DeleteVarient(int id)
+        //{
+        //    try
+        //    {
+        //        RepoCategory repoCategory = new RepoCategory();
+        //        var isDelete = repoCategory.DeleteCategoryByCategoryId(Convert.ToInt32(id));
+
+        //        return Json(new ResultModel
+        //        {
+        //            ResultFlag = isDelete,
+        //            Data = null,
+        //            Message = isDelete ? "Category deleted successfully!!" : "Failled to delete category"
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResultModel
+        //        {
+        //            ResultFlag = false,
+        //            Data = null,
+        //            Message = ex.Message
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
+        //#endregion
+       
     }
 }
