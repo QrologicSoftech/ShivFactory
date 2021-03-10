@@ -47,13 +47,25 @@
         if (stepId.toLowerCase() == 'step1') {
             product.ValidateProductStep1(function (res) {
                 result = res;
+                alert(res);
+                if (res == true) {
+                    return callback(true);
+                } else {
+                    return false;;
+                }
             });
         }
         
-        return callback(result);
+       // return callback(result);
     },
     ValidateProductStep1: function (callback) {
-
+        alert($('#Category').find(":selected").val());
+        if ($('#Category').find(":selected").val() == '-1' || $('#Category').find(":selected").val() == 'undefined' || $('#Category').find(":selected").val().length == '0')
+        {
+            alert("select cat");
+            $('#valforcat').html("Select Category!");
+            return callback("false");
+        }
         return callback("true");
     }
 
