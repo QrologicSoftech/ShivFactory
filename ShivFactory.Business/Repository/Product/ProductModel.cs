@@ -46,12 +46,13 @@ namespace ShivFactory.Business.Repository
         public string Image4 { get; set; }
         public string Image5 { get; set; }
         public string Image6 { get; set; }
-        //[Required(ErrorMessage = "Please select Brand!")]
+        [Required(ErrorMessage = "Please select Brand!")]
         public int? BrandId { get; set; }
         [Required(ErrorMessage = "Please select Category!")]
         public int? CategoryId { get; set; }
         [Required(ErrorMessage = "Please select SubCategory!")]
         public int? SubCategoryId { get; set; }
+        [Required(ErrorMessage = "Please select MiniCategory!")]
         public int? MiniCategoryId { get; set; }
         public bool IsActive { get; set; }
         [Required(ErrorMessage = "ProductLength is a required field!"), MaxLength(40, ErrorMessage = "Field cannot be longer than 40 characters.")]
