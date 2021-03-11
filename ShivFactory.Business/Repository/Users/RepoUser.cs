@@ -23,7 +23,7 @@ namespace ShivFactory.Business.Repository
         #region User Is Delete
         public bool UserIsDelete(string userId)
         {
-            var user = db.UserDetails.Where(a => a.UserId == userId && a.IsDelete == true).AsNoTracking().FirstOrDefault();
+            var user = db.UserDetails.Where(a => a.UserId == userId&& a.IsDelete==true).AsNoTracking().FirstOrDefault();
             if (user != null)
             {
                 return true;
@@ -108,7 +108,7 @@ namespace ShivFactory.Business.Repository
         #endregion
 
         #region Get All Customers
-        public List<CustomerResponse> GetAllCustomers(PaginationRequest model,string role, out int totalRecords)
+        public List<CustomerResponse> GetAllCustomers(PaginationRequest model, string role, out int totalRecords)
         {
             var customers = new List<CustomerResponse>();
             totalRecords = 0;
@@ -153,10 +153,10 @@ namespace ShivFactory.Business.Repository
         public bool BlockUserByUserId(string userId)
         {
             var user = db.UserDetails.Where(a => a.UserId == userId).FirstOrDefault();
-            if(user!=null)
+            if (user != null)
             {
                 user.IsDelete = true;
-               return db.SaveChanges() > 0;
+                return db.SaveChanges() > 0;
             }
             return false;
         }

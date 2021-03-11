@@ -446,6 +446,9 @@
     <Content Include="Areas\Admin\Views\Admin\Customer.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\CustomerPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\RegisterVendor.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Varient.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\VarientPartialView.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\AddVarient.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

@@ -1077,7 +1077,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                     SortDirection = sortColumnDir
                 };
                 int recordsTotal = 0;
-               
+
                 RepoProductDetails productDetails = new RepoProductDetails();
                 var productList = productDetails.GetAllUnApprovedProducts(model, out recordsTotal);
 
@@ -1091,7 +1091,7 @@ namespace ShivFactory.Areas.Admin.Controllers
         #region Product Details
 
         #region ProductImage
-        [HttpPost]        
+        [HttpPost]
         public ActionResult ProductImage(int productId)
         {
             try
@@ -1100,7 +1100,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 var images = productDetails.GetProductImagesByProductId(productId);
                 return View(images);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 TempData["ErrorMessage"] = ex.Message;
             }
@@ -1190,7 +1190,7 @@ namespace ShivFactory.Areas.Admin.Controllers
         #endregion
 
         #region  Approved Product
-        public ActionResult RejectProduct(int productId,string rejectRegion)
+        public ActionResult RejectProduct(int productId, string rejectRegion)
         {
             try
             {
@@ -1319,151 +1319,139 @@ namespace ShivFactory.Areas.Admin.Controllers
         }
         #endregion
 
-        //#region Varients
+        #region Varients
 
-        //public ActionResult Varient()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult LoadVarientData()
-        //{
-        //    try
-        //    {
-        //        // Initialization.  
-        //        var search = Request.Form.GetValues("search[value]")[0];
-        //        var draw = Request.Form.GetValues("draw").FirstOrDefault();
-        //        var start = Request.Form.GetValues("start").FirstOrDefault();
-        //        var length = Request.Form.GetValues("length").FirstOrDefault();
-        //        //Find Order Column  
-        //        var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
-        //        var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+        public ActionResult Varient()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult GetVarientData()
+        {
+            try
+            {
+                var search = Request.Form.GetValues("search[value]")[0];
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
 
-        //        // Prepair model  
-        //        PaginationRequest model = new PaginationRequest()
-        //        {
-        //            searchText = search,
-        //            Skip = start != null ? Convert.ToInt32(start) : 0,
-        //            PageSize = length != null ? Convert.ToInt32(length) : 0,
-        //            SortColumn = sortColumn,
-        //            SortDirection = sortColumnDir
-        //        };
-        //        int recordsTotal = 0;
-        //        RepoCategory repoCategory = new RepoCategory();
-        //        var categoryList = repoCategory.GetAllCategories(model, out recordsTotal);
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
 
-        //        return Json(new { data = categoryList, draw = draw, recordsFiltered = categoryList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
 
-        //public ActionResult VarientPartialView()
-        //{
-        //    try
-        //    {
-        //        RepoCategory repoCategory = new RepoCategory();
-        //        var categories = repoCategory.GetAllCategory();
-        //        return View(categories);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        TempData["ErrorMessage"] = ex.Message;
-        //        return View(new List<Category>());
-        //    }
-        //}
-        //public ActionResult AddVarient(int? id)
-        //{
-        //    try
-        //    {
-        //        if (id > 0)
-        //        {
-        //            RepoCategory repoCategory = new RepoCategory();
-        //            var category = repoCategory.GetCategoryByCategoryId(Convert.ToInt32(id));
-        //            return View(category);
-        //        }
+                PaginationRequest model = new PaginationRequest()
+                {
+                    searchText = search,
+                    Skip = start != null ? Convert.ToInt32(start) : 0,
+                    PageSize = length != null ? Convert.ToInt32(length) : 0,
+                    SortColumn = sortColumn,
+                    SortDirection = sortColumnDir
+                };
+                int recordsTotal = 0;
+                RepoVarient repoVarient = new RepoVarient();
+                var varientList = repoVarient.GetAllVarients(model, out recordsTotal);
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        TempData["ErrorMessage"] = ex.Message;
-        //    }
+                return Json(new { data = varientList, draw = draw, recordsFiltered = varientList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
-        //    return View();
-        //}
-        //[HttpPost]
-        //public ActionResult AddVarient(CategoryModel model, HttpPostedFileBase postedfile)
-        //{
-        //    try
-        //    {
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return View(model);
-        //        }
+        public ActionResult VarientPartialView()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(new List<Category>());
+            }
+        }
+        public ActionResult AddVarient(int? id)
+        {
+            try
+            {
+                if (id > 0)
+                {
+                    RepoVarient repoVarient = new RepoVarient();
+                    var varient = repoVarient.GetVarientById(Convert.ToInt32(id));
+                    return View(varient);
+                }
 
-        //        if (model.CategoryId == 0 && postedfile == null)
-        //        {
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
 
-        //            ModelState.AddModelError("PostedFile", "Please upload Category Image.");
-        //            return View(model);
-        //        }
-        //        if (postedfile != null)
-        //        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddVarient(ClsVarient model)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+                RepoVarient repoVarient = new RepoVarient();
+                if(model.Id==null &&repoVarient.CheckAlreadytExist(model.Varient))
+                {
+                    ModelState.AddModelError("Varient", "Varient name already exist!!");
+                    return View(model);
+                }
+                
+                var isSaved = repoVarient.AddOrUpdateVarient(model);
 
-        //            // save image file
-        //            RepoCommon common = new RepoCommon();
-        //            model.ImagePath = common.SaveImage(postedfile);
-        //        }
+                if (isSaved)
+                {
+                    TempData["SuccessMessage"] = "Varient add or update successfully!!";
+                    return RedirectToAction("Varient", "Admin");
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to add or update varient";
+                    return View(model);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(model);
+            }
+        }
 
-        //        RepoCategory repoCategory = new RepoCategory();
-        //        var isSaved = repoCategory.AddOrUpdateCategory(model);
+        public ActionResult DeleteVarient(int id)
+        {
+            try
+            {
+                RepoVarient repoVarient = new RepoVarient();
+                var isDelete = repoVarient.DeleteVarientById(Convert.ToInt32(id));
 
-        //        if (isSaved)
-        //        {
-        //            TempData["SuccessMessage"] = "Category add or update successfully!!";
-        //            return RedirectToAction("Category", "Admin");
-        //        }
-        //        else
-        //        {
-        //            TempData["ErrorMessage"] = "Failled to add or update category";
-        //            return View(model);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        TempData["ErrorMessage"] = ex.Message;
-        //        return View(model);
-        //    }
-        //}
+                return Json(new ResultModel
+                {
+                    ResultFlag = isDelete,
+                    Data = null,
+                    Message = isDelete ? "Varient deleted successfully!!" : "Failled to delete varient."
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
-        //public ActionResult DeleteVarient(int id)
-        //{
-        //    try
-        //    {
-        //        RepoCategory repoCategory = new RepoCategory();
-        //        var isDelete = repoCategory.DeleteCategoryByCategoryId(Convert.ToInt32(id));
+        #endregion
 
-        //        return Json(new ResultModel
-        //        {
-        //            ResultFlag = isDelete,
-        //            Data = null,
-        //            Message = isDelete ? "Category deleted successfully!!" : "Failled to delete category"
-        //        }, JsonRequestBehavior.AllowGet);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return Json(new ResultModel
-        //        {
-        //            ResultFlag = false,
-        //            Data = null,
-        //            Message = ex.Message
-        //        }, JsonRequestBehavior.AllowGet);
-        //    }
-        //}
-
-        //#endregion
-       
     }
 }

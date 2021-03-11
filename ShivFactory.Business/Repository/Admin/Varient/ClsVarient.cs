@@ -9,7 +9,7 @@ namespace ShivFactory.Business.Repository
 {
     public class ClsVarient
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         [Required(ErrorMessage = "Please enter varient name!!")]
         public string Varient { get; set; }
         public bool IsActive { get; set; }

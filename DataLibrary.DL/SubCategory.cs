@@ -19,7 +19,6 @@ namespace DataLibrary.DL
         {
             this.MiniCategories = new HashSet<MiniCategory>();
             this.Products = new HashSet<Product>();
-            this.Varients = new HashSet<Varient>();
         }
     
         public int ID { get; set; }
@@ -39,7 +38,5 @@ namespace DataLibrary.DL
         public virtual ICollection<MiniCategory> MiniCategories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Varient> Varients { get; set; }
     }
 }

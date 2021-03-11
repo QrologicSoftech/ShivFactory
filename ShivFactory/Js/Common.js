@@ -26,11 +26,11 @@
             if (item == 'Id') { return; }
             tr += `<th>${item}</th>`;
         });
-        
+        if (actionArray) {
         actionArray.forEach((item) => {
             tr += `<th>${item.Header}</th>`;
         });
-
+        }
 
         // Create table
         var table = `<div class="table-responsive">

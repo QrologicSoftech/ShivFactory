@@ -1,0 +1,30 @@
+﻿@using ShivFactory.Business.Repository
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@{
+    JObject obj = JObject.Parse(JsonConvert.SerializeObject(new VarientResponse(), Formatting.Indented, new JsonSerializerSettings
+    { PreserveReferencesHandling = PreserveReferencesHandling.Objects }));
+    obj.Remove("$id");
+
+    List<string> columnList = new List<string>();
+    foreach (var columnName in obj)
+    {
+        columnList.Add(columnName.Key.Trim());
+    }
+    string[] columnArray = columnList.ToArray();
+
+}
+<div class="row overflow-auto">
+    <div class="col-12" id="TableDiv">
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var actionList = [
+            { Name: 'Edit', Value: '/Admin/Admin/AddVarient', Header: "Edit", ActionLink:"true" }
+        ];
+         var stringArray = @Html.Raw(Json.Encode(columnArray));
+        common.BindDatatable('TableDiv', '/Admin/Admin/GetVarientData', stringArray, 'Id', actionList);
+    });
+</script>

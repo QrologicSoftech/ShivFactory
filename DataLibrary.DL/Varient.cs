@@ -16,11 +16,6 @@ namespace DataLibrary.DL
     {
         public int Id { get; set; }
         public string VarientName { get; set; }
-        public Nullable<bool> isActive { get; set; }
-        public Nullable<int> SubCategoryId { get; set; }
-        public Nullable<bool> Isactive { get; set; }
         public Nullable<bool> IsActive { get; set; }
-    
-        public virtual SubCategory SubCategory { get; set; }
     }
 }

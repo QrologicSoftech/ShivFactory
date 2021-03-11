@@ -22,7 +22,7 @@ namespace ShivFactory.Business.Repository
         #region Add Or Update Varient
         public bool AddOrUpdateVarient(ClsVarient model)
         {
-            var Varient = db.Varients.Where(a => a.Id == model.Id).FirstOrDefault();
+            var Varient = db.Varients.Where(a => a.VarientName == model.Varient).FirstOrDefault();
             if (Varient != null)
             {
                 Varient.VarientName = model.Varient;
@@ -39,6 +39,15 @@ namespace ShivFactory.Business.Repository
             return db.SaveChanges() > 0;
         }
 
+        #endregion
+
+        #region CheckAlreadytExist
+        public bool CheckAlreadytExist(string varientName)
+        {
+            var varient = db.Varients.Where(x => x.VarientName == varientName).AsNoTracking().FirstOrDefault();
+            if (varient != null) { return true; }
+            return false;
+        }
         #endregion
 
         #region Get Varient By Id

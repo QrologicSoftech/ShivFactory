@@ -94,15 +94,27 @@ var commonFunction = {
                 columns.push({ "data": `${item}`, "name": `${item}`, "orderable": Isorderable });
             }
         });
-
-        ActionArray.forEach((item) => {
-            columns.push({
-                "data": "", "name": item.Header, "orderable": false,
-                "render": function () {
-                    return `<button class="btn btn-light" onclick="${item.Value}">${item.Name}</button >`;
+        
+        if (ActionArray) {
+            ActionArray.forEach((item) => {
+                if (item.ActionLink) {
+                    columns.push({
+                        "data": "Id", "name": "Id", "defaultContent": "<i>-</i>", "orderable": false,
+                        "render": function (data, type, row, meta) {
+                            return `<button class="btn btn-light"><i class= "text-primary" ></i><a href="${item.Value}/${data}">${item.Name}</a></button >`;
+                        }
+                    });
+                }
+                else {
+                    columns.push({
+                        "data": "", "name": item.Header, "orderable": false,
+                        "render": function () {
+                            return `<button class="btn btn-light" onclick="${item.Value}">${item.Name}</button >`;
+                        }
+                    });
                 }
             });
-        });
+        }
 
         common.HideLoader('.datatable');
         return callback(columns);

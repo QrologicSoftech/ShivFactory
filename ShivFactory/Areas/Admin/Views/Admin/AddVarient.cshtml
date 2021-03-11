@@ -1,0 +1,59 @@
+﻿@model ShivFactory.Business.Repository.ClsVarient
+@{
+    ViewBag.Title = "Add New Varient";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h4 class="card-title">@ViewBag.Title</h4>
+                                </div>
+                                <div class="col-6">
+                                    <div class="card-description">
+                                        <p class="card-description" style=" text-align: end;">
+                                            <a class="btn btn-sm btn-gradient-primary mr-2" href="~/Admin/Admin/Varient">  Back to List </a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wrapper border-top">
+                                <div class="card-body">
+                                    @using (Html.BeginForm("AddVarient", "Admin", FormMethod.Post))
+                                    {
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>Varient</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(model => model.Varient, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(model => model.Varient, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label>IsActive</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.CheckBoxFor(x => x.IsActive, new { @style = "height: 30px; width:30px;" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @Html.HiddenFor(model => model.Id)
+                                        <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                        <button class="btn btn-light" type="reset">Cancel</button>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
