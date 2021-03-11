@@ -22,7 +22,7 @@ namespace ShivFactory.Business.Repository
         #region Add Or Update Varient
         public bool AddOrUpdateVarient(ClsVarient model)
         {
-            var Varient = db.Varients.Where(a => a.VarientName == model.Varient).FirstOrDefault();
+            var Varient = db.Varients.Where(a => a.Id == model.Id).FirstOrDefault();
             if (Varient != null)
             {
                 Varient.VarientName = model.Varient;

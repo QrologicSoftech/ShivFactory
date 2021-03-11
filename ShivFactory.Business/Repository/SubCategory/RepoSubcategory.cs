@@ -70,7 +70,10 @@ namespace ShivFactory.Business.Repository
                 SubCategoryId = a.ID,
                 SubCategoryName = a.SubCategoryName,
                 ImagePath = a.ImagePath,
-                IsActive = a.IsActive.Value
+                IsActive = a.IsActive.Value,
+                GST=a.GST.Value,
+                SGST = a.SGST.Value,
+                IGST = a.IGST.Value,
             }).FirstOrDefault();
 
             return subCategory;
