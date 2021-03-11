@@ -74,7 +74,7 @@
 
                                             <div class="col-lg-4 col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Mini Category</label><enum><b>*</b></enum>
+                                                    <label>Mini Category</label>
                                                 </div>
                                                 <div class="form-group">
                                                     @Html.DropDownListFor(model => model.MiniCategoryId, ViewBag.MiniCategory as SelectList, "Select", new { @class = "form-control", id = "MiniCategory" })
@@ -542,7 +542,7 @@
                     <button type="button" class="btn btn-outline-primary next-step">Skip</button>
                 </li>*@
                                             <li class="list-inline-item">
-                                                <button type="submit" class="btn btn-primary btn-info-full next-step">Save</button>
+                                                <button type="button" class="btn btn-primary btn-info-full next-step">Save</button>
                                             </li>
                                         </ul>
                                     </div>
@@ -554,40 +554,12 @@
                                         <div class="row">
                                             <div class="col-lg-4 col-sm-4">
                                                 <div class="form-group">
-                                                    <label>IsActive</label>
+                                                    <label>varient</label>
                                                 </div>
                                                 <div class="form-group">
-                                                    @Html.CheckBoxFor(x => x.IsActive, new { @style = "height: 30px; width:30px;" })
+                                                    @Html.DropDownListFor(model => model.CategoryId, ViewBag.Category as SelectList, "Select", new { @class = "form-control", id = "Category", onchange = "product.BindSubCategoryByCatId('#Category', '#SubCategory','#MiniCategory')" })
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>IsReturnable</label>
-                                                </div>
-                                                <div class="form-group">
-                                                    @Html.CheckBoxFor(x => x.IsReturnable, new { @style = "height: 30px; width:30px;" })
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Returninig Days</label><enum><b>*</b></enum>
-                                                </div>
-                                                <div class="form-group">
-                                                    @Html.TextBoxFor(model => model.ReturnDays, new { @class = "form-control", @autocomplete = "off" })
-                                                    @Html.ValidationMessageFor(model => model.ReturnDays, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Estimate Delivery Time</label><enum><b>*</b></enum>
-                                                </div>
-                                                <div class="form-group">
-                                                    @Html.TextBoxFor(model => model.EstimateDeliveryTime, new { @class = "form-control", @autocomplete = "off" })
-                                                    @Html.ValidationMessageFor(model => model.EstimateDeliveryTime, "", new { @class = "text-danger", @placeholder = "10 Days" })
-                                                </div>
-                                            </div>
-
                                         </div>
 
 
@@ -596,7 +568,7 @@
                                                 <button type="button" class="btn btn-outline-primary prev-step">Previous</button>
                                             </li>
                                             <li class="list-inline-item">
-                                                <button type="button" class="btn btn-primary next-step">Save</button>
+                                                <button type="submit" class="btn btn-primary next-step">Save</button>
                                             </li>
                                         </ul>
                                     </div>
@@ -680,17 +652,16 @@
         });
 
         $(".next-step").click(function (e) {
-           // common.ShowLoader();
+            common.ShowLoader();
             var levelId =  $(this).closest('div').attr('id');
             //var levelId = $(this).parent.find('Div').attr('id');
-            product.NextLevel(levelId, function (res) {
-
-                if (res) {
+             product.NextLevel(levelId, function (res) {
+                if (res == true) {
                     var $active = $('.nav-tabs li>.active');
                     $active.parent().next().find('.nav-link').removeClass('disabled');
                     nextTab($active);
                 }
-                //common.HideLoader();
+                common.HideLoader();
             });
         });
 

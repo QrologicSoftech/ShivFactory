@@ -291,6 +291,8 @@ namespace ShivFactory.Areas.Vendor.Controllers
             return Json(subCategory, JsonRequestBehavior.AllowGet);
         }
 
+        #endregion
+
         #region CheckProductCode
         public ActionResult CheckProductCode(string productCode)
         {
@@ -306,7 +308,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
                     Message = result == true ? "Product Code already exist!!" : "Product Code available"
                 }, JsonRequestBehavior.AllowGet);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Json(new ResultModel
                 {
@@ -316,8 +318,6 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
-        #endregion
-
         #endregion
 
         #region Product New
