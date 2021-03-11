@@ -316,6 +316,50 @@ namespace ShivFactory.Areas.Admin.Controllers
             }
         }
 
+        #region  Update SubCategory Varients
+        public ActionResult SubCategoryVarients(int subCategoryId)
+        {
+            try
+            {
+                ViewBag.SubCategoryId = subCategoryId;
+                RepoSubcategory repoSubCategory = new RepoSubcategory();
+                ViewBag.SubCategoryVarients = repoSubCategory.GetSubCategoryVarientsById(subCategoryId);
+                RepoVarient repoVarient = new RepoVarient();
+                var varients = repoVarient.GetAllVarients();
+                return View(varients);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+                return View(new List<VarientResponse>());
+            }
+        }
+
+        public ActionResult UpdateSubCategoryVarients(int subCategoryId, string varientIds)
+        {
+            try
+            {
+                RepoSubcategory repoSubCategory = new RepoSubcategory();
+                var isUpdate = repoSubCategory.UpdateSubCategoryVarientsById(subCategoryId, varientIds);
+                return Json(new ResultModel
+                {
+                    ResultFlag = isUpdate,
+                    Data = null,
+                    Message = isUpdate ? "SubCategory varients successfully updated!!" : "Failled to update subCategory varients."
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
         #endregion
 
         #region MiniCategory
@@ -1400,12 +1444,12 @@ namespace ShivFactory.Areas.Admin.Controllers
                     return View(model);
                 }
                 RepoVarient repoVarient = new RepoVarient();
-                if(model.Id==null &&repoVarient.CheckAlreadytExist(model.Varient))
+                if (model.Id == null && repoVarient.CheckAlreadytExist(model.Varient))
                 {
                     ModelState.AddModelError("Varient", "Varient name already exist!!");
                     return View(model);
                 }
-                
+
                 var isSaved = repoVarient.AddOrUpdateVarient(model);
 
                 if (isSaved)

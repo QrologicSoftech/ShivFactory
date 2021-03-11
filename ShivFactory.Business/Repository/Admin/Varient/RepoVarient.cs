@@ -98,11 +98,11 @@ namespace ShivFactory.Business.Repository
             //}
             //else
             //{
-                Varients = db.Varients.Where(a => a.IsActive == true).Select(a => new
-                {
-                    Text = a.VarientName,
-                    Value = a.Id
-                }).AsNoTracking().ToList();
+            Varients = db.Varients.Where(a => a.IsActive == true).Select(a => new
+            {
+                Text = a.VarientName,
+                Value = a.Id
+            }).AsNoTracking().ToList();
             //}
 
             return new SelectList(Varients, "Value", "Text");
@@ -141,6 +141,34 @@ namespace ShivFactory.Business.Repository
             }
 
             return Varients;
+        }
+        #endregion
+
+        #region GetAllVarients
+        public List<VarientResponse> GetAllVarients()
+        {
+            string searchText;
+            List<VarientResponse> varients = new List<VarientResponse>();
+            varients=db.Varients.Where(a=>a.IsActive==true).Select(a => new VarientResponse()
+             {
+                 Id = a.Id,
+                 VarientName = a.VarientName
+             }).AsNoTracking().ToList();
+            //int size = 50;
+            //var varientQuery = db.Varients.Where(a => a.IsActive == true);
+
+            //if (!string.IsNullOrEmpty(searchText))
+            //{
+            //    varientQuery = varientQuery.Where(a => a.VarientName.StartsWith(searchText));
+            //}
+            //varients = varientQuery.Take(size).Select(a => new VarientResponse()
+            //{
+            //    Id = a.Id,
+            //    VarientName = a.VarientName
+            //}).AsNoTracking().ToList();
+
+            return varients;
+
         }
         #endregion
     }

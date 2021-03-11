@@ -15,31 +15,51 @@
     ViewBag.Title = "SubCategoryPartialView";
 }
 <div class="row overflow-auto">
-    <div class="col-12">
-        <table class="table datatable" cellspacing="0" width="100%" id="serverSideTable">
-            <thead>
-                <tr class="bg-primary text-white">
-                    @foreach (var columnName in obj)
-                    {
-                        if (columnName.Key.Trim() != "Id")
-                        {
-                            <th>@columnName.Key.Trim()</th>
-                        }
-                    }
-                    <th>Actions</th>
-                </tr>
-            </thead>
-        </table>
+    <div class="col-12" id="TableDiv">
     </div>
 </div>
 
 <script>
-   $(document).ready(function () {
+    $(document).ready(function () {
+        var list = [
+            { Name: 'Edit', Value: '/Admin/Admin/AddSubCategory', Header: "Edit", ActionLink: "true" },
+            { Name: 'AssignVarients', Value: 'Admin.GetSubCategoryVarients(this);', Header: "Varients" },
+            { Name: 'Delete', Value: 'Admin.DeleteSubCategory(this);', Header: "Delete" },
 
-        var stringArray = @Html.Raw(Json.Encode(columnArray));
+        ];
+         var stringArray = @Html.Raw(Json.Encode(columnArray));
 
-       commonFunction.GetColumnArray(stringArray, true, '/Admin/Admin/AddSubCategory','Admin.DeleteSubCategory', function (result) {
-            common.BindServerSideTable('#serverSideTable', result, '/Admin/Admin/LoadSubCategoryData');
-        })
+        common.BindDatatable('TableDiv', '/Admin/Admin/LoadSubCategoryData', stringArray, 'Id', list);
     });
 </script>
+
+
+@*<div class="row overflow-auto">
+        <div class="col-12">
+            <table class="table datatable" cellspacing="0" width="100%" id="serverSideTable">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        @foreach (var columnName in obj)
+                        {
+                            if (columnName.Key.Trim() != "Id")
+                            {
+                                <th>@columnName.Key.Trim()</th>
+                            }
+                        }
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <script>
+       $(document).ready(function () {
+
+            var stringArray = @Html.Raw(Json.Encode(columnArray));
+
+           commonFunction.GetColumnArray(stringArray, true, '/Admin/Admin/AddSubCategory','Admin.DeleteSubCategory', function (result) {
+                common.BindServerSideTable('#serverSideTable', result, '/Admin/Admin/LoadSubCategoryData');
+            })
+        });
+    </script>*@

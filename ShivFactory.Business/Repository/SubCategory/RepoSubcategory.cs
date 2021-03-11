@@ -47,7 +47,7 @@ namespace ShivFactory.Business.Repository
                     GST = model.GST,
                     SGST = model.SGST,
                     IGST = model.IGST
-            });
+                });
             }
             return db.SaveChanges() > 0;
         }
@@ -86,10 +86,10 @@ namespace ShivFactory.Business.Repository
             var subCategory = query.ToList<SubCategory>();
             return subCategory;
 
-       
+
 
         }
-        
+
         #endregion
 
         #region Delete SubCategory By Id
@@ -159,7 +159,7 @@ namespace ShivFactory.Business.Repository
                     {
                         SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
                         Id = row["Id"] != DBNull.Value ? Convert.ToInt32(row["Id"]) : 0,
-                        ImagePath =common.checkfile(row["ImagePath"].ToString()),
+                        ImagePath = common.checkfile(row["ImagePath"].ToString()),
                         SubCategoryName = row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
                         GST = row["GST"] != DBNull.Value ? row["GST"].ToString() : "",
                         SGST = row["SGST"] != DBNull.Value ? row["SGST"].ToString() : "",
@@ -173,6 +173,28 @@ namespace ShivFactory.Business.Repository
             }
 
             return categories;
+        }
+        #endregion
+
+        #region Get SubCategory Varients By Id
+        public string GetSubCategoryVarientsById(int subcategoryId)
+        {
+            var subCategoryVarients = db.SubCategories.Where(x => x.ID == subcategoryId).Select(p => p.Varients).AsNoTracking().FirstOrDefault();
+            return subCategoryVarients;
+        }
+        #endregion
+
+        #region Update SubCategory Varients By Id
+        public bool UpdateSubCategoryVarientsById(int subcategoryId, string varientIds)
+        {
+            var subCategory = db.SubCategories.Where(x => x.ID == subcategoryId).FirstOrDefault();
+            if (subCategory != null)
+            {
+                subCategory.Varients = varientIds;
+                return db.SaveChanges() > 0;
+            }
+            return false;
+
         }
         #endregion
     }

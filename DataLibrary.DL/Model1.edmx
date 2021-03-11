@@ -223,6 +223,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="GST" Type="decimal" Precision="18" Scale="0" />
           <Property Name="SGST" Type="decimal" Precision="18" Scale="0" />
           <Property Name="IGST" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Varients" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="UserDetails">
           <Key>
@@ -852,6 +853,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <NavigationProperty Name="Category" Relationship="db_ShivFactoryModel.FK__SubCatego__Categ__6383C8BA" FromRole="SubCategory" ToRole="Category" />
           <NavigationProperty Name="MiniCategories" Relationship="db_ShivFactoryModel.FK__MiniCateg__SubCa__628FA481" FromRole="SubCategory" ToRole="MiniCategory" />
           <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="SubCategory" ToRole="Product" />
+          <Property Name="Varients" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__SubCatego__Categ__6383C8BA">
           <End Type="db_ShivFactoryModel.Category" Role="Category" Multiplicity="0..1">
@@ -1249,6 +1251,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySetMapping Name="SubCategories">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.SubCategory">
               <MappingFragment StoreEntitySet="SubCategory">
+                <ScalarProperty Name="Varients" ColumnName="Varients" />
                 <ScalarProperty Name="IGST" ColumnName="IGST" />
                 <ScalarProperty Name="SGST" ColumnName="SGST" />
                 <ScalarProperty Name="GST" ColumnName="GST" />

@@ -1,0 +1,65 @@
+﻿@model  List<ShivFactory.Business.Repository.VarientResponse>
+@{
+    Layout = null;
+}
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <h3 class="col-md-4">SubCategory Varients</h3>
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for varient" title="Type in a varient" class="col-sm-3 form-control" style="margin-top: -10px;">
+                                <input type="hidden" id="hndSubCategory" value="@ViewBag.SubCategoryId" />
+                            </div>
+                        </div>
+                        <div class="container">
+
+                            <div class="row" id="varientRow">
+                                @foreach (var varient in Model)
+                                {
+                                    var check = "";
+                                    if (!string.IsNullOrEmpty(ViewBag.SubCategoryVarients) && ViewBag.SubCategoryVarients.Contains(varient.Id.ToString()))
+                                    {
+                                        check = "checked";
+                                    }
+                                    <div class="col-lg-2 col-sm-2">
+                                        <div class="form-group form-check">
+                                            <label class="form-check-label text-muted">
+                                                <input type="checkbox" value="@varient.Id" @check class="form-check-input Sub_varient"> @varient.VarientName <i class="input-helper"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="row">
+                                <div class="my-3">
+                                    <button class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn" onclick="Admin.UpdateSubCategoryVarients();">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function myFunction() {
+        var filter, row, div, a, i, txtValue;
+        filter = document.getElementById("myInput").value.toUpperCase();
+        row = document.getElementById("varientRow");
+        div = row.getElementsByTagName("div");
+        for (i = 0; i < div.length; i++) {
+            a = div[i].getElementsByTagName("label")[0];
+            txtValue = a.value || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                div[i].style.display = "";
+            } else {
+                div[i].style.display = "none";
+            }
+        }
+    }
+</script>

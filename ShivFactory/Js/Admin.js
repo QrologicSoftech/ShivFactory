@@ -38,6 +38,46 @@ var Admin = {
             });
         }
     },
+    GetSubCategoryVarients: function (element) {
+        let subCategoryId = $(element).closest('tr').attr('Id');
+        if (subCategoryId == undefined || subCategoryId == null) { return false; }
+        common.ShowLoader();
+        data = {
+            "subCategoryId": subCategoryId
+        }
+        ajax.doPostAjax(`/${adminArea}/${adminController}/SubCategoryVarients`, data, function (result) {
+            if (result) {
+                $('#Modal').children('div').children('div').html(result);
+                $('#Modal').show();
+            }
+            common.HideLoader();
+        });
+    },
+    UpdateSubCategoryVarients: function () {
+
+        common.ShowLoader();
+        var varients = $('.Sub_varient:checkbox:checked').map(function () {
+            return this.value;
+        }).get();
+
+
+        let subCategoryId = $("#hndSubCategory").val();
+        if (subCategoryId == undefined || subCategoryId == null) { return false; }
+
+        data = {
+            "subCategoryId": subCategoryId,
+            "varientIds": varients.join(",")
+        }
+        ajax.doPostAjax(`/${adminArea}/${adminController}/UpdateSubCategoryVarients`, data, function (result) {
+            if (result.ResultFlag) {
+                commonFunction.HideModel('#Modal');
+            }
+            common.ShowMessage(result);
+            common.HideLoader();
+        });
+    },
+
+
     DeleteMiniCategory: function (MinicategoryId) {
 
         if (confirm("Are you sure want to delete this miniCategory?")) {

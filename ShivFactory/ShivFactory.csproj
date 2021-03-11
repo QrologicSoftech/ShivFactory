@@ -449,6 +449,7 @@
     <Content Include="Areas\Admin\Views\Admin\Varient.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\VarientPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AddVarient.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\SubCategoryVarients.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
