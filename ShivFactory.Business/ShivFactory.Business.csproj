@@ -147,10 +147,11 @@
     <Compile Include="Repository\Users\CustomerResponse.cs" />
     <Compile Include="Repository\Users\LogInResponse.cs" />
     <Compile Include="Repository\Users\RepoUser.cs" />
-    <Compile Include="Repository\Vendor\RepoVendor.cs" />
-    <Compile Include="Repository\Vendor\Vendor.cs" />
-    <Compile Include="Repository\Vendor\VendorBankDetail.cs" />
-    <Compile Include="Repository\Vendor\VendorResponse.cs" />
+    <Compile Include="Repository\Vendor\ProductVarient\clsProductVarient.cs" />
+    <Compile Include="Repository\Vendor\RepoVendor\RepoVendor.cs" />
+    <Compile Include="Repository\Vendor\RepoVendor\Vendor.cs" />
+    <Compile Include="Repository\Vendor\RepoVendor\VendorBankDetail.cs" />
+    <Compile Include="Repository\Vendor\RepoVendor\VendorResponse.cs" />
     <Compile Include="Repository\Weight\RepoWeightMaster.cs" />
     <Compile Include="Repository\Weight\WeightModel.cs" />
   </ItemGroup>

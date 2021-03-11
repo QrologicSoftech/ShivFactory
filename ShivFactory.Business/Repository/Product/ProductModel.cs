@@ -82,7 +82,7 @@ namespace ShivFactory.Business.Repository
     }
     public class ClsProduct1
     {
-        public int ProductId { get; set; }
+        public int? ProductId { get; set; }
         public int? VendorId { get; set; }
         [Required(ErrorMessage = "Product Name required"), MaxLength(50, ErrorMessage = "ProductName cannot be longer than 50 characters.")]
         public string ProductName { get; set; }

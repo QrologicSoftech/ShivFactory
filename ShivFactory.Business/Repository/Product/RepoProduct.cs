@@ -118,7 +118,7 @@ namespace ShivFactory.Business.Repository
         #endregion
 
         #region Add Or Update Product new
-        public bool AddOrUpdateProduct(ClsProduct1 model)
+        public bool AddOrUpdateProduct(Product model)
         {
             var Product = db.Products.Where(a => a.ProductId == model.ProductId).FirstOrDefault();
             if (Product != null)
@@ -167,48 +167,7 @@ namespace ShivFactory.Business.Repository
             }
             else
             {
-                db.Products.Add(new Product
-                {
-                    VendorId = model.VendorId,
-                    ProductName = model.ProductName,
-                    SalePrice = model.SalePrice,
-                    ListPrice = model.ListPrice,
-                    LocalShipingCharge = model.LocalShipingCharge,
-                    ZonalShipingCharge = model.ZonalShipingCharge,
-                    NationalShippingCharge = model.NationalShippingCharge,
-                    StockCount = model.StockCount,
-                    MgfDate = model.MgfDate != null ? Convert.ToDateTime(model.MgfDate) : new DateTime(),
-                    MgfDetail = model.MgfDetail,
-                    ShellLife = model.ShellLife,
-                    ProductWarning = model.ProductWarning,
-                    Description = model.Description,
-                    EstimateDeliveryTime = model.EstimateDeliveryTime,
-                    MainImage = model.MainImage,
-                    Image1 = model.Image1,
-                    Image2 = model.Image2,
-                    Image3 = model.Image3,
-                    Image4 = model.Image4,
-                    Image5 = model.Image5,
-                    Image6 = model.Image6,
-                    BrandId = model.BrandId,
-                    CategoryId = model.CategoryId,
-                    SubCategoryId = model.SubCategoryId,
-                    MiniCategoryId = model.MiniCategoryId,
-                    IsActive = model.IsActive,
-                    ProductLength = model.ProductLength,
-                    ProductWidth = model.ProductWidth,
-                    ProductHeight = model.ProductHeight,
-                    ProductWeight = model.ProductWeight,
-                    PackageLength = model.PackageLength,
-                    PackageWidth = model.PackageWidth,
-                    PackageHeight = model.PackageHeight,
-                    PackageWeight = model.PackageWeight,
-                    ProductColors = model.ProductColors,
-                    ApprovedByAdmin = null,
-                    IsReturnable = model.IsReturnable,
-                    ReturnDays = model.ReturnDays,
-                    AddDate = DateTime.Now
-                });
+                db.Products.Add(model);
             }
             return db.SaveChanges() > 0;
         }
