@@ -139,7 +139,7 @@ namespace ShivFactory.Business.Repository
         {
             var categories = new List<SubCategoryResponse>();
             totalRecords = 0;
-
+            RepoCommon common = new RepoCommon();
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@Action", "GetAllSubCategory"));
             parameters.Add(new SqlParameter("@SearchText", model.searchText));
@@ -159,7 +159,7 @@ namespace ShivFactory.Business.Repository
                     {
                         SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
                         Id = row["Id"] != DBNull.Value ? Convert.ToInt32(row["Id"]) : 0,
-                        ImagePath = row["ImagePath"] != DBNull.Value ? row["ImagePath"].ToString() : "",
+                        ImagePath =common.checkfile(row["ImagePath"].ToString()),
                         SubCategoryName = row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
                         GST = row["GST"] != DBNull.Value ? row["GST"].ToString() : "",
                         SGST = row["SGST"] != DBNull.Value ? row["SGST"].ToString() : "",

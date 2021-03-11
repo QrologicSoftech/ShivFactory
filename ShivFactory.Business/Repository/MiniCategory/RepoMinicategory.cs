@@ -119,7 +119,7 @@ namespace ShivFactory.Business.Repository
         {
             var categories = new List<MiniCategoryResponse>();
             totalRecords = 0;
-
+            RepoCommon common = new RepoCommon();
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@Action", "GetAllMiniCategory"));
             parameters.Add(new SqlParameter("@SearchText", model.searchText));
@@ -139,7 +139,7 @@ namespace ShivFactory.Business.Repository
                     {
                         SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
                         Id = row["Id"] != DBNull.Value ? Convert.ToInt32(row["Id"]) : 0,
-                        ImagePath = row["ImagePath"] != DBNull.Value ? row["ImagePath"].ToString() : "",
+                        ImagePath = common.checkfile(row["ImagePath"].ToString()),
                         MiniCategoryName = row["MiniCategoryName"] != DBNull.Value ? row["MiniCategoryName"].ToString() : "",
                         IsActive = row["IsActive"] != DBNull.Value ? Convert.ToBoolean(row["IsActive"]) : false,
                         AddDate = row["Adddate"] != DBNull.Value ? Convert.ToDateTime(row["Adddate"]).ToString("dd/MM/yyyy") : "",

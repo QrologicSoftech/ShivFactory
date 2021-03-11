@@ -101,6 +101,7 @@ namespace ShivFactory.Business.Repository
         #region GetAllCategory
         public List<CategoryResponse> GetAllCategories(PaginationRequest model, out int totalRecords)
         {
+            RepoCommon common = new RepoCommon();
             var categories = new List<CategoryResponse>();
             totalRecords = 0;
 
@@ -124,7 +125,7 @@ namespace ShivFactory.Business.Repository
                         SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
                         Id = row["CategoryId"] != DBNull.Value ? Convert.ToInt32(row["CategoryId"]) : 0,
                         CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
-                        ImagePath = row["ImagePath"] != DBNull.Value ? row["ImagePath"].ToString() : "",
+                        ImagePath = common.checkfile(row["ImagePath"].ToString()),
                         IsActive = row["IsActive"] != DBNull.Value ? Convert.ToBoolean(row["IsActive"]) : false,
                         AddDate = row["Adddate"] != DBNull.Value ? Convert.ToDateTime(row["Adddate"]).ToString("dd/MM/yyyy") : ""
                     });
