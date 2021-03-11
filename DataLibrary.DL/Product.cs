@@ -14,6 +14,12 @@ namespace DataLibrary.DL
     
     public partial class Product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Product()
+        {
+            this.ProductVarients = new HashSet<ProductVarient>();
+        }
+    
         public int ProductId { get; set; }
         public Nullable<int> VendorId { get; set; }
         public string ProductName { get; set; }
@@ -62,5 +68,7 @@ namespace DataLibrary.DL
         public virtual MiniCategory MiniCategory { get; set; }
         public virtual Vendor Vendor { get; set; }
         public virtual SubCategory SubCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductVarient> ProductVarients { get; set; }
     }
 }

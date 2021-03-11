@@ -209,6 +209,38 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="ReturnDays" Type="int" Nullable="false" />
           <Property Name="productCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="ProductVarient">
+          <Key>
+            <PropertyRef Name="ProductVarientId" />
+          </Key>
+          <Property Name="ProductVarientId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="SalePrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ListPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Stock" Type="int" />
+          <Property Name="VarientName1" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue1" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName2" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue2" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName3" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue3" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName4" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue4" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName5" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue5" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName6" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue6" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName7" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue7" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName8" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue8" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName9" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue9" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName10" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue10" Type="nvarchar" MaxLength="300" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="LastUpdate" Type="datetime" />
+        </EntityType>
         <EntityType Name="SubCategory">
           <Key>
             <PropertyRef Name="ID" />
@@ -328,6 +360,20 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductVa__Produ__57DD0BE4">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductVarient" Type="Self.ProductVarient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductVarient">
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -480,6 +526,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySet Name="DynamicMenu" EntityType="Self.DynamicMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MiniCategory" EntityType="Self.MiniCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductVarient" EntityType="Self.ProductVarient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Varient" EntityType="Self.Varient" Schema="dbo" store:Type="Tables" />
@@ -504,6 +551,10 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <AssociationSet Name="FK__Product__VendorI__2739D489" Association="Self.FK__Product__VendorI__2739D489">
             <End Role="Vendors" EntitySet="Vendors" />
             <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductVa__Produ__57DD0BE4" Association="Self.FK__ProductVa__Produ__57DD0BE4">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductVarient" EntitySet="ProductVarient" />
           </AssociationSet>
           <AssociationSet Name="FK__SubCatego__Categ__6383C8BA" Association="Self.FK__SubCatego__Categ__6383C8BA">
             <End Role="Category" EntitySet="Category" />
@@ -787,6 +838,11 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           </AssociationSet>
           <EntitySet Name="VendorBankDetails" EntityType="db_ShivFactoryModel.VendorBankDetail" />
           <EntitySet Name="Varients" EntityType="db_ShivFactoryModel.Varient" />
+          <EntitySet Name="ProductVarients" EntityType="db_ShivFactoryModel.ProductVarient" />
+          <AssociationSet Name="FK__ProductVa__Produ__540C7B00" Association="db_ShivFactoryModel.FK__ProductVa__Produ__540C7B00">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductVarient" EntitySet="ProductVarients" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DimensionMaster">
           <Key>
@@ -948,6 +1004,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <NavigationProperty Name="Vendor" Relationship="db_ShivFactoryModel.FK__Product__VendorI__2739D489" FromRole="Product" ToRole="Vendor" />
           <NavigationProperty Name="SubCategory" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
           <Property Name="productCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductVarients" Relationship="db_ShivFactoryModel.FK__ProductVa__Produ__540C7B00" FromRole="Product" ToRole="ProductVarient" />
         </EntityType>
         <EntityType Name="Vendor">
           <Key>
@@ -1064,6 +1121,51 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="VarientName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
         </EntityType>
+        <EntityType Name="ProductVarient">
+          <Key>
+            <PropertyRef Name="ProductVarientId" />
+          </Key>
+          <Property Name="ProductVarientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ListPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Stock" Type="Int32" />
+          <Property Name="VarientName1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue1" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue2" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue3" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue4" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName5" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue5" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName6" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue6" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName7" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue7" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName8" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue8" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName9" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue9" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName10" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue10" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="LastUpdate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Product" Relationship="db_ShivFactoryModel.FK__ProductVa__Produ__540C7B00" FromRole="ProductVarient" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK__ProductVa__Produ__540C7B00">
+          <End Type="db_ShivFactoryModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="db_ShivFactoryModel.ProductVarient" Role="ProductVarient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductVarient">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1380,6 +1482,39 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="VarientName" ColumnName="VarientName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductVarients">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.ProductVarient">
+              <MappingFragment StoreEntitySet="ProductVarient">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="VarientValue10" ColumnName="VarientValue10" />
+                <ScalarProperty Name="VarientName10" ColumnName="VarientName10" />
+                <ScalarProperty Name="VarientValue9" ColumnName="VarientValue9" />
+                <ScalarProperty Name="VarientName9" ColumnName="VarientName9" />
+                <ScalarProperty Name="VarientValue8" ColumnName="VarientValue8" />
+                <ScalarProperty Name="VarientName8" ColumnName="VarientName8" />
+                <ScalarProperty Name="VarientValue7" ColumnName="VarientValue7" />
+                <ScalarProperty Name="VarientName7" ColumnName="VarientName7" />
+                <ScalarProperty Name="VarientValue6" ColumnName="VarientValue6" />
+                <ScalarProperty Name="VarientName6" ColumnName="VarientName6" />
+                <ScalarProperty Name="VarientValue5" ColumnName="VarientValue5" />
+                <ScalarProperty Name="VarientName5" ColumnName="VarientName5" />
+                <ScalarProperty Name="VarientValue4" ColumnName="VarientValue4" />
+                <ScalarProperty Name="VarientName4" ColumnName="VarientName4" />
+                <ScalarProperty Name="VarientValue3" ColumnName="VarientValue3" />
+                <ScalarProperty Name="VarientName3" ColumnName="VarientName3" />
+                <ScalarProperty Name="VarientValue2" ColumnName="VarientValue2" />
+                <ScalarProperty Name="VarientName2" ColumnName="VarientName2" />
+                <ScalarProperty Name="VarientValue1" ColumnName="VarientValue1" />
+                <ScalarProperty Name="VarientName1" ColumnName="VarientName1" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="ListPrice" ColumnName="ListPrice" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductVarientId" ColumnName="ProductVarientId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

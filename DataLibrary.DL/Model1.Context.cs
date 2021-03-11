@@ -45,5 +45,6 @@ namespace DataLibrary.DL
         public virtual DbSet<Vendor> Vendors { get; set; }
         public virtual DbSet<VendorBankDetail> VendorBankDetails { get; set; }
         public virtual DbSet<Varient> Varients { get; set; }
+        public virtual DbSet<ProductVarient> ProductVarients { get; set; }
     }
 }
