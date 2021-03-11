@@ -81,29 +81,33 @@ namespace ShivFactory.Business.Repository
         /// <summary>
         /// SubCategory Id is nullable field for getting bassed on that SubCategory
         /// </summary>
+        /// /// <summary>
+        /// varientNames is nullable varientNames string 
+        /// </summary>
         /// <param name="subCategoryId"></param>
+        /// <param name="varientNames"></param>
         /// <returns></returns>
-        public SelectList GetVarientDDl(int subCategoryId = 0)
+        public SelectList GetVarientDDl(int subCategoryId = 0, string varientNames=null)
         {
-            dynamic Varients;
-            //var category = db.SubCategories.Where(a => a.ID == subCategoryId).FirstOrDefault();
-            //if (category !=null)
-            //{
-            //    var varientIds = category.Varients;
-            //    Varients = db.Varients.Where(a => a.IsActive == true&& varientIds.Contains(a.Id)).Select(a => new
-            //    {
-            //        Text = a.VarientName,
-            //        Value = a.Id
-            //    }).AsNoTracking().ToList();
-            //}
-            //else
-            //{
-            Varients = db.Varients.Where(a => a.IsActive == true).Select(a => new
+            var sqlQuery = db.Varients.Where(a => a.IsActive == true);
+            var category = db.SubCategories.Where(a => a.ID == subCategoryId).FirstOrDefault();
+            if (category != null&& !string.IsNullOrEmpty(category.Varients))
+            {
+                List<int> varientIds = category.Varients.Split(',').Select(int.Parse).ToList();
+                sqlQuery = sqlQuery.Where(a => varientIds.Contains(a.Id));
+            }
+            if (!string.IsNullOrEmpty(varientNames))
+            {
+                List<string> varientList = varientNames.Split(',').ToList();
+                sqlQuery = sqlQuery.Where(a => !varientList.Contains(a.VarientName));
+            }
+
+            var Varients = sqlQuery.Select(a => new
             {
                 Text = a.VarientName,
                 Value = a.Id
             }).AsNoTracking().ToList();
-            //}
+
 
             return new SelectList(Varients, "Value", "Text");
         }
@@ -149,11 +153,11 @@ namespace ShivFactory.Business.Repository
         {
             string searchText;
             List<VarientResponse> varients = new List<VarientResponse>();
-            varients=db.Varients.Where(a=>a.IsActive==true).Select(a => new VarientResponse()
-             {
-                 Id = a.Id,
-                 VarientName = a.VarientName
-             }).AsNoTracking().ToList();
+            varients = db.Varients.Where(a => a.IsActive == true).Select(a => new VarientResponse()
+            {
+                Id = a.Id,
+                VarientName = a.VarientName
+            }).AsNoTracking().ToList();
             //int size = 50;
             //var varientQuery = db.Varients.Where(a => a.IsActive == true);
 
