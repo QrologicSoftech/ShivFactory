@@ -1,4 +1,4 @@
-﻿@model ShivFactory.Business.Repository.ClsProduct
+﻿@model ShivFactory.Business.Repository.ClsProduct1
 @{
     ViewBag.Title = "Add Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -84,7 +84,15 @@
                                                 </div>
                                             </div>
 
-
+                                            <div class="col-lg-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Product Code </label><enum><b>*</b></enum>
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(model => model.ProductCode, new { @class = "form-control", @autocomplete = "off" })
+                                                    @Html.ValidationMessageFor(model => model.ProductCode, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
 
                                             <div class="col-lg-4 col-sm-4">
                                                 <div class="form-group">

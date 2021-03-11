@@ -207,6 +207,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="ApprovedByAdmin" Type="bit" />
           <Property Name="IsReturnable" Type="bit" />
           <Property Name="ReturnDays" Type="int" Nullable="false" />
+          <Property Name="productCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -946,6 +947,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <NavigationProperty Name="MiniCategory" Relationship="db_ShivFactoryModel.FK_Product_MiniCategory" FromRole="Product" ToRole="MiniCategory" />
           <NavigationProperty Name="Vendor" Relationship="db_ShivFactoryModel.FK__Product__VendorI__2739D489" FromRole="Product" ToRole="Vendor" />
           <NavigationProperty Name="SubCategory" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
+          <Property Name="productCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Vendor">
           <Key>
@@ -1283,6 +1285,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="productCode" ColumnName="productCode" />
                 <ScalarProperty Name="ReturnDays" ColumnName="ReturnDays" />
                 <ScalarProperty Name="IsReturnable" ColumnName="IsReturnable" />
                 <ScalarProperty Name="ApprovedByAdmin" ColumnName="ApprovedByAdmin" />

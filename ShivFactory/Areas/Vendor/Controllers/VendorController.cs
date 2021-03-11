@@ -290,6 +290,24 @@ namespace ShivFactory.Areas.Vendor.Controllers
             return Json(subCategory, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult CheckProductCode(string productCode)
+        {
+            RepoProduct repoProduct = new RepoProduct();
+            RepoVendor repovendor = new RepoVendor(); 
+            Utility util = new Utility();
+            bool result = repoProduct.IsExistProductCode(productCode, repoVender.GetVendorIdByUserId(util.GetCurrentUserId()));
+
+            return Json(new ResultModel
+            {
+                ResultFlag = result,
+                Data = null,
+                Message = result==true ? "Product Code already exist!!" : "Product Code available"
+            }, JsonRequestBehavior.AllowGet);
+            
+            
+            //return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region Product New
@@ -309,7 +327,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 if (id > 0)
                 {
                     RepoProduct repoProduct = new RepoProduct();
-                    var Product = repoProduct.GetProductByProductId(Convert.ToInt32(id));
+                    var Product = repoProduct.GetProductByProductIdNew(Convert.ToInt32(id));
                     return View(Product);
                 }
 
@@ -318,12 +336,12 @@ namespace ShivFactory.Areas.Vendor.Controllers
             {
                 TempData["ErrorMessage"] = ex.Message;
             }
-            ClsProduct model = new ClsProduct();
+            ClsProduct1 model = new ClsProduct1();
             model.VendorId = repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
             return View(model);
         }
         [HttpPost]
-        public ActionResult AddProduct1(ClsProduct model, HttpPostedFileBase postedfile)
+        public ActionResult AddProduct1(ClsProduct1 model, HttpPostedFileBase postedfile)
         {
             try
             {

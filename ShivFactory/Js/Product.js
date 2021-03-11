@@ -103,31 +103,26 @@
        // return callback(result);
     },
     ValidateProductStep1: function (callback) {
-        if ($('#Category').find(":selected").val() == '-1' || $('#Category').find(":selected").val() == 'undefined' || $('#Category').find(":selected").val().length == '0')
-        {
+        if ($('#Category').find(":selected").val() == '-1' || $('#Category').find(":selected").val() == 'undefined' || $('#Category').find(":selected").val().length == '0') {
             $('span[data-valmsg-for="CategoryId"]').text($('#Category').attr('data-val-required'));
             return callback("false");
-        } else if ($('#SubCategory').find(":selected").val() == '-1' || $('#SubCategory').find(":selected").val() == undefined || $('#SubCategory').find(":selected").val().length == '0')
-        {
+        } else if ($('#SubCategory').find(":selected").val() == '-1' || $('#SubCategory').find(":selected").val() == undefined || $('#SubCategory').find(":selected").val().length == '0') {
             $('span[data-valmsg-for="SubCategoryId"]').text($('#SubCategory').attr('data-val-required'));
             return callback("false");
-        } else if ($('#MiniCategory').find(":selected").val() == '-1' || $('#MiniCategory').find(":selected").val() == undefined || $('#MiniCategory').find(":selected").val().length == '0')
-        {
+        } else if ($('#MiniCategory').find(":selected").val() == '-1' || $('#MiniCategory').find(":selected").val() == undefined || $('#MiniCategory').find(":selected").val().length == '0') {
             $('span[data-valmsg-for="MiniCategoryId"]').text($('#MiniCategory').attr('data-val-required'));
             return callback("false");
-        }// else if ($('#BrandId').find(":selected").val() == '-1' || $('#BrandId').find(":selected").val() == undefined || $('#BrandId').find(":selected").val().length == '0')
-        //{
-        //    $('span[data-valmsg-for="BrandId"]').text($('#BrandId').attr('data-val-required'));
-        //    return callback("false");
-    //}
-    else if($('#ProductName').val() == '-1' || $('#ProductName').val() == undefined || $('#ProductName').val().length == '0')
-        {
-            $('span[data-valmsg-for="ProductName"]').text($('#ProductName').attr('data-val-required')); 
+        } else if ($('#ProductName').val() == '-1' || $('#ProductName').val() == undefined || $('#ProductName').val().length == '0') {
+            $('span[data-valmsg-for="ProductName"]').text($('#ProductName').attr('data-val-required'));
             return callback("false");
+        } else if ($('#ProductCode').val() == undefined || $('#ProductCode').val().length == '0') {
+            $('span[data-valmsg-for="ProductCode"]').text($('#ProductCode').attr('data-val-required'));
+            return callback("false");
+        } else {
+            product.CheckProductCode($('#ProductCode').val());
         }
         return callback(true);
     },
-
     ValidateProductStep2: function (callback) {
         if ($('#LocalShipingCharge').val() == '-1' || $('#LocalShipingCharge').val() == 'undefined' || $('#LocalShipingCharge').val().length == '0') {
             $('span[data-valmsg-for="LocalShipingCharge"]').text($('#LocalShipingCharge').attr('data-val-required'));
@@ -148,7 +143,6 @@
         }
         return callback(true);
     },
-
     ValidateProductStep3: function (callback) {
         if ($('#ProductLength').val() == '0' || $('#ProductLength').val() == 'undefined' || $('#ProductLength').val().length == '0') {
             $('span[data-valmsg-for="ProductLength"]').text($('#ProductLength').attr('data-val-required'));
@@ -188,7 +182,6 @@
         }
         return callback(true);
     },
-
     ValidateProductStep5: function (callback) {
         debugger;
         if ($('#ReturnDays').val() == '0' || $('#ReturnDays').val() == undefined || $('#ReturnDays').val().length == '0') {
@@ -199,6 +192,22 @@
             return callback("false");
         }
         return callback(true);
+    },
+
+    CheckProductCode: function (productCode) {
+        alert("CheckProductCode");
+        common.ShowLoader();
+        data = {
+            "productCode": productCode,
+        };
+        ajax.doPostAjax(`/Vendor/Vendor/CheckProductCode`, data, function (result) {
+            alert(result.ResultFlag);
+            if (result.length > 0) {
+                alert(result);
+            }
+            common.HideLoader();
+        });
+      
     }
 
 }
