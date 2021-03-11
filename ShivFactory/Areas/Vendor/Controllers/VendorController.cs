@@ -434,8 +434,21 @@ namespace ShivFactory.Areas.Vendor.Controllers
             }
         }
 
-      
 
+
+        #endregion
+
+
+        #region product Varient
+        public ActionResult ProductVarient()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ProductVarient(ProductVarient model)
+        {
+            return View(model);
+        }
         #endregion
     }
 }

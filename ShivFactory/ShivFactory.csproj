@@ -201,7 +201,7 @@
     </Content>
     <Content Include="Areas\Admin\Views\Admin\ProductDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\UnApprovedProductPartialView.cshtml" />
-    <Content Include="Areas\Vendor\Views\Vendor\HtmlPage1.html" />
+    <Content Include="Areas\Vendor\Views\Vendor\AddProduct1.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\ProductColors.cshtml" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\DataLibrary.DL.dll" />
@@ -323,6 +323,7 @@
     <Content Include="Content\fonts\samples-weather.svg" />
     <Content Include="Content\JS\chart.js-Chart.min.js" />
     <Content Include="Content\JS\dttable.js" />
+    <Content Include="Js\Product Varient.js" />
     <Content Include="Js\Product.js" />
     <Content Include="Js\Common.js" />
     <Content Include="Js\CommonFunction.js" />
@@ -450,6 +451,7 @@
     <Content Include="Areas\Admin\Views\Admin\VarientPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AddVarient.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\SubCategoryVarients.cshtml" />
+    <Content Include="Areas\Vendor\Views\Vendor\ProductVarient.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
