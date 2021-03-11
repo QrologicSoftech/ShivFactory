@@ -114,6 +114,9 @@
     <Compile Include="UserDetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Varient.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Vendor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

@@ -245,6 +245,17 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsDelete" Type="bit" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'db_ShivFactory.dbo.Varient' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Varient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VarientName" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="SubCategoryId" Type="int" />
+        </EntityType>
         <EntityType Name="VendorBankDetails">
           <Key>
             <PropertyRef Name="ID" />
@@ -455,6 +466,18 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Varient_SubCategory">
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
+          <End Role="Varient" Type="Self.Varient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Varient">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="db_ShivFactoryModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -485,6 +508,14 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
     [BankerMaster].[LastUpdate] AS [LastUpdate], 
     [BankerMaster].[IsAdmin] AS [IsAdmin]
     FROM [dbo].[BankerMaster] AS [BankerMaster]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Varient" EntityType="Self.Varient" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Varient].[Id] AS [Id], 
+    [Varient].[VarientName] AS [VarientName], 
+    [Varient].[IsActive] AS [IsActive], 
+    [Varient].[SubCategoryId] AS [SubCategoryId]
+    FROM [dbo].[Varient] AS [Varient]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__MiniCateg__SubCa__628FA481" Association="Self.FK__MiniCateg__SubCa__628FA481">
             <End Role="SubCategory" EntitySet="SubCategory" />
@@ -533,6 +564,10 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <AssociationSet Name="FK_Product_SubCategory" Association="Self.FK_Product_SubCategory">
             <End Role="SubCategory" EntitySet="SubCategory" />
             <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Varient_SubCategory" Association="Self.FK_Varient_SubCategory">
+            <End Role="SubCategory" EntitySet="SubCategory" />
+            <End Role="Varient" EntitySet="Varient" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -775,6 +810,11 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <EntitySet Name="VendorBankDetails" EntityType="db_ShivFactoryModel.VendorBankDetail" />
+          <EntitySet Name="Varients" EntityType="db_ShivFactoryModel.Varient" />
+          <AssociationSet Name="FK_Varient_SubCategory" Association="db_ShivFactoryModel.FK_Varient_SubCategory">
+            <End Role="SubCategory" EntitySet="SubCategories" />
+            <End Role="Varient" EntitySet="Varients" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DimensionMaster">
           <Key>
@@ -842,6 +882,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <NavigationProperty Name="Category" Relationship="db_ShivFactoryModel.FK__SubCatego__Categ__6383C8BA" FromRole="SubCategory" ToRole="Category" />
           <NavigationProperty Name="MiniCategories" Relationship="db_ShivFactoryModel.FK__MiniCateg__SubCa__628FA481" FromRole="SubCategory" ToRole="MiniCategory" />
           <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="SubCategory" ToRole="Product" />
+          <NavigationProperty Name="Varients" Relationship="db_ShivFactoryModel.FK_Varient_SubCategory" FromRole="SubCategory" ToRole="Varient" />
         </EntityType>
         <Association Name="FK__SubCatego__Categ__6383C8BA">
           <End Type="db_ShivFactoryModel.Category" Role="Category" Multiplicity="0..1">
@@ -1042,6 +1083,30 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="BankProofImg" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Narration" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Varient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VarientName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="SubCategoryId" Type="Int32" />
+          <NavigationProperty Name="SubCategory" Relationship="db_ShivFactoryModel.FK_Varient_SubCategory" FromRole="Varient" ToRole="SubCategory" />
+          <Property Name="Isactive" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Varient_SubCategory">
+          <End Type="db_ShivFactoryModel.SubCategory" Role="SubCategory" Multiplicity="0..1" />
+          <End Type="db_ShivFactoryModel.Varient" Role="Varient" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Varient">
+              <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1347,6 +1412,16 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
                 <ScalarProperty Name="AccountHolderName" ColumnName="AccountHolderName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Varients">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.Varient">
+              <MappingFragment StoreEntitySet="Varient">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="SubCategoryId" ColumnName="SubCategoryId" />
+                <ScalarProperty Name="VarientName" ColumnName="VarientName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

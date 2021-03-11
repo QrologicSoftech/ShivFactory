@@ -106,6 +106,9 @@
     <Compile Include="Repository\Admin\Customer\Customer.cs" />
     <Compile Include="Repository\Admin\Product\RepoProductDetails.cs" />
     <Compile Include="Repository\Admin\Product\ResponseModel.cs" />
+    <Compile Include="Repository\Admin\Varient\ClsVarient.cs" />
+    <Compile Include="Repository\Admin\Varient\RepoVarient.cs" />
+    <Compile Include="Repository\Admin\Varient\VarientResponse.cs" />
     <Compile Include="Repository\Banner\BannerResponse.cs" />
     <Compile Include="Repository\Banner\ClsBanner.cs" />
     <Compile Include="Repository\Banner\RepoBanner.cs" />
