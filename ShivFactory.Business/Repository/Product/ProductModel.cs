@@ -111,7 +111,6 @@ namespace ShivFactory.Business.Repository
         [Required(ErrorMessage = "Delivery time is a required field!"), MaxLength(50, ErrorMessage = "Field cannot be longer than 50 characters.")]
         public string EstimateDeliveryTime { get; set; }
         public string MainImage { get; set; }
-
         public string Image1 { get; set; }
         public string Image2 { get; set; }
         public string Image3 { get; set; }

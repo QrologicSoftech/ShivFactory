@@ -87,7 +87,8 @@ namespace ShivFactory.Business.Repository
         /// <param name="subCategoryId"></param>
         /// <param name="varientNames"></param>
         /// <returns></returns>
-        public SelectList GetVarientDDl(int subCategoryId = 0, string varientNames=null)
+        /// int subCategoryId = 0, string varientNames=null
+        public SelectList GetVarientDDl( int subCategoryId , string varientNames)
         {
             var sqlQuery = db.Varients.Where(a => a.IsActive == true);
             var category = db.SubCategories.Where(a => a.ID == subCategoryId).FirstOrDefault();

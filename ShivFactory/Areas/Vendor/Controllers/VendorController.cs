@@ -465,12 +465,13 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 {
                     var varientModel = new clsProductVarient
                     {
-                        productId = product.ProductId,
-                        productQty = (int)product.StockCount,
-                        salePrice = (int)product.SalePrice,
-                        listPrice = (int)product.ListPrice,
-                        SubCatId = (int)product.SubCategoryId
+                        ProductId = product.ProductId,
+                        ProductQty = (int)product.StockCount,
+                        SalePrice = (int)product.SalePrice,
+                        ListPrice = (int)product.ListPrice,
+                        SubCategoryId = (int)product.SubCategoryId
                     }; 
+
                     TempData["SuccessMessage"] = "Product add or update successfully!!";
                     // return RedirectToAction("Product", "Vendor");
                     return RedirectToAction("ProductVarient", "Vendor" ,new { model = varientModel});
@@ -494,24 +495,35 @@ namespace ShivFactory.Areas.Vendor.Controllers
 
 
         #region product Varient
-        public ActionResult ProductVarient()
+        public ActionResult ProductVarient(clsProductVarient model)
         {
-            return View();
+            var varientModel = new clsProductVarient
+            {
+                ProductId = 1,
+                ProductQty = 10,
+                SalePrice = 1200,
+                ListPrice = 1600,
+                SubCategoryId = 5
+            };
+            RepoVarient varient = new RepoVarient();
+            var varientddl = varient.GetVarientDDl((int)varientModel.SubCategoryId, null);
+            ViewBag.Varient = varientddl;
+            return View(varientModel);
         }
         [HttpPost]
-        public ActionResult ProductVarient(clsProductVarient model)
+        public ActionResult ProductVarients(clsProductVarient model)
         {
             return View(model);
         }
         #endregion
 
         #region GetVarientDdlByCategoryId
-        public ActionResult GetVarientDdlByCategoryId(int categoryId, string varients)
+        public ActionResult GetVarientDdlByCategoryId(int SubcategoryId, string varients)
         {
             try
             {
                 RepoVarient varient = new RepoVarient();
-                var varientddl = varient.GetVarientDDl();
+                var varientddl = varient.GetVarientDDl(SubcategoryId, varients);
 
                 return Json(new ResultModel
                 {

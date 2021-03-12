@@ -16,60 +16,73 @@
                         <div class="container py-3 my-3 border rounded shadow-sm">
                             <div class="row">
                                 <section class="col-12">
-                                    @using (Html.BeginForm("ProductVarient", "Vendor", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
+                                    <ul class="nav nav-tabs flex-nowrap" role="tablist">
+                                        <li role="presentation" class="nav-item">
+                                            <a href="#step1"  class="nav-link active disabled" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1"> <b>Vital Info </b></a>
+                                        </li>
+                                        <li role="presentation" class="nav-item">
+                                            <a href="#step2" class="nav-link disabled" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2"> <b>Price </b></a>
+                                        </li>
+                                        <li role="presentation" class="nav-item">
+                                            <a href="#step3" class="nav-link disabled" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3"><b> Dimension</b></a>
+                                        </li>
+                                        <li role="presentation" class="nav-item">
+                                            <a href="#step4" class="nav-link disabled" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4"><b>Details</b></a>
+                                        </li>
+                                        <li role="presentation" class="nav-item">
+                                            <a href="#step5" class="nav-link disabled" data-toggle="tab" aria-controls="step5" role="tab" title="Step 5"><b> Others</b></a>
+                                        </li>
+                                        <li role="presentation" class="nav-item">
+                                            <a href="#step6" class="nav-link disabled" data-toggle="tab" aria-controls="step6" role="tab" title="step6"><b>Image </b> </a>
+                                        </li>
+                                        <li role="presentation" class="nav-item">
+                                            <a href="#complete" class="nav-link active" data-toggle="tab" aria-controls="complete" role="tab" title="Complete"><b>Varient </b> </a>
+                                        </li>
+                                    </ul>
+
+                                    @using (Html.BeginForm("ProductVarients", "Vendor", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
                                     {
-                                    <div class="tab-content py-2">
+                                        <div class="tab-content py-2">
 
-                                        @Html.HiddenFor(model => model.SubCatId);
-                                        @Html.HiddenFor(model => model.productId);
-                                        @Html.HiddenFor(model => model.productQty);
-                                        @Html.HiddenFor(model => model.salePrice);
-                                        @Html.HiddenFor(model => model.listPrice);
+                                            @Html.HiddenFor(model => model.SubCategoryId)
+                                            @Html.HiddenFor(model => model.ProductId)
+                                            @Html.HiddenFor(model => model.ProductQty)
+                                            @Html.HiddenFor(model => model.SalePrice)
+                                            @Html.HiddenFor(model => model.ListPrice);
+                                            
+                                            
+                                            <div class="tab-pane active" role="tabpanel" id="step1">
+                                                <h4><b>Add Varient </b></h4>
+                                                <p></p>
 
-                                        <div class="tab-pane active" role="tabpanel" id="step1">
-                                            <h4><b>Add Varient </b></h4>
-                                            <p></p>
-
-                                            <div class="row">
-                                                <div class="col-lg-4 col-sm-4">
-                                                    <div class="form-group">
-                                                        <label>Varient</label><enum><b>*</b></enum>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        @*@Html.DropDownListFor(model => model.CategoryId, ViewBag.Category as SelectList, "Select", new { @class = "form-control", id = "Category", onchange = "product.BindSubCategoryByCatId('#Category', '#SubCategory','#MiniCategory')" })
-                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })*@
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-sm-4">
-                                                    <div class="form-group inc">
-                                                        <div class="controls">
-                                                            <input type="text" class="form-control" name="textbox" placeholder="textbox" />
-                                                            <input type="text" class="form-control" name="text" placeholder="text" />
-
-                                                            <button class="btn btn-primary" type="button" id="append" name="append" onclick="productVarient.AddNewTextBox()">
-                                                                Add Textbox
-                                                            </button>
-                                                            <br>
-                                                            <br>
+                                                <div class="row">
+                                                    <div class="col-lg-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>varient</label>
                                                         </div>
-                                                    </div>
+                                                        <div class="form-group">
+                                                            @Html.DropDownListFor(model => model.varientId, ViewBag.Varient as SelectList, "Select", new { @class = "form-control", id = "Varient", onchange = "productVarient.BindVarientDDL();" })
+                                                        </div>
+                                                    </div></div>
+                                                <div class="row">
+                                                <div class="inc row col-lg-12 col-sm-12"></div>
                                                 </div>
                                             </div>
-                                            @*<button type="button" class="btn btn-primary next-step float-right">Next</button>*@
+                                            <div class="clearfix"></div>
                                         </div>
-
-                                        <div class="clearfix"></div>
-
-                                    </div>
                                     }
                                 </section>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<script>
+    $(document).ready(function () {
+        productVarient.BindVarientDDL();
+    });
+    
+</script>
