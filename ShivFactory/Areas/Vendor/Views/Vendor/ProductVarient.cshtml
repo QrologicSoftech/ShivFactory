@@ -63,10 +63,18 @@
                                                         <div class="form-group">
                                                             @Html.DropDownListFor(model => model.varientId, ViewBag.Varient as SelectList, "Select", new { @class = "form-control", id = "Varient", onchange = "productVarient.BindVarientDDL();" })
                                                         </div>
-                                                    </div></div>
-                                                <div class="row">
-                                                <div class="inc row col-lg-12 col-sm-12"></div>
+                                                    </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="inc row col-lg-12 col-sm-12"></div>
+                                                </div>
+
+                                                <ul class="float-right">
+                                                    <li class="list-inline-item">
+                                                        <button type="button" onclick="productVarient.GetAllValues();" class="btn btn-outline-primary prev-step">Get Value</button>
+                                                    </li>
+                                                    
+                                                </ul>
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>

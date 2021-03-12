@@ -72,16 +72,13 @@ var productVarient = {
         });
     },
 
-    SaveData: function () {
-        $("input[type=submit]").click(function (e) {
-            e.preventDefault();
-            $(this).next("[name=textbox]")
-                .val(
-                    $.map($(".inc :text"), function (el) {
-                        return el.value
-                    }).join(",\n")
-                )
-        });
+    GetAllValues: function () {
+        var values = $(".row input").map(function () {
+                return $(this).val()
+        }).get().join(",");
+        alert("Entered Varient is ==> " + values);
+            console.log(values)
+     
     },
     BindVarientDDL: function () {
         var subCatId = $('#SubCategoryId').val();
