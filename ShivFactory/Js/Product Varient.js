@@ -1,66 +1,39 @@
 ﻿let previousValue = '',newValue=''; 
 var productVarient = {
-    AddNewTextBox: function () {
-        $(".inc").append('<div class="col-lg-4 col-sm-4" > New Varient Value <br>\
-                <input class="controls" type="text" name="textbox" placeholder="textbox">\
-          <a id="append" name="append" href="#" onclick="productVarient.AddNewTextBox()">Add New Box</a> &nbsp; &nbsp; &nbsp; <a href="#" class="remove_this_varient" onclick="productVarient.RemoveTextBox()">remove</a>\
-                <br>\
+    AddNewTextBox: function (element) {
+       
+        var varientval = $(element).parent('div').children('input').last().val();
+        debugger;
+        jQuery(document).on('click', '.add_this_varient', function () {
+            jQuery(this).parent().parent().parent().parent().append('<div class="col-lg-2 col-sm-2" >\
+             <div class="form-group"><input class="form-control" type="text" name="textbox" placeholder="textbox">\
+           <span >  <a id="append" name="append" class="add_this_varient" href="#" onclick="productVarient.AddNewTextBox()">Add New Box</a> &nbsp; &nbsp; &nbsp; <a href="#" class="remove_this_varient" onclick="productVarient.RemoveTextBox()">remove</a></span>\
+                 </div>\
             </div>');
-        return false;
+            return false;
+        });
     },
 
     AddVarient: function (varient) {
-        $(".inc").append('<div class="row">\
-            <div class="col-lg-2 col-sm-2">\
-                                                <div class="form-group">\
+        $(".inc").append('<div class="row"><div class="col-lg-2 col-sm-2">\
+                                                <h2>\
                                                    <p><b>"'+ varient+'"</b><p>\
-                                                </div>\
-                                                <div class="form-group">\
-                                                    \
-                                                    \
-                                                </div>\
+                                                </h2>\
                                             </div>\
-            <div class= "col-lg-2 col-sm-2" > <div class="form-group">\
-                                                    <label>Value 1 </label><enum><b>*</b></enum>\
-                                                </div>\
-                                                <div class="form-group">\
+            <div class= "col-lg-2 col-sm-2" >  <div class="form-group">\
                                                     <input autocomplete="off" class="form-control"  name="textbox" type="text" value="">\
-                                                    <span class=""></span>\
                                                 </div>\
+             <span><a href="#" class="add_this_varient" onclick="productVarient.AddNewTextBox(this)">+</a> </span>\
                                             </div>\
-        <div class= "col-lg-2 col-sm-2" >\
-                                                <div class="form-group">\
-                                                    <label>Value 2</label><enum><b>*</b></enum>\
-                                                </div>\
-                                                <div class="form-group">\
-        <input class= "form-control"  name = "textbox"  type = "text" value = "" >\
-                                                </div >\
-                                            </div >\
-<div class="col-lg-2 col-sm-2">\
-                                                <div class="form-group">\
-                                                    <label>Value 3 </label><enum><b>*</b></enum>\
-                                                </div>\
-                                                <div class="form-group">\
-                                                    <input autocomplete="off" class="form-control"  name="textbox" type="text" value="">\
-                                                    \
-                                                </div>\
-                                            </div>\
-            <div class="col-lg-2 col-sm-2">\
-                                                <div class="form-group">\
-                                                    <label>Action </label><enum><b>*</b></enum>\
-                                                </div>\
-                                                <div class="form-group">\
-                                                   \
-                                                    \
-                                                </div>\
-                                            </div>\<a href="#" class="remove_this_varient" onclick="productVarient.RemoveVarient()">remove</a>\
+        \<a href="#" class="remove_this_varient" onclick="productVarient.RemoveVarient(this)">Delete this Varient for Product</a>\
                                      </div>')
         return true;
     },
 
     RemoveTextBox: function () {
+        debugger;
         jQuery(document).on('click', '.remove_this', function () {
-            jQuery(this).parent().remove();
+            jQuery(this).parent().parent().parent().remove();
             return false;
         });
     },
@@ -84,21 +57,22 @@ var productVarient = {
         var subCatId = $('#SubCategoryId').val();
         var ddlVarient = $('#Varient');
         var selectedVarient = ddlVarient.find(":selected").text();
-        //newValue = previousValue.concat(selectedVarient);
-        common.ShowLoader();
-        productVarient.AddVarient(selectedVarient);
-        var data = { "SubcategoryId": subCatId, "varients": selectedVarient };
-        ddlVarient.empty();
-        ddlVarient.append('<option selected="selected" value="-1">Select</option>');
-        ajax.doPostAjax(`/Vendor/Vendor/GetVarientDdlByCategoryId`, data, function (result) {
-            if (result.ResultFlag == true) {
-                varient = result.Data;
-                $.each(varient, function (Value, varient) {
-                    ddlVarient.append($('<option></option>').val(varient.Value).html(varient.Text));
-                });
-            }
-            common.HideLoader();
-        });
+        if (ddlVarient.find(":selected").val() > 0) {
+            common.ShowLoader();
+            productVarient.AddVarient(selectedVarient);
+            var data = { "SubcategoryId": subCatId, "varients": selectedVarient };
+            ddlVarient.empty();
+            ddlVarient.append('<option selected="selected" value="-1">Select</option>');
+            ajax.doPostAjax(`/Vendor/Vendor/GetVarientDdlByCategoryId`, data, function (result) {
+                if (result.ResultFlag == true) {
+                    varient = result.Data;
+                    $.each(varient, function (Value, varient) {
+                        ddlVarient.append($('<option></option>').val(varient.Value).html(varient.Text));
+                    });
+                }
+                common.HideLoader();
+            });
+        }
     },
     }
 
