@@ -1,43 +1,24 @@
 ﻿let previousValue = '',newValue=''; 
 var productVarient = {
     AddNewTextBox: function (element) {
-        var values = $(".inc .row input").map(function () {
-            return $(this).val()
-        }).get().join(",");
-        alert("Entered Varient is ==> " + values);
-        if (values.length > 0) {
-            $(document).on('click', '.add_this_varient', function () {
-                $(this).parent().parent().append('<div class="col-lg-2 col-sm-2" >\
-             <div class="form-group"><input class="form-control" type="text" name="textbox" placeholder="textbox"> </div>\
-           <span > <a href="#" class="remove_this_varient" onclick="productVarient.RemoveTextBox()">Remove this</a></span>\
-            </div>');
-                return false;
-            });
+        var valofvar = $(element).parents("div .varientSection").children('div:nth-last-child(2)').children('input:nth-last-child(1)').val();
+        if (valofvar != '' && valofvar != undefined) {
+            $(`<div class="col-sm-2">
+     <input type="text" class="form-control"></div>`).insertBefore($(element).parent());
         }
+
     },
 
     AddVarient: function (varient) {
-        $(".inc").append('<div class="row" name="' + varient +'_div" style="border:1px solid;color:cornsilk;"><div class="col-lg-2 col-sm-2">\
-                                                <h2>\
-                                                   <p style="color:brown;"><b>'+ varient+'"</b><p>\
-                                                </h2>\
-                                            </div>\
-            <div class= "col-lg-2 col-sm-2" >  <div class="form-group">\
-                                                    <input autocomplete="off" class="form-control" id="te"  name="textbox" type="text" value="">\
-                                                </div>\
-                                            </div>\
-              <span><a href="#" class="add_this_varient" onclick="productVarient.AddNewTextBox(this)">+</a> </span>\
-        \<a href="#" class="remove_this_varient" onclick="productVarient.RemoveVarient(this)"></a>\
-                                     </div>')
-        return true;
+        $(".inc").append(`<div class="row varientSection">
+            <label class= "col-sm-2 col-form-label varientName" style = "margin: -36px -180px 0px 0px;" > ${ varient }</label >
+        <div class="col-sm-2">
+            <input type="text" class="form-control input"></div>
+            <div class="col-sm-2">
+                <a href="#" class="" onclick="productVarient.AddNewTextBox(this)">+</a>
+            </div></div>`);
     },
-
-    RemoveTextBox: function () {
-        jQuery(document).on('click', '.remove_this_varient', function () {
-            jQuery(this).parent().parent().remove();
-            return false;
-        });
-    },
+    
 
     RemoveVarient: function () {
         jQuery(document).on('click', '.remove_this_varient', function () {

@@ -18,7 +18,7 @@
                                 <section class="col-12">
                                     <ul class="nav nav-tabs flex-nowrap" role="tablist">
                                         <li role="presentation" class="nav-item">
-                                            <a href="#step1"  class="nav-link active disabled" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1"> <b>Vital Info </b></a>
+                                            <a href="#step1"  class="nav-link disabled" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1"> <b>Vital Info </b></a>
                                         </li>
                                         <li role="presentation" class="nav-item">
                                             <a href="#step2" class="nav-link disabled" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2"> <b>Price </b></a>
@@ -48,7 +48,7 @@
                                             @Html.HiddenFor(model => model.ProductId)
                                             @Html.HiddenFor(model => model.ProductQty)
                                             @Html.HiddenFor(model => model.SalePrice)
-                                            @Html.HiddenFor(model => model.ListPrice);
+                                            @Html.HiddenFor(model => model.ListPrice)
                                             
                                             
                                             <div class="tab-pane active" role="tabpanel" id="step1">
