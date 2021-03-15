@@ -2,7 +2,7 @@
 var productVarient = {
     AddNewTextBox: function (element) {
        
-        var varientval = $(element).parent('div').children('input').last().val();
+        var varientval = $(element).parent('div .row').children('input').last().val();
         debugger;
         jQuery(document).on('click', '.add_this_varient', function () {
             jQuery(this).parent().parent().parent().parent().append('<div class="col-lg-2 col-sm-2" >\
@@ -21,10 +21,10 @@ var productVarient = {
                                                 </h2>\
                                             </div>\
             <div class= "col-lg-2 col-sm-2" >  <div class="form-group">\
-                                                    <input autocomplete="off" class="form-control"  name="textbox" type="text" value="">\
+                                                    <input autocomplete="off" class="form-control" id="te"  name="textbox" type="text" value="">\
                                                 </div>\
-             <span><a href="#" class="add_this_varient" onclick="productVarient.AddNewTextBox(this)">+</a> </span>\
                                             </div>\
+              <span><a href="#" class="add_this_varient" onclick="productVarient.AddNewTextBox(this)">+</a> </span>\
         \<a href="#" class="remove_this_varient" onclick="productVarient.RemoveVarient(this)">Delete this Varient for Product</a>\
                                      </div>')
         return true;
