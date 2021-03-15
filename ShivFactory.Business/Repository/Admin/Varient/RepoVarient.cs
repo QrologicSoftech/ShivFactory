@@ -99,7 +99,7 @@ namespace ShivFactory.Business.Repository
             }
             if (!string.IsNullOrEmpty(varientNames))
             {
-                List<string> varientList = varientNames.Split(',').ToList();
+                List<string> varientList = varientNames.Trim().Split(',').ToList();
                 sqlQuery = sqlQuery.Where(a => !varientList.Contains(a.VarientName));
             }
 

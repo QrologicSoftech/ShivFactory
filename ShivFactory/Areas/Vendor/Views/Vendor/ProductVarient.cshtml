@@ -71,7 +71,7 @@
 
                                                 <ul class="float-right">
                                                     <li class="list-inline-item">
-                                                        <button type="button" onclick="productVarient.GetAllValues();" class="btn btn-outline-primary prev-step">Get Value</button>
+                                                        <button type="button" onclick="productVarient.GetAllValues();" class="btn btn-outline-primary prev-step">Process</button>
                                                     </li>
                                                     
                                                 </ul>
@@ -92,5 +92,8 @@
     $(document).ready(function () {
         //productVarient.BindVarientDDL();
     });
-    
+
+    $('.input').change(function () {
+        alert("happy");
+    });
 </script>

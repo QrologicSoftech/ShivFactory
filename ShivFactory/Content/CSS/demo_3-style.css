@@ -28312,3 +28312,36 @@ footer {
 .cardComposite-default .card-1 .show-more .panel-footer .load-more-text.less {
     display: inline-block;
 }
+
+.labelVarient {
+    border: 1px solid #ebedf2;
+    color: #000;
+    position: relative;
+    padding-top: 50px;
+    font-weight: 700;
+    margin: 0px;
+    margin-bottom: 20px;
+}
+    .labelVarient label {
+        position: absolute;
+        z-index: 99;
+        padding: 20px;
+        margin-bottom: -16px;
+        top: 0px;
+        left: 20px;
+    }
+    .labelVarient span {
+        position: absolute;
+        z-index: 99;
+        padding: 20px;
+        margin-bottom: -16px;
+        top: 0px;
+        right: 20px;
+    }
+        .labelVarient label span{
+            float:right;
+            margin-right:15px;
+        }
+        .labelVarient input {
+            margin-bottom: 5px;
+        }

@@ -1,19 +1,21 @@
 ﻿let previousValue = '',newValue=''; 
 var productVarient = {
+  
     AddNewTextBox: function (element) {
         var valofvar = $(element).parents("div .varientSection").children('div:nth-last-child(2)').children('input:nth-last-child(1)').val();
         if (valofvar != '' && valofvar != undefined) {
             $(`<div class="col-sm-2">
-     <input type="text" class="form-control"></div>`).insertBefore($(element).parent());
+     <input type="text" class="form-control" onkeyup="productVarient.AddBox(this)" ></div>`).insertBefore($(element).parent());
         }
 
     },
 
     AddVarient: function (varient) {
-        $(".inc").append(`<div class="row varientSection">
-            <label class= "col-sm-2 col-form-label varientName" style = "margin: -36px -180px 0px 0px;" > ${ varient }</label >
+        $(".inc").append(`<div class="row varientSection labelVarient">
+            <label class= "col-sm-12 col-form-label varientName"  > ${ varient }</label ><span
+"><a href="#" onclick="productVarient.RemoveVarient(this)">-</a></span>
         <div class="col-sm-2">
-            <input type="text" class="form-control input"></div>
+            <input id="lok" type="text" onkeyup="productVarient.AddBox(this)"  class="form-control"></div>
             <div class="col-sm-2">
                 <a href="#" class="" onclick="productVarient.AddNewTextBox(this)">+</a>
             </div></div>`);
@@ -28,21 +30,23 @@ var productVarient = {
     },
 
     GetAllValues: function () {
-        var values = $(".row input").map(function () {
+        var values = $(".row .varientSection input").map(function () {
                 return $(this).val()
         }).get().join(",");
-        alert("Entered Varient is ==> " + values);
             console.log(values)
      
     },
     BindVarientDDL: function () {
+        var label_values = $(".row .varientSection label").map(function () {
+            return $(this).html().trim()
+        }).get().join(",");
         var subCatId = $('#SubCategoryId').val();
         var ddlVarient = $('#Varient');
-        var selectedVarient = ddlVarient.find(":selected").text();
+        var selectedVarient = ddlVarient.find(":selected").text().trim();
         if (ddlVarient.find(":selected").val() > 0) {
             common.ShowLoader();
             productVarient.AddVarient(selectedVarient);
-            var data = { "SubcategoryId": subCatId, "varients": selectedVarient };
+            var data = { "SubcategoryId": subCatId, "varients": selectedVarient+","+label_values };
             ddlVarient.empty();
             ddlVarient.append('<option selected="selected" value="-1">Select</option>');
             ajax.doPostAjax(`/Vendor/Vendor/GetVarientDdlByCategoryId`, data, function (result) {
@@ -56,6 +60,15 @@ var productVarient = {
             });
         }
     },
+
+    AddBox: function (element) {
+        var inp = $(element).parents("div .varientSection").children
+        var inputVar = $(element).siblings().find('input');
+        debugger;
+            alert("happy");
+       
+    }
+
     }
 
 
