@@ -70,31 +70,44 @@ var productVarient = {
     },
 
     BindVariationToProductTbl: function () {
-
+        var map = {};
+        //add n number of product based on variation in  table 
+       
         var product = new Array();
         var label_values = $(".row .varientSection label").map(function () {
             return $(this).html().trim()
         }).get()
         product.push(label_values);
-        product[0].push("ProductName"); 
+        product[0].push("Name"); 
         product[0].push("Quantity"); 
         product[0].push("SalePrice"); 
         product[0].push("ListPrice"); 
 
         $('#step1').css('display', 'none');
-            //Build an grid of  Product Varient.
-        product.push(["", "", "", "Bedsheet"]);
-        product.push(["","", "", "Bedsheet"]);
-        product.push(["", "", "", "Bedsheet"]);
-        product.push(["", "", "", "Bedsheet"]);
-     
+        // map each varient with all values 
+        for (var r = 0; r < label_values.length; r++) {
+            var MaxProductNumber = $("#" + label_values[r] + "").children('div .col-sm-2').find('input');
+            var varientVal = MaxProductNumber.map(function () {
+                return $(this).val().trim()
+            }).get().join(",");
+            map[label_values[r]] = varientVal;
+            alert(label_values[r] + " qqqq " + varientVal);
+        }
+        console.log(map);
+
+
+            //Build an grid of  n number of Product Varient.
+   
+        for (var k = 1; k < MaxProductNumber.length; k++) {
+            product.push([k,"", "", "", ""]);
+        }
+        
         var table = $("<table class='table datatable dataTable no-footer'  cellspacing='0' width='100 %' />");
-        //table[0].border = "1";
-       // table[0].className = "table datatable dataTable no-footer";
-        debugger;
+   
+     
             //Get the count of columns.
         var columnCount = product[0].length;
-
+        debugger;
             //Add the header row.
         var row = $(table[0].insertRow(-1));
         row.css('class', 'thead-light bg-primary text-white');
