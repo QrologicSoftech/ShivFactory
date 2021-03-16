@@ -77,13 +77,6 @@ var productVarient = {
         var label_values = $(".row .varientSection label").map(function () {
             return $(this).html().trim()
         }).get()
-        product.push(label_values);
-        product[0].push("Name"); 
-        product[0].push("Quantity"); 
-        product[0].push("SalePrice"); 
-        product[0].push("ListPrice"); 
-
-        $('#step1').css('display', 'none');
         // map each varient with all values 
         for (var r = 0; r < label_values.length; r++) {
             var MaxProductNumber = $("#" + label_values[r] + "").children('div .col-sm-2').find('input');
@@ -95,13 +88,22 @@ var productVarient = {
         }
         console.log(map);
 
+        product.push(label_values);
+        product[0].push("Name"); 
+        product[0].push("Quantity"); 
+        product[0].push("SalePrice"); 
+        product[0].push("ListPrice"); 
+
+        $('#step1').css('display', 'none');
+      
 
             //Build an grid of  n number of Product Varient.
-   
+        //var NewProductNumber = $("#Brand").children('div .col-sm-2').find('input'); 
         for (var k = 1; k < MaxProductNumber.length; k++) {
             product.push([k,"", "", "", ""]);
         }
         
+     
         var table = $("<table class='table datatable dataTable no-footer'  cellspacing='0' width='100 %' />");
    
      
