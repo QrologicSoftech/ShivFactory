@@ -5,7 +5,7 @@ var productVarient = {
         var valofvar = $(element).parents("div .varientSection").children('div:nth-last-child(2)').children('input:nth-last-child(1)').val();
         if (valofvar != '' && valofvar != undefined) {
             $(`<div class="col-sm-2">
-     <input type="text" class="form-control" value="value 1 "></div>`).insertBefore($(element).parent());
+     <input type="text" class="form-control" placeholder="Variation " onkeyup="productVarient.AddBox(this)"></div>`).insertBefore($(element).parents('div .col-sm-2').siblings('div .col-sm-2').last());
         }
 
     },
@@ -63,6 +63,7 @@ var productVarient = {
 
     AddBox: function (element) {
         var lastinputVal = $('#lok').parents('div .col-sm-2').siblings('div .col-sm-2').last().prev().find('input').val()
+        alert(lastinputVal);
         if (lastinputVal.length > 0) {
             productVarient.AddNewTextBox(element); 
         } else {
