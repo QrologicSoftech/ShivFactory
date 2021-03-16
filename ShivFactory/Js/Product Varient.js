@@ -70,43 +70,45 @@ var productVarient = {
     },
 
     BindVariationToProductTbl: function () {
-        var arrVariation = [];
+        var product = new Array();
         var label_values = $(".row .varientSection label").map(function () {
             return $(this).html().trim()
         }).get()
-        arrVariation.push(label_values)
-        console.log(arrVariation);
+        product.push(label_values);
+        product[0].push("ProductName"); 
+        product[0].push("Quantity"); 
+        product[0].push("SalePrice"); 
+        product[0].push("ListPrice"); 
 
         $('#step1').css('display', 'none');
-            //Build an array containing  Product Varient.
-            var product = new Array();
-        product.push(["Sr","Color", "Size", "ProductName"]);
+            //Build an grid of  Product Varient.
         product.push(["", "", "", "Bedsheet"]);
         product.push(["","", "", "Bedsheet"]);
         product.push(["", "", "", "Bedsheet"]);
         product.push(["", "", "", "Bedsheet"]);
-
-        
-            var table = $("<table />");
-            table[0].border = "1";
-
+     
+        var table = $("<table class='table datatable dataTable no-footer'  cellspacing='0' width='100 %' />");
+        //table[0].border = "1";
+       // table[0].className = "table datatable dataTable no-footer";
+        debugger;
             //Get the count of columns.
         var columnCount = product[0].length;
 
             //Add the header row.
-            var row = $(table[0].insertRow(-1));
+        var row = $(table[0].insertRow(-1));
+        row.css('class', 'thead-light bg-primary text-white');
             for (var i = 0; i < columnCount; i++) {
                 var headerCell = $("<th />");
-                headerCell.html(customers[0][i]);
+                headerCell.html(product[0][i]);
                 row.append(headerCell);
             }
 
-            //Add the data rows.
-            for (var i = 1; i < customers.length; i++) {
+        //Add the data rows.
+        for (var i = 1; i < product.length; i++) {
                 row = $(table[0].insertRow(-1));
                 for (var j = 0; j < columnCount; j++) {
                     var cell = $("<td />");
-                    cell.html(customers[i][j]);
+                    cell.html(product[i][j]);
                     row.append(cell);
                 }
             }
