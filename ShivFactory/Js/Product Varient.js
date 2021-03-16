@@ -21,7 +21,6 @@ var productVarient = {
             </div></div>`);
     },
     
-
     RemoveVarient: function () {
         jQuery(document).on('click', '.remove_this_varient', function () {
             jQuery(this).parent().remove();
@@ -33,9 +32,9 @@ var productVarient = {
         var values = $(".row .varientSection input").map(function () {
                 return $(this).val()
         }).get().join(",");
-            console.log(values)
-     
+        console.log(values)
     },
+
     BindVarientDDL: function () {
         var label_values = $(".row .varientSection label").map(function () {
             return $(this).html().trim()
@@ -63,14 +62,60 @@ var productVarient = {
 
     AddBox: function (element) {
         var lastinputVal = $('input[name="lok"]').parents('div .col-sm-2').siblings('div .col-sm-2').last().prev().find('input').val()
-      //  alert(lastinputVal);
         if (lastinputVal.length > 0) {
             productVarient.AddNewTextBox(element); 
         } else {
             alert("Please enter some value in variation");
         }
+    },
+
+    BindVariationToProductTbl: function () {
+        var arrVariation = [];
+        var label_values = $(".row .varientSection label").map(function () {
+            return $(this).html().trim()
+        }).get()
+        arrVariation.push(label_values)
+        console.log(arrVariation);
+
+        $('#step1').css('display', 'none');
+            //Build an array containing  Product Varient.
+            var product = new Array();
+        product.push(["Sr","Color", "Size", "ProductName"]);
+        product.push(["", "", "", "Bedsheet"]);
+        product.push(["","", "", "Bedsheet"]);
+        product.push(["", "", "", "Bedsheet"]);
+        product.push(["", "", "", "Bedsheet"]);
+
+        
+            var table = $("<table />");
+            table[0].border = "1";
+
+            //Get the count of columns.
+        var columnCount = product[0].length;
+
+            //Add the header row.
+            var row = $(table[0].insertRow(-1));
+            for (var i = 0; i < columnCount; i++) {
+                var headerCell = $("<th />");
+                headerCell.html(customers[0][i]);
+                row.append(headerCell);
+            }
+
+            //Add the data rows.
+            for (var i = 1; i < customers.length; i++) {
+                row = $(table[0].insertRow(-1));
+                for (var j = 0; j < columnCount; j++) {
+                    var cell = $("<td />");
+                    cell.html(customers[i][j]);
+                    row.append(cell);
+                }
+            }
+
+            var dvTable = $("#dvTable");
+            dvTable.html("");
+            dvTable.append(table);
        
-    }
+    },
 
     }
 
