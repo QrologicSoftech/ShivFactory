@@ -15,7 +15,7 @@ var productVarient = {
             <label class= "col-sm-12 col-form-label varientName"  > ${ varient }</label ><span
 "><a href="#" onclick="productVarient.RemoveVarient(this)">-</a></span>
         <div class="col-sm-2">
-            <input id="lok" type="text" onkeyup="productVarient.AddBox(this)"  class="form-control"></div>
+            <input name="lok" type="text" onkeyup="productVarient.AddBox(this)"  class="form-control"></div>
             <div class="col-sm-2">
                 <a href="#" class="" onclick="productVarient.AddNewTextBox(this)">+</a>
             </div></div>`);
@@ -62,12 +62,12 @@ var productVarient = {
     },
 
     AddBox: function (element) {
-        var lastinputVal = $('#lok').parents('div .col-sm-2').siblings('div .col-sm-2').last().prev().find('input').val()
-        alert(lastinputVal);
+        var lastinputVal = $('input[name="lok"]').parents('div .col-sm-2').siblings('div .col-sm-2').last().prev().find('input').val()
+      //  alert(lastinputVal);
         if (lastinputVal.length > 0) {
             productVarient.AddNewTextBox(element); 
         } else {
-            alert("Please enter some value ");
+            alert("Please enter some value in variation");
         }
        
     }
