@@ -11,13 +11,13 @@ var productVarient = {
     },
 
     AddVarient: function (varient) {
-        $(".inc").append(`<div class="row varientSection labelVarient">
+        $(".inc").append(`<div id="${varient}" class="row varientSection labelVarient">
             <label class= "col-sm-12 col-form-label varientName"  > ${ varient }</label ><span
 "><a href="#" onclick="productVarient.RemoveVarient(this)">-</a></span>
         <div class="col-sm-2">
             <input name="lok" type="text" onkeyup="productVarient.AddBox(this)"  class="form-control"></div>
             <div class="col-sm-2">
-                <a href="#" class="" onclick="productVarient.AddNewTextBox(this)">+</a>
+                <a href="#" class="" >+</a>
             </div></div>`);
     },
     
@@ -65,11 +65,12 @@ var productVarient = {
         if (lastinputVal.length > 0) {
             productVarient.AddNewTextBox(element); 
         } else {
-            alert("Please enter some value in variation");
+            
         }
     },
 
     BindVariationToProductTbl: function () {
+
         var product = new Array();
         var label_values = $(".row .varientSection label").map(function () {
             return $(this).html().trim()
