@@ -247,6 +247,16 @@ namespace ShivFactory.Controllers
 
 
         #endregion
+
+        #region Website
+        public ActionResult CategoryPartialview()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        #endregion
     }
 
 

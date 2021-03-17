@@ -1,0 +1,261 @@
+﻿@using System.Configuration;
+@{
+    Layout = null;
+    var version = ConfigurationManager.AppSettings["jsversion"].ToString();
+}
+<script src="~/Content/Website/js/jquery-2.0.0.min.js?ver=@version"></script>
+<script src="~/Content/Website/js/bootstrap.bundle.min.js?ver=@version"></script>
+<link href="~/Content/Website/css/bootstrap.css?ver=@version" rel="stylesheet" />
+<link href="~/Content/Website/fonts/fontawesome/css/all.min.css?ver=@version" rel="stylesheet" />
+<link href="~/Content/Website/fonts/Pe-icon-7-stroke.css?ver=@version" rel="stylesheet" />
+<link href="~/Content/Website/css/ui.css?ver=@version" rel="stylesheet" />
+<link href="~/Content/Website/css/responsive.css?ver=@version" rel="stylesheet" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_WebSiteLayout</title>
+</head>
+<body>
+    <div id="loader" class="center"></div>
+    <header class="section-header">
+        <section class="header-main" data-toggle="affix">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-3 col-lg-4 col-md-5 mobile-order-1 col-5">
+                        <button class="ma5menu__toggle top-toggle" type="button"> <span class="ma5menu__icon-toggle"><img src="~/Content/Icons/burger_menu.svg"> </span> <span class="ma5menu__sr-only">Menu</span> </button>
+                        <a href="#" class="brand-wrap"><img class="logo" src="~/Content/AdminImg/shiv  factory logo.png"> </a>
+                    </div>
+                    <div class="col-xl-6 col-lg-5 col-md-6 mobile-order-3">
+                        <form action="#" class="search-header">
+                            <div class="input-group w-100">
+                                @*<select class="custom-select border-right" name="category_name">
+                                    <option value="">All</option>
+                                    <option value="codex">Special</option>
+                                    <option value="comments">Only best</option>
+                                    <option value="content">Latest</option>
+                                </select>*@
+                                <input type="text" class="form-control" placeholder="What are you looking for...">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit"> <i class="fa fa-search"></i> </button>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- search-wrap .end// -->
+                    </div>
+                    <!-- col.// -->
+                    <div class="col-xl-3 col-lg-3 col-md-7 order-2 col-7">
+                        <div class="widgets-wrap float-md-right d-flex align-items-center justify-content-end">
+
+
+                            <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
+
+                                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
+                                    <div class="icon-area"> <i class="pe-7s-user" aria-hidden="true"></i> </div>
+                                    <small class="text  d-md-block d-lg-block"> Sign in  </small>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">Profile</a>
+                                    <a class="dropdown-item" href="#">My Account</a>
+                                    <a class="dropdown-item" href="#">Settings</a>
+                                </div>
+                            </div>
+                            <div class="widget-header mr-1 mr-lg-0">
+                                <a href="#" class="widget-view">
+                                    <div class="icon-area"> <i class="pe-7s-cart"></i> <span class="notify">3</span></div>
+                                    <small class="text d-none d-md-block d-lg-block"> Cart </small>
+                                </a>
+                            </div>
+                            <div class="widget-header  d-lg-none">
+                                <button class="ma5menu__toggle" type="button"> <span class="ma5menu__icon-toggle"><img src="~/Content/Icons/burger_menu.svg"> </span> <span class="ma5menu__sr-only">Menu</span> </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark d-none d-lg-block shadow-sm">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav m-auto">
+                        <li class="nav-item"> <a class="nav-link" href="#">All Categories</a> </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Decor </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown2"> <a class="dropdown-item" href="#">Fresh Fruits</a> <a class="dropdown-item" href="#"> Fresh Vegetables </a> <a class="dropdown-item" href="#"> Herbs & Seasonings </a> </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown"> Sofas </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown3"> <a class="dropdown-item" href="#">Bedsheet </a> <a class="dropdown-item" href="#"> Bedroom </a> <a class="dropdown-item" href="#"> Breads and Buns </a> </div>
+                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="#">Bedsheet</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#">Bedroom</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#">Living</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#">Kids Room</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#"> Study & Office </a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#">Storage</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="#">Furniture Packages </a> </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    @RenderBody()
+
+
+
+
+
+    <div class="container footer-text1 mb-5 mt-3">
+        <h5>jaipurdecor.com: Shop Anytime, Anywhere!</h5>
+
+        <p>
+            Online shopping is taking over the market faster than one can comprehend. That being said, no one else knows or understands the retail market better than Shoppers Stop. Being one of India’s finest retailers for more than 20 years, we are at the forefront when it comes to retail development. We are expanding our reach over retail stores and the digital market with one of the best online shopping sites. Shopping online can sometimes be tedious and difficult, however with an attractive design, our online fashion destination is easy to navigate making your experience delightful. One can browse through exclusive offers and bag some of the best deals available for themselves. Best deals on top categories, free shipping* and options like cash on delivery to provide you with a hassle free online experience to ‘Shop Anytime Anywhere’.
+        </p>
+        <p>
+            jaipurdecor.com is a one stop destination for your family's fashion needs. We give you the opportunity to give your wardrobe a makeover with the latest collections from our top brands. jaipurdecor.com aims at ensuring nothing but the best for your closet. Find everything in one place, whether it is women’s ethnic wear from W & Biba, or salwar & churidar sets from exclusive brands like Haute Curry & Global Desi. The most desired dresses or the latest styles in tops and tees is no more a challenge to find. Choose from an enviable collection of women’s watches to make a style impact. To enhance your style further, you can choose from our massive collection of handbags that can directly make way through your go-to collection for all occasions.
+        </p>
+        <p>
+            Mothers can find everything for their little ones right from birth to teenage. The wide range of apparels, toys, games & other accessories for your kids ensures you have an unmatched experience while shopping for your kids. For the homemakers who want to redesign their abode, we offer easy and attractive home décor solutions. Turn your living room or bedroom into a lively space with upholstery from brands like Tangerine, Ivy, Portico, etc. Choose your kitchen appliances from trusted companies like Bajaj or Phillips at the click of a button. Reinventing homes was never easier.
+        </p>
+    </div>
+
+    <div style="display: none;">
+
+        <!-- source for mobile menu start -->
+        <ul class="site-menu">
+            <li>
+                <a href="index-page.html">Shop</a>
+                <ul>
+                    <li><a href="index-page.html">Products</a></li>
+                    <li>
+                        <a href="index-page.html">Collections</a>
+                        <ul>
+                            <li><a href="index-page.html">Premium</a></li>
+                            <li><a href="index-page.html">Common</a></li>
+                            <li>
+                                <a href="index-page.html">Exclusive</a>
+                                <ul>
+                                    <li><a href="index-page.html">First</a></li>
+                                    <li><a href="index-page.html">Secound</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="index-page.html">Other</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">Campaigns</a>
+                <ul>
+                    <li> <a href="#">Summer 2019</a> </li>
+                </ul>
+            </li>
+            <li><a href="index-page.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- container end.// -->
+    <!-- ========================= FOOTER ========================= -->
+    <footer class="section-footer bg-secondary">
+        <div class="container">
+            <section class="footer-top padding-y-lg">
+                <div class="row">
+                    <aside class="col-md col-6">
+                        <h6 class="title" data-target="#collapse_2" data-toggle="collapse">Company</h6>
+                        <ul class="list-unstyled collapse dont-collapse-sm" id="collapse_2">
+                            <li> <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> About us</a></li>
+                            <li> <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Career</a></li>
+                            <li> <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Media</a></li>
+                            <li> <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Rules and terms</a></li>
+                            <li> <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Get in Touch</a></li>
+                            <li> <a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Customer Stories</a></li>
+                        </ul>
+                    </aside>
+                    <aside class="col-md col-6">
+                        <h6 class="title" data-target="#collapse_2" data-toggle="collapse">Services</h6>
+                        <ul class="list-unstyled collapse dont-collapse-sm" id="collapse_2">
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Our Stores</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Custom Furniture</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Sell on WoodenStreet</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Exporters</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Buy in Bulk</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Refer & Earn</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery Location</a></li>
+                        </ul>
+                    </aside>
+                    <aside class="col-md col-6">
+                        <h6 class="title" data-target="#collapse_2" data-toggle="collapse">Shop By Room</h6>
+                        <ul class="list-unstyled collapse dont-collapse-sm" id="collapse_2">
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Living Room</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Bedroom</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Dining Room</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Storage</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Outdoor</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Home Decor</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i> Modular Furniture</a></li>
+                        </ul>
+                    </aside>
+                    <aside class="col-md col-6">
+                        <h6 class="title" data-target="#collapse_3" data-toggle="collapse">Help</h6>
+                        <ul class="list-unstyled collapse dont-collapse-sm" id="collapse_3">
+                            <li>
+                                <p> WhatsApp us : 91000 00000</p>
+                                <p> Call Us : 1800 000 0000</p>
+                                <p> 8:00 AM to 8:00 PM, 365 days</p>
+                                <p> Please note that you are accessing the BETA Version of www.Pemaill.in</p>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+                <!-- row.// -->
+            </section>
+            <!-- footer-top.// -->
+
+        </div>
+        <!-- //container -->
+        <section class="footer-bottom text-center">
+            <p class=" pb-0 mb-0"> &copy 2020 Jaipur Decor, All rights reserved </p>
+            <br>
+        </section>
+    </footer>
+    <!-- ma5menu -->
+    <link href="~/Content/Website/css/owl.theme-min.css" rel="stylesheet" />
+    <script src="~/Content/Website/js/owl.carousel.js"></script>
+    <script src="~/Content/Website/js/script.js"></script>
+  
+    <script>
+        $(document).ready(function () {
+            ma5menu({
+                menu: '.site-menu',
+                activeClass: 'active',
+                footer: '#ma5menu-tools',
+                position: 'left',
+                closeOnBodyClick: true
+            });
+        });
+    </script>
+    <link href="~/Content/Website/css/ma5-menu.min.css" rel="stylesheet" />
+    <script src="~/Content/Website/js/ma5-menu.min.js"></script>
+    
+    <script>
+        $('.dropdown-toggle').click(function (e) {
+            if ($(document).width() > 767) {
+                e.preventDefault();
+
+                var url = $(this).attr('href');
+
+
+                if (url !== '#') {
+
+                    window.location.href = url;
+                }
+
+            }
+        });
+    </script>
+</body>
+</html>
