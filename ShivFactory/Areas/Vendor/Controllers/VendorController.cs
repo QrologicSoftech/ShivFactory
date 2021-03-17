@@ -513,8 +513,8 @@ namespace ShivFactory.Areas.Vendor.Controllers
         //    return View(model);
         //}
 
-        [HttpPost]
-        public ActionResult SaveProductVarients(ListProductDetails model)
+        
+        public ActionResult SaveProductVarients(List<clsProductVarient> model)
         {
             return Json(new ResultModel
             {

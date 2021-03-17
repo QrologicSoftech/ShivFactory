@@ -40,10 +40,12 @@ namespace ShivFactory.Business.Repository
         public string VarientValue9 { get; set; }
         public string VarientName10 { get; set; }
         public string VarientValue10 { get; set; }
-    }
 
-    public class ListProductDetails
-    {
         public List<clsProductVarient> Rows { get; set; }
     }
+
+    //public class ListProductDetails
+    //{
+    //    public List<clsProductVarient> Rows { get; set; }
+    //}
 }

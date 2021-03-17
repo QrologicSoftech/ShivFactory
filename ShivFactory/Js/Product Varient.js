@@ -1,4 +1,4 @@
-﻿let quentity = '',newValue=''; 
+﻿var quantity = 'Quantity', listPrice = 'ListPrice',salePrice = 'SalePrice'; 
 var productVarient = {
   
     AddNewTextBox: function (element) {
@@ -96,10 +96,10 @@ var productVarient = {
         }
         //set table header name 
         product.push(label_values);
-        product[0].push("Name"); 
-        product[0].push("Quantity"); 
-        product[0].push("SalePrice"); 
-        product[0].push("ListPrice"); 
+        //product[0].push("Name"); 
+        product[0].push(quantity);
+        product[0].push(salePrice);
+        product[0].push(listPrice); 
         
 
            // put here vale from product model 
@@ -119,9 +119,9 @@ var productVarient = {
         spArr.copyWithin(0, product[0].length);
         lpArr.copyWithin(0, product[0].length);
         
-        map["Quantity"] = QtyArr;//["12"];
-        map["SalePrice"] = spArr;//["123"];
-        map["ListPrice"] = lpArr; //["1234"];
+        map[quantity] = QtyArr;//["12"];
+        map[salePrice] = spArr;//["123"];
+        map[listPrice] = lpArr; //["1234"];
         console.log(map);
         console.log(Object.keys(map));
         console.log(Object.values(map));
@@ -196,7 +196,7 @@ var productVarient = {
         var $th = $(table).find('th');
         $(table).find('tbody tr').each(function (i, tr) {
             if (i > 0) {
-                var obj = {};
+                let obj = {};
                 $tds = $(tr).find('td').find('input');
                 $th.each(function (index, th) {
                     //let obj = {
@@ -204,27 +204,38 @@ var productVarient = {
                     //    "VarientValue1": $tds.eq(index).val(),
                     //    if()
                     //};
-                    if ($(th).text().toLowerCase() == 'quantity') {
-
+                    if ($(th).text() == quantity) {
+                        obj["ProductQty"] = $tds.eq(index).val();
+                    }
+                    else if ($(th).text() == salePrice) {
+                        obj["SalePrice"] = $tds.eq(index).val();
+                    }
+                    else if ($(th).text() == listPrice) {
+                        obj["ListPrice"] = $tds.eq(index).val();
                     }
                     else {
-                        obj[`VarientName${index}`] = $(th).text();
-                        obj[`VarientValue${index}`] = $tds.eq(index).val();
+                        obj[`VarientName${index+1}`] = $(th).text();
+                        obj[`VarientValue${index+1}`] = $tds.eq(index).val();
                     }
                 });
                 jsonString.push(obj);
+                console.log(JSON.stringify(obj));
             }
+            console.log(JSON.stringify(jsonString));
         });
-        console.log(JSON.stringify(jsonString));
+        //console.log(JSON.stringify(jsonString));
         productVarient.SaveData(JSON.stringify(jsonString));
     },
 
     SaveData: function (jsonString) {
         common.ShowLoader();
         // var data = { "Product": jsonString};
-        debugger; 
-        var data = {"Rows" : jsonString };
-        ajax.doPostAjax(`/Vendor/Vendor/SaveProductVarients`, jsonString, function (result) {
+       
+        var data = [
+            { "VarientName1": "Color", "VarientValue1": "Red", "VarientName2": "Size", "VarientValue2": "M", "ProductQty": "15", "SalePrice": "15300", "ListPrice": "12300" }
+            
+        ];
+        ajax.doPostAjax(`/Vendor/Vendor/SaveProductVarients`, data, function (result) {
                 if (result.ResultFlag == true) {
                 
                 }
