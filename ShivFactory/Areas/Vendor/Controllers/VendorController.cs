@@ -488,9 +488,6 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 return View(model);
             }
         }
-
-
-
         #endregion
 
 
@@ -510,10 +507,21 @@ namespace ShivFactory.Areas.Vendor.Controllers
             ViewBag.Varient = varientddl;
             return View(varientModel);
         }
+        //[HttpPost]
+        //public ActionResult ProductVarients(clsProductVarient model)
+        //{
+        //    return View(model);
+        //}
+
         [HttpPost]
-        public ActionResult ProductVarients(clsProductVarient model)
+        public ActionResult SaveProductVarients(ListProductDetails model)
         {
-            return View(model);
+            return Json(new ResultModel
+            {
+                ResultFlag = true,
+                Data = true,
+                Message = "Varients Added successfully!!"
+            }, JsonRequestBehavior.AllowGet);
         }
         #endregion
 

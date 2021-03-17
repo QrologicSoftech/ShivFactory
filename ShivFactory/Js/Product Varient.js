@@ -1,4 +1,4 @@
-﻿let previousValue = '',newValue=''; 
+﻿let quentity = '',newValue=''; 
 var productVarient = {
   
     AddNewTextBox: function (element) {
@@ -85,13 +85,14 @@ var productVarient = {
             return $(this).html().trim()
         }).get()
         // map each varient with all values and product description 
+        // here put condition for limitation of second varient input must ot ge more than first input boxes. 
         for (var r = 0; r < label_values.length; r++) {
             var MaxProductNumber = $("#" + label_values[r] + "").children('div .col-sm-2').find('input');
             var varientVal = MaxProductNumber.map(function () {
                 return $(this).val().trim()
             }).get(); //.join(",")
             map[label_values[r]] = varientVal;
-            alert(label_values[r] + " qqqq " + varientVal);
+            //alert(label_values[r] + " qqqq " + varientVal);
         }
         //set table header name 
         product.push(label_values);
@@ -117,8 +118,7 @@ var productVarient = {
         QtyArr.copyWithin(0, product[0].length);
         spArr.copyWithin(0, product[0].length);
         lpArr.copyWithin(0, product[0].length);
-
-        map["Name"] = nameArr;
+        
         map["Quantity"] = QtyArr;//["12"];
         map["SalePrice"] = spArr;//["123"];
         map["ListPrice"] = lpArr; //["1234"];
@@ -163,9 +163,7 @@ var productVarient = {
                 row = $(table[0].insertRow(-1));
                 for (var j = 0; j < columnCount; j++) {
                     var cell = $("<td />");
-                    debugger;
-                    //cell.add("input type='text' />")
-                    cell.html(product[i][j]);
+                    cell.html("<input type='text' class='form-control' value="+product[i][j]+" />")
                     row.append(cell);
                 }
             }
@@ -178,35 +176,64 @@ var productVarient = {
        
     },
     TableToJSON: function (table) {
-        debugger;
-            var data = [];
+        //table = $('#tblProduct')
+        //var jsonString = { "Rows": [] };
+        //var $th = $(table).find('th');
+        //$(table).find('tbody tr').each(function (i, tr) {
+        //    if (i > 0) {
+        //        var obj = {};
+        //        $tds = $(tr).find('td').find('input');
+        //        $th.each(function (index, th) {
+        //            obj[$(th).text()] = $tds.eq(index).val();
+        //        });
+        //        jsonString.Rows.push(obj);
+        //    }
+        //});
+        //console.log(JSON.stringify(jsonString));
+        //productVarient.SaveData(JSON.stringify(jsonString));
+        table = $('#tblProduct')
+        var jsonString = [];
+        var $th = $(table).find('th');
+        $(table).find('tbody tr').each(function (i, tr) {
+            if (i > 0) {
+                var obj = {};
+                $tds = $(tr).find('td').find('input');
+                $th.each(function (index, th) {
+                    //let obj = {
+                    //    "VarientName1": $(th).text(),
+                    //    "VarientValue1": $tds.eq(index).val(),
+                    //    if()
+                    //};
+                    if ($(th).text().toLowerCase() == 'quantity') {
 
-            // first row needs to be headers
-            var headers = [];
-            for (var i = 0; i < table.rows[0].cells.length; i++) {
-                headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi, '');
+                    }
+                    else {
+                        obj[`VarientName${index}`] = $(th).text();
+                        obj[`VarientValue${index}`] = $tds.eq(index).val();
+                    }
+                });
+                jsonString.push(obj);
             }
-
-            // go through cells
-            for (var i = 1; i < table.rows.length; i++) {
-
-                var tableRow = table.rows[i];
-                var rowData = {};
-
-                for (var j = 0; j < tableRow.cells.length; j++) {
-
-                    rowData[headers[j]] = tableRow.cells[j].innerHTML;
-
-                }
-
-                data.push(rowData);
-        }
-        debugger;
-            return data;
-       
-
-        JSON.stringify(data);
+        });
+        console.log(JSON.stringify(jsonString));
+        productVarient.SaveData(JSON.stringify(jsonString));
     },
+
+    SaveData: function (jsonString) {
+        common.ShowLoader();
+        // var data = { "Product": jsonString};
+        debugger; 
+        var data = {"Rows" : jsonString };
+        ajax.doPostAjax(`/Vendor/Vendor/SaveProductVarients`, jsonString, function (result) {
+                if (result.ResultFlag == true) {
+                
+                }
+                common.HideLoader();
+            });
+        
+
+    },
+   
     }
 
 
