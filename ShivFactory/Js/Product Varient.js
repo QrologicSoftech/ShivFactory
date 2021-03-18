@@ -13,7 +13,7 @@ var productVarient = {
     AddVarient: function (varient) {
         $(".inc").append(`<div id="${varient}" class="row varientSection labelVarient">
             <label class= "col-sm-12 col-form-label varientName"  > ${ varient }</label ><span
-"><a href="#" onclick="$(this).parent().parent().remove();">X</a></span>
+"><a href="#" onclick="$(this).parent().parent().remove();" style="COLOR: RED;">X</a></span>
         <div class="col-sm-2">
             <input name="lok" type="text" onkeyup="productVarient.AddBox(this)"  class="form-control"></div>
             <div class="col-sm-2">
@@ -55,11 +55,19 @@ var productVarient = {
     },
 
     AddBox: function (element) {
-        //var lastinputVal = $('input[name="lok"]').parents('div .col-sm-2').siblings('div .col-sm-2').last().prev().find('input').val()
-        var lastinputVal = $(element).parents('div .col-sm-2').siblings('div .col-sm-2').last().prev().find('input').val()
-        if (lastinputVal.length > 0) {
-            productVarient.AddNewTextBox(element); 
+        var maxinputVal = $('.inc').children('div .varientSection:first-child').children('div .col-sm-2');
+        //alert("maxinputVal ::: " + maxinputVal.length);
+        debugger;
+        var divinputVal = $(element).parent().parent('div .varientSection').children('div .col-sm-2');
+        //alert("divinputVal ::: " + divinputVal.length);
+        if (divinputVal.length-1 > maxinputVal.length) {
+            return false;
         } else {
+            var lastinputVal = $(element).parents('div .col-sm-2').siblings('div .col-sm-2').last().prev().find('input').val()
+            if (lastinputVal.length > 0) {
+                productVarient.AddNewTextBox(element);
+            } else {
+            }
         }
     },
 
@@ -123,7 +131,7 @@ var productVarient = {
         console.log(map);
         console.log(Object.keys(map));
         console.log(Object.values(map));
-        $('#step1').css('display', 'none');
+        //$('#step1').css('display', 'none');
         
             //Build an grid of  n number of Product Varient.
         var MaxProductNumber = $("#" + label_values[0] + "").children('div .col-sm-2').find('input');
@@ -166,7 +174,6 @@ var productVarient = {
                         cell.html("<input type='number' class='form-control' value=" + product[i][j] + " />")
                     } else {
                         cell.html(product[i][j]);
-                   //     cell.html("<label class='form-control'>" + product[i][j] + " />")
                     }
                     row.append(cell);
                 }
