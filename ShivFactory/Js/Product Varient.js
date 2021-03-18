@@ -57,7 +57,6 @@ var productVarient = {
     AddBox: function (element) {
         var maxinputVal = $('.inc').children('div .varientSection:first-child').children('div .col-sm-2');
         //alert("maxinputVal ::: " + maxinputVal.length);
-        debugger;
         var divinputVal = $(element).parent().parent('div .varientSection').children('div .col-sm-2');
         //alert("divinputVal ::: " + divinputVal.length);
         if (divinputVal.length-1 > maxinputVal.length) {
@@ -224,16 +223,13 @@ var productVarient = {
     SaveData: function (jsonString) {
         common.ShowLoader();
         var data = { "Rows": jsonString};
-       
-        //var data = [
-        //    { "VarientName1": "Color", "VarientValue1": "Red", "VarientName2": "Size", "VarientValue2": "M", "ProductQty": "15", "SalePrice": "15300", "ListPrice": "12300" }
-            
-        //];
         ajax.doPostAjax(`/Vendor/Vendor/SaveProductVarients`, data, function (result) {
-                if (result.ResultFlag == true) {
-                
-                }
+            if (result.ResultFlag == true) {
                 common.HideLoader();
+                common.ShowMessage(result);
+                location.replace("/Vendor/Vendor/AddProduct1");
+                }
+               
             });
         
 

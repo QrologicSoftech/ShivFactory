@@ -67,8 +67,8 @@ namespace DataLibrary.DL
         public virtual Category Category { get; set; }
         public virtual MiniCategory MiniCategory { get; set; }
         public virtual Vendor Vendor { get; set; }
-        public virtual SubCategory SubCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductVarient> ProductVarients { get; set; }
+        public virtual SubCategory SubCategory { get; set; }
     }
 }

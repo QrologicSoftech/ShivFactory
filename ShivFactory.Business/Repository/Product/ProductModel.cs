@@ -117,8 +117,7 @@ namespace ShivFactory.Business.Repository
         public string Image4 { get; set; }
         public string Image5 { get; set; }
         public string Image6 { get; set; }
-        [Required(ErrorMessage = "Please select Brand!")]
-        public int? BrandId { get; set; }
+        
         [Required(ErrorMessage = "Please select Category!")]
         public int? CategoryId { get; set; }
         [Required(ErrorMessage = "Please select SubCategory!")]
@@ -126,22 +125,6 @@ namespace ShivFactory.Business.Repository
         [Required(ErrorMessage = "Please select MiniCategory!")]
         public int? MiniCategoryId { get; set; }
         public bool IsActive { get; set; }
-        [Required(ErrorMessage = "ProductLength is a required field!"), MaxLength(40, ErrorMessage = "Field cannot be longer than 40 characters.")]
-        public string ProductLength { get; set; }
-        [Required(ErrorMessage = "ProductWidth is a required field!"), MaxLength(40, ErrorMessage = "Field cannot be longer than 40 characters.")]
-        public string ProductWidth { get; set; }
-        [Required(ErrorMessage = "ProductHeight is a required field!"), MaxLength(40, ErrorMessage = "Field cannot be longer than 40 characters.")]
-        public string ProductHeight { get; set; }
-        [Required(ErrorMessage = "ProductWeight is a required field!"), MaxLength(40, ErrorMessage = "Field cannot be longer than 40 characters.")]
-        public string ProductWeight { get; set; }
-        [Required(ErrorMessage = "PackageLength is a required field!"), MaxLength(40, ErrorMessage = "Field cannot be longer than 40 characters.")]
-        public string PackageLength { get; set; }
-        [Required(ErrorMessage = "PackageWidth is a required field!"), MaxLength(40, ErrorMessage = "Field cannot be longer than 40 characters.")]
-        public string PackageWidth { get; set; }
-        [Required(ErrorMessage = "PackageHeight is a required field!"), MaxLength(40, ErrorMessage = "Field cannot be longer than 40 characters.")]
-        public string PackageHeight { get; set; }
-        [Required(ErrorMessage = "PackageWeight is a required field!"), MaxLength(40, ErrorMessage = "Field cannot be longer than 40 characters.")]
-        public string PackageWeight { get; set; }
         public string ProductColors { get; set; }
         public bool IsReturnable { get; set; }
         public int ReturnDays { get; set; }

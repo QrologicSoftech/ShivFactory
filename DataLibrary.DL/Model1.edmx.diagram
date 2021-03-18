@@ -27,17 +27,17 @@
         <AssociationConnector Association="db_ShivFactoryModel.FK__SubCatego__Categ__6383C8BA" />
         <AssociationConnector Association="db_ShivFactoryModel.FK__MiniCateg__SubCa__628FA481" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.Brand" Width="1.5" PointX="10.375" PointY="0.75" />
-        <EntityTypeShape EntityType="db_ShivFactoryModel.Product" Width="1.5" PointX="15.5" PointY="6" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.Vendor" Width="1.5" PointX="13.25" PointY="0.75" />
         <AssociationConnector Association="db_ShivFactoryModel.FK__VendorBus__UserI__66603565" />
-        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_Category" />
-        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_MiniCategory" />
-        <AssociationConnector Association="db_ShivFactoryModel.FK__Product__VendorI__2739D489" />
-        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_SubCategory" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.VendorBankDetail" Width="1.5" PointX="7.375" PointY="4.75" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.Varient" Width="1.5" PointX="7.375" PointY="9.75" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.ProductVarient" Width="1.5" PointX="17.75" PointY="7.875" />
-        <AssociationConnector Association="db_ShivFactoryModel.FK__ProductVa__Produ__540C7B00" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.Product" Width="1.5" PointX="15.5" PointY="4.25" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_Category" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_MiniCategory" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK__Product__VendorI__2739D489" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK__ProductVa__Produ__57DD0BE4" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_Product_SubCategory" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

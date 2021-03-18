@@ -263,13 +263,6 @@ namespace ShivFactory.Business.Repository
                 ProductWarning = a.ProductWarning,
                 Description = a.Description,
                 EstimateDeliveryTime = a.EstimateDeliveryTime,
-                //MainImage = repoCommon.checkfile(a.MainImage),
-                //Image1 = repoCommon.checkfile(a.Image1),
-                //Image2 = repoCommon.checkfile(a.Image2),
-                //Image3 = repoCommon.checkfile(a.Image3),
-                //Image4 = repoCommon.checkfile(a.Image4),
-                //Image5 = repoCommon.checkfile(a.Image5),
-                //Image6 = repoCommon.checkfile(a.Image6),
                 MainImage = a.MainImage,
                 Image1 = a.Image1,
                 Image2 = a.Image2,
@@ -277,19 +270,10 @@ namespace ShivFactory.Business.Repository
                 Image4 = a.Image4,
                 Image5 = a.Image5,
                 Image6 = a.Image6,
-                BrandId = a.BrandId,
                 CategoryId = a.CategoryId,
                 SubCategoryId = a.SubCategoryId,
                 MiniCategoryId = a.MiniCategoryId,
                 IsActive = a.IsActive ?? false,
-                ProductLength = a.ProductLength,
-                ProductWidth = a.ProductWidth,
-                ProductHeight = a.ProductHeight,
-                ProductWeight = a.ProductWeight,
-                PackageLength = a.PackageLength,
-                PackageWidth = a.PackageWidth,
-                PackageHeight = a.PackageHeight,
-                PackageWeight = a.PackageWeight,
                 ProductColors = a.ProductColors,
                 IsReturnable = a.IsReturnable ?? false,
                 ReturnDays = a.ReturnDays
@@ -403,14 +387,14 @@ namespace ShivFactory.Business.Repository
         #region Add Or Update Product Varient
         public bool AddOrUpdateProductVarient(ProductVarient model)
         {
-            var ProductVarients = db.ProductVarients.Where(a => a.ProductVarientId == model.ProductId).FirstOrDefault();
-            if (ProductVarients != null)
-            {// no edition on product varient 
-            }
-            else
-            {
+            //var ProductVarients = db.ProductVarients.Where(a => a.ProductVarientId == model.ProductId).FirstOrDefault();
+            //if (ProductVarients != null)
+            //{// no edition on product varient 
+            //}
+            //else
+            //{
                 db.ProductVarients.Add(model);
-            }
+            //}
             return db.SaveChanges() > 0;
         }
 

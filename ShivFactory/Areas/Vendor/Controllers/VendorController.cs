@@ -365,11 +365,6 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 RepoMinicategory repominiCategory = new RepoMinicategory();
                 ViewBag.MiniCategory = repominiCategory.GetMiniCategoryDDl();
 
-                //RepoDimension repodim = new RepoDimension();
-                //RepoWeightMaster repoweigth = new RepoWeightMaster();
-                //ViewBag.dimension = repodim.GetDimensionDDl();
-                //ViewBag.weight = repoweigth.GetweightDDl();
-
                 if (!ModelState.IsValid)
                 {
                     return View(model);
@@ -384,7 +379,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 bool isReturn = false;
                 foreach (var image in model.files)
                 {
-                    if (image == null && model.ProductId == 0)
+                    if (image == null && model.ProductId == null)
                     {
                         isReturn = true;
                         ModelState.AddModelError($"Image{index + 1}", "Please upload Product Image.");
@@ -418,7 +413,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 RepoProduct repoProduct = new RepoProduct();
                 var product = new Product()
                 {
-                    ProductId = (int)model.ProductId,
+                    ProductId = model.ProductId == null ? 0 : model.ProductId.Value,
                     productCode = model.ProductCode,
                     VendorId = model.VendorId,
                     ProductName = model.ProductName,
@@ -441,21 +436,11 @@ namespace ShivFactory.Areas.Vendor.Controllers
                     Image4 = model.Image4,
                     Image5 = model.Image5,
                     Image6 = model.Image6,
-                    BrandId = model.BrandId,
                     CategoryId = model.CategoryId,
                     SubCategoryId = model.SubCategoryId,
                     MiniCategoryId = model.MiniCategoryId,
                     IsActive = model.IsActive,
-                    ProductLength = model.ProductLength,
-                    ProductWidth = model.ProductWidth,
-                    ProductHeight = model.ProductHeight,
-                    ProductWeight = model.ProductWeight,
-                    PackageLength = model.PackageLength,
-                    PackageWidth = model.PackageWidth,
-                    PackageHeight = model.PackageHeight,
-                    PackageWeight = model.PackageWeight,
-                    ProductColors = model.ProductColors,
-                    ApprovedByAdmin = null,
+                    ApprovedByAdmin = false,
                     IsReturnable = model.IsReturnable,
                     ReturnDays = model.ReturnDays,
                     AddDate = DateTime.Now
@@ -471,11 +456,11 @@ namespace ShivFactory.Areas.Vendor.Controllers
                         SalePrice = (int)product.SalePrice,
                         ListPrice = (int)product.ListPrice,
                         SubCategoryId = (int)product.SubCategoryId
-                    }; 
+                    };
 
                     TempData["SuccessMessage"] = "Product add or update successfully!!";
                     // return RedirectToAction("Product", "Vendor");
-                    return RedirectToAction("ProductVarient", "Vendor" ,new { model = varientModel});
+                    return RedirectToAction("ProductVarient", varientModel );
                 }
                 else
                 {
@@ -497,24 +482,19 @@ namespace ShivFactory.Areas.Vendor.Controllers
         {
             var varientModel = new clsProductVarient
             {
-                ProductId = 1,
-                ProductQty = 10,
-                SalePrice = 1200,
-                ListPrice = 1600,
-                SubCategoryId = 5
+                ProductId = model.ProductId,
+                ProductQty = model.ProductQty,
+                SalePrice = model.SalePrice,
+                ListPrice = model.ListPrice,
+                SubCategoryId = model.SubCategoryId
             };
             RepoVarient varient = new RepoVarient();
             var varientddl = varient.GetVarientDDl((int)varientModel.SubCategoryId, null);
             ViewBag.Varient = varientddl;
             return View(varientModel);
         }
-        //[HttpPost]
-        //public ActionResult ProductVarients(clsProductVarient model)
-        //{
-        //    return View(model);
-        //}
 
-        
+
         public ActionResult SaveProductVarients(string Rows)
         {
             try
@@ -568,7 +548,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
                     ResultFlag = false,
                     Data = null,
                     Message = e.Message.ToString(),
-                }, JsonRequestBehavior.AllowGet) ;
+                }, JsonRequestBehavior.AllowGet);
             }
         }
         #endregion
