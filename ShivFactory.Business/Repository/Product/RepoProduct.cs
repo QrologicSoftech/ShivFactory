@@ -276,7 +276,9 @@ namespace ShivFactory.Business.Repository
                 IsActive = a.IsActive ?? false,
                 ProductColors = a.ProductColors,
                 IsReturnable = a.IsReturnable ?? false,
-                ReturnDays = a.ReturnDays
+                ReturnDays = a.ReturnDays,
+                ProductCode=a.productCode
+                
             }).AsNoTracking().FirstOrDefault();
             if (Product != null && !string.IsNullOrEmpty(Product.MgfDate))
             {

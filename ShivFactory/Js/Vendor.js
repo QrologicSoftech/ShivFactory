@@ -30,7 +30,7 @@ var Vendor = {
 
             var productId = $(element).closest('tr').attr('Id');
 
-            location.replace(`/Vendor/Vendor/AddProduct/${productId}`);
+            location.replace(`/Vendor/Vendor/ProductVarient/${productId}`);
         }
     },
     GetProductColors: function (element) {

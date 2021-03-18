@@ -90,118 +90,118 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 return View(new List<DataLibrary.DL.Product>());
             }
         }
-        public ActionResult AddProduct(int? id)
-        {
-            try
-            {
-                RepoBrand repoBrand = new RepoBrand();
-                ViewBag.Brands = repoBrand.GetBrandDDl();
-                RepoCategory repoCategory = new RepoCategory();
-                ViewBag.Category = repoCategory.GetCategoryDDl();
-                RepoSubcategory reposubCategory = new RepoSubcategory();
-                ViewBag.SubCategory = reposubCategory.GetSubCategoryDDl();
-                RepoMinicategory repominiCategory = new RepoMinicategory();
-                ViewBag.MiniCategory = repominiCategory.GetMiniCategoryDDl();
-                if (id > 0)
-                {
-                    RepoProduct repoProduct = new RepoProduct();
-                    var Product = repoProduct.GetProductByProductId(Convert.ToInt32(id));
-                    return View(Product);
-                }
+        //public ActionResult AddProduct(int? id)
+        //{
+        //    try
+        //    {
+        //        RepoBrand repoBrand = new RepoBrand();
+        //        ViewBag.Brands = repoBrand.GetBrandDDl();
+        //        RepoCategory repoCategory = new RepoCategory();
+        //        ViewBag.Category = repoCategory.GetCategoryDDl();
+        //        RepoSubcategory reposubCategory = new RepoSubcategory();
+        //        ViewBag.SubCategory = reposubCategory.GetSubCategoryDDl();
+        //        RepoMinicategory repominiCategory = new RepoMinicategory();
+        //        ViewBag.MiniCategory = repominiCategory.GetMiniCategoryDDl();
+        //        if (id > 0)
+        //        {
+        //            RepoProduct repoProduct = new RepoProduct();
+        //            var Product = repoProduct.GetProductByProductId(Convert.ToInt32(id));
+        //            return View(Product);
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
-            }
-            ClsProduct model = new ClsProduct();
-            model.VendorId = repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
-            return View(model);
-        }
-        [HttpPost]
-        public ActionResult AddProduct(ClsProduct model, HttpPostedFileBase postedfile)
-        {
-            try
-            {
-                RepoBrand repoBrand = new RepoBrand();
-                ViewBag.Brands = repoBrand.GetBrandDDl();
-                RepoCategory repoCategory = new RepoCategory();
-                ViewBag.Category = repoCategory.GetCategoryDDl();
-                RepoSubcategory reposubCategory = new RepoSubcategory();
-                ViewBag.SubCategory = reposubCategory.GetSubCategoryDDl();
-                RepoMinicategory repominiCategory = new RepoMinicategory();
-                ViewBag.MiniCategory = repominiCategory.GetMiniCategoryDDl();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TempData["ErrorMessage"] = ex.Message;
+        //    }
+        //    ClsProduct model = new ClsProduct();
+        //    model.VendorId = repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
+        //    return View(model);
+        //}
+        //[HttpPost]
+        //public ActionResult AddProduct(ClsProduct model, HttpPostedFileBase postedfile)
+        //{
+        //    try
+        //    {
+        //        RepoBrand repoBrand = new RepoBrand();
+        //        ViewBag.Brands = repoBrand.GetBrandDDl();
+        //        RepoCategory repoCategory = new RepoCategory();
+        //        ViewBag.Category = repoCategory.GetCategoryDDl();
+        //        RepoSubcategory reposubCategory = new RepoSubcategory();
+        //        ViewBag.SubCategory = reposubCategory.GetSubCategoryDDl();
+        //        RepoMinicategory repominiCategory = new RepoMinicategory();
+        //        ViewBag.MiniCategory = repominiCategory.GetMiniCategoryDDl();
 
-                //RepoDimension repodim = new RepoDimension();
-                //RepoWeightMaster repoweigth = new RepoWeightMaster();
-                //ViewBag.dimension = repodim.GetDimensionDDl();
-                //ViewBag.weight = repoweigth.GetweightDDl();
+        //        //RepoDimension repodim = new RepoDimension();
+        //        //RepoWeightMaster repoweigth = new RepoWeightMaster();
+        //        //ViewBag.dimension = repodim.GetDimensionDDl();
+        //        //ViewBag.weight = repoweigth.GetweightDDl();
 
-                if (!ModelState.IsValid)
-                {
-                    return View(model);
-                }
+        //        if (!ModelState.IsValid)
+        //        {
+        //            return View(model);
+        //        }
 
-                if (model.ProductId == 0 && postedfile == null)
-                {
-                    ModelState.AddModelError("PostedFile", "Please upload Product Image.");
-                    return View(model);
-                }
-                int index = 0;
-                bool isReturn = false;
-                foreach (var image in model.files)
-                {
-                    if (image == null && model.ProductId == 0)
-                    {
-                        isReturn = true;
-                        ModelState.AddModelError($"Image{index + 1}", "Please upload Product Image.");
-                    }
-                    index++;
-                }
-                if (isReturn) { return View(model); }
+        //        if (model.ProductId == 0 && postedfile == null)
+        //        {
+        //            ModelState.AddModelError("PostedFile", "Please upload Product Image.");
+        //            return View(model);
+        //        }
+        //        int index = 0;
+        //        bool isReturn = false;
+        //        foreach (var image in model.files)
+        //        {
+        //            if (image == null && model.ProductId == 0)
+        //            {
+        //                isReturn = true;
+        //                ModelState.AddModelError($"Image{index + 1}", "Please upload Product Image.");
+        //            }
+        //            index++;
+        //        }
+        //        if (isReturn) { return View(model); }
 
-                RepoCommon common = new RepoCommon();
-                if (postedfile != null)
-                {
-                    model.MainImage = common.SaveImage(postedfile);
-                }
+        //        RepoCommon common = new RepoCommon();
+        //        if (postedfile != null)
+        //        {
+        //            model.MainImage = common.SaveImage(postedfile);
+        //        }
 
-                index = 0;
-                foreach (var file in model.files)
-                {
-                    if (file != null)
-                    {
-                        string imagePath = common.SaveImage(file);
-                        if (index == 0) { model.Image1 = imagePath; }
-                        else if (index == 1) { model.Image2 = imagePath; }
-                        else if (index == 2) { model.Image3 = imagePath; }
-                        else if (index == 3) { model.Image4 = imagePath; }
-                        else if (index == 4) { model.Image5 = imagePath; }
-                        else if (index == 5) { model.Image6 = imagePath; }
-                    }
-                    index++;
-                }
+        //        index = 0;
+        //        foreach (var file in model.files)
+        //        {
+        //            if (file != null)
+        //            {
+        //                string imagePath = common.SaveImage(file);
+        //                if (index == 0) { model.Image1 = imagePath; }
+        //                else if (index == 1) { model.Image2 = imagePath; }
+        //                else if (index == 2) { model.Image3 = imagePath; }
+        //                else if (index == 3) { model.Image4 = imagePath; }
+        //                else if (index == 4) { model.Image5 = imagePath; }
+        //                else if (index == 5) { model.Image6 = imagePath; }
+        //            }
+        //            index++;
+        //        }
 
-                RepoProduct repoProduct = new RepoProduct();
-                var isSaved = repoProduct.AddOrUpdateProduct(model);
+        //        RepoProduct repoProduct = new RepoProduct();
+        //        var isSaved = repoProduct.AddOrUpdateProduct(model);
 
-                if (isSaved)
-                {
-                    TempData["SuccessMessage"] = "Product add or update successfully!!";
-                    return RedirectToAction("Product", "Vendor");
-                }
-                else
-                {
-                    TempData["ErrorMessage"] = "Failled to add or update Product";
-                    return View(model);
-                }
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
-                return View(model);
-            }
-        }
+        //        if (isSaved)
+        //        {
+        //            TempData["SuccessMessage"] = "Product add or update successfully!!";
+        //            return RedirectToAction("Product", "Vendor");
+        //        }
+        //        else
+        //        {
+        //            TempData["ErrorMessage"] = "Failled to add or update Product";
+        //            return View(model);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TempData["ErrorMessage"] = ex.Message;
+        //        return View(model);
+        //    }
+        //}
 
         public ActionResult DeleteProduct(int id)
         {
@@ -322,8 +322,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
         #endregion
 
         #region Product New
-
-        public ActionResult AddProduct1(int? id)
+        public ActionResult AddProduct(int? id)
         {
             try
             {
@@ -352,7 +351,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult AddProduct1(ClsProduct1 model, HttpPostedFileBase postedfile)
+        public ActionResult AddProduct(ClsProduct1 model, HttpPostedFileBase postedfile)
         {
             try
             {
@@ -478,15 +477,19 @@ namespace ShivFactory.Areas.Vendor.Controllers
 
 
         #region product Varient
-        public ActionResult ProductVarient(clsProductVarient model)
+        public ActionResult ProductVarient(int id)
         {
+
+            RepoProduct repoproduct = new RepoProduct();
+            ClsProduct1 objProductvarient = repoproduct.GetProductByProductIdNew(id); 
+
             var varientModel = new clsProductVarient
             {
-                ProductId = model.ProductId,
-                ProductQty = model.ProductQty,
-                SalePrice = model.SalePrice,
-                ListPrice = model.ListPrice,
-                SubCategoryId = model.SubCategoryId
+                ProductId = (int)objProductvarient.ProductId,
+                ProductQty = objProductvarient.StockCount,
+                SalePrice = objProductvarient.SalePrice,
+                ListPrice = objProductvarient.ListPrice,
+                SubCategoryId = objProductvarient.SubCategoryId
             };
             RepoVarient varient = new RepoVarient();
             var varientddl = varient.GetVarientDDl((int)varientModel.SubCategoryId, null);

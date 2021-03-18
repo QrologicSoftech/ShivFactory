@@ -1,8 +1,8 @@
-﻿@model ShivFactory.Business.Repository.ClsProduct
+﻿@model ShivFactory.Business.Repository.ClsProduct1
 @{
     ViewBag.Title = "Add Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
- }
+}
 <div class="container-fluid page-body-wrapper">
     <div class="main-panel">
         <div class="content-wrapper">
@@ -10,7 +10,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3>@ViewBag.Title</h3>
+                            <h3>@ViewBag.Title</h3>  
                         </div>
                         <div class="container py-3 my-3 border rounded shadow-sm">
                             <div class="row">
@@ -23,16 +23,16 @@
                                             <a href="#step2" class="nav-link " data-toggle="tab" aria-controls="step2" role="tab" title="Step 2"> <b>Price </b></a>
                                         </li>
                                         <li role="presentation" class="nav-item">
-                                            <a href="#step3" class="nav-link " data-toggle="tab" aria-controls="step3" role="tab" title="Step 3"><b> Dimension</b></a>
-                                        </li>
-                                        <li role="presentation" class="nav-item">
                                             <a href="#step4" class="nav-link " data-toggle="tab" aria-controls="step4" role="tab" title="Step 4"><b>Details</b></a>
                                         </li>
                                         <li role="presentation" class="nav-item">
                                             <a href="#step5" class="nav-link " data-toggle="tab" aria-controls="step5" role="tab" title="Step 5"><b> Others</b></a>
                                         </li>
                                         <li role="presentation" class="nav-item">
-                                            <a href="#complete" class="nav-link " data-toggle="tab" aria-controls="complete" role="tab" title="Complete"><b>Image </b> </a>
+                                            <a href="#step6" class="nav-link " data-toggle="tab" aria-controls="step6" role="tab" title="step6"><b>Image </b> </a>
+                                        </li>
+                                        <li role="presentation" class="nav-item disabled">
+                                            <a href="#complete" class="nav-link " data-toggle="tab" aria-controls="complete" role="tab" title="Complete"><b>Varient </b> </a>
                                         </li>
                                     </ul>
                                     @using (Html.BeginForm("AddProduct", "Vendor", FormMethod.Post, new { @enctype = "multipart/form-data", id = "myform", @class = "forms-sample" }))
@@ -71,7 +71,7 @@
 
                                             <div class="col-lg-4 col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Mini Category</label><enum><b>*</b></enum>
+                                                    <label>Mini Category</label>
                                                 </div>
                                                 <div class="form-group">
                                                     @Html.DropDownListFor(model => model.MiniCategoryId, ViewBag.MiniCategory as SelectList, "Select", new { @class = "form-control", id = "MiniCategory" })
@@ -83,11 +83,11 @@
 
                                             <div class="col-lg-4 col-sm-4">
                                                 <div class="form-group">
-                                                    <label>Brand</label><enum><b>*</b></enum>
+                                                    <label>Product Code </label><enum><b>*</b></enum>
                                                 </div>
                                                 <div class="form-group">
-                                                    @Html.DropDownListFor(model => model.BrandId, ViewBag.Brands as SelectList, "Select", new { @class = "form-control" })
-                                                    @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+                                                    @Html.TextBoxFor(model => model.ProductCode, new { @class = "form-control", @autocomplete = "off" })
+                                                    @Html.ValidationMessageFor(model => model.ProductCode, "", new { @class = "text-danger" })
                                                 </div>
                                             </div>
 
@@ -177,112 +177,6 @@
 
                                     </div>
 
-                                    <div class="tab-pane" role="tabpanel" id="step3">
-                                        <h4><b>Dimensions</b> </h4>
-                                        <p></p>
-
-                                        <p><b>Product Dimensions</b></p>
-                                        <div class="row">
-
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Length</label><enum><b>*</b></enum>
-                                                </div>
-                                                <div class="form-group">
-                                                    @Html.TextBoxFor(model => model.ProductLength, new { @class = "form-control", @autocomplete = "off" })
-                                                    <span class="">Product length as '40cm'</span>
-                                                    @Html.ValidationMessageFor(model => model.ProductLength, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Width</label><enum><b>*</b></enum>
-                                                </div>
-                                                <div class="form-group">
-                                                    @Html.TextBoxFor(model => model.ProductWidth, new { @class = "form-control", @rows = 5 })
-                                                    @Html.ValidationMessageFor(model => model.ProductWidth, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Height</label><enum><b>*</b></enum>
-                                                </div>
-                                                <div class="form-group">
-                                                    @Html.TextBoxFor(model => model.ProductHeight, new { @class = "form-control", @autocomplete = "off" })
-                                                    @Html.ValidationMessageFor(model => model.ProductHeight, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <p><b>Package Dimensions</b></p>
-                                        <div class="row">
-
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Length</label><enum><b>*</b></enum>
-                                                </div>
-                                                <div class="form-group">
-                                                    @Html.TextBoxFor(model => model.PackageLength, new { @class = "form-control", @autocomplete = "off" })
-                                                    <span class="">Package length as '40cm'</span>
-                                                    @Html.ValidationMessageFor(model => model.PackageLength, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Width</label><enum><b>*</b></enum>
-                                                </div>
-                                                <div class="form-group">
-                                                    @Html.TextBoxFor(model => model.PackageWidth, new { @class = "form-control", @rows = 5 })
-                                                    @Html.ValidationMessageFor(model => model.PackageWidth, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Height</label><enum><b>*</b></enum>
-                                                </div>
-                                                <div class="form-group">
-                                                    @Html.TextBoxFor(model => model.PackageHeight, new { @class = "form-control", @autocomplete = "off" })
-                                                    @Html.ValidationMessageFor(model => model.PackageHeight, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <p><b>Misc Details </b></p>
-                                        <div class="row">
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Product Weight</label><enum><b>*</b></enum>
-                                                </div>
-                                                <div class="form-group">
-                                                    @Html.TextBoxFor(model => model.ProductWeight, new { @class = "form-control", @autocomplete = "off" })
-                                                    @Html.ValidationMessageFor(model => model.ProductWeight, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4 col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Package Weight</label><enum><b>*</b></enum>
-                                                </div>
-                                                <div class="form-group">
-                                                    @Html.TextBoxFor(model => model.PackageWeight, new { @class = "form-control", @autocomplete = "off" })
-                                                    @Html.ValidationMessageFor(model => model.PackageWeight, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <ul class="float-right">
-                                            <li class="list-inline-item">
-                                                <button type="button" class="btn btn-outline-primary prev-step">Previous</button>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <button type="button" class="btn btn-primary next-step">Next</button>
-                                            </li>
-                                        </ul>
-                                    </div>
 
                                     <div class="tab-pane" role="tabpanel" id="step4">
                                         <h4><b>Product Details</b> </h4>
@@ -419,7 +313,7 @@
                                         </ul>
                                     </div>
 
-                                    <div class="tab-pane" role="tabpanel" id="complete">
+                                    <div class="tab-pane" role="tabpanel" id="step6">
                                         <h4><b>Product Images</b> </h4>
                                         <p></p>
                                         @Html.HiddenFor(model => model.MainImage)
@@ -442,7 +336,7 @@
 
                                                 <div class="form-group">
                                                     @{ var display = Model != null && Model.MainImage != null ? "display:block" : "display:none";
-        var imgPath = Model != null && Model.MainImage != null ? Model.MainImage : "";}
+                                                        var imgPath = Model != null && Model.MainImage != null ? Model.MainImage : "";}
                                                     <img id="imagePreview" src="@imgPath" class="img-preview img-preview-sm img-thumbnail" style="@display" />
 
                                                 </div>
@@ -458,7 +352,7 @@
 
                                                 <div class="form-group">
                                                     @{ var display1 = Model != null && Model.Image1 != null ? "display:block" : "display:none";
-        var img1Path = Model != null && Model.Image1 != null ? Model.Image1 : "";}
+                                                        var img1Path = Model != null && Model.Image1 != null ? Model.Image1 : "";}
                                                     <img id="imagePreview1" src="@img1Path" class="img-preview img-preview-sm img-thumbnail" style="@display1" />
                                                 </div>
                                             </div>
@@ -473,7 +367,7 @@
 
                                                 <div class="form-group">
                                                     @{ var display2 = Model != null && Model.Image2 != null ? "display:block" : "display:none";
-        var img2Path = Model != null && Model.Image2 != null ? Model.Image2 : "";}
+                                                        var img2Path = Model != null && Model.Image2 != null ? Model.Image2 : "";}
                                                     <img id="imagePreview2" src="@img2Path" class="img-preview img-preview-sm img-thumbnail" style="@display2" />
                                                 </div>
                                             </div>
@@ -492,7 +386,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     @{ var display3 = Model != null && Model.Image3 != null ? "display:block" : "display:none";
-        var img3Path = Model != null && Model.Image3 != null ? Model.Image3 : "";}
+                                                        var img3Path = Model != null && Model.Image3 != null ? Model.Image3 : "";}
                                                     <img id="imagePreview3" src="@img3Path" class="img-preview img-preview-sm img-thumbnail" style="@display3" />
                                                 </div>
                                             </div>
@@ -509,7 +403,7 @@
 
                                                 <div class="form-group">
                                                     @{ var display4 = Model != null && Model.Image4 != null ? "display:block" : "display:none";
-        var img4Path = Model != null && Model.Image4 != null ? Model.Image4 : "";}
+                                                        var img4Path = Model != null && Model.Image4 != null ? Model.Image4 : "";}
                                                     <img id="imagePreview4" src="@img4Path" class="img-preview img-preview-sm img-thumbnail" style="@display4" />
                                                 </div>
                                             </div>
@@ -525,7 +419,7 @@
 
                                                 <div class="form-group">
                                                     @{ var display5 = Model != null && Model.Image5 != null ? "display:block" : "display:none";
-        var img5Path = Model != null && Model.Image5 != null ? Model.Image5 : "";}
+                                                        var img5Path = Model != null && Model.Image5 != null ? Model.Image5 : "";}
                                                     <img id="imagePreview5" src="@img5Path" class="img-preview img-preview-sm img-thumbnail" style="@display5" />
                                                 </div>
                                             </div>
@@ -535,9 +429,7 @@
                                             <li class="list-inline-item">
                                                 <button type="button" class="btn btn-outline-primary prev-step">Previous</button>
                                             </li>
-                                            @*<li class="list-inline-item">
-                    <button type="button" class="btn btn-outline-primary next-step">Skip</button>
-                </li>*@
+                                            
                                             <li class="list-inline-item">
                                                 <button type="submit" class="btn btn-primary btn-info-full next-step">Save</button>
                                             </li>
@@ -545,7 +437,7 @@
                                     </div>
 
                                     <div class="clearfix"></div>
-                                   
+
                                 </div>
                                     }
                                 </section>
@@ -621,19 +513,18 @@
                 return false;
             }
         });
-        
+
         $(".next-step").click(function (e) {
-           // common.ShowLoader();           
+            common.ShowLoader();
             var levelId =  $(this).closest('div').attr('id');
             //var levelId = $(this).parent.find('Div').attr('id');
-            product.NextLevel(levelId, function (res) {
-                
-                if (res) {
+             product.NextLevel(levelId, function (res) {
+                if (res == true) {
                     var $active = $('.nav-tabs li>.active');
                     $active.parent().next().find('.nav-link').removeClass('disabled');
                     nextTab($active);
                 }
-                //common.HideLoader(); 
+                common.HideLoader();
             });
         });
 

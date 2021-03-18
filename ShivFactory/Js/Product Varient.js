@@ -130,7 +130,7 @@ var productVarient = {
         console.log(map);
         console.log(Object.keys(map));
         console.log(Object.values(map));
-        //$('#step1').css('display', 'none');
+        $('#step1').css('display', 'none');
         
             //Build an grid of  n number of Product Varient.
         var MaxProductNumber = $("#" + label_values[0] + "").children('div .col-sm-2').find('input');
@@ -216,7 +216,6 @@ var productVarient = {
             }
             console.log(JSON.stringify(jsonString));
         });
-        //console.log(JSON.stringify(jsonString));
         productVarient.SaveData(JSON.stringify(jsonString));
     },
 
@@ -224,12 +223,12 @@ var productVarient = {
         common.ShowLoader();
         var data = { "Rows": jsonString};
         ajax.doPostAjax(`/Vendor/Vendor/SaveProductVarients`, data, function (result) {
+            common.HideLoader();
             if (result.ResultFlag == true) {
-                common.HideLoader();
-                common.ShowMessage(result);
-                location.replace("/Vendor/Vendor/AddProduct1");
-                }
-               
+                location.replace("/Vendor/Vendor/Product");
+            } 
+           
+            common.ShowMessage(result);
             });
         
 

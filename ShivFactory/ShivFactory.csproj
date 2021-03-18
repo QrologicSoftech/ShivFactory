@@ -201,7 +201,7 @@
     </Content>
     <Content Include="Areas\Admin\Views\Admin\ProductDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\UnApprovedProductPartialView.cshtml" />
-    <Content Include="Areas\Vendor\Views\Vendor\AddProduct1.cshtml" />
+    <Content Include="Areas\Vendor\Views\Vendor\AddProduct.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\ProductColors.cshtml" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\DataLibrary.DL.dll" />
@@ -466,7 +466,6 @@
     <Content Include="Areas\Vendor\Views\Vendor\Index.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\Product.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\ProductPartialView.cshtml" />
-    <Content Include="Areas\Vendor\Views\Vendor\AddProduct.cshtml" />
     <Content Include="Areas\Vendor\Views\Home\dashBoard.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\AdminNavPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Products.cshtml" />
