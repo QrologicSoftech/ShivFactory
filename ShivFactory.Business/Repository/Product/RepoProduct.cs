@@ -399,6 +399,22 @@ namespace ShivFactory.Business.Repository
             }
             return false;
         }
+
+        #region Add Or Update Product Varient
+        public bool AddOrUpdateProductVarient(ProductVarient model)
+        {
+            var ProductVarients = db.ProductVarients.Where(a => a.ProductVarientId == model.ProductId).FirstOrDefault();
+            if (ProductVarients != null)
+            {// no edition on product varient 
+            }
+            else
+            {
+                db.ProductVarients.Add(model);
+            }
+            return db.SaveChanges() > 0;
+        }
+
+        #endregion
     }
 }
     

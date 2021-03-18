@@ -13,7 +13,7 @@ var productVarient = {
     AddVarient: function (varient) {
         $(".inc").append(`<div id="${varient}" class="row varientSection labelVarient">
             <label class= "col-sm-12 col-form-label varientName"  > ${ varient }</label ><span
-"><a href="#" onclick="productVarient.RemoveVarient(this)">-</a></span>
+"><a href="#" onclick="$(this).parent().parent().remove();">X</a></span>
         <div class="col-sm-2">
             <input name="lok" type="text" onkeyup="productVarient.AddBox(this)"  class="form-control"></div>
             <div class="col-sm-2">
@@ -21,13 +21,6 @@ var productVarient = {
             </div></div>`);
     },
     
-    RemoveVarient: function () {
-        jQuery(document).on('click', '.remove_this_varient', function () {
-            jQuery(this).parent().remove();
-            return false;
-        });
-    },
-
     GetAllValues: function () {
         var values = $(".row .varientSection input").map(function () {
                 return $(this).val()
@@ -36,6 +29,7 @@ var productVarient = {
     },
 
     BindVarientDDL: function () {
+        $('#btnStep1').show(); 
         var label_values = $(".row .varientSection label").map(function () {
             return $(this).html().trim()
         }).get().join(",");
@@ -61,7 +55,8 @@ var productVarient = {
     },
 
     AddBox: function (element) {
-        var lastinputVal = $('input[name="lok"]').parents('div .col-sm-2').siblings('div .col-sm-2').last().prev().find('input').val()
+        //var lastinputVal = $('input[name="lok"]').parents('div .col-sm-2').siblings('div .col-sm-2').last().prev().find('input').val()
+        var lastinputVal = $(element).parents('div .col-sm-2').siblings('div .col-sm-2').last().prev().find('input').val()
         if (lastinputVal.length > 0) {
             productVarient.AddNewTextBox(element); 
         } else {
@@ -69,6 +64,7 @@ var productVarient = {
     },
 
     BindVariationToProductTbl: function () {
+        $('#step2').show(); 
         var map = {};
         var nameArr = []; 
         var QtyArr = []; 
@@ -85,6 +81,7 @@ var productVarient = {
             return $(this).html().trim()
         }).get()
         // map each varient with all values and product description 
+
         // here put condition for limitation of second varient input must ot ge more than first input boxes. 
         for (var r = 0; r < label_values.length; r++) {
             var MaxProductNumber = $("#" + label_values[r] + "").children('div .col-sm-2').find('input');
@@ -103,29 +100,30 @@ var productVarient = {
         
 
            // put here vale from product model 
-        nameArr = new Array(product[0].length);
+       // nameArr = new Array(product[0].length);
         QtyArr = new Array(product[0].length);
         spArr = new Array(product[0].length);
         lpArr = new Array(product[0].length);
      
-        nameArr.push("BedSheet");
-        QtyArr.push("12");
-        spArr.push("123");
-        lpArr.push("159");
+      //  nameArr.push("BedSheet");
+        QtyArr.push($('#ProductQty').val());
+        spArr.push($('#SalePrice').val());
+        lpArr.push($('#ListPrice').val());
         //copyWithin is done to copy all elements upto header length. 
        
-        nameArr.copyWithin(0, product[0].length);   
+        //nameArr.copyWithin(0, product[0].length);   
         QtyArr.copyWithin(0, product[0].length);
         spArr.copyWithin(0, product[0].length);
         lpArr.copyWithin(0, product[0].length);
         
-        map[quantity] = QtyArr;//["12"];
-        map[salePrice] = spArr;//["123"];
-        map[listPrice] = lpArr; //["1234"];
+        map[quantity] = QtyArr;
+        map[salePrice] = spArr;
+        map[listPrice] = lpArr; 
+
         console.log(map);
         console.log(Object.keys(map));
         console.log(Object.values(map));
-       // $('#step1').css('display', 'none');
+        $('#step1').css('display', 'none');
         
             //Build an grid of  n number of Product Varient.
         var MaxProductNumber = $("#" + label_values[0] + "").children('div .col-sm-2').find('input');
@@ -163,7 +161,13 @@ var productVarient = {
                 row = $(table[0].insertRow(-1));
                 for (var j = 0; j < columnCount; j++) {
                     var cell = $("<td />");
-                    cell.html("<input type='text' class='form-control' value="+product[i][j]+" />")
+                   
+                    if (product[0][j] == quantity || product[0][j] == salePrice || product[0][j] == listPrice) {
+                        cell.html("<input type='number' class='form-control' value=" + product[i][j] + " />")
+                    } else {
+                        cell.html(product[i][j]);
+                   //     cell.html("<label class='form-control'>" + product[i][j] + " />")
+                    }
                     row.append(cell);
                 }
             }
@@ -176,21 +180,6 @@ var productVarient = {
        
     },
     TableToJSON: function (table) {
-        //table = $('#tblProduct')
-        //var jsonString = { "Rows": [] };
-        //var $th = $(table).find('th');
-        //$(table).find('tbody tr').each(function (i, tr) {
-        //    if (i > 0) {
-        //        var obj = {};
-        //        $tds = $(tr).find('td').find('input');
-        //        $th.each(function (index, th) {
-        //            obj[$(th).text()] = $tds.eq(index).val();
-        //        });
-        //        jsonString.Rows.push(obj);
-        //    }
-        //});
-        //console.log(JSON.stringify(jsonString));
-        //productVarient.SaveData(JSON.stringify(jsonString));
         table = $('#tblProduct')
         var jsonString = [];
         var $th = $(table).find('th');
@@ -198,24 +187,22 @@ var productVarient = {
             if (i > 0) {
                 let obj = {};
                 $tds = $(tr).find('td').find('input');
+                $tdvarientValue = $(tr).find('td');
                 $th.each(function (index, th) {
-                    //let obj = {
-                    //    "VarientName1": $(th).text(),
-                    //    "VarientValue1": $tds.eq(index).val(),
-                    //    if()
-                    //};
+                    obj["ProductId"] = $("#ProductId").val();
+
                     if ($(th).text() == quantity) {
-                        obj["ProductQty"] = $tds.eq(index).val();
+                        obj["ProductQty"] = $tds.eq(0).val();
                     }
                     else if ($(th).text() == salePrice) {
-                        obj["SalePrice"] = $tds.eq(index).val();
+                        obj["SalePrice"] = $tds.eq(1).val();
                     }
                     else if ($(th).text() == listPrice) {
-                        obj["ListPrice"] = $tds.eq(index).val();
+                        obj["ListPrice"] = $tds.eq(2).val();
                     }
                     else {
-                        obj[`VarientName${index+1}`] = $(th).text();
-                        obj[`VarientValue${index+1}`] = $tds.eq(index).val();
+                        obj[`VarientName${index + 1}`] = $(th).text();
+                        obj[`VarientValue${index + 1}`] = $tdvarientValue.eq(index).html();
                     }
                 });
                 jsonString.push(obj);
@@ -229,12 +216,12 @@ var productVarient = {
 
     SaveData: function (jsonString) {
         common.ShowLoader();
-        // var data = { "Product": jsonString};
+        var data = { "Rows": jsonString};
        
-        var data = [
-            { "VarientName1": "Color", "VarientValue1": "Red", "VarientName2": "Size", "VarientValue2": "M", "ProductQty": "15", "SalePrice": "15300", "ListPrice": "12300" }
+        //var data = [
+        //    { "VarientName1": "Color", "VarientValue1": "Red", "VarientName2": "Size", "VarientValue2": "M", "ProductQty": "15", "SalePrice": "15300", "ListPrice": "12300" }
             
-        ];
+        //];
         ajax.doPostAjax(`/Vendor/Vendor/SaveProductVarients`, data, function (result) {
                 if (result.ResultFlag == true) {
                 

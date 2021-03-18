@@ -10,6 +10,7 @@ using System.Web.Hosting;
 using System.Web.Mvc;
 using ShivFactory.Business.Model.Common;
 using DataLibrary.DL;
+using System.Web.Script.Serialization;
 
 namespace ShivFactory.Areas.Vendor.Controllers
 {
@@ -514,14 +515,61 @@ namespace ShivFactory.Areas.Vendor.Controllers
         //}
 
         
-        public ActionResult SaveProductVarients(List<clsProductVarient> model)
+        public ActionResult SaveProductVarients(string Rows)
         {
-            return Json(new ResultModel
+            try
             {
-                ResultFlag = true,
-                Data = true,
-                Message = "Varients Added successfully!!"
-            }, JsonRequestBehavior.AllowGet);
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                List<clsProductVarient> productVarients = js.Deserialize<List<clsProductVarient>>(Rows);
+                RepoProduct repoProduct = new RepoProduct();
+                foreach (var row in productVarients)
+                {
+                    var productVarient = new ProductVarient
+                    {
+                        ProductId = row.ProductId,
+                        VarientName1 = row.VarientName1,
+                        VarientValue1 = row.VarientValue1,
+                        VarientName2 = row.VarientName2,
+                        VarientValue2 = row.VarientValue2,
+                        VarientName3 = row.VarientName3,
+                        VarientValue3 = row.VarientValue3,
+                        VarientName4 = row.VarientName4,
+                        VarientValue4 = row.VarientValue4,
+                        VarientName5 = row.VarientName5,
+                        VarientValue5 = row.VarientValue5,
+                        VarientName6 = row.VarientName6,
+                        VarientValue6 = row.VarientValue6,
+                        VarientName7 = row.VarientName7,
+                        VarientValue7 = row.VarientValue7,
+                        VarientName8 = row.VarientName8,
+                        VarientValue8 = row.VarientValue8,
+                        VarientName9 = row.VarientName9,
+                        VarientValue9 = row.VarientValue9,
+                        VarientName10 = row.VarientName10,
+                        VarientValue10 = row.VarientValue10,
+                        SalePrice = row.SalePrice,
+                        ListPrice = row.ListPrice,
+                        Stock = row.ProductQty,
+                        AddDate = DateTime.Now
+                    };
+                    repoProduct.AddOrUpdateProductVarient(productVarient);
+                }
+                return Json(new ResultModel
+                {
+                    ResultFlag = true,
+                    Data = true,
+                    Message = "Varients Added successfully!!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = e.Message.ToString(),
+                }, JsonRequestBehavior.AllowGet) ;
+            }
         }
         #endregion
 

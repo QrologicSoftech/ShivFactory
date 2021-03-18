@@ -44,7 +44,7 @@
                                     {
                                         <div class="tab-content py-2">
 
-                                            @Html.HiddenFor(model => model.SubCategoryId)
+                                            @Html.HiddenFor(model => model.SubCategoryId) 
                                             @Html.HiddenFor(model => model.ProductId)
                                             @Html.HiddenFor(model => model.ProductQty)
                                             @Html.HiddenFor(model => model.SalePrice)
@@ -71,13 +71,13 @@
 
                                                 <ul class="float-right">
                                                     <li class="list-inline-item">
-                                                        <button type="button" onclick="productVarient.BindVariationToProductTbl();" class="btn btn-outline-primary prev-step">Process</button>
+                                                        <button type="button" id="btnStep1" style="display:none" onclick="productVarient.BindVariationToProductTbl();" class="btn btn-outline-primary prev-step">Process</button>
                                                     </li>
                                                     
                                                 </ul>
                                             </div>
 
-                                            <div class="tab-pane active" role="tabpanel" id="step2">
+                                            <div class="tab-pane active" role="tabpanel" id="step2" style="display:none">
                                                 @*<a href="#" style="float:right" onclick="productVarient.AddMoreVarientToProduct();">Back</a>*@
                                                 <div id="dvTable">
                                                 </div>
