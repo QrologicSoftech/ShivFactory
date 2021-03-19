@@ -257,6 +257,31 @@ namespace ShivFactory.Controllers
         }
 
         #endregion
+
+
+        #region Website Listing
+        public ActionResult ProductListing(ProductListing model )
+        {
+            //int? subCategoryId
+            model.subCategoryId = 5;
+            //if (!subCategoryId == null)
+            //{
+                
+            //    return View(model);
+            //}
+            return View(model);
+        }
+
+        public ActionResult ProductFilterPartialView()
+        {
+            return View();
+        }
+
+        public ActionResult ProductListingPartialView()
+        {
+            return View();         
+        }
+        #endregion
     }
 
 

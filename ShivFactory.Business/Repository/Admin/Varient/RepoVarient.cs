@@ -149,7 +149,7 @@ namespace ShivFactory.Business.Repository
         }
         #endregion
 
-        #region GetAllVarients
+        #region GetAllVarients without pagination
         public List<VarientResponse> GetAllVarients()
         {
             string searchText;

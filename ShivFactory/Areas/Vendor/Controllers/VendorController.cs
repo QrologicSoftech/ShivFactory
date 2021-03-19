@@ -547,6 +547,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
         #endregion
 
         #region GetVarientDdlByCategoryId
+        [AllowAnonymous]
         public ActionResult GetVarientDdlByCategoryId(int SubcategoryId, string varients)
         {
             try

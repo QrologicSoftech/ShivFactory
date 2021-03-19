@@ -1,0 +1,43 @@
+﻿@model ShivFactory.Business.Repository.ProductListing
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
+}
+@using (Html.BeginForm("ProductListing", "Home", FormMethod.Post, new {id = "myform", @class = "forms-sample" }))
+{
+    <section class="section-content padding-y">
+        <div class="container">
+            @Html.HiddenFor(model => model.subCategoryId)
+            <!-- ============================  FILTER TOP  ================================= -->
+            <div class="card mb-3 breadcrumb-min  bg-transparent border-0">
+                <div class="card-body bg-transparent pl-0">
+                    <ol class="breadcrumb float-left">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Category name</a></li>
+                        <li class="breadcrumb-item active">Item details</li>
+                    </ol>
+                </div>
+                <!-- card-body .// -->
+            </div>
+            <!-- card.// -->
+            <!-- ============================ FILTER TOP END.// ================================= -->
+
+            <div class="row">
+                <aside class="col-md-3 filter-mobile">
+                    <a type="button" class="slide-toggle close-filter d-md-none d-lg-none d-xl-none"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                    <div id="partialViewFilter">
+
+                    </div>
+
+
+                </aside>
+            </div>
+        </div>
+    </section>
+}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var subCatId = $('#subCategoryId').val(); 
+            Listing.BindVarientByCategoryId(subCatId);
+        });
+    </script>

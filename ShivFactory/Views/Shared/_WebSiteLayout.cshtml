@@ -11,13 +11,12 @@
 <link href="~/Content/Website/css/ui.css?ver=@version" rel="stylesheet" />
 <link href="~/Content/Website/css/responsive.css?ver=@version" rel="stylesheet" />
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>_WebSiteLayout</title>
 </head>
-<body>
+<body style="background-color: #f1f3f6;">
     <div id="loader" class="center"></div>
     <header class="section-header">
         <section class="header-main" data-toggle="affix">
@@ -31,11 +30,11 @@
                         <form action="#" class="search-header">
                             <div class="input-group w-100">
                                 @*<select class="custom-select border-right" name="category_name">
-                                    <option value="">All</option>
-                                    <option value="codex">Special</option>
-                                    <option value="comments">Only best</option>
-                                    <option value="content">Latest</option>
-                                </select>*@
+                                        <option value="">All</option>
+                                        <option value="codex">Special</option>
+                                        <option value="comments">Only best</option>
+                                        <option value="content">Latest</option>
+                                    </select>*@
                                 <input type="text" class="form-control" placeholder="What are you looking for...">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit"> <i class="fa fa-search"></i> </button>
@@ -226,7 +225,7 @@
     <link href="~/Content/Website/css/owl.theme-min.css" rel="stylesheet" />
     <script src="~/Content/Website/js/owl.carousel.js"></script>
     <script src="~/Content/Website/js/script.js"></script>
-  
+
     <script>
         $(document).ready(function () {
             ma5menu({
@@ -238,9 +237,31 @@
             });
         });
     </script>
-    <link href="~/Content/Website/css/ma5-menu.min.css" rel="stylesheet" />
+    <link href="~/Content/Website/css/ma5-menu.min.css?ver=@version" rel="stylesheet" />
+    <link href="~/Content/toastr.css?ver=@version" rel="stylesheet" />
     <script src="~/Content/Website/js/ma5-menu.min.js"></script>
-    
+
+    <script src="~/Js/CommonFunction.js?ver=@version"></script>
+    <script src="~/Js/Common.js?ver=@version"></script>
+    <script src="~/Js/Admin.js?ver=@version"></script>
+    <script src="~/Js/Vendor.js?ver=@version"></script>
+    <script src="~/Js/Product.js?ver=@version"></script>
+    <script src="~/Js/Profile.js?ver=@version"></script>
+    <script src="~/Js/Listing.js?ver=@version"></script>
+    @*Showing toaster message*@
+    <script src="~/Scripts/toastr.js?ver=@version"></script>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script>
+    toastr.success('@TempData["SuccessMessage"].ToString()');
+        </script>
+    }
+    else if (TempData["ErrorMessage"] != null)
+    {
+        <script>
+            toastr.error('@TempData["ErrorMessage"].ToString()');
+        </script>
+    }
     <script>
         $('.dropdown-toggle').click(function (e) {
             if ($(document).width() > 767) {

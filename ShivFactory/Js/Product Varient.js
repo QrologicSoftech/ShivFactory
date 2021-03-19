@@ -56,9 +56,7 @@ var productVarient = {
 
     AddBox: function (element) {
         var maxinputVal = $('.inc').children('div .varientSection:first-child').children('div .col-sm-2');
-        //alert("maxinputVal ::: " + maxinputVal.length);
         var divinputVal = $(element).parent().parent('div .varientSection').children('div .col-sm-2');
-        //alert("divinputVal ::: " + divinputVal.length);
         if (divinputVal.length-1 > maxinputVal.length) {
             return false;
         } else {
