@@ -3,6 +3,7 @@ using ShivFactory.Business.Model;
 using ShivFactory.Business.Model.Common;
 using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.ChangeProfileImage;
+using ShivFactory.Business.Repository.Website;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,20 +17,6 @@ namespace ShivFactory.Controllers
     {
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
@@ -72,7 +59,7 @@ namespace ShivFactory.Controllers
                     {
                         return Redirect(model.ReturnUrl);
                     }
-                    return View();                    
+                    return View();
                 }
 
                 TempData["ErrorMessage"] = "Failled to update profile.";
@@ -249,24 +236,32 @@ namespace ShivFactory.Controllers
         #endregion
 
         #region Website
-        public ActionResult CategoryPartialview()
+        public ActionResult WebMenuPartialview()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            try
+            {
+                RepoMenu menu = new RepoMenu();
+                var menues = menu.GetAllMenues();
+                return View(menues);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+            return View(new MenuResponse());
         }
 
         #endregion
 
 
         #region Website Listing
-        public ActionResult ProductListing(ProductListing model )
+        public ActionResult ProductListing(ProductListing model)
         {
             //int? subCategoryId
             model.subCategoryId = 5;
             //if (!subCategoryId == null)
             //{
-                
+
             //    return View(model);
             //}
             return View(model);
@@ -279,7 +274,7 @@ namespace ShivFactory.Controllers
 
         public ActionResult ProductListingPartialView()
         {
-            return View();         
+            return View();
         }
         #endregion
     }

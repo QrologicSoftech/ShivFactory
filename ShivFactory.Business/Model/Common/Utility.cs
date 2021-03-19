@@ -5,11 +5,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace ShivFactory.Business.Model.Common
 {
     public class Utility
     {
+        #region Is UserLogin
+        public bool IsUserLogIn()
+        {
+            if (string.IsNullOrEmpty(HttpContext.Current.Request.Cookies[CookieName.UserName].Value.ToString()))
+            {
+                return false;
+            }
+            return true;
+        }
+        #endregion
+
         #region GetCurrent UserId
         public string GetCurrentUserId()
         {
