@@ -448,18 +448,8 @@ namespace ShivFactory.Areas.Vendor.Controllers
 
                 if (isSaved)
                 {
-                    var varientModel = new clsProductVarient
-                    {
-                        ProductId = product.ProductId,
-                        ProductQty = (int)product.StockCount,
-                        SalePrice = (int)product.SalePrice,
-                        ListPrice = (int)product.ListPrice,
-                        SubCategoryId = (int)product.SubCategoryId
-                    };
-
                     TempData["SuccessMessage"] = "Product add or update successfully!!";
-                    // return RedirectToAction("Product", "Vendor");
-                    return RedirectToAction("ProductVarient", varientModel );
+                    return RedirectToAction("ProductVarient","Vendor",new { id=product.ProductId} );
                 }
                 else
                 {
