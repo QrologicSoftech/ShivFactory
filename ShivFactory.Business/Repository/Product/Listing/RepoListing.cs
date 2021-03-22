@@ -17,7 +17,6 @@ namespace ShivFactory.Business.Repository
         public List<ClsProduct> GetallProductlist(ProductListingPagination model,int pageIndex, int pageSize)
         {
             List<ClsProduct> product = new List<ClsProduct>();
-       
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@PageIndex", pageIndex));
             parameters.Add(new SqlParameter("@PageSize", pageSize));
