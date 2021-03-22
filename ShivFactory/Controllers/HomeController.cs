@@ -268,7 +268,7 @@ namespace ShivFactory.Controllers
             {
                 ProductListingPagination model = new ProductListingPagination(); 
                 RepoListing repoListing = new RepoListing();
-          List<ClsProduct> list =  repoListing.GetallProductlist(pageIndex, 3); 
+                List<ClsProduct> list =  repoListing.GetallProductlist(model); 
                 System.Threading.Thread.Sleep(100);
                 return Json(new ResultModel
                 {
