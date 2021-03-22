@@ -14,13 +14,17 @@ namespace ShivFactory.Business.Repository
     {
         SqlConnection con = new SqlConnection(Connection.ConnectionString);
 
-        public List<ClsProduct> GetallProductlist(int pageIndex, int pageSize)
+        public List<ClsProduct> GetallProductlist(ProductListingPagination model,int pageIndex, int pageSize)
         {
             List<ClsProduct> product = new List<ClsProduct>();
-
+       
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@PageIndex", pageIndex));
             parameters.Add(new SqlParameter("@PageSize", pageSize));
+            parameters.Add(new SqlParameter("@CategoryId", pageSize));
+            parameters.Add(new SqlParameter("@SubCategoryId", pageSize));
+            parameters.Add(new SqlParameter("@MiniCategoryId", pageSize));
+            parameters.Add(new SqlParameter("@SearchText", pageSize));
             DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, "GetProductsPageWise", parameters.ToArray());
             if (ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0)
             {
