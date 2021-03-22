@@ -287,7 +287,7 @@ namespace ShivFactory.Controllers
             try
             {
                 RepoListing repoListing = new RepoListing();
-                List<ClsProduct> list =  repoListing.GetallProductlist(model); 
+                List<ClsProduct> list = repoListing.GetallProductlist(model);
                 System.Threading.Thread.Sleep(100);
                 return Json(new ResultModel
                 {
@@ -311,7 +311,12 @@ namespace ShivFactory.Controllers
 
         #endregion
 
-
+        #region ProductDetail
+        public ActionResult ProductDetail()
+        {
+            return View();
+        }
+        #endRegion
 
     }
 }
