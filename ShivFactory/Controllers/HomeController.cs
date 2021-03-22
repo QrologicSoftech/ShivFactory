@@ -257,9 +257,39 @@ namespace ShivFactory.Controllers
         #region Website Listing
         public ActionResult ProductListing(int? id, int? subId, int? minId, string searchtext)
         {
+            ViewBag.CategoryId = id;
             ViewBag.SubCategoryId = subId;
+            ViewBag.MiniCategoryId = minId;
+
             return View();
         }
+
+        #region GetVarients
+        public ActionResult GetVarientDdlByCategoryId(int SubcategoryId, string varients)
+        {
+            try
+            {
+                RepoVarient varient = new RepoVarient();
+                var varientddl = varient.GetVarientDDl(SubcategoryId, varients);
+
+                return Json(new ResultModel
+                {
+                    ResultFlag = true,
+                    Data = varientddl,
+                    Message = "Varients found successfully!!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
 
 
         public ActionResult GetProduct(int pageIndex)
