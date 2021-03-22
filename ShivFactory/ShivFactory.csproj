@@ -556,6 +556,7 @@
     <Content Include="Views\Home\ProductFilterPartialView.cshtml" />
     <Content Include="Views\Home\ProductListingPartialView.cshtml" />
     <Content Include="Views\Home\WebMenuPartialview.cshtml" />
+    <Content Include="Views\Home\ProductListingScrollOver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

@@ -255,29 +255,64 @@ namespace ShivFactory.Controllers
 
 
         #region Website Listing
-        public ActionResult ProductListing(ProductListing model)
+        public ActionResult ProductListing(ClsProduct model)
         {
-            //int? subCategoryId
-            model.subCategoryId = 5;
-            //if (!subCategoryId == null)
-            //{
 
-            //    return View(model);
-            //}
-            return View(model);
+            RepoListing repoListing = new RepoListing();
+            model.SubCategoryId = 5;
+            return View(repoListing.GetallProductlist(1, 3));
         }
 
-        public ActionResult ProductFilterPartialView()
-        {
-            return View();
-        }
 
-        public ActionResult ProductListingPartialView()
-        {
-            return View();
-        }
-        #endregion
+      public JsonResult GetProduct(int pageIndex)
+            {
+                RepoListing repoListing = new RepoListing();
+
+                System.Threading.Thread.Sleep(100);
+                return Json(repoListing.GetallProductlist(pageIndex, 3), JsonRequestBehavior.AllowGet);
+            }
+
+
+            public ActionResult GetAllProductByCatSubCatId(int Category, int SubCatId, int minicatId)
+            {
+
+                RepoProduct repoProduct = new RepoProduct();
+                //repoProduct.GEt
+                return Json(new ResultModel
+                {
+                    ResultFlag = true,
+                    Data = null,
+                    Message = "Product found successfully!!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            public ActionResult ProductFilterPartialView()
+            {
+                return View();
+            }
+
+            public ActionResult ProductListingPartialView()
+            {
+                return View();
+            }
+
+            [AllowAnonymous]
+            public ActionResult ProductListingScrollOver()
+            {
+                SelectMember s = new SelectMember();
+                return View(s.GetallMemberlist(1, 10)); // Calling SelectMember Class to get Data
+            }
+
+            public JsonResult GetCustomers(int pageIndex)
+            {
+                SelectMember s = new SelectMember();
+                //Added to similate delay so that we see the loader working
+                //Must be removed when moving to production
+                System.Threading.Thread.Sleep(2000);
+                return Json(s.GetallMemberlist(pageIndex, 10), JsonRequestBehavior.AllowGet);
+            }
+            #endregion
+
+
+        
     }
-
-
 }
