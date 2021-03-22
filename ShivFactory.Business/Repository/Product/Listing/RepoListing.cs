@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace ShivFactory.Business.Repository
 {
-   public  class RepoListing
+    public class RepoListing
     {
-        SqlConnection  con = new SqlConnection(Connection.ConnectionString);
+        SqlConnection con = new SqlConnection(Connection.ConnectionString);
 
         public List<ClsProduct> GetallProductlist(int pageIndex, int pageSize)
         {
@@ -23,10 +23,28 @@ namespace ShivFactory.Business.Repository
             parameters.Add(new SqlParameter("@PageSize", pageSize));
             DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, "GetProductsPageWise", parameters.ToArray());
             if (ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0)
-            { 
-            
+            {
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    product.Add(new ClsProduct()
+                    {
+                        SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
+                        ProductId = row["ProductId"] != DBNull.Value ? Convert.ToInt32(row["ProductId"]) : 0,
+                        ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
+                        CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
+                        SubCategoryName = row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
+                        BrandName = row["BrandName"] != DBNull.Value ? row["BrandName"].ToString() : "",
+                        // Adddate = row["Adddate"] != DBNull.Value ? Convert.ToDateTime(row["Adddate"]).ToString("dd/MM/yyyy") : "",
+                        InactiveReason = row["InactiveReason"] != DBNull.Value ? row["InactiveReason"].ToString() : "",
+                        PageCount = row["PageCount"] != DBNull.Value ? Convert.ToInt32(row["PageCount"].ToString()) : 0
+                    });
+                }
+               
             }
             return product;
         }
     }
 }
+
+            
+           
