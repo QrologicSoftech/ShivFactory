@@ -1,4 +1,4 @@
-﻿@model ShivFactory.Business.Repository.ProductListing
+﻿@model IEnumerable<ShivFactory.Business.Repository.ClsProduct>
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
@@ -7,7 +7,8 @@
 {
     <section class="section-content padding-y">
         <div class="container">
-            @Html.HiddenFor(model => model.subCategoryId)
+            @Html.HiddenFor(model => model.First().SubCategoryId)
+            <input type="hidden" value="5" id="SubCatttegoryId" />
             <!-- ============================  FILTER TOP  ================================= -->
             <div class="card mb-3 breadcrumb-min  bg-transparent border-0">
                 <div class="card-body bg-transparent pl-0">
@@ -17,7 +18,7 @@
                         <li class="breadcrumb-item active">Item details</li>
                     </ol>
                 </div>
-                <!-- card-body .// -->
+               
             </div>
             <!-- card.// -->
             <!-- ============================ FILTER TOP END.// ================================= -->
@@ -28,16 +29,771 @@
                     <div id="partialViewFilter">
 
                     </div>
-
-
                 </aside>
+
+                <main class="col-md-9 right-list">
+                    <section class="rech-section">
+                        <div class="top-rech">
+                            <div class="container">
+                                <div class="bg-color">
+                                    <ul class="nav nav-tabs tbb">
+                                        <li>Sort By </li>
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#home" class="active show">
+                                                Relevance
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tab" href="#menu1">
+                                                Popularity
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tab" href="#menu2">
+                                                Price -- Low to High
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tab" href="#menu3">
+                                                Price -- High to Low
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tab" href="#menu4">
+                                                Newest First
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    <div id="home" class="tab-pane fade active  in">
+                                        <section>
+                                            <header class="mb-3">
+                                                <div class="form-inline">
+                                                    <strong class="mr-md-auto">
+                                                        <button class="btn btn-google d-md-none d-lg-none d-xl-none mr-2 latest-button slide-toggle">Search Filter <i class="fas fa-filter"></i></button>
+                                                        <span class="d-none d-md-block">32 Items found</span>
+                                                    </strong>
+                                                    <form class="form-inline">
+                                                        <select class="custom-select latest-button " id="inlineFormCustomSelectPref">
+                                                            <option>Latest items</option>
+                                                            <option>Trending</option>
+                                                            <option>Most Popular</option>
+                                                            <option>Cheapest</option>
+                                                        </select>
+                                                    </form>
+                                                </div>
+                                            </header>
+
+                                            <article class="card-product-list">
+                                                <div id="ListScroll" style="height: 300px; overflow: auto; width: 100%">
+                                                    <div class="row" id="partialViewListing">
+
+
+                                                    </div>
+                                                </div>
+                                                <!-- row.// -->
+                                            </article>
+                                            @*<nav class="mb-4" aria-label="Page navigation sample">
+                                                <ul class="pagination">
+                                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                                </ul>
+                                            </nav>*@
+                                        </section>
+                                    </div>
+                                    <div id="menu1" class="tab-pane fade">Hello DIV
+                                        <section>
+                                            <header class="mb-3">
+                                                <div class="form-inline">
+                                                    <strong class="mr-md-auto">
+                                                        <button class="btn btn-google d-md-none d-lg-none d-xl-none mr-2 latest-button slide-toggle">Search Filter <i class="fas fa-filter"></i></button>
+                                                        <span class="d-none d-md-block">8 Items found</span>
+                                                    </strong>
+                                                    <form class="form-inline">
+                                                        <select class="custom-select latest-button " id="inlineFormCustomSelectPref">
+                                                            <option>Latest items</option>
+                                                            <option>Trending</option>
+                                                            <option>Most Popular</option>
+                                                            <option>Cheapest</option>
+                                                        </select>
+                                                    </form>
+                                                </div>
+                                            </header>
+
+                                            <article class="card-product-list">
+                                                <div class="row">
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <a href="#"><img src="images/items/5.jpg"></a> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <a href="#"><img src="images/items/6.jpg"></a> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <a href="#"><img src="images/items/15.jpg"></a> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <a href="#"><img src="images/items/1.jpg"></a> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <img src="images/items/2.jpg"> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <img src="images/items/3.jpg"> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <img src="images/items/4.jpg"> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <img src="images/items/1.jpg"> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+                                                </div>
+
+                                                <!-- row.// -->
+                                            </article>
+                                            <nav class="mb-4" aria-label="Page navigation sample">
+                                                <ul class="pagination">
+                                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                                </ul>
+                                            </nav>
+                                        </section>
+
+                                    </div>
+                                    <div id="menu2" class="tab-pane fade">
+                                        <section>
+                                            <header class="mb-3">
+                                                <div class="form-inline">
+                                                    <strong class="mr-md-auto">
+                                                        <button class="btn btn-google d-md-none d-lg-none d-xl-none mr-2 latest-button slide-toggle">Search Filter <i class="fas fa-filter"></i></button>
+                                                        <span class="d-none d-md-block">4 Items found</span>
+                                                    </strong>
+                                                    <form class="form-inline">
+                                                        <select class="custom-select latest-button " id="inlineFormCustomSelectPref">
+                                                            <option>Latest items</option>
+                                                            <option>Trending</option>
+                                                            <option>Most Popular</option>
+                                                            <option>Cheapest</option>
+                                                        </select>
+                                                    </form>
+                                                </div>
+                                            </header>
+
+                                            <article class="card-product-list">
+                                                <div class="row">
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <img src="images/items/2.jpg"> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <img src="images/items/3.jpg"> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <img src="images/items/4.jpg"> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <img src="images/items/1.jpg"> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+                                                </div>
+
+                                                <!-- row.// -->
+                                            </article>
+                                            <nav class="mb-4" aria-label="Page navigation sample">
+                                                <ul class="pagination">
+                                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                                </ul>
+                                            </nav>
+                                        </section>
+
+                                    </div>
+                                    <div id="menu3" class="tab-pane fade">
+                                        <section>
+                                            <header class="mb-3">
+                                                <div class="form-inline">
+                                                    <strong class="mr-md-auto">
+                                                        <button class="btn btn-google d-md-none d-lg-none d-xl-none mr-2 latest-button slide-toggle">Search Filter <i class="fas fa-filter"></i></button>
+                                                        <span class="d-none d-md-block">6 Items found</span>
+                                                    </strong>
+                                                    <form class="form-inline">
+                                                        <select class="custom-select latest-button " id="inlineFormCustomSelectPref">
+                                                            <option>Latest items</option>
+                                                            <option>Trending</option>
+                                                            <option>Most Popular</option>
+                                                            <option>Cheapest</option>
+                                                        </select>
+                                                    </form>
+                                                </div>
+                                            </header>
+
+                                            <article class="card-product-list">
+                                                <div class="row">
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <a href="#"><img src="images/items/1.jpg"></a> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Hot sale unisex New Design Shirt for sport polo shirts latest design</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <a href="#"><img src="images/items/2.jpg"></a> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">High Quality Winter PU Rain Jacket with Padding for Men's outdoor</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <a href="#"><img src="images/items/3.jpg"></a> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <a href="#"><img src="images/items/4.jpg"></a> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <a href="#"><img src="images/items/5.jpg"></a> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <a href="#"><img src="images/items/6.jpg"></a> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+                                                </div>
+
+                                                <!-- row.// -->
+                                            </article>
+                                            <nav class="mb-4" aria-label="Page navigation sample">
+                                                <ul class="pagination">
+                                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                                </ul>
+                                            </nav>
+                                        </section>
+
+
+                                    </div>
+                                    <div id="menu4" class="tab-pane fade">
+                                        <section>
+                                            <header class="mb-3">
+                                                <div class="form-inline">
+                                                    <strong class="mr-md-auto">
+                                                        <button class="btn btn-google d-md-none d-lg-none d-xl-none mr-2 latest-button slide-toggle">Search Filter <i class="fas fa-filter"></i></button>
+                                                        <span class="d-none d-md-block">6 Items found</span>
+                                                    </strong>
+                                                    <form class="form-inline">
+                                                        <select class="custom-select latest-button " id="inlineFormCustomSelectPref">
+                                                            <option>Latest items</option>
+                                                            <option>Trending</option>
+                                                            <option>Most Popular</option>
+                                                            <option>Cheapest</option>
+                                                        </select>
+                                                    </form>
+                                                </div>
+                                            </header>
+
+                                            <article class="card-product-list">
+                                                <div class="row">
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <a href="#"><img src="images/items/15.jpg"></a> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                   
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <a href="#"><img src="images/items/1.jpg"></a> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <img src="images/items/2.jpg"> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <img src="images/items/3.jpg"> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <img src="images/items/4.jpg"> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                    <!-- col.// -->
+
+                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                        <figure class="card card-product-grid">
+                                                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <img src="images/items/1.jpg"> </div>
+                                                            <!-- img-wrap.// -->
+                                                            <figcaption class="info-wrap">
+                                                                <a href="#" class="title mb-2">Cheap and Best demo clothe with latest Fashion styles for Men</a>
+                                                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>
+                                                                <!-- price-wrap.// -->
+                                                                <div class="rating-wrap mb-2">
+                                                                    <ul class="rating-stars">
+                                                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>
+                                                                    </ul>
+                                                                    <div class="label-rating">2/10</div>
+                                                                </div>
+                                                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a>
+                                                            </figcaption>
+                                                        </figure>
+                                                    </div>
+                                                </div>
+
+                                                <!-- row.// -->
+                                            </article>
+                                            <nav class="mb-4" aria-label="Page navigation sample">
+                                                <ul class="pagination">
+                                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                                </ul>
+                                            </nav>
+                                        </section>
+
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </main>
             </div>
         </div>
     </section>
+
+   
 }
     <script type="text/javascript">
+        var pageIndex = 1;
+        var pageCount = 1;
         $(document).ready(function () {
-            var subCatId = $('#subCategoryId').val(); 
+            var subCatId = $('#SubCategoryId').val();
             Listing.BindVarientByCategoryId(subCatId);
         });
+
+        $('#ListScroll').bind('scroll', function () {
+            if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+                Listing.GetRecords();
+            }
+        });
+     
     </script>

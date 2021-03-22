@@ -8,6 +8,6 @@ namespace ShivFactory.Business.Repository
 { 
   public class ProductListing
     {
-        public int subCategoryId { get; set; }
+     public int subCategoryId { get; set; }
     }
 }

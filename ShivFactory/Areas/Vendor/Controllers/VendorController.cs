@@ -465,7 +465,6 @@ namespace ShivFactory.Areas.Vendor.Controllers
         }
         #endregion
 
-
         #region product Varient
         public ActionResult ProductVarient(int id)
         {
