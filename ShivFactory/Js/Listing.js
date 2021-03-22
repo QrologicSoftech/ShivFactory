@@ -32,22 +32,14 @@ var Listing = {
     GetRecords: function () {
 pageIndex++;
        // if (pageIndex == 2 || pageIndex <= pageCount) {
-            common.ShowLoader();
-            $.ajax({
-                type: "POST",
-                url: "/Home/GetProduct",
-                data: '{pageIndex: ' + pageIndex + '}',
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: Listing.OnSuccess,
-                failure: function (response) {
-                    console.log("failure:: :: " + response);
-                    //alert(response.d);
-                },
-                error: function (response) {
-                    console.log("error:: :: " + response);
-                }
-            });
+        common.ShowLoader();
+        var data = { "pageIndex" :  pageIndex }
+        ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
+            if (result.ResultFlag == true) {
+                Listing.OnSuccess
+                } 
+        });      
+           
       //  } 
     },
 

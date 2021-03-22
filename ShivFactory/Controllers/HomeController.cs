@@ -258,19 +258,33 @@ namespace ShivFactory.Controllers
         public ActionResult ProductListing(int? id, int? subId, int? minId, string searchtext)
         {
             ViewBag.SubCategoryId = subId;
-            //ClsProduct model = new ClsProduct();
-            //RepoListing repoListing = new RepoListing();
-            //model.SubCategoryId = 5;
             return View();
         }
 
 
-        public JsonResult GetProduct(int pageIndex)
+        public ActionResult GetProduct(int pageIndex)
         {
-            RepoListing repoListing = new RepoListing();
+            try
+            {
+                RepoListing repoListing = new RepoListing();
+                System.Threading.Thread.Sleep(100);
+                return Json(new ResultModel
+                {
+                    ResultFlag = repoListing.GetallProductlist(pageIndex, 3) != null ? true : false,
+                    Data = repoListing.GetallProductlist(pageIndex, 3),
+                    Message = repoListing.GetallProductlist(pageIndex, 3) != null ? "Product find successfully!!" : "Failled to find Product!!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = e.Message.ToString()
+                }, JsonRequestBehavior.AllowGet);
+            }
 
-            System.Threading.Thread.Sleep(100);
-            return Json(repoListing.GetallProductlist(pageIndex, 3), JsonRequestBehavior.AllowGet);
         }
 
 
