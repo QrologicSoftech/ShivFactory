@@ -21,6 +21,9 @@ namespace ShivFactory.Business.Repository
         public DateTime Adddate { get; set; }
         public string InactiveReason { get; set; }
         public int PageCount  { get; set; }
+        public string SalePrice { get; set;  }
+        public string ListPrice { get; set; }
+        public string MainImage { get; set; }
     }
     public class ClsProduct1
     {

@@ -1,8 +1,7 @@
 ﻿
 var Listing = {
     BindVarientByCategoryId: function (subCatId) {
-
-
+        common.ShowLoader();
         var data = { "SubcategoryId": 5};
         ajax.doPostAjax(`/Vendor/Vendor/GetVarientDdlByCategoryId`, data, function (result) {
             if (result.ResultFlag == true) {
@@ -27,7 +26,7 @@ var Listing = {
             }
             common.HideLoader();
         });
-        Listing.GetRecords();
+        //Listing.GetRecords();
     }, 
 
     GetRecords: function () {
@@ -38,10 +37,11 @@ pageIndex++;
             "CategoryId": $('#CategoryId').val(),
             "SubCategoryId": $('#SubCategoryId').val(),
             "MiniCategoryId": $('#MiniCategoryId').val(),
-            "searchtext": '',
-            "PageIndex": pageIndex,
-            "PageSize": 3
+            "SearchText": '',
+            "PageIndex": 2,
+            "PageSize": 10
         }
+        console.log(data);
         ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
             if (result.ResultFlag == true) {
                 Listing.OnSuccess(result.Data)
@@ -54,12 +54,11 @@ pageIndex++;
 OnSuccess: function(response) {
 
     $.each(response, function (j, dataval) {
-        console.log(response);
         $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3">\
                         <figure class="card card-product-grid" >\
-                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <a href="#"><img src="images/items/1.jpg"></a> </div>\
+                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <a href="#"><img src="'+dataval.MainImage+'"></a> </div>\
                                 <figcaption class="info-wrap"> <a href="#" class="title mb-2">'+ dataval.ProductName +'</a>\
-                                    <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>\
+                                    <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice +'</s></small> </div>\
                                     <!-- price-wrap.// -->\
                                   <div class="rating-wrap mb-2">\
                                         <ul class="rating-stars">\

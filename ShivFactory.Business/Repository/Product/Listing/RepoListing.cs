@@ -23,10 +23,11 @@ namespace ShivFactory.Business.Repository
             parameters.Add(new SqlParameter("@CategoryId", model.CategoryId));
             parameters.Add(new SqlParameter("@SubCategoryId", model.SubCategoryId));
             parameters.Add(new SqlParameter("@MiniCategoryId", model.MiniCategoryId));
-            parameters.Add(new SqlParameter("@SearchText", model.searchtext));
+            parameters.Add(new SqlParameter("@SearchText", model.SearchText));
             DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, "GetProductsPageWise", parameters.ToArray());
             if (ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0)
             {
+                RepoCommon repoCommon = new RepoCommon(); 
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     product.Add(new ClsProduct()
@@ -36,8 +37,9 @@ namespace ShivFactory.Business.Repository
                         ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
                         CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
                         SubCategoryName = row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
-                       // BrandName = row["BrandName"] != DBNull.Value ? row["BrandName"].ToString() : "",
-                       // PageCount = row["PageCount"] != DBNull.Value ? Convert.ToInt32(row["PageCount"].ToString()) : 0
+                        SalePrice = row["SalePrice"] != DBNull.Value ? row["SalePrice"].ToString() : "0.00",
+                        ListPrice = row["ListPrice"] != DBNull.Value ? row["ListPrice"].ToString() : "0.00",
+                        MainImage = repoCommon.checkfile(row["MainImage"].ToString())
                     });
                 }
                
