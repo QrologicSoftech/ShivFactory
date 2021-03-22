@@ -257,10 +257,9 @@ namespace ShivFactory.Controllers
         #region Website Listing
         public ActionResult ProductListing(ClsProduct model)
         {
-
             RepoListing repoListing = new RepoListing();
-            model.SubCategoryId = 5;
-            return View(repoListing.GetallProductlist(1, 3));
+            model.SubCategoryId = Convert.ToString(5);
+            return View(model);
         }
 
 

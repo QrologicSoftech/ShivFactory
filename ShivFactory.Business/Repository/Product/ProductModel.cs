@@ -14,12 +14,13 @@ namespace ShivFactory.Business.Repository
         public int TotalRow { get; set; }
         public int ProductId { get; set; }
         public string ProductName { get; set; }
-        public int CategoryName { get; set; }
-        public int SubCategoryId { get; set; }
+        public string CategoryName { get; set; }
+        public string SubCategoryId { get; set; }
+        public string SubCategoryName { get; set; }
         public string  BrandName { get; set; }
         public DateTime Adddate { get; set; }
         public string InactiveReason { get; set; }
-        public string PageCount  { get; set; }
+        public int PageCount  { get; set; }
     }
     public class ClsProduct1
     {

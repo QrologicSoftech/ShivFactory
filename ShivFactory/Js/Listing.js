@@ -28,38 +28,6 @@ var Listing = {
         Listing.GetRecords();
     }, 
 
-    //BindProducts: function (subCatId) {
-    //    var data = { "SubcategoryId": subCatId };
-    //    ajax.doPostAjax(`/Vendor/Vendor/GetVarientDdlByCategoryId`, data, function (result) {
-    //        if (result.ResultFlag == true) {
-    //            varient = result.Data;
-    //            $.each(varient, function (Value, varient) {
-    //                console.log(varient);
-    //                var varient = '<div class="col-6 col-md-4 col-lg-3">\
-    //                    < figure class="card card-product-grid" >\
-    //                        <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <a href="#"><img src="images/items/1.jpg"></a> </div>\
-    //                            <figcaption class="info-wrap"> <a href="#" class="title mb-2">Hot sale unisex New Design Shirt for sport polo shirts latest design</a>\
-    //                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>\
-    //                                <!-- price-wrap.// -->\
-    //                              <div class="rating-wrap mb-2">\
-    //                                    <ul class="rating-stars">\
-    //                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
-    //                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
-    //                                    </ul>\
-    //                                    <div class="label-rating">2/10</div>\
-    //                                </div>\
-    //                                <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
-    //                          </figure>\
-    //                        </div >'
-    //                $("#partialViewListing").append(varient);
-
-    //            });
-    //            // $("#partialViewFilter").html(varient);
-    //        }
-    //        common.HideLoader();
-    //    });
-   // }, 
-
     //Function to make AJAX call to the Jsonresult
     GetRecords: function () {
 pageIndex++;

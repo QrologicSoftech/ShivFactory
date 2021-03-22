@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShivFactory.Business.Repository.ClsProduct>
+﻿@model ShivFactory.Business.Repository.ClsProduct
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
@@ -7,7 +7,7 @@
 {
     <section class="section-content padding-y">
         <div class="container">
-            @Html.HiddenFor(model => model.First().SubCategoryId)
+            @Html.HiddenFor(model => model.SubCategoryId)
             <input type="hidden" value="5" id="SubCatttegoryId" />
             <!-- ============================  FILTER TOP  ================================= -->
             <div class="card mb-3 breadcrumb-min  bg-transparent border-0">
@@ -18,7 +18,6 @@
                         <li class="breadcrumb-item active">Item details</li>
                     </ol>
                 </div>
-               
             </div>
             <!-- card.// -->
             <!-- ============================ FILTER TOP END.// ================================= -->
