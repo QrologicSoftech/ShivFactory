@@ -8,9 +8,12 @@ namespace ShivFactory.Business.Repository
 {
   public class ProductListingPagination
     {
-        public int CategoryId { get; set;  }
-        public int SubCategoryId { get; set;  }
-        public int MiniCategoryId { get; set; }
-        public string searchtext { get; set; }
+        public int? CategoryId { get; set;  }
+        public int? SubCategoryId { get; set;  }
+        public int? MiniCategoryId { get; set; }
+        public string? searchtext { get; set; }
+        public int? PageIndex { get; set; }
+        public int? PageSize { get; set; }
+    
     }
 }

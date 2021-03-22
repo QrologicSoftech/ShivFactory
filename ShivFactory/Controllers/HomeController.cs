@@ -266,13 +266,15 @@ namespace ShivFactory.Controllers
         {
             try
             {
+                ProductListingPagination model = new ProductListingPagination(); 
                 RepoListing repoListing = new RepoListing();
+          List<ClsProduct> list =  repoListing.GetallProductlist(pageIndex, 3); 
                 System.Threading.Thread.Sleep(100);
                 return Json(new ResultModel
                 {
-                    ResultFlag = repoListing.GetallProductlist(pageIndex, 3) != null ? true : false,
-                    Data = repoListing.GetallProductlist(pageIndex, 3),
-                    Message = repoListing.GetallProductlist(pageIndex, 3) != null ? "Product find successfully!!" : "Failled to find Product!!"
+                    ResultFlag = list != null ? true : false,
+                    Data = list,
+                    Message = list != null ? "Product find successfully!!" : "Failled to find Product!!"
                 }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
