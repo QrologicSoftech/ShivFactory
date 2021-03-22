@@ -13,4 +13,10 @@ namespace ShivFactory.Business.Repository
         public string VarientName { get; set; }
         public bool IsActive { get; set; }
     }
+
+    public class VarientsFilter
+    {
+        public string VarientName { get; set; }
+        public List<string> VarientValue { get; set; }
+    }
 }

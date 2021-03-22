@@ -3,26 +3,45 @@ var Listing = {
     BindVarientByCategoryId: function (subCatId) {
         common.ShowLoader();
         var data = { "SubcategoryId": 5};
-        ajax.doPostAjax(`/Vendor/Vendor/GetVarientDdlByCategoryId`, data, function (result) {
+        ajax.doPostAjax(`/Home/GetVarientsFilter`, data, function (result) {
             if (result.ResultFlag == true) {
                 varient = result.Data;
-                $.each(varient, function (Value, varient) {
-                    var varient = `<article class="filter-group">\
-                        <h6 class="title" > <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#${varient.Text}"> ${varient.Text} </a> </h6 >\
-                            <div class="filter-content collapse" id="${varient.Text}" style="">\
-                                <div class="inner">\
-                                    <ul class="list-menu">\
-                                        <li><a href="#">Shorts </a></li>\
-                                        <li><a href="#">Trousers </a></li>\
-                                        <li><a href="#">Sweaters </a></li>\
-                                        <li><a href="#">Clothes </a></li>\
-                                        <li><a href="#">Home items </a></li>\
-                                        <li><a href="#">Jackats</a></li>\
-                                        <li><a href="#">Somethings </a></li>\
-                                    </ul></div></div></article >`;
-                    $("#partialViewFilter").append(varient);
+                //$.each(varient, function (Value, varient) {
+                //    var varient = `<article class="filter-group">\
+                //        <h6 class="title" > <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#${varient.Text}"> ${varient.Text} </a> </h6 >\
+                //            <div class="filter-content collapse" id="${varient.Text}" style="">\
+                //                <div class="inner">\
+                //                    <ul class="list-menu">\
+                //                        <li><a href="#">Shorts </a></li>\
+                //                        <li><a href="#">Trousers </a></li>\
+                //                        <li><a href="#">Sweaters </a></li>\
+                //                        <li><a href="#">Clothes </a></li>\
+                //                        <li><a href="#">Home items </a></li>\
+                //                        <li><a href="#">Jackats</a></li>\
+                //                        <li><a href="#">Somethings </a></li>\
+                //                    </ul></div></div></article >`;
+                //    $("#partialViewFilter").append(varient);
                     
-                });
+                //});
+               
+                    
+                    $.each(varient, function (Value, varient) {
+                        var html = `<article class="filter-group">\
+                        <h6 class="title" > <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#${varient.VarientName}"> ${varient.VarientName} </a> </h6 >\
+                            <div class="filter-content collapse" id="${varient.VarientName}" style="">\
+                                <div class="inner">\
+                                    <ul class="list-menu">`;
+                        debugger;
+                        varient.VarientValue.forEach((item) => {
+                            html += `<li><a href="#">${item} </a></li>`;
+                        });
+                       
+                                      html += `</ul></div></div></article >`;
+
+                        $("#partialViewFilter").append(html);
+
+                    });
+               
             }
             common.HideLoader();
         });

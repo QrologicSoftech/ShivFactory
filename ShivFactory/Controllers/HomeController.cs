@@ -254,18 +254,18 @@ namespace ShivFactory.Controllers
             return View();
         }
 
-        #region GetVarients
-        public ActionResult GetVarientDdlByCategoryId(int SubcategoryId, string varients)
+        #region GetVarients Filter
+        public ActionResult GetVarientsFilter(ProductListingPagination model)
         {
             try
             {
                 RepoVarient varient = new RepoVarient();
-                var varientddl = varient.GetVarientDDl(SubcategoryId, varients);
+                var varients = varient.GetVarientsFilter(model);
 
                 return Json(new ResultModel
                 {
                     ResultFlag = true,
-                    Data = varientddl,
+                    Data = varients,
                     Message = "Varients found successfully!!"
                 }, JsonRequestBehavior.AllowGet);
             }
@@ -316,7 +316,7 @@ namespace ShivFactory.Controllers
         {
             return View();
         }
-        #endRegion
+        #endregion
 
     }
 }

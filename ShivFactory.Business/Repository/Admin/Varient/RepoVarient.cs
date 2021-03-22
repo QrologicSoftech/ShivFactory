@@ -88,11 +88,11 @@ namespace ShivFactory.Business.Repository
         /// <param name="varientNames"></param>
         /// <returns></returns>
         /// int subCategoryId = 0, string varientNames=null
-        public SelectList GetVarientDDl( int subCategoryId , string varientNames)
+        public SelectList GetVarientDDl(int subCategoryId, string varientNames)
         {
             var sqlQuery = db.Varients.Where(a => a.IsActive == true);
             var category = db.SubCategories.Where(a => a.ID == subCategoryId).FirstOrDefault();
-            if (category != null&& !string.IsNullOrEmpty(category.Varients))
+            if (category != null && !string.IsNullOrEmpty(category.Varients))
             {
                 List<int> varientIds = category.Varients.Split(',').Select(int.Parse).ToList();
                 sqlQuery = sqlQuery.Where(a => varientIds.Contains(a.Id));
@@ -174,6 +174,35 @@ namespace ShivFactory.Business.Repository
 
             return varients;
 
+        }
+        #endregion
+
+        #region GetVarientsFilter
+        public List<VarientsFilter> GetVarientsFilter(ProductListingPagination model)
+        {
+            var Varients = new List<VarientsFilter>();
+
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@Action", "GetProductVarients"));
+            parameters.Add(new SqlParameter("@SearchText", ""));
+            parameters.Add(new SqlParameter("@CategoryId", ""));
+            parameters.Add(new SqlParameter("@SubCategoryId", 5));
+            parameters.Add(new SqlParameter("@MiniCategoryId", ""));
+
+            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, CommandType.StoredProcedure, "ManageVarient", parameters.ToArray());
+            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+
+                Varients = ds.Tables[0].AsEnumerable().GroupBy(item => item.Field<string>("VarientName"))
+          .Select(group => new VarientsFilter()
+          {
+              VarientName = group.Key,
+              VarientValue = group.Select(item => item.Field<string>("VarientValue")).ToList()
+          }).ToList();
+
+            }
+
+            return Varients;
         }
         #endregion
     }
