@@ -8,19 +8,6 @@ var Listing = {
             if (result.ResultFlag == true) {
                 varient = result.Data;
                 $.each(varient, function (Value, varient) {
-                    //var varient = '<article class="filter-group">\
-                    //    <h6 class="title" > <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1-1"> '+ varient.Text+' </a> </h6 >\
-                    //        <div class="filter-content collapse" id="collapse_1-1" style="">\
-                    //            <div class="inner">\
-                    //                <ul class="list-menu">\
-                    //                    <li><a href="#">Shorts </a></li>\
-                    //                    <li><a href="#">Trousers </a></li>\
-                    //                    <li><a href="#">Sweaters </a></li>\
-                    //                    <li><a href="#">Clothes </a></li>\
-                    //                    <li><a href="#">Home items </a></li>\
-                    //                    <li><a href="#">Jackats</a></li>\
-                    //                    <li><a href="#">Somethings </a></li>\
-                    //                </ul></div></div></article >'
                     var varient = `<article class="filter-group">\
                         <h6 class="title" > <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#${varient.Text}"> ${varient.Text} </a> </h6 >\
                             <div class="filter-content collapse" id="${varient.Text}" style="">\
@@ -43,15 +30,21 @@ var Listing = {
         Listing.GetRecords();
     }, 
 
-    //Function to make AJAX call to the Jsonresult
     GetRecords: function () {
 pageIndex++;
        // if (pageIndex == 2 || pageIndex <= pageCount) {
         common.ShowLoader();
-        var data = { "pageIndex" :  pageIndex }
+        var data = {
+            "CategoryId": $('#CategoryId').val(),
+            "SubCategoryId": $('#SubCategoryId').val(),
+            "MiniCategoryId": $('#MiniCategoryId').val(),
+            "searchtext": '',
+            "PageIndex": pageIndex,
+            "PageSize": 3
+        }
         ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
             if (result.ResultFlag == true) {
-                Listing.OnSuccess
+                Listing.OnSuccess(result.Data)
                 } 
         });      
            
@@ -65,7 +58,7 @@ OnSuccess: function(response) {
         $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3">\
                         <figure class="card card-product-grid" >\
                             <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <a href="#"><img src="images/items/1.jpg"></a> </div>\
-                                <figcaption class="info-wrap"> <a href="#" class="title mb-2">Hot sale unisex New Design Shirt for sport polo shirts latest design</a>\
+                                <figcaption class="info-wrap"> <a href="#" class="title mb-2">'+ dataval.ProductName +'</a>\
                                     <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i> 32.00</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i> 100</s></small> </div>\
                                     <!-- price-wrap.// -->\
                                   <div class="rating-wrap mb-2">\
@@ -75,10 +68,9 @@ OnSuccess: function(response) {
                                         </ul>\
                                         <div class="label-rating">2/10</div>\
                                     </div>\
-                                    <a href="#" class="btn btn-outline-primary"> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
+                                    <a href="#" class="btn btn-outline-primary" val='+ dataval.ProductId+'> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
                               </figure>\
-                            </div >*');
-
+                            </div >');
        
         pageCount = dataval.PageCount;
     });

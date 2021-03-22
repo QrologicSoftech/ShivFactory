@@ -147,8 +147,6 @@ namespace ShivFactory.Controllers
                     Message = ex.Message
                 }, JsonRequestBehavior.AllowGet);
             }
-
-
         }
 
         public ActionResult SaveCurrentVendorDetails(clsVendorBasicDetails model)
@@ -190,8 +188,6 @@ namespace ShivFactory.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
         }
-
-
         public ActionResult UpdateVendorBankDetails(clsVendorBankDetails model)
         {
             try
@@ -228,11 +224,7 @@ namespace ShivFactory.Controllers
                     Message = ex.Message
                 }, JsonRequestBehavior.AllowGet);
             }
-
-
         }
-
-
         #endregion
 
         #region Website
@@ -253,14 +245,12 @@ namespace ShivFactory.Controllers
 
         #endregion
 
-
         #region Website Listing
         public ActionResult ProductListing(int? id, int? subId, int? minId, string searchtext)
         {
             ViewBag.CategoryId = id;
             ViewBag.SubCategoryId = subId;
             ViewBag.MiniCategoryId = minId;
-
             return View();
         }
 
@@ -292,11 +282,10 @@ namespace ShivFactory.Controllers
         #endregion
 
 
-        public ActionResult GetProduct(int pageIndex)
+        public ActionResult GetProducts(ProductListingPagination model)
         {
             try
             {
-                ProductListingPagination model = new ProductListingPagination(); 
                 RepoListing repoListing = new RepoListing();
                 List<ClsProduct> list =  repoListing.GetallProductlist(model); 
                 System.Threading.Thread.Sleep(100);
@@ -318,21 +307,6 @@ namespace ShivFactory.Controllers
             }
 
         }
-
-
-        public ActionResult GetAllProductByCatSubCatId(int Category, int SubCatId, int minicatId)
-        {
-
-            RepoProduct repoProduct = new RepoProduct();
-            //repoProduct.GEt
-            return Json(new ResultModel
-            {
-                ResultFlag = true,
-                Data = null,
-                Message = "Product found successfully!!"
-            }, JsonRequestBehavior.AllowGet);
-        }
-
 
 
         #endregion

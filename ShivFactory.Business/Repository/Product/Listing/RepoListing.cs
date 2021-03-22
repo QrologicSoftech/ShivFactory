@@ -36,8 +36,8 @@ namespace ShivFactory.Business.Repository
                         ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
                         CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
                         SubCategoryName = row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
-                        BrandName = row["BrandName"] != DBNull.Value ? row["BrandName"].ToString() : "",
-                        PageCount = row["PageCount"] != DBNull.Value ? Convert.ToInt32(row["PageCount"].ToString()) : 0
+                       // BrandName = row["BrandName"] != DBNull.Value ? row["BrandName"].ToString() : "",
+                       // PageCount = row["PageCount"] != DBNull.Value ? Convert.ToInt32(row["PageCount"].ToString()) : 0
                     });
                 }
                
