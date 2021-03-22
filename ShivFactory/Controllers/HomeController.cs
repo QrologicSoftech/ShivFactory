@@ -284,31 +284,9 @@ namespace ShivFactory.Controllers
                     Message = "Product found successfully!!"
                 }, JsonRequestBehavior.AllowGet);
             }
-            public ActionResult ProductFilterPartialView()
-            {
-                return View();
-            }
+           
 
-            public ActionResult ProductListingPartialView()
-            {
-                return View();
-            }
-
-            [AllowAnonymous]
-            public ActionResult ProductListingScrollOver()
-            {
-                SelectMember s = new SelectMember();
-                return View(s.GetallMemberlist(1, 10)); // Calling SelectMember Class to get Data
-            }
-
-            public JsonResult GetCustomers(int pageIndex)
-            {
-                SelectMember s = new SelectMember();
-                //Added to similate delay so that we see the loader working
-                //Must be removed when moving to production
-                System.Threading.Thread.Sleep(2000);
-                return Json(s.GetallMemberlist(pageIndex, 10), JsonRequestBehavior.AllowGet);
-            }
+          
             #endregion
 
 
