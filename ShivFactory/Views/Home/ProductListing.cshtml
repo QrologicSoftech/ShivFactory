@@ -1,13 +1,14 @@
-﻿@model ShivFactory.Business.Repository.ClsProduct
+﻿@*@model ShivFactory.Business.Repository.ClsProduct*@
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
 }
-@using (Html.BeginForm("ProductListing", "Home", FormMethod.Post, new {id = "myform", @class = "forms-sample" }))
-{
+@*@using (Html.BeginForm("ProductListing", "Home", FormMethod.Post, new {id = "myform", @class = "forms-sample" }))
+{*@
     <section class="section-content padding-y">
         <div class="container">
-            @Html.HiddenFor(model => model.SubCategoryId)
+            @*@Html.HiddenFor(model => model.SubCategoryId)*@
+            <input type="hidden" id="SubCategoryId" value="@ViewBag.SubCategoryId" />
             <!-- ============================  FILTER TOP  ================================= -->
             <div class="card mb-3 breadcrumb-min  bg-transparent border-0">
                 <div class="card-body bg-transparent pl-0">
@@ -93,19 +94,20 @@
                                                 <!-- row.// -->
                                             </article>
                                             @*<nav class="mb-4" aria-label="Page navigation sample">
-                                                <ul class="pagination">
-                                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                                </ul>
-                                            </nav>*@
+                                            <ul class="pagination">
+                                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                            </ul>
+                                        </nav>*@
                                         </section>
                                     </div>
-                                    <div id="menu1" class="tab-pane fade">Hello DIV
+                                    <div id="menu1" class="tab-pane fade">
+                                        Hello DIV
                                         <section>
                                             <header class="mb-3">
                                                 <div class="form-inline">
@@ -641,7 +643,7 @@
                                                             </figcaption>
                                                         </figure>
                                                     </div>
-                                                   
+
 
                                                     <div class="col-6 col-md-4 col-lg-3">
                                                         <figure class="card card-product-grid">
@@ -779,7 +781,7 @@
     </section>
 
    
-}
+@*}*@
     <script type="text/javascript">
         var pageIndex = 1;
         var pageCount = 1;

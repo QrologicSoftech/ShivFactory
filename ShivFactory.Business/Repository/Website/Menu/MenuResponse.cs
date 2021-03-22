@@ -16,6 +16,7 @@ namespace ShivFactory.Business.Repository.Website
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string ImagePath { get; set; }
         public List<MenuModel> SubCategory { get; set; }
 
     }

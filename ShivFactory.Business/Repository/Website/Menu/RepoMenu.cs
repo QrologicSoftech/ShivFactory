@@ -17,6 +17,7 @@ namespace ShivFactory.Business.Repository.Website
         #region Get All Menues
         public List<MenuResponse> GetAllMenues()
         {
+            RepoCommon common = new RepoCommon();
             var menue = new List<MenuResponse>();
             var category = db.Categories.Include(a => a.SubCategories).Where(a => a.IsActive == true && a.IsDelete == false).AsNoTracking().ToList();
             foreach (var c in category)
@@ -25,6 +26,7 @@ namespace ShivFactory.Business.Repository.Website
                 {
                     Id = c.ID,
                     Name = c.CategoryName,
+                    ImagePath = common.checkfile(c.CatImage),
                     SubCategory = c.SubCategories.Where(a => a.IsActive == true && a.IsDelete == false).Select(a => new MenuModel()
                     {
                         Id = a.ID,
