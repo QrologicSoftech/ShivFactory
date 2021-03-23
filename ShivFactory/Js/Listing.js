@@ -1,5 +1,16 @@
-﻿
+﻿var ProductFilter = {
+    "CategoryId": '', "SubCategoryId": '', "MiniCategoryId": '', "SearchText": '', "PageIndex": '', "PageSize": '',
+    "VarientName1": '', "VarientValue1": '', "VarientName2": '', "VarientValue2": '', "VarientName3": '', "VarientValue3": '',
+    "VarientName4": '', "VarientValue4": '', "VarientName5": '', "VarientValue5": '', "VarientName6": '', "VarientValue6": '',
+    "VarientName7": '', "VarientValue7": '', "VarientName8": '', "VarientValue8": '', "VarientName9": '', "VarientValue9": '',
+    "VarientName10": '', "VarientValue10": ''
+};
+
 var Listing = {
+    OnPageLoad: function () {
+
+    },
+
     BindVarientByCategoryId: function () {
         common.ShowLoader();
         var data = {
@@ -37,35 +48,32 @@ var Listing = {
     },
 
     ApplyFilter: function () {
-        var map = {};
-        var model = {}; 
+        var model = {};
         common.ShowLoader();
         var varientsName = $("#partialViewFilter").find('.filter-group a').map(function () {
             return $(this).html().trim()
         }).get()
-       
+        index = 1;
         for (var i = 0; i < varientsName.length; i++) {
             varientVal = $(`#${varientsName[i]} input:checked`).map(function () {
                 return $(this).attr('name').trim()
             }).get();
 
             if (varientVal.length > 0) {
-                map[varientsName[i]] = varientVal.toString();
+                var head = "VarientName" + parseInt(index);
+                var head2 = "VarientValue" + parseInt(index);
+                model[head] = varientsName[i];
+                model[head2] = varientVal.toString();
+                index++;
             }
         };
-        //debugger;
-        console.log(Object.keys(map));
-        console.log(Object.values(map));
-        var keyys = Object.keys(map);
-        var valuues = Object.values(map);
-        for (var i = 0; i < keyys.length; i++) {
-            var head = "VarientName" + i; 
-            var head2 = "Varientvalue" + i;
-            model[head] = keyys[i];
-            model[head2] = valuues[i];
-        }
-        console.log(model); 
-        
+        debugger;
+
+        ProductFilter.VarientName1 =
+
+
+            console.log(model);
+
         common.HideLoader();
     },
 
