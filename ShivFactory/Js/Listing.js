@@ -37,9 +37,9 @@ var Listing = {
     },
 
     ApplyFilter: function () {
-        
+        var map = {};
+        var model = {}; 
         common.ShowLoader();
-        var filter = new Array();
         var varientsName = $("#partialViewFilter").find('.filter-group a').map(function () {
             return $(this).html().trim()
         }).get()
@@ -50,27 +50,21 @@ var Listing = {
             }).get();
 
             if (varientVal.length > 0) {
-                var map = {};
                 map[varientsName[i]] = varientVal.toString();
-                filter.push(map);
             }
         };
-        debugger;
-        var filterName = `FilterName${i + 1}`;
-        var filtervalue = `FilterValue${i + 1}`;
-        let array = {
-            "Name": "Lokesh,Rakesh",
-            "Sex": "Male,Male",
-            "Age": "20"
-        };
-        
-        array[`FilterName${i + 1}`[0]] = varientsName[i];
-        array[`FilterValue${i + 1}`[i]] = varientVal.toString();
-        filter.push(
-            array
-        );
-
-       
+        //debugger;
+        console.log(Object.keys(map));
+        console.log(Object.values(map));
+        var keyys = Object.keys(map);
+        var valuues = Object.values(map);
+        for (var i = 0; i < keyys.length; i++) {
+            var head = "VarientName" + i; 
+            var head2 = "Varientvalue" + i;
+            model[head] = keyys[i];
+            model[head2] = valuues[i];
+        }
+        console.log(model); 
         
         common.HideLoader();
     },
