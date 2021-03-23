@@ -109,8 +109,7 @@
         var pageIndex = 1;
         var pageCount = 1;
         $(document).ready(function () {
-            Listing.BindVarientByCategoryId();
-            Listing.GetRecords();
+            Listing.OnPageLoad();           
         });
 
         $('#ListScroll').bind('scroll', function () {

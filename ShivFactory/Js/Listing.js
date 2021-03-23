@@ -8,15 +8,20 @@
 
 var Listing = {
     OnPageLoad: function () {
+        ProductFilter.CategoryId = $('#CategoryId').val();
+        ProductFilter.SubCategoryId = $('#SubCategoryId').val();
+        ProductFilter.MiniCategoryId = $('#MiniCategoryId').val();
 
+        Listing.BindVarientByCategoryId();
+        Listing.GetRecords();
     },
 
     BindVarientByCategoryId: function () {
         common.ShowLoader();
         var data = {
-            "CategoryId": $('#CategoryId').val(),
-            "SubCategoryId": $('#SubCategoryId').val(),
-            "MiniCategoryId": $('#MiniCategoryId').val(),
+            "CategoryId": ProductFilter.CategoryId,
+            "SubCategoryId": ProductFilter.SubCategoryId,
+            "MiniCategoryId": ProductFilter.MiniCategoryId,
             "SearchText": ''
         };
         ajax.doPostAjax(`/Home/GetVarientsFilter`, data, function (result) {
@@ -40,15 +45,20 @@ var Listing = {
                     $("#partialViewFilter").append(html);
 
                 });
-
             }
             common.HideLoader();
         });
-        //Listing.GetRecords();
+        
     },
 
     ApplyFilter: function () {
-        var model = {};
+        
+        for (var a = 0; a < 10; a++) {
+            ProductFilter["VarientName" + parseInt(a)] = '';
+            ProductFilter["VarientName" + parseInt(a)] = '';
+        }
+
+
         common.ShowLoader();
         var varientsName = $("#partialViewFilter").find('.filter-group a').map(function () {
             return $(this).html().trim()
@@ -60,20 +70,18 @@ var Listing = {
             }).get();
 
             if (varientVal.length > 0) {
-                var head = "VarientName" + parseInt(index);
-                var head2 = "VarientValue" + parseInt(index);
-                model[head] = varientsName[i];
-                model[head2] = varientVal.toString();
+
+                var parameter = "VarientName" + parseInt(index);
+                var value = "VarientValue" + parseInt(index);
+
+                ProductFilter[parameter] = varientsName[i];
+                ProductFilter[value] = varientVal.toString();
+
                 index++;
             }
         };
-        debugger;
-
-        ProductFilter.VarientName1 =
-
-
-            console.log(model);
-
+       
+        console.log(ProductFilter);
         common.HideLoader();
     },
 
@@ -88,8 +96,7 @@ var Listing = {
             "SearchText": '',
             "PageIndex": 2,
             "PageSize": 10
-        }
-        console.log(data);
+        }        
         ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
             if (result.ResultFlag == true) {
                 Listing.OnSuccess(result.Data)
