@@ -772,8 +772,7 @@
         var pageIndex = 1;
         var pageCount = 1;
         $(document).ready(function () {
-            var subCatId = $('#SubCategoryId').val();
-            Listing.BindVarientByCategoryId(subCatId);
+            Listing.BindVarientByCategoryId();
             Listing.GetRecords();
         });
 

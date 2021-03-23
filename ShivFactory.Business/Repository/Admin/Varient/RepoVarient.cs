@@ -184,10 +184,10 @@ namespace ShivFactory.Business.Repository
 
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@Action", "GetProductVarients"));
-            parameters.Add(new SqlParameter("@SearchText", ""));
-            parameters.Add(new SqlParameter("@CategoryId", ""));
-            parameters.Add(new SqlParameter("@SubCategoryId", 5));
-            parameters.Add(new SqlParameter("@MiniCategoryId", ""));
+            parameters.Add(new SqlParameter("@SearchText", model.SearchText));
+            parameters.Add(new SqlParameter("@CategoryId", model.CategoryId));
+            parameters.Add(new SqlParameter("@SubCategoryId", model.SubCategoryId));
+            parameters.Add(new SqlParameter("@MiniCategoryId", model.MiniCategoryId));
 
             DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, CommandType.StoredProcedure, "ManageVarient", parameters.ToArray());
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
