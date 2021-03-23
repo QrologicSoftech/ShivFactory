@@ -20,7 +20,7 @@ var Listing = {
 
                     varient.VarientValue.forEach((item) => {
                         html += ` <label class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" onchange="Listing.ApplyFilter();">
+              <input type="checkbox" class="custom-control-input" name="${item}" onchange="Listing.ApplyFilter();">
               <div class="custom-control-label">${item}</div>
               </label>`;
                     });
@@ -37,14 +37,41 @@ var Listing = {
     },
 
     ApplyFilter: function () {
-        debugger;
+        
         common.ShowLoader();
-        var data = {
-            "CategoryId": $('#CategoryId').val(),
-            "SubCategoryId": $('#SubCategoryId').val(),
-            "MiniCategoryId": $('#MiniCategoryId').val(),
-            "SearchText": ''
+        var filter = new Array();
+        var varientsName = $("#partialViewFilter").find('.filter-group a').map(function () {
+            return $(this).html().trim()
+        }).get()
+       
+        for (var i = 0; i < varientsName.length; i++) {
+            varientVal = $(`#${varientsName[i]} input:checked`).map(function () {
+                return $(this).attr('name').trim()
+            }).get();
+
+            if (varientVal.length > 0) {
+                var map = {};
+                map[varientsName[i]] = varientVal.toString();
+                filter.push(map);
+            }
         };
+        debugger;
+        var filterName = `FilterName${i + 1}`;
+        var filtervalue = `FilterValue${i + 1}`;
+        let array = {
+            "Name": "Lokesh,Rakesh",
+            "Sex": "Male,Male",
+            "Age": "20"
+        };
+        
+        array[`FilterName${i + 1}`[0]] = varientsName[i];
+        array[`FilterValue${i + 1}`[i]] = varientVal.toString();
+        filter.push(
+            array
+        );
+
+       
+        
         common.HideLoader();
     },
 
