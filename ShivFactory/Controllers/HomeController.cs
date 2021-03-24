@@ -16,7 +16,7 @@ namespace ShivFactory.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        { 
+        {
             return View();
         }
 
@@ -241,6 +241,33 @@ namespace ShivFactory.Controllers
                 TempData["ErrorMessage"] = ex.Message;
             }
             return View(new MenuResponse());
+        }
+
+        [HttpPost]
+        public ActionResult ProductAutoComplete(string prefix)
+        {
+            try
+            {
+                RepoAutoComplete auto = new RepoAutoComplete();
+                var succession = auto.ProductAutoComplete(prefix);
+                return Json(new ResultModel
+                {
+                    ResultFlag = succession.Count > 0,
+                    Data = succession,
+                    Message = succession.Count > 0 ? "Products founds successfully!!" : "No records found."
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+
+                }, JsonRequestBehavior.AllowGet);
+            }
         }
 
         #endregion
