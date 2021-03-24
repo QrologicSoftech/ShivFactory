@@ -553,8 +553,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_WebSiteLayout.cshtml" />
     <Content Include="Views\Home\ProductListing.cshtml" />
-    <Content Include="Views\Home\ProductFilterPartialView.cshtml" />
-    <Content Include="Views\Home\ProductListingPartialView.cshtml" />
     <Content Include="Views\Home\WebMenuPartialview.cshtml" />
     <Content Include="Views\Home\ProductDetail.cshtml" />
   </ItemGroup>

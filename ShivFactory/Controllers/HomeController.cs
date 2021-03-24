@@ -339,10 +339,14 @@ namespace ShivFactory.Controllers
         #endregion
 
         #region ProductDetail
-        public ActionResult ProductDetail()
+        public ActionResult ProductDetail(int productId, string VarientName, string VarientValue)
         {
             return View();
+            RepoListing repoListing = new RepoListing();
+            var productDetail = repoListing.GetProductDetail(productId, VarientName, VarientValue);
+            return View(productDetail);
         }
+
         #endregion
 
     }

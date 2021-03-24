@@ -86,24 +86,39 @@ var Listing = {
     },
 
     GetRecords: function () {
-        pageIndex++;
-        // if (pageIndex == 2 || pageIndex <= pageCount) {
         common.ShowLoader('#partialViewListing');
-        var data = {
-            "CategoryId": $('#CategoryId').val(),
-            "SubCategoryId": $('#SubCategoryId').val(),
-            "MiniCategoryId": $('#MiniCategoryId').val(),
-            "SearchText": '',
-            "PageIndex": 2,
-            "PageSize": 10
-        }        
-        ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
-            if (result.ResultFlag == true) {
-                Listing.OnSuccess(result.Data)
-            }
-        });
+        var data
+        if(pageIndex > pageCount) {
+                common.ShowLoader('#partialViewListing');
+    data = {
+        "CategoryId": $('#CategoryId').val(),
+        "SubCategoryId": $('#SubCategoryId').val(),
+        "MiniCategoryId": $('#MiniCategoryId').val(),
+        "SearchText": '',
+        "PageIndex": pageIndex,
+        "PageSize": 10
+    }
+            pageIndex++;
+        } else {
+    data = {
+        "CategoryId": $('#CategoryId').val(),
+        "SubCategoryId": $('#SubCategoryId').val(),
+        "MiniCategoryId": $('#MiniCategoryId').val(),
+        "SearchText": '',
+        "PageIndex": 1,
+        "PageSize": 10
+    }
+    pageIndex++;
+}
+console.log(data);
+ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
+    console.log(result)
+    if (result.ResultFlag == true) {
+        Listing.OnSuccess(result.Data)
+    }
+});
 
-        //  } 
+      
     },
 
     OnSuccess: function (response) {
