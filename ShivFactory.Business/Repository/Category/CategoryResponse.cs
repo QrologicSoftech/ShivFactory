@@ -12,6 +12,7 @@ namespace ShivFactory.Business.Repository
         public int Id { get; set; }
         public string ImagePath { get; set; }
         public string CategoryName { get; set; }
+        public string HomeTitle { get; set; }
         public bool IsActive { get; set; }
         public string AddDate { get; set; }
     }

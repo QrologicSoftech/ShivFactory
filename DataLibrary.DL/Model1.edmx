@@ -112,6 +112,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="HomeTitle" Type="nvarchar" MaxLength="200" />
           <Property Name="CatImage" Type="nvarchar" MaxLength="250" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsDelete" Type="bit" />
@@ -695,6 +696,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="SubCategories" Relationship="db_ShivFactoryModel.FK__SubCatego__Categ__6383C8BA" FromRole="Category" ToRole="SubCategory" />
           <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
+          <Property Name="HomeTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DynamicMenu">
           <Key>
@@ -1260,6 +1262,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.Category">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="HomeTitle" ColumnName="HomeTitle" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="CatImage" ColumnName="CatImage" />

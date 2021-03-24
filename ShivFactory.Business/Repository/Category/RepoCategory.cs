@@ -31,6 +31,7 @@ namespace ShivFactory.Business.Repository
             if (category != null)
             {
                 category.CategoryName = model.CategoryName;
+                category.HomeTitle = model.HomeTitle;
                 category.CatImage = model.ImagePath;
                 category.LastUpdate = DateTime.Now;
                 category.IsActive = model.IsActive;
@@ -40,6 +41,7 @@ namespace ShivFactory.Business.Repository
                 db.Categories.Add(new Category()
                 {
                     CategoryName = model.CategoryName,
+                    HomeTitle = model.HomeTitle,
                     CatImage = model.ImagePath,
                     Adddate = DateTime.Now,
                     IsActive = true,
@@ -65,8 +67,9 @@ namespace ShivFactory.Business.Repository
             {
                 CategoryId = a.ID,
                 CategoryName = a.CategoryName,
+                HomeTitle = a.HomeTitle,
                 ImagePath = a.CatImage,
-                IsActive = a.IsActive.Value
+                IsActive = a.IsActive??false
             }).FirstOrDefault();
 
             return category;
@@ -125,6 +128,7 @@ namespace ShivFactory.Business.Repository
                         SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
                         Id = row["CategoryId"] != DBNull.Value ? Convert.ToInt32(row["CategoryId"]) : 0,
                         CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
+                        HomeTitle = row["HomeTitle"] != DBNull.Value ? row["HomeTitle"].ToString() : "",
                         ImagePath = common.checkfile(row["ImagePath"].ToString()),
                         IsActive = row["IsActive"] != DBNull.Value ? Convert.ToBoolean(row["IsActive"]) : false,
                         AddDate = row["Adddate"] != DBNull.Value ? Convert.ToDateTime(row["Adddate"]).ToString("dd/MM/yyyy") : ""
