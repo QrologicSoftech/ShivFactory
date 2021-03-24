@@ -227,6 +227,34 @@ namespace ShivFactory.Controllers
         }
         #endregion
 
+
+        #region GetVarients Filter
+        public ActionResult GetVarientsFilter(ProductListingPagination model)
+        {
+            try
+            {
+                RepoVarient varient = new RepoVarient();
+                var varients = varient.GetVarientsFilter(model);
+
+                return Json(new ResultModel
+                {
+                    ResultFlag = true,
+                    Data = varients,
+                    Message = "Varients found successfully!!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
         #region Website
         public ActionResult WebMenuPartialview()
         {
@@ -280,35 +308,6 @@ namespace ShivFactory.Controllers
             ViewBag.MiniCategoryId = minId;
             return View();
         }
-
-        #region GetVarients Filter
-        public ActionResult GetVarientsFilter(ProductListingPagination model)
-        {
-            try
-            {
-                RepoVarient varient = new RepoVarient();
-                var varients = varient.GetVarientsFilter(model);
-
-                return Json(new ResultModel
-                {
-                    ResultFlag = true,
-                    Data = varients,
-                    Message = "Varients found successfully!!"
-                }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResultModel
-                {
-                    ResultFlag = false,
-                    Data = null,
-                    Message = ex.Message
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
-        #endregion
-
-
         public ActionResult GetProducts(ProductListingPagination model)
         {
             try
@@ -341,9 +340,17 @@ namespace ShivFactory.Controllers
         #region ProductDetail
         public ActionResult ProductDetail(int productId, string VarientName, string VarientValue)
         {
-            RepoListing repoListing = new RepoListing();
-            var productDetail = repoListing.GetProductDetail(productId, VarientName, VarientValue);
-            return View(productDetail);
+            try
+            {
+                RepoListing repoListing = new RepoListing();
+                var productDetail = repoListing.GetProductDetail(productId, VarientName, VarientValue);
+                return View(productDetail);
+            }
+            catch (Exception e)
+            {
+                return View();
+            }
+
         }
 
         #endregion

@@ -19,12 +19,20 @@
         </div>
     </section>
 
-    var MainimgPath = Model != null && Model.MainImage != null ? Model.MainImage : "";
-    var imgPath1 = Model != null && Model.Image1 != null ? Model.Image1 : "";
-    var imgPath2 = Model != null && Model.Image2 != null ? Model.Image2 : "";
-    var imgPath3 = Model != null && Model.Image3 != null ? Model.Image3 : "";
-    var imgPath4 = Model != null && Model.Image4 != null ? Model.Image4 : "";
-    var imgPath5 = Model != null && Model.Image5 != null ? Model.Image5 : "";
+        var MainimgPath = Model.MainImage ;
+        var imgPath1 =  Model.Image1 ;
+        var imgPath2 =  Model.Image2 ;
+        var imgPath3 =  Model.Image3 ;
+        var imgPath4 =  Model.Image4 ;
+        var imgPath5 =  Model.Image5 ;
+        var discount_percentage="0.00";
+    try
+        {
+            var discount = @Model.ListPrice - Model.SalePrice;
+            discount_percentage = Convert.ToDecimal(discount / @Model.ListPrice * 100).ToString("0.00") + "%Off"; ;
+        } catch (Exception e)
+        {  }
+
 
     <section>
         <div class="container">
@@ -130,19 +138,20 @@
                     <div class="sunglas">
                         <ul>
                             <li><a href="#">Home </a></li>
-                            <li><a href="#">Sunglasses </a></li>
-                            <li><a href="#">BROOF Sunglasses </a></li>
-                            <li><a href="#">BROOF Round</a></li>
+                            <li><a href="#">Category</a></li>
+                            <li><a href="#">SubCategory </a></li>
+                            <li><a href="#">@Model.ProductName</a></li>
                             <li><a href="#"><i class="fa fa-share" aria-hidden="true"></i> Share</a></li>
                         </ul>
-                        <h3>BROOF </h3>
-                        <p>UV Protection Round Sunglasses (Free Size)  (Multicolor)</p>
+                        <h3> </h3>
+                        <p>@Model.ProductName</p>
                         <div class="offer">
-                            <div class="offer-1">₹157</div>
-                            <div class="offer-2">₹999</div>
-                            <div class="offer-3">84% off</div>
-                            <div class="icon-img"><img src="img/icon.svg"></div>
+                            <div class="offer-1">₹ @Model.SalePrice</div>
+                            <div class="offer-2">₹@Model.ListPrice</div>
+                            <div class="offer-3">@discount_percentage</div>
+                            <div class="icon-img"><img src="~/Content/UploadedImages/Images/icon.svg"></div>
                         </div>
+                       
                         <div class="star">
                             <span>4.5 <i class="fa fa-star" aria-hidden="true"></i></span>
                             <p>4 ratings and 0 reviews</p>
@@ -164,7 +173,7 @@
                         <div class="col-md-6">
                             <div class="col-12" style="padding: 32px 0px 0px 0px;">
                                 <div class="deliver">
-                                    <img src="img/map.svg">
+                                    <img src="~/Content/UploadedImages/Images/map.svg" />
                                     <span class="deliver-1">Deliver to</span>
                                 </div>
                                 <div class="input-text">
@@ -231,8 +240,9 @@
                                 <ul>
                                     <li>
                                         <div class="return">
-                                            <img src="img/download-1.svg">
+                                            <img src="~/Content/UploadedImages/Images/download-1.svg" />
                                         </div>
+                                  
                                         14 Days Return Policy
                                         <div class="Bvquestion">
                                             <span class="question">?</span>
@@ -240,7 +250,7 @@
                                     </li>
                                     <li>
                                         <div class="return">
-                                            <img src="img/download-2.svg">
+                                            <img src="~/Content/UploadedImages/Images/download-1.svg" />
                                         </div>
                                         Cash on Delivery available
                                         <div class="Bvquestion">

@@ -145,5 +145,10 @@ ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
             pageCount = dataval.PageCount;
         });
         common.HideLoader('#partialViewListing');
+    },
+
+    GetDiscountPercentage: function (Price1, Price2) {
+        var discout = parseFloat(Price1) - parseFloat(Price2);
+        var percentage = discout/100*100
     }
 }
