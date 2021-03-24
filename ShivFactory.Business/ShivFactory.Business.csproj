@@ -135,6 +135,7 @@
     <Compile Include="Repository\MiniCategory\MiniCategoryModel.cs" />
     <Compile Include="Repository\MiniCategory\MiniCategoryResponse.cs" />
     <Compile Include="Repository\MiniCategory\RepoMinicategory.cs" />
+    <Compile Include="Repository\Product\Listing\ProductDetail.cs" />
     <Compile Include="Repository\Product\Listing\ProductListingPagination.cs" />
     <Compile Include="Repository\Product\Listing\RepoListing.cs" />
     <Compile Include="Repository\Product\ProductModel.cs" />
