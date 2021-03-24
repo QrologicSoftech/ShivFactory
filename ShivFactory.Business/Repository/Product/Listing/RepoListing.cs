@@ -81,6 +81,10 @@ namespace ShivFactory.Business.Repository
                     Image5 = repoCommon.checkfile(ds.Tables[0].Rows[0]["Image5"].ToString()),
                 };
             }
+            if (ds.Tables[1].Rows.Count > 0)
+            { 
+            
+            }
             return productDetail;
         }
         #endregion

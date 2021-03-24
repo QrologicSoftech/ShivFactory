@@ -24,5 +24,23 @@ namespace ShivFactory.Business.Repository
         public string Image3 { get; set; }
         public string Image4 { get; set; }
         public string Image5 { get; set; }
+
+        public List<Varient> varientList { get; set;  }
+    }
+
+    public class Varient
+    {
+        public string ImagePath { get; set; }
+        public string ListPrice { get; set; }
+        public string SalePrice { get; set; }
+
+        public string VarientName1 { get; set;  }
+        public string VarientValue1 { get; set; }
+
+        public string VarientName2 { get; set; }
+        public string VarientValue2 { get; set; }
+
+        public string VarientName3 { get; set; }
+        public string VarientValue3 { get; set; }
     }
 }
