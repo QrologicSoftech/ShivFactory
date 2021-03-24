@@ -46,7 +46,7 @@
                                     </select>*@
                                 <input type="text" id="txtsearch-item" class="form-control" placeholder="What are you looking for...">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit"> <i class="fa fa-search"></i> </button>
+                                    <button class="btn btn-primary" type="button"> <i class="fa fa-search"></i> </button>
                                 </div>
                             </div>
                         </form>
@@ -284,7 +284,6 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            debugger;
             const urlParams = new URLSearchParams(window.location.search);
             const myParam = urlParams.get('searchtext');
             $("#txtsearch-item").val(myParam);
@@ -327,10 +326,10 @@
                             }
                         },
                         error: function (response) {
-                            alert(response.Message);
+                            toastr.error(response.Message);
                         },
                         failure: function (response) {
-                            alert(response.Message);
+                            toastr.error(response.Message);
                         }
                     });
                 },
