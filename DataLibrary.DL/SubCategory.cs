@@ -33,6 +33,7 @@ namespace DataLibrary.DL
         public Nullable<decimal> SGST { get; set; }
         public Nullable<decimal> IGST { get; set; }
         public string Varients { get; set; }
+        public Nullable<bool> ShowAtHome { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

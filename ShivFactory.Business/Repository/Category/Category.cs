@@ -13,6 +13,8 @@ namespace ShivFactory.Business.Repository
         public int? CategoryId { get; set; }
         [Required(ErrorMessage = "Please enter category name")]
         public string CategoryName { get; set; }
+        [Required(ErrorMessage = "Please enter title value")]
+        public string HomeTitle { get; set; }
         public string ImagePath { get; set; }
         public bool IsActive { get; set; }
         //[Required(ErrorMessage = "Please upload image")]

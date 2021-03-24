@@ -112,6 +112,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="nvarchar" MaxLength="100" />
+          <Property Name="HomeTitle" Type="nvarchar" MaxLength="200" />
           <Property Name="CatImage" Type="nvarchar" MaxLength="250" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsDelete" Type="bit" />
@@ -240,6 +241,12 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="VarientValue10" Type="nvarchar" MaxLength="300" />
           <Property Name="AddDate" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="MainImage" Type="nvarchar(max)" />
+          <Property Name="Image1" Type="nvarchar(max)" />
+          <Property Name="Image2" Type="nvarchar(max)" />
+          <Property Name="Image3" Type="nvarchar(max)" />
+          <Property Name="Image4" Type="nvarchar(max)" />
+          <Property Name="Image5" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -250,13 +257,14 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="SubCategoryName" Type="nvarchar" MaxLength="100" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="IsDelete" Type="bit" />
-          <Property Name="Adddate" Type="datetime" />
-          <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="ShowAtHome" Type="bit" />
           <Property Name="GST" Type="decimal" Precision="18" Scale="0" />
           <Property Name="SGST" Type="decimal" Precision="18" Scale="0" />
           <Property Name="IGST" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Varients" Type="nvarchar(max)" />
+          <Property Name="Adddate" Type="datetime" />
+          <Property Name="LastUpdate" Type="datetime" />
+          <Property Name="IsDelete" Type="bit" />
         </EntityType>
         <EntityType Name="UserDetails">
           <Key>
@@ -688,6 +696,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="SubCategories" Relationship="db_ShivFactoryModel.FK__SubCatego__Categ__6383C8BA" FromRole="Category" ToRole="SubCategory" />
           <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
+          <Property Name="HomeTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="DynamicMenu">
           <Key>
@@ -911,6 +920,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <NavigationProperty Name="MiniCategories" Relationship="db_ShivFactoryModel.FK__MiniCateg__SubCa__628FA481" FromRole="SubCategory" ToRole="MiniCategory" />
           <Property Name="Varients" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="SubCategory" ToRole="Product" />
+          <Property Name="ShowAtHome" Type="Boolean" />
         </EntityType>
         <Association Name="FK__SubCatego__Categ__6383C8BA">
           <End Type="db_ShivFactoryModel.Category" Role="Category" Multiplicity="0..1">
@@ -1050,6 +1060,12 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="AddDate" Type="DateTime" Precision="3" />
           <Property Name="LastUpdate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Product" Relationship="db_ShivFactoryModel.FK__ProductVa__Produ__57DD0BE4" FromRole="ProductVarient" ToRole="Product" />
+          <Property Name="MainImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -1246,6 +1262,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.Category">
               <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="HomeTitle" ColumnName="HomeTitle" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="CatImage" ColumnName="CatImage" />
@@ -1357,6 +1374,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySetMapping Name="SubCategories">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.SubCategory">
               <MappingFragment StoreEntitySet="SubCategory">
+                <ScalarProperty Name="ShowAtHome" ColumnName="ShowAtHome" />
                 <ScalarProperty Name="Varients" ColumnName="Varients" />
                 <ScalarProperty Name="IGST" ColumnName="IGST" />
                 <ScalarProperty Name="SGST" ColumnName="SGST" />
@@ -1441,6 +1459,12 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySetMapping Name="ProductVarients">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.ProductVarient">
               <MappingFragment StoreEntitySet="ProductVarient">
+                <ScalarProperty Name="Image5" ColumnName="Image5" />
+                <ScalarProperty Name="Image4" ColumnName="Image4" />
+                <ScalarProperty Name="Image3" ColumnName="Image3" />
+                <ScalarProperty Name="Image2" ColumnName="Image2" />
+                <ScalarProperty Name="Image1" ColumnName="Image1" />
+                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="AddDate" ColumnName="AddDate" />
                 <ScalarProperty Name="VarientValue10" ColumnName="VarientValue10" />

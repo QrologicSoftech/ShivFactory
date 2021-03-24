@@ -17,6 +17,7 @@ namespace ShivFactory.Business.Repository
         public string SubCategoryName { get; set; }
         public string ImagePath { get; set; }
         public bool IsActive { get; set; }
+        public bool ShowAtHome { get; set; }
         public HttpPostedFileBase PostedFile { get; set; }
 
         [Required(ErrorMessage = "GST Required")]

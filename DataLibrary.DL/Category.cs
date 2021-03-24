@@ -28,6 +28,7 @@ namespace DataLibrary.DL
         public Nullable<bool> IsDelete { get; set; }
         public Nullable<System.DateTime> Adddate { get; set; }
         public Nullable<System.DateTime> LastUpdate { get; set; }
+        public string HomeTitle { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubCategory> SubCategories { get; set; }
