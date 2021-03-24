@@ -124,10 +124,11 @@ ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
     OnSuccess: function (response) {
 
         $.each(response, function (j, dataval) {
+            //<span class="badge badge-danger"> NEW </span>
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3">\
                         <figure class="card card-product-grid" >\
-                            <div class="img-wrap"> <span class="badge badge-danger"> NEW </span> <a href="#"><img src="'+ dataval.MainImage + '"></a> </div>\
-                                <figcaption class="info-wrap"> <a href="#" class="title mb-2">'+ dataval.ProductName + '</a>\
+                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+dataval.ProductId+'"><img src="'+ dataval.MainImage + '"></a> </div>\
+                                <figcaption class="info-wrap"> <a href="#" class="title mb-2">' + dataval.ProductName + '</a>\
                                     <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
                                     <!-- price-wrap.// -->\
                                   <div class="rating-wrap mb-2">\
