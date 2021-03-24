@@ -30,6 +30,7 @@ namespace ShivFactory.Business.Repository
                 subCategory.ImagePath = model.ImagePath;
                 subCategory.LastUpdate = DateTime.Now;
                 subCategory.IsActive = model.IsActive;
+                subCategory.ShowAtHome = model.ShowAtHome;
                 subCategory.GST = model.GST;
                 subCategory.SGST = model.SGST;
                 subCategory.IGST = model.IGST;
@@ -43,6 +44,7 @@ namespace ShivFactory.Business.Repository
                     ImagePath = model.ImagePath,
                     Adddate = DateTime.Now,
                     IsActive = model.IsActive,
+                    ShowAtHome = model.ShowAtHome,
                     IsDelete = false,
                     GST = model.GST,
                     SGST = model.SGST,
@@ -70,8 +72,9 @@ namespace ShivFactory.Business.Repository
                 SubCategoryId = a.ID,
                 SubCategoryName = a.SubCategoryName,
                 ImagePath = a.ImagePath,
-                IsActive = a.IsActive.Value,
-                GST=a.GST.Value,
+                IsActive = a.IsActive ?? false,
+                ShowAtHome = a.ShowAtHome ?? false,
+                GST = a.GST.Value,
                 SGST = a.SGST.Value,
                 IGST = a.IGST.Value,
             }).FirstOrDefault();

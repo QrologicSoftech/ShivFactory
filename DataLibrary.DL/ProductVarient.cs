@@ -41,6 +41,12 @@ namespace DataLibrary.DL
         public string VarientValue10 { get; set; }
         public Nullable<System.DateTime> AddDate { get; set; }
         public Nullable<System.DateTime> LastUpdate { get; set; }
+        public string MainImage { get; set; }
+        public string Image1 { get; set; }
+        public string Image2 { get; set; }
+        public string Image3 { get; set; }
+        public string Image4 { get; set; }
+        public string Image5 { get; set; }
     
         public virtual Product Product { get; set; }
     }
