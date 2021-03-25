@@ -698,7 +698,7 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                if (!ModelState.IsValid)
                 {
                     return View(model);
                 }

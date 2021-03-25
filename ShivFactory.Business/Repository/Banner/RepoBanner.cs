@@ -57,7 +57,7 @@ namespace ShivFactory.Business.Repository
                 BannerName = a.Name,
                 Title = a.Title,
                 ImagePath = a.BannerImage,
-                IsActive = a.IsActive.Value
+                IsActive = a.IsActive??false
             }).FirstOrDefault();
 
             return banner;
