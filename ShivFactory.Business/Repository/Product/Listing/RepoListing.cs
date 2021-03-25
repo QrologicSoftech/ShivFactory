@@ -80,11 +80,24 @@ namespace ShivFactory.Business.Repository
                     Image4 = repoCommon.checkfile(ds.Tables[0].Rows[0]["Image4"].ToString()),
                     Image5 = repoCommon.checkfile(ds.Tables[0].Rows[0]["Image5"].ToString()),
                 };
+
+                if (ds.Tables[1].Rows.Count > 0)
+                {
+                    ProductVariations itemVariation = new ProductVariations(); 
+                    foreach (DataRow dataRow in ds.Tables[1].Rows)
+                    {
+                        foreach (DataColumn dataColumn in ds.Tables[1].Columns)
+                        {
+                            string fieldColumn = dataColumn.ToString();
+                            string fieldValue = Convert.ToString(dataRow[dataColumn]);
+                            itemVariation.VarientName = fieldColumn;
+                            itemVariation.VarientValue.Add(fieldValue);
+                        }
+                        productDetail.varientList.Add(itemVariation);
+                    }
+                }
             }
-            if (ds.Tables[1].Rows.Count > 0)
-            { 
             
-            }
             return productDetail;
         }
         #endregion
