@@ -25,10 +25,10 @@ namespace ShivFactory.Business.Repository
         public string Image4 { get; set; }
         public string Image5 { get; set; }
 
-        public List<Varient> varientList { get; set;  }
+        public List<ProductVariations> varientList { get; set;  }
     }
 
-    public class Varient
+    public class ProductVariations
     {
         public string ImagePath { get; set; }
         public string ListPrice { get; set; }
