@@ -332,6 +332,7 @@
     <Content Include="Content\UploadedImages\Images\download-1.svg" />
     <Content Include="Content\UploadedImages\Images\download-2.svg" />
     <Content Include="Content\UploadedImages\Images\icon.svg" />
+    <Content Include="Content\UploadedImages\Images\spent.png" />
     <Content Include="Content\Website\css\bootstrap-main.css" />
     <Content Include="Content\Website\css\bootstrap.css" />
     <Content Include="Content\Website\css\ma5-menu.min.css" />
