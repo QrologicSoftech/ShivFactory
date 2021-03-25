@@ -148,4 +148,24 @@ namespace ShivFactory.Business.Repository
         #endregion
 
     }
+
+    public static class Helper
+    {
+        public static string ImagePath(this string path)
+        {
+            var noImagePath = "/Content/UploadedImages/Images/NoImg.png";
+            try
+            {
+                if (!string.IsNullOrEmpty(path) && File.Exists(HttpContext.Current.Server.MapPath(path)))
+                {
+                    return path;
+                }
+                return noImagePath;
+            }
+            catch (Exception e)
+            {
+                return noImagePath;
+            }
+        }
+    }
 }

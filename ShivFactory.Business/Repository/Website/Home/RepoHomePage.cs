@@ -22,12 +22,10 @@ namespace ShivFactory.Business.Repository.Website
 
             response.Banners = db.Banners.Where(a => a.IsActive == true && a.IsDelete == false && a.BannerImage != null).OrderByDescending(a => a.Adddate).Select(a => new Images()
             {
-                ImagePath = common.checkfile(a.BannerImage)
+                ImagePath = a.BannerImage
             }).Take(10).AsNoTracking().ToList();
 
-            
-
-            var subCategory = db.SubCategories.Where(a => a.ShowAtHome == true && a.IsActive == true && a.IsDelete == false).Include(a => a.Category).OrderByDescending(a => a.Adddate).GroupBy(a => a.CategoryID).Select(a => new HomeCategoryResponse()
+            response.Products = db.SubCategories.Where(a => a.ShowAtHome == true && a.IsActive == true && a.IsDelete == false).Include(a => a.Category).OrderByDescending(a => a.Adddate).GroupBy(a => a.CategoryID).Select(a => new HomeCategoryResponse()
             {
                 Id = a.Key ?? 0,
                 Title = a.Select(i => i.Category != null ? i.Category.HomeTitle != null ? i.Category.HomeTitle : i.Category.CategoryName : i.SubCategoryName).FirstOrDefault(),
@@ -37,7 +35,15 @@ namespace ShivFactory.Business.Repository.Website
                 }).Take(10).ToList()
             }).AsNoTracking().ToList();
 
-            response.Products = subCategory;
+            foreach (var b in response.Banners)
+            {
+                b.ImagePath=b.ImagePath.ImagePath();
+            }
+
+            foreach (var b in response.Products)
+            {
+                b.SubCategory.ForEach(a => a.ImagePath= a.ImagePath.ImagePath());
+            }
 
             return response;
         }

@@ -48,11 +48,11 @@ var Listing = {
             }
             common.HideLoader();
         });
-        
+
     },
 
     ApplyFilter: function () {
-        
+
         for (var a = 0; a < 10; a++) {
             ProductFilter["VarientName" + parseInt(a)] = '';
             ProductFilter["VarientName" + parseInt(a)] = '';
@@ -80,7 +80,7 @@ var Listing = {
                 index++;
             }
         };
-       
+
         console.log(ProductFilter);
         common.HideLoader();
     },
@@ -88,37 +88,37 @@ var Listing = {
     GetRecords: function () {
         common.ShowLoader('#partialViewListing');
         var data
-        if(pageIndex > pageCount) {
-                common.ShowLoader('#partialViewListing');
-    data = {
-        "CategoryId": $('#CategoryId').val(),
-        "SubCategoryId": $('#SubCategoryId').val(),
-        "MiniCategoryId": $('#MiniCategoryId').val(),
-        "SearchText": '',
-        "PageIndex": pageIndex,
-        "PageSize": 10
-    }
+        if (pageIndex > pageCount) {
+            common.ShowLoader('#partialViewListing');
+            data = {
+                "CategoryId": $('#CategoryId').val(),
+                "SubCategoryId": $('#SubCategoryId').val(),
+                "MiniCategoryId": $('#MiniCategoryId').val(),
+                "SearchText": '',
+                "PageIndex": pageIndex,
+                "PageSize": 10
+            }
             pageIndex++;
         } else {
-    data = {
-        "CategoryId": $('#CategoryId').val(),
-        "SubCategoryId": $('#SubCategoryId').val(),
-        "MiniCategoryId": $('#MiniCategoryId').val(),
-        "SearchText": '',
-        "PageIndex": 1,
-        "PageSize": 10
-    }
-    pageIndex++;
-}
-console.log(data);
-ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
-    console.log(result)
-    if (result.ResultFlag == true) {
-        Listing.OnSuccess(result.Data)
-    }
-});
+            data = {
+                "CategoryId": $('#CategoryId').val(),
+                "SubCategoryId": $('#SubCategoryId').val(),
+                "MiniCategoryId": $('#MiniCategoryId').val(),
+                "SearchText": '',
+                "PageIndex": 1,
+                "PageSize": 10
+            }
+            pageIndex++;
+        }
+        console.log(data);
+        ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
+            console.log(result)
+            if (result.ResultFlag == true) {
+                Listing.OnSuccess(result.Data)
+            }
+        });
 
-      
+
     },
 
     OnSuccess: function (response) {
@@ -127,7 +127,7 @@ ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
             //<span class="badge badge-danger"> NEW </span>
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3">\
                         <figure class="card card-product-grid" >\
-                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+dataval.ProductId+'"><img src="'+ dataval.MainImage + '"></a> </div>\
+                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '"><img src="' + dataval.MainImage + '"></a> </div>\
                                 <figcaption class="info-wrap"> <a href="#" class="title mb-2">' + dataval.ProductName + '</a>\
                                     <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
                                     <!-- price-wrap.// -->\
@@ -149,6 +149,57 @@ ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
 
     GetDiscountPercentage: function (Price1, Price2) {
         var discout = parseFloat(Price1) - parseFloat(Price2);
-        var percentage = discout/100*100
-    }
+        var percentage = discout / 100 * 100
+    },
+    BindIndexPage: function () {
+        common.ShowLoader();
+
+        var bannerli = "", bannerdiv = "", productSlider = '';
+
+        ajax.doPostAjax(`/Home/GetIndexData`, '', function (result) {
+            if (result.ResultFlag == true) {
+
+                //Bind Banner slider
+                $.each(result.Data.Banners, function (index, Value) {
+                    bannerli += `<li data-target="#carousel1_indicator" data-slide-to="${index}" class="${index == 0 ? "active" : ""}"></li>`;
+                    bannerdiv += `<div class="carousel-item ${index == 0 ? "active" : ""}"> <img src="${Value.ImagePath}" alt=""> </div>`;
+                });
+                $("#carousel1_indicator ol").html(bannerli);
+                $("#carousel1_indicator div").html(bannerdiv);
+
+                //Bind Product slider
+
+                $.each(result.Data.Products, function (index, Value) {
+                    productSlider += `<section class="padding-bottom-sm bg-white  mb-3 pb-3 pt-0">
+    <div class=" container">
+        <header class="section-heading pt-3 pb-2">
+            <h3 class="section-title text-center">${Value.Title} </h3>
+        </header>
+        <div class="card-deal px-1">
+            <div class="allitem-slider owl-carousel owl-button">`;
+
+                    $.each(Value.SubCategory, function (b) {
+                        productSlider += `<div class="item">
+                    <figure class="card-product-grid card-sm">
+                        <a href="/Home/ProductListing?id=${Value.Id}" class="img-wrap"> <img src="${b.ImagePath}"> </a>
+                        <div class="text-wrap">
+                            <a href="#" class="title">Ferguson Bed With Storage</a>
+                            <div class="price mt-1"><i class="fas fa-rupee-sign"></i> 179.00 <s class="old-rrice"><i class="fas fa-rupee-sign"></i> 200</s></div>
+                            <div class="add-cart pt-1"></div>
+                            <span class="badge badge-danger"> -20% </span>
+                        </div>
+                    </figure>
+                </div>`;
+                    })
+
+                    productSlider += `</div></div></div></section>`;
+
+                });
+                $("#Product-slider").html(productSlider);
+
+            }
+            common.HideLoader();
+        });
+
+    },
 }

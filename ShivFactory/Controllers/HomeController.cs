@@ -20,6 +20,32 @@ namespace ShivFactory.Controllers
             return View();
         }
 
+        #region Get Index Data
+        public ActionResult GetIndexData()
+        {
+            try
+            {
+                RepoHomePage home = new RepoHomePage();
+                var index = home.GetHomePageData();
+                return Json(new ResultModel
+                {
+                    ResultFlag = true,
+                    Data = index,
+                    Message = "Data found successfully!!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
         #region Change Profile Image
         public ActionResult ChangeProfileImage()
         {
