@@ -14,6 +14,5 @@ namespace ShivFactory.Business.Repository
         public string Quantity { get; set; }
         public string Brand { get; set; }
         public string Varient { get; set; }
-
     }
 }
