@@ -21,13 +21,7 @@ var productVarient = {
             </div></div>`);
     },
     
-    GetAllValues: function () {
-        var values = $(".row .varientSection input").map(function () {
-                return $(this).val()
-        }).get().join(",");
-        console.log(values)
-    },
-
+   
     BindVarientDDL: function () {
         $('#btnStep1').show(); 
         var label_values = $(".row .varientSection label").map(function () {
@@ -71,16 +65,10 @@ var productVarient = {
     BindVariationToProductTbl: function () {
         $('#step2').show(); 
         var map = {};
-        var nameArr = []; 
         var QtyArr = []; 
         var spArr = []; 
         var lpArr = []; 
      
-       
-        var selectedVarient = $(".row .varientSection label").map(function () {
-            return $(this).html().trim()
-        }).get().join(",");
-         //add n number of product based on variation in  table 
         var product = new Array();
         var label_values = $(".row .varientSection label").map(function () {
             return $(this).html().trim()
@@ -94,29 +82,21 @@ var productVarient = {
                 return $(this).val().trim()
             }).get(); //.join(",")
             map[label_values[r]] = varientVal;
-            //alert(label_values[r] + " qqqq " + varientVal);
         }
         //set table header name 
         product.push(label_values);
-        //product[0].push("Name"); 
         product[0].push(quantity);
         product[0].push(salePrice);
         product[0].push(listPrice); 
         
-
-           // put here vale from product model 
-       // nameArr = new Array(product[0].length);
         QtyArr = new Array(product[0].length);
         spArr = new Array(product[0].length);
         lpArr = new Array(product[0].length);
      
-      //  nameArr.push("BedSheet");
         QtyArr.push($('#ProductQty').val());
         spArr.push($('#SalePrice').val());
         lpArr.push($('#ListPrice').val());
-        //copyWithin is done to copy all elements upto header length. 
        
-        //nameArr.copyWithin(0, product[0].length);   
         QtyArr.copyWithin(0, product[0].length);
         spArr.copyWithin(0, product[0].length);
         lpArr.copyWithin(0, product[0].length);
@@ -125,9 +105,7 @@ var productVarient = {
         map[salePrice] = spArr;
         map[listPrice] = lpArr; 
 
-        console.log(map);
-        console.log(Object.keys(map));
-        console.log(Object.values(map));
+
         $('#step1').css('display', 'none');
         
             //Build an grid of  n number of Product Varient.
@@ -135,7 +113,7 @@ var productVarient = {
     
         var mapKey = Object.keys(map);
         var mapValues = Object.values(map);
-       // console.log("aaa " + map[mapKey[0]][0]);
+      
         for (var k = 0; k < MaxProductNumber.length; k++) {
             var arrProduct_Row_Value = new Array();
             for (var key = 0; key < mapKey.length; key++) {
@@ -162,7 +140,8 @@ var productVarient = {
             }
 
         //Add the data rows.
-        for (var i = 1; i < product.length; i++) {
+        
+        for (var i = 1; i <product.length-1; i++) {
                 row = $(table[0].insertRow(-1));
                 for (var j = 0; j < columnCount; j++) {
                     var cell = $("<td />");

@@ -439,10 +439,12 @@ namespace ShivFactory.Areas.Vendor.Controllers
                     SubCategoryId = model.SubCategoryId,
                     MiniCategoryId = model.MiniCategoryId,
                     IsActive = model.IsActive,
-                    ApprovedByAdmin = false,
+                    ApprovedByAdmin = null,
                     IsReturnable = model.IsReturnable,
                     ReturnDays = model.ReturnDays,
-                    AddDate = DateTime.Now
+                    AddDate = DateTime.Now,
+                    paymentModeCash = model.paymentModeCash
+                  
                 };
                 var isSaved = repoProduct.AddOrUpdateProduct(product);
 

@@ -153,7 +153,7 @@
         return callback(true);
     },
     ValidateProductStep5: function (callback) {
-        if ($('#ReturnDays').val() == '0' || $('#ReturnDays').val() == undefined) {
+         if ($('#ReturnDays').val() == '0' || $('#ReturnDays').val() == undefined) {
             $('span[data-valmsg-for="ReturnDays"]').text($('#ReturnDays').attr('data-val-required'));
             return callback("false");
         } else if (!$('#EstimateDeliveryTime').val() || $('#EstimateDeliveryTime').val() == undefined) {

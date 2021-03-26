@@ -559,6 +559,7 @@
     <Content Include="Views\Home\ProductListing.cshtml" />
     <Content Include="Views\Home\WebMenuPartialview.cshtml" />
     <Content Include="Views\Home\ProductDetail.cshtml" />
+    <Content Include="Views\Home\AddToCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

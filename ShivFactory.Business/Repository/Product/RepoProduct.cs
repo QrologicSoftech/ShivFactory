@@ -19,103 +19,6 @@ namespace ShivFactory.Business.Repository
         ShivFactoryEntities db = new ShivFactoryEntities();
         #endregion
 
-        #region Add Or Update Product
-        //public bool AddOrUpdateProduct(ClsProduct model)
-        //{
-        //    var Product = db.Products.Where(a => a.ProductId == model.ProductId).FirstOrDefault();
-        //    if (Product != null)
-        //    {
-        //        Product.VendorId = model.VendorId;
-        //        Product.ProductName = model.ProductName;
-        //        Product.SalePrice = model.SalePrice;
-        //        Product.ListPrice = model.ListPrice;
-        //        Product.LocalShipingCharge = model.LocalShipingCharge;
-        //        Product.ZonalShipingCharge = model.ZonalShipingCharge;
-        //        Product.NationalShippingCharge = model.NationalShippingCharge;
-        //        Product.StockCount = model.StockCount;
-        //        Product.MgfDate = model.MgfDate != null ? Convert.ToDateTime(model.MgfDate) : Product.MgfDate;
-        //        Product.MgfDetail = model.MgfDetail;
-        //        Product.ShellLife = model.ShellLife;
-        //        Product.ProductWarning = model.ProductWarning;
-        //        Product.Description = model.Description;
-        //        Product.EstimateDeliveryTime = model.EstimateDeliveryTime;
-
-        //        Product.MainImage = model.MainImage;
-        //        Product.Image1 = model.Image1;
-        //        Product.Image2 = model.Image2;
-        //        Product.Image3 = model.Image3;
-        //        Product.Image4 = model.Image4;
-        //        Product.Image5 = model.Image5;
-        //        Product.Image6 = model.Image6;
-
-        //        Product.BrandId = model.BrandId;
-        //        Product.CategoryId = model.CategoryId;
-        //        Product.SubCategoryId = model.SubCategoryId;
-        //        Product.MiniCategoryId = model.MiniCategoryId;
-        //        Product.IsActive = model.IsActive;
-        //        Product.ProductLength = model.ProductLength;
-        //        Product.ProductWidth = model.ProductWidth;
-        //        Product.ProductHeight = model.ProductHeight;
-        //        Product.ProductWeight = model.ProductWeight;
-        //        Product.PackageLength = model.PackageLength;
-        //        Product.PackageWidth = model.PackageWidth;
-        //        Product.PackageHeight = model.PackageHeight;
-        //        Product.PackageWeight = model.PackageWeight;
-        //        Product.ProductColors = model.ProductColors;
-        //        Product.ApprovedByAdmin = null;
-        //        Product.IsReturnable = model.IsReturnable;
-        //        Product.ReturnDays = model.ReturnDays;
-        //        Product.LastUpdate = DateTime.Now;
-        //    }
-        //    else
-        //    {
-        //        db.Products.Add(new Product
-        //        {
-        //            VendorId = model.VendorId,
-        //            ProductName = model.ProductName,
-        //            SalePrice = model.SalePrice,
-        //            ListPrice = model.ListPrice,
-        //            LocalShipingCharge = model.LocalShipingCharge,
-        //            ZonalShipingCharge = model.ZonalShipingCharge,
-        //            NationalShippingCharge = model.NationalShippingCharge,
-        //            StockCount = model.StockCount,
-        //            MgfDate = model.MgfDate != null ? Convert.ToDateTime(model.MgfDate) : new DateTime(),
-        //            MgfDetail = model.MgfDetail,
-        //            ShellLife = model.ShellLife,
-        //            ProductWarning = model.ProductWarning,
-        //            Description = model.Description,
-        //            EstimateDeliveryTime = model.EstimateDeliveryTime,
-        //            MainImage = model.MainImage,
-        //            Image1 = model.Image1,
-        //            Image2 = model.Image2,
-        //            Image3 = model.Image3,
-        //            Image4 = model.Image4,
-        //            Image5 = model.Image5,
-        //            Image6 = model.Image6,
-        //            BrandId = model.BrandId,
-        //            CategoryId = model.CategoryId,
-        //            SubCategoryId = model.SubCategoryId,
-        //            MiniCategoryId = model.MiniCategoryId,
-        //            IsActive = model.IsActive,
-        //            ProductLength = model.ProductLength,
-        //            ProductWidth = model.ProductWidth,
-        //            ProductHeight = model.ProductHeight,
-        //            ProductWeight = model.ProductWeight,
-        //            PackageLength = model.PackageLength,
-        //            PackageWidth = model.PackageWidth,
-        //            PackageHeight = model.PackageHeight,
-        //            PackageWeight = model.PackageWeight,
-        //            ProductColors = model.ProductColors,
-        //            ApprovedByAdmin = null,
-        //            IsReturnable = model.IsReturnable,
-        //            ReturnDays = model.ReturnDays,
-        //            AddDate = DateTime.Now
-        //        });
-        //    }
-        //    return db.SaveChanges() > 0;
-        //}
-
-        #endregion
 
         #region Add Or Update Product new
         public bool AddOrUpdateProduct(Product model)
@@ -164,6 +67,8 @@ namespace ShivFactory.Business.Repository
                 Product.IsReturnable = model.IsReturnable;
                 Product.ReturnDays = model.ReturnDays;
                 Product.LastUpdate = DateTime.Now;
+                Product.paymentModeCash = model.paymentModeCash;
+
             }
             else
             {

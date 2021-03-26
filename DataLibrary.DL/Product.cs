@@ -63,6 +63,8 @@ namespace DataLibrary.DL
         public Nullable<bool> IsReturnable { get; set; }
         public int ReturnDays { get; set; }
         public string productCode { get; set; }
+        public Nullable<bool> paymentModeCash { get; set; }
+        public Nullable<bool> paymentModeBank { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual MiniCategory MiniCategory { get; set; }

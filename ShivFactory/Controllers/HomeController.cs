@@ -368,6 +368,8 @@ namespace ShivFactory.Controllers
         {
             try
             {
+                productId = productId > 0 ? productId : 0;
+
                 RepoListing repoListing = new RepoListing();
                 var productDetail = repoListing.GetProductDetail(productId, VarientName, VarientValue);
                 return View(productDetail);
@@ -379,6 +381,13 @@ namespace ShivFactory.Controllers
 
         }
 
+        #endregion
+
+        #region Cart
+        public ActionResult AddToCart()
+        {
+            return View();
+        }
         #endregion
 
     }

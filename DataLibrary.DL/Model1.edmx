@@ -209,6 +209,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="IsReturnable" Type="bit" />
           <Property Name="ReturnDays" Type="int" Nullable="false" />
           <Property Name="productCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="paymentModeCash" Type="bit" />
+          <Property Name="paymentModeBank" Type="bit" />
         </EntityType>
         <EntityType Name="ProductVarient">
           <Key>
@@ -1119,6 +1121,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <NavigationProperty Name="Vendor" Relationship="db_ShivFactoryModel.FK__Product__VendorI__2739D489" FromRole="Product" ToRole="Vendor" />
           <NavigationProperty Name="ProductVarients" Relationship="db_ShivFactoryModel.FK__ProductVa__Produ__57DD0BE4" FromRole="Product" ToRole="ProductVarient" />
           <NavigationProperty Name="SubCategory" Relationship="db_ShivFactoryModel.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
+          <Property Name="paymentModeCash" Type="Boolean" />
+          <Property Name="paymentModeBank" Type="Boolean" />
         </EntityType>
         <Association Name="FK_Product_Category">
           <End Type="db_ShivFactoryModel.Category" Role="Category" Multiplicity="0..1" />
@@ -1498,6 +1502,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="paymentModeBank" ColumnName="paymentModeBank" />
+                <ScalarProperty Name="paymentModeCash" ColumnName="paymentModeCash" />
                 <ScalarProperty Name="productCode" ColumnName="productCode" />
                 <ScalarProperty Name="ReturnDays" ColumnName="ReturnDays" />
                 <ScalarProperty Name="IsReturnable" ColumnName="IsReturnable" />

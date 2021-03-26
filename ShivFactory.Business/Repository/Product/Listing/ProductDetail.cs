@@ -29,6 +29,8 @@ namespace ShivFactory.Business.Repository
         public string CategoryName { get; set; }
         public string SubCategoryName { get; set; }
         public string  MiniCategoryName { get; set; }
+
+        public bool IsReturnable { get; set;  }
 }
 
     public class ProductVariations

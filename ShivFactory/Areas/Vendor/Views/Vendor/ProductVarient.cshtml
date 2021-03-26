@@ -78,14 +78,19 @@
                                             </div>
 
                                             <div class="tab-pane active" role="tabpanel" id="step2" style="display:none">
-                                                @*<a href="#" style="float:right" onclick="productVarient.AddMoreVarientToProduct();">Back</a>*@
+                                                @*<a href="#" style="float:right" title="Change Variations" >Back</a>*@
                                                 <div id="dvTable">
                                                 </div>
 
                                                 <ul class="float-right">
                                                     <li class="list-inline-item">
+                                                        <button type="button" onclick="   $('#step1').css('display', 'block');$('#step2').css('display', 'none');" class="btn btn-outline-primary prev-step">Back</button>
+                                                    </li>
+
+                                                    <li class="list-inline-item">
                                                         <button type="button" onclick="productVarient.TableToJSON('#tblProduct');" class="btn btn-outline-primary prev-step">Save</button>
                                                     </li>
+
 
                                                 </ul>
                                             </div>
@@ -101,12 +106,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        //productVarient.BindVarientDDL();
-    });
 
-    //$('.input').change(function () {
-    //    alert("happy");
-    //});
-</script>
