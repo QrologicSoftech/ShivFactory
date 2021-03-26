@@ -38,6 +38,7 @@
         <AssociationConnector Association="db_ShivFactoryModel.FK__Product__VendorI__2739D489" />
         <AssociationConnector Association="db_ShivFactoryModel.FK__ProductVa__Produ__57DD0BE4" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_Product_SubCategory" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.TempOrder" Width="1.5" PointX="9.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -268,6 +268,19 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="LastUpdate" Type="datetime" />
           <Property Name="IsDelete" Type="bit" />
         </EntityType>
+        <EntityType Name="TempOrder">
+          <Key>
+            <PropertyRef Name="TempOrderID" />
+          </Key>
+          <Property Name="TempOrderID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Brand" Type="nvarchar" MaxLength="200" />
+          <Property Name="Varient" Type="nvarchar" MaxLength="200" />
+          <Property Name="productID" Type="int" />
+          <Property Name="productVarientID" Type="int" />
+        </EntityType>
         <EntityType Name="UserDetails">
           <Key>
             <PropertyRef Name="UserDetailId" />
@@ -538,6 +551,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductVarient" EntityType="Self.ProductVarient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TempOrder" EntityType="Self.TempOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Varient" EntityType="Self.Varient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorBankDetails" EntityType="Self.VendorBankDetails" Schema="dbo" store:Type="Tables" />
@@ -854,6 +868,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             <End Role="SubCategory" EntitySet="SubCategories" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
+          <EntitySet Name="TempOrders" EntityType="db_ShivFactoryModel.TempOrder" />
           </EntityContainer>
         <EntityType Name="DimensionMaster">
           <Key>
@@ -1188,6 +1203,19 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TempOrder">
+          <Key>
+            <PropertyRef Name="TempOrderID" />
+          </Key>
+          <Property Name="TempOrderID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Brand" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Varient" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="productID" Type="Int32" />
+          <Property Name="productVarientID" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1547,6 +1575,20 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="VendorId" ColumnName="VendorId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TempOrders">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.TempOrder">
+              <MappingFragment StoreEntitySet="TempOrder">
+                <ScalarProperty Name="productVarientID" ColumnName="productVarientID" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="Varient" ColumnName="Varient" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="TempOrderID" ColumnName="TempOrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

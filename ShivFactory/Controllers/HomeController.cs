@@ -384,9 +384,10 @@ namespace ShivFactory.Controllers
         #endregion
 
         #region Cart
-        public ActionResult AddToCart()
+        public ActionResult AddToCart(AddToCart model)
         {
-            return View();
+                //AddToCart model = new AddToCart(); 
+                return View(model);
         }
         #endregion
 

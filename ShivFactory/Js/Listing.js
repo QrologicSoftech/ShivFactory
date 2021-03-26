@@ -202,4 +202,20 @@ var Listing = {
         });
 
     },
+
+    AddToCart: function () {
+        var data = {
+            "ProductID": $('#ProductID').val(),
+            "ProductVarientId": $('#ProductVarientId').val(),
+            "ProductName": $('#ProductName').html,
+            "Price": $('#SalePrice').html,
+            "Quantity": '1',
+            "Brand": '',
+            "Varient": ''
+        }
+        ajax.doPostAjax(`/Home/AddToCart`, data, function (result) {
+            
+        }
+
+    },
 }

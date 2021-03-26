@@ -120,6 +120,8 @@
     <Compile Include="Repository\Brand\BrandResponse.cs" />
     <Compile Include="Repository\Brand\ClsBrand.cs" />
     <Compile Include="Repository\Brand\RepoBrand.cs" />
+    <Compile Include="Repository\Cart\AddToCart.cs" />
+    <Compile Include="Repository\Cart\RepoCart.cs" />
     <Compile Include="Repository\Category\Category.cs" />
     <Compile Include="Repository\Category\CategoryResponse.cs" />
     <Compile Include="Repository\Category\RepoCategory.cs" />
