@@ -14,13 +14,16 @@ namespace DataLibrary.DL
     
     public partial class TempOrder
     {
-        public int TempOrderID { get; set; }
-        public string ProductName { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<decimal> Price { get; set; }
-        public string Brand { get; set; }
-        public string Varient { get; set; }
-        public Nullable<int> productID { get; set; }
-        public Nullable<int> productVarientID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TempOrder()
+        {
+            this.TempOrderDetails = new HashSet<TempOrderDetail>();
+        }
+    
+        public int ID { get; set; }
+        public string UserId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TempOrderDetail> TempOrderDetails { get; set; }
     }
 }

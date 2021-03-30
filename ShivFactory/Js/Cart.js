@@ -4,7 +4,7 @@
             "ProductID": $('#ProductId').val(),
             "ProductVarientId": $('#ProductVarientId').val(),
             "ProductName": $('#ProductName').html(),
-            "Price": $('#SalePrice').html(),
+            "Price": parseFloat($('#SalePrice').html()),
             "Quantity": '1',
             "Brand": '',
             "Varient": ''

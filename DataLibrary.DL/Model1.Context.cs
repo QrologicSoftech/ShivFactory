@@ -47,5 +47,6 @@ namespace DataLibrary.DL
         public virtual DbSet<ProductVarient> ProductVarients { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<TempOrder> TempOrders { get; set; }
+        public virtual DbSet<TempOrderDetail> TempOrderDetails { get; set; }
     }
 }

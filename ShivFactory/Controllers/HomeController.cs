@@ -408,6 +408,13 @@ namespace ShivFactory.Controllers
             }
 
         }
+
+        public ActionResult ShowCart(string userID)
+        {
+            RepoCart cart = new RepoCart();
+            var userCart = cart.GetUserCart(userID);
+            return View(userCart); 
+        }
         #endregion
 
     }

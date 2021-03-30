@@ -24,5 +24,6 @@ namespace ShivFactory.Business.Models.Other
         public static string LastName = "ShivaLastName";
         public static string Mobile = "ShivaMobile";
         public static string EmailId = "ShivaEmailId";
+        public static string TempOrderId = "ShivaTempOrderId";
     }
 }

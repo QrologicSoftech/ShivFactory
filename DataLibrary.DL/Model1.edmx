@@ -270,9 +270,16 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
         </EntityType>
         <EntityType Name="TempOrder">
           <Key>
-            <PropertyRef Name="TempOrderID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="TempOrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="TempOrderDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="200" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
@@ -280,6 +287,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="Varient" Type="nvarchar" MaxLength="200" />
           <Property Name="productID" Type="int" />
           <Property Name="productVarientID" Type="int" />
+          <Property Name="TempOrderID" Type="int" />
+          <Property Name="AddDate" Type="datetime" />
         </EntityType>
         <EntityType Name="UserDetails">
           <Key>
@@ -535,6 +544,18 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TempOrderDetails_TempOrder">
+          <End Role="TempOrder" Type="Self.TempOrder" Multiplicity="0..1" />
+          <End Role="TempOrderDetails" Type="Self.TempOrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TempOrder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TempOrderDetails">
+              <PropertyRef Name="TempOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="db_ShivFactoryModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
@@ -553,6 +574,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySet Name="ProductVarient" EntityType="Self.ProductVarient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TempOrder" EntityType="Self.TempOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TempOrderDetails" EntityType="Self.TempOrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Varient" EntityType="Self.Varient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorBankDetails" EntityType="Self.VendorBankDetails" Schema="dbo" store:Type="Tables" />
@@ -620,6 +642,10 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <AssociationSet Name="FK_Product_SubCategory" Association="Self.FK_Product_SubCategory">
             <End Role="SubCategory" EntitySet="SubCategory" />
             <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TempOrderDetails_TempOrder" Association="Self.FK_TempOrderDetails_TempOrder">
+            <End Role="TempOrder" EntitySet="TempOrder" />
+            <End Role="TempOrderDetails" EntitySet="TempOrderDetails" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -871,6 +897,11 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <EntitySet Name="TempOrders" EntityType="db_ShivFactoryModel.TempOrder" />
+          <EntitySet Name="TempOrderDetails" EntityType="db_ShivFactoryModel.TempOrderDetail" />
+          <AssociationSet Name="FK_TempOrderDetails_TempOrder" Association="db_ShivFactoryModel.FK_TempOrderDetails_TempOrder">
+            <End Role="TempOrder" EntitySet="TempOrders" />
+            <End Role="TempOrderDetail" EntitySet="TempOrderDetails" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="DimensionMaster">
           <Key>
@@ -1207,9 +1238,17 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
         </Association>
         <EntityType Name="TempOrder">
           <Key>
-            <PropertyRef Name="TempOrderID" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="TempOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TempOrderDetails" Relationship="db_ShivFactoryModel.FK_TempOrderDetails_TempOrder" FromRole="TempOrder" ToRole="TempOrderDetail" />
+        </EntityType>
+        <EntityType Name="TempOrderDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
@@ -1217,7 +1256,22 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="Varient" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="productID" Type="Int32" />
           <Property Name="productVarientID" Type="Int32" />
+          <Property Name="TempOrderID" Type="Int32" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="TempOrder" Relationship="db_ShivFactoryModel.FK_TempOrderDetails_TempOrder" FromRole="TempOrderDetail" ToRole="TempOrder" />
         </EntityType>
+        <Association Name="FK_TempOrderDetails_TempOrder">
+          <End Type="db_ShivFactoryModel.TempOrder" Role="TempOrder" Multiplicity="0..1" />
+          <End Type="db_ShivFactoryModel.TempOrderDetail" Role="TempOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TempOrder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TempOrderDetail">
+              <PropertyRef Name="TempOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1584,6 +1638,16 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySetMapping Name="TempOrders">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.TempOrder">
               <MappingFragment StoreEntitySet="TempOrder">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TempOrderDetails">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.TempOrderDetail">
+              <MappingFragment StoreEntitySet="TempOrderDetails">
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="TempOrderID" ColumnName="TempOrderID" />
                 <ScalarProperty Name="productVarientID" ColumnName="productVarientID" />
                 <ScalarProperty Name="productID" ColumnName="productID" />
                 <ScalarProperty Name="Varient" ColumnName="Varient" />
@@ -1591,7 +1655,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="TempOrderID" ColumnName="TempOrderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
