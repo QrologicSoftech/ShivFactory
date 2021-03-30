@@ -272,7 +272,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Key>
             <PropertyRef Name="TempOrderID" />
           </Key>
-          <Property Name="TempOrderID" Type="int" Nullable="false" />
+          <Property Name="TempOrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductName" Type="nvarchar" MaxLength="200" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
@@ -301,6 +301,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="LastUpdate" Type="datetime" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="IsDelete" Type="bit" />
+          <Property Name="TempOrderId" Type="int" />
         </EntityType>
         <EntityType Name="Varient">
           <Key>
@@ -751,6 +752,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK__UserDetai__UserI__6477ECF3" FromRole="UserDetails" ToRole="AspNetUsers" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="TempOrderId" Type="Int32" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -1207,7 +1209,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Key>
             <PropertyRef Name="TempOrderID" />
           </Key>
-          <Property Name="TempOrderID" Type="Int32" Nullable="false" />
+          <Property Name="TempOrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
@@ -1325,6 +1327,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySetMapping Name="UserDetails">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.UserDetail">
               <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="TempOrderId" ColumnName="TempOrderId" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="UserDetailId" ColumnName="UserDetailId" />

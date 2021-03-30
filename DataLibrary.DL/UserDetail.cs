@@ -30,6 +30,7 @@ namespace DataLibrary.DL
         public Nullable<bool> IsDelete { get; set; }
         public string Gender { get; set; }
         public string Address { get; set; }
+        public Nullable<int> TempOrderId { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }

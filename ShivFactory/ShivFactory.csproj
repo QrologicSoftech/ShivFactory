@@ -359,6 +359,7 @@
     <Content Include="Content\Website\js\ma5-menu.min.js" />
     <Content Include="Content\Website\js\owl.carousel.js" />
     <Content Include="Content\Website\js\script.js" />
+    <Content Include="Js\Cart.js" />
     <Content Include="Js\Listing.js" />
     <Content Include="Js\Product Varient.js" />
     <Content Include="Js\Product.js" />
@@ -560,6 +561,7 @@
     <Content Include="Views\Home\WebMenuPartialview.cshtml" />
     <Content Include="Views\Home\ProductDetail.cshtml" />
     <Content Include="Views\Home\AddToCart.cshtml" />
+    <Content Include="Views\Home\ProductDetaill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

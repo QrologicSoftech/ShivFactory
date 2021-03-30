@@ -45,7 +45,15 @@ namespace ShivFactory.Business.Repository
         }
         public string GetCookiesValue(string cookieName)
         {
-            var val = HttpContext.Current.Request.Cookies[cookieName].Value;
+            var val = ""; 
+            try
+            {
+             val = HttpContext.Current.Request.Cookies[cookieName].Value;
+            }
+            catch (Exception e)
+            {
+                val = "" ; 
+            }
             return val;
         }
 

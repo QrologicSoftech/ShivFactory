@@ -386,8 +386,27 @@ namespace ShivFactory.Controllers
         #region Cart
         public ActionResult AddToCart(AddToCart model)
         {
-                //AddToCart model = new AddToCart(); 
-                return View(model);
+            try
+            {
+                RepoCart cart = new RepoCart();
+                bool  IsAddToCart = cart.AddToCart(model);
+                return Json(new ResultModel
+                {
+                    ResultFlag = IsAddToCart,
+                    Data = model,
+                    Message = "Add to cart successfully"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+
         }
         #endregion
 
