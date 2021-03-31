@@ -363,8 +363,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="Signature" Type="nvarchar" MaxLength="500" />
           <Property Name="Logo" Type="nvarchar" MaxLength="500" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'db_ShivFactory.dbo.VendorShippingArea' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VendorShippingArea">
           <Key>
             <PropertyRef Name="ID" />
@@ -603,6 +601,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.VendorShippingArea' does not ha
           <EntitySet Name="Varient" EntityType="Self.Varient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorBankDetails" EntityType="Self.VendorBankDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendors" EntityType="Self.Vendors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VendorShippingArea" EntityType="Self.VendorShippingArea" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WeightMaster" EntityType="Self.WeightMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BankerMaster" EntityType="Self.BankerMaster" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -614,13 +613,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.VendorShippingArea' does not ha
     [BankerMaster].[LastUpdate] AS [LastUpdate], 
     [BankerMaster].[IsAdmin] AS [IsAdmin]
     FROM [dbo].[BankerMaster] AS [BankerMaster]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="VendorShippingArea" EntityType="Self.VendorShippingArea" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [VendorShippingArea].[ID] AS [ID], 
-    [VendorShippingArea].[vendorId] AS [vendorId], 
-    [VendorShippingArea].[pincode] AS [pincode]
-    FROM [dbo].[VendorShippingArea] AS [VendorShippingArea]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__MiniCateg__SubCa__628FA481" Association="Self.FK__MiniCateg__SubCa__628FA481">
             <End Role="SubCategory" EntitySet="SubCategory" />

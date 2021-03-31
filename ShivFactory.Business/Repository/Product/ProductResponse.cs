@@ -29,5 +29,14 @@ namespace ShivFactory.Business.Repository
         public bool ApprovedByAdmin { get; set; }
         public string InactiveReason { get; set; }
     }
-    #endregion    
+    #endregion
+
+    #region PINCODE Response
+    public class PincodeResponce
+        {
+        public int SrNo { get; set; }
+        public int Id { get; set; }
+        public string pincode { get; set; }
+    }
+    #endregion
 }

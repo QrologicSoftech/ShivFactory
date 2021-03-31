@@ -94,12 +94,20 @@ namespace ShivFactory.Business.Repository
     {
         public void AddSessionValues()
         {
-            if (string.IsNullOrEmpty(HttpContext.Current.Request.Cookies[CookieName.UserName].Value.ToString()))
+          
+           HttpCookie cookie = HttpContext.Current.Request.Cookies[CookieName.UserName]; 
+            if (cookie == null)
             {
                 ActionExecutingContext filterContextORG = new ActionExecutingContext();
                 filterContextORG.Result = new RedirectResult("~/Account/LogIn");
                 return;
             }
+            //if (string.IsNullOrEmpty(HttpContext.Current.Request.Cookies[CookieName.UserName].Value.ToString()))
+            //{
+            //    ActionExecutingContext filterContextORG = new ActionExecutingContext();
+            //    filterContextORG.Result = new RedirectResult("~/Account/LogIn");
+            //    return;
+            //}
 
             HttpContext.Current.Session[CookieName.UserName] = HttpContext.Current.Request.Cookies[CookieName.UserName].Value;
             HttpContext.Current.Session[CookieName.UserId] = HttpContext.Current.Request.Cookies[CookieName.UserId].Value;
@@ -117,11 +125,16 @@ namespace ShivFactory.Business.Repository
         }
         public string GetSessionValue(string sessionName)
         {
+            var val = ""; 
             if (HttpContext.Current.Session[CookieName.UserName]==null)
             {
                 AddSessionValues();
-            }            
-            var val = HttpContext.Current.Session[sessionName].ToString();
+            }
+            if (HttpContext.Current.Session[sessionName] != null)
+            {
+               val = HttpContext.Current.Session[sessionName].ToString();
+              
+            }
             return val;
         }
 

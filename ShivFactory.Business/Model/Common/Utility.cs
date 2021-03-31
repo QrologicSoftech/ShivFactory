@@ -14,7 +14,9 @@ namespace ShivFactory.Business.Model.Common
         #region Is UserLogin
         public bool IsUserLogIn()
         {
-            if (string.IsNullOrEmpty(HttpContext.Current.Request.Cookies[CookieName.UserName].Value.ToString()))
+            HttpCookie cookie = HttpContext.Current.Request.Cookies[CookieName.UserName];
+            if (cookie==null)
+            // if (string.IsNullOrEmpty(HttpContext.Current.Request.Cookies[CookieName.UserName].Value.ToString()))
             {
                 return false;
             }

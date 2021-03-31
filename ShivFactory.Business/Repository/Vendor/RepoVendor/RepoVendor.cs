@@ -134,24 +134,88 @@ namespace ShivFactory.Business.Repository
 
         #endregion
 
-        #region
-        public bool AddorUpdateShippingArea(VendorShippingAreaModel area)
+        #region  Add  Vendor Shipping Area  Helpers 
+        public bool AddorUpdateShippingArea(VendorShippingArea area)
         {
-            var shiparea = db.VendorShippingAreas.Where(a=> a.vendorId == area.VendorId && a.pincode ==area.Pincode).AsNoTracking().FirstOrDefault();
-            if (shiparea != null)
+            try
             {
-                return false;
-            }
-            else {
-                var vendorshiparea = new VendorShippingArea()
+                var shiparea = db.VendorShippingAreas.Where(a => a.vendorId == area.vendorId && a.pincode == area.pincode).AsNoTracking().FirstOrDefault();
+                if (shiparea != null)
                 {
-                    vendorId = area.VendorId,
-                    pincode = area.Pincode
-                };
-                db.VendorShippingAreas.Add(vendorshiparea);
-                return db.SaveChanges() > 0;
+                    shiparea.vendorId = area.vendorId;
+                    shiparea.pincode = area.pincode;
+                }
+                else
+                {
+                    db.VendorShippingAreas.Add(area);
+                }
+            }catch(Exception e) { }
+            return db.SaveChanges() > 0;
+        }
+
+       
+        public List<PincodeResponce> GetAllPincodeByVendorId(int vendorId, PaginationRequest model, out int totalRecords)
+        {
+            var pincode = new List<PincodeResponce>();
+            totalRecords = 0;
+            try
+            {
+                List<SqlParameter> parameters = new List<SqlParameter>();
+                parameters.Add(new SqlParameter("@Action", "GetAllPincode"));
+                parameters.Add(new SqlParameter("@SearchText", model.searchText));
+                parameters.Add(new SqlParameter("@Skip", model.Skip));
+                parameters.Add(new SqlParameter("@Take", model.PageSize));
+                parameters.Add(new SqlParameter("@OrderColumn", model.SortColumn));
+                parameters.Add(new SqlParameter("@OrderDir", model.SortDirection));
+                parameters.Add(new SqlParameter("@VendorId", vendorId));
+
+                DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, "ManagePincode", parameters.ToArray());
+                if (ds.Tables != null && ds.Tables[0].Rows.Count > 0)
+                {
+                    totalRecords = ds.Tables[0].Rows[0]["TotalRow"] != DBNull.Value ? Convert.ToInt32(ds.Tables[0].Rows[0]["TotalRow"].ToString()) : 0;
+
+                    foreach (DataRow row in ds.Tables[0].Rows)
+                    {
+                        pincode.Add(new PincodeResponce()
+                        {
+                            SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
+                            Id = row["ID"] != DBNull.Value ? Convert.ToInt32(row["ID"]) : 0,
+                            pincode = row["pincode"] != DBNull.Value ? row["pincode"].ToString() : "",
+                        });
+                    }
+                }
             }
-          
+            catch (Exception e)
+            {
+            }
+            return pincode;
+        }
+
+
+     
+        public bool DeletePincodeByPincodeId(int pincodeId)
+        {
+            try
+            {
+                var pincode = db.VendorShippingAreas.Where(x => x.ID == pincodeId).FirstOrDefault();
+            if (pincode != null)
+            {
+                db.VendorShippingAreas.Remove(pincode);
+            }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return db.SaveChanges() > 0;
+        }
+
+
+        public VendorShippingArea  GetPincodeByID(int id)
+        {
+            
+                var shiparea = db.VendorShippingAreas.Where(a => a.ID == id).AsNoTracking().FirstOrDefault();
+                return shiparea;
         }
         #endregion
     }

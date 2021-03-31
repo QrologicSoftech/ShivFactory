@@ -70,6 +70,28 @@ var Vendor = {
             common.ShowMessage(result);
             common.HideLoader();
         });
+    }, DeletePincode: function (element) {
+
+        if (confirm("Are you sure want to delete this pincode?")) {
+            data = {
+                "id": $(element).closest('tr').attr('Id')
+            }
+            ajax.doPostAjax(`/${vendorArea}/${vendorController}/DeletePincode`, data, function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    location.reload();
+                }
+            });
+        }
+    },
+    EditPincode: function (element) {
+
+        if (confirm("Are you sure want to edit this pincode?")) {
+
+            var pincodeId = $(element).closest('tr').attr('Id');
+
+            location.replace(`/Vendor/Vendor/AddShippingArea/${pincodeId}`);
+        }
     },
 
 }

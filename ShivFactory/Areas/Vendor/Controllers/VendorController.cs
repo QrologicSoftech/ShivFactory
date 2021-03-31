@@ -90,119 +90,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 return View(new List<DataLibrary.DL.Product>());
             }
         }
-        //public ActionResult AddProduct(int? id)
-        //{
-        //    try
-        //    {
-        //        RepoBrand repoBrand = new RepoBrand();
-        //        ViewBag.Brands = repoBrand.GetBrandDDl();
-        //        RepoCategory repoCategory = new RepoCategory();
-        //        ViewBag.Category = repoCategory.GetCategoryDDl();
-        //        RepoSubcategory reposubCategory = new RepoSubcategory();
-        //        ViewBag.SubCategory = reposubCategory.GetSubCategoryDDl();
-        //        RepoMinicategory repominiCategory = new RepoMinicategory();
-        //        ViewBag.MiniCategory = repominiCategory.GetMiniCategoryDDl();
-        //        if (id > 0)
-        //        {
-        //            RepoProduct repoProduct = new RepoProduct();
-        //            var Product = repoProduct.GetProductByProductId(Convert.ToInt32(id));
-        //            return View(Product);
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        TempData["ErrorMessage"] = ex.Message;
-        //    }
-        //    ClsProduct model = new ClsProduct();
-        //    model.VendorId = repoVender.GetVendorIdByUserId(utils.GetCurrentUserId());
-        //    return View(model);
-        //}
-        //[HttpPost]
-        //public ActionResult AddProduct(ClsProduct model, HttpPostedFileBase postedfile)
-        //{
-        //    try
-        //    {
-        //        RepoBrand repoBrand = new RepoBrand();
-        //        ViewBag.Brands = repoBrand.GetBrandDDl();
-        //        RepoCategory repoCategory = new RepoCategory();
-        //        ViewBag.Category = repoCategory.GetCategoryDDl();
-        //        RepoSubcategory reposubCategory = new RepoSubcategory();
-        //        ViewBag.SubCategory = reposubCategory.GetSubCategoryDDl();
-        //        RepoMinicategory repominiCategory = new RepoMinicategory();
-        //        ViewBag.MiniCategory = repominiCategory.GetMiniCategoryDDl();
-
-        //        //RepoDimension repodim = new RepoDimension();
-        //        //RepoWeightMaster repoweigth = new RepoWeightMaster();
-        //        //ViewBag.dimension = repodim.GetDimensionDDl();
-        //        //ViewBag.weight = repoweigth.GetweightDDl();
-
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return View(model);
-        //        }
-
-        //        if (model.ProductId == 0 && postedfile == null)
-        //        {
-        //            ModelState.AddModelError("PostedFile", "Please upload Product Image.");
-        //            return View(model);
-        //        }
-        //        int index = 0;
-        //        bool isReturn = false;
-        //        foreach (var image in model.files)
-        //        {
-        //            if (image == null && model.ProductId == 0)
-        //            {
-        //                isReturn = true;
-        //                ModelState.AddModelError($"Image{index + 1}", "Please upload Product Image.");
-        //            }
-        //            index++;
-        //        }
-        //        if (isReturn) { return View(model); }
-
-        //        RepoCommon common = new RepoCommon();
-        //        if (postedfile != null)
-        //        {
-        //            model.MainImage = common.SaveImage(postedfile);
-        //        }
-
-        //        index = 0;
-        //        foreach (var file in model.files)
-        //        {
-        //            if (file != null)
-        //            {
-        //                string imagePath = common.SaveImage(file);
-        //                if (index == 0) { model.Image1 = imagePath; }
-        //                else if (index == 1) { model.Image2 = imagePath; }
-        //                else if (index == 2) { model.Image3 = imagePath; }
-        //                else if (index == 3) { model.Image4 = imagePath; }
-        //                else if (index == 4) { model.Image5 = imagePath; }
-        //                else if (index == 5) { model.Image6 = imagePath; }
-        //            }
-        //            index++;
-        //        }
-
-        //        RepoProduct repoProduct = new RepoProduct();
-        //        var isSaved = repoProduct.AddOrUpdateProduct(model);
-
-        //        if (isSaved)
-        //        {
-        //            TempData["SuccessMessage"] = "Product add or update successfully!!";
-        //            return RedirectToAction("Product", "Vendor");
-        //        }
-        //        else
-        //        {
-        //            TempData["ErrorMessage"] = "Failled to add or update Product";
-        //            return View(model);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        TempData["ErrorMessage"] = ex.Message;
-        //        return View(model);
-        //    }
-        //}
-
+     
         public ActionResult DeleteProduct(int id)
         {
 
@@ -583,28 +471,122 @@ namespace ShivFactory.Areas.Vendor.Controllers
         }
         
 
-        public ActionResult AddShippingArea()
+        public ActionResult AddShippingArea(int? id)
         {
-            RepoVendor vendor = new RepoVendor();
             Utility utility = new Utility();
+            RepoVendor vendor = new RepoVendor();
+            VendorShippingAreaModel shippingarea = new VendorShippingAreaModel();
             var vendorDetail = vendor.GetVendorDetailsByUserId(utility.GetCurrentUserId());
-            VendorShippingAreaModel shippingarea = new VendorShippingAreaModel(); 
             shippingarea.VendorName = Convert.ToString(vendorDetail.FirmName);
+            if (id > 0)
+            {
+                var vendorshippingarea = vendor.GetPincodeByID(Convert.ToInt32(id));
+                shippingarea.Pincode = vendorshippingarea.pincode;
+                shippingarea.VendorId = vendorshippingarea.vendorId.Value;
+                shippingarea.ID = vendorshippingarea.ID;
+                return View(shippingarea);
+            }
+       
             shippingarea.VendorId = vendorDetail.VendorId;
             return View(shippingarea);
-       }
+        }
+
+
         [HttpPost]
         public ActionResult AddShippingArea(VendorShippingAreaModel model)
         {
             RepoVendor vendor = new RepoVendor();
-            
-            vendor.AddorUpdateShippingArea(model); 
-            return View(model);
+            try
+            {
+                var vendorshiparea = new VendorShippingArea()
+                {
+                    vendorId = model.VendorId,
+                    pincode = model.Pincode
+                };
+                var isSaved = vendor.AddorUpdateShippingArea(vendorshiparea);
+                if (isSaved)
+                {
+                    TempData["SuccessMessage"] = "Pincode added successfully!!";
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Failled to add pincode";
+                }
+            }
+            catch (Exception e)
+            {
+                TempData["ErrorMessage"] = e.Message;
+                return View(model);
+            }
+           return RedirectToAction("VendorShippingArea", "Vendor");
+            //return View(model);
         }
         public ActionResult VendorShippingAreaPartialView()
         {
             return View(); 
         }
+
+        [HttpPost]
+        public ActionResult LoadPincodeData()
+        {
+            try
+            {
+                // Initialization.  
+                var search = Request.Form.GetValues("search[value]")[0];
+                var draw = Request.Form.GetValues("draw").FirstOrDefault();
+                var start = Request.Form.GetValues("start").FirstOrDefault();
+                var length = Request.Form.GetValues("length").FirstOrDefault();
+                //Find Order Column  
+                var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+                var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+
+                // Prepair model  
+                PaginationRequest model = new PaginationRequest()
+                {
+                    searchText = search,
+                    Skip = start != null ? Convert.ToInt32(start) : 0,
+                    PageSize = length != null ? Convert.ToInt32(length) : 0,
+                    SortColumn = sortColumn,
+                    SortDirection = sortColumnDir
+                };
+                int recordsTotal = 0;
+                int venderId = GetVendorId();
+                RepoVendor repovendor = new RepoVendor();
+                var pincodeList = repovendor.GetAllPincodeByVendorId(venderId, model, out recordsTotal);
+                return Json(new { data = pincodeList, draw = draw, recordsFiltered = pincodeList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult DeletePincode(int id)
+        {
+
+            try
+            {
+                RepoVendor repovendor = new RepoVendor();
+                var isDelete = repovendor.DeletePincodeByPincodeId(id);
+
+                return Json(new ResultModel
+                {
+                    ResultFlag = isDelete,
+                    Data = null,
+                    Message = isDelete ? "Pincode deleted successfully!!" : "Failled to delete Pincode."
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
         #endregion
     }
 }

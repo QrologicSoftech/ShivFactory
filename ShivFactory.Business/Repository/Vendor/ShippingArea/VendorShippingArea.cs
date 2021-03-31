@@ -14,7 +14,7 @@ namespace ShivFactory.Business.Repository
         public string VendorName { get; set; }
 
         [Required(ErrorMessage = "Enter your shipping area pincode")]
-        [RegularExpression(@"^\d{5}(-\d{4})?$", ErrorMessage = "Please Enter Valid Postal Code.")]
+        [RegularExpression(@"^\d{6}(-\d{6})?$", ErrorMessage = "Please Enter Valid Postal Code.")]
         public string Pincode { get; set; }
 
     }

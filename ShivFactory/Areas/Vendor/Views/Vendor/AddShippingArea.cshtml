@@ -1,4 +1,4 @@
-﻿@model ShivFactory.Business.Repository.VendorShippingArea
+﻿@model ShivFactory.Business.Repository.VendorShippingAreaModel
 @{
     ViewBag.Title = "VendorShippingArea";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -43,7 +43,7 @@
                                     @Html.HiddenFor(model => model.VendorId)
 
                                     <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
-                                    <button class="btn btn-light" type="reset">Cancel</button>
+                                    @*<button class="btn btn-light" type="reset">Cancel</button>*@
 
                                 }
                             </div>
