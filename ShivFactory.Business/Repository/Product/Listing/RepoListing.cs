@@ -83,7 +83,8 @@ namespace ShivFactory.Business.Repository
                     SubCategoryName = ds.Tables[0].Rows[0]["SubCategoryName"] != DBNull.Value ? ds.Tables[0].Rows[0]["SubCategoryName"].ToString() : "",
                     MiniCategoryName = ds.Tables[0].Rows[0]["MiniCategoryName"] != DBNull.Value ? ds.Tables[0].Rows[0]["MiniCategoryName"].ToString() : "",
                     FirmName = ds.Tables[0].Rows[0]["FirmName"] != DBNull.Value ? ds.Tables[0].Rows[0]["FirmName"].ToString() : "",
-                    IsReturnable = ds.Tables[0].Rows[0]["IsReturnable"] != DBNull.Value ? Convert.ToBoolean(ds.Tables[0].Rows[0]["IsReturnable"]) : false 
+                    IsReturnable = ds.Tables[0].Rows[0]["IsReturnable"] != DBNull.Value ? Convert.ToBoolean(ds.Tables[0].Rows[0]["IsReturnable"]) : false ,
+                    paymentModeCash = ds.Tables[0].Rows[0]["paymentModeCash"] != DBNull.Value ? Convert.ToBoolean(ds.Tables[0].Rows[0]["paymentModeCash"]) : false,
                 };
                 if (ds.Tables[1].Rows.Count > 0)
                 {

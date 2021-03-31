@@ -1,0 +1,35 @@
+﻿@using ShivFactory.Business.Repository
+@using Newtonsoft.Json;
+@using Newtonsoft.Json.Linq;
+@{
+    JObject obj = JObject.Parse(JsonConvert.SerializeObject(new ProductResponse(), Formatting.Indented, new JsonSerializerSettings
+    { PreserveReferencesHandling = PreserveReferencesHandling.Objects }));
+    obj.Remove("$id");
+
+    List<string> termsList = new List<string>();
+    foreach (var columnName in obj)
+    {
+        termsList.Add(columnName.Key.Trim());
+    }
+    string[] columnArray = termsList.ToArray();
+
+    ViewBag.Title = "ShippingAreaPartialView";
+}
+<div class="row overflow-auto">
+    <div class="col-12" id="TableDiv">
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var list = [
+            //{ Name: 'EditColor', Value: 'Vendor.GetProductColors(this);', Header: "Color" },
+            { Name: 'EditProduct', Value: 'Vendor.EditShippingArea(this);', Header: "Edit" },
+            { Name: 'Delete', Value: 'Vendor.DeleteShippingArea(this);', Header: "Delete" },
+
+        ];
+         var stringArray = @Html.Raw(Json.Encode(columnArray));
+
+        common.BindDatatable('TableDiv', '/Vendor/Vendor/LoadProductData', stringArray, 'Id', list);
+    });
+</script>

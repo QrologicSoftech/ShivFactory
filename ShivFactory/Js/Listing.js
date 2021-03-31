@@ -30,7 +30,7 @@ var Listing = {
 
                 $.each(varient, function (Value, varient) {
                     var html = `<article class="filter-group">\
-                        <h6 class="title" > <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#${varient.VarientName}"> ${varient.VarientName} </a> </h6 >\
+                        <h6 class="title" > <a href="#" class="dropdown-toggle"  data-toggle="collapse" data-target="#${varient.VarientName}"> ${varient.VarientName} </a> </h6 >\
                             <div class="filter-content collapse" id="${varient.VarientName}" style="">\
                                 <div class="inner">`;
 
@@ -127,7 +127,7 @@ var Listing = {
             //<span class="badge badge-danger"> NEW </span>
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3">\
                         <figure class="card card-product-grid" >\
-                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '"><img src="' + dataval.MainImage + '"></a> </div>\
+                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '" alt='+dataval.ProductName+'><img src="' + dataval.MainImage + '"></a> </div>\
                                 <figcaption class="info-wrap"> <a href="#" class="title mb-2">' + dataval.ProductName + '</a>\
                                     <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
                                     <!-- price-wrap.// -->\
@@ -138,7 +138,7 @@ var Listing = {
                                         </ul>\
                                         <div class="label-rating">2/10</div>\
                                     </div>\
-                                    <a href="#" class="btn btn-outline-primary" val='+ dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
+                                    <a href="#"  alt='+ dataval.ProductName +' class="btn btn-outline-primary" val='+ dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
                               </figure>\
                             </div >');
 

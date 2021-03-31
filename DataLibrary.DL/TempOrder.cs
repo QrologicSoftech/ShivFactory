@@ -22,6 +22,7 @@ namespace DataLibrary.DL
     
         public int ID { get; set; }
         public string UserId { get; set; }
+        public Nullable<decimal> NetAmt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TempOrderDetail> TempOrderDetails { get; set; }

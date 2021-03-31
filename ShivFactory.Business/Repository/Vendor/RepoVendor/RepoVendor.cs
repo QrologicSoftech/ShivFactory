@@ -133,5 +133,26 @@ namespace ShivFactory.Business.Repository
         }
 
         #endregion
+
+        #region
+        public bool AddorUpdateShippingArea(VendorShippingAreaModel area)
+        {
+            var shiparea = db.VendorShippingAreas.Where(a=> a.vendorId == area.VendorId && a.pincode ==area.Pincode).AsNoTracking().FirstOrDefault();
+            if (shiparea != null)
+            {
+                return false;
+            }
+            else {
+                var vendorshiparea = new VendorShippingArea()
+                {
+                    vendorId = area.VendorId,
+                    pincode = area.Pincode
+                };
+                db.VendorShippingAreas.Add(vendorshiparea);
+                return db.SaveChanges() > 0;
+            }
+          
+        }
+        #endregion
     }
 }

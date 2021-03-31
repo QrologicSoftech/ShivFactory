@@ -132,6 +132,9 @@
     <Compile Include="VendorBankDetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="VendorShippingArea.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="WeightMaster.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

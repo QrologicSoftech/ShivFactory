@@ -574,5 +574,37 @@ namespace ShivFactory.Areas.Vendor.Controllers
             }
         }
         #endregion
+
+        #region VendorShipingArea
+        public ActionResult VendorShippingArea()
+        {
+           
+            return View(); 
+        }
+        
+
+        public ActionResult AddShippingArea()
+        {
+            RepoVendor vendor = new RepoVendor();
+            Utility utility = new Utility();
+            var vendorDetail = vendor.GetVendorDetailsByUserId(utility.GetCurrentUserId());
+            VendorShippingAreaModel shippingarea = new VendorShippingAreaModel(); 
+            shippingarea.VendorName = Convert.ToString(vendorDetail.FirmName);
+            shippingarea.VendorId = vendorDetail.VendorId;
+            return View(shippingarea);
+       }
+        [HttpPost]
+        public ActionResult AddShippingArea(VendorShippingAreaModel model)
+        {
+            RepoVendor vendor = new RepoVendor();
+            
+            vendor.AddorUpdateShippingArea(model); 
+            return View(model);
+        }
+        public ActionResult VendorShippingAreaPartialView()
+        {
+            return View(); 
+        }
+        #endregion
     }
 }

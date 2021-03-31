@@ -31,6 +31,7 @@ namespace ShivFactory.Business.Repository
         public string  MiniCategoryName { get; set; }
 
         public bool IsReturnable { get; set;  }
+        public bool paymentModeCash { get; set;  }
 }
 
     public class ProductVariations

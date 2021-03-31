@@ -18,6 +18,7 @@ namespace DataLibrary.DL
         public Vendor()
         {
             this.Products = new HashSet<Product>();
+            this.VendorShippingAreas = new HashSet<VendorShippingArea>();
         }
     
         public int VendorId { get; set; }
@@ -40,5 +41,7 @@ namespace DataLibrary.DL
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VendorShippingArea> VendorShippingAreas { get; set; }
     }
 }

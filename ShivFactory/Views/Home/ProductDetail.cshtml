@@ -21,20 +21,20 @@
             </div>
         </section>
         @* var item=Model.varientList;*@
-        var MainimgPath = Model.MainImage;
-        var imgPath1 = Model.Image1;
-        var imgPath2 = Model.Image2;
-        var imgPath3 = Model.Image3;
-        var imgPath4 = Model.Image4;
-        var imgPath5 = Model.Image5;
-        var discount_percentage = "0.00";
-        try
-        {
-            var discount = @Model.ListPrice - Model.SalePrice;
-            discount_percentage = Convert.ToDecimal(discount / @Model.ListPrice * 100).ToString("0.00") + "%Off"; ;
-        }
-        catch (Exception e)
-        { }
+var MainimgPath = Model.MainImage;
+var imgPath1 = Model.Image1;
+var imgPath2 = Model.Image2;
+var imgPath3 = Model.Image3;
+var imgPath4 = Model.Image4;
+var imgPath5 = Model.Image5;
+var discount_percentage = "0.00";
+try
+{
+    var discount = @Model.ListPrice - Model.SalePrice;
+    discount_percentage = Convert.ToDecimal(discount / @Model.ListPrice * 100).ToString("0.00") + "%Off"; ;
+}
+catch (Exception e)
+{ }
 
         <section>
             <input type="hidden" id="ProductId" value="@Model.ProductId" />
@@ -219,7 +219,12 @@
                                             <div class="return">
                                                 <img src="img/download-2.svg">
                                             </div>
-                                            Cash on Delivery available
+                                            @if (Model.paymentModeCash == true)
+                                            {
+                                            <span>Cash on delivery available</span>
+                                            } else {
+                                            <span>Cash on delivery not available</span>
+                                            }
                                             <div class="Bvquestion">
                                                 <span class="question">?</span>
                                             </div>

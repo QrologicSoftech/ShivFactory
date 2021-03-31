@@ -24,6 +24,7 @@ namespace DataLibrary.DL
         public Nullable<int> productVarientID { get; set; }
         public Nullable<int> TempOrderID { get; set; }
         public Nullable<System.DateTime> AddDate { get; set; }
+        public Nullable<decimal> NetAmt { get; set; }
     
         public virtual TempOrder TempOrder { get; set; }
     }

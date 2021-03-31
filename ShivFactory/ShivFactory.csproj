@@ -504,6 +504,9 @@
     <Content Include="Content\Website\fonts\Pe-icon-7-stroke.eot" />
     <Content Include="Content\Website\fonts\Pe-icon-7-stroke.ttf" />
     <Content Include="Content\Website\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="Areas\Vendor\Views\Vendor\VendorShippingArea.cshtml" />
+    <Content Include="Areas\Vendor\Views\Vendor\AddShippingArea.cshtml" />
+    <Content Include="Areas\Vendor\Views\Vendor\VendorShippingAreaPartialView.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
