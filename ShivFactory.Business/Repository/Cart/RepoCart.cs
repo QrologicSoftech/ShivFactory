@@ -75,7 +75,10 @@ namespace ShivFactory.Business.Repository
         public List<AddToCart> GetUserCart(string tempOrderId)
         {
             List<AddToCart> userCart = new List<AddToCart>();
-            return userCart; 
+            var tmpOrder = db.TempOrders.Where(a => a.UserId == utility.GetCurrentUserId()).FirstOrDefault();
+            if (tmpOrder != null)
+            { }
+                return userCart; 
         }
     }
 }
