@@ -361,6 +361,7 @@
     <Content Include="Content\Website\js\ma5-menu.min.js" />
     <Content Include="Content\Website\js\owl.carousel.js" />
     <Content Include="Content\Website\js\script.js" />
+    <Content Include="images\9.jpg" />
     <Content Include="Js\Cart.js" />
     <Content Include="Js\Listing.js" />
     <Content Include="Js\Product Varient.js" />

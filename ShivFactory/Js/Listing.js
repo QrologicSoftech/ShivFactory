@@ -158,7 +158,8 @@ var Listing = {
 
         ajax.doPostAjax(`/Home/GetIndexData`, '', function (result) {
             if (result.ResultFlag == true) {
-
+                console.log("######");
+                console.log(result);
                 //Bind Banner slider
                 $.each(result.Data.Banners, function (index, Value) {
                     bannerli += `<li data-target="#carousel1_indicator" data-slide-to="${index}" class="${index == 0 ? "active" : ""}"></li>`;
@@ -176,10 +177,12 @@ var Listing = {
             <h3 class="section-title text-center">${Value.Title} </h3>
         </header>
         <div class="card-deal px-1">
-            <div class="allitem-slider owl-carousel owl-button">`;
+            <div class="allitem-slider owl-carousel owl-button"><div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2010px;">`;
 
-                    $.each(Value.SubCategory, function (a,b) {
-                        productSlider += `<div class="item">
+                    $.each(Value.SubCategory, function (a, b) {
+                        console.log("values");
+                        console.log(Value.SubCategory);
+                        productSlider += `<div class="owl-item active" style="width: 236.2px; margin-right: 15px;"><div class="item">
                     <figure class="card-product-grid card-sm">
                         <a href="/Home/ProductListing?id=${Value.Id}" class="img-wrap"> <img src="${b.ImagePath}"> </a>
                         <div class="text-wrap">
@@ -189,10 +192,10 @@ var Listing = {
                             <span class="badge badge-danger"> -20% </span>
                         </div>
                     </figure>
-                </div>`;
+                </div></div>`;
                     })
 
-                    productSlider += `</div></div></div></section>`;
+                    productSlider += `</div></div></div></div></div></section>`;
 
                 });
                $("#Product-slider").html(productSlider);
@@ -211,7 +214,7 @@ var Listing = {
     ajax.doPostAjax(`/Home/CheckPincodeAvailibity`, data, function (result) {
         console.log(result)
         if (result.ResultFlag == true) {
-           alert("Pincode Available")
+            alert("Product Delivery available for Pincode");
         }
     });
 

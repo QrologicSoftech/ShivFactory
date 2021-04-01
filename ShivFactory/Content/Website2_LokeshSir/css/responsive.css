@@ -1,0 +1,221 @@
+.mobile-block {
+  display: none; }
+  @media (min-width: 992px) {
+.navbar {
+	padding:0 1rem;
+}
+.section-footer .dont-collapse-sm{ display:block !important;}
+.allitem-slider .owl-dots {
+	display: none;
+}
+  }
+@media (min-width: 1040px) {
+  .container {
+    padding-left:50px !important;
+    padding-right:50px !important; } }
+@media (max-width: 1140px) {
+  .card-deal .col-heading {
+    min-width: 280px;
+    flex-basis: 280px; }
+
+  .nav-home-aside {
+    width: 200px; } }
+@media (max-width: 991px) {
+	.section-footer .title{
+	font-size: 13px;
+	font-size: 0.8125rem;
+	cursor: pointer;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+	margin: 0 -15px 0 -15px;
+	padding: 15px 15px 15px 15px;
+	display: block;
+}
+aside.col-md.col-6 {
+	width: 100% !important;
+	max-width: 100%;
+	flex: 100%;
+}
+	.section-footer .title::after {
+	content: "+";
+	width: 20px;
+	display: block;
+	float: right;
+	font-size:16px;
+}
+
+
+  /* small tablet devices */
+  .table-shopping-cart tr td:first-child {
+    width: 250px; }
+.table-shopping-cart.table th {
+	padding-left: 10px;
+	padding-right: 10px;
+	font-weight: bold;
+	color: #000;
+	font-size: 12px;
+}
+  .table-shopping-cart .itemside .info {
+    padding: 0; }
+  .table-shopping-cart .itemside .aside {
+    display: none; }
+
+  .card-deal {
+    display: block; }
+    .card-deal .col-heading {
+      min-width: 280px; }
+
+  .slider-home-banner {
+    margin-bottom: 20px; }
+    .slider-home-banner .carousel-item img {
+      max-height: 350px; } }
+@media all and (max-width: 767px) {
+  .nav-home-aside {
+    width: 100%; }
+	
+	.split_col .offer_badge {
+	font-size: 10px;
+	padding: 2px 0 0;
+	
+}
+.FreeInsllation{margin-bottom:20px;}
+.slider-home-banner .carousel-indicators li {
+	background-color: #333;
+}
+  .list-inline-item {
+    margin-bottom: 10px; }
+
+  .slider-home-banner {
+    margin-bottom: 20px; }
+    .slider-home-banner .carousel-item img {
+      max-height: 250px; }
+
+.search-header .form-control {
+	height: 38px;
+	margin-top: -1px;
+}
+.section-header .search-header .btn.btn-primary {
+	border-radius: 0;
+	font-weight: 400;
+	font-size: 14px;
+	height: 36px;
+}
+.section-header .search-header .form-control, .section-header .search-header .custom-select {
+	font-size: 13px !important;
+	padding: 6px;
+}
+.header-main {
+	padding-top: 0.2rem;
+	padding-bottom: 0.2rem;
+}
+.slider-home-banner .carousel-indicators {
+	bottom: -24px !important;
+}
+  .section-header .logo {
+    max-height:40px;
+    width: auto; }
+
+  .banner-quote {
+    min-height: auto; }
+
+  .icontext {
+    margin-bottom: 20px; }
+
+  .card-post {
+    margin-bottom: 20px; }
+
+  .card-product-grid .img-wrap {
+    height: 200px; }
+
+  .section-footer .title {
+    margin-bottom: 0; }
+
+  .item-feature {
+    margin-bottom: 20px; }
+
+  .mobile-order-first {
+    order: -1; }
+
+  .mobile-order-1 {
+    order: 1; }
+
+  .mobile-order-2 {
+    order: 2; }
+
+  .mobile-order-3 {
+    order: 3; }
+
+  .mobile-block {
+    display: block; }
+
+  .padding-y {
+    padding-top: 20px;
+    padding-bottom: 20px; }
+
+  .padding-top {
+    padding-top: 20px; }
+
+  .padding-bottom {
+    padding-bottom: 20px; }
+
+  .padding-y-lg {
+    padding-top: 30px;
+    padding-bottom: 30px; }
+
+  .padding-top-lg {
+    padding-top: 30px; }
+
+  .padding-bottom-lg {
+    padding-bottom: 30px; } 
+	.m-no-padding{padding:0 !important; border:0;}
+	.ma5menu__toggle.top-toggle {
+	display: none;
+}
+.search-header {
+	margin-top: 5px;
+}
+
+.add-cart .btn {
+	font-size: 13px;
+	padding: 7px 5px;
+	white-space: nowrap;
+}
+.card-deal.px-3 {
+	padding: 0 !important;
+}
+.allitem-slider .item .card-product-grid {
+	margin: 1px;
+}
+.section-header .search-header .form-control, .section-header .search-header .custom-select {
+	border-radius: 0;
+}
+.owl-button .owl-nav button.owl-next  {
+	left: -18px;
+}
+.owl-button .owl-nav button.owl-prev {
+	right: -18px;
+}
+.owl-button .owl-nav button{{background:#FFF; top:33%;}
+	}
+	
+	@media all and (max-width: 479px) {
+	.slider-home-banner .carousel-item img {
+	height:150px;
+	-o-object-fit: cover;
+	object-fit: cover;
+}
+.card-product-grid .img-wrap {
+	height: 130px;
+}
+
+.btn-outline-primary {
+	font-size: 13px;
+	padding: 5px 11px;
+}
+.table-shopping-cart .itemside .info a {
+	font-size: 13px;
+}
+.table-shopping-cart.table td, .table-shopping-cart.table th {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+	}
