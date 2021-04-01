@@ -178,7 +178,7 @@ var Listing = {
         <div class="card-deal px-1">
             <div class="allitem-slider owl-carousel owl-button">`;
 
-                    $.each(Value.SubCategory, function (b) {
+                    $.each(Value.SubCategory, function (a,b) {
                         productSlider += `<div class="item">
                     <figure class="card-product-grid card-sm">
                         <a href="/Home/ProductListing?id=${Value.Id}" class="img-wrap"> <img src="${b.ImagePath}"> </a>
@@ -195,7 +195,7 @@ var Listing = {
                     productSlider += `</div></div></div></section>`;
 
                 });
-                $("#Product-slider").html(productSlider);
+               $("#Product-slider").html(productSlider);
 
             }
             common.HideLoader();
