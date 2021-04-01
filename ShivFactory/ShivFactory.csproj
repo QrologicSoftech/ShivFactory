@@ -559,7 +559,6 @@
     <Content Include="Views\Shared\_Accounts_Layout.cshtml" />
     <Content Include="Views\Home\DemoAccDetail.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Shared\_WebSiteLayout.cshtml" />
     <Content Include="Views\Home\ProductListing.cshtml" />
     <Content Include="Views\Home\WebMenuPartialview.cshtml" />
     <Content Include="Views\Home\ProductDetail.cshtml" />
