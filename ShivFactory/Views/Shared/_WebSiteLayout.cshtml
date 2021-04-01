@@ -32,11 +32,11 @@
         <section class="header-main" data-toggle="affix">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-xl-3 col-lg-4 col-md-5 mobile-order-1 col-5">
+                    <div class="col-xl-2 col-lg-4 col-md-5 mobile-order-1 col-5">
                         <button class="ma5menu__toggle top-toggle" type="button"> <span class="ma5menu__icon-toggle"><img src="~/Content/Icons/burger_menu.svg"> </span> <span class="ma5menu__sr-only">Menu</span> </button>
                         <a href="#" class="brand-wrap"><img class="logo" src="~/Content/AdminImg/shiv  factory logo.png"> </a>
                     </div>
-                    <div class="col-xl-6 col-lg-5 col-md-6 mobile-order-3">
+                    <div class="col-xl-5 col-lg-5 col-md-6 mobile-order-3">
                         <form action="#" class="search-header">
                             <div class="input-group w-100">
                                 @*<select class="custom-select border-right" name="category_name">
@@ -45,16 +45,16 @@
                                         <option value="comments">Only best</option>
                                         <option value="content">Latest</option>
                                     </select>*@
-                                <input type="text" id="txtsearch-item" style="z-index: 99999999;" class="form-control" placeholder="What are you looking for...">
+                                <input type="text" id="txtsearch-item" class="form-control" placeholder="Search for products, brands and more">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button"> <i class="fa fa-search"></i> </button>
+                                    <button class="btn btn-primary" type="submit"> <i class="fa fa-search"></i> </button>
                                 </div>
                             </div>
                         </form>
                         <!-- search-wrap .end// -->
                     </div>
                     <!-- col.// -->
-                    <div class="col-xl-3 col-lg-3 col-md-7 order-2 col-7">
+                    <div class="col-xl-5 col-lg-3 col-md-7 order-2 col-7">
                         <div class="widgets-wrap float-md-right d-flex align-items-center justify-content-end">
 
 
@@ -67,32 +67,47 @@
                                                 <img id="imgFileUpload" style="max-height:15%;max-width:15%;" src="@UserImage" alt="image" onclick="Admin.ChangeProfileImage();"><span class="availability-status online"></span>
                                             </div>*@
                                         <div class="nav-profile-text">
-                                            <p class="text">@UserName</p>
+                                            <p class="text">@UserName <i class="fa fa-angle-down" aria-hidden="true"></i></p>
                                         </div>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Profile</a>
-                                        <a class="dropdown-item" href="#">My Account</a>
-                                        <a class="dropdown-item" href="#">Settings</a>
-                                        <a class="dropdown-item" href="~/Account/LogOff">Signout</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-user-circle" aria-hidden="true"></i>Profile</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i>My Account</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Orders</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-heart" aria-hidden="true"></i>WishList</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
                                     </div>
                                 }
                                 else
                                 {
-                                    <a href="~/Account/LogIn" class="widget-view dropdown-toggle" data-toggle="dropdown">
+                                    <a href="~/Account/LogIn" class="widget-view">
                                         <div class="icon-area"> <i class="pe-7s-user" aria-hidden="true"></i> </div>
                                         <small class="text  d-md-block d-lg-block"> Sign in  </small>
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="#">Profile</a>
-                                        <a class="dropdown-item" href="#">My Account</a>
-                                        <a class="dropdown-item" href="#">Settings</a>
-                                    </div>
                                 }
+                            </div>
+                            <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
+
+
+                                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
+
+                                    <div class="nav-profile-text">
+                                        <p class="text">More <i class="fa fa-angle-down" aria-hidden="true"></i></p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Notification Preferances</a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Sell on Shiv Factory</a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>24x7 Customer Care</a>
+                                    @*<a class="dropdown-item" href="#"><i class="fa fa-arrow-down" aria-hidden="true"></i>Download App</a>*@
+                                </div>
+
+
                             </div>
                             <div class="widget-header mr-1 mr-lg-0">
                                 <a href="#" class="widget-view">
-                                    <div class="icon-area"> <i class="pe-7s-cart"></i> <span class="notify">3</span></div>
+                                    <div class="icon-area"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="notify">3</span></div>
                                     <small class="text d-none d-md-block d-lg-block"> Cart </small>
                                 </a>
                             </div>

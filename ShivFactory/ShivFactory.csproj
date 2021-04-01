@@ -329,6 +329,8 @@
     <Content Include="Content\Icons\whatsapp1.png" />
     <Content Include="Content\JS\chart.js-Chart.min.js" />
     <Content Include="Content\JS\dttable.js" />
+    <Content Include="Content\UploadedImages\banner4.jpg" />
+    <Content Include="Content\UploadedImages\banner5.jpg" />
     <Content Include="Content\UploadedImages\Images\download-1.svg" />
     <Content Include="Content\UploadedImages\Images\download-2.svg" />
     <Content Include="Content\UploadedImages\Images\icon.svg" />
