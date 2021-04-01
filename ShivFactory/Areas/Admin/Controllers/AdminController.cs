@@ -56,7 +56,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 RepoCategory repoCategory = new RepoCategory();
                 var categoryList = repoCategory.GetAllCategories(model, out recordsTotal);
 
-                return Json(new { data = categoryList, draw = draw, recordsFiltered = categoryList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = categoryList, draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -202,7 +202,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 RepoSubcategory reposubCategory = new RepoSubcategory();
                 var categoryList = reposubCategory.GetAllSubCategories(model, out recordsTotal);
 
-                return Json(new { data = categoryList, draw = draw, recordsFiltered = categoryList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = categoryList, draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -395,7 +395,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 RepoMinicategory repominiCategory = new RepoMinicategory();
                 var categoryList = repominiCategory.GetAllMiniCategories(model, out recordsTotal);
 
-                return Json(new { data = categoryList, draw = draw, recordsFiltered = categoryList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = categoryList, draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -675,7 +675,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 RepoBanner repoBanner = new RepoBanner();
                 var banners = repoBanner.GetAllBanners(model, out recordsTotal);
 
-                return Json(new { data = banners, draw = draw, recordsFiltered = banners.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = banners, draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

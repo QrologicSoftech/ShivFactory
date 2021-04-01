@@ -184,7 +184,7 @@ var Listing = {
                         console.log(Value.SubCategory);
                         productSlider += `<div class="owl-item active" style="width: 236.2px; margin-right: 15px;"><div class="item">
                     <figure class="card-product-grid card-sm">
-                        <a href="/Home/ProductListing" class="img-wrap"> <img src="${b.ImagePath}"> </a>
+                        <a href="/Home/ProductListing?id=${Value.Id}" class="img-wrap"> <img src="${b.ImagePath}"> </a>
                         <div class="text-wrap">
                             <a href="#" class="title">Ferguson Bed With Storage</a>
                             <div class="price mt-1"><i class="fas fa-rupee-sign"></i> 179.00 <s class="old-rrice"><i class="fas fa-rupee-sign"></i> 200</s></div>
