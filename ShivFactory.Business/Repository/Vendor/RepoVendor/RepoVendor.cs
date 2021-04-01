@@ -218,5 +218,14 @@ namespace ShivFactory.Business.Repository
                 return shiparea;
         }
         #endregion
+
+        #region check pincode Availibity for Item 
+        public bool CheckPincodeAvailibityForProduct(string pincode, int vendorId)
+        {
+            var isAvailable = db.VendorShippingAreas.Where(a => a.pincode == pincode && a.vendorId==vendorId).AsNoTracking().FirstOrDefault();
+            if (isAvailable != null)
+            { return true; } else { return false;  }
+        }
+        #endregion
     }
 }

@@ -389,7 +389,7 @@ namespace ShivFactory.Controllers
             try
             {
                 RepoCart cart = new RepoCart();
-                bool  IsAddToCart = cart.AddToCart(model);
+                bool IsAddToCart = cart.AddToCart(model);
                 return Json(new ResultModel
                 {
                     ResultFlag = IsAddToCart,
@@ -413,9 +413,35 @@ namespace ShivFactory.Controllers
         {
             RepoCart cart = new RepoCart();
             var userCart = cart.GetUserCart(userID);
-            return View(userCart); 
+            return View(userCart);
         }
         #endregion
 
+        #region Check Pincode Availibity 
+        public ActionResult CheckPincodeAvailibity(string pincode, int vendorId)
+        {
+            try
+            {
+                RepoVendor repovendor = new RepoVendor();
+                var isPinCodeAvailable = repovendor.CheckPincodeAvailibityForProduct(pincode, vendorId);
+                return Json(new ResultModel
+                {
+                    ResultFlag = isPinCodeAvailable,
+                    Data = null,
+                    Message = isPinCodeAvailable == true ? "Product is available on pincode " : "Product is  not available on pincode."
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
     }
 }

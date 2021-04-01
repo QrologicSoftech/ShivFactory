@@ -202,6 +202,20 @@ var Listing = {
         });
 
     },
+    CheckPincodeAvailibity: function () {
+        var data = {
+            "pincode": $('#pincode').val(),
+            "vendorId": $('#vendorId').val()
+        }
+        
+    ajax.doPostAjax(`/Home/CheckPincodeAvailibity`, data, function (result) {
+        console.log(result)
+        if (result.ResultFlag == true) {
+           alert("Pincode Available")
+        }
+    });
+
+    },
 
    
 }
