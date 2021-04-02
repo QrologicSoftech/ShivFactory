@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -147,11 +148,12 @@ namespace ShivFactory.Business.Repository
         }
         #endregion
 
-       
+
 
     }
 
-    public static class Helper
+    #region Extension Methods
+    public static class Extension
     {
         public static string ImagePath(this string path)
         {
@@ -169,5 +171,19 @@ namespace ShivFactory.Business.Repository
                 return noImagePath;
             }
         }
+        public static string PriceFormat(this decimal price)
+        {
+            string FormattedPrice = "";
+            try
+            {
+               FormattedPrice = price.ToString("C2");
+                return FormattedPrice;
+            }
+            catch (Exception e)
+            {
+                return FormattedPrice;
+            }
+        }
     }
+    #endregion
 }

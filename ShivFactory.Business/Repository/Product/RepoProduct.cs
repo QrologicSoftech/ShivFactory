@@ -121,8 +121,8 @@ namespace ShivFactory.Business.Repository
                 ProductColors = a.ProductColors,
                 IsReturnable = a.IsReturnable ?? false,
                 ReturnDays = a.ReturnDays,
-                ProductCode=a.productCode
-                
+                ProductCode = a.productCode
+
             }).AsNoTracking().FirstOrDefault();
             if (Product != null && !string.IsNullOrEmpty(Product.MgfDate))
             {
@@ -171,7 +171,7 @@ namespace ShivFactory.Business.Repository
                     {
                         SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
                         Id = row["ProductId"] != DBNull.Value ? Convert.ToInt32(row["ProductId"]) : 0,
-                        ImagePath = row["MainImage"] != DBNull.Value ? common.checkfile(row["MainImage"].ToString()) : common.checkfile(""),
+                        ImagePath = row["MainImage"].ToString().ImagePath(),
                         ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
                         SalePrice = row["SalePrice"] != DBNull.Value ? Convert.ToDecimal(row["SalePrice"]) : 0,
                         ListPrice = row["ListPrice"] != DBNull.Value ? Convert.ToDecimal(row["ListPrice"]) : 0,
@@ -241,7 +241,7 @@ namespace ShivFactory.Business.Repository
             //}
             //else
             //{
-                db.ProductVarients.Add(model);
+            db.ProductVarients.Add(model);
             //}
             return db.SaveChanges() > 0;
         }
@@ -251,4 +251,4 @@ namespace ShivFactory.Business.Repository
 
     }
 }
-    
+
