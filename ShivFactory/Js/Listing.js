@@ -122,9 +122,10 @@ var Listing = {
     },
 
     OnSuccess: function (response) {
-
+        //var itemcount = $("#itemcount");
+        //itemcount.innerText = response.length + "items found";
         $.each(response, function (j, dataval) {
-            //<span class="badge badge-danger"> NEW </span>
+            
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3">\
                         <figure class="card card-product-grid" >\
                             <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '" alt='+dataval.ProductName+'><img src="' + dataval.MainImage + '"></a> </div>\

@@ -10,7 +10,7 @@
 {
     if (Model != null)
     {
-        <section class="py-3 bg-light my-5">
+        @*<section class="py-3 bg-light my-5">
             <div class="container">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -19,7 +19,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Items</li>
                 </ol>
             </div>
-        </section>
+        </section>*@
         @* var item=Model.varientList;*@
 var MainimgPath = Model.MainImage;
 var imgPath1 = Model.Image1;
@@ -164,11 +164,11 @@ catch (Exception e)
                     <div class="col-md-7">
                         <div class="sunglas">
                             <ul>
-                                <li><a href="#">Home </a></li>
-                                <li><a href="#">@Model.CategoryName</a></li>
-                                <li><a href="#">@Model.SubCategoryName </a></li>
-                                <li><a href="#">@Model.MiniCategoryName </a></li>
-                                <li><a href="#">@Model.ProductName</a></li>
+                                <li><a href="/Home/">Home </a></li>
+                                <li><a href="/Home/ProductListing?id=@Model.CategoryId.ToString().Trim()">@Model.CategoryName</a></li>
+                                <li><a href="/Home/ProductListing?subId=@Model.SubCategoryId.ToString().Trim()">@Model.SubCategoryName </a></li>
+                                <li><a href="/Home/ProductListing?subId=@Model.SubCategoryId.ToString().Trim()&minId=@Model.MiniCategoryId.ToString().Trim()">@Model.MiniCategoryName </a></li>
+                                <li><a href="/Home/ProductDetail?productId=@Model.ProductId.ToString().Trim()">@Model.ProductName</a></li>
                                 <li><a href="#"><i class="fa fa-share" aria-hidden="true"></i> Share</a></li>
                             </ul>
                             <h3> <!--Brand Name--> </h3>
@@ -310,17 +310,13 @@ catch (Exception e)
                                     </ul>
                                 </div>
 
-                                <div class="sizes">
-                                    <span>Size</span>
-                                    <ul>
-                                        <li style="margin: 0 16px 0 0;"><a href="#">Free Size</a></li>
-                                        <li>
-                                            <div class="size-chart">
-                                                Size Chart
-                                                <img src="img/download-3.svg">
-                                            </div>
-                                        </li>
-                                    </ul>
+                                <div class="deliver-day">
+                                    <h4>Description</h4>
+                                    <div class="Bvquestion">
+                                        <span class="question"></span>
+                                    </div>
+                                    <p>@Model.Description</p>
+                                    <span>View More</span>
                                 </div>
                                 <div class="seller" style="padding: 8px 0px 0px 0px;">
                                     <div class="seller-1">
@@ -351,6 +347,7 @@ catch (Exception e)
                                             <li>
                                                 <span><a href="#">View more sellers </a><small>starting from <b>₹149</b></small></span>
                                             </li>
+                                           
                                         </ul>
                                     </div>
                                   

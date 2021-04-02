@@ -47,11 +47,11 @@ namespace ShivFactory.Business.Repository
         public string MgfDate { get; set; }
         [MaxLength(100, ErrorMessage = "Field cannot be longer than 100 characters.")]
         public string MgfDetail { get; set; }
-        [MaxLength(100, ErrorMessage = "Field cannot be longer than 100 characters.")]
+        [MaxLength(999, ErrorMessage = "Field cannot be longer than 999 characters.")]
         public string ShellLife { get; set; }
-        [MaxLength(200, ErrorMessage = "Field cannot be longer than 200 characters.")]
-        public string ProductWarning { get; set; }
         [MaxLength(300, ErrorMessage = "Field cannot be longer than 300 characters.")]
+        public string ProductWarning { get; set; }
+        [MaxLength(999, ErrorMessage = "Field cannot be longer than 999 characters.")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Delivery time is a required field!"), MaxLength(50, ErrorMessage = "Field cannot be longer than 50 characters.")]
         public string EstimateDeliveryTime { get; set; }

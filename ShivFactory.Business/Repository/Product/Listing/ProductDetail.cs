@@ -32,7 +32,11 @@ namespace ShivFactory.Business.Repository
 
         public bool IsReturnable { get; set;  }
         public bool paymentModeCash { get; set;  }
-}
+
+        public int CategoryId { get; set; }
+        public int SubCategoryId { get; set; }
+        public int MiniCategoryId { get; set; }
+    }
 
     public class ProductVariations
     {

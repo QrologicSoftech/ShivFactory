@@ -698,10 +698,10 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return View(model);
-                }
+                //if (!ModelState.IsValid)
+                //{
+                //    return View(model);
+                //}
 
                 if (model.Id == 0 && postedfile == null)
                 {
