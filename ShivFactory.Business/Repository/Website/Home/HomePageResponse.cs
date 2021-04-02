@@ -17,6 +17,9 @@ namespace ShivFactory.Business.Repository.Website
         public string Title { get; set; }
         public int Id { get; set; }
         public List<Images> SubCategory { get; set; }
+
+        public string price { get; set; }
+        public string SubCategoryName { get; set; }
     }
     public class Images
     {

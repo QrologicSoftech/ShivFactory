@@ -191,7 +191,7 @@ var Listing = {
                     </figure>
                 </div></div>`;
                     })
-                    productSlider += `</div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span>********<i class="fa fa-angle-right"></i></span></button><button type="button" role="presentation" class="owl-next"><span><i class="fa fa-angle-left"></i></span></button></div></div></div></div></div></section>`;
+                    productSlider += `</div>******<div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span><i class="fa fa-angle-right"></i></span></button><button type="button" role="presentation" class="owl-next"><span><i class="fa fa-angle-left"></i></span></button></div></div></div></div></div></section>`;
 
                 });
                $("#Product-slider").html(productSlider);
