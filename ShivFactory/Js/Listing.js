@@ -122,10 +122,9 @@ var Listing = {
     },
 
     OnSuccess: function (response) {
-        //var itemcount = $("#itemcount");
-        //itemcount.innerText = response.length + "items found";
+        var itemcount = $("#itemcount");
+        itemcount.text(response.length + " items found");
         $.each(response, function (j, dataval) {
-            
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3">\
                         <figure class="card card-product-grid" >\
                             <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '" alt='+dataval.ProductName+'><img src="' + dataval.MainImage + '"></a> </div>\
@@ -159,9 +158,6 @@ var Listing = {
 
         ajax.doPostAjax(`/Home/GetIndexData`, '', function (result) {
             if (result.ResultFlag == true) {
-                console.log("######");
-                console.log(result);
-                //Bind Banner slider
                 $.each(result.Data.Banners, function (index, Value) {
                     bannerli += `<li data-target="#carousel1_indicator" data-slide-to="${index}" class="${index == 0 ? "active" : ""}"></li>`;
                     bannerdiv += `<div class="carousel-item ${index == 0 ? "active" : ""}"> <img src="${Value.ImagePath}" alt=""> </div>`;
@@ -195,8 +191,7 @@ var Listing = {
                     </figure>
                 </div></div>`;
                     })
-
-                    productSlider += `</div></div></div></div></div></section>`;
+                    productSlider += `</div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span>********<i class="fa fa-angle-right"></i></span></button><button type="button" role="presentation" class="owl-next"><span><i class="fa fa-angle-left"></i></span></button></div></div></div></div></div></section>`;
 
                 });
                $("#Product-slider").html(productSlider);
@@ -207,16 +202,19 @@ var Listing = {
 
     },
     CheckPincodeAvailibity: function () {
-        var data = {
-            "pincode": $('#pincode').val(),
-            "vendorId": $('#vendorId').val()
-        }
-        
-    ajax.doPostAjax(`/Home/CheckPincodeAvailibity`, data, function (result) {
-        console.log(result)
-        if (result.ResultFlag == true) {
-            alert("Product Delivery available for Pincode");
-        }
+     
+        var pincod = $('#pincode').val();
+        var vendorId = $('#vendorId').val();
+        ajax.doPostAjax(`/Home/CheckPincodeAvailibity?pincode=` + pincod + `&vendorId=` + vendorId, null, function (result) {
+            if (result.ResultFlag == true) {
+                $('#lblDeliery').text("Product Delivery available for Pincode /n Estimated delivery in 3-4 days");
+                $('#lblDeliery').css("color", "Green");
+             
+            } else {
+                $('#lblDeliery').text("Delivery is not available for area");
+                $('#lblDeliery').css("color", "Red");
+            
+            }
     });
 
     },

@@ -87,7 +87,8 @@ namespace ShivFactory.Business.Repository
                     paymentModeCash = ds.Tables[0].Rows[0]["paymentModeCash"] != DBNull.Value ? Convert.ToBoolean(ds.Tables[0].Rows[0]["paymentModeCash"]) : false,
                     CategoryId = Convert.ToInt32(ds.Tables[0].Rows[0]["CategoryId"]),
                     SubCategoryId = Convert.ToInt32(ds.Tables[0].Rows[0]["SubCategoryId"]),
-                    MiniCategoryId = Convert.ToInt32(ds.Tables[0].Rows[0]["MiniCategoryId"])
+                    MiniCategoryId = Convert.ToInt32(ds.Tables[0].Rows[0]["MiniCategoryId"]),
+                    vendorId = Convert.ToInt32(ds.Tables[0].Rows[0]["VendorId"]),
                 };
                 if (ds.Tables[1].Rows.Count > 0)
                 {

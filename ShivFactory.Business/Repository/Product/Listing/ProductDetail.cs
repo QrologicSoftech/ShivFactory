@@ -36,6 +36,7 @@ namespace ShivFactory.Business.Repository
         public int CategoryId { get; set; }
         public int SubCategoryId { get; set; }
         public int MiniCategoryId { get; set; }
+        public int vendorId { get; set; }
     }
 
     public class ProductVariations

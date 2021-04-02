@@ -418,6 +418,7 @@ namespace ShivFactory.Controllers
         #endregion
 
         #region Check Pincode Availibity 
+      
         public ActionResult CheckPincodeAvailibity(string pincode, int vendorId)
         {
             try
@@ -427,8 +428,8 @@ namespace ShivFactory.Controllers
                 return Json(new ResultModel
                 {
                     ResultFlag = isPinCodeAvailable,
-                    Data = null,
-                    Message = isPinCodeAvailable == true ? "Product is available on pincode " : "Product is  not available on pincode."
+                    Data = isPinCodeAvailable,
+                    Message = isPinCodeAvailable == true ? "Product is available on pincode" : "Product is  not available on pincode."
                 }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
