@@ -11,7 +11,7 @@ namespace ShivFactory
         {
             filters.Add(new HandleErrorAttribute());
         }
-        public class UserSessionActionFilter : ActionFilterAttribute, IActionFilter
+        public class UserSessionActionFilter : ActionFilterAttribute
         {
             public override void OnActionExecuting(ActionExecutingContext filterContextORG)
             {
@@ -22,7 +22,7 @@ namespace ShivFactory
                     se.AddSessionValues();
                 }
                 if (HttpContext.Current.Session[CookieName.UserName] == null)
-                {                    
+                {
                     /// this handles session when data is requested through Ajax json
                     if (filterContextORG.HttpContext.Request.IsAjaxRequest())
                     {
