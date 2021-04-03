@@ -17,12 +17,14 @@ namespace ShivFactory.Business.Repository.Website
         public string Title { get; set; }
         public int Id { get; set; }
         public List<Images> SubCategory { get; set; }
-
-        public string price { get; set; }
-        public string SubCategoryName { get; set; }
+        
     }
     public class Images
     {
         public string ImagePath { get; set; }
+        public int SubCategoryId { get; set; }
+        public string price { get; set; }
+        public string SubCategoryName { get; set; }
+        public string ListPrice { get; set; }
     }
 }

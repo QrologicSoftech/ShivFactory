@@ -30,10 +30,11 @@ namespace ShivFactory.Business.Repository.Website
 
                 Id = a.Key ?? 0,
                 Title = a.Select(i => i.Category != null ? i.Category.HomeTitle != null ? i.Category.HomeTitle : i.Category.CategoryName : i.SubCategoryName).FirstOrDefault(),
-                SubCategoryName = a.Select(i => i.SubCategoryName).FirstOrDefault(),
                 SubCategory = a.Select(b => new Images()
                 {
-                    ImagePath = b.ImagePath
+                    ImagePath = b.ImagePath,
+                    SubCategoryId = b.ID,
+                    SubCategoryName = b.SubCategoryName,
                 }).Take(10).ToList()
 
             }).AsNoTracking().ToList();
@@ -45,11 +46,14 @@ namespace ShivFactory.Business.Repository.Website
 
             foreach (var b in response.Products)
             {
-                var c = db.Products.Where(p => p.SalePrice != null && p.SubCategoryId == 1).Select(p => new { price = p.SalePrice ?? 0, listPrice = p.ListPrice ?? 0 }).AsNoTracking().FirstOrDefault();
+                foreach (var s in b.SubCategory)
+                {
+                    var c = db.Products.Where(p => p.SalePrice != null && p.SubCategoryId == s.SubCategoryId).Select(p => new { price = p.SalePrice ?? 0, listPrice = p.ListPrice ?? 0 }).AsNoTracking().FirstOrDefault();
+                    s.ImagePath = s.ImagePath.ImagePath();
+                    s.price = c != null ? c.price.PriceFormat() : "";
+                    s.ListPrice = c != null ? c.listPrice.PriceFormat() : "";
 
-                b.price = c.price.PriceFormat();
-                b.ListPrice = c.listPrice.PriceFormat();
-                b.SubCategory.ForEach(a => a.ImagePath = a.ImagePath.ImagePath());
+                }
             }
 
             return response;

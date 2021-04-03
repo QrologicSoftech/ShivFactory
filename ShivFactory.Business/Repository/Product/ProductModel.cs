@@ -15,6 +15,7 @@ namespace ShivFactory.Business.Repository
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string CategoryName { get; set; }
+        public string CategoryId { get; set; }
         public string SubCategoryId { get; set; }
         public string SubCategoryName { get; set; }
         public string  BrandName { get; set; }

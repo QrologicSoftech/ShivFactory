@@ -81,7 +81,6 @@ var Listing = {
             }
         };
 
-        console.log(ProductFilter);
         common.HideLoader();
     },
 
@@ -110,7 +109,6 @@ var Listing = {
             }
             pageIndex++;
         }
-        console.log(data);
         ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
             console.log(result)
             if (result.ResultFlag == true) {
@@ -124,8 +122,12 @@ var Listing = {
     OnSuccess: function (response) {
         var itemcount = $("#itemcount");
         itemcount.text(response.length + " items found");
+        $('#categoryName').append(response[0].CategoryName);
+        $('#categoryName').attr('href', '/Home/ProductListing?Id=' + response[0].CategoryId);
+        $('#subcategoryName').append(response[0].SubCategoryName);
+        $('#subcategoryName').attr('href', '/Home/ProductListing?subId=' + response[0].SubCategoryId);
         $.each(response, function (j, dataval) {
-            $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3">\
+            $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
                         <figure class="card card-product-grid" >\
                             <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '" alt='+dataval.ProductName+'><img src="' + dataval.MainImage + '"></a> </div>\
                                 <figcaption class="info-wrap"> <a href="#" class="title mb-2">' + dataval.ProductName + '</a>\
@@ -175,16 +177,15 @@ var Listing = {
         </header>
         <div class="card-deal px-1">
             <div class="allitem-slider owl-carousel owl-button"><div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2010px;">`;
-
+                    
                     $.each(Value.SubCategory, function (a, b) {
-                        console.log("values");
-                        console.log(Value.SubCategory);
+                    
                         productSlider += `<div class="owl-item active" style="width: 236.2px; margin-right: 15px;"><div class="item">
                     <figure class="card-product-grid card-sm">
-                        <a href="/Home/ProductListing?id=${Value.Id}" class="img-wrap"> <img src="${b.ImagePath}"> </a>
+                        <a href="/Home/ProductListing?subId=${b.SubCategoryId}" class="img-wrap"> <img src="${b.ImagePath}"> </a>
                         <div class="text-wrap">
-                            <a href="#" class="title">Ferguson Bed With Storage</a>
-                            <div class="price mt-1"><i class="fas fa-rupee-sign"></i> 179.00 <s class="old-rrice"><i class="fas fa-rupee-sign"></i> 200</s></div>
+                            <a href="#" class="title">`+ b.SubCategoryName + `</a>
+                            <div class="price mt-1">`+ b.price +`  <s class="old-rrice"> `+ b.ListPrice+`</s></div>
                             <div class="add-cart pt-1"></div>
                             <span class="badge badge-danger"> -20% </span>
                         </div>

@@ -39,7 +39,11 @@ namespace ShivFactory.Business.Repository
                         SalePrice = row["SalePrice"] != DBNull.Value ? row["SalePrice"].ToString() : "0.00",
                         ListPrice = row["ListPrice"] != DBNull.Value ? row["ListPrice"].ToString() : "0.00",
                         MainImage = repoCommon.checkfile(row["MainImage"].ToString()),
-                      
+                        SubCategoryName= row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
+                        CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
+                        CategoryId = row["CategoryId"] != DBNull.Value ?row["CategoryId"].ToString() : "0",
+                        SubCategoryId = row["SubCategoryId"] != DBNull.Value ? row["SubCategoryId"].ToString() : "0",
+
                     });
                 }
 
