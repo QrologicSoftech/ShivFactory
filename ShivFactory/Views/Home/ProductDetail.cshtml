@@ -218,10 +218,15 @@ catch (Exception e)
                                     <div class="return">
                                         <img src="img/download-1.svg">
                                     </div>
-                                    14 Days Return Policy
-                                    <div class="Bvquestion">
-                                        <span class="question">?</span>
-                                    </div>
+                                    @if (@Model.IsReturnable == true)
+                                    {
+                                <span>@Model.ReturnDays Days Return Policy</span>
+                                            } else { 
+                                    <span>No Return Policy </span>
+                                    }
+                                <div class="Bvquestion">
+                                    <span class="question">?</span>
+                                </div>
                                 </li>
                                 <li>
                                     <div class="return">
@@ -244,7 +249,7 @@ catch (Exception e)
                     </div>
                     <div class="col-md-12">
                         <div class="deliver-day">
-                            <h4>Usually delivered in @Model.ReturnDays days</h4>
+                            <h4 id="deliverytime" style="display:none">Usually delivered in @Model.EstimateDeliveryTime </h4>
                             <div class="Bvquestion">
                                 <span class="question">?</span>
                             </div>

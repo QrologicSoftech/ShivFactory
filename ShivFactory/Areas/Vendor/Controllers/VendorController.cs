@@ -11,10 +11,12 @@ using System.Web.Mvc;
 using ShivFactory.Business.Model.Common;
 using DataLibrary.DL;
 using System.Web.Script.Serialization;
+using static ShivFactory.FilterConfig;
 
 namespace ShivFactory.Areas.Vendor.Controllers
 {
-    [Authorize(Roles = "Vendor")]
+    [Authorize(Roles = "Vendor"), UserSessionActionFilter]
+    
     public class VendorController : Controller
     {
         #region Services

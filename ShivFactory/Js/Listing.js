@@ -173,7 +173,7 @@ var Listing = {
                     productSlider += `<section class="padding-bottom-sm bg-white  mb-3 pb-3 pt-0">
     <div class=" container">
         <header class="section-heading pt-3 pb-2">
-            <h3 class="section-title text-center">${Value.Title} </h3>
+            <h3 class="section-title text-left">${Value.Title} </h3>
         </header>
         <div class="card-deal px-1">
             <div class="allitem-slider owl-carousel owl-button"><div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2010px;">`;
@@ -183,8 +183,8 @@ var Listing = {
                         productSlider += `<div class="owl-item active" style="width: 236.2px; margin-right: 15px;"><div class="item">
                     <figure class="card-product-grid card-sm">
                         <a href="/Home/ProductListing?subId=${b.SubCategoryId}" class="img-wrap"> <img src="${b.ImagePath}"> </a>
-                        <div class="text-wrap">
-                            <a href="#" class="title">`+ b.SubCategoryName + `</a>
+                        <div class="text-center">
+                            <div class="price mt-1"><a href='#'>`+ b.SubCategoryName + `</a></div>
                             <div class="price mt-1">`+ b.price +`  <s class="old-rrice"> `+ b.ListPrice+`</s></div>
                             <div class="add-cart pt-1"></div>
                             <span class="badge badge-danger"> -20% </span>
@@ -203,21 +203,20 @@ var Listing = {
 
     },
     CheckPincodeAvailibity: function () {
-     
+        common.ShowLoader();
         var pincod = $('#pincode').val();
         var vendorId = $('#vendorId').val();
         ajax.doPostAjax(`/Home/CheckPincodeAvailibity?pincode=` + pincod + `&vendorId=` + vendorId, null, function (result) {
             if (result.ResultFlag == true) {
-                $('#lblDeliery').text("Product Delivery available for Pincode /n Estimated delivery in 3-4 days");
-                $('#lblDeliery').css("color", "Green");
-             
+                $('#deliverytime').css('display', 'block');
             } else {
                 $('#lblDeliery').text("Delivery is not available for area");
                 $('#lblDeliery').css("color", "Red");
+                $('#deliverytime').css('display', 'none');
             
             }
     });
-
+        common.HideLoader();
     },
 
    

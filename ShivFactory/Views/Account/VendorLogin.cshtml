@@ -1,0 +1,90 @@
+﻿@model ShivFactory.Business.Repository.LogInModel
+@{
+    ViewBag.Title = "Login to your Account";
+    Layout = "~/Views/Shared/_Accounts_Layout.cshtml";
+}
+
+<div class="sc-fzojmp kyojis">
+    <div class="sc-fzqbkg fckjvf">
+        <div class="sc-fzqpzz gliaon"> @ViewBag.Title</div>
+        <div class="sc-fzpkqz foxupi">
+
+            @using (Html.BeginForm("VendorLogin", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "login" }))
+            {
+                <div class="style-elementwrapper ijsebp wrapper">
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "styles-styledinput gezlls", @placeholder = "Enter Your UserName", @type = "text" })
+
+                    <div class="error-formerror myzbk form-error">
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "sc-fzqmdd fzqonm freebie" })
+                    </div>
+                </div>
+                <div class="style-elementwrapper ijsebp wrapper">
+                    @Html.TextBoxFor(m => m.Password, new { @class = "styles-styledinput gezlls", @placeholder = "Enter Your Password", @type = "password" })
+
+                    <div class="error-formerror myzbk form-error">
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "sc-fzqmdd fzqonm freebie" })
+                    </div>
+                    @*@Html.CheckBoxFor(m => m.RememberMe) @Html.Label("Remember Me")*@
+                </div>
+                @*<div class="sc-fzpiso jhqzjv">
+
+                    </div>*@
+                <button class="basebutton primarybtn-primarybtndetails eazyuu save" type="submit" style=" height: 40px; padding-left: 15px; padding-right: 16px; text-transform: uppercase;">Login</button>
+
+            }
+            <div class="sc-fzpiso jhqzjv">
+                <div class="sc-fzqaui eogdzk">
+                    Become a Seller? <a href="/Account/MobileVerify" class="baselink-sc tertiarylink-sc enzijk">Register Here</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="sc-fazpkjw hctkjm">
+        <div>
+            <div class="sc-fzokki knkljw">Sell to crores of customers on Shiv Factory, right from your doorstep!</div>
+            <div class="sc-fzoyki hfpotr">All you need to sell on Shiv Factory is</div>
+            <div class="sc-fznzof jxqfab">
+                <div class="sc-fzoyhe gxatj">
+                    <div class="imp-icon">
+                        <img src="/Content/AdminImg/gstin.png">
+                        <div class="gstin-label">GSTIN*</div>
+                    </div>
+
+
+                </div>
+                <div class="sc-fzqmaw himzko">
+                </div>
+                <div class="sc-fzoyhe gxatj">
+                    <div class="imp-icon">
+                        <img src="/Content/AdminImg/bank-account.png">
+                        <div class="gstin-label">Bank Account</div>
+                    </div>
+
+                </div>
+                <div class="sc-fzqmaw himzko"></div>
+                <div class="sc-fzoyhe gxatj">
+                    <div class="imp-icon">
+                        <img src="/Content/AdminImg/products-sell.png">
+                        <div class="gstin-label">Products to sell</div>
+                    </div>
+                </div>
+            </div>
+            <span class="sc-fznmnq bivoqy">*GSTIN is not required for sellers who only sell books</span>
+            <div class="sc-fzoydu ctzjfv"></div>
+            <div class="sc-fzoyki hfpotr">How will this information be used?</div>
+            <div class="sc-fzqabl hculgs">
+                You can use your email address or mobile number as 'Username' to login to your  Seller Account.
+                Please note, the 'Username' and 'Password' used here are only to access your  Seller Account and can’t be used on ShivFactory shopping destination.
+            </div>
+            <div class="sc-fzoydu ctzjfv">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        common.Timer(120, 'timer', true);
+    });
+</script>

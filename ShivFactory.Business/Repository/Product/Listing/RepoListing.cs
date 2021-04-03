@@ -93,6 +93,7 @@ namespace ShivFactory.Business.Repository
                     SubCategoryId = Convert.ToInt32(ds.Tables[0].Rows[0]["SubCategoryId"]),
                     MiniCategoryId = Convert.ToInt32(ds.Tables[0].Rows[0]["MiniCategoryId"]),
                     vendorId = Convert.ToInt32(ds.Tables[0].Rows[0]["VendorId"]),
+                    EstimateDeliveryTime=ds.Tables[0].Rows[0]["EstimateDeliveryTime"]!=DBNull.Value ? ds.Tables[0].Rows[0]["EstimateDeliveryTime"].ToString(): "Estimate delivery in 3-4 days",
                 };
                 if (ds.Tables[1].Rows.Count > 0)
                 {

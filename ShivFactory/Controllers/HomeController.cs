@@ -429,7 +429,7 @@ namespace ShivFactory.Controllers
                 {
                     ResultFlag = isPinCodeAvailable,
                     Data = isPinCodeAvailable,
-                    Message = isPinCodeAvailable == true ? "Product is available on pincode" : "Product is  not available on pincode."
+                    Message = isPinCodeAvailable == true ? "Product Delivery available for this area " : "Product Delivery is  not available in this area."
                 }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)

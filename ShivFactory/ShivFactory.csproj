@@ -182,6 +182,7 @@
     <Compile Include="Areas\Vendor\Controllers\VendorController.cs" />
     <Compile Include="Areas\Vendor\VendorAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -568,6 +569,10 @@
     <Content Include="Views\Home\ProductDetail.cshtml" />
     <Content Include="Views\Home\AddToCart.cshtml" />
     <Content Include="Views\Home\ProductDetaill.cshtml" />
+    <Content Include="Views\Account\VendorLogin.cshtml" />
+    <Content Include="Views\Shared\_CustomerLayout.cshtml" />
+    <Content Include="Views\Customer\Profile.cshtml" />
+    <Content Include="Views\Customer\Orders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

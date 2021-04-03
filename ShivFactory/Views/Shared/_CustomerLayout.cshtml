@@ -1,0 +1,140 @@
+﻿@using System.Configuration;
+@using ShivFactory.Business.Repository;
+@using ShivFactory.Business.Models.Other;
+@using ShivFactory.Business.Model.Common
+@{
+    ViewBag.Title = "ProductDetail";
+    Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
+    var version = ConfigurationManager.AppSettings["jsversion"].ToString();
+    RepoCookie repoCookie = new RepoCookie();
+    var UserFName = repoCookie.GetCookiesValue(CookieName.FirstName) ;
+    var UserLName = repoCookie.GetCookiesValue(CookieName.LastName);
+    var role = repoCookie.GetCookiesValue(CookieName.Role);
+    Utility util = new Utility();
+    RepoUser repoUser = new RepoUser();
+    var UserImage = repoUser.GetUserImage(util.GetCurrentUserId());
+}
+<section class="profile-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-3">
+            
+                    <div class="_3E8aIl">
+                        <div class="nUdcwy row order-1">
+                            <img class="_3X2gOt" height="50px" width="50px" src="@UserImage">
+                            <div class="DxGiT2">
+                                <div class="_1ruvv2">
+                                    <div class="_14mvAI"><a href="/Customer/Profile/">Hello @UserFName</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="my-order">
+                    <div class="my-order-1">
+                        <div class="my-order-2 order-2">
+                            <i class="fa fa-first-order" aria-hidden="true"></i>
+                            <a href="#">
+                                MY ORDERS
+                                <span><i class="fa fa-angle-right"> </i></span>
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <div class="my-order-1">
+                            <div class="my-order-2">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <a href="#" style="cursor: initial;">
+                                    ACCOUNT SETTINGS
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="Information">Profile Information</div>
+                            </a>
+                            <a href="#">
+                                <div class="manage-addresses">Manage Addresses</div>
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <div class="my-order-1">
+                            <div class="my-order-2">
+                                <i class="fa fa-money" aria-hidden="true"></i>
+                                <a href="#" style="cursor: initial;">
+                                    PAYMENTS
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#">
+                                <div class="manage-addresses">
+                                    Gift Cards
+                                    <span class="PKhkts">₹ 0</span>
+                                </div>
+                            </a>
+                            <a href="#">
+                                <div class="manage-addresses">Saved Cards</div>
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="my-order-1">
+                        <div class="my-order-2">
+                            <i class="fa fa-comments" aria-hidden="true"></i>
+                            <a href="#">
+                                MY CHATS
+                                <span><i class="fa fa-angle-right"> </i></span>
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <div class="my-order-1">
+                            <div class="my-order-2">
+                                <i class="fa fa-folder-open" aria-hidden="true"></i>
+                                <a href="#" style="cursor: initial;">
+                                    MY STUFF
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-3">
+                        <a href="#">
+                            <div class="manage-addresses">My Wishlist</div>
+                        </a>
+                    </div>
+                    <hr>
+                    <div>
+                        <div class="my-order-1">
+                            <div class="my-order-2">
+                                <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                <a href="#" style="cursor: initial;">
+                                    Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-but">
+                    <div class="visited">
+                        Frequently Visited:
+                    </div>
+                    <div>
+                        <span class="_2YCxI1"><a href="/Home/">Home</a></span>
+                        <span class="_2YCxI1">Change Password</span>
+                        <span class="_2YCxI1">Track Order</span>
+                        <span class="_2YCxI1">Help Center</span>
+                    </div>
+                </div>
+            </div>
+
+            @RenderBody()
+
+        </div>
+    </div>
+
+</section>

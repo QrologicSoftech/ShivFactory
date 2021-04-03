@@ -60,7 +60,7 @@ namespace ShivFactory.Controllers
         }
         #endregion
 
-        #region LogIn
+        #region CustomerLogIn
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
@@ -71,6 +71,45 @@ namespace ShivFactory.Controllers
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Login(LogInModel model, string returnUrl)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ReturnUrl = returnUrl;
+                return View(model);
+            }
+            var result = await LogInApI(model);
+            if (result.ResultFlag == true)
+            {
+                return RedirectToLocal(result.Data, returnUrl);
+            }
+            else
+            {
+                if (result.Message.ToLower() == "invalid username")
+                {
+                    ModelState.AddModelError("PhoneNumber", result.Message);
+                }
+                else if (result.Message.ToLower() == "invalid password.")
+                {
+                    ModelState.AddModelError("Password", result.Message);
+                }
+                return View(model);
+            }
+            return View(model);
+        }
+
+        #endregion
+
+        #region VendorLogIn
+        [AllowAnonymous]
+        public ActionResult VendorLogin(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> VendorLogin(LogInModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
