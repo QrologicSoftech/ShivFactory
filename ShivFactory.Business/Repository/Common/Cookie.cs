@@ -45,14 +45,14 @@ namespace ShivFactory.Business.Repository
         }
         public string GetCookiesValue(string cookieName)
         {
-            var val = ""; 
+            var val = "";
             try
             {
-             val = HttpContext.Current.Request.Cookies[cookieName].Value;
+                val = HttpContext.Current.Request.Cookies[cookieName] != null ? HttpContext.Current.Request.Cookies[cookieName].Value : "";
             }
             catch (Exception e)
             {
-                val = "" ; 
+                val = "";
             }
             return val;
         }
@@ -94,8 +94,8 @@ namespace ShivFactory.Business.Repository
     {
         public void AddSessionValues()
         {
-          
-           HttpCookie cookie = HttpContext.Current.Request.Cookies[CookieName.UserName]; 
+
+            HttpCookie cookie = HttpContext.Current.Request.Cookies[CookieName.UserName];
             if (cookie == null)
             {
                 ActionExecutingContext filterContextORG = new ActionExecutingContext();
@@ -125,15 +125,15 @@ namespace ShivFactory.Business.Repository
         }
         public string GetSessionValue(string sessionName)
         {
-            var val = ""; 
-            if (HttpContext.Current.Session[CookieName.UserName]==null)
+            var val = "";
+            if (HttpContext.Current.Session[CookieName.UserName] == null)
             {
                 AddSessionValues();
             }
             if (HttpContext.Current.Session[sessionName] != null)
             {
-               val = HttpContext.Current.Session[sessionName].ToString();
-              
+                val = HttpContext.Current.Session[sessionName].ToString();
+
             }
             return val;
         }
