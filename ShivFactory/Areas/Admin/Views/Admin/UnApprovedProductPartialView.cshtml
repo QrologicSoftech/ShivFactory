@@ -33,6 +33,6 @@
         ];
          var stringArray = @Html.Raw(Json.Encode(columnArray));
 
-        common.BindDatatable('TableDiv', '/Admin/Admin/LoadProductData', stringArray, 'Id', list);
+        Admin.BindProducttable('TableDiv', '/Admin/Admin/LoadProductData', stringArray, 'Id', list);
     });
 </script>

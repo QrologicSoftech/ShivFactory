@@ -20,7 +20,7 @@ namespace ShivFactory.Business.Repository.Admin
         #endregion
 
         #region GetAllUnApprovedProducts
-        public List<UnApprovedProductResponse> GetAllUnApprovedProducts(PaginationRequest model, out int totalRecords)
+        public List<UnApprovedProductResponse> GetAllUnApprovedProducts(ProductModel model, out int totalRecords)
         {
             var products = new List<UnApprovedProductResponse>();
             totalRecords = 0;
@@ -30,9 +30,10 @@ namespace ShivFactory.Business.Repository.Admin
             parameters.Add(new SqlParameter("@SearchText", model.searchText));
             parameters.Add(new SqlParameter("@Skip", model.Skip));
             parameters.Add(new SqlParameter("@Take", model.PageSize));
-            parameters.Add(new SqlParameter("@OrderColumn", model.SortColumn));
+            parameters.Add(new SqlParameter("@OrderColumn", model.SortColumn)); 
             parameters.Add(new SqlParameter("@OrderDir", model.SortDirection));
             parameters.Add(new SqlParameter("@VendorId", 0));
+            parameters.Add(new SqlParameter("@ApprovedByAdmin", model.ApprovedStatus));
 
             DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, "ManageProduct", parameters.ToArray());
             if (ds.Tables != null && ds.Tables[0].Rows.Count > 0)

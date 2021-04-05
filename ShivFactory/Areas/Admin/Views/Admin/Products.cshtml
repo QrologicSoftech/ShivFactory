@@ -11,6 +11,17 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">@ViewBag.Title</h4>
+
+                            <div class="col-lg-3 col-sm-3">
+                                <div class="form-group">
+                                    <label>Approved Status</label>
+                                    <select name="product" id="productStatus" class="form-control">
+                                        <option>Pending</option>
+                                        <option value="false">Cancel</option>
+                                        <option value="true">Approved</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="partialView">
                                 @{ Html.RenderPartial(Url.Content("UnApprovedProductPartialView")); }
                             </div>

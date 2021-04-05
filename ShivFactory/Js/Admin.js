@@ -174,6 +174,42 @@ var Admin = {
 
     //  Vendor products function  Start
 
+
+    BindProducttable: function (divId, url, ColumnArray, rowId, actionArray) {
+
+        data ={
+            "AdminStatus": $('select#productStatus option:selected').val()
+        }
+        debugger;
+        let tr = '';
+        ColumnArray.forEach((item) => {
+            if (item == 'Id') { return; }
+            tr += `<th>${item}</th>`;
+        });
+        if (actionArray) {
+            actionArray.forEach((item) => {
+                tr += `<th>${item.Header}</th>`;
+            });
+        }
+
+        // Create table
+        var table = `<div class="table-responsive">
+                        <table class="table datatable" cellspacing="0" width="100%" id="datatable">
+                            <thead class="thead-light">
+                                <tr class="bg-primary text-white">
+                                    ${tr}                                            
+                                </tr>
+                            </thead> 
+                        </table>
+                    </div>`;
+        $(`#${divId}`).html(table);
+
+        // Prepare columns
+        commonFunction.GetColumnForDataTable(ColumnArray, actionArray, true, function (result) {
+            dtTable.bindDataToTable(url, data, result, rowId, '#datatable', `#${divId}`, null, true, true);
+        })
+    },
+
     GetProductImages: function (element) {
         let productId = $(element).closest('tr').attr('Id');
         if (productId == undefined || productId == null) { return false; }

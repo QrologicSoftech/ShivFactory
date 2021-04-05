@@ -1098,7 +1098,7 @@ namespace ShivFactory.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult LoadProductData()
+        public ActionResult LoadProductData(bool? AdminStatus)
         {
             try
             {
@@ -1112,13 +1112,14 @@ namespace ShivFactory.Areas.Admin.Controllers
                 var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
 
                 // Prepair model  
-                PaginationRequest model = new PaginationRequest()
+                ProductModel model = new ProductModel()
                 {
                     searchText = search,
                     Skip = start != null ? Convert.ToInt32(start) : 0,
                     PageSize = length != null ? Convert.ToInt32(length) : 0,
                     SortColumn = sortColumn,
-                    SortDirection = sortColumnDir
+                    SortDirection = sortColumnDir,
+                    ApprovedStatus= AdminStatus
                 };
                 int recordsTotal = 0;
 
