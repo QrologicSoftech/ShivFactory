@@ -37,9 +37,31 @@ namespace ShivFactory.Controllers
         public ActionResult ShowCart()
         {
             RepoCart cart = new RepoCart();
-            RepoCookie cooki = new RepoCookie();
             var cartList = cart.GetCart();
+            TempData.Peek("SuccessMessage");
+            TempData.Peek("ErrorMessage");
             return View(cartList);
+        }
+
+        public ActionResult DeleteCartItem(int? Id)
+        {
+            try
+            {
+                if (Id > 0)
+                {
+                    RepoCart cart = new RepoCart();
+                    var retval = cart.DeleteCartItemById((int)Id);
+                    TempData["SuccessMessage"] = "Item removed successfully from Cart";
+                    return RedirectToAction("ShowCart", "Customer");
+                }
+            }
+            catch (Exception e)
+            {
+                TempData["ErrorMessage"] = e.Message.ToString();
+             
+            }
+          return  RedirectToAction("ShowCart", "Customer");
+
         }
         #endregion 
 

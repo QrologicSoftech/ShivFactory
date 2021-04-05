@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShivFactory.Business.Repository.CartModel>
+﻿@model ShivFactory.Business.Repository.CartModel
 @{
     ViewBag.Title = "ShowCart";
     Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
@@ -22,7 +22,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model)
+                                @foreach (var item in Model.CartItems)
                                 {
                                     <tr>
                                         <td>
@@ -44,7 +44,7 @@
                                             <div class="price-wrap"> <var class="price"><i class="fas fa-rupee-sign"></i>@item.NetAmt</var> <small class="text-muted"> <i class="fas fa-rupee-sign"></i> @item.Price </small> </div>
                                         </td>
                                         <td class="text-right d-none d-md-block">
-                                            <a href="" class="btn btn-light">
+                                            <a href="/Customer/DeleteCartItem?Id=@item.ID.ToString().Trim()" class="btn btn-light">
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -76,11 +76,11 @@
                         </dl>
                         <dl class="dlist-align">
                             <dt>Discount:</dt>
-                            <dd class="text-right">USD 658</dd>
+                            <dd class="text-right">0.00</dd>
                         </dl>
                         <dl class="dlist-align">
                             <dt>Total:</dt>
-                            <dd class="text-right  h5"><strong><i class="fas fa-rupee-sign"></i> 1,650</strong></dd>
+                            <dd class="text-right  h5"><strong><i class="fas fa-rupee-sign"></i> @Model.CartValue</strong></dd>
                         </dl>
                         <hr>
                         <p class="text-center mb-3"> <img src="images/misc/payments.png" height="26"> </p>
@@ -95,6 +95,6 @@
     <!-- container .//  -->
 </section>
 <script>
-    $('#cartcount').text(@Model.Count());
+    $('#cartcount').text(@Model.CartItems.Count());
 </script>
 

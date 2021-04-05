@@ -59,7 +59,7 @@ namespace ShivFactory.Business.Repository
                     db.TempOrderDetails.Add(temporderDetails);
                 }
                 TotalCartAmount(tempOrderId);
-                return db.SaveChanges() > 0;
+                return db.SaveChanges() > 0 ? true :false;
             }
             catch (Exception e)
             {
@@ -85,6 +85,8 @@ namespace ShivFactory.Business.Repository
                 NetAmt = a.NetAmt ?? 0,
                 ProductVarientID = a.ProductVarientId ?? 0,
                 vendorId = a.VendorId ?? 0,
+                ID = a.ID
+
             }).AsNoTracking().ToList();
             return data;
         }
@@ -100,6 +102,19 @@ namespace ShivFactory.Business.Repository
              db.SaveChanges() ;
         }
 
+        public bool DeleteCartItemById(int rowID)
+        {
+            bool retval = false; 
+            var tempOrderDetails = db.TempOrderDetails.Where(row => row.ID == rowID).FirstOrDefault();
+            if (tempOrderDetails != null)
+            {
+             db.TempOrderDetails.Remove(tempOrderDetails) ;
+                db.SaveChanges();
+                retval = true;
+            }
+            return retval; 
+           
+        }
 
     }
 }
