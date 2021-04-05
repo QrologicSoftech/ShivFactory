@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShivFactory.Business.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace ShivFactory.Business.Repository.Admin
 {
+    #region ProductModel
+    public class ProductModel: PaginationRequest
+    {
+        public bool? ApprovedStatus { get; set; }
+
+    }
+    #endregion
     #region UnApprovedProductResponse
     public class UnApprovedProductResponse
     {
