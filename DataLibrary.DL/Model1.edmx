@@ -162,6 +162,57 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="Adddate" Type="datetime" />
           <Property Name="LastUpdate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderNumber" Type="nvarchar" MaxLength="256" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="256" />
+          <Property Name="VendorId" Type="int" />
+          <Property Name="OrderAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ShippingCharge" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="NetAmount" Type="decimal" Precision="19" Scale="2" StoreGeneratedPattern="Computed" />
+          <Property Name="OrderStatus" Type="nvarchar" MaxLength="200" />
+          <Property Name="PaymentId" Type="nvarchar" MaxLength="200" />
+          <Property Name="PaymentMode" Type="nvarchar" MaxLength="200" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrderDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="500" />
+          <Property Name="VarientName1" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue1" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName2" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue2" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName3" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue3" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName4" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue4" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName5" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue5" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName6" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue6" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName7" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue7" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName8" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue8" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName9" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue9" Type="nvarchar" MaxLength="300" />
+          <Property Name="VarientName10" Type="nvarchar" MaxLength="200" />
+          <Property Name="VarientValue10" Type="nvarchar" MaxLength="300" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="ShippingCharge" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="NetAmount" Type="decimal" Precision="30" Scale="2" StoreGeneratedPattern="Computed" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="500" />
+          <Property Name="SubCategoryName" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -274,6 +325,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="nvarchar" MaxLength="256" />
+          <Property Name="AddDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
           <Property Name="NetAmt" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="TempOrderDetails">
@@ -284,13 +337,13 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="ProductName" Type="nvarchar" MaxLength="200" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Brand" Type="nvarchar" MaxLength="200" />
-          <Property Name="Varient" Type="nvarchar" MaxLength="200" />
-          <Property Name="productID" Type="int" />
-          <Property Name="productVarientID" Type="int" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="ProductVarientId" Type="int" />
           <Property Name="TempOrderID" Type="int" />
           <Property Name="AddDate" Type="datetime" />
           <Property Name="NetAmt" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="VendorId" Type="int" />
+          <Property Name="IsUserWishList" Type="bit" />
         </EntityType>
         <EntityType Name="UserDetails">
           <Key>
@@ -389,6 +442,20 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Principal>
             <Dependent Role="MiniCategory">
               <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeta__Order__14E61A24">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="OrderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -566,6 +633,18 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TempOrderDetails_Vendors">
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="0..1" />
+          <End Role="TempOrderDetails" Type="Self.TempOrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="TempOrderDetails">
+              <PropertyRef Name="VendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_VendorShippingArea_Vendors">
           <End Role="Vendors" Type="Self.Vendors" Multiplicity="0..1" />
           <End Role="VendorShippingArea" Type="Self.VendorShippingArea" Multiplicity="*" />
@@ -592,6 +671,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySet Name="DimensionMaster" EntityType="Self.DimensionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DynamicMenu" EntityType="Self.DynamicMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MiniCategory" EntityType="Self.MiniCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductVarient" EntityType="Self.ProductVarient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
@@ -617,6 +698,10 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <AssociationSet Name="FK__MiniCateg__SubCa__628FA481" Association="Self.FK__MiniCateg__SubCa__628FA481">
             <End Role="SubCategory" EntitySet="SubCategory" />
             <End Role="MiniCategory" EntitySet="MiniCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeta__Order__14E61A24" Association="Self.FK__OrderDeta__Order__14E61A24">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
           </AssociationSet>
           <AssociationSet Name="FK__Product__VendorI__2739D489" Association="Self.FK__Product__VendorI__2739D489">
             <End Role="Vendors" EntitySet="Vendors" />
@@ -668,6 +753,10 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           </AssociationSet>
           <AssociationSet Name="FK_TempOrderDetails_TempOrder" Association="Self.FK_TempOrderDetails_TempOrder">
             <End Role="TempOrder" EntitySet="TempOrder" />
+            <End Role="TempOrderDetails" EntitySet="TempOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TempOrderDetails_Vendors" Association="Self.FK_TempOrderDetails_Vendors">
+            <End Role="Vendors" EntitySet="Vendors" />
             <End Role="TempOrderDetails" EntitySet="TempOrderDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_VendorShippingArea_Vendors" Association="Self.FK_VendorShippingArea_Vendors">
@@ -902,12 +991,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySet Name="VendorBankDetails" EntityType="db_ShivFactoryModel.VendorBankDetail" />
           <EntitySet Name="Varients" EntityType="db_ShivFactoryModel.Varient" />
           <EntitySet Name="ProductVarients" EntityType="db_ShivFactoryModel.ProductVarient" />
-          <EntitySet Name="TempOrders" EntityType="db_ShivFactoryModel.TempOrder" />
-          <EntitySet Name="TempOrderDetails" EntityType="db_ShivFactoryModel.TempOrderDetail" />
-          <AssociationSet Name="FK_TempOrderDetails_TempOrder" Association="db_ShivFactoryModel.FK_TempOrderDetails_TempOrder">
-            <End Role="TempOrder" EntitySet="TempOrders" />
-            <End Role="TempOrderDetail" EntitySet="TempOrderDetails" />
-          </AssociationSet>
           <EntitySet Name="VendorShippingAreas" EntityType="db_ShivFactoryModel.VendorShippingArea" />
           <AssociationSet Name="FK_VendorShippingArea_Vendors" Association="db_ShivFactoryModel.FK_VendorShippingArea_Vendors">
             <End Role="Vendor" EntitySet="Vendors" />
@@ -933,6 +1016,22 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <AssociationSet Name="FK_Product_SubCategory" Association="db_ShivFactoryModel.FK_Product_SubCategory">
             <End Role="SubCategory" EntitySet="SubCategories" />
             <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <EntitySet Name="Orders" EntityType="db_ShivFactoryModel.Order" />
+          <EntitySet Name="OrderDetails" EntityType="db_ShivFactoryModel.OrderDetail" />
+          <AssociationSet Name="FK__OrderDeta__Order__14E61A24" Association="db_ShivFactoryModel.FK__OrderDeta__Order__14E61A24">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <EntitySet Name="TempOrders" EntityType="db_ShivFactoryModel.TempOrder" />
+          <EntitySet Name="TempOrderDetails" EntityType="db_ShivFactoryModel.TempOrderDetail" />
+          <AssociationSet Name="FK_TempOrderDetails_TempOrder" Association="db_ShivFactoryModel.FK_TempOrderDetails_TempOrder">
+            <End Role="TempOrder" EntitySet="TempOrders" />
+            <End Role="TempOrderDetail" EntitySet="TempOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TempOrderDetails_Vendors" Association="db_ShivFactoryModel.FK_TempOrderDetails_Vendors">
+            <End Role="Vendor" EntitySet="Vendors" />
+            <End Role="TempOrderDetail" EntitySet="TempOrderDetails" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="DimensionMaster">
@@ -1068,7 +1167,8 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <NavigationProperty Name="AspNetUser" Relationship="db_ShivFactoryModel.FK__VendorBus__UserI__66603565" FromRole="Vendor" ToRole="AspNetUser" />
           <NavigationProperty Name="VendorShippingAreas" Relationship="db_ShivFactoryModel.FK_VendorShippingArea_Vendors" FromRole="Vendor" ToRole="VendorShippingArea" />
           <NavigationProperty Name="Products" Relationship="db_ShivFactoryModel.FK__Product__VendorI__2739D489" FromRole="Vendor" ToRole="Product" />
-        </EntityType>
+          <NavigationProperty Name="TempOrderDetails" Relationship="db_ShivFactoryModel.FK_TempOrderDetails_Vendors" FromRole="Vendor" ToRole="TempOrderDetail" />
+          </EntityType>
         <Association Name="FK__VendorBus__UserI__66603565">
           <End Type="db_ShivFactoryModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -1150,44 +1250,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="Image5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Product" Relationship="db_ShivFactoryModel.FK__ProductVa__Produ__57DD0BE4" FromRole="ProductVarient" ToRole="Product" />
         </EntityType>
-        <EntityType Name="TempOrder">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TempOrderDetails" Relationship="db_ShivFactoryModel.FK_TempOrderDetails_TempOrder" FromRole="TempOrder" ToRole="TempOrderDetail" />
-          <Property Name="NetAmt" Type="Decimal" Precision="18" Scale="2" />
-        </EntityType>
-        <EntityType Name="TempOrderDetail">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Quantity" Type="Int32" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Brand" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Varient" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="productID" Type="Int32" />
-          <Property Name="productVarientID" Type="Int32" />
-          <Property Name="TempOrderID" Type="Int32" />
-          <Property Name="AddDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="TempOrder" Relationship="db_ShivFactoryModel.FK_TempOrderDetails_TempOrder" FromRole="TempOrderDetail" ToRole="TempOrder" />
-          <Property Name="NetAmt" Type="Decimal" Precision="18" Scale="2" />
-        </EntityType>
-        <Association Name="FK_TempOrderDetails_TempOrder">
-          <End Type="db_ShivFactoryModel.TempOrder" Role="TempOrder" Multiplicity="0..1" />
-          <End Type="db_ShivFactoryModel.TempOrderDetail" Role="TempOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TempOrder">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TempOrderDetail">
-              <PropertyRef Name="TempOrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="VendorShippingArea">
           <Key>
             <PropertyRef Name="ID" />
@@ -1325,6 +1387,126 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="SubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="VendorId" Type="Int32" />
+          <Property Name="OrderAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ShippingCharge" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NetAmount" Type="Decimal" Precision="19" Scale="2" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="OrderStatus" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentMode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="OrderDetails" Relationship="db_ShivFactoryModel.FK__OrderDeta__Order__14E61A24" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue1" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue2" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue3" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue4" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName5" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue5" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName6" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue6" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName7" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue7" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName8" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue8" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName9" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue9" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="VarientName10" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VarientValue10" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="ShippingCharge" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NetAmount" Type="Decimal" Precision="30" Scale="2" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="CategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SubCategoryName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="db_ShivFactoryModel.FK__OrderDeta__Order__14E61A24" FromRole="OrderDetail" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK__OrderDeta__Order__14E61A24">
+          <End Type="db_ShivFactoryModel.Order" Role="Order" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_ShivFactoryModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TempOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="NetAmt" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="TempOrderDetails" Relationship="db_ShivFactoryModel.FK_TempOrderDetails_TempOrder" FromRole="TempOrder" ToRole="TempOrderDetail" />
+        </EntityType>
+        <EntityType Name="TempOrderDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="ProductVarientId" Type="Int32" />
+          <Property Name="TempOrderID" Type="Int32" />
+          <Property Name="AddDate" Type="DateTime" Precision="3" />
+          <Property Name="NetAmt" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VendorId" Type="Int32" />
+          <Property Name="IsUserWishList" Type="Boolean" />
+          <NavigationProperty Name="TempOrder" Relationship="db_ShivFactoryModel.FK_TempOrderDetails_TempOrder" FromRole="TempOrderDetail" ToRole="TempOrder" />
+          <NavigationProperty Name="Vendor" Relationship="db_ShivFactoryModel.FK_TempOrderDetails_Vendors" FromRole="TempOrderDetail" ToRole="Vendor" />
+        </EntityType>
+        <Association Name="FK_TempOrderDetails_TempOrder">
+          <End Type="db_ShivFactoryModel.TempOrder" Role="TempOrder" Multiplicity="0..1" />
+          <End Type="db_ShivFactoryModel.TempOrderDetail" Role="TempOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TempOrder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TempOrderDetail">
+              <PropertyRef Name="TempOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TempOrderDetails_Vendors">
+          <End Type="db_ShivFactoryModel.Vendor" Role="Vendor" Multiplicity="0..1" />
+          <End Type="db_ShivFactoryModel.TempOrderDetail" Role="TempOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="TempOrderDetail">
+              <PropertyRef Name="VendorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1640,32 +1822,6 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TempOrders">
-            <EntityTypeMapping TypeName="db_ShivFactoryModel.TempOrder">
-              <MappingFragment StoreEntitySet="TempOrder">
-                <ScalarProperty Name="NetAmt" ColumnName="NetAmt" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TempOrderDetails">
-            <EntityTypeMapping TypeName="db_ShivFactoryModel.TempOrderDetail">
-              <MappingFragment StoreEntitySet="TempOrderDetails">
-                <ScalarProperty Name="NetAmt" ColumnName="NetAmt" />
-                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
-                <ScalarProperty Name="TempOrderID" ColumnName="TempOrderID" />
-                <ScalarProperty Name="productVarientID" ColumnName="productVarientID" />
-                <ScalarProperty Name="productID" ColumnName="productID" />
-                <ScalarProperty Name="Varient" ColumnName="Varient" />
-                <ScalarProperty Name="Brand" ColumnName="Brand" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="VendorShippingAreas">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.VendorShippingArea">
               <MappingFragment StoreEntitySet="VendorShippingArea">
@@ -1723,6 +1879,87 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="VendorId" ColumnName="VendorId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="PaymentMode" ColumnName="PaymentMode" />
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="ShippingCharge" ColumnName="ShippingCharge" />
+                <ScalarProperty Name="OrderAmount" ColumnName="OrderAmount" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="ShippingCharge" ColumnName="ShippingCharge" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="VarientValue10" ColumnName="VarientValue10" />
+                <ScalarProperty Name="VarientName10" ColumnName="VarientName10" />
+                <ScalarProperty Name="VarientValue9" ColumnName="VarientValue9" />
+                <ScalarProperty Name="VarientName9" ColumnName="VarientName9" />
+                <ScalarProperty Name="VarientValue8" ColumnName="VarientValue8" />
+                <ScalarProperty Name="VarientName8" ColumnName="VarientName8" />
+                <ScalarProperty Name="VarientValue7" ColumnName="VarientValue7" />
+                <ScalarProperty Name="VarientName7" ColumnName="VarientName7" />
+                <ScalarProperty Name="VarientValue6" ColumnName="VarientValue6" />
+                <ScalarProperty Name="VarientName6" ColumnName="VarientName6" />
+                <ScalarProperty Name="VarientValue5" ColumnName="VarientValue5" />
+                <ScalarProperty Name="VarientName5" ColumnName="VarientName5" />
+                <ScalarProperty Name="VarientValue4" ColumnName="VarientValue4" />
+                <ScalarProperty Name="VarientName4" ColumnName="VarientName4" />
+                <ScalarProperty Name="VarientValue3" ColumnName="VarientValue3" />
+                <ScalarProperty Name="VarientName3" ColumnName="VarientName3" />
+                <ScalarProperty Name="VarientValue2" ColumnName="VarientValue2" />
+                <ScalarProperty Name="VarientName2" ColumnName="VarientName2" />
+                <ScalarProperty Name="VarientValue1" ColumnName="VarientValue1" />
+                <ScalarProperty Name="VarientName1" ColumnName="VarientName1" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TempOrders">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.TempOrder">
+              <MappingFragment StoreEntitySet="TempOrder">
+                <ScalarProperty Name="NetAmt" ColumnName="NetAmt" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TempOrderDetails">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.TempOrderDetail">
+              <MappingFragment StoreEntitySet="TempOrderDetails">
+                <ScalarProperty Name="IsUserWishList" ColumnName="IsUserWishList" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="NetAmt" ColumnName="NetAmt" />
+                <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+                <ScalarProperty Name="TempOrderID" ColumnName="TempOrderID" />
+                <ScalarProperty Name="ProductVarientId" ColumnName="ProductVarientId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

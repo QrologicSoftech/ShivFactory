@@ -12,21 +12,28 @@ namespace DataLibrary.DL
     using System;
     using System.Collections.Generic;
     
-    public partial class TempOrder
+    public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TempOrder()
+        public Order()
         {
-            this.TempOrderDetails = new HashSet<TempOrderDetail>();
+            this.OrderDetails = new HashSet<OrderDetail>();
         }
     
-        public int ID { get; set; }
+        public int OrderId { get; set; }
+        public string OrderNumber { get; set; }
         public string UserId { get; set; }
+        public Nullable<int> VendorId { get; set; }
+        public Nullable<decimal> OrderAmount { get; set; }
+        public Nullable<decimal> ShippingCharge { get; set; }
+        public Nullable<decimal> NetAmount { get; set; }
+        public string OrderStatus { get; set; }
+        public string PaymentId { get; set; }
+        public string PaymentMode { get; set; }
         public Nullable<System.DateTime> AddDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
-        public Nullable<decimal> NetAmt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TempOrderDetail> TempOrderDetails { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

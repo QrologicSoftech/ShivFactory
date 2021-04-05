@@ -18,14 +18,15 @@ namespace DataLibrary.DL
         public string ProductName { get; set; }
         public Nullable<int> Quantity { get; set; }
         public Nullable<decimal> Price { get; set; }
-        public string Brand { get; set; }
-        public string Varient { get; set; }
-        public Nullable<int> productID { get; set; }
-        public Nullable<int> productVarientID { get; set; }
+        public Nullable<int> ProductId { get; set; }
+        public Nullable<int> ProductVarientId { get; set; }
         public Nullable<int> TempOrderID { get; set; }
         public Nullable<System.DateTime> AddDate { get; set; }
         public Nullable<decimal> NetAmt { get; set; }
+        public Nullable<int> VendorId { get; set; }
+        public Nullable<bool> IsUserWishList { get; set; }
     
         public virtual TempOrder TempOrder { get; set; }
+        public virtual Vendor Vendor { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="8c0ff7f9ee1247b3b273bbd0cffbb6f3" Name="Diagram1" ZoomLevel="77">
+      <Diagram DiagramId="8c0ff7f9ee1247b3b273bbd0cffbb6f3" Name="Diagram1" ZoomLevel="71">
         <EntityTypeShape EntityType="db_ShivFactoryModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.AspNetRole" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.5" IsExpanded="true" />
@@ -32,9 +32,6 @@
         <EntityTypeShape EntityType="db_ShivFactoryModel.VendorBankDetail" Width="1.5" PointX="7.375" PointY="4.75" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.Varient" Width="1.5" PointX="7.375" PointY="9.75" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.ProductVarient" Width="1.5" PointX="17.75" PointY="7.875" />
-        <EntityTypeShape EntityType="db_ShivFactoryModel.TempOrder" Width="1.5" PointX="3.375" PointY="15.75" />
-        <EntityTypeShape EntityType="db_ShivFactoryModel.TempOrderDetail" Width="1.5" PointX="5.625" PointY="15" />
-        <AssociationConnector Association="db_ShivFactoryModel.FK_TempOrderDetails_TempOrder" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.VendorShippingArea" Width="1.5" PointX="15.5" PointY="1.25" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_VendorShippingArea_Vendors" />
         <EntityTypeShape EntityType="db_ShivFactoryModel.Product" Width="1.5" PointX="15.5" PointY="4.125" />
@@ -43,6 +40,13 @@
         <AssociationConnector Association="db_ShivFactoryModel.FK__Product__VendorI__2739D489" />
         <AssociationConnector Association="db_ShivFactoryModel.FK__ProductVa__Produ__57DD0BE4" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_Product_SubCategory" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.Order" Width="1.5" PointX="14.375" PointY="18.75" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.OrderDetail" Width="1.5" PointX="16.625" PointY="17.125" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK__OrderDeta__Order__14E61A24" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.TempOrder" Width="1.5" PointX="16.25" PointY="25.125" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.TempOrderDetail" Width="1.5" PointX="18.5" PointY="1.375" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_TempOrderDetails_TempOrder" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_TempOrderDetails_Vendors" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

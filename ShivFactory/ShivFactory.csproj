@@ -573,6 +573,7 @@
     <Content Include="Views\Shared\_CustomerLayout.cshtml" />
     <Content Include="Views\Customer\Profile.cshtml" />
     <Content Include="Views\Customer\Orders.cshtml" />
+    <Content Include="Views\Customer\ShowCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

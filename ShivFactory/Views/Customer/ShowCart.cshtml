@@ -1,0 +1,100 @@
+﻿@model IEnumerable<ShivFactory.Business.Repository.CartModel>
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
+}
+
+
+
+<section class="section-content py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <aside class="col-lg-9">
+                <div class="card">
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-shopping-cart">
+                            <thead class="text-muted">
+                                <tr class="small text-uppercase">
+                                    <th scope="col">Product</th>
+                                    <th scope="col" width="120">Quantity</th>
+                                    <th scope="col" width="120">Price</th>
+                                    <th scope="col" class="text-right d-none d-md-block" width="200"> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <figure class="itemside align-items-center">
+                                                <div class="aside"><img src="images/items/1.jpg" class="img-sm"></div>
+                                                <figcaption class="info">
+                                                    <a href="#" class="title text-dark">@item.ProductName</a>
+                                                    <p class="text-muted small">
+                                                        Matrix: 25 Mpx <br>
+                                                        Brand: Canon
+                                                    </p>
+                                                </figcaption>
+                                            </figure>
+                                        </td>
+                                        <td>
+                                            <input type="number" class="form-control col-sm-4" value="@item.Quantity" />
+                                        </td>
+                                        <td>
+                                            <div class="price-wrap"> <var class="price"><i class="fas fa-rupee-sign"></i>@item.NetAmt</var> <small class="text-muted"> <i class="fas fa-rupee-sign"></i> @item.Price </small> </div>
+                                        </td>
+                                        <td class="text-right d-none d-md-block">
+                                            <a href="" class="btn btn-light">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- table-responsive.// -->
+
+                    <div class="card-body border-top">
+                        <p class="icontext"><i class="icon text-success fa fa-truck"></i> Free Delivery within 1-2 weeks</p>
+                    </div>
+                    <!-- card-body.// -->
+
+                </div>
+                <!-- card.// -->
+
+            </aside>
+            <!-- col.// -->
+            <aside class="col-md-3">
+                <!-- card .// -->
+                <div class="card">
+                    <div class="card-body">
+                        <dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-right"></dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Discount:</dt>
+                            <dd class="text-right">USD 658</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Total:</dt>
+                            <dd class="text-right  h5"><strong><i class="fas fa-rupee-sign"></i> 1,650</strong></dd>
+                        </dl>
+                        <hr>
+                        <p class="text-center mb-3"> <img src="images/misc/payments.png" height="26"> </p>
+                    </div>
+                    <!-- card-body.// -->
+                </div>
+                <!-- card .// -->
+            </aside>
+            <!-- col.// -->
+        </div>
+    </div>
+    <!-- container .//  -->
+</section>
+<script>
+    $('#cartcount').text(@Model.Count());
+</script>
+

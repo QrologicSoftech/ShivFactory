@@ -1,15 +1,20 @@
 ﻿using DataLibrary.DL;
+using ShivFactory.Business.Model;
 using ShivFactory.Business.Model.Common;
+using ShivFactory.Business.Models;
 using ShivFactory.Business.Models.Other;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ShivFactory.Business.Repository
 {
-   public class RepoCart
+    public class RepoCart
     {
         #region Parameters
         ShivFactoryEntities db = new ShivFactoryEntities();
@@ -18,84 +23,84 @@ namespace ShivFactory.Business.Repository
         #endregion
         public bool AddToCart(AddToCart model)
         {
-      
-            string userid = utility.GetCurrentUserId(); 
+            string userid = utility.GetCurrentUserId();
             try
             {
-                // chek user has order or not 
-                var tmpOrder = db.TempOrders.Where(a => a.UserId == userid).FirstOrDefault();
-                if (tmpOrder != null) {
-                    var temporderDetails = db.TempOrderDetails.Add(new TempOrderDetail()
-                    {
-                        productID = model.ProductID,
-                        ProductName = model.ProductName,
-                        productVarientID = model.ProductVarientID,
-                        Price = Convert.ToDecimal(model.Price),
-                        Brand = model.Brand,
-                        Quantity = Convert.ToInt32(model.Quantity),
-                        TempOrderID = tmpOrder.ID,
-                        AddDate = DateTime.Now
-                    });
-                    int retVal = db.SaveChanges();
-
-                    cooki.AddCookiesValue(CookieName.TempOrderId, tmpOrder.ID.ToString());
-
-                } else {
+                int tempOrderId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
+                if (tempOrderId == 0)
+                {
                     var tempOrder = db.TempOrders.Add(new TempOrder()
                     {
                         UserId = utility.GetCurrentUserId(),
-                    });
-
-                    var temporderDetails = db.TempOrderDetails.Add(new TempOrderDetail()
-                    {
-                        productID = model.ProductID,
-                        ProductName = model.ProductName,
-                        productVarientID = model.ProductVarientID,
-                        Price = Convert.ToDecimal(model.Price),
-                        Brand = model.Brand,
-                        Quantity = Convert.ToInt32(model.Quantity),
-                        TempOrderID = tempOrder.ID,
                         AddDate = DateTime.Now
                     });
-                    int retVal = db.SaveChanges();
-
-                    cooki.AddCookiesValue(CookieName.TempOrderId, tempOrder.ID.ToString());
+                    tempOrderId = tempOrder.ID;
                 }
-                
-             
 
-          
-                return true;
+                var orderDetails = db.TempOrderDetails.Where(a => a.ProductVarientId == model.vendorId).FirstOrDefault();
+                if (orderDetails != null)
+                {
+                    orderDetails.Quantity = orderDetails.Quantity ?? 0 + model.Quantity;
+                    orderDetails.NetAmt = orderDetails.Quantity * model.Price;
+                }
+                else
+                {
+                    var temporderDetails = new TempOrderDetail()
+                    {
+                        ProductId = model.ProductID,
+                        ProductName = model.ProductName,
+                        ProductVarientId = model.ProductVarientID,
+                        Price = model.Price,
+                        Quantity = model.Quantity,
+                        TempOrderID = tempOrderId,
+                        AddDate = DateTime.Now,
+                        NetAmt = model.Quantity * model.Price
+                    };
+                    db.TempOrderDetails.Add(temporderDetails);
+                }
+                TotalCartAmount(tempOrderId);
+                return db.SaveChanges() > 0;
             }
             catch (Exception e)
             {
-                return false; 
+                return false;
             }
         }
 
-        public List<AddToCart> GetUserCart(string tempOrderId)
+        public CartModel GetCart()
         {
-            
-            List<AddToCart> userCart = new List<AddToCart>();
-            Utility utility = new Utility();
-            var TempOrder = db.TempOrders.Where(a => a.ID == Convert.ToInt32(tempOrderId));
-            if (TempOrder != null)
+            var model= new CartModel();
+            int tempId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
+            var data = db.TempOrders.Where(a => a.ID == tempId).Select(a=> new CartModel
+            { 
+                CartValue=a.NetAmt??0
+        }).FirstOrDefault();
+
+            data.CartItems = db.TempOrderDetails.Where(a => a.TempOrderID == tempId).Select(a => new AddToCart
             {
-                var tempOrderDetails = db.TempOrderDetails.Where(row => row.TempOrderID == Convert.ToInt32(tempOrderId));
-                if (tempOrderDetails != null)
-                { // dont use this use indexing 
-                //foreach(var record in tempOrderDetails)
-                //    {
-                //        AddToCart cart = new AddToCart();
-                //        cart.ProductID = record.productID!=null ?record.productID.Value : 0;
-                //        cart.ProductName = record.ProductName;
-                //        cart.Price = record.Price!=null ? record.Price.Value : 0;
-                //        cart.Quantity = record.Quantity!=null ? record.Quantity.Value :0; 
-                //        userCart.Add(cart);     
-                //    }
-                }
-            }
-                return userCart; 
+                ProductID = a.ProductId != null ? a.ProductId.Value : 0,
+                ProductName = a.ProductName,
+                Price = a.Price ?? 0,
+                Quantity = a.Quantity ?? 0,
+                NetAmt = a.NetAmt ?? 0,
+                ProductVarientID = a.ProductVarientId ?? 0,
+                vendorId = a.VendorId ?? 0,
+            }).AsNoTracking().ToList();
+            return data;
         }
+
+        public void TotalCartAmount(int tempOrderId)
+        {
+            var NetAmt = db.TempOrderDetails.Where(row => row.TempOrderID == tempOrderId).Select(row => row.NetAmt??0).Sum();
+            var tempOrder = db.TempOrders.Where(row => row.ID == tempOrderId).FirstOrDefault();
+            if (tempOrder != null)
+            {
+                tempOrder.NetAmt = NetAmt;
+            }
+             db.SaveChanges() ;
+        }
+
+
     }
 }
+
