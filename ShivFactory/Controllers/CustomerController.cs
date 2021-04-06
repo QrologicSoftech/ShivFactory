@@ -32,64 +32,6 @@ namespace ShivFactory.Controllers
         #endregion
 
 
-        #region cart
-
-        public ActionResult ShowCart()
-        {
-            RepoCart cart = new RepoCart();
-            var cartList = cart.GetCart();
-            TempData.Peek("SuccessMessage");
-            TempData.Peek("ErrorMessage");
-            return View(cartList);
-        }
-
-        public ActionResult DeleteCartItem(int? Id)
-        {
-            try
-            {
-                if (Id > 0)
-                {
-                    RepoCart cart = new RepoCart();
-                    var retval = cart.DeleteCartItemById((int)Id);
-                    TempData["SuccessMessage"] = "Item removed successfully from Cart";
-                    return RedirectToAction("ShowCart", "Customer");
-                }
-            }
-            catch (Exception e)
-            {
-                TempData["ErrorMessage"] = e.Message.ToString();
-             
-            }
-          return  RedirectToAction("ShowCart", "Customer");
-
-        }
-
-        public ActionResult UpdateCart(UpdateCart model)
-        {
-            try
-            {
-                RepoCart cart = new RepoCart();
-                bool IsAddToCart = cart.UpdateCart(model);
-                return Json(new ResultModel
-                {
-                    ResultFlag = IsAddToCart,
-                    Data = model,
-                    Message = IsAddToCart == true ? "Cart updated successfully" : " Unable to Add Item in cart "
-                }, JsonRequestBehavior.AllowGet); ;
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResultModel
-                {
-                    ResultFlag = false,
-                    Data = null,
-                    Message = ex.Message
-                }, JsonRequestBehavior.AllowGet);
-            }
-
-        }
-        #endregion 
-
         #region Orders
         public ActionResult Orders()
         {
@@ -108,13 +50,7 @@ namespace ShivFactory.Controllers
         }
         #endregion Orders
 
-
-        #region WishList
-        public ActionResult Wishlist()
-        {
-            return View();
-        }
-        #endregion
+      
     }
 
 }

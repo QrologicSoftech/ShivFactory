@@ -114,7 +114,7 @@ namespace ShivFactory.Business.Repository.Admin
                 StockCount = a.StockCount ?? 0,
                 ProductWarning = a.ProductWarning,
                 Description = a.Description,
-                ProductColors = a.ProductColors
+                //ProductColors = a.ProductColors
             }).AsNoTracking().FirstOrDefault();
             if (productInfo != null && !string.IsNullOrEmpty(productInfo.MgfDate))
             {
@@ -130,14 +130,14 @@ namespace ShivFactory.Business.Repository.Admin
         {
             var productDimension = db.Products.Where(x => x.ProductId == ProductId).Select(a => new ProductDimensionResponse()
             {
-                ProductLength = a.ProductLength,
-                ProductWidth = a.ProductWidth,
-                ProductHeight = a.ProductHeight,
-                ProductWeight = a.ProductWeight,
-                PackageLength = a.PackageLength,
-                PackageWidth = a.PackageWidth,
-                PackageHeight = a.PackageHeight,
-                PackageWeight = a.PackageWeight
+                //ProductLength = a.ProductLength,
+                //ProductWidth = a.ProductWidth,
+                //ProductHeight = a.ProductHeight,
+                //ProductWeight = a.ProductWeight,
+                //PackageLength = a.PackageLength,
+                //PackageWidth = a.PackageWidth,
+                //PackageHeight = a.PackageHeight,
+                //PackageWeight = a.PackageWeight
             }).AsNoTracking().FirstOrDefault();
 
             return productDimension;

@@ -49,20 +49,20 @@ namespace ShivFactory.Business.Repository
                 Product.Image5 = model.Image5;
                 Product.Image6 = model.Image6;
 
-                Product.BrandId = model.BrandId;
+              //  Product.BrandId = model.BrandId;
                 Product.CategoryId = model.CategoryId;
                 Product.SubCategoryId = model.SubCategoryId;
                 Product.MiniCategoryId = model.MiniCategoryId;
                 Product.IsActive = model.IsActive;
-                Product.ProductLength = model.ProductLength;
-                Product.ProductWidth = model.ProductWidth;
-                Product.ProductHeight = model.ProductHeight;
-                Product.ProductWeight = model.ProductWeight;
-                Product.PackageLength = model.PackageLength;
-                Product.PackageWidth = model.PackageWidth;
-                Product.PackageHeight = model.PackageHeight;
-                Product.PackageWeight = model.PackageWeight;
-                Product.ProductColors = model.ProductColors;
+                //Product.ProductLength = model.ProductLength;
+                //Product.ProductWidth = model.ProductWidth;
+                //Product.ProductHeight = model.ProductHeight;
+                //Product.ProductWeight = model.ProductWeight;
+                //Product.PackageLength = model.PackageLength;
+                //Product.PackageWidth = model.PackageWidth;
+                //Product.PackageHeight = model.PackageHeight;
+                //Product.PackageWeight = model.PackageWeight;
+                //Product.ProductColors = model.ProductColors;
                 Product.ApprovedByAdmin = null;
                 Product.IsReturnable = model.IsReturnable;
                 Product.ReturnDays = model.ReturnDays;
@@ -118,7 +118,7 @@ namespace ShivFactory.Business.Repository
                 SubCategoryId = a.SubCategoryId,
                 MiniCategoryId = a.MiniCategoryId,
                 IsActive = a.IsActive ?? false,
-                ProductColors = a.ProductColors,
+               // ProductColors = a.ProductColors,
                 IsReturnable = a.IsReturnable ?? false,
                 ReturnDays = a.ReturnDays,
                 ProductCode = a.productCode
@@ -200,8 +200,8 @@ namespace ShivFactory.Business.Repository
         #region Get Product color By ProductId
         public string GetProductColorByProductId(int ProductId)
         {
-            var ProductColor = db.Products.Where(x => x.ProductId == ProductId).Select(p => p.ProductColors).AsNoTracking().FirstOrDefault();
-            return ProductColor;
+            //var ProductColor = db.Products.Where(x => x.ProductId == ProductId).Select(p => p.ProductColors).AsNoTracking().FirstOrDefault();
+            return "";
 
         }
         #endregion
@@ -212,7 +212,7 @@ namespace ShivFactory.Business.Repository
             var Product = db.Products.Where(x => x.ProductId == ProductId).FirstOrDefault();
             if (Product != null)
             {
-                Product.ProductColors = colors;
+                //Product.ProductColors = colors;
                 return db.SaveChanges() > 0;
             }
             return false;

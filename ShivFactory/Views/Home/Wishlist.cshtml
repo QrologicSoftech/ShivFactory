@@ -1,0 +1,86 @@
+﻿@model ShivFactory.Business.Repository.CartModel
+@{
+    ViewBag.Title = "Wishlist";
+    Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
+}
+
+<section class="profile-1">
+    <div class="container">
+        <div class="personal">
+            @if (Model == null)
+            {
+                <div class="personal fullpage-1 hover-3" style="    background-color: #fff;">
+    <div class="row">
+        <div class="col-md-12" style="padding: 20px 0px;">
+            <span style="    font-size: 25px;font-weight: bold; margin-left: 50px;">My Wishlist (0)</span>
+        </div>
+        </div>
+                    </div>
+     }else
+        {
+    <div class="personal fullpage-1 hover-3" style="    background-color: #fff;">
+        <div class="row">
+            <div class="col-md-12" style="padding: 20px 0px;">
+                <span style="    font-size: 25px;font-weight: bold; margin-left: 50px;">My Wishlist (@Model.CartItems.Count)</span>
+
+            </div>
+        </div>
+        @foreach (var item in Model.CartItems)
+        {
+            <div>
+                <div class="_1M-Ete" style="border-top: 1px solid #e0e0e0;">
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="XXTbyN">
+                        <div class="_30f2zZ">
+                            <div class="eS4lgT">
+                                <div>
+                                    <div class="CXW8mj" style="height: 100px; width: 100px;">
+                                        <img class="_396cs4  _3exPp9" alt="@item.ProductName" src=@item.ImagePath>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Gh3O6V row">
+                            <div class="col col-10-12">
+                                <div class="_3hscEA">@item.ProductName</div>
+                                <div class="gUuXy- _2D5lwg">
+                                    <span id="productRating_LSTMOBFVEATXQBZN7QZ99GWC2_MOBFVEATXQBZN7QZ_" class="_1lRcqv">
+                                        <div class="_3LWZlK">
+                                            4.3
+                                            <img src="img/download.svg" class="_1wB99o">
+                                        </div>
+                                    </span>
+                                    <span class="_2_R_DZ"></span>
+                                </div>
+                                <div class="_3T5d8x">
+                                    @*<img height="21" src="img/fa_62673a.png">*@
+                                </div>
+                                <div class="_16qZvh">
+                                    <div class="_25b18c">
+                                        <div class="_30jeq3 _1qGLe2">₹@item.Price</div>
+                                        <div class="_3I9_wc _1eAROs">₹10,999</div>
+                                        <div class="_3Ay6Sb">
+                                            <span>22% off</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col col-2-12 LaCDhz">
+                                <div class="Bv11UC _2GI1Le Bh0FCW">
+                                    <span class="">
+                                        <img src="~/Content/UploadedImages/Images/delete.svg" class="_2Nq6Qc" />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+    }
+</div>
+    </div>
+    </div>
+    </div>
+</section>
+

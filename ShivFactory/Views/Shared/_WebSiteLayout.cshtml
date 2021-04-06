@@ -11,6 +11,8 @@
     Utility util = new Utility();
     RepoUser repoUser = new RepoUser();
     var UserImage = repoUser.GetUserImage(util.GetCurrentUserId());
+    RepoCart cart = new RepoCart();
+    var cartCount = cart.GetUserCartCount();
 }
 <script src="~/Content/Website/js/jquery-2.0.0.min.js?ver=@version"></script>
 <script src="~/Content/Website/js/bootstrap.bundle.min.js?ver=@version"></script>
@@ -75,7 +77,7 @@
                                         <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i>My Account</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
                                         <a class="dropdown-item" href="/Customer/Orders/"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Orders</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-heart" aria-hidden="true"></i>WishList</a>
+                                        <a class="dropdown-item" href="/Home/Wishlist/"><i class="fa fa-heart" aria-hidden="true"></i>WishList</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
                                         <a class="dropdown-item" href="/Account/LogOff"><i class="fa fa-bell" aria-hidden="true"></i>Logout</a>
                                     </div>
@@ -104,11 +106,10 @@
                                     @*<a class="dropdown-item" href="#"><i class="fa fa-arrow-down" aria-hidden="true"></i>Download App</a>*@
                                 </div>
 
-
                             </div>
                             <div class="widget-header mr-1 mr-lg-0">
-                                <a href="/Customer/ShowCart" class="widget-view">
-                                    <div class="icon-area"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> <label class="notify" id="cartcount"></label></div>
+                                <a href="/Home/ShowCart" class="widget-view">
+                                    <div class="icon-area"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> <label class="notify" id="cartcount">@cartCount</label></div>
                                     <small class="text d-none d-md-block d-lg-block"> Cart </small>
                                 </a>
                             </div>

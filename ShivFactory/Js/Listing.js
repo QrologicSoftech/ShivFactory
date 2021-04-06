@@ -140,7 +140,7 @@ var Listing = {
                                         </ul>\
                                         <div class="label-rating">2/10</div>\
                                     </div>\
-                                    <a href="#"  alt='+ dataval.ProductName +' class="btn btn-outline-primary" val='+ dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
+                                    <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '"  alt='+ dataval.ProductName +' class="btn btn-outline-primary" val='+ dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
                               </figure>\
                             </div >');
 
@@ -200,7 +200,7 @@ var Listing = {
 
             }
             common.HideLoader();
-            $('#cartcount').text(result.Data.cartModel.CartItems.length);
+         
         });
 
     },

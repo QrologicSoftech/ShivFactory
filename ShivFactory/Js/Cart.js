@@ -1,12 +1,13 @@
 ﻿var cart = {
-    AddToCart: function () {
+    AddToCart: function (IsUserWishList) {
         var data = {
             "ProductID": $('#ProductId').val(),
             "ProductVarientId": $('#ProductVarientId').val(),
             "ProductName": $('#ProductName').html(),
             "Price": parseFloat($('#SalePrice').html()),
             "Quantity": $('#Quantity').val(),
-            "VendorId": $('#vendorId').val()
+            "VendorId": $('#vendorId').val(),
+            "IsUserWishList": IsUserWishList,
         }
         ajax.doPostAjax(`/Home/AddToCart`, data, function (result) {
                 common.ShowMessage(result);
@@ -18,13 +19,13 @@
         let TempOrderDetailId = $(element).closest('tr').attr('Id');
         var data = {
             "TempOrderDetailId": TempOrderDetailId,
-            "Quantity": $(element).val(),
+            "Quantity": $(element).val()
         }
-        ajax.doPostAjax(`/Customer/UpdateCart`, data, function (result) {
-            common.ShowMessage(result);
-            if (result.ResultFlag == true) {
-                location.replace('/Customer/ShowCart');
-            }
+        ajax.doPostAjax(`/Home/UpdateCart`, data, function (result) {
+            //common.ShowMessage(result);
+            //if (result.ResultFlag == true) {
+            //    location.reload('/Home/ShowCart');
+            //}
           
         });
 

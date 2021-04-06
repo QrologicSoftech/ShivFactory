@@ -55,7 +55,6 @@
         dtTable.bindDataToTable(url, null, columns, rowId, tableId, tableId, null, true, true);
     },
     ShowMessage: function (data) {
-        debugger;
         $(document).ready(function(){
             if(data.ResultFlag) {
             toastr.success(data.Message);

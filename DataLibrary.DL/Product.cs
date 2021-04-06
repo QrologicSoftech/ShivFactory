@@ -42,22 +42,12 @@ namespace DataLibrary.DL
         public string Image4 { get; set; }
         public string Image5 { get; set; }
         public string Image6 { get; set; }
-        public Nullable<int> BrandId { get; set; }
         public Nullable<int> CategoryId { get; set; }
         public Nullable<int> SubCategoryId { get; set; }
         public Nullable<int> MiniCategoryId { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> AddDate { get; set; }
         public Nullable<System.DateTime> LastUpdate { get; set; }
-        public string ProductLength { get; set; }
-        public string ProductWidth { get; set; }
-        public string ProductHeight { get; set; }
-        public string ProductWeight { get; set; }
-        public string PackageLength { get; set; }
-        public string PackageWidth { get; set; }
-        public string PackageHeight { get; set; }
-        public string PackageWeight { get; set; }
-        public string ProductColors { get; set; }
         public string InactiveReason { get; set; }
         public Nullable<bool> ApprovedByAdmin { get; set; }
         public Nullable<bool> IsReturnable { get; set; }

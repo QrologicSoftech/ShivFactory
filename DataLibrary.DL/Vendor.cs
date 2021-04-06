@@ -18,8 +18,8 @@ namespace DataLibrary.DL
         public Vendor()
         {
             this.VendorShippingAreas = new HashSet<VendorShippingArea>();
-            this.Products = new HashSet<Product>();
             this.TempOrderDetails = new HashSet<TempOrderDetail>();
+            this.Products = new HashSet<Product>();
         }
     
         public int VendorId { get; set; }
@@ -43,8 +43,8 @@ namespace DataLibrary.DL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VendorShippingArea> VendorShippingAreas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TempOrderDetail> TempOrderDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

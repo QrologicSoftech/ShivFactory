@@ -55,8 +55,7 @@ namespace ShivFactory.Business.Repository.Website
 
                 }
             }
-            RepoCart cart = new RepoCart();
-            response.cartModel = cart.GetCart();
+            
 
             return response;
         }

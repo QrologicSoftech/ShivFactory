@@ -34,6 +34,7 @@ namespace ShivFactory.Business.Repository
                     {
                         SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
                         ProductId = row["ProductId"] != DBNull.Value ? Convert.ToInt32(row["ProductId"]) : 0,
+                        ProductVarientId = row["ProductId"] != DBNull.Value ? Convert.ToInt32(row["ProductId"]) : 0,
                         ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
                      
                         SalePrice = row["SalePrice"] != DBNull.Value ? row["SalePrice"].ToString() : "0.00",
@@ -43,6 +44,7 @@ namespace ShivFactory.Business.Repository
                         CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
                         CategoryId = row["CategoryId"] != DBNull.Value ?row["CategoryId"].ToString() : "0",
                         SubCategoryId = row["SubCategoryId"] != DBNull.Value ? row["SubCategoryId"].ToString() : "0",
+                        VendorId = row["vendorId"] != DBNull.Value ? Convert.ToInt32(row["vendorId"]) : 0,
 
                     });
                 }

@@ -409,10 +409,74 @@ namespace ShivFactory.Controllers
 
         }
 
+        public ActionResult ShowCart()
+        {
+            RepoCart cart = new RepoCart();
+            var cartList = cart.GetCart();
+            TempData.Peek("SuccessMessage");
+            TempData.Peek("ErrorMessage");
+            return View(cartList);
+        }
+
+        public ActionResult DeleteCartItem(int? Id)
+        {
+            try
+            {
+                if (Id > 0)
+                {
+                    RepoCart cart = new RepoCart();
+                    var retval = cart.DeleteCartItemById((int)Id);
+                    TempData["SuccessMessage"] = "Item removed successfully from Cart";
+                    return RedirectToAction("ShowCart", "Home");
+                }
+            }
+            catch (Exception e)
+            {
+                TempData["ErrorMessage"] = e.Message.ToString();
+
+            }
+            return RedirectToAction("ShowCart", "Home");
+
+        }
+
+        public ActionResult UpdateCart(UpdateCart model)
+        {
+            try
+            {
+                RepoCart cart = new RepoCart();
+                bool IsAddToCart = cart.UpdateCart(model);
+                if (IsAddToCart)
+                {
+                    TempData["SuccessMessage"] = "Cart updated successfully";
+                }
+                else {
+                    TempData["ErrorMessage"] = "Unable to update cart";
+                }
+                return RedirectToAction("ShowCart", "Home");
+                //return Json(new ResultModel
+                //{
+                //    ResultFlag = IsAddToCart,
+                //    Data = model,
+                //    Message = IsAddToCart == true ? "Cart updated successfully" : " Unable to Add Item in cart "
+                //}, JsonRequestBehavior.AllowGet); ;
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Unable to add Item in cart";
+                return RedirectToAction("ShowCart", "Home");
+                //return Json(new ResultModel
+                //{
+                //    ResultFlag = false,
+                //    Data = null,
+                //    Message = ex.Message
+                //}, JsonRequestBehavior.AllowGet);
+            }
+
+        }
         #endregion
 
         #region Check Pincode Availibity 
-      
+
         public ActionResult CheckPincodeAvailibity(string pincode, int vendorId)
         {
             try
@@ -436,6 +500,15 @@ namespace ShivFactory.Controllers
 
                 }, JsonRequestBehavior.AllowGet);
             }
+        }
+        #endregion
+
+        #region WishList
+        public ActionResult Wishlist()
+        {
+            RepoCart cart = new RepoCart();
+            var cartList = cart.GetWishlist();
+            return View(cartList);
         }
         #endregion
     }
