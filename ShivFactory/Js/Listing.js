@@ -130,7 +130,7 @@ var Listing = {
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
                         <figure class="card card-product-grid" >\
                             <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '" alt='+dataval.ProductName+'><img src="' + dataval.MainImage + '"></a> </div>\
-                                <figcaption class="info-wrap"> <a href="#" class="title mb-2">' + dataval.ProductName + '</a>\
+                                <figcaption class="info-wrap"> <a id="ProductName" href="#" class="title mb-2">' + dataval.ProductName + '</a>\
                                     <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
                                     <!-- price-wrap.// -->\
                                   <div class="rating-wrap mb-2">\
@@ -140,6 +140,9 @@ var Listing = {
                                         </ul>\
                                         <div class="label-rating">2/10</div>\
                                     </div>\
+                <input type="hidden" id="ProductId" value="'+ dataval.ProductId +'" /><input type = "hidden" id = "ProductVarientId" value = "'+ dataval.ProductVarientId +'" />\
+    <input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
+    <input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
                                     <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '"  alt='+ dataval.ProductName +' class="btn btn-outline-primary" val='+ dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
                               </figure>\
                             </div >');

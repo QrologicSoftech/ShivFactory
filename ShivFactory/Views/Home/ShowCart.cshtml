@@ -1,23 +1,13 @@
 ﻿@model ShivFactory.Business.Repository.CartModel
 @{
     ViewBag.Title = "ShowCart";
-    Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
 }
-
-<script src="~/Js/Cart.js"></script>
-<section class="section-content py-5 mt-5">
-    <div class="container">
         @if (Model == null)
         {
-            <div class="row">
-                <h4 class="text-center">Cart is empty.Click on the link to <span style="color:cornflowerblue"><a href="/Home/">Shop Continue</a></span></h4>
-                
-            </div>
+    <h4 class="text-center">Cart is empty.Click on the link to <span style="color:cornflowerblue"><a href="/Home/">Shop Continue</a></span></h4>
         }
         else
-        {
-            <div class="row">
-                <aside class="col-lg-9">
+        {<aside class="col-lg-9">
                     <div class="card">
                         <div class="table-responsive">
                             <table class="table table-borderless table-shopping-cart">
@@ -109,10 +99,6 @@
                     <!-- card .// -->
                 </aside>
                 <!-- col.// -->
-            </div>
+         
         }
-    </div>
-    <!-- container .//  -->
-</section>
-
-
+   

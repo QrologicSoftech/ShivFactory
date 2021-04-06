@@ -1,0 +1,21 @@
+﻿@model ShivFactory.Business.Repository.CartModel
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
+}
+
+<script src="~/Js/Cart.js"></script>
+<section class="section-content py-5 mt-5">
+    <div class="container">
+    <div class="row" id="cart_partial">
+     
+    </div>
+    </div>
+    <!-- container .//  -->
+</section>
+<script>
+    $(document).ready(function () {
+        cart.RenderCart();
+    });
+</script>
+

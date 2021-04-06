@@ -384,6 +384,11 @@ namespace ShivFactory.Controllers
         #endregion
 
         #region Cart
+
+        public ActionResult Cart()
+        {
+            return View();
+        }
         public ActionResult AddToCart(AddToCart model)
         {
             try
@@ -413,8 +418,6 @@ namespace ShivFactory.Controllers
         {
             RepoCart cart = new RepoCart();
             var cartList = cart.GetCart();
-            TempData.Peek("SuccessMessage");
-            TempData.Peek("ErrorMessage");
             return View(cartList);
         }
 
@@ -427,7 +430,7 @@ namespace ShivFactory.Controllers
                     RepoCart cart = new RepoCart();
                     var retval = cart.DeleteCartItemById((int)Id);
                     TempData["SuccessMessage"] = "Item removed successfully from Cart";
-                    return RedirectToAction("ShowCart", "Home");
+                    return RedirectToAction("Cart", "Home");
                 }
             }
             catch (Exception e)
@@ -435,7 +438,7 @@ namespace ShivFactory.Controllers
                 TempData["ErrorMessage"] = e.Message.ToString();
 
             }
-            return RedirectToAction("ShowCart", "Home");
+            return RedirectToAction("Cart", "Home");
 
         }
 
@@ -445,31 +448,21 @@ namespace ShivFactory.Controllers
             {
                 RepoCart cart = new RepoCart();
                 bool IsAddToCart = cart.UpdateCart(model);
-                if (IsAddToCart)
+                return Json(new ResultModel
                 {
-                    TempData["SuccessMessage"] = "Cart updated successfully";
-                }
-                else {
-                    TempData["ErrorMessage"] = "Unable to update cart";
-                }
-                return RedirectToAction("ShowCart", "Home");
-                //return Json(new ResultModel
-                //{
-                //    ResultFlag = IsAddToCart,
-                //    Data = model,
-                //    Message = IsAddToCart == true ? "Cart updated successfully" : " Unable to Add Item in cart "
-                //}, JsonRequestBehavior.AllowGet); ;
+                    ResultFlag = IsAddToCart,
+                    Data = model,
+                    Message = IsAddToCart == true ? "Cart updated successfully" : " Unable to Add Item in cart "
+                }, JsonRequestBehavior.AllowGet); ;
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "Unable to add Item in cart";
-                return RedirectToAction("ShowCart", "Home");
-                //return Json(new ResultModel
-                //{
-                //    ResultFlag = false,
-                //    Data = null,
-                //    Message = ex.Message
-                //}, JsonRequestBehavior.AllowGet);
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
             }
 
         }

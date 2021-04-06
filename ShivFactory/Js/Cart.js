@@ -12,7 +12,6 @@
         ajax.doPostAjax(`/Home/AddToCart`, data, function (result) {
                 common.ShowMessage(result);
         });
-
     },
 
     UpdateCart: function (element) {
@@ -22,12 +21,17 @@
             "Quantity": $(element).val()
         }
         ajax.doPostAjax(`/Home/UpdateCart`, data, function (result) {
-            //common.ShowMessage(result);
-            //if (result.ResultFlag == true) {
-            //    location.reload('/Home/ShowCart');
-            //}
-          
+            common.ShowMessage(result);
+            if (result.ResultFlag == true) {
+                cart.RenderCart();
+            }
         });
-
+    },
+    RenderCart: function () {
+        common.ShowLoader('#cart_partial');
+        ajax.doGetAjax(`/Home/ShowCart`, function (result) {
+            common.HideLoader('#cart_partial');
+            $('#cart_partial').html(result);
+        });
     }
 };

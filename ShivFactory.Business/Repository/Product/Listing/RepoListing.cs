@@ -34,7 +34,7 @@ namespace ShivFactory.Business.Repository
                     {
                         SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
                         ProductId = row["ProductId"] != DBNull.Value ? Convert.ToInt32(row["ProductId"]) : 0,
-                        ProductVarientId = row["ProductId"] != DBNull.Value ? Convert.ToInt32(row["ProductId"]) : 0,
+                        ProductVarientId = row["VarientId"] != DBNull.Value ? Convert.ToInt32(row["VarientId"]) : 0,
                         ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
                      
                         SalePrice = row["SalePrice"] != DBNull.Value ? row["SalePrice"].ToString() : "0.00",

@@ -581,6 +581,7 @@
     <Content Include="Views\Customer\Orders.cshtml" />
     <Content Include="Views\Home\ShowCart.cshtml" />
     <Content Include="Views\Home\Wishlist.cshtml" />
+    <Content Include="Views\Home\Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
