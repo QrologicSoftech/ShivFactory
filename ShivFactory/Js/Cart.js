@@ -9,8 +9,7 @@
             "VendorId": $('#vendorId').val()
         }
         ajax.doPostAjax(`/Home/AddToCart`, data, function (result) {
-            location.replace('/Customer/ShowCart');
-            common.ShowMessage(result);
+                common.ShowMessage(result);
         });
 
     },
@@ -22,8 +21,11 @@
             "Quantity": $(element).val(),
         }
         ajax.doPostAjax(`/Customer/UpdateCart`, data, function (result) {
-            location.replace('/Customer/ShowCart');
             common.ShowMessage(result);
+            if (result.ResultFlag == true) {
+                location.replace('/Customer/ShowCart');
+            }
+          
         });
 
     }

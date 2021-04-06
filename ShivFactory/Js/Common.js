@@ -27,9 +27,9 @@
             tr += `<th>${item}</th>`;
         });
         if (actionArray) {
-        actionArray.forEach((item) => {
-            tr += `<th>${item.Header}</th>`;
-        });
+            actionArray.forEach((item) => {
+                tr += `<th>${item.Header}</th>`;
+            });
         }
 
         // Create table
@@ -43,7 +43,7 @@
                         </table>
                     </div>`;
         $(`#${divId}`).html(table);
-       
+
         // Prepare columns
         commonFunction.GetColumnForDataTable(ColumnArray, actionArray, true, function (result) {
             dtTable.bindDataToTable(url, null, result, rowId, '#datatable', `#${divId}`, null, true, true);
@@ -55,11 +55,13 @@
         dtTable.bindDataToTable(url, null, columns, rowId, tableId, tableId, null, true, true);
     },
     ShowMessage: function (data) {
-        if (data.ResultFlag) {
+        debugger;
+        $(document).ready(function(){
+            if(data.ResultFlag) {
             toastr.success(data.Message);
         }
         else { toastr.error(data.Message); }
-
+});
     },
 
     Timer: function (remaining, id, timerOn) {
