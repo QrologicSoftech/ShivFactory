@@ -10,6 +10,8 @@ namespace ShivFactory.Business.Repository.Website
     {
         public List<HomeCategoryResponse> Products { get; set; }
         public List<Images> Banners { get; set; }
+
+        public CartModel cartModel { get; set;  }
     }
 
     public class HomeCategoryResponse

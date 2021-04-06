@@ -159,6 +159,7 @@ var Listing = {
         var bannerli = "", bannerdiv = "", productSlider = '';
 
         ajax.doPostAjax(`/Home/GetIndexData`, '', function (result) {
+            console.log(result);
             if (result.ResultFlag == true) {
                 $.each(result.Data.Banners, function (index, Value) {
                     bannerli += `<li data-target="#carousel1_indicator" data-slide-to="${index}" class="${index == 0 ? "active" : ""}"></li>`;
@@ -199,6 +200,7 @@ var Listing = {
 
             }
             common.HideLoader();
+            $('#cartcount').text(result.Data.cartModel.CartItems.length);
         });
 
     },

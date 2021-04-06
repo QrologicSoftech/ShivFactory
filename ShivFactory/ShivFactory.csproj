@@ -335,6 +335,7 @@
     <Content Include="Content\UploadedImages\Images\download-1.svg" />
     <Content Include="Content\UploadedImages\Images\download-2.svg" />
     <Content Include="Content\UploadedImages\Images\icon.svg" />
+    <Content Include="Content\UploadedImages\Images\payments.png" />
     <Content Include="Content\UploadedImages\Images\spent.png" />
     <Content Include="Content\Website\css\bootstrap-main.css" />
     <Content Include="Content\Website\css\bootstrap.css" />
@@ -574,6 +575,7 @@
     <Content Include="Views\Customer\Profile.cshtml" />
     <Content Include="Views\Customer\Orders.cshtml" />
     <Content Include="Views\Customer\ShowCart.cshtml" />
+    <Content Include="Views\Customer\Wishlist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

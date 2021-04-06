@@ -4,8 +4,7 @@
     Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
 }
 
-
-
+<script src="~/Js/Cart.js"></script>
 <section class="section-content py-5 mt-5">
     <div class="container">
         <div class="row">
@@ -24,12 +23,15 @@
                             <tbody>
                                 @foreach (var item in Model.CartItems)
                                 {
-                                    <tr>
+                                    <tr id="@item.ID">
                                         <td>
                                             <figure class="itemside align-items-center">
-                                                <div class="aside"><img src="images/items/1.jpg" class="img-sm"></div>
+                                                <div class="aside"><img src="@item.ImagePath" class="img-sm"></div>
                                                 <figcaption class="info">
-                                                    <a href="#" class="title text-dark">@item.ProductName</a>
+                                                    <a href="#" class="title text-dark" id="ProductName">@item.ProductName</a>
+                                                    <input type="hidden" id="ProductId" value="@item.ProductID" />
+                                                    <input type="hidden" id="ProductVarientId" value="@item.ProductVarientID" />
+                                                    <input type="hidden" id="vendorId" value="@item.vendorId" />
                                                     <p class="text-muted small">
                                                         Matrix: 25 Mpx <br>
                                                         Brand: Canon
@@ -38,10 +40,10 @@
                                             </figure>
                                         </td>
                                         <td>
-                                            <input type="number" class="form-control col-sm-4" value="@item.Quantity" />
+                                            <input type="number" id="Quantity" class="form-control col-sm-4" value="@item.Quantity" onchange="cart.UpdateCart(this)" />
                                         </td>
                                         <td>
-                                            <div class="price-wrap"> <var class="price"><i class="fas fa-rupee-sign"></i>@item.NetAmt</var> <small class="text-muted"> <i class="fas fa-rupee-sign"></i> @item.Price </small> </div>
+                                            <div class="price-wrap"> <var class="price"><i class="fas fa-rupee-sign"></i>@item.NetAmt</var> <small class="text-muted"> <i class="fas fa-rupee-sign"></i> <span id="SalePrice">@item.Price</span> </small> </div>
                                         </td>
                                         <td class="text-right d-none d-md-block">
                                             <a href="/Customer/DeleteCartItem?Id=@item.ID.ToString().Trim()" class="btn btn-light">
@@ -83,7 +85,9 @@
                             <dd class="text-right  h5"><strong><i class="fas fa-rupee-sign"></i> @Model.CartValue</strong></dd>
                         </dl>
                         <hr>
-                        <p class="text-center mb-3"> <img src="images/misc/payments.png" height="26"> </p>
+                        <p class="text-center mb-3">
+                            <img src="~/Content/UploadedImages/Images/payments.png" height="26">
+                        </p>
                     </div>
                     <!-- card-body.// -->
                 </div>
