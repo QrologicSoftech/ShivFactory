@@ -17,5 +17,6 @@ namespace ShivFactory.Business.Repository
         public string Role { get; set; }
         public string EmailId { get; set; }
         public string Mobile { get; set; }
+        public string TempOrderId { get; set;  }
     }
 }

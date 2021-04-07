@@ -51,5 +51,6 @@ namespace DataLibrary.DL
         public virtual DbSet<TempOrder> TempOrders { get; set; }
         public virtual DbSet<TempOrderDetail> TempOrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<DeliveryAddress> DeliveryAddresses { get; set; }
     }
 }

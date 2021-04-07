@@ -195,7 +195,7 @@ namespace ShivFactory.Business.Repository
 
         public void SetTempOrderIdByUserId()
         {
-            string userid = utility.GetCurrentUserId();
+          
             if (cooki.GetCookiesValue(CookieName.TempOrderId) == "")
             {
                 var tempOrderTbl = db.TempOrders.Where(row => row.UserId == userid).OrderByDescending(row => row.ID).FirstOrDefault();

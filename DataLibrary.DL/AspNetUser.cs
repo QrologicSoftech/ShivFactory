@@ -22,6 +22,7 @@ namespace DataLibrary.DL
             this.UserDetails = new HashSet<UserDetail>();
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.Vendors = new HashSet<Vendor>();
+            this.DeliveryAddresses = new HashSet<DeliveryAddress>();
         }
     
         public string Id { get; set; }
@@ -47,5 +48,7 @@ namespace DataLibrary.DL
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vendor> Vendors { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DeliveryAddress> DeliveryAddresses { get; set; }
     }
 }

@@ -126,6 +126,8 @@
     <Compile Include="Repository\Category\CategoryResponse.cs" />
     <Compile Include="Repository\Category\RepoCategory.cs" />
     <Compile Include="Repository\ChangeProfileImage\UserProfileImage.cs" />
+    <Compile Include="Repository\Checkout\CheckoutModel.cs" />
+    <Compile Include="Repository\Checkout\RepoCheckout.cs" />
     <Compile Include="Repository\Color\ColorModel.cs" />
     <Compile Include="Repository\Color\ColorResponse.cs" />
     <Compile Include="Repository\Color\RepoColor.cs" />

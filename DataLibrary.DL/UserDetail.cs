@@ -14,6 +14,12 @@ namespace DataLibrary.DL
     
     public partial class UserDetail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UserDetail()
+        {
+            this.DeliveryAddresses = new HashSet<DeliveryAddress>();
+        }
+    
         public int UserDetailId { get; set; }
         public string UserId { get; set; }
         public string FirstName { get; set; }
@@ -33,5 +39,7 @@ namespace DataLibrary.DL
         public Nullable<int> TempOrderId { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DeliveryAddress> DeliveryAddresses { get; set; }
     }
 }

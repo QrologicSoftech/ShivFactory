@@ -47,6 +47,9 @@
         <AssociationConnector Association="db_ShivFactoryModel.FK__Product__VendorI__2739D489" />
         <AssociationConnector Association="db_ShivFactoryModel.FK__ProductVa__Produ__57DD0BE4" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_Product_SubCategory" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.DeliveryAddress" Width="1.5" PointX="7.5" PointY="17.125" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_DeliveryAddress_AspNetUsers" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK_Address_UserDetails1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

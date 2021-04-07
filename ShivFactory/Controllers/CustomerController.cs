@@ -50,7 +50,26 @@ namespace ShivFactory.Controllers
         }
         #endregion Orders
 
-      
+        #region Checkout
+        public ActionResult Checkout()
+        {
+            RepoCheckout checkout = new RepoCheckout();
+            var checkoutModel = checkout.GetCheckoutData();
+            if (checkoutModel != null) { 
+            return View(checkoutModel);
+        }else { 
+                return View(); 
+            }
+        }
+
+        //[HttpPost]
+        //public ActionResult Checkout()
+        //{ 
+        
+        //}
+        #endregion
+
+
     }
 
 }

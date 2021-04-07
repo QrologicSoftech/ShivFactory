@@ -1,5 +1,6 @@
 ﻿using DataLibrary.DL;
 using ShivFactory.Business.Model;
+using ShivFactory.Business.Model.Common;
 using ShivFactory.Business.Models;
 using ShivFactory.Business.Models.Other;
 using ShivFactory.Business.Repository.ChangeProfileImage;
@@ -159,6 +160,24 @@ namespace ShivFactory.Business.Repository
                 return db.SaveChanges() > 0;
             }
             return false;
+        }
+        #endregion
+
+        #region SetUsertempIdforOrder
+        
+        public void SetCartBagId()
+        {
+            Utility utility = new Utility();
+            RepoCookie cookie = new RepoCookie(); 
+            string userid = utility.GetCurrentUserId();
+            var userDetail = GetUserDetailsBYUserId(userid);
+            if (userDetail.TempOrderId!=null && userDetail.TempOrderId>0)
+            {
+                cookie.AddCookiesValue(CookieName.TempOrderId, userDetail.TempOrderId.ToString());
+            }
+
+
+            }
         }
         #endregion
     }
