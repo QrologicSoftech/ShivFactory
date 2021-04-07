@@ -1097,8 +1097,12 @@ namespace ShivFactory.Areas.Admin.Controllers
         {
             return View();
         }
+        public ActionResult UnApprovedProductPartialView()
+        {
+            return View();
+        }
         [HttpPost]
-        public ActionResult LoadProductData(bool? AdminStatus)
+        public ActionResult LoadProductData(int? AdminStatus)
         {
             try
             {
@@ -1133,6 +1137,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 return Json(new { data = "", draw = Request.Form.GetValues("draw").FirstOrDefault(), recordsFiltered = 0, recordsTotal = 0, error = ex.Message }, JsonRequestBehavior.AllowGet);
             }
         }
+
         #region Product Details
 
         #region ProductImage
@@ -1196,7 +1201,7 @@ namespace ShivFactory.Areas.Admin.Controllers
             try
             {
                 RepoProductDetails productDetail = new RepoProductDetails();
-                var detailInfo = productDetail.GetProductDimensionByProductId(productId);
+                var detailInfo = productDetail.GetProductVarientsByProductId(productId);
                 return View(detailInfo);
             }
             catch (Exception ex)

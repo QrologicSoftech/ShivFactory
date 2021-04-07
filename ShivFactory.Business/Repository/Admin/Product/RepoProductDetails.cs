@@ -49,7 +49,6 @@ namespace ShivFactory.Business.Repository.Admin
                         ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
                         CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
                         SubCategoryName = row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
-                        BrandName = row["BrandName"] != DBNull.Value ? row["BrandName"].ToString() : "",
                         AddDate = row["AddDate"] != DBNull.Value ? Convert.ToDateTime(row["AddDate"]).ToString("dd/MM/yyyy") : "",
                         InactiveReason = row["InactiveReason"] != DBNull.Value ? row["InactiveReason"].ToString() : ""
                     });
@@ -125,20 +124,31 @@ namespace ShivFactory.Business.Repository.Admin
         }
         #endregion
 
-        #region Get Product Dimension By ProductId
-        public ProductDimensionResponse GetProductDimensionByProductId(int ProductId)
+        #region Get Product Varients By ProductId
+        public List<ProductVarientResponse> GetProductVarientsByProductId(int ProductId)
         {
-            var productDimension = db.Products.Where(x => x.ProductId == ProductId).Select(a => new ProductDimensionResponse()
+            var productDimension = db.ProductVarients.Where(x => x.ProductId == ProductId).Select(a => new ProductVarientResponse()
             {
-                //ProductLength = a.ProductLength,
-                //ProductWidth = a.ProductWidth,
-                //ProductHeight = a.ProductHeight,
-                //ProductWeight = a.ProductWeight,
-                //PackageLength = a.PackageLength,
-                //PackageWidth = a.PackageWidth,
-                //PackageHeight = a.PackageHeight,
-                //PackageWeight = a.PackageWeight
-            }).AsNoTracking().FirstOrDefault();
+                ProductQty = a.Stock ?? 0,
+                SalePrice = a.SalePrice ?? 0,
+                ListPrice = a.ListPrice ?? 0,
+                Feature1 = a.VarientName1 + ":" + a.VarientValue1,
+                Feature2 = a.VarientName2 + ":" + a.VarientValue2,
+                Feature3 = a.VarientName3 + ":" + a.VarientValue3,
+                Feature4 = a.VarientName4 + ":" + a.VarientValue4,
+                Feature5 = a.VarientName5 + ":" + a.VarientValue5,
+                Feature6 = a.VarientName6 + ":" + a.VarientValue6,
+                Feature7 = a.VarientName7 + ":" + a.VarientValue7,
+                Feature8 = a.VarientName8 + ":" + a.VarientValue8,
+                Feature9 = a.VarientName9 + ":" + a.VarientValue9,
+                Feature10 = a.VarientName10 + ":" + a.VarientValue10,
+                Image = a.MainImage,
+                Image1 = a.Image1,
+                Image2 = a.Image2,
+                Image3 = a.Image3,
+                Image4 = a.Image4,
+                Image5 = a.Image5,
+            }).AsNoTracking().ToList();
 
             return productDimension;
 

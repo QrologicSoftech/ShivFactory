@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 namespace ShivFactory.Business.Repository.Admin
 {
     #region ProductModel
-    public class ProductModel: PaginationRequest
+    public class ProductModel : PaginationRequest
     {
-        public bool? ApprovedStatus { get; set; }
+        public int? ApprovedStatus { get; set; }
 
     }
     #endregion
+
     #region UnApprovedProductResponse
     public class UnApprovedProductResponse
     {
@@ -22,7 +23,6 @@ namespace ShivFactory.Business.Repository.Admin
         public string ProductName { get; set; }
         public string CategoryName { get; set; }
         public string SubCategoryName { get; set; }
-        public string BrandName { get; set; }
         public string AddDate { get; set; }
         public string InactiveReason { get; set; }
     }
@@ -53,21 +53,31 @@ namespace ShivFactory.Business.Repository.Admin
         public int StockCount { get; set; }
         public string ProductWarning { get; set; }
         public string Description { get; set; }
-        public string ProductColors { get; set; }
     }
     #endregion
 
-    #region ProductDimensionResponse
-    public class ProductDimensionResponse
+    #region ProductVarientResponse
+    public class ProductVarientResponse
     {
-        public string ProductLength { get; set; }
-        public string ProductWidth { get; set; }
-        public string ProductHeight { get; set; }
-        public string ProductWeight { get; set; }
-        public string PackageLength { get; set; }
-        public string PackageWidth { get; set; }
-        public string PackageHeight { get; set; }
-        public string PackageWeight { get; set; }
+        public int ProductQty { get; set; }
+        public decimal SalePrice { get; set; }
+        public decimal ListPrice { get; set; }
+        public string Feature1 { get; set; }
+        public string Feature2 { get; set; }
+        public string Feature3 { get; set; }
+        public string Feature4 { get; set; }
+        public string Feature5 { get; set; }
+        public string Feature6 { get; set; }
+        public string Feature7 { get; set; }
+        public string Feature8 { get; set; }
+        public string Feature9 { get; set; }
+        public string Feature10 { get; set; }
+        public string Image { get; set; }
+        public string Image1 { get; set; }
+        public string Image2 { get; set; }
+        public string Image3 { get; set; }
+        public string Image4 { get; set; }
+        public string Image5 { get; set; }
 
     }
     #endregion

@@ -175,12 +175,12 @@ var Admin = {
     //  Vendor products function  Start
 
 
-    BindProducttable: function (divId, url, ColumnArray, rowId, actionArray) {
+    BindProductTable: function (divId, url, ColumnArray, rowId, actionArray) {
 
         data ={
             "AdminStatus": $('select#productStatus option:selected').val()
         }
-        debugger;
+       
         let tr = '';
         ColumnArray.forEach((item) => {
             if (item == 'Id') { return; }
