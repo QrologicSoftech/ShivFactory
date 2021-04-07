@@ -2,120 +2,121 @@
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
 }
+<script src="~/Js/Cart.js"></script>
 
-    <section class="section-content padding-y">
-        <div class="container">
-            <input type="hidden" id="CategoryId" value="@ViewBag.CategoryId" />
-            <input type="hidden" id="SubCategoryId" value="@ViewBag.SubCategoryId" />
-            <input type="hidden" id="MiniCategoryId" value="@ViewBag.MiniCategoryId" />
-            <!-- ============================  FILTER TOP  ================================= -->
-            <div class="card mb-3 breadcrumb-min  bg-transparent border-0">
-                <div class="card-body bg-transparent pl-0">
-                    <ol class="breadcrumb float-left">
-                        <li class="breadcrumb-item"><a href="/Home/">Home</a></li>
-                        <li class="breadcrumb-item"><a id="categoryName" href="#"></a></li>
-                        <li class="breadcrumb-item active"><a id="subcategoryName" href="#"></a></li>
-                    </ol>
-                </div>
+<section class="section-content padding-y">
+    <div class="container">
+        <input type="hidden" id="CategoryId" value="@ViewBag.CategoryId" />
+        <input type="hidden" id="SubCategoryId" value="@ViewBag.SubCategoryId" />
+        <input type="hidden" id="MiniCategoryId" value="@ViewBag.MiniCategoryId" />
+        <!-- ============================  FILTER TOP  ================================= -->
+        <div class="card mb-3 breadcrumb-min  bg-transparent border-0">
+            <div class="card-body bg-transparent pl-0">
+                <ol class="breadcrumb float-left">
+                    <li class="breadcrumb-item"><a href="/Home/">Home</a></li>
+                    <li class="breadcrumb-item"><a id="categoryName" href="#"></a></li>
+                    <li class="breadcrumb-item active"><a id="subcategoryName" href="#"></a></li>
+                </ol>
             </div>
-            <!-- card.// -->
-            <!-- ============================ FILTER TOP END.// ================================= -->
+        </div>
+        <!-- card.// -->
+        <!-- ============================ FILTER TOP END.// ================================= -->
 
-            <div class="row">
-                <aside class="col-md-3 filter-mobile">
-                    <a type="button" class="slide-toggle close-filter d-md-none d-lg-none d-xl-none"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
-                    <div id="partialViewFilter">
+        <div class="row">
+            <aside class="col-md-3 filter-mobile">
+                <a type="button" class="slide-toggle close-filter d-md-none d-lg-none d-xl-none"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                <div id="partialViewFilter">
 
-                    </div>
-                </aside>
+                </div>
+            </aside>
 
-                <main class="col-md-9 right-list">
-                    <section class="rech-section">
-                        <div class="top-rech">
-                            <div class="container">
-                                <div class="bg-color">
-                                    <ul class="nav nav-tabs tbb">
-                                        <li>Sort By </li>
-                                        <li class="active">
-                                            <a data-toggle="tab" href="#home" class="active show">
-                                                Relevance
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="tab" href="#menu1">
-                                                Popularity
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="tab" href="#menu2">
-                                                Price -- Low to High
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="tab" href="#menu3">
-                                                Price -- High to Low
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a data-toggle="tab" href="#menu4">
-                                                Newest First
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="tab-content">
-                                    <div id="home" class="tab-pane fade active  in">
-                                        <section>
-                                            <header class="mb-3">
-                                                <div class="form-inline">
-                                                    <strong class="mr-md-auto">
-                                                        <button class="btn btn-google d-md-none d-lg-none d-xl-none mr-2 latest-button slide-toggle">Search Filter <i class="fas fa-filter"></i></button>
-                                                        <span class="d-none d-md-block"><label id="itemcount"></label></span>
-                                                    </strong>
-                                                    <form class="form-inline">
-                                                        <select class="custom-select latest-button " id="inlineFormCustomSelectPref">
-                                                            <option>Latest items</option>
-                                                            <option>Trending</option>
-                                                            <option>Most Popular</option>
-                                                            <option>Cheapest</option>
-                                                        </select>
-                                                    </form>
-                                                </div>
-                                            </header>
+            <main class="col-md-9 right-list">
+                <section class="rech-section">
+                    <div class="top-rech">
+                        <div class="container">
+                            <div class="bg-color">
+                                <ul class="nav nav-tabs tbb">
+                                    <li>Sort By </li>
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#home" class="active show">
+                                            Relevance
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#menu1">
+                                            Popularity
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#menu2">
+                                            Price -- Low to High
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#menu3">
+                                            Price -- High to Low
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-toggle="tab" href="#menu4">
+                                            Newest First
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div id="home" class="tab-pane fade active  in">
+                                    <section>
+                                        <header class="mb-3">
+                                            <div class="form-inline">
+                                                <strong class="mr-md-auto">
+                                                    <button class="btn btn-google d-md-none d-lg-none d-xl-none mr-2 latest-button slide-toggle">Search Filter <i class="fas fa-filter"></i></button>
+                                                    <span class="d-none d-md-block"><label id="itemcount"></label></span>
+                                                </strong>
+                                                <form class="form-inline">
+                                                    <select class="custom-select latest-button " id="inlineFormCustomSelectPref">
+                                                        <option>Latest items</option>
+                                                        <option>Trending</option>
+                                                        <option>Most Popular</option>
+                                                        <option>Cheapest</option>
+                                                    </select>
+                                                </form>
+                                            </div>
+                                        </header>
 
-                                            <article class="card-product-list">
-                                                @*<div id="ListScroll" style="height: 300px; overflow: auto; width: 100%">*@
-                                                    <div class="row" id="partialViewListing">
+                                        <article class="card-product-list">
+                                            @*<div id="ListScroll" style="height: 300px; overflow: auto; width: 100%">*@
+                                            <div class="row" id="partialViewListing">
 
 
-                                                    </div>
-                                                @*</div>*@
-                                                <!-- row.// -->
-                                            </article>
+                                            </div>
+                                            @*</div>*@
+                                            <!-- row.// -->
+                                        </article>
 
-                                        </section>
-                                    </div>
+                                    </section>
                                 </div>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
 
-                </main>
-            </div>
+            </main>
         </div>
-    </section>
+    </div>
+</section>
 
-    <script type="text/javascript">
-        var pageIndex = 1;
-        var pageCount = 1;
-        $(document).ready(function () {
-            Listing.OnPageLoad();           
-        });
+<script type="text/javascript">
+    var pageIndex = 1;
+    var pageCount = 1;
+    $(document).ready(function () {
+        Listing.OnPageLoad();
+    });
 
-        $('#ListScroll').bind('scroll', function () {
-            if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
-                Listing.GetRecords();
-            }
-        });
-     
-    </script>
+    $('#ListScroll').bind('scroll', function () {
+        if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+            Listing.GetRecords();
+        }
+    });
+
+</script>

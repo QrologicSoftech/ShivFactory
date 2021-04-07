@@ -143,7 +143,7 @@ var Listing = {
                 <input type="hidden" id="ProductId" value="'+ dataval.ProductId +'" /><input type = "hidden" id = "ProductVarientId" value = "'+ dataval.ProductVarientId +'" />\
     <input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
     <input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
-                                    <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '"  alt='+ dataval.ProductName +' class="btn btn-outline-primary" val='+ dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
+                                    <a href ="" onclick="cart.AddToCart(false)"  alt='+ dataval.ProductName +' class="btn btn-outline-primary" val='+ dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
                               </figure>\
                             </div >');
 
@@ -196,7 +196,7 @@ var Listing = {
                     </figure>
                 </div></div>`;
                     })
-                    productSlider += `</div>******<div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span><i class="fa fa-angle-right"></i></span></button><button type="button" role="presentation" class="owl-next"><span><i class="fa fa-angle-left"></i></span></button></div></div></div></div></div></section>`;
+                    productSlider += `</div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span><i class="fa fa-angle-right"></i></span></button><button type="button" role="presentation" class="owl-next"><span><i class="fa fa-angle-left"></i></span></button></div></div></div></div></div></section>`;
 
                 });
                $("#Product-slider").html(productSlider);

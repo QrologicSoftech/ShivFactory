@@ -29,7 +29,12 @@ namespace ShivFactory.Business.Repository
             try
             {
                 var tempOrderTbl = new TempOrder();
-                tempOrderId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
+                string tempid = cooki.GetCookiesValue(CookieName.TempOrderId);
+                if (tempid == "")
+                {
+                    tempid = "0"; 
+                }
+                tempOrderId = Convert.ToInt32(tempid);
                 tempOrderTbl = db.TempOrders.Where(row => row.ID == tempOrderId).FirstOrDefault();
                 if (tempOrderId == 0 || tempOrderTbl == null)
                 {
@@ -81,13 +86,11 @@ namespace ShivFactory.Business.Repository
         {
             try
             {
-                string userid = utility.GetCurrentUserId();
                 int tempOrderId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
                 if (tempOrderId == 0)
                 {
                     var tempOrder = db.TempOrders.Add(new TempOrder()
                     {
-                        UserId = userid,
                         AddDate = DateTime.Now
                     });
                     tempOrderId = tempOrder.ID;
@@ -112,7 +115,6 @@ namespace ShivFactory.Business.Repository
         }
         public int GetUserCartCount()
         {
-            string userid = utility.GetCurrentUserId();
             if (cooki.GetCookiesValue(CookieName.TempOrderId) != "")
             {
                 int tempId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
