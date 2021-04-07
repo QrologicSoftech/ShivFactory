@@ -123,7 +123,7 @@ var dtTable = {
             "pageLength": 10, // Number of default records to show
             "ajax": {
                 "url": url,
-                "data": { dbFilter: filter }, // https://datatables.net/reference/option/ajax.data
+                "data":filter , // https://datatables.net/reference/option/ajax.data
                 "type": 'POST',
                 "datatype": 'json'
             },

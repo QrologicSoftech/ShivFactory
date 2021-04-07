@@ -1,52 +1,78 @@
-﻿@model ShivFactory.Business.Repository.Admin.ProductDimensionResponse
+﻿@model List<ShivFactory.Business.Repository.Admin.ProductVarientResponse>
+@using ShivFactory.Business.Repository
 @{
-    Layout = null;
+    //Layout = null;
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container-scroller">
-    <div class="container-fluid page-body-wrapper">
-        <div class="main-panel">
-            <div class="content-wrapper">
-                <div class="row">
-                    <div class="col-md-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title text-center">Product</h4>
-                                <div class="form-group">
-                                    @Html.NameFor(m => Model.ProductLength) : @Model.ProductLength
-                                </div>
-                                <div class="form-group">
-                                    @Html.NameFor(m => Model.ProductWidth) : @Model.ProductWidth
-                                </div>
-                                <div class="form-group">
-                                    @Html.NameFor(m => Model.ProductHeight) : @Model.ProductHeight
-                                </div>
-                                <div class="form-group">
-                                    @Html.NameFor(m => Model.ProductWeight) :  @Model.ProductWeight
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title text-center">Package</h4>
-                                <div class="form-group">
-                                    @Html.NameFor(m => Model.PackageLength) : @Model.PackageLength
-                                </div>
-                                <div class="form-group">
-                                    @Html.NameFor(m => Model.PackageWidth) : @Model.PackageWidth
-                                </div>
-                                <div class="form-group">
-                                    @Html.NameFor(m => Model.PackageHeight) : @Model.PackageHeight
-                                </div>
-                                <div class="form-group">
-                                    @Html.NameFor(m => Model.PackageWeight) :  @Model.PackageWeight
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="row overflow-auto">
+    <div class="col-12">
+        <table class="table datatable table-responsive" cellspacing="0" width="100%" id="varient-product">
+            <thead>
+                <tr class="bg-primary text-white">
+                    <th>SalePrice</th>
+                    <th>ListPrice</th>
+                    <th>Qty</th>
+                    <th>MainImage</th>
+                    <th>Image1</th>
+                    <th>Image2</th>
+                    <th>Image3</th>
+                    <th>Image4</th>
+                    <th>Image5</th>
+                    <th>Feature1</th>
+                    <th>Feature2</th>
+                    <th>Feature3</th>
+                    <th>Feature4</th>
+                    <th>Feature5</th>
+                    <th>Feature6</th>
+                    <th>Feature7</th>
+                    <th>Feature8</th>
+                    <th>Feature9</th>
+                    <th>Feature10</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.SalePrice</td>
+                        <td>@item.ListPrice</td>
+                        <td>@item.ProductQty</td>
+                        <td>
+                            <a onclick="return commonFunction.ShowImage('@item.Image.ImagePath()');" target="_blank"><img src="@item.Image.ImagePath()" alt="" style="height:40px;width:40px;"></a>
+                        </td>
+                        <td>
+                            <a onclick="return commonFunction.ShowImage('@item.Image1.ImagePath()');" target="_blank"><img src="@item.Image1.ImagePath()" alt="" style="height:40px;width:40px;"></a>
+                        </td>
+                        <td>
+                            <a onclick="return commonFunction.ShowImage('@item.Image2.ImagePath()');" target="_blank"><img src="@item.Image2.ImagePath()" alt="" style="height:40px;width:40px;"></a>
+                        </td>
+                        <td>
+                            <a onclick="return commonFunction.ShowImage('@item.Image3.ImagePath()');" target="_blank"><img src="@item.Image3.ImagePath()" alt="" style="height:40px;width:40px;"></a>
+                        </td>
+                        <td>
+                            <a onclick="return commonFunction.ShowImage('@item.Image4.ImagePath()');" target="_blank"><img src="@item.Image4.ImagePath()" alt="" style="height:40px;width:40px;"></a>
+                        </td>
+                        <td>
+                            <a onclick="return commonFunction.ShowImage('@item.Image5.ImagePath()');" target="_blank"><img src="@item.Image5.ImagePath()" alt="" style="height:40px;width:40px;"></a>
+                        </td>
+                        <td>@item.Feature1</td>
+                        <td>@item.Feature2</td>
+                        <td>@item.Feature3</td>
+                        <td>@item.Feature4</td>
+                        <td>@item.Feature5</td>
+                        <td>@item.Feature6</td>
+                        <td>@item.Feature7</td>
+                        <td>@item.Feature8</td>
+                        <td>@item.Feature9</td>
+                        <td>@item.Feature10</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("#varient-product").dataTable();
+    });
+</script>

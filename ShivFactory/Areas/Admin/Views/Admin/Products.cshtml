@@ -17,13 +17,13 @@
                                     <label>Approved Status</label>
                                     <select name="product" id="productStatus" class="form-control">
                                         <option>Pending</option>
-                                        <option value="false">Cancel</option>
-                                        <option value="true">Approved</option>
+                                        <option value="0">Cancel</option>
+                                        <option value="1">Approved</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="partialView">
-                                @{ Html.RenderPartial(Url.Content("UnApprovedProductPartialView")); }
+                                @*@{ Html.RenderPartial(Url.Content("UnApprovedProductPartialView")); }*@
                             </div>
                         </div>
                     </div>
@@ -32,3 +32,11 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("#productStatus").change(function () {
+            Admin.RenderPartialView('UnApprovedProductPartialView');
+        });
+        Admin.RenderPartialView('UnApprovedProductPartialView');
+    });
+</script>

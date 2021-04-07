@@ -27,12 +27,13 @@
             { Name: 'View', Value: 'Admin.GetProductImages(this);', Header: "Image" },
             { Name: 'View', Value: 'Admin.GetProductBasicInfo(this);', Header: "BasicInfo" },
             { Name: 'View', Value: 'Admin.GetProductDetails(this);', Header: "Details" },
-            { Name: 'View', Value: 'Admin.GetProductDimension(this);', Header: "Dimension" },
+            //{ Name: 'View', Value: 'Admin.GetProductDimension(this);', Header: "Varients" },
+            { Name: 'View', Value: `Admin.GetProductDimension(this.closest('tr').attr('Id'));`, Header: "Varients" },
             { Name: 'Approved', Value: 'Admin.ApprovedProduct(this);', Header:"Approved" },
             { Name: 'UnApproved', Value: 'Admin.UnApprovedProduct(this);', Header: "UnApproved" }
         ];
          var stringArray = @Html.Raw(Json.Encode(columnArray));
 
-        Admin.BindProducttable('TableDiv', '/Admin/Admin/LoadProductData', stringArray, 'Id', list);
+        Admin.BindProductTable('TableDiv', '/Admin/Admin/LoadProductData', stringArray, 'Id', list);
     });
 </script>

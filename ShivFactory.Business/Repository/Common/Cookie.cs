@@ -40,6 +40,8 @@ namespace ShivFactory.Business.Repository
             HttpCookie tempOrderId = new HttpCookie(CookieName.TempOrderId, model.TempOrderId.ToString());
             mobile.Expires = DateTime.Now.AddMonths(1);
             HttpContext.Current.Response.Cookies.Add(mobile);
+            RepoUser ru = new RepoUser();
+            ru.UpdateTempOrder();
         }
         public void AddCookiesValue(string cookieName, string value)
         {
