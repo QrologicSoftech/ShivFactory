@@ -7,9 +7,9 @@
     Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
     var version = ConfigurationManager.AppSettings["jsversion"].ToString();
     RepoCookie repoCookie = new RepoCookie();
-    var UserFName = repoCookie.GetCookiesValue(CookieName.FirstName) ;
-    var UserLName = repoCookie.GetCookiesValue(CookieName.LastName);
-    var role = repoCookie.GetCookiesValue(CookieName.Role);
+    var UserFName = repoCookie.GetStringCookiesValue(CookieName.FirstName) ;
+    var UserLName = repoCookie.GetStringCookiesValue(CookieName.LastName);
+    var role = repoCookie.GetStringCookiesValue(CookieName.Role);
     Utility util = new Utility();
     RepoUser repoUser = new RepoUser();
     var UserImage = repoUser.GetUserImage(util.GetCurrentUserId());
