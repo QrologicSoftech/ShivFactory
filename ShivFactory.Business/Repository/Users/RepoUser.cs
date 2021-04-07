@@ -24,7 +24,7 @@ namespace ShivFactory.Business.Repository
         #region User Is Delete
         public bool UserIsDelete(string userId)
         {
-            var user = db.UserDetails.Where(a => a.UserId == userId&& a.IsDelete==true).AsNoTracking().FirstOrDefault();
+            var user = db.UserDetails.Where(a => a.UserId == userId && a.IsDelete == true).AsNoTracking().FirstOrDefault();
             if (user != null)
             {
                 return true;
@@ -163,21 +163,22 @@ namespace ShivFactory.Business.Repository
         }
         #endregion
 
-        #region SetUsertempIdforOrder
-        
-        public void SetCartBagId()
+        #region UpdateTempOrder
+
+        public void UpdateTempOrder()
         {
             Utility utility = new Utility();
-            RepoCookie cookie = new RepoCookie(); 
-            string userid = utility.GetCurrentUserId();
-            var userDetail = GetUserDetailsBYUserId(userid);
-            if (userDetail.TempOrderId!=null && userDetail.TempOrderId>0)
+            string userId = utility.GetCurrentUserId();
+            RepoCookie cookie = new RepoCookie();
+            int tempOrderId = Convert.ToInt32(cookie.GetCookiesValue(CookieName.TempOrderId));
+
+            var userDetail = db.UserDetails.Where(u => u.UserId == userId).FirstOrDefault();
+            if (userDetail != null)
             {
-                cookie.AddCookiesValue(CookieName.TempOrderId, userDetail.TempOrderId.ToString());
+                userDetail.TempOrderId = tempOrderId;
             }
+            db.SaveChanges();
 
-
-            }
         }
         #endregion
     }

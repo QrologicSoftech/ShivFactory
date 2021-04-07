@@ -196,8 +196,8 @@ namespace ShivFactory.Controllers
                 return View(model);
             }
 
-             var res = await CustomerRegister(model); 
-           // var res = await VendorRegister(model); 
+            var res = await CustomerRegister(model);
+            // var res = await VendorRegister(model); 
             if (res.ResultFlag == true)
             {
                 return RedirectToAction("Login");
@@ -272,7 +272,7 @@ namespace ShivFactory.Controllers
 
         #region ResetPassword
         [AllowAnonymous]
-        public ActionResult ResetPassword(string code )
+        public ActionResult ResetPassword(string code)
         {
             ResetPasswordViewModel resetmodel = (ResetPasswordViewModel)TempData["reset"];
             return View(resetmodel);
@@ -294,29 +294,29 @@ namespace ShivFactory.Controllers
                 // Don't reveal that the user does not exist
                 return RedirectToAction("ResetPasswordConfirmation", "Account");
             }
-           
+
             var result = await UserManager.ResetPasswordAsync(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
-                
+
                 RepoUser repoUser = new RepoUser();
                 bool isPasswordUpdate = repoUser.UpdateUserPassword(user.Id, model.Password);
                 if (isPasswordUpdate)
                 {
-                  
+
                     LogInModel loginmodel = new LogInModel
                     {
 
                         PhoneNumber = model.PhoneNumber,
-                         Password = model.Password
+                        Password = model.Password
                     };
                     var loginresult = await LogInApI(loginmodel);
                     if (loginresult.ResultFlag == true)
                     {
                         return RedirectToLocal(loginresult.Data, "");
                     }
-                    
-                   
+
+
                 }
             }
             ModelState.AddModelError("Password", result.Errors.FirstOrDefault());
@@ -567,12 +567,12 @@ namespace ShivFactory.Controllers
                         RepoUser ru = new RepoUser();
                         var isSaved = ru.AddOrUpdateUserDetails(userDetails);
                         Vendor vendor = new Vendor();
-                        vendor.UserId = userDetails.UserId;  
+                        vendor.UserId = userDetails.UserId;
                         RepoVendor repoVendor = new RepoVendor();
                         repoVendor.AddOrUpdateVendor(vendor);
                         int vendorID = repoVendor.GetVendorIdByUserId(user.Id);
                         DataLibrary.DL.VendorBankDetail vendorBankdtls = new DataLibrary.DL.VendorBankDetail();
-                        vendorBankdtls.UserID = vendorID; 
+                        vendorBankdtls.UserID = vendorID;
                         repoVendor.AddVendorBankDetails(vendorBankdtls);
 
 
@@ -741,6 +741,8 @@ namespace ShivFactory.Controllers
                         }
                         else
                         {
+                            RepoCookie co = new RepoCookie();
+                            string tempOrderId = co.GetCookiesValue(CookieName.TempOrderId);
                             var userDetails = ru.GetUserDetailsBYUserId(user.Id);
                             var role = UserManager.GetRoles(user.Id).FirstOrDefault();
                             var token = UserManager.GenerateUserToken("", user.Id);
@@ -755,18 +757,17 @@ namespace ShivFactory.Controllers
                                 EmailId = userDetails.Email,
                                 Address = userDetails.Address,
                                 Mobile = userDetails.Mobile,
-                                TempOrderId = userDetails.TempOrderId
-                                
+                                TempOrderId = userDetails.TempOrderId ?? Convert.ToInt32(tempOrderId)
                             };
-
+                            if (Convert.ToInt32(tempOrderId) > 0) { ru.UpdateTempOrder(); }
                             // add authontication
                             ClaimsIdentity identity = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie);
                             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.UserName));
                             identity.AddClaim(new Claim(ClaimTypes.Role, role));
                             identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
                             AuthenticationManager.SignIn(identity);
-
-
+                            
+                            co.AddCookiesValues(res);
                             return new ResultModel
                             {
                                 ResultFlag = true,
@@ -807,17 +808,18 @@ namespace ShivFactory.Controllers
                 if (result.Result.Succeeded)
                 {
                     RepoUser repoUser = new RepoUser();
-                     isChange = repoUser.UpdateUserPassword(userid, model.NewPassword);
+                    isChange = repoUser.UpdateUserPassword(userid, model.NewPassword);
                     message = isChange ? "Password Update successfully!!" : "Failled to Update Password";
-                } else
+                }
+                else
                 {
                     message = result.Result.Errors.FirstOrDefault();
                 }
-               
+
             }
             catch (Exception ex)
             {
-              message=  ex.Message.ToString();
+                message = ex.Message.ToString();
             }
 
             return Json(new ResultModel
@@ -827,7 +829,7 @@ namespace ShivFactory.Controllers
                 Message = message,
             }, JsonRequestBehavior.AllowGet);
         }
-        
+
         #endregion
 
         #endregion
@@ -933,7 +935,7 @@ namespace ShivFactory.Controllers
         [AllowAnonymous]
         public ActionResult MobileVerify()
         {
-            return View(); 
+            return View();
         }
 
         [HttpPost]
@@ -949,8 +951,8 @@ namespace ShivFactory.Controllers
                 var user = UserManager.FindByName(model.PhoneNumber);
                 if (user == null)
                 {
-                    RepoCommon repoCommon = new RepoCommon(); 
-                    string otp= repoCommon.sendOtpSMS(model.PhoneNumber);
+                    RepoCommon repoCommon = new RepoCommon();
+                    string otp = repoCommon.sendOtpSMS(model.PhoneNumber);
                     model.isOTPSend = true;
                     TempData["SuccessMessage"] = "We have sent an One Time Password (OTP) in a SMS to this mobile number.";
                     TempData["showbtn"] = true;
@@ -958,7 +960,7 @@ namespace ShivFactory.Controllers
                 }
                 else
                 {
-                    TempData["showbtn"] = false; 
+                    TempData["showbtn"] = false;
                     ModelState.AddModelError("PhoneNumber", "Mobile number already exist. ");
                     return View(model);
                 }
@@ -979,12 +981,12 @@ namespace ShivFactory.Controllers
                 var res = await VendorRegister(model);
                 if (res.ResultFlag == true)
                 {
-                    string usrid = (string)res.Data; 
+                    string usrid = (string)res.Data;
                     var token = UserManager.GeneratePasswordResetToken(usrid);
                     ResetPasswordViewModel reset = new ResetPasswordViewModel
                     {
                         PhoneNumber = model.PhoneNumber,
-                        Code=token,
+                        Code = token,
                     };
                     TempData["reset"] = reset;
                     return Redirect(Url.Action("ResetPassword", "Account"));
@@ -995,18 +997,19 @@ namespace ShivFactory.Controllers
                     return RedirectToAction("MobileVerify", "Account");
                 }
             }
-            else {
+            else
+            {
                 ModelState.AddModelError("code", "Enter valid OTP code");
                 return View(model);
             }
-            
+
         }
         #endregion
 
-     
 
 
-        
+
+
 
     }
 }
