@@ -19,15 +19,20 @@ namespace ShivFactory.Business.Repository
         #region Parameters
         ShivFactoryEntities db = new ShivFactoryEntities();
         RepoCookie cooki = new RepoCookie();
-        Utility utility = new Utility();
+       
         #endregion
+        Utility utility = new Utility();
+       
         public bool AddToCart(AddToCart model)
         {
             string userid = utility.GetCurrentUserId();
+            int tempOrderId = 0;
             try
             {
-                int tempOrderId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
-                var tempOrderTbl = db.TempOrders.Where(row => row.ID == tempOrderId).FirstOrDefault();
+                var tempOrderTbl = new TempOrder();
+                SetTempOrderIdByUserId();
+                 tempOrderId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
+                 tempOrderTbl = db.TempOrders.Where(row => row.ID == tempOrderId).FirstOrDefault();
                 if (tempOrderId == 0 || tempOrderTbl==null)
                 {
                     var tempOrder = db.TempOrders.Add(new TempOrder()
@@ -40,7 +45,7 @@ namespace ShivFactory.Business.Repository
                     cooki.AddCookiesValue(CookieName.TempOrderId, tempOrderId.ToString());
                 }
 
-                var orderDetails = db.TempOrderDetails.Where(a => a.ProductVarientId == model.ProductVarientID).FirstOrDefault();
+                var orderDetails = db.TempOrderDetails.Where(a => a.ProductVarientId == model.ProductVarientID && a.TempOrderID ==tempOrderId).FirstOrDefault();
                 if (orderDetails != null)
                 {
                     orderDetails.Quantity = orderDetails.Quantity + model.Quantity; //orderDetails.Quantity ?? 0 + m
@@ -59,7 +64,8 @@ namespace ShivFactory.Business.Repository
                         TempOrderID = tempOrderId,
                         AddDate = DateTime.Now,
                         NetAmt = model.Quantity * model.Price,
-                        IsUserWishList = model.IsUserWishList
+                        IsUserWishList = model.IsUserWishList,
+                        VendorId = model.vendorId
                     };
                     db.TempOrderDetails.Add(temporderDetails);
                 }
@@ -78,12 +84,14 @@ namespace ShivFactory.Business.Repository
         {
             try
             {
+                string userid = utility.GetCurrentUserId();
+                SetTempOrderIdByUserId();
                 int tempOrderId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
                 if (tempOrderId == 0)
                 {
                     var tempOrder = db.TempOrders.Add(new TempOrder()
                     {
-                        UserId = utility.GetCurrentUserId(),
+                        UserId = userid,
                         AddDate = DateTime.Now
                     });
                     tempOrderId = tempOrder.ID;
@@ -108,14 +116,23 @@ namespace ShivFactory.Business.Repository
         }
         public int GetUserCartCount()
         {
-            int tempId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
+            string userid = utility.GetCurrentUserId();
+            SetTempOrderIdByUserId();
+            if (cooki.GetCookiesValue(CookieName.TempOrderId) != "")
+            {
+                int tempId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
 
-            var items = db.TempOrderDetails.Where(row => row.TempOrderID == tempId);
-
-            return items.Count();
+                var items = db.TempOrderDetails.Where(row => row.TempOrderID == tempId);
+                return items.Count();
+            }
+            else {
+                return 0;
+            }
         }
         public CartModel GetCart()
         {
+            string userid = utility.GetCurrentUserId();
+            SetTempOrderIdByUserId();
             int tempId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
             var data = db.TempOrders.Where(a => a.ID == tempId).Select(a => new CartModel
             {
@@ -145,6 +162,7 @@ namespace ShivFactory.Business.Repository
 
         public CartModel GetWishlist()
         {
+            SetTempOrderIdByUserId();
             var model = new CartModel();
             int tempId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
             var data = db.TempOrders.Where(a => a.ID == tempId).Select(a => new CartModel
@@ -156,7 +174,7 @@ namespace ShivFactory.Business.Repository
                 var items = (from tod in db.TempOrderDetails
                          join p in db.Products
                          on tod.ProductId equals p.ProductId
-                         where tod.TempOrderID == tempId || tod.IsUserWishList == true
+                         where tod.TempOrderID == tempId && tod.IsUserWishList == true
 
                          select new AddToCart
                          {
@@ -170,17 +188,32 @@ namespace ShivFactory.Business.Repository
                              ID = tod.ID,
                              ImagePath = p.MainImage
                          }).AsNoTracking().ToList();
+                data.CartItems = items;
             }
             return data;
         }
 
+        public void SetTempOrderIdByUserId()
+        {
+            string userid = utility.GetCurrentUserId();
+            if (cooki.GetCookiesValue(CookieName.TempOrderId) == "")
+            {
+                var tempOrderTbl = db.TempOrders.Where(row => row.UserId == userid).OrderByDescending(row => row.ID).FirstOrDefault();
+                if (tempOrderTbl != null)
+                {
+                    cooki.AddCookiesValue(CookieName.TempOrderId, tempOrderTbl.ID.ToString());
+                }
+            }
+        }
+
         public void TotalCartAmount(int tempOrderId)
         {
-            var NetAmt = db.TempOrderDetails.Where(row => row.TempOrderID == tempOrderId && row.IsUserWishList == false).Select(row => row.NetAmt ?? 0).Sum();
+            var NetAmt = db.TempOrderDetails.Where(row => row.TempOrderID == tempOrderId && row.IsUserWishList == false).Sum(row => row.NetAmt);
             var tempOrder = db.TempOrders.Where(row => row.ID == tempOrderId).FirstOrDefault();
             if (tempOrder != null)
             {
-                tempOrder.NetAmt = NetAmt;
+                tempOrder.NetAmt = Convert.ToDecimal(NetAmt);
+                tempOrder.UpdateDate = DateTime.Now;
             }
             db.SaveChanges();
         }
@@ -188,16 +221,32 @@ namespace ShivFactory.Business.Repository
         public bool DeleteCartItemById(int rowID)
         {
             bool retval = false;
+            int temporderID = 0; 
             var tempOrderDetails = db.TempOrderDetails.Where(row => row.ID == rowID).FirstOrDefault();
             if (tempOrderDetails != null)
             {
+                temporderID = Convert.ToInt32(tempOrderDetails.TempOrderID) ;
                 db.TempOrderDetails.Remove(tempOrderDetails);
+                db.SaveChanges();
+                TotalCartAmount(temporderID);
+                retval = true;
+            }
+            return retval;
+
+        }
+
+        public bool SendWishlistToCart(int rowID)
+        {
+            bool retval = false;
+            var tempOrderDetails = db.TempOrderDetails.Where(row => row.ID == rowID).FirstOrDefault();
+            if (tempOrderDetails != null)
+            {
+                tempOrderDetails.IsUserWishList = false;
                 db.SaveChanges();
                 TotalCartAmount(tempOrderDetails.TempOrderID ?? 0);
                 retval = true;
             }
             return retval;
-
         }
 
     }

@@ -393,13 +393,19 @@ namespace ShivFactory.Controllers
         {
             try
             {
+                string message = "";
                 RepoCart cart = new RepoCart();
                 bool IsAddToCart = cart.AddToCart(model);
+                if (model.IsUserWishList == true) {
+                    message = "Add to wishlist successfully";
+                } else {
+                    message = "Add to cart successfully";
+                }
                 return Json(new ResultModel
                 {
                     ResultFlag = IsAddToCart,
                     Data = model,
-                    Message = IsAddToCart == true ? "Add to cart successfully" :" Unable to Add Item in cart "
+                    Message = IsAddToCart == true ? message :" Unable to Add Item"
                 }, JsonRequestBehavior.AllowGet);;
             }
             catch (Exception ex)
@@ -439,6 +445,28 @@ namespace ShivFactory.Controllers
 
             }
             return RedirectToAction("Cart", "Home");
+
+        }
+
+
+        public ActionResult SendWishlistToCart(int? Id)
+        {
+            try
+            {
+                if (Id > 0)
+                {
+                    RepoCart cart = new RepoCart();
+                    var retval = cart.SendWishlistToCart((int)Id);
+                    TempData["SuccessMessage"] = "Item added to cart successfully";
+                    return RedirectToAction("Wishlist", "Home");
+                }
+            }
+            catch (Exception e)
+            {
+                TempData["ErrorMessage"] = e.Message.ToString();
+
+            }
+            return RedirectToAction("Wishlist", "Home");
 
         }
 

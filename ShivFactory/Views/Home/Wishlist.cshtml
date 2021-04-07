@@ -7,29 +7,37 @@
 <section class="profile-1">
     <div class="container">
         <div class="personal">
-            @if (Model == null)
+            @if (Model.CartItems == null)
             {
-                <div class="personal fullpage-1 hover-3" style="    background-color: #fff;">
+                <div class="personal fullpage-1 hover-3" style=" background-color: #fff;">
     <div class="row">
         <div class="col-md-12" style="padding: 20px 0px;">
-            <span style="    font-size: 25px;font-weight: bold; margin-left: 50px;">My Wishlist (0)</span>
+            <span style="    font-size: 25px;font-weight: bold; margin-left: 50px;">My Wishlist (0) To continue shopping <a href="/Home/">Click here</a>
+            </span>
         </div>
         </div>
                     </div>
-     }else
-        {
+            }
+            else
+            {
     <div class="personal fullpage-1 hover-3" style="    background-color: #fff;">
         <div class="row">
             <div class="col-md-12" style="padding: 20px 0px;">
-                <span style="    font-size: 25px;font-weight: bold; margin-left: 50px;">My Wishlist (@Model.CartItems.Count)</span>
+                @{var count = @Model.CartItems == null ? 0 : @Model.CartItems.Count();
+                    <span style="    font-size: 25px;font-weight: bold; margin-left: 50px;">
+                        My Wishlist (@count)
 
+                    </span>
+                    <h6 style="float:right; color:blueviolet"> <a href="/Home/"> Shop continue</a></h6>
+                }
             </div>
         </div>
         @foreach (var item in Model.CartItems)
         {
             <div>
                 <div class="_1M-Ete" style="border-top: 1px solid #e0e0e0;">
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="XXTbyN">
+                    @*<a href="#" target="_blank" rel="noopener noreferrer" class="XXTbyN">*@
+                    <div class="XXTbyN">
                         <div class="_30f2zZ">
                             <div class="eS4lgT">
                                 <div>
@@ -67,12 +75,20 @@
                             <div class="col col-2-12 LaCDhz">
                                 <div class="Bv11UC _2GI1Le Bh0FCW">
                                     <span class="">
-                                        <img src="~/Content/UploadedImages/Images/delete.svg" class="_2Nq6Qc" />
+                                        <a href="/Home/DeleteCartItem?id=@item.ID" alt="Delete from Wishlist">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
+                                    </span>
+                                    <span class="">
+                                        <a href="/Home/SendWishlistToCart?id=@item.ID" alt="Add To Cart">
+                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                        </a>
                                     </span>
                                 </div>
                             </div>
                         </div>
-                    </a>
+                        @*</a>*@
+                    </div>
                 </div>
             </div>
         }
