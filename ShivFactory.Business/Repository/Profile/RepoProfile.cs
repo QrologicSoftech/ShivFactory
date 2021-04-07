@@ -19,7 +19,7 @@ namespace ShivFactory.Business.Repository
         {
             UserProfile userProfileResonse = new UserProfile();
             RepoCookie repoCookie = new RepoCookie();
-            var role = repoCookie.GetCookiesValue(CookieName.Role);
+            var role = repoCookie.GetStringCookiesValue(CookieName.Role);
             var user = db.UserDetails.Where(a => a.UserId == userId).FirstOrDefault();
             if (user != null)
             {

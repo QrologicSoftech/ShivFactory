@@ -742,7 +742,7 @@ namespace ShivFactory.Controllers
                         else
                         {
                             RepoCookie co = new RepoCookie();
-                            int tempOrderId = Int32.TryParse(co.GetCookiesValue(CookieName.TempOrderId), out var a) ? a : 0;
+                            int tempOrderId = co.GetIntCookiesValue(CookieName.TempOrderId);
                             var userDetails = ru.GetUserDetailsBYUserId(user.Id);
                             var role = UserManager.GetRoles(user.Id).FirstOrDefault();
                             var token = UserManager.GenerateUserToken("", user.Id);
@@ -758,9 +758,9 @@ namespace ShivFactory.Controllers
                                 EmailId = userDetails.Email,
                                 Address = userDetails.Address,
                                 Mobile = userDetails.Mobile,
-                                TempOrderId = userDetails.TempOrderId != null && userDetails.TempOrderId > 0 ? userDetails.TempOrderId.Value : Int32.TryParse(tempOrderId, out var a) ? a : 0
+                                TempOrderId = userDetails.TempOrderId != null && userDetails.TempOrderId > 0 ? userDetails.TempOrderId.Value : tempOrderId
                             };
-                            if (Convert.ToInt32(tempOrderId) > 0) { ru.UpdateTempOrder(); }
+
                             // add authontication
                             ClaimsIdentity identity = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie);
                             identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, user.UserName));

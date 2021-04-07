@@ -38,8 +38,8 @@ namespace ShivFactory.Business.Repository
             HttpContext.Current.Response.Cookies.Add(mobile);
 
             HttpCookie tempOrderId = new HttpCookie(CookieName.TempOrderId, model.TempOrderId.ToString());
-            mobile.Expires = DateTime.Now.AddMonths(1);
-            HttpContext.Current.Response.Cookies.Add(mobile);
+            tempOrderId.Expires = DateTime.Now.AddMonths(1);
+            HttpContext.Current.Response.Cookies.Add(tempOrderId);
             RepoUser ru = new RepoUser();
             ru.UpdateTempOrder();
         }
@@ -49,7 +49,7 @@ namespace ShivFactory.Business.Repository
             cookie.Expires = DateTime.Now.AddMonths(1);
             HttpContext.Current.Response.Cookies.Add(cookie);
         }
-        public string GetCookiesValue(string cookieName)
+        public string GetStringCookiesValue(string cookieName)
         {
             var val = "";
             try
@@ -59,6 +59,19 @@ namespace ShivFactory.Business.Repository
             catch (Exception e)
             {
                 val = "";
+            }
+            return val;
+        }
+        public int GetIntCookiesValue(string cookieName)
+        {
+            int val = 0;
+            try
+            {
+                val = HttpContext.Current.Request.Cookies[cookieName] != null ? Int32.Parse(HttpContext.Current.Request.Cookies[cookieName].Value) : 0;
+            }
+            catch (Exception e)
+            {
+                val = 0;
             }
             return val;
         }
@@ -140,6 +153,19 @@ namespace ShivFactory.Business.Repository
             {
                 val = HttpContext.Current.Session[sessionName].ToString();
 
+            }
+            return val;
+        }
+        public int GetIntSessionValue(string sessionName)
+        {
+            var val = 0;
+            if (HttpContext.Current.Session[CookieName.UserName] == null)
+            {
+                AddSessionValues();
+            }
+            if (HttpContext.Current.Session[sessionName] != null)
+            {
+                val = Int32.TryParse(HttpContext.Current.Session[sessionName].ToString(), out var a) ? a : 0;
             }
             return val;
         }

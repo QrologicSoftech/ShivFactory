@@ -29,10 +29,10 @@ namespace ShivFactory.Business.Repository
             try
             {
                 var tempOrderTbl = new TempOrder();
-                string tempid = cooki.GetCookiesValue(CookieName.TempOrderId);
+                string tempid = cooki.GetStringCookiesValue(CookieName.TempOrderId);
                 if (tempid == "")
                 {
-                    tempid = "0"; 
+                    tempid = "0";
                 }
                 tempOrderId = Convert.ToInt32(tempid);
                 tempOrderTbl = db.TempOrders.Where(row => row.ID == tempOrderId).FirstOrDefault();
@@ -86,7 +86,7 @@ namespace ShivFactory.Business.Repository
         {
             try
             {
-                int tempOrderId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
+                int tempOrderId = Convert.ToInt32(cooki.GetStringCookiesValue(CookieName.TempOrderId));
                 if (tempOrderId == 0)
                 {
                     var tempOrder = db.TempOrders.Add(new TempOrder()
@@ -115,9 +115,9 @@ namespace ShivFactory.Business.Repository
         }
         public int GetUserCartCount()
         {
-            if (cooki.GetCookiesValue(CookieName.TempOrderId) != "")
+            if (cooki.GetStringCookiesValue(CookieName.TempOrderId) != "")
             {
-                int tempId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
+                int tempId = Convert.ToInt32(cooki.GetStringCookiesValue(CookieName.TempOrderId));
 
                 var items = db.TempOrderDetails.Where(row => row.TempOrderID == tempId);
                 return items.Count();
@@ -130,7 +130,7 @@ namespace ShivFactory.Business.Repository
         public CartModel GetCart()
         {
             string userid = utility.GetCurrentUserId();
-            int tempId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
+            int tempId = cooki.GetIntCookiesValue(CookieName.TempOrderId);
             var data = db.TempOrders.Where(a => a.ID == tempId).Select(a => new CartModel
             {
                 CartValue = a.NetAmt ?? 0
@@ -160,7 +160,7 @@ namespace ShivFactory.Business.Repository
         public CartModel GetWishlist()
         {
             var model = new CartModel();
-            int tempId = Convert.ToInt32(cooki.GetCookiesValue(CookieName.TempOrderId));
+            int tempId = cooki.GetIntCookiesValue(CookieName.TempOrderId);
             var data = db.TempOrders.Where(a => a.ID == tempId).Select(a => new CartModel
             {
                 CartValue = a.NetAmt ?? 0

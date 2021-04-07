@@ -170,7 +170,7 @@ namespace ShivFactory.Business.Repository
             Utility utility = new Utility();
             string userId = utility.GetCurrentUserId();
             RepoCookie cookie = new RepoCookie();
-            int tempOrderId = Int32.TryParse(cookie.GetCookiesValue(CookieName.TempOrderId), out var a) ? a : 0;
+            int tempOrderId = cookie.GetIntCookiesValue(CookieName.TempOrderId);
 
             var userDetail = db.UserDetails.Where(u => u.UserId == userId).FirstOrDefault();
             if (userDetail != null)
