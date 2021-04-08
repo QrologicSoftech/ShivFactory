@@ -156,7 +156,7 @@ namespace ShivFactory.Business.Repository
             var user = db.UserDetails.Where(a => a.UserId == userId).FirstOrDefault();
             if (user != null)
             {
-                user.IsDelete = true;
+                user.IsDelete = user.IsDelete==true?false:true;
                 return db.SaveChanges() > 0;
             }
             return false;
