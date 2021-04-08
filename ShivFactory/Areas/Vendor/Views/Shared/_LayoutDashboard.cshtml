@@ -3,7 +3,7 @@
 @{
     Layout = null;
     RepoCookie repoCookie = new RepoCookie();
-    var UserName = repoCookie.GetCookiesValue(CookieName.FirstName) + " " + repoCookie.GetCookiesValue(CookieName.LastName);
+    var UserName = repoCookie.GetStringCookiesValue(CookieName.FirstName) + " " + repoCookie.GetStringCookiesValue(CookieName.LastName);
 }
 <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 
@@ -24,13 +24,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
 <body>
+  
     <div id="loader" class="center"></div>
     <div class="container-scroller">
         <div class="horizontal-menu">
             <nav class="navbar top-navbar col-lg-12 col-12 p-0">
                 <div class="container">
                     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                        <a class="navbar-brand brand-logo" href="index.html"><img src="~/Content/AdminImg/shiv  factory logo.png" /></a>
+                        <a class="navbar-brand brand-logo" href="#"><img src="~/Content/AdminImg/shiv  factory logo.png" style="height: 50px" /></a>
                     </div>
                     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                         <ul class="navbar-nav mr-lg-2">

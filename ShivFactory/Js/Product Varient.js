@@ -153,7 +153,7 @@ var productVarient = {
                     if (product[0][j] == quantity || product[0][j] == salePrice || product[0][j] == listPrice) {
                         cell.html("<input type='number' class='form-control' value=" + product[i][j] + " />")
                     } else if (product[0][j] == image) {
-                        cell.html("<img src='/Content/UploadedImages/Images/NoImg.png' onclick='productVarient.UploadVarientsImage()'/>")
+                        cell.html("<a href='#' onclick='productVarient.BindVarientImagePopup()'><i class = 'fa fa-eye'></i></a><a href = '#' onclick='productVarient.UploadVarientsImage()'><i class = 'fa fa-upload'></i></a><input id = 'Image1' name = 'Image1' type = 'hidden'><input id='Image2' name='Image2' type='hidden' ><input id='Image3' name='Image3' type='hidden' ><input id='Image4' name='Image4' type='hidden'><input id='Image5' name='Image5' type='hidden'>")
                     } else {
                         cell.html(product[i][j]);
                     }
@@ -218,13 +218,10 @@ var productVarient = {
     },
 
     UploadVarientsImage: function () {
-
         common.ShowLoader();
         var form;
-            // Create table
         form = `  <h4><b>Product Images</b> </h4>
                                         <p></p>
-                                       
                                         <div class="row">
                                             <div class="col-lg-4 col-sm-4">
                                                 <div class="form-group">
@@ -329,7 +326,7 @@ var productVarient = {
                             <span uif-append="submit" class="inline-block">
                                 <div class="" uif-fbtype="wrapper" uif-uqid="6462377d-bf38-793c-d2cf-820cae24a976">
 
-                                    <button type="submit" name="submit"  class="btn submit-btn btn-primary" id="save" >SAVE</button>
+                                    <button type="button" name="submit" onclick = "productVarient.setVarientImageHidden()"  class="btn submit-btn btn-primary" id="save" >SAVE</button>
 
                                 </div>
                             </span>
@@ -337,11 +334,34 @@ var productVarient = {
                     </div>
                 </div>
             </div>`;
+        productVarient.BindVarientImagePopup();
             common.HideLoader();
             $('#Modal').children('div').children('div').html(form);
             $('#Modal').show();
        
-    }
+    },
+    setVarientImageHidden: function () {
+        $("#Image1").val($('#imagePreview').attr('src'));
+        $("#Image2").val($('#imagePreview1').attr('src'));
+         $("#Image3").val($('#imagePreview2').attr('src'));
+        $("#Image4").val($('#imagePreview3').attr('src'));
+        $("#Image5").val($('#imagePreview4').attr('src'));
+        $("#Image6").val($('#imagePreview5').attr('src'));
+        commonFunction.HideModel('#Modal');
+        
+    },
+
+    BindVarientImagePopup: function () {
+       
+        $("#imagePreview").attr("src", $('#Image1').val());
+        $("#imagePreview2").attr("src", $('#Image2').val());
+        $("#imagePreview3").attr("src", $('#Image3').val());
+        $("#imagePreview4").attr("src", $('#Image4').val());
+        $("#imagePreview5").attr("src", $('#Image5').val());
+        $("#imagePreview6").attr("src", $('#Image6').val());
+        $('#Modal').show();
+        
+    },
    
     }
 
