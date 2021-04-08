@@ -3,51 +3,7 @@
 var dbController = '';
 
 var dtTable = {
-
-    setSessionValue: (key, value) => {
-        console.log('Set value in session.');
-        var data = {
-            parameter: key,
-            value: value
-        };
-        doAjaxPost(homeController + 'SetSessionValue', data, function (response) {
-
-        });
-    },
-    getSessionValue: (successCallback) => {
-        console.log('Get value from session.');
-        var data = {
-            parameter: 'Dashboard_DateType'
-        };
-
-        doAjaxPost(homeController + 'GetSessionValue', data, function (response) {
-
-            if (response != "" && response != null) { $('#ddlDateFilter').val(response); }
-
-            if (response == dateTypeCd) {
-                data.parameter = 'Dashboard_StartDate';
-                doAjaxPost(homeController + 'GetSessionValue', data, function (response) {
-
-                    $('#startDate').val(response);
-                    data.parameter = 'Dashboard_EndDate';
-                    doAjaxPost(homeController + 'GetSessionValue', data, function (response) {
-
-                        $('#endDate').val(response);
-
-                        $('#divStartDate').css("display", "block")
-                        $('#divEndDate').css("display", "block")
-                        $('#divFilter').css("display", "block")
-                        successCallback();
-                    });
-                });
-
-            }
-            else {
-
-                successCallback();
-            }
-        });
-    },
+    
     bindDatepicker: () => {
         const arrows = {
             leftArrow: '<i class="la la-angle-left"></i>',
@@ -110,7 +66,7 @@ var dtTable = {
     },
 
     bindDataToTable: (url, filter, columns, rowId, tableId, divId, setFooter, enableOrdering = false, enableSearching = true, callback, callbackArgs) => {
-        
+       
         var table = $(tableId).DataTable({
             "processing": true,
             "serverSide": true,

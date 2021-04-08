@@ -68,7 +68,7 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 RepoProduct repoProduct = new RepoProduct();
                 var productList = repoProduct.GetAllProductsByVendorId(venderId, model, out recordsTotal);
 
-                return Json(new { data = productList, draw = draw, recordsFiltered = productList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = productList, draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
