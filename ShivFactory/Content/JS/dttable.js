@@ -110,6 +110,7 @@ var dtTable = {
     },
 
     bindDataToTable: (url, filter, columns, rowId, tableId, divId, setFooter, enableOrdering = false, enableSearching = true, callback, callbackArgs) => {
+        
         var table = $(tableId).DataTable({
             "processing": true,
             "serverSide": true,
@@ -123,7 +124,7 @@ var dtTable = {
             "pageLength": 10, // Number of default records to show
             "ajax": {
                 "url": url,
-                "data":filter , // https://datatables.net/reference/option/ajax.data
+                "data": filter != null ? filter : {}, // https://datatables.net/reference/option/ajax.data
                 "type": 'POST',
                 "datatype": 'json'
             },
