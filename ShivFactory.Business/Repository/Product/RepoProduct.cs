@@ -160,7 +160,7 @@ namespace ShivFactory.Business.Repository
             parameters.Add(new SqlParameter("@OrderDir", model.SortDirection));
             parameters.Add(new SqlParameter("@VendorId", vendorId));
 
-            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, "ManageProduct", parameters.ToArray());
+            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString,CommandType.StoredProcedure, "ManageProduct", parameters.ToArray());
             if (ds.Tables != null && ds.Tables[0].Rows.Count > 0)
             {
                 totalRecords = ds.Tables[0].Rows[0]["TotalRow"] != DBNull.Value ? Convert.ToInt32(ds.Tables[0].Rows[0]["TotalRow"].ToString()) : 0;
@@ -183,7 +183,6 @@ namespace ShivFactory.Business.Repository
                         ReturnDays = row["ReturnDays"] != DBNull.Value ? Convert.ToInt32(row["ReturnDays"]) : 0,
                         CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
                         SubCategoryName = row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
-                        BrandName = row["BrandName"] != DBNull.Value ? row["BrandName"].ToString() : "",
                         IsActive = row["IsActive"] != DBNull.Value ? Convert.ToBoolean(row["IsActive"]) : false,
                         AddDate = row["AddDate"] != DBNull.Value ? Convert.ToDateTime(row["AddDate"]).ToString("dd/MM/yyyy") : "",
                         ApprovedByAdmin = row["ApprovedByAdmin"] != DBNull.Value ? Convert.ToBoolean(row["ApprovedByAdmin"]) : false,

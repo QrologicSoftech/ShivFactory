@@ -23,7 +23,6 @@ namespace ShivFactory.Business.Repository
         public int ReturnDays { get; set; }
         public string CategoryName { get; set; }
         public string SubCategoryName { get; set; }
-        public string BrandName { get; set; }
         public bool IsActive { get; set; }
         public string AddDate { get; set; }
         public bool ApprovedByAdmin { get; set; }
