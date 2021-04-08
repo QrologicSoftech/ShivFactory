@@ -256,14 +256,14 @@ var Admin = {
             common.HideLoader();
         });
     },
-    GetProductDimension: function (element) {
+    GetProductVarients: function (element) {
         let productId = $(element).closest('tr').attr('Id');
         if (productId == undefined || productId == null) { return false; }
         common.ShowLoader();
         data = {
             "productId": productId
         }
-        ajax.doPostAjax(`/${adminArea}/${adminController}/ProductDimension`, data, function (result) {
+        ajax.doPostAjax(`/${adminArea}/${adminController}/ProductVarients`, data, function (result) {
             if (result) {
                 $('#Modal').children('div').children('div').html(result);
                 $('#Modal').show();

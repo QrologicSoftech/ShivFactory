@@ -488,7 +488,7 @@
     <Content Include="Areas\Vendor\Views\Vendor\VendorNavPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ProductImage.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ProductBasicInfo.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\ProductDimension.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\ProductVarients.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Vendor.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\VendorPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Customer.cshtml" />

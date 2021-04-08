@@ -1194,9 +1194,9 @@ namespace ShivFactory.Areas.Admin.Controllers
         }
         #endregion
 
-        #region Product Dimension
+        #region Product Varients
         [HttpPost]
-        public ActionResult ProductDimension(int productId)
+        public ActionResult ProductVarients(int productId)
         {
             try
             {
