@@ -85,6 +85,36 @@
         }
         // Do timeout stuff here
         alert('Timeout for otp');
+    },
+
+    readfile: function (input, w) {
+        if (input.files && input.files[0]) {
+            var fileReader = new FileReader(),
+                files = input.files,
+                file;
+            if (!files.length) {
+                return;
+            }
+            file = files[0];
+            //var size = parseFloat(file.size).toFixed(2);
+            if (/^image\/\w+$/.test(file.type)) {
+                fileReader.onload = function (e) {
+                    $('#' + w + '').attr('src', e.target.result);
+                    $('#' + w + '').attr('style', 'display:block');
+                    var image = new Image();
+                    image.src = $('#' + w + '').attr("src");
+                    image.onload = function () {
+                        //alert('width: ' + this.width + ' and height: ' + this.height);
+                    };
+                }
+                fileReader.readAsDataURL(input.files[0]);
+            } else {
+                $('#' + w + '').attr('src', '');
+                $('#' + w + '').attr('style', 'display:none');
+                alert("Please choose an image file.");
+                //$("#PostedFile").val('');
+            }
+        }
     }
 }
 

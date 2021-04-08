@@ -176,7 +176,7 @@
                                         </ul>
 
                                     </div>
-
+                                 
 
                                     <div class="tab-pane" role="tabpanel" id="step4">
                                         <h4><b>Product Details</b> </h4>
@@ -338,7 +338,7 @@
                                                     <input type="file" name="img[]" class="file-upload-default">
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
-                                                    @Html.TextBoxFor(model => model.PostedFile, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview')" })
+                                                    @Html.TextBoxFor(model => model.PostedFile, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "common.readfile(this,'imagePreview')" })
                                                     @Html.ValidationMessageFor(model => model.PostedFile, "", new { @class = "text-danger" })
                                                 </div>
 
@@ -354,7 +354,7 @@
                                                     <label>Image1</label>
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
-                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview1')" })
+                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "common.readfile(this,'imagePreview1')" })
                                                     @Html.ValidationMessageFor(model => model.Image1, "", new { @class = "text-danger" })
                                                 </div>
 
@@ -369,7 +369,7 @@
                                                     <label>Image 2</label>
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
-                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview2')" })
+                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "common.readfile(this,'imagePreview2')" })
                                                     @Html.ValidationMessageFor(model => model.Image2, "", new { @class = "text-danger" })
                                                 </div>
 
@@ -389,7 +389,7 @@
 
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
-                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview3')" })
+                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "common.readfile(this,'imagePreview3')" })
                                                     @Html.ValidationMessageFor(model => model.Image3, "", new { @class = "text-danger" })
                                                 </div>
                                                 <div class="form-group">
@@ -404,7 +404,7 @@
                                                     <input type="file" name="img4[]" class="file-upload-default">
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
-                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview4')" })
+                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "common.readfile(this,'imagePreview4')" })
                                                     @Html.ValidationMessageFor(model => model.Image4, "", new { @class = "text-danger" })
                                                 </div>
 
@@ -421,7 +421,7 @@
                                                     <input type="file" name="img5[]" class="file-upload-default">
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
-                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "readfile(this,'imagePreview5')" })
+                                                    @Html.TextBoxFor(model => model.files, new { @class = "form-control file-upload-info", type = "file", accept = "image/*", onchange = "common.readfile(this,'imagePreview5')" })
                                                     @Html.ValidationMessageFor(model => model.Image5, "", new { @class = "text-danger" })
                                                 </div>
 
@@ -475,7 +475,7 @@
         readURL(this);
     });
 </script>
-<script>
+@*<script>
 
     function readfile(input, w) {
         if (input.files && input.files[0]) {
@@ -507,7 +507,7 @@
         }
     }
 
-</script>
+</script>*@
 <script>
     $(document).ready(function () {
 

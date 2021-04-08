@@ -3,7 +3,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     RepoCookie repoCookie = new RepoCookie();
-    var role = repoCookie.GetCookiesValue(CookieName.Role);
+    var role = repoCookie.GetStringCookiesValue(CookieName.Role);
 }
 
 

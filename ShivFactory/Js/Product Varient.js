@@ -1,4 +1,4 @@
-﻿var quantity = 'Quantity', listPrice = 'ListPrice',salePrice = 'SalePrice'; 
+﻿var quantity = 'Quantity', listPrice = 'ListPrice',salePrice = 'SalePrice',image ='Image'; 
 var productVarient = {
   
     AddNewTextBox: function (element) {
@@ -7,7 +7,6 @@ var productVarient = {
             $(`<div class="col-sm-2">
      <input type="text" class="form-control" placeholder="Variation " onkeyup="productVarient.AddBox(this)"></div>`).insertBefore($(element).parents('div .col-sm-2').siblings('div .col-sm-2').last());
         }
-
     },
 
     AddVarient: function (varient) {
@@ -68,6 +67,7 @@ var productVarient = {
         var QtyArr = []; 
         var spArr = []; 
         var lpArr = []; 
+        var imgArr = []; 
      
         var product = new Array();
         var label_values = $(".row .varientSection label").map(function () {
@@ -87,23 +87,27 @@ var productVarient = {
         product.push(label_values);
         product[0].push(quantity);
         product[0].push(salePrice);
-        product[0].push(listPrice); 
+        product[0].push(listPrice);
+        product[0].push(image);
         
         QtyArr = new Array(product[0].length);
         spArr = new Array(product[0].length);
         lpArr = new Array(product[0].length);
+        imgArr = new Array(product[0].length);
      
         QtyArr.push($('#ProductQty').val());
         spArr.push($('#SalePrice').val());
         lpArr.push($('#ListPrice').val());
+        imgArr.push($('#image1').val());
        
         QtyArr.copyWithin(0, product[0].length);
         spArr.copyWithin(0, product[0].length);
         lpArr.copyWithin(0, product[0].length);
-        
+        imgArr.copyWithin(0, product[0].length);
         map[quantity] = QtyArr;
         map[salePrice] = spArr;
-        map[listPrice] = lpArr; 
+        map[listPrice] = lpArr;
+        map[image] = imgArr; 
 
 
         $('#step1').css('display', 'none');
@@ -148,6 +152,8 @@ var productVarient = {
                    
                     if (product[0][j] == quantity || product[0][j] == salePrice || product[0][j] == listPrice) {
                         cell.html("<input type='number' class='form-control' value=" + product[i][j] + " />")
+                    } else if (product[0][j] == image) {
+                        cell.html("<img src='/Content/UploadedImages/Images/NoImg.png' onclick='productVarient.UploadVarientsImage()'/>")
                     } else {
                         cell.html(product[i][j]);
                     }
@@ -210,6 +216,132 @@ var productVarient = {
         
 
     },
+
+    UploadVarientsImage: function () {
+
+        common.ShowLoader();
+        var form;
+            // Create table
+        form = `  <h4><b>Product Images</b> </h4>
+                                        <p></p>
+                                       
+                                        <div class="row">
+                                            <div class="col-lg-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Main Image</label><enum><b>*</b></enum>
+                                                    <input type="file" name="img[]" class="file-upload-default">
+                                                </div>
+                                                <div class="ajax-file-upload-container form-group">
+                                                    <input accept="image/*" class="form-control file-upload-info" id="PostedFile" name="PostedFile" onchange="common.readfile(this,'imagePreview')" type="file" value="">
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="PostedFile" data-valmsg-replace="true"></span>
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <img id="imagePreview" src="" class="img-preview img-preview-sm img-thumbnail">
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Image1</label>
+                                                </div>
+                                                <div class="ajax-file-upload-container form-group">
+                                                    <input accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview1')" type="file" value="">
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Image1" data-valmsg-replace="true"></span>
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <img id="imagePreview1" src="" class="img-preview img-preview-sm img-thumbnail">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Image 2</label>
+                                                </div>
+                                                <div class="ajax-file-upload-container form-group">
+                                                    <input accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview2')" type="file" value="">
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Image2" data-valmsg-replace="true"></span>
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <img id="imagePreview2" src="" class="img-preview img-preview-sm img-thumbnail">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-lg-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Image 3</label>
+
+                                                </div>
+                                                <div class="ajax-file-upload-container form-group">
+                                                    <input accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview3')" type="file" value="">
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Image3" data-valmsg-replace="true"></span>
+                                                </div>
+                                                <div class="form-group">
+
+                                                    <img id="imagePreview3" src="" class="img-preview img-preview-sm img-thumbnail" >
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Image 4</label>
+                                                    <input type="file" name="img4[]" class="file-upload-default">
+                                                </div>
+                                                <div class="ajax-file-upload-container form-group">
+                                                    <input accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview4')" type="file" value="">
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Image4" data-valmsg-replace="true"></span>
+                                                </div>
+
+
+                                                <div class="form-group">
+
+                                                    <img id="imagePreview4" src="" class="img-preview img-preview-sm img-thumbnail" >
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Image 5</label>
+                                                    <input type="file" name="img5[]" class="file-upload-default">
+                                                </div>
+                                                <div class="ajax-file-upload-container form-group">
+                                                    <input accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview5')" type="file" value="">
+                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Image5" data-valmsg-replace="true"></span>
+                                                </div>
+
+                                                <div class="form-group">
+
+                                                    <img id="imagePreview5" src="" class="img-preview img-preview-sm img-thumbnail">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                       
+
+ 
+                    <div class="modal-footer form-submit col-md-12 col-sm-12">
+                        <div class="action-btn">
+                            <span uif-append="submit" class="inline-block">
+                                <div class="" uif-fbtype="wrapper" uif-uqid="6462377d-bf38-793c-d2cf-820cae24a976">
+
+                                    <button type="submit" name="submit"  class="btn submit-btn btn-primary" id="save" >SAVE</button>
+
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+            common.HideLoader();
+            $('#Modal').children('div').children('div').html(form);
+            $('#Modal').show();
+       
+    }
    
     }
 
