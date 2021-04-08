@@ -193,6 +193,11 @@ var productVarient = {
                         obj[`VarientName${index + 1}`] = $(th).text();
                         obj[`VarientValue${index + 1}`] = $tdvarientValue.eq(index).html();
                     }
+                    obj["Image1"] = $("#Image1").val();
+                    obj["Image2"] = $("#Image2").val();
+                    obj["Image3"] = $("#Image3").val();
+                    obj["Image4"] = $("#Image4").val();
+                    obj["Image5"] = $("#Image5").val();
                 });
                 jsonString.push(obj);
                 console.log(JSON.stringify(obj));
