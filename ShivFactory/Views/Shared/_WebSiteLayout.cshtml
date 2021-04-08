@@ -6,7 +6,7 @@
     Layout = null;
     var version = ConfigurationManager.AppSettings["jsversion"].ToString();
     RepoCookie repoCookie = new RepoCookie();
-    var UserName = repoCookie.GetStringCookiesValue(CookieName.FirstName) + " " + repoCookie.GetCookiesValue(CookieName.LastName);
+    var UserName = repoCookie.GetStringCookiesValue(CookieName.FirstName) + " " + repoCookie.GetStringCookiesValue(CookieName.LastName);
     var role = repoCookie.GetStringCookiesValue(CookieName.Role);
     Utility util = new Utility();
     RepoUser repoUser = new RepoUser();
