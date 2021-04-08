@@ -22,9 +22,23 @@
         }
         ajax.doPostAjax(`/Home/UpdateCart`, data, function (result) {
             if (result.ResultFlag == true) {
-                cart.RenderCart();
+                //cart.RenderCart();
+                cart.CalculateCart();
             }
         });
+    },
+    CalculateCart: function () {
+        common.ShowLoader('#cart_partial');      
+        let cartvalue = 0;
+        $(".table-shopping-cart tbody tr").each(function () {           
+            var itemPrice = $(this).find("#SalePrice").html();
+            var itemQty = $(this).find("#Quantity").val();
+            let totalAmount = itemPrice * itemQty;
+            $(this).find(".price").html('<i class="fas fa-rupee-sign"></i>' + totalAmount.toFixed(2));
+            cartvalue += totalAmount;
+        });
+        $('#total-cart-val').html('<i class="fas fa-rupee-sign"></i>' +cartvalue.toFixed(2));
+        common.HideLoader('#cart_partial');
     },
     RenderCart: function () {
         common.ShowLoader('#cart_partial');

@@ -31,16 +31,16 @@
                                                         <input type="hidden" id="ProductId" value="@item.ProductID" />
                                                         <input type="hidden" id="ProductVarientId" value="@item.ProductVarientID" />
                                                         <input type="hidden" id="vendorId" value="@item.vendorId" />
-                                                        <p class="text-muted small">
+                                                        @*<p class="text-muted small">
                                                             Matrix: 25 Mpx <br>
                                                             Brand: Canon
-                                                        </p>
+                                                        </p>*@
                                                     </figcaption>
                                                 </figure>
                                             </td>
                                             <td>
-                                                <input type="number" min="0" id="Quantity" onkeyup="if(this.value<0)this.value=1"
-                                                       onblur="if(this.value<0)this.value=1" class="form-control col-sm-4" value="@item.Quantity" onchange="cart.UpdateCart(this)" />
+                                                <input type="number" min="1" id="Quantity" onkeyup="if(this.value<0)this.value=1"
+                                                       onblur="if(this.value<0)this.value=1" class="form-control Qty" value="@item.Quantity" onchange="cart.UpdateCart(this)" />
                                             </td>
                                             <td>
                                                 <div class="price-wrap"> <var class="price"><i class="fas fa-rupee-sign"></i>@item.NetAmt</var> <small class="text-muted"> <i class="fas fa-rupee-sign"></i> <span id="SalePrice">@item.Price</span> </small> </div>
@@ -87,7 +87,7 @@
                             </dl>
                             <dl class="dlist-align">
                                 <dt>Total:</dt>
-                                <dd class="text-right  h5"><strong><i class="fas fa-rupee-sign"></i> @Model.CartValue</strong></dd>
+                                <dd class="text-right  h5"><strong id="total-cart-val"><i class="fas fa-rupee-sign"></i> @Model.CartValue</strong></dd>
                             </dl>
                             <hr>
                             <p class="text-center mb-3">
