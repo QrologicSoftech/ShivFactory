@@ -32,7 +32,7 @@ namespace ShivFactory.Business.Repository
     {
         public int? ProductId { get; set; }
         public int? VendorId { get; set; }
-        [Required(ErrorMessage = "Product Name required"), MaxLength(100, ErrorMessage = "ProductName cannot be longer than 50 characters.")]
+        [Required(ErrorMessage = "Product Name required"), MaxLength(100, ErrorMessage = "ProductName cannot be longer than 100 characters.")]
         public string ProductName { get; set; }
         [Required(ErrorMessage = "SalePrice required"), DataType(DataType.Currency, ErrorMessage = "SalePrice is a decimal value.")]
         public decimal SalePrice { get; set; }

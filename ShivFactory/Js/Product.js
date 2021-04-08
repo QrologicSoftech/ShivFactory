@@ -147,7 +147,7 @@
             $('span[data-valmsg-for="StockCount"]').text($('#StockCount').attr('data-val-required'));
             return callback("false");
         } else if ($('#Description').val() == '' || $('#Description').val() == undefined || $('#Description').val().length == '0' || $('#Description').val().length > '299') {
-            $('span[data-valmsg-for="Description"]').text($('#Description').attr('data-val-required') + $('#Description').attr('data-val-maxlength'));
+            $('span[data-valmsg-for="Description"]').text($('#Description').attr('data-val-maxlength'));
             return callback("false");
         }
         return callback(true);
