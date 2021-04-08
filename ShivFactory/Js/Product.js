@@ -114,31 +114,6 @@
         return callback(true);
     },
     ValidateProductStep3: function (callback) {
-        if ($('#ProductLength').val() == '0' || $('#ProductLength').val() == 'undefined' || $('#ProductLength').val().length == '0') {
-            $('span[data-valmsg-for="ProductLength"]').text($('#ProductLength').attr('data-val-required'));
-            return callback("false");
-        } else if ($('#ProductWidth').val() == '0' || $('#ProductWidth').val() == undefined || $('#ProductWidth').val().length == '0') {
-            $('span[data-valmsg-for="ProductWidth"]').text($('#ProductWidth').attr('data-val-required'));
-            return callback("false");
-        } else if ($('#ProductHeight').val() == '0' || $('#ProductHeight').val() == undefined || $('#ProductHeight').val().length == '0') {
-            $('span[data-valmsg-for="ProductHeight"]').text($('#ProductHeight').attr('data-val-required'));
-            return callback("false");
-        } else if ($('#PackageLength').val() == '0' || $('#PackageLength').val() == undefined || $('#PackageLength').val().length == '0') {
-            $('span[data-valmsg-for="PackageLength"]').text($('#PackageLength').attr('data-val-required'));
-            return callback("false");
-        } else if ($('#PackageWidth').val() == '0' || $('#PackageWidth').val() == undefined || $('#PackageWidth').val().length == '0') {
-            $('span[data-valmsg-for="PackageWidth"]').text($('#PackageWidth').attr('data-val-required'));
-            return callback("false");
-        } else if ($('#PackageHeight').val() == '0' || $('#PackageHeight').val() == undefined || $('#PackageHeight').val().length == '0') {
-            $('span[data-valmsg-for="PackageHeight"]').text($('#PackageHeight').attr('data-val-required'));
-            return callback("false");
-        } else if ($('#ProductWeight').val() == '0' || $('#ProductWeight').val() == undefined || $('#ProductWeight').val().length == '0') {
-            $('span[data-valmsg-for="ProductWeight"]').text($('#ProductWeight').attr('data-val-required'));
-            return callback("false");
-        } else if ($('#PackageWeight').val() == '0' || $('#PackageWeight').val() == undefined || $('#PackageWeight').val().length == '0') {
-            $('span[data-valmsg-for="PackageWeight"]').text($('#PackageWeight').attr('data-val-required'));
-            return callback("false");
-        }
         return callback(true);
     },
     ValidateProductStep4: function (callback) {
