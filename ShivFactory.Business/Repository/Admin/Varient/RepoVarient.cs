@@ -128,7 +128,7 @@ namespace ShivFactory.Business.Repository
             parameters.Add(new SqlParameter("@OrderColumn", model.SortColumn));
             parameters.Add(new SqlParameter("@OrderDir", model.SortDirection));
 
-            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, "ManageVarient", parameters.ToArray());
+            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString,CommandType.StoredProcedure, "ManageVarient", parameters.ToArray());
             if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
                 totalRecords = ds.Tables[0].Rows[0]["TotalRow"] != DBNull.Value ? Convert.ToInt32(ds.Tables[0].Rows[0]["TotalRow"].ToString()) : 0;

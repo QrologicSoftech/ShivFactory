@@ -1401,7 +1401,7 @@ namespace ShivFactory.Areas.Admin.Controllers
                 RepoVarient repoVarient = new RepoVarient();
                 var varientList = repoVarient.GetAllVarients(model, out recordsTotal);
 
-                return Json(new { data = varientList, draw = draw, recordsFiltered = varientList.Count(), recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
+                return Json(new { data = varientList, draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
