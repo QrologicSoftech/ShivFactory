@@ -190,18 +190,52 @@ namespace ShivFactory.Business.Repository
         }
 
 
+        //public void TotalCartAmount(int tempOrderId)
+        //{
+        //    var NetAmt = db.TempOrderDetails.Where(row => row.TempOrderID == tempOrderId && row.IsUserWishList == false).Sum(row => row.NetAmt);
+
+        //    var tempOrder = db.TempOrders.Where(row => row.ID == tempOrderId).FirstOrDefault();
+        //    if (tempOrder != null)
+        //    {
+        //        tempOrder.NetAmt = Convert.ToDecimal(NetAmt);
+        //        tempOrder.UpdateDate = DateTime.Now;
+        //    }
+        //    db.SaveChanges();
+        //}
+
         public void TotalCartAmount(int tempOrderId)
         {
-            var NetAmt = db.TempOrderDetails.Where(row => row.TempOrderID == tempOrderId && row.IsUserWishList == false).Sum(row => row.NetAmt);
+            var cartItems = db.TempOrderDetails.Where(row => row.TempOrderID == tempOrderId && row.IsUserWishList == false).ToList();
+
+            var varientIds = cartItems.Select(a => a.ProductVarientId).ToList();
+
+            var productVarient = (from pv in db.ProductVarients
+                                  where varientIds.Contains(pv.ProductVarientId)
+                                  select new
+                                  {
+                                      Id = pv.ProductVarientId,
+                                      Price = pv.SalePrice
+                                  }).ToList();
+
+            if (productVarient.Sum(a => a.Price) != cartItems.Sum(a => a.Price))
+            {
+                foreach (var c in cartItems)
+                {
+                    c.Price = productVarient.Where(b => b.Id == c.ProductVarientId).Select(b => b.Price).FirstOrDefault();
+                    c.NetAmt = c.Price * c.Quantity;
+                }
+
+                db.SaveChanges();
+            }
+
             var tempOrder = db.TempOrders.Where(row => row.ID == tempOrderId).FirstOrDefault();
             if (tempOrder != null)
             {
-                tempOrder.NetAmt = Convert.ToDecimal(NetAmt);
+                tempOrder.NetAmt = cartItems.Sum(a => a.NetAmt);
                 tempOrder.UpdateDate = DateTime.Now;
             }
             db.SaveChanges();
         }
-
         public bool DeleteCartItemById(int rowID)
         {
             bool retval = false;

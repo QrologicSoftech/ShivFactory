@@ -46,7 +46,7 @@
                                                 <div class="price-wrap"> <var class="price"><i class="fas fa-rupee-sign"></i>@item.NetAmt</var> <small class="text-muted"> <i class="fas fa-rupee-sign"></i> <span id="SalePrice">@item.Price</span> </small> </div>
                                             </td>
                                             <td class="text-right d-none d-md-block">
-                                                <a href="/Home/DeleteCartItem?Id=@item.ID.ToString().Trim()" class="btn btn-light">
+                                                <a href="" onclick="cart.DeleteCart(@item.ID)" class="btn btn-light">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a>
                                             </td>

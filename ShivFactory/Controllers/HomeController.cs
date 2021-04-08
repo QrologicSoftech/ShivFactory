@@ -406,7 +406,7 @@ namespace ShivFactory.Controllers
                     ResultFlag = IsAddToCart,
                     Data = model,
                     Message = IsAddToCart == true ? message :" Unable to Add Item"
-                }, JsonRequestBehavior.AllowGet);;
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -431,20 +431,28 @@ namespace ShivFactory.Controllers
         {
             try
             {
+                bool retval = false; 
                 if (Id > 0)
                 {
                     RepoCart cart = new RepoCart();
-                    var retval = cart.DeleteCartItemById((int)Id);
-                    TempData["SuccessMessage"] = "Item removed successfully from Cart";
-                    return RedirectToAction("Cart", "Home");
+                     retval = cart.DeleteCartItemById((int)Id);
+                    
                 }
+
+                return Json(new ResultModel
+                {
+                    ResultFlag = retval,
+                    Message = retval == true ? "Item removed successfully" : " Unable to remove item"
+                }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-                TempData["ErrorMessage"] = e.Message.ToString();
-
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Message ="Unable to remove item"
+                }, JsonRequestBehavior.AllowGet);
             }
-            return RedirectToAction("Cart", "Home");
 
         }
 

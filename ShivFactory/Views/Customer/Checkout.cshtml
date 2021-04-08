@@ -80,7 +80,7 @@
     </fieldset>-->
                     <!-- Form Step 1 -->
                     <!-- Form Step 2 -->
-                    @if (Model.DeliveryAddress != null) { 
+                    @if (Model.DeliveryAddress != null && Model.DeliveryAddress.Count()==1) { 
                 <fieldset>
                     <!-- Progress Bar -->
                     <div class="progress">
@@ -92,93 +92,95 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>First Name: <span>*</span></label>
-                                <input type="text" name="First Name" placeholder="First Name" class="form-control required">
+                                <input type="text" name="First Name" placeholder="First Name" value="@Model.DeliveryAddress.First().UserName" class="form-control required">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Phone: <span>*</span></label>
-                                <input type="text" name="Phone" placeholder="Phone" class="form-control required">
+                                <input type="text" name="Phone" placeholder="Phone" value="@Model.DeliveryAddress.First().Phone" class="form-control required">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Zip Code: <span>*</span></label>
-                                <input type="text" name="Zip Code" placeholder="Zip Code" class="form-control required">
+                                <input type="text" name="Zip Code" value="@Model.DeliveryAddress.First().Pincode" placeholder="Zip Code" class="form-control required">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Locality: <span>*</span></label>
-                                <input type="text" name="Locality" placeholder="Locality" class="form-control required">
+                                <input type="text" name="Locality" placeholder="Locality" value="@Model.DeliveryAddress.First().Address1" class="form-control required">
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label>Address: <span>*</span></label>
-                                <input type="text" name="Locality" placeholder="Address" class="form-control required">
+                                <input type="text" name="Locality" placeholder="Address" value="@Model.DeliveryAddress.First().Address2" class="form-control required">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>State: <span>*</span></label>
-                                <select class=" required form-control  ">
-                                    <option data-subtext=""> State</option>
-                                    <option data-subtext="">Delhi </option>
-                                    <option data-subtext="">Bangalore </option>
-                                    <option data-subtext="">Hyderabad </option>
-                                    <option data-subtext="">Chennai </option>
-                                    <option data-subtext="">Kolkata </option>
-                                    <option data-subtext="">Surat </option>
-                                    <option data-subtext="">Pune </option>
-                                    <option data-subtext="">Jaipur </option>
-                                    <option data-subtext="">Lucknow </option>
-                                    <option data-subtext="">Kanpur </option>
-                                    <option data-subtext="">Nagpur </option>
-                                    <option data-subtext="">Indore </option>
-                                    <option data-subtext="">Thane </option>
-                                    <option data-subtext="">Bhopal </option>
-                                    <option data-subtext="">Visakhapatnam </option>
-                                    <option data-subtext="">Pimpri & Chinchwad </option>
-                                    <option data-subtext="">Patna</option>
-                                </select>
+                                <input type="text" name="Locality" placeholder="State" value="@Model.DeliveryAddress.First().State" class="form-control required">
+                                @*<select class=" required form-control  ">
+            <option data-subtext=""> State</option>
+            <option data-subtext="">Delhi </option>
+            <option data-subtext="">Bangalore </option>
+            <option data-subtext="">Hyderabad </option>
+            <option data-subtext="">Chennai </option>
+            <option data-subtext="">Kolkata </option>
+            <option data-subtext="">Surat </option>
+            <option data-subtext="">Pune </option>
+            <option data-subtext="">Jaipur </option>
+            <option data-subtext="">Lucknow </option>
+            <option data-subtext="">Kanpur </option>
+            <option data-subtext="">Nagpur </option>
+            <option data-subtext="">Indore </option>
+            <option data-subtext="">Thane </option>
+            <option data-subtext="">Bhopal </option>
+            <option data-subtext="">Visakhapatnam </option>
+            <option data-subtext="">Pimpri & Chinchwad </option>
+            <option data-subtext="">Patna</option>
+        </select>*@
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Select City: <span>*</span></label>
+                                
                                 <select class="  form-control required">
-                                    <option data-subtext=""> Select City</option>
-                                    <option data-subtext="">Delhi </option>
-                                    <option data-subtext="">Bangalore </option>
-                                    <option data-subtext="">Hyderabad </option>
-                                    <option data-subtext="">Chennai </option>
-                                    <option data-subtext="">Kolkata </option>
-                                    <option data-subtext="">Surat </option>
-                                    <option data-subtext="">Pune </option>
-                                    <option data-subtext="">Jaipur </option>
-                                    <option data-subtext="">Lucknow </option>
-                                    <option data-subtext="">Kanpur </option>
-                                    <option data-subtext="">Nagpur </option>
-                                    <option data-subtext="">Indore </option>
-                                    <option data-subtext="">Thane </option>
-                                    <option data-subtext="">Bhopal </option>
-                                    <option data-subtext="">Visakhapatnam </option>
-                                    <option data-subtext="">Pimpri & Chinchwad </option>
-                                    <option data-subtext="">Patna</option>
-                                </select>
+            <option data-subtext=""> Select City</option>
+            <option data-subtext="">Delhi </option>
+            <option data-subtext="">Bangalore </option>
+            <option data-subtext="">Hyderabad </option>
+            <option data-subtext="">Chennai </option>
+            <option data-subtext="">Kolkata </option>
+            <option data-subtext="">Surat </option>
+            <option data-subtext="">Pune </option>
+            <option data-subtext="">Jaipur </option>
+            <option data-subtext="">Lucknow </option>
+            <option data-subtext="">Kanpur </option>
+            <option data-subtext="">Nagpur </option>
+            <option data-subtext="">Indore </option>
+            <option data-subtext="">Thane </option>
+            <option data-subtext="">Bhopal </option>
+            <option data-subtext="">Visakhapatnam </option>
+            <option data-subtext="">Pimpri & Chinchwad </option>
+            <option data-subtext="">Patna</option>
+        </select>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Landmark: <span>*</span></label>
-                                <input type="text" name="Landmark" placeholder="Landmark" class="form-control required">
+                                <input type="text" name="Landmark" value="@Model.DeliveryAddress.First().Address1" placeholder="Landmark" class="form-control required">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Alternate Mobile: <span>*</span></label>
-                                <input type="text" name="Alternate Mobile" placeholder="Alternate Mobile" class="form-control required">
+                                <input type="text" name="Alternate Mobile" value="@Model.DeliveryAddress.First().Phone" placeholder="Alternate Mobile" class="form-control required">
                             </div>
                         </div>
                         <div class="col-sm-12">
@@ -203,6 +205,8 @@
                     }
                     <!-- Form Step 2 -->
                     <!-- Form Step 3 -->
+                    @if (@Model.CartModel != null && @Model.CartModel.Count() > 0)
+                    {
                     <fieldset>
                         <!-- Progress Bar -->
                         <div class="progress">
@@ -221,32 +225,35 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach (var item in @Model.CartModel.First().CartItems)
+                                {
                                 <tr>
                                     <td data-th="Product">
                                         <div class="row">
-                                            <div class="col-sm-4"><img src="http://placehold.it/100x100" alt="..." class="img-responsive" /></div>
+                                            <div class="col-sm-4"><img src="@item.ImagePath" alt="..." class="img-responsive" /></div>
                                             <div class="col-sm-8">
-                                                <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
+                                                <p> @item.ProductName</p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td data-th="Price">$150.00</td>
+                                    <td data-th="Price">@item.Price</td>
                                     <td data-th="Quantity">
-                                        <input type="number" class="form-control text-center" value="1" style="padding:5px; height:35px">
+                                        <input type="number" disabled="true" class="form-control text-center" value="@item.Quantity" style="padding:5px; height:35px">
                                     </td>
-                                    <td data-th="Subtotal" class="text-center">150.00</td>
+                                    <td data-th="Subtotal" class="text-center">@item.NetAmt</td>
                                     <td class="actions" data-th="">
 
                                         <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
                                     </td>
                                 </tr>
+                                }
                             </tbody>
                             <tfoot>
 
                                 <tr>
 
 
-                                    <td class="text-right" colspan="5"><strong><h4>Total $150.00</h4></strong></td>
+                                    <td class="text-right" colspan="5"><strong><h4>Total @Model.CartModel.First().CartValue</h4></strong></td>
 
                                 </tr>
                             </tfoot>
@@ -256,6 +263,7 @@
                             <button type="button" class="btn btn-next">Next</button>
                         </div>
                     </fieldset>
+                    }
                     <!-- Form Step 3 -->
                     <!-- Form Step 4 -->
                     <fieldset>

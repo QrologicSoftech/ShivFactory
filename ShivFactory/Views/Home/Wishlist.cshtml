@@ -3,7 +3,7 @@
     ViewBag.Title = "Wishlist";
     Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
 }
-
+<script src="~/Js/Cart.js"></script>
 <section class="profile-1">
     <div class="container">
         <div class="personal">
@@ -75,7 +75,7 @@
                             <div class="col col-2-12 LaCDhz">
                                 <div class="Bv11UC _2GI1Le Bh0FCW">
                                     <span class="">
-                                        <a href="/Home/DeleteCartItem?id=@item.ID" alt="Delete from Wishlist">
+                                        <a href="" onclick="cart.DeleteCart(@item.ID)" alt="Delete from Wishlist">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
                                     </span>

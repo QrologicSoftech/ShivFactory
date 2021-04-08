@@ -21,7 +21,6 @@
             "Quantity": $(element).val()
         }
         ajax.doPostAjax(`/Home/UpdateCart`, data, function (result) {
-            common.ShowMessage(result);
             if (result.ResultFlag == true) {
                 cart.RenderCart();
             }
@@ -32,6 +31,17 @@
         ajax.doGetAjax(`/Home/ShowCart`, function (result) {
             common.HideLoader('#cart_partial');
             $('#cart_partial').html(result);
+        });
+    },
+
+    DeleteCart: function (id) {
+        debugger;
+        var data = {
+            "id": id,
+        }
+         ajax.doPostAjax(`/Home/DeleteCartItem`, data, function (result) {
+            if (result.ResultFlag == true) {
+            }
         });
     }
 };

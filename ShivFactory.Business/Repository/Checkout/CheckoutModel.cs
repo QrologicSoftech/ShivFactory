@@ -9,12 +9,7 @@ namespace ShivFactory.Business.Repository
     public class CheckoutModel
     {
 
-        //#region order
-        //public int OrderId { get; set; }
-        //#endregion
-
-        //#region payment
-        //#endregion
+        
         public List<DeliveryAddress> DeliveryAddress { get; set; }
 
         public List<CartModel> CartModel { get; set; }

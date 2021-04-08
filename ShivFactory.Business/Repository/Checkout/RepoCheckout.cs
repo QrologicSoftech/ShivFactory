@@ -29,10 +29,13 @@ namespace ShivFactory.Business.Repository
                 Country = row.Country,
                 State = row.State,
                 Pincode = row.Pincode,
+                UserName = row.UserName,
+                userDetailId = row.userDetailId??0
 
-            }).FirstOrDefault(); ;
+            }).FirstOrDefault();
             if (address != null)
             {
+                checkOutModel.DeliveryAddress = new List<DeliveryAddress>();
                 checkOutModel.DeliveryAddress.Add(address);
             }
 
@@ -40,6 +43,7 @@ namespace ShivFactory.Business.Repository
             var cartmodel = cart.GetCart();
             if (cartmodel != null)
             {
+                checkOutModel.CartModel = new List<CartModel>(); 
                 checkOutModel.CartModel.Add(cartmodel);
             }
             return checkOutModel;
