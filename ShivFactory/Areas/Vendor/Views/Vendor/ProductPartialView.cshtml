@@ -23,10 +23,12 @@
 <script>
     $(document).ready(function () {
         var list = [
-            //{ Name: 'EditColor', Value: 'Vendor.GetProductColors(this);', Header: "Color" },
-            { Name: 'EditProduct', Value: 'Vendor.EditProduct(this);', Header: "Edit" },
+            { Name: 'BasicInfo', Value: 'Admin.GetProductBasicInfo(this);', Header: "BasicInfo" },
+            { Name: 'Details', Value: 'Admin.GetProductDetails(this);', Header: "Details" },
+            //{ Name: 'EditProduct', Value: 'Vendor.EditProduct(this);', Header: "Edit" },
+            { Name: 'Varients', Value: 'Vendor.GetProductVarients(this);', Header: "Varients" },
             { Name: 'Delete', Value: 'Vendor.DeleteProduct(this);', Header: "Delete" },
-            
+
         ];
          var stringArray = @Html.Raw(Json.Encode(columnArray));
 

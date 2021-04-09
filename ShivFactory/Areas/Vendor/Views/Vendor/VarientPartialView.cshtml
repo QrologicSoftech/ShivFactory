@@ -1,0 +1,75 @@
+﻿@model List<ShivFactory.Business.Repository.Admin.ProductVarientResponse>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Varients";
+}
+<div class="container-fluid page-body-wrapper">
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">@ViewBag.Title</h4>
+                            <div class="row grid-margin">
+                                <div class="col-12">
+                                    <div class="card-description">
+                                        @using (Html.BeginForm("ProductVarient", "Vendor", new { Area = "Vendor",id=ViewBag.ProductId }, FormMethod.Get))
+                                        {
+                                            <p class="card-description" style=" text-align: end;">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Add Varient
+                                                </button>
+                                            </p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row overflow-auto">
+                                <div class="col-12">
+                                    <table class="table datatable" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr class="bg-primary text-white">
+                                                <th>Sr No.</th>
+                                                <th>Weight Name</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @{int index = 1;
+                                                foreach (var item in Model)
+                                                {
+                                                    <tr id="@item.Id">
+                                                        <td>@index</td>
+                                                        <td>@item.ProductQty</td>
+                                                        <td>
+                                                            <button class="btn btn-light">
+                                                                <i class="mdi mdi-database-edit text-primary"></i>
+                                                                @Html.ActionLink("Edit", "AddWeight", new { Area = "Admin", id = item.Id })
+                                                            </button>
+                                                            <button class="btn btn-light" onclick="Admin.DeleteWeight(@item.Id);">
+                                                                <i class="mdi mdi-close text-danger">Delete</i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    index++;
+                                                }
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('.datatable').DataTable();
+    });
+</script>

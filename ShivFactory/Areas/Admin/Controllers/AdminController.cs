@@ -1140,60 +1140,6 @@ namespace ShivFactory.Areas.Admin.Controllers
 
         #region Product Details
 
-        #region ProductImage
-        [HttpPost]
-        public ActionResult ProductImage(int productId)
-        {
-            try
-            {
-                RepoProductDetails productDetails = new RepoProductDetails();
-                var images = productDetails.GetProductImagesByProductId(productId);
-                return View(images);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
-            }
-            return View(new List<string>());
-        }
-        #endregion
-
-        #region Product BasicInfo
-        [HttpPost]
-        public ActionResult ProductBasicInfo(int productId)
-        {
-            try
-            {
-                RepoProductDetails productDetail = new RepoProductDetails();
-                var basicInfo = productDetail.GetProductBasicInfoByProductId(productId);
-                return View(basicInfo);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
-            }
-            return View();
-        }
-        #endregion
-
-        #region Product Details
-        [HttpPost]
-        public ActionResult ProductDetails(int productId)
-        {
-            try
-            {
-                RepoProductDetails productDetail = new RepoProductDetails();
-                var detailInfo = productDetail.GetProductDetailByProductId(productId);
-                return View(detailInfo);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
-            }
-            return View();
-        }
-        #endregion
-
         #region Product Varients
         [HttpPost]
         public ActionResult ProductVarients(int productId)
@@ -1239,7 +1185,7 @@ namespace ShivFactory.Areas.Admin.Controllers
         }
         #endregion
 
-        #region  Approved Product
+        #region  Reject Product
         public ActionResult RejectProduct(int productId, string rejectRegion)
         {
             try
