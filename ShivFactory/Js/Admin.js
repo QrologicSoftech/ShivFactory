@@ -177,10 +177,10 @@ var Admin = {
 
     BindProductTable: function (divId, url, ColumnArray, rowId, actionArray) {
 
-        data ={
+        data = {
             "AdminStatus": $('select#productStatus option:selected').val()
         }
-       
+
         let tr = '';
         ColumnArray.forEach((item) => {
             if (item == 'Id') { return; }
@@ -210,14 +210,15 @@ var Admin = {
         })
     },
 
-    GetProductImages: function (element) {
+    GetProductImages: function (element, isvarient) {
         let productId = $(element).closest('tr').attr('Id');
         if (productId == undefined || productId == null) { return false; }
         common.ShowLoader();
         data = {
-            "productId": productId
+            "productId": isvarient == false ? productId : 0,
+            "varientId": isvarient == true ? productId : 0,
         }
-        ajax.doPostAjax(`/${adminArea}/${adminController}/ProductImage`, data, function (result) {
+        ajax.doPostAjax(`/${manageController}/ProductImage`, data, function (result) {
             if (result) {
                 $('#Modal').children('div').children('div').html(result);
                 $('#Modal').show();
@@ -233,7 +234,7 @@ var Admin = {
         data = {
             "productId": productId
         }
-        ajax.doPostAjax(`/${adminArea}/${adminController}/ProductBasicInfo`, data, function (result) {
+        ajax.doPostAjax(`/${manageController}/ProductBasicInfo`, data, function (result) {
             if (result) {
                 $('#Modal').children('div').children('div').html(result);
                 $('#Modal').show();
@@ -248,7 +249,7 @@ var Admin = {
         data = {
             "productId": productId
         }
-        ajax.doPostAjax(`/${adminArea}/${adminController}/ProductDetails`, data, function (result) {
+        ajax.doPostAjax(`/${manageController}/ProductDetails`, data, function (result) {
             if (result) {
                 $('#Modal').children('div').children('div').html(result);
                 $('#Modal').show();
@@ -320,14 +321,13 @@ var Admin = {
         }
     },
     RejectProduct: function () {
-       
+
         let rejectRegion = $("#txtProductReject").val();
         if (rejectRegion == undefined || rejectRegion == "" || rejectRegion == null) {
             toastr.error("Please enter reject region.");
             return false;
         }
-        if (rejectRegion.length > 200)
-        {
+        if (rejectRegion.length > 200) {
             toastr.error("The field value characters are less than or equal to 200 characters.");
             return false;
         }

@@ -30,7 +30,7 @@ namespace ShivFactory.Business.Repository.Admin
             parameters.Add(new SqlParameter("@SearchText", model.searchText));
             parameters.Add(new SqlParameter("@Skip", model.Skip));
             parameters.Add(new SqlParameter("@Take", model.PageSize));
-            parameters.Add(new SqlParameter("@OrderColumn", model.SortColumn)); 
+            parameters.Add(new SqlParameter("@OrderColumn", model.SortColumn));
             parameters.Add(new SqlParameter("@OrderDir", model.SortDirection));
             parameters.Add(new SqlParameter("@VendorId", 0));
             parameters.Add(new SqlParameter("@ApprovedByAdmin", model.ApprovedStatus));
@@ -61,19 +61,32 @@ namespace ShivFactory.Business.Repository.Admin
         #endregion
 
         #region Get Product Images By ProductId
-        public List<string> GetProductImagesByProductId(int ProductId)
+        public List<string> GetProductImagesByProductId(int ProductId, int varientId)
         {
             var images = new List<string>();
             RepoCommon repoCommon = new RepoCommon();
             var Product = db.Products.Where(x => x.ProductId == ProductId).AsNoTracking().FirstOrDefault();
             if (Product != null)
             {
-                images.Add(repoCommon.checkfile(Product.MainImage));
-                images.Add(repoCommon.checkfile(Product.Image1));
-                images.Add(repoCommon.checkfile(Product.Image2));
-                images.Add(repoCommon.checkfile(Product.Image3));
-                images.Add(repoCommon.checkfile(Product.Image4));
-                images.Add(repoCommon.checkfile(Product.Image5));
+                images.Add(Product.MainImage.ImagePath());
+                images.Add(Product.Image1.ImagePath());
+                images.Add(Product.Image2.ImagePath());
+                images.Add(Product.Image3.ImagePath());
+                images.Add(Product.Image4.ImagePath());
+                images.Add(Product.Image5.ImagePath());
+            }
+            else
+            {
+                var varient = db.ProductVarients.Where(x => x.ProductVarientId == varientId).AsNoTracking().FirstOrDefault();
+                if (varient != null)
+                {
+                    images.Add(varient.MainImage.ImagePath());
+                    images.Add(varient.Image1.ImagePath());
+                    images.Add(varient.Image2.ImagePath());
+                    images.Add(varient.Image3.ImagePath());
+                    images.Add(varient.Image4.ImagePath());
+                    images.Add(varient.Image5.ImagePath());
+                }
             }
             return images;
 
@@ -128,7 +141,8 @@ namespace ShivFactory.Business.Repository.Admin
         public List<ProductVarientResponse> GetProductVarientsByProductId(int ProductId)
         {
             var productDimension = db.ProductVarients.Where(x => x.ProductId == ProductId).Select(a => new ProductVarientResponse()
-            {
+            {                
+                Id=a.ProductVarientId,
                 ProductQty = a.Stock ?? 0,
                 SalePrice = a.SalePrice ?? 0,
                 ListPrice = a.ListPrice ?? 0,

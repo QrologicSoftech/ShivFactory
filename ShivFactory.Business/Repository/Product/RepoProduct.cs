@@ -49,7 +49,7 @@ namespace ShivFactory.Business.Repository
                 Product.Image5 = model.Image5;
                 Product.Image6 = model.Image6;
 
-              //  Product.BrandId = model.BrandId;
+                //  Product.BrandId = model.BrandId;
                 Product.CategoryId = model.CategoryId;
                 Product.SubCategoryId = model.SubCategoryId;
                 Product.MiniCategoryId = model.MiniCategoryId;
@@ -118,7 +118,7 @@ namespace ShivFactory.Business.Repository
                 SubCategoryId = a.SubCategoryId,
                 MiniCategoryId = a.MiniCategoryId,
                 IsActive = a.IsActive ?? false,
-               // ProductColors = a.ProductColors,
+                // ProductColors = a.ProductColors,
                 IsReturnable = a.IsReturnable ?? false,
                 ReturnDays = a.ReturnDays,
                 ProductCode = a.productCode
@@ -160,7 +160,7 @@ namespace ShivFactory.Business.Repository
             parameters.Add(new SqlParameter("@OrderDir", model.SortDirection));
             parameters.Add(new SqlParameter("@VendorId", vendorId));
 
-            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString,CommandType.StoredProcedure, "ManageProduct", parameters.ToArray());
+            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, CommandType.StoredProcedure, "ManageProduct", parameters.ToArray());
             if (ds.Tables != null && ds.Tables[0].Rows.Count > 0)
             {
                 totalRecords = ds.Tables[0].Rows[0]["TotalRow"] != DBNull.Value ? Convert.ToInt32(ds.Tables[0].Rows[0]["TotalRow"].ToString()) : 0;
@@ -171,18 +171,7 @@ namespace ShivFactory.Business.Repository
                     {
                         SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
                         Id = row["ProductId"] != DBNull.Value ? Convert.ToInt32(row["ProductId"]) : 0,
-                        ImagePath = row["MainImage"].ToString().ImagePath(),
                         ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
-                        SalePrice = row["SalePrice"] != DBNull.Value ? Convert.ToDecimal(row["SalePrice"]) : 0,
-                        ListPrice = row["ListPrice"] != DBNull.Value ? Convert.ToDecimal(row["ListPrice"]) : 0,
-                        LocalShipingCharge = row["LocalShipingCharge"] != DBNull.Value ? Convert.ToDecimal(row["LocalShipingCharge"]) : 0,
-                        ZonalShipingCharge = row["ZonalShipingCharge"] != DBNull.Value ? Convert.ToDecimal(row["ZonalShipingCharge"]) : 0,
-                        NationalShippingCharge = row["NationalShippingCharge"] != DBNull.Value ? Convert.ToDecimal(row["NationalShippingCharge"]) : 0,
-                        StockCount = row["StockCount"] != DBNull.Value ? Convert.ToInt32(row["StockCount"]) : 0,
-                        EstimateDeliveryTime = row["EstimateDeliveryTime"] != DBNull.Value ? row["EstimateDeliveryTime"].ToString() : "",
-                        ReturnDays = row["ReturnDays"] != DBNull.Value ? Convert.ToInt32(row["ReturnDays"]) : 0,
-                        CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
-                        SubCategoryName = row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
                         IsActive = row["IsActive"] != DBNull.Value ? Convert.ToBoolean(row["IsActive"]) : false,
                         AddDate = row["AddDate"] != DBNull.Value ? Convert.ToDateTime(row["AddDate"]).ToString("dd/MM/yyyy") : "",
                         ApprovedByAdmin = row["ApprovedByAdmin"] != DBNull.Value ? Convert.ToBoolean(row["ApprovedByAdmin"]) : false,
@@ -246,8 +235,6 @@ namespace ShivFactory.Business.Repository
         }
 
         #endregion
-
-
     }
 }
 

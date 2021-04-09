@@ -10,6 +10,8 @@ using ShivFactory.Models;
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Repository;
 using DataLibrary.DL;
+using ShivFactory.Business.Repository.Admin;
+using System.Collections.Generic;
 
 namespace ShivFactory.Controllers
 {
@@ -431,6 +433,62 @@ namespace ShivFactory.Controllers
 
         #endregion
 
-        
+        #region Product Details
+
+        #region ProductImage
+        [HttpPost]
+        public ActionResult ProductImage(int productId, int varientId)
+        {
+            try
+            {
+                RepoProductDetails productDetails = new RepoProductDetails();
+                var images = productDetails.GetProductImagesByProductId(productId, varientId);
+                return View(images);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+            return View(new List<string>());
+        }
+        #endregion
+
+        #region Product BasicInfo
+        [HttpPost]
+        public ActionResult ProductBasicInfo(int productId)
+        {
+            try
+            {
+                RepoProductDetails productDetail = new RepoProductDetails();
+                var basicInfo = productDetail.GetProductBasicInfoByProductId(productId);
+                return View(basicInfo);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+            return View();
+        }
+        #endregion
+
+        #region Product Details
+        [HttpPost]
+        public ActionResult ProductDetails(int productId)
+        {
+            try
+            {
+                RepoProductDetails productDetail = new RepoProductDetails();
+                var detailInfo = productDetail.GetProductDetailByProductId(productId);
+                return View(detailInfo);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
+            return View();
+        }
+        #endregion
+
+        #endregion
     }
 }

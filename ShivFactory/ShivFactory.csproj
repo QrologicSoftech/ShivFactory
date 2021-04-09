@@ -200,7 +200,7 @@
     <Content Include="App_Data\DefaultConnection_log.ldf">
       <DependentUpon>DefaultConnection.mdf</DependentUpon>
     </Content>
-    <Content Include="Areas\Admin\Views\Admin\ProductDetails.cshtml" />
+    <Content Include="Views\Manage\ProductDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\UnApprovedProductPartialView.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\AddProduct.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\ProductColors.cshtml" />
@@ -486,8 +486,8 @@
     <Content Include="Areas\Admin\Views\Admin\AdminNavPartialView.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Products.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\VendorNavPartialView.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\ProductImage.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\ProductBasicInfo.cshtml" />
+    <Content Include="Views\Manage\ProductImage.cshtml" />
+    <Content Include="Views\Manage\ProductBasicInfo.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ProductVarients.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Vendor.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\VendorPartialView.cshtml" />
@@ -517,6 +517,7 @@
     <Content Include="Areas\Vendor\Views\Vendor\VendorShippingArea.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\AddShippingArea.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\VendorShippingAreaPartialView.cshtml" />
+    <Content Include="Areas\Vendor\Views\Vendor\VarientPartialView.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

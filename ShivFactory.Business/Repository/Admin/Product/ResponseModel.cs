@@ -59,6 +59,7 @@ namespace ShivFactory.Business.Repository.Admin
     #region ProductVarientResponse
     public class ProductVarientResponse
     {
+        public int Id { get; set; }
         public int ProductQty { get; set; }
         public decimal SalePrice { get; set; }
         public decimal ListPrice { get; set; }

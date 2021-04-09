@@ -12,6 +12,7 @@ using ShivFactory.Business.Model.Common;
 using DataLibrary.DL;
 using System.Web.Script.Serialization;
 using static ShivFactory.FilterConfig;
+using ShivFactory.Business.Repository.Admin;
 
 namespace ShivFactory.Areas.Vendor.Controllers
 {
@@ -92,7 +93,16 @@ namespace ShivFactory.Areas.Vendor.Controllers
                 return View(new List<DataLibrary.DL.Product>());
             }
         }
-     
+
+        #region product VarientPartialView
+        public ActionResult VarientPartialView(int id)
+        {
+            ViewBag.ProductId = id;
+            RepoProductDetails productDetail = new RepoProductDetails();
+            var varients = productDetail.GetProductVarientsByProductId(id);
+            return View(varients);
+        }
+        #endregion
         public ActionResult DeleteProduct(int id)
         {
 
@@ -119,47 +129,49 @@ namespace ShivFactory.Areas.Vendor.Controllers
             }
         }
 
-        public ActionResult ProductColors(int productId)
-        {
-            try
-            {
-                ViewBag.ProductId = productId;
-                RepoProduct repoProduct = new RepoProduct();
-                ViewBag.ProductColors = repoProduct.GetProductColorByProductId(productId);
-                RepoColor repoColor = new RepoColor();
-                var colors = repoColor.GetAllColor();
-                return View(colors);
-            }
-            catch (Exception ex)
-            {
-                TempData["ErrorMessage"] = ex.Message;
-                return View(new List<ColorResponse>());
-            }
-        }
-        #region  Update Product Colors
-        public ActionResult UpdateProductColor(int productId, string colors)
-        {
-            try
-            {
-                RepoProduct repotProduct = new RepoProduct();
-                var isApproved = repotProduct.UpdateProductColorByProductId(productId, colors);
-                return Json(new ResultModel
-                {
-                    ResultFlag = isApproved,
-                    Data = null,
-                    Message = isApproved ? "Product colors successfully updated!!" : "Failled to update product colors."
-                }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(new ResultModel
-                {
-                    ResultFlag = false,
-                    Data = null,
-                    Message = ex.Message
-                }, JsonRequestBehavior.AllowGet);
-            }
-        }
+        #region Product Colors
+        //public ActionResult ProductColors(int productId)
+        //{
+        //    try
+        //    {
+        //        ViewBag.ProductId = productId;
+        //        RepoProduct repoProduct = new RepoProduct();
+        //        ViewBag.ProductColors = repoProduct.GetProductColorByProductId(productId);
+        //        RepoColor repoColor = new RepoColor();
+        //        var colors = repoColor.GetAllColor();
+        //        return View(colors);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TempData["ErrorMessage"] = ex.Message;
+        //        return View(new List<ColorResponse>());
+        //    }
+        //}
+        //#region  Update Product Colors
+        //public ActionResult UpdateProductColor(int productId, string colors)
+        //{
+        //    try
+        //    {
+        //        RepoProduct repotProduct = new RepoProduct();
+        //        var isApproved = repotProduct.UpdateProductColorByProductId(productId, colors);
+        //        return Json(new ResultModel
+        //        {
+        //            ResultFlag = isApproved,
+        //            Data = null,
+        //            Message = isApproved ? "Product colors successfully updated!!" : "Failled to update product colors."
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new ResultModel
+        //        {
+        //            ResultFlag = false,
+        //            Data = null,
+        //            Message = ex.Message
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+        //#endregion
         #endregion
 
         public ActionResult GetSubcategoryByCategoryId(string categoryId)
