@@ -9,6 +9,7 @@ var Vendor = {
             $('.partialView').html(result);
         })
     },
+    ///  Product Functions  start
 
     DeleteProduct: function (element) {
 
@@ -38,16 +39,64 @@ var Vendor = {
         if (productId == undefined || productId == null) { return false; }
         common.ShowLoader();
         location.replace(`/Vendor/Vendor/VarientPartialView/${productId}`);
-        //data = {
-        //    "productId": productId
-        //}
-        //ajax.doPostAjax(`/${vendorArea}/${vendorController}/VarientPartialView?productId=${productId}`, data, function (result) {
-        //    if (result) {
-        //        $('#Modal').children('div').children('div').html(result);
-        //        $('#Modal').show();
-        //    }
-        //    common.HideLoader();
-        //});
+    },
+    ShowVarientQty: function (element) {
+        debugger;
+        let qty = $(element).html();
+
+        if (confirm("Are you sure want to reject this product?")) {
+            let varientId = $(element).closest('tr').attr('Id');
+            let qty = $(element).html();
+            if (varientId == undefined || varientId == null) { return false; }
+            common.ShowLoader();
+            let html = `<div class="container">
+    <div class="container-fluid page-body-wrapper">
+        <div class="main-panel">
+            <div class="content-wrapper">
+<input type="hidden" id="varient-Id" value="${varientId}"/>
+                <div class="row">
+                    <div class="col-md-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Varient Quantity</h4>
+                               <input type="number" value="${qty}" class="form-control col-md-12" id="txtvar-qty" minValue="0" /> 
+                              </div>
+                             <button type="button" class="btn btn-block btn-gradient-primary" onclick="Vendor.UpdateVarientQty();"> Update</button>
+                            </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+            $('#Modal').children('div').children('div').html(html);
+            $('#Modal').show();
+            common.HideLoader();
+        }
+    },
+    UpdateVarientQty: function () {
+
+        let qty = $("#txtvar-qty").val();
+        if (qty == undefined || qty == "" || qty == null || qty <0) {
+            toastr.error("Please select qty min value is 0 !");
+            return false;
+        }
+
+        let varientId = $("#varient-Id").val();
+        if (varientId == undefined || varientId == null) { return false; }
+        common.ShowLoader();
+        data = {
+            "varientId": varientId,
+            "qty": qty
+        }
+        ajax.doPostAjax(`/${vendorArea}/${vendorController}/UpdateVarientQty`, data, function (result) {
+            if (result.ResultFlag) {
+                commonFunction.HideModel('#Modal');
+                location.reload();
+            }
+            common.ShowMessage(result);
+            common.HideLoader();
+        });
     },
     UpdateProductColors: function () {
        
@@ -71,7 +120,12 @@ var Vendor = {
             common.ShowMessage(result);
             common.HideLoader();
         });
-    }, DeletePincode: function (element) {
+    }, 
+
+
+    ///  Product Functions  End
+
+    DeletePincode: function (element) {
 
         if (confirm("Are you sure want to delete this pincode?")) {
             data = {
@@ -85,6 +139,7 @@ var Vendor = {
             });
         }
     },
+
     EditPincode: function (element) {
 
         if (confirm("Are you sure want to edit this pincode?")) {
