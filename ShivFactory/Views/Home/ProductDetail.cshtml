@@ -279,23 +279,30 @@ catch (Exception e)
                         }
 
 
-                        @*<div class="sizes">
-                                <span>Color</span>
+                        <div class="sizes">
+                            <span>Images</span>
                                 <ul class="menu-1" style="transform: translateY(0px);">
                                     @if (Model.varientList != null)
                                     {
-                                        foreach (var img in Model.varientList)
+                                        var k = 6;
+                                        for (var i = 0;i<Model.varientList.Count();i++)
+                                        //foreach (var img in Model.varientList)
                                         {
-                                            <li class="menu-sun demo-2" style="height: 68.5714px;">
-                                                <div class="sun color-text-2">
-                                                    <div class=""><img src="@img.ImagePath"></div>
+
+                                            var liclassname = "menu-sun demo-"+i;
+                                            var divclassname = "sun color-text-" + i;
+                                            //sun color-text - 6
+                                                                    <li class="@liclassname" style="height: 68.5714px;">
+                                                <div class="@divclassname">
+                                                    <div class="sunimg"><img src="@Model.varientList[i].ImagePath"></div>
                                                 </div>
                                             </li>
+                                            k = k++;
                                         }
                                     }
                                 </ul>
-                            </div>*@
-                        <div class="sizes">
+                            </div>
+                        @*<div class="sizes">
                             <span>Images</span>
                             <ul class="menu-1" style="transform: translateY(0px);">
                                 <li class="menu-sun demo" style="height: 68.5714px;">
@@ -324,7 +331,7 @@ catch (Exception e)
                                     </div>
                                 </li>
                             </ul>
-                        </div>
+                        </div>*@
 
                         <div class="deliver-day">
                             <h4>Description</h4>

@@ -153,7 +153,8 @@ var productVarient = {
                     if (product[0][j] == quantity || product[0][j] == salePrice || product[0][j] == listPrice) {
                         cell.html("<input type='number' class='form-control' value=" + product[i][j] + " />")
                     } else if (product[0][j] == image) {
-                        cell.html("<a href='#' onclick='productVarient.BindVarientImagePopup()'><i class = 'fa fa-eye'></i></a><a href = '#' onclick='productVarient.UploadVarientsImage()'><i class = 'fa fa-upload'></i></a><input id = 'Image1' name = 'Image1' type = 'hidden'><input id='Image2' name='Image2' type='hidden' ><input id='Image3' name='Image3' type='hidden' ><input id='Image4' name='Image4' type='hidden'><input id='Image5' name='Image5' type='hidden'><input id='Image6' name='Image6' type='hidden'>")
+                        cell.html("<button type='button' onclick='productVarient.BindVarientImagePopup()' class='btn btn-primary'>View</button>&nbsp<button onclick='productVarient.UploadVarientsImage()' type='button' class='btn btn-primary'>Upload</button>\
+        <input id = 'Image1' name = 'Image1' type = 'hidden' > <input id='Image2' name='Image2' type='hidden' ><input id='Image3' name='Image3' type='hidden' ><input id='Image4' name='Image4' type='hidden'><input id='Image5' name='Image5' type='hidden'><input id='Image6' name='Image6' type='hidden'>")
                     } else {
                         cell.html(product[i][j]);
                     }
@@ -188,7 +189,6 @@ var productVarient = {
                         obj["ListPrice"] = $tds.eq(2).val();
                     }
                     else {
-                        debugger;
                         var key = $(th).text(); 
                         if (key == "Image") {
                     obj["Image1"] = $("#Image1").val();
@@ -355,7 +355,6 @@ var productVarient = {
        
     },
     setVarientImageHidden: function () {
-        debugger;
         if ($('#imagePreview').attr('src') == "" || $('#imagePreview').attr('src') == undefined) {
             $('#imgspan').css('display', 'block');
                 return false;
@@ -375,7 +374,6 @@ var productVarient = {
             $('#imgspan5').css('display', 'block');
             return false;
         }  else {
-            debugger;
             $("#Image1").val($('#imagePreview').attr('src'));
             $("#Image2").val($('#imagePreview1').attr('src'));
             $("#Image3").val($('#imagePreview2').attr('src'));
