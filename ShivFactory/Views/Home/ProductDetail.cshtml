@@ -102,48 +102,27 @@ catch (Exception e)
                                     <img src="@imgPath4" data-imagezoom="true" class="images-1-4">
                                 </div>
 
+                                @if (Model.varientList != null)
+                                            {
+                                                var k = 5;
+                                                foreach (var img in Model.varientList)
+                                                {
+                                                    var classname = "images-1-"+k; 
+                                                    <div data-thumb="@img.ImagePath">
+                                                        <img src="@img.ImagePath" data-imagezoom="true" class="@classname">
+                                        </div>
+                                        k++;
+                                    }
+                                }
+                                        @*<div data-thumb="img/product-detail-img/product/2-1.jpeg">
+                                            <img src="img/product-detail-img/product/2-1.jpeg" data-imagezoom="true" class="images-1-9">
+                                        </div>
 
+                                        <div data-thumb="img/product-detail-img/product/2-1.jpeg">
+                                            <img src="img/product-detail-img/product/2-1.jpeg" data-imagezoom="true" class="images-1-10">
+                                        </div>*@
 
-                                <div data-thumb="@imgPath3">
-                                    <img src="@imgPath3" data-imagezoom="true" class="images-1-5">
-                                </div>
-
-
-
-
-
-                                <div data-thumb="@imgPath1">
-                                    <img src="@imgPath1" data-imagezoom="true" class="images-1-6">
-                                </div>
-
-
-
-
-
-                                <div data-thumb="@imgPath2">
-                                    <img src="@imgPath2" data-imagezoom="true" class="images-1-7">
-                                </div>
-
-
-                                <div data-thumb="img/product-detail-img/product/5-1.jpeg">
-                                    <img src="img/product-detail-img/product/5-1.jpeg" data-imagezoom="true" class="images-1-8">
-                                </div>
-
-
-
-
-                                <div data-thumb="img/product-detail-img/product/2-1.jpeg">
-                                    <img src="img/product-detail-img/product/2-1.jpeg" data-imagezoom="true" class="images-1-9">
-                                </div>
-
-
-
-
-                                <div data-thumb="img/product-detail-img/product/2-1.jpeg">
-                                    <img src="img/product-detail-img/product/2-1.jpeg" data-imagezoom="true" class="images-1-10">
-                                </div>
-
-                            </div>
+                                    </div>
                             <div class="like-icon">
                                 <a href="#" onclick="cart.AddToCart(true)"><i class="fa fa-heart" aria-hidden="true"></i></a>
                             </div>
@@ -267,9 +246,10 @@ catch (Exception e)
                                     <ul>
                                         @foreach (var varientval in item.VarientValue)
                                         {
-                                            var url = "/Home/ProductDetail?productId=" + @Model.ProductId + "&VarientName=" + @item.VarientName + "&VarientValue=" + @varientval;
+
+                                           var url = "/Home/ProductDetail?productId=" + @Model.ProductId + "&VarientName=" + @item.VarientName + "&VarientValue="+@varientval;
                                             <li>
-                                                <a href=@url>@varientval</a>
+                                                <a  href='@url'>@varientval</a>
                                             </li>
                                         }
                                     </ul>
@@ -284,20 +264,18 @@ catch (Exception e)
                                 <ul class="menu-1" style="transform: translateY(0px);">
                                     @if (Model.varientList != null)
                                     {
-                                        var k = 6;
-                                        for (var i = 0;i<Model.varientList.Count();i++)
-                                        //foreach (var img in Model.varientList)
+                                        int k = 6;
+                                        foreach (var img in Model.varientList)
                                         {
 
-                                            var liclassname = "menu-sun demo-"+i;
-                                            var divclassname = "sun color-text-" + i;
-                                            //sun color-text - 6
-                                                                    <li class="@liclassname" style="height: 68.5714px;">
+                                            var liclassname = "menu-sun demo-"+k;
+                                            var divclassname = "sun color-text-" + k;                                           
+                                            <li class="@liclassname" style="height: 68.5714px;">
                                                 <div class="@divclassname">
-                                                    <div class="sunimg"><img src="@Model.varientList[i].ImagePath"></div>
+                                                    <div class="sunimg"><img src="@img.ImagePath"></div>
                                                 </div>
                                             </li>
-                                            k = k++;
+                                            k = k+1;
                                         }
                                     }
                                 </ul>
@@ -335,9 +313,9 @@ catch (Exception e)
 
                         <div class="deliver-day">
                             <h4>Description</h4>
-                            <div class="Bvquestion">
+                            @*<div class="Bvquestion">
                                 <span class="question"></span>
-                            </div>
+                            </div>*@
                             <p>@Model.Description</p>
                             <span>View More</span>
                         </div>

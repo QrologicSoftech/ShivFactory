@@ -49,7 +49,6 @@
     },
 
     DeleteCart: function (id) {
-        debugger;
         var data = {
             "id": id,
         }
