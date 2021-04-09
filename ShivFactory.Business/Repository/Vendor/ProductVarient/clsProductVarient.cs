@@ -13,11 +13,12 @@ namespace ShivFactory.Business.Repository
         public decimal SalePrice { get; set; }
         public decimal ListPrice { get; set; }
         public int? SubCategoryId { get; set; }
-        public string image1 { get; set; }
-        public string image2 { get; set; }
-        public string image3 { get; set; }
-        public string image4 { get; set; }
-        public string image5 { get; set; }
+        public string Image1 { get; set; }
+        public string Image2 { get; set; }
+        public string Image3 { get; set; }
+        public string Image4 { get; set; }
+        public string Image5 { get; set; }
+        public string Image6 { get; set; }
         public int? varientId { get; set; }
         public string selectedVarient { get; set; }
         public string VarientName1 { get; set; }

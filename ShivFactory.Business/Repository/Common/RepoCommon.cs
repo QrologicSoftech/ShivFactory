@@ -119,33 +119,34 @@ namespace ShivFactory.Business.Repository
         #region Convert Base64 to image 
         public string Base64ToImage(string base64String)
         {
-            string[] strings = base64String.Split(',');
-            string extension;
-            switch (strings[0])
-            {//check image's extension
-                case "data:image/jpeg;base64":
-                    extension = "jpeg";
-                    break;
-                case "data:image/png;base64":
-                    extension = "png";
-                    break;
-                default://should write cases for more images types
-                    extension = "jpg";
-                    break;
+                string[] strings = base64String.Split(',');
+                string extension;
+                switch (strings[0])
+                {//check image's extension
+                    case "data:image/jpeg;base64":
+                        extension = "jpeg";
+                        break;
+                    case "data:image/png;base64":
+                        extension = "png";
+                        break;
+                    default://should write cases for more images types
+                        extension = "jpg";
+                        break;
+                }
+                byte[] imageBytes = Convert.FromBase64String(strings[1]);
+
+                MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+                ms.Write(imageBytes, 0, imageBytes.Length);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+
+                string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
+                string fullPath = HttpContext.Current.Server.MapPath(path);
+
+                string guid = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "." + extension;
+                image.Save(fullPath + guid);
+                return path + guid;
             }
-            byte[] imageBytes = Convert.FromBase64String(strings[1]);
-
-            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
-            ms.Write(imageBytes, 0, imageBytes.Length);
-            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
-
-            string path = WebConfigurationManager.AppSettings["mainPath"].ToString();
-            string fullPath = HttpContext.Current.Server.MapPath(path);
-
-            string guid = DateTime.Now.ToString("yyyyMMddHHmmssffff") + "." + extension;
-            image.Save(fullPath + guid);
-            return path + guid;
-        }
+            
         #endregion
 
 
@@ -186,4 +187,5 @@ namespace ShivFactory.Business.Repository
         }
     }
     #endregion
+
 }

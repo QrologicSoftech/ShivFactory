@@ -98,7 +98,7 @@ var productVarient = {
         QtyArr.push($('#ProductQty').val());
         spArr.push($('#SalePrice').val());
         lpArr.push($('#ListPrice').val());
-        imgArr.push($('#image1').val());
+        imgArr.push($('#Image1').val());
        
         QtyArr.copyWithin(0, product[0].length);
         spArr.copyWithin(0, product[0].length);
@@ -153,7 +153,7 @@ var productVarient = {
                     if (product[0][j] == quantity || product[0][j] == salePrice || product[0][j] == listPrice) {
                         cell.html("<input type='number' class='form-control' value=" + product[i][j] + " />")
                     } else if (product[0][j] == image) {
-                        cell.html("<a href='#' onclick='productVarient.BindVarientImagePopup()'><i class = 'fa fa-eye'></i></a><a href = '#' onclick='productVarient.UploadVarientsImage()'><i class = 'fa fa-upload'></i></a><input id = 'Image1' name = 'Image1' type = 'hidden'><input id='Image2' name='Image2' type='hidden' ><input id='Image3' name='Image3' type='hidden' ><input id='Image4' name='Image4' type='hidden'><input id='Image5' name='Image5' type='hidden'>")
+                        cell.html("<a href='#' onclick='productVarient.BindVarientImagePopup()'><i class = 'fa fa-eye'></i></a><a href = '#' onclick='productVarient.UploadVarientsImage()'><i class = 'fa fa-upload'></i></a><input id = 'Image1' name = 'Image1' type = 'hidden'><input id='Image2' name='Image2' type='hidden' ><input id='Image3' name='Image3' type='hidden' ><input id='Image4' name='Image4' type='hidden'><input id='Image5' name='Image5' type='hidden'><input id='Image6' name='Image6' type='hidden'>")
                     } else {
                         cell.html(product[i][j]);
                     }
@@ -165,8 +165,6 @@ var productVarient = {
             dvTable.html("");
         dvTable.append(table);
 
-
-       
     },
     TableToJSON: function (table) {
         table = $('#tblProduct')
@@ -190,14 +188,21 @@ var productVarient = {
                         obj["ListPrice"] = $tds.eq(2).val();
                     }
                     else {
-                        obj[`VarientName${index + 1}`] = $(th).text();
-                        obj[`VarientValue${index + 1}`] = $tdvarientValue.eq(index).html();
-                    }
+                        debugger;
+                        var key = $(th).text(); 
+                        if (key == "Image") {
                     obj["Image1"] = $("#Image1").val();
                     obj["Image2"] = $("#Image2").val();
                     obj["Image3"] = $("#Image3").val();
                     obj["Image4"] = $("#Image4").val();
                     obj["Image5"] = $("#Image5").val();
+                    obj["Image6"] = $("#Image6").val();
+                        } else {
+                            obj[`VarientName${index + 1}`] = $(th).text();
+                            obj[`VarientValue${index + 1}`] = $tdvarientValue.eq(index).html();
+                        } 
+                    }
+                  
                 });
                 jsonString.push(obj);
                 console.log(JSON.stringify(obj));
@@ -235,7 +240,7 @@ var productVarient = {
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
                                                     <input accept="image/*" class="form-control file-upload-info" id="PostedFile" name="PostedFile" onchange="common.readfile(this,'imagePreview')" type="file" value="">
-                                                    <span class="field-validation-valid text-danger" data-valmsg-for="PostedFile" data-valmsg-replace="true"></span>
+                                                    <span Id="imgspan" style = "color:Red; display:none"> Please Upload Main image of varient</span>
                                                 </div>
 
                                                 <div class="form-group">
@@ -247,10 +252,13 @@ var productVarient = {
                                             <div class="col-lg-4 col-sm-4">
                                                 <div class="form-group">
                                                     <label>Image1</label>
+                                        <input required type="file" name="img1[]" class="file-upload-default">
+
                                                 </div>
+
                                                 <div class="ajax-file-upload-container form-group">
-                                                    <input accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview1')" type="file" value="">
-                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Image1" data-valmsg-replace="true"></span>
+                                                    <input accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview1')" type="file" value="" required>
+                                                    <span Id="imgspan1" style = "color:Red; display:none"> Please Upload Image</span>
                                                 </div>
 
                                                 <div class="form-group">
@@ -261,10 +269,11 @@ var productVarient = {
                                             <div class="col-lg-4 col-sm-4">
                                                 <div class="form-group">
                                                     <label>Image 2</label>
+<input required type="file" name="img2[]" class="file-upload-default">
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
-                                                    <input accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview2')" type="file" value="">
-                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Image2" data-valmsg-replace="true"></span>
+                                                    <input  accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview2')" type="file" value="">
+                                                    <span Id="imgspan2" style = "color:Red; display:none"> Please Upload Image</span>
                                                 </div>
 
                                                 <div class="form-group">
@@ -279,11 +288,11 @@ var productVarient = {
                                             <div class="col-lg-4 col-sm-4">
                                                 <div class="form-group">
                                                     <label>Image 3</label>
-
+                                                    <input required type="file" name="img3[]" class="file-upload-default">
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
-                                                    <input accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview3')" type="file" value="">
-                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Image3" data-valmsg-replace="true"></span>
+                                                    <input  accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview3')" type="file" value="">
+                                                    <span Id="imgspan3" style = "color:Red; display:none"> Please Upload Image</span>
                                                 </div>
                                                 <div class="form-group">
 
@@ -293,11 +302,11 @@ var productVarient = {
                                             <div class="col-lg-4 col-sm-4">
                                                 <div class="form-group">
                                                     <label>Image 4</label>
-                                                    <input type="file" name="img4[]" class="file-upload-default">
+                                                    <input required type="file" name="img4[]" class="file-upload-default">
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
                                                     <input accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview4')" type="file" value="">
-                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Image4" data-valmsg-replace="true"></span>
+                                                    <span Id="imgspan4" style = "color:Red; display:none"> Please Upload Image</span>
                                                 </div>
 
 
@@ -309,12 +318,12 @@ var productVarient = {
                                             <div class="col-lg-4 col-sm-4">
                                                 <div class="form-group">
                                                     <label>Image 5</label>
-                                                    <input type="file" name="img5[]" class="file-upload-default">
+                                                    <input required type="file" name="img5[]" class="file-upload-default">
                                                 </div>
                                                 <div class="ajax-file-upload-container form-group">
                                                     <input accept="image/*" class="form-control file-upload-info" id="files" name="files" onchange="common.readfile(this,'imagePreview5')" type="file" value="">
-                                                    <span class="field-validation-valid text-danger" data-valmsg-for="Image5" data-valmsg-replace="true"></span>
-                                                </div>
+<span Id="imgspan5" style = "color:Red; display:none"> Please Upload Image</span>                                               
+</div>
 
                                                 <div class="form-group">
 
@@ -346,24 +355,46 @@ var productVarient = {
        
     },
     setVarientImageHidden: function () {
-        $("#Image1").val($('#imagePreview').attr('src'));
-        $("#Image2").val($('#imagePreview1').attr('src'));
-         $("#Image3").val($('#imagePreview2').attr('src'));
-        $("#Image4").val($('#imagePreview3').attr('src'));
-        $("#Image5").val($('#imagePreview4').attr('src'));
-        $("#Image6").val($('#imagePreview5').attr('src'));
-        commonFunction.HideModel('#Modal');
+        debugger;
+        if ($('#imagePreview').attr('src') == "" || $('#imagePreview').attr('src') == undefined) {
+            $('#imgspan').css('display', 'block');
+                return false;
+        } else if ($('#imagePreview1').attr('src').length == 0 || $('#imagePreview1').attr('src') == undefined) {
+            $('#imgspan1').css('display', 'block');
+            return false;
+        } else if ($('#imagePreview2').attr('src').length == 0 || $('#imagePreview2').attr('src') == undefined) {
+            $('#imgspan2').css('display', 'block');
+            return false;
+        } else if ($('#imagePreview3').attr('src').length == 0 || $('#imagePreview3').attr('src') == undefined) {
+            $('#imgspan3').css('display', 'block');
+            return false;
+        } else if ($('#imagePreview4').attr('src').length == 0 || $('#imagePreview4').attr('src') == undefined) {
+            $('#imgspan4').css('display', 'block');
+            return false;
+        } else if ($('#imagePreview5').attr('src').length == 0 || $('#imagePreview5').attr('src') == undefined) {
+            $('#imgspan5').css('display', 'block');
+            return false;
+        }  else {
+            debugger;
+            $("#Image1").val($('#imagePreview').attr('src'));
+            $("#Image2").val($('#imagePreview1').attr('src'));
+            $("#Image3").val($('#imagePreview2').attr('src'));
+            $("#Image4").val($('#imagePreview3').attr('src'));
+            $("#Image5").val($('#imagePreview4').attr('src'));
+            $("#Image6").val($('#imagePreview5').attr('src'));
+            commonFunction.HideModel('#Modal');
+        }
         
     },
 
     BindVarientImagePopup: function () {
        
         $("#imagePreview").attr("src", $('#Image1').val());
-        $("#imagePreview2").attr("src", $('#Image2').val());
-        $("#imagePreview3").attr("src", $('#Image3').val());
-        $("#imagePreview4").attr("src", $('#Image4').val());
-        $("#imagePreview5").attr("src", $('#Image5').val());
-        $("#imagePreview6").attr("src", $('#Image6').val());
+        $("#imagePreview1").attr("src", $('#Image2').val());
+        $("#imagePreview2").attr("src", $('#Image3').val());
+        $("#imagePreview3").attr("src", $('#Image4').val());
+        $("#imagePreview4").attr("src", $('#Image5').val());
+        $("#imagePreview5").attr("src", $('#Image6').val());
         $('#Modal').show();
         
     },

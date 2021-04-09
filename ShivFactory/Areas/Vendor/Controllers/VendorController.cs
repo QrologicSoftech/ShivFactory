@@ -378,44 +378,50 @@ namespace ShivFactory.Areas.Vendor.Controllers
             return View(varientModel);
         }
 
-
+        [HttpPost]
         public ActionResult SaveProductVarients(string Rows)
         {
             try
             {
+                RepoCommon repoCommon = new RepoCommon(); 
                 JavaScriptSerializer js = new JavaScriptSerializer();
                 List<clsProductVarient> productVarients = js.Deserialize<List<clsProductVarient>>(Rows);
                 RepoProduct repoProduct = new RepoProduct();
                 foreach (var row in productVarients)
                 {
-                    var productVarient = new ProductVarient
-                    {
-                        ProductId = row.ProductId,
-                        VarientName1 = row.VarientName1,
-                        VarientValue1 = row.VarientValue1,
-                        VarientName2 = row.VarientName2,
-                        VarientValue2 = row.VarientValue2,
-                        VarientName3 = row.VarientName3,
-                        VarientValue3 = row.VarientValue3,
-                        VarientName4 = row.VarientName4,
-                        VarientValue4 = row.VarientValue4,
-                        VarientName5 = row.VarientName5,
-                        VarientValue5 = row.VarientValue5,
-                        VarientName6 = row.VarientName6,
-                        VarientValue6 = row.VarientValue6,
-                        VarientName7 = row.VarientName7,
-                        VarientValue7 = row.VarientValue7,
-                        VarientName8 = row.VarientName8,
-                        VarientValue8 = row.VarientValue8,
-                        VarientName9 = row.VarientName9,
-                        VarientValue9 = row.VarientValue9,
-                        VarientName10 = row.VarientName10,
-                        VarientValue10 = row.VarientValue10,
-                        SalePrice = row.SalePrice,
-                        ListPrice = row.ListPrice,
-                        Stock = row.ProductQty,
-                        AddDate = DateTime.Now
-                    };
+                    var productVarient = new ProductVarient();
+                    productVarient.ProductId = row.ProductId;
+                    productVarient.VarientName1 = row.VarientName1;
+                        productVarient.VarientValue1 = row.VarientValue1;
+                        productVarient.VarientName2 = row.VarientName2;
+                        productVarient.VarientValue2 = row.VarientValue2;
+                        productVarient.VarientName3 = row.VarientName3;
+                        productVarient.VarientValue3 = row.VarientValue3;
+                        productVarient.VarientName4 = row.VarientName4;
+                        productVarient.VarientValue4 = row.VarientValue4;
+                        productVarient.VarientName5 = row.VarientName5;
+                        productVarient.VarientValue5 = row.VarientValue5;
+                        productVarient.VarientName6 = row.VarientName6;
+                        productVarient.VarientValue6 = row.VarientValue6;
+                        productVarient.VarientName7 = row.VarientName7;
+                        productVarient.VarientValue7 = row.VarientValue7;
+                        productVarient.VarientName8 = row.VarientName8;
+                        productVarient.VarientValue8 = row.VarientValue8;
+                        productVarient.VarientName9 = row.VarientName9;
+                        productVarient.VarientValue9 = row.VarientValue9;
+                        productVarient.VarientName10 = row.VarientName10;
+                        productVarient.VarientValue10 = row.VarientValue10;
+                        productVarient.SalePrice = row.SalePrice;
+                        productVarient.ListPrice = row.ListPrice;
+                        productVarient.Stock = row.ProductQty;
+                        productVarient.MainImage = repoCommon.Base64ToImage(row.Image1);
+                        productVarient.Image1 = repoCommon.Base64ToImage(row.Image2);
+                        productVarient.Image2 = repoCommon.Base64ToImage(row.Image3);
+                        productVarient.Image3 = repoCommon.Base64ToImage(row.Image4);
+                        productVarient.Image4 = repoCommon.Base64ToImage(row.Image5);
+                        productVarient.Image5 = repoCommon.Base64ToImage(row.Image6);
+                    productVarient.AddDate = DateTime.Now;
+                   
                     repoProduct.AddOrUpdateProductVarient(productVarient);
                 }
                 return Json(new ResultModel
