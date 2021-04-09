@@ -15,7 +15,7 @@
                             <div class="row grid-margin">
                                 <div class="col-12">
                                     <div class="card-description">
-                                        @using (Html.BeginForm("ProductVarient", "Vendor", new { Area = "Vendor",id=ViewBag.ProductId }, FormMethod.Get))
+                                        @using (Html.BeginForm("ProductVarient", "Vendor", new { Area = "Vendor", id = ViewBag.ProductId }, FormMethod.Get))
                                         {
                                             <p class="card-description" style=" text-align: end;">
                                                 <button type="submit" class="btn btn-primary">
@@ -32,8 +32,21 @@
                                         <thead>
                                             <tr class="bg-primary text-white">
                                                 <th>Sr No.</th>
-                                                <th>Weight Name</th>
-                                                <th>Actions</th>
+                                                <th>Images</th>
+                                                <th>Qty</th>
+                                                <th>SalePrice</th>
+                                                <th>ListPrice</th>
+                                                <th>Feature1</th>
+                                                <th>Feature2</th>
+                                                <th>Feature3</th>
+                                                <th>Feature4</th>
+                                                <th>Feature5</th>
+                                                <th>Feature6</th>
+                                                <th>Feature7</th>
+                                                <th>Feature8</th>
+                                                <th>Feature9</th>
+                                                <th>Feature10</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -43,12 +56,44 @@
                                                 {
                                                     <tr id="@item.Id">
                                                         <td>@index</td>
-                                                        <td>@item.ProductQty</td>
+                                                        <td><button class="btn btn-link" onclick="Admin.GetProductImages(this, true);" title="Show Images">View</button></td>
                                                         <td>
-                                                            <button class="btn btn-light">
-                                                                <i class="mdi mdi-database-edit text-primary"></i>
-                                                                @Html.ActionLink("Edit", "AddWeight", new { Area = "Admin", id = item.Id })
-                                                            </button>
+                                                            <button class="btn btn-link" title="Update Quentity" onclick="Vendor.ShowVarientQty(this);">@item.ProductQty</button>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-link" title="Update SalePrice">@item.SalePrice</button>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-link" title="Update ListPrice">@item.ListPrice</button>
+                                                        </td>
+                                                        <td>
+                                                            @item.Feature1
+                                                        </td>
+                                                        <td>
+                                                            @item.Feature2
+                                                        </td>
+                                                        <td>
+                                                            @item.Feature3
+                                                        </td>
+                                                        <td>
+                                                            @item.Feature4
+                                                        </td>
+                                                        <td>
+                                                            @item.Feature5
+                                                        </td>
+                                                        <td>
+                                                            @item.Feature6
+                                                        <td>
+                                                            @item.Feature7
+                                                        <td>
+                                                            @item.Feature8
+                                                        <td>
+                                                            @item.Feature9
+                                                        </td>
+                                                        <td>
+                                                            @item.Feature10
+                                                        </td>
+                                                        <td>
                                                             <button class="btn btn-light" onclick="Admin.DeleteWeight(@item.Id);">
                                                                 <i class="mdi mdi-close text-danger">Delete</i>
                                                             </button>

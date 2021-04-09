@@ -141,21 +141,21 @@ namespace ShivFactory.Business.Repository.Admin
         public List<ProductVarientResponse> GetProductVarientsByProductId(int ProductId)
         {
             var productDimension = db.ProductVarients.Where(x => x.ProductId == ProductId).Select(a => new ProductVarientResponse()
-            {                
-                Id=a.ProductVarientId,
+            {
+                Id = a.ProductVarientId,
                 ProductQty = a.Stock ?? 0,
                 SalePrice = a.SalePrice ?? 0,
                 ListPrice = a.ListPrice ?? 0,
-                Feature1 = a.VarientName1 + ":" + a.VarientValue1,
-                Feature2 = a.VarientName2 + ":" + a.VarientValue2,
-                Feature3 = a.VarientName3 + ":" + a.VarientValue3,
-                Feature4 = a.VarientName4 + ":" + a.VarientValue4,
-                Feature5 = a.VarientName5 + ":" + a.VarientValue5,
-                Feature6 = a.VarientName6 + ":" + a.VarientValue6,
-                Feature7 = a.VarientName7 + ":" + a.VarientValue7,
-                Feature8 = a.VarientName8 + ":" + a.VarientValue8,
-                Feature9 = a.VarientName9 + ":" + a.VarientValue9,
-                Feature10 = a.VarientName10 + ":" + a.VarientValue10,
+                Feature1 = a.VarientName1 != null && a.VarientValue1 != null ? a.VarientName1 + ":" + a.VarientValue1 : a.VarientName1 + a.VarientValue1,
+                Feature2 = a.VarientName2 != null && a.VarientValue2 != null ? a.VarientName2 + ":" + a.VarientValue2 : a.VarientName2 + a.VarientValue2,
+                Feature3 = a.VarientName3 != null && a.VarientValue3 != null ? a.VarientName3 + ":" + a.VarientValue3 : a.VarientName3 + a.VarientValue3,
+                Feature4 = a.VarientName4 != null && a.VarientValue4 != null ? a.VarientName4 + ":" + a.VarientValue4 : a.VarientName4 + a.VarientValue4,
+                Feature5 = a.VarientName5 != null && a.VarientValue5 != null ? a.VarientName5 + ":" + a.VarientValue5 : a.VarientName5 + a.VarientValue5,
+                Feature6 = a.VarientName6 != null && a.VarientValue6 != null ? a.VarientName6 + ":" + a.VarientValue6 : a.VarientName6 + a.VarientValue6,
+                Feature7 = a.VarientName7 != null && a.VarientValue7 != null ? a.VarientName7 + ":" + a.VarientValue7 : a.VarientName7 + a.VarientValue7,
+                Feature8 = a.VarientName8 != null && a.VarientValue8 != null ? a.VarientName8 + ":" + a.VarientValue8 : a.VarientName8 + a.VarientValue8,
+                Feature9 = a.VarientName9 != null && a.VarientValue9 != null ? a.VarientName9 + ":" + a.VarientValue9 : a.VarientName9 + a.VarientValue9,
+                Feature10 = a.VarientName10 != null && a.VarientValue10 != null ? a.VarientName10 + ":" + a.VarientValue10 : a.VarientName10 + a.VarientValue10,
                 Image = a.MainImage,
                 Image1 = a.Image1,
                 Image2 = a.Image2,
@@ -190,6 +190,19 @@ namespace ShivFactory.Business.Repository.Admin
             {
                 product.ApprovedByAdmin = false;
                 product.InactiveReason = rejectRegion;
+                return db.SaveChanges() > 0;
+            }
+            return false;
+        }
+        #endregion
+
+        #region Update Varient Quantity
+        public bool UpdateVarientQuantity(int varientId, int qty)
+        {
+            var product = db.ProductVarients.Where(x => x.ProductVarientId == varientId).FirstOrDefault();
+            if (product != null)
+            {
+                product.Stock = qty;
                 return db.SaveChanges() > 0;
             }
             return false;

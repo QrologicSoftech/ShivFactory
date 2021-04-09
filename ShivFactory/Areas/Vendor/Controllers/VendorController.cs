@@ -103,6 +103,31 @@ namespace ShivFactory.Areas.Vendor.Controllers
             return View(varients);
         }
         #endregion
+        #region  UpdateVarientQty
+        public ActionResult UpdateVarientQty(int varientId, int qty)
+        {
+            try
+            {
+                RepoProductDetails productDetails = new RepoProductDetails();
+                var isApproved = productDetails.UpdateVarientQuantity(varientId, qty);
+                return Json(new ResultModel
+                {
+                    ResultFlag = isApproved,
+                    Data = null,
+                    Message = isApproved ? "Quantity updated successfully!!" : "Failled to update quantity."
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
         public ActionResult DeleteProduct(int id)
         {
 
