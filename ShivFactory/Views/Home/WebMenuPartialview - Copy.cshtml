@@ -42,23 +42,24 @@
                                         <a href="~/Home/ProductListing?subId=@b.Id"> @b.Name <i class="@aarrowcls" aria-hidden="true"></i></a>
                                         @if (isParent == true)
                                         {
-                                            <ul>
-                                                @foreach (var c in b.MiniCategory)
-                                                {
-                                                    aarrowcls = c.MiniCategory != null && c.MiniCategory.Count > 0 ? "fa fa-angle-right" : "";
-                                                    isParent = c.MiniCategory != null && c.MiniCategory.Count > 0 ? true : false;
-                                                    <li><a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id">@c.Name<i class="@aarrowcls" aria-hidden="true"></i></a></li>
-                                                    if (isParent == true)
+                                    <ul>
+                                        @foreach (var c in b.MiniCategory)
+                                        {
+                                            aarrowcls = c.MiniCategory != null && c.MiniCategory.Count > 0 ? "fa fa-angle-right" : "";
+                                            isParent = c.MiniCategory != null && c.MiniCategory.Count > 0 ? true : false;
+                                            <li><a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id">@c.Name<i class="@aarrowcls" aria-hidden="true"></i></a></li>
+                                            if (isParent == true)
+                                            {
+                                             
+                                                <ul>
+                                                    @foreach (var d in c.MiniCategory)
                                                     {
-                                                        <ul>
-                                                            @foreach (var d in c.MiniCategory)
-                                                            {
-                                                                <li><a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id">deep 1</a></li>
-                                                            }
-                                                        </ul>
+                                                        <li><a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id">deep 1</a></li>
                                                     }
-                                                }
-                                            </ul>
+                                                </ul>
+                                            }
+                                        }
+                                    </ul>
                                         }
 
                                     </li>
