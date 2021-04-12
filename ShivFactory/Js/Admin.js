@@ -304,8 +304,8 @@ var Admin = {
                     <div class="col-md-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title text-center">Reject region</h4>
-                               <textarea type="text" class="form-control col-md-12" placeholder="Product reject region" id="txtProductReject" maxlength="200"></textarea> 
+                                <h4 class="card-title text-center">Reject reason</h4>
+                               <textarea type="text" class="form-control col-md-12" placeholder="Product reject reason" id="txtProductReject" maxlength="200"></textarea> 
                               </div>
                              <button type="button" class="btn btn-block btn-gradient-primary" onclick="Admin.RejectProduct();"> Update</button>
                             </div>

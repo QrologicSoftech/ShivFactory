@@ -22,7 +22,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                 <div class="arrow-up">
-                    <img src="img/arrow-up.png">
+                    <img src="~/Content/AdminImg/arrow-up.png">
                 </div>
                 <div>
                     <li class="desktop-oddColumnContent">
@@ -34,7 +34,7 @@
                                     <a href="~/Home/ProductListing?subId=@b.Id" style="color:#ee5f73;" class="desktop-categoryName">@b.Name</a>
                                 </li>
 
-                                @foreach (var c in b.MiniCategory)
+                                foreach (var c in b.MiniCategory)
                                 {
                                     <li>
                                         <a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id" class="desktop-categoryName">@c.Name</a>

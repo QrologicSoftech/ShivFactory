@@ -14,6 +14,7 @@
     RepoCart cart = new RepoCart();
     var cartCount = cart.GetUserCartCount();
 }
+
 <script src="~/Content/Website/js/jquery-2.0.0.min.js?ver=@version"></script>
 <script src="~/Content/Website/js/bootstrap.bundle.min.js?ver=@version"></script>
 <link href="~/Content/Website/css/bootstrap.css?ver=@version" rel="stylesheet" />
@@ -846,10 +847,9 @@
             const urlParams = new URLSearchParams(window.location.search);
             const myParam = urlParams.get('searchtext');
             $("#txtsearch-item").val(myParam);
-         
+
             common.ShowLoader('#navbarSupportedContent');
             ajax.doGetAjax(`/Home/WebMenuPartialview`, function (result) {
-                debugger;
                 common.HideLoader('#navbarSupportedContent');
                 $('#navbarSupportedContent').html(result);
             })
@@ -908,7 +908,7 @@
             });
         });
     </script>
-   
+
     <link href="~/Content/Website/css/owl.theme-min.css?ver=@version" rel="stylesheet" />
     <script src="~/Content/Website/js/owl.carousel.js?ver=@version"></script>
     <script src="~/Content/Website/js/script.js"></script>
