@@ -5481,8 +5481,8 @@ fieldset:disabled .wizard > .actions a,
 
 .btn-primary, .wizard > .actions a {
     color: #fff;
-    background-color: #b66dff;
-    border-color: #b66dff;
+    background-color: #212529 /*#b66dff*/;
+    border-color: #212529 /*#b66dff*/;
 }
 
     .btn-primary:hover, .wizard > .actions a:hover {
@@ -10459,7 +10459,7 @@ a.close.disabled {
 }
 
 .bg-primary {
-    background-color: #b66dff !important;
+    background-color: #212529/*#b66dff*/ !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
@@ -20153,8 +20153,8 @@ dl {
     .pagination .page-item:active .jsgrid .jsgrid-pager .jsgrid-pager-page a,
     .jsgrid .jsgrid-pager .page-item:active .jsgrid-pager-page a, .jsgrid .jsgrid-pager .jsgrid-pager-page .page-item:active a,
     .jsgrid .jsgrid-pager .jsgrid-pager-page:active a {
-        background: #b66dff;
-        border-color: #b66dff;
+        background:  #212529/*#b66dff*/;
+        border-color: #212529/*#b66dff*/;
         color: #ffffff;
     }
 
@@ -27163,7 +27163,7 @@ footer {
     }
 
 .horizontal-menu .bottom-navbar {
-    background: #b66dff;
+    background: #131111 /*#b66dff*/;
     position: relative;
     top: 0;
     right: 0;
