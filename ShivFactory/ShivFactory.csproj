@@ -201,10 +201,26 @@
       <DependentUpon>DefaultConnection.mdf</DependentUpon>
     </Content>
     <Content Include="Content\AdminImg\arrow-up.png" />
+    <Content Include="Content\AdminImg\logo.png" />
     <Content Include="Content\AdminImg\next.png" />
     <Content Include="Content\AdminImg\right-arrow.png" />
-    <Content Include="Content\AdminImg\shiv-factory-logo.png" />
     <Content Include="Content\AdminImg\up-arrow.png" />
+    <Content Include="Content\Icons\All-Categories.png" />
+    <Content Include="Content\Icons\arrow-d.svg" />
+    <Content Include="Content\Icons\Choose-Language.png" />
+    <Content Include="Content\Icons\close.svg" />
+    <Content Include="Content\Icons\Flipkart-Plus-Zone.png" />
+    <Content Include="Content\Icons\More-on-Flipkart.jpg" />
+    <Content Include="Content\Icons\My-Account.png" />
+    <Content Include="Content\Icons\My-Cart.png" />
+    <Content Include="Content\Icons\My-Chats.png" />
+    <Content Include="Content\Icons\My-Coupons.png" />
+    <Content Include="Content\Icons\My-Notifications.png" />
+    <Content Include="Content\Icons\My-Orders.png" />
+    <Content Include="Content\Icons\My-Wishlist.png" />
+    <Content Include="Content\Icons\Offer-Zone.png" />
+    <Content Include="Content\Icons\Sell-on-Flipkart.png" />
+    <Content Include="Content\Icons\supercoin.png" />
     <Content Include="Content\UploadedImages\Images\arrow-up.png" />
     <Content Include="Content\Website\css\stylecode.css" />
     <Content Include="Content\Website\js\script2.js" />

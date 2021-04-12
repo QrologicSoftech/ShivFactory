@@ -641,14 +641,14 @@ border-right:3px solid #0d60ad
 	left: auto;
 	right: 0;
 	color: #333;
-	background-image: url("../images/next.png");
+	background-image: url('../../Icons/next.png');
 	width: 45px;
 	background-size: 42%;
 	opacity: 0.5;
 }
 .ma5menu__btn--enter:hover {
 	color: #ffc107;
-	background-image: url("../images/next.png")
+	background-image: url('../../Icons/next.png')
 }
 .ma5menu__btn--enter:before {
 	content: "";
@@ -666,7 +666,7 @@ border-right:3px solid #0d60ad
 	left: 0;
 	right: auto;
 	color: #333;
-	background-image: url("../images/next.png");
+	background-image: url('../../Icons/next.png');
 	width: 45px;
 	background-size: 42%;
 	opacity: 0.5;
@@ -674,7 +674,7 @@ border-right:3px solid #0d60ad
 .ma5menu__btn--leave:hover {
 	color: #ffc107;
 	background-color: transparent;
-	background-image: url("../images/next.png")
+	background-image: url('../../Icons/next.png')
 	
 	
 }

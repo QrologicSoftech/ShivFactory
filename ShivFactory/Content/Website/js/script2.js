@@ -446,12 +446,7 @@ $('.IiD88i input').keyup(function(){
   jQuery(".demo-3").hover(function(){
   jQuery('.color-text-5').removeClass("color-hover");
 });
-  $(window).load(function() {
-  $('.flexslider').flexslider({
-    animation: "slide",
-    controlNav: "thumbnails"
-  });
-});
+
 
   $(document).ready(function(){
   $("._32l7f0").click(function(){
