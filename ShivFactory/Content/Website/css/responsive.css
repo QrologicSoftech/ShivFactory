@@ -8,7 +8,10 @@
 .allitem-slider .owl-dots {
 	display: none;
 }
+.modile-responsive{
+  display: none;
   }
+}
 @media (min-width: 1040px) {
   .container {
     padding-left:50px !important;
@@ -67,7 +70,25 @@ aside.col-md.col-6 {
   .slider-home-banner {
     margin-bottom: 20px; }
     .slider-home-banner .carousel-item img {
-      max-height: 350px; } }
+      max-height: 350px; }
+      .destop-responsive{
+        display: none;
+      }
+      /*.ma5menu__toggle.top-toggle {
+  display: block;
+}*/
+body{
+  padding-top: 0px;
+}
+.btn-right .btn-btom {
+    padding: 18px 0px;
+    margin-bottom: 10px;
+}
+.btn-left .btn-btom-1 {
+    padding: 18px 0px;
+    margin-bottom: 10px;
+}
+       }
 @media all and (max-width: 767px) {
   .nav-home-aside {
     width: 100%; }
@@ -111,7 +132,7 @@ aside.col-md.col-6 {
 	bottom: -24px !important;
 }
   .section-header .logo {
-    max-height:40px;
+    max-height:50px;
     width: auto; }
 
   .banner-quote {
@@ -167,9 +188,9 @@ aside.col-md.col-6 {
   .padding-bottom-lg {
     padding-bottom: 30px; } 
 	.m-no-padding{padding:0 !important; border:0;}
-	.ma5menu__toggle.top-toggle {
+	/*.ma5menu__toggle.top-toggle {
 	display: none;
-}
+}*/
 .search-header {
 	margin-top: 5px;
 }
@@ -187,6 +208,7 @@ aside.col-md.col-6 {
 }
 .section-header .search-header .form-control, .section-header .search-header .custom-select {
 	border-radius: 0;
+  z-index: 0;
 }
 .owl-button .owl-nav button.owl-next  {
 	left: -18px;
@@ -194,8 +216,25 @@ aside.col-md.col-6 {
 .owl-button .owl-nav button.owl-prev {
 	right: -18px;
 }
-.owl-button .owl-nav button{{background:#FFF; top:33%;}
-	}
+.owl-button .owl-nav button{background:#FFF; top:33%;}
+.sizes span {
+    width: 40px;
+    min-width: 40px;
+}
+.seller-text {
+    width: 40px;
+}
+.return-policy {
+    width: 100%;
+}
+.sunglas ul{
+  margin: 0px;
+}
+.sunglas ul li:last-child{
+  float: none;
+}
+}
+	
 	
 	@media all and (max-width: 479px) {
 	.slider-home-banner .carousel-item img {
@@ -218,4 +257,32 @@ aside.col-md.col-6 {
 	padding-left: 10px;
 	padding-right: 10px;
 }
+.sizes span {
+    width: 100%;
+    min-width: 100%;
+    margin-bottom: 10px;
+}
+.sizes .menu-1{
+  margin: 0px;
 	}
+  .res-mobile{
+    padding: 0px !important;
+  }
+  .res-margin-mobile{
+    margin: 0px;
+  }
+  .available-offers ul li img {
+    width: 4%;
+    margin-top: 5px;
+}
+
+.available-offers ul{
+  margin: 0px;
+}
+.menu-1.menu-border .menu-sun {
+    width: 55px;
+}
+.sizes {
+    margin-top: 10px;
+}
+}

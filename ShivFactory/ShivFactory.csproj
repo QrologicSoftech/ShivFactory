@@ -200,6 +200,9 @@
     <Content Include="App_Data\DefaultConnection_log.ldf">
       <DependentUpon>DefaultConnection.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\UploadedImages\Images\arrow-up.png" />
+    <Content Include="Content\Website\css\stylecode.css" />
+    <Content Include="Content\Website\js\script2.js" />
     <Content Include="Views\Manage\ProductDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\UnApprovedProductPartialView.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\AddProduct.cshtml" />
@@ -584,6 +587,7 @@
     <Content Include="Views\Home\Wishlist.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Customer\Checkout.cshtml" />
+    <Content Include="Views\Home\WebMenuPartialview - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

@@ -20,6 +20,7 @@
 <link href="~/Content/Website/fonts/fontawesome/css/all.min.css?ver=@version" rel="stylesheet" />
 <link href="~/Content/Website/fonts/Pe-icon-7-stroke.css?ver=@version" rel="stylesheet" />
 <link href="~/Content/Website/css/ui.css?ver=@version" rel="stylesheet" />
+<link href="~/Content/Website/css/stylecode.css?ver=@version" rel="stylesheet" />
 <link href="~/Content/Website/css/responsive.css?ver=@version" rel="stylesheet" />
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link href="~/Content/Website/css/style.css?ver=@version" rel="stylesheet" />
@@ -31,64 +32,69 @@
 <body style="background-color: #f1f3f6;" class="ListScroll">
     <div id="loader" class="center"></div>
     <header class="section-header">
-        <section class="header-main" data-toggle="affix">
+
+        <section class="header-main destop-responsive" data-toggle="affix">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-xl-2 col-lg-4 col-md-5 mobile-order-1 col-5">
-                        <button class="ma5menu__toggle top-toggle" type="button"> <span class="ma5menu__icon-toggle"><img src="~/Content/Icons/burger_menu.svg"> </span> <span class="ma5menu__sr-only">Menu</span> </button>
-                        <a href="#" class="brand-wrap"><img class="logo" src="~/Content/AdminImg/shiv  factory logo.png"> </a>
+                    <div class="col-xl-3 col-lg-4 col-md-5 mobile-order-1 col-5">
+                        <a href="index.html" class="brand-wrap"><img class="logo" src="/Content/AdminImg/shiv-factory-logo.png"> </a>
                     </div>
-                    <div class="col-xl-5 col-lg-5 col-md-6 mobile-order-3">
+                    <div class="col-xl-4 col-lg-4 col-md-6 mobile-order-3">
                         <form action="#" class="search-header">
                             <div class="input-group w-100">
-                                @*<select class="custom-select border-right" name="category_name">
-                                        <option value="">All</option>
-                                        <option value="codex">Special</option>
-                                        <option value="comments">Only best</option>
-                                        <option value="content">Latest</option>
-                                    </select>*@
                                 <input type="text" id="txtsearch-item" class="form-control" placeholder="Search for products, brands and more">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit"> <i class="fa fa-search"></i> </button>
                                 </div>
                             </div>
                         </form>
-                        <!-- search-wrap .end// -->
                     </div>
-                    <!-- col.// -->
-                    <div class="col-xl-5 col-lg-3 col-md-7 order-2 col-7">
+                    <div class="col-xl-4 col-lg-4 col-md-7 order-2 col-7">
                         <div class="widgets-wrap float-md-right d-flex align-items-center justify-content-end">
-
-
                             <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
-
-                                @if (util.IsUserLogIn())
-                                {
-                                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
-                                        @*<div class="nav-profile-img">
-                                                <img id="imgFileUpload" style="max-height:15%;max-width:15%;" src="@UserImage" alt="image" onclick="Admin.ChangeProfileImage();"><span class="availability-status online"></span>
-                                            </div>*@
-                                        <div class="nav-profile-text">
-                                            <p class="text">@UserName <i class="fa fa-angle-down" aria-hidden="true"></i></p>
-                                        </div>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item" href="/Customer/Profile/"><i class="fa fa-user-circle" aria-hidden="true"></i>Profile</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i>My Account</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
-                                        <a class="dropdown-item" href="/Customer/Orders/"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Orders</a>
-                                        <a class="dropdown-item" href="/Home/Wishlist/"><i class="fa fa-heart" aria-hidden="true"></i>WishList</a>
-                                        <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
-                                        <a class="dropdown-item" href="/Account/LogOff"><i class="fa fa-bell" aria-hidden="true"></i>Logout</a>
+                                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
+                                    <div class="nav-profile-text">
+                                        <button type="button" class="btn btn-login click-open">Login</button>
                                     </div>
-                                }
-                                else
-                                {
-                                    <a href="~/Account/LogIn" class="widget-view">
-                                        <div class="icon-area"> <i class="pe-7s-user" aria-hidden="true"></i> </div>
-                                        <small class="text  d-md-block d-lg-block"> Sign in  </small>
-                                    </a>
-                                }
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <div class="arrow-up">
+                                        <img src="~/Content/UploadedImages/Images/arrow-up.png" />
+                                    </div>
+                                    <ul class="new-customer-id">
+                                        <li>
+                                            <a href="user-register.html">New Customer?</a>
+                                        </li>
+                                        <li>
+                                            <a href="user-login.html" class="sing-up">Sing Up</a>
+                                        </li>
+                                    </ul>
+                                    <a class="dropdown-item" href="profile.html"><i class="fa fa-user-circle" aria-hidden="true"></i>My Profile</a>
+                                    <a class="dropdown-item" href="orders.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Orders</a>
+                                    <a class="dropdown-item" href="wishlist.html"><i class="fa fa-heart" aria-hidden="true"></i>Wishlist</a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Notification</a>
+                                </div>
+                            </div>
+                            <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
+                                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
+
+                                    <div class="nav-profile-text">
+                                        <p class="text">@UserName <i class="fa fa-angle-down" aria-hidden="true"></i></p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <div class="arrow-up">
+                                        <img src="~/Content/UploadedImages/Images/arrow-up.png" />
+                                    </div>
+                                    <a class="dropdown-item" href="/Customer/Profile/"><i class="fa fa-user-circle" aria-hidden="true"></i>Profile</a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i>My Account</a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
+                                    <a class="dropdown-item" href="/Customer/Orders/"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Orders</a>
+                                    <a class="dropdown-item" href="/Home/Wishlist/"><i class="fa fa-heart" aria-hidden="true"></i>WishList</a>
+                                    <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
+                                    <a class="dropdown-item" href="/Account/LogOff"><i class="fa fa-bell" aria-hidden="true"></i>Logout</a>
+                                </div>
                             </div>
                             <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
 
@@ -100,16 +106,20 @@
                                     </div>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                    <div class="arrow-up">
+                                        <img src="~/Content/UploadedImages/Images/arrow-up.png" />
+                                    </div>
                                     <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Notification Preferances</a>
                                     <a class="dropdown-item" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Sell on Shiv Factory</a>
                                     <a class="dropdown-item" href="#"><i class="fa fa-question-circle" aria-hidden="true"></i>24x7 Customer Care</a>
-                                    @*<a class="dropdown-item" href="#"><i class="fa fa-arrow-down" aria-hidden="true"></i>Download App</a>*@
+                                    <!-- <a class="dropdown-item" href="#"><i class="fa fa-arrow-down" aria-hidden="true"></i>Download App</a> -->
                                 </div>
+
 
                             </div>
                             <div class="widget-header mr-1 mr-lg-0">
-                                <a href="/Home/Cart" class="widget-view">
-                                    <div class="icon-area"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> <label class="notify" id="cartcount">@cartCount</label></div>
+                                <a href="#" class="widget-view">
+                                    <div class="icon-area"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="notify">@cartCount</span></div>
                                     <small class="text d-none d-md-block d-lg-block"> Cart </small>
                                 </a>
                             </div>
@@ -119,485 +129,168 @@
                         </div>
                     </div>
                 </div>
+                <div class="_2Sn47c">
+                    <div class="_2hriZF" tabindex="-1">
+                        <div class="_2QfC02">
+                            <button class="_2KpZ6l _2doB4z">✕</button>
+                            <div class="_2MlkI1">
+                                <div class="_3wFoIb row">
+                                    <div class="_3oBhRa col col-2-5 _4H6HH5">
+                                        <span class="_36KMOx">
+                                            <span>Login</span>
+                                        </span>
+                                        <p class="_1-pxlW">
+                                            <span>Get access to your Orders, Wishlist and Recommendations</span>
+                                        </p>
+                                    </div>
+                                    <div class="_36HLxm col col-3-5">
+                                        <div>
+                                            <form autocomplete="on">
+                                                <div class="IiD88i _351hSN">
+                                                    <input type="text" autocomplete="off" class="_2IX_2- VJZDxU enter-number" maxlength="10" value="">
+                                                    <span class="_36T8XR"></span>
+                                                    <label class="_1fqY3P">
+                                                        <span>Enter Email/Mobile number</span>
+                                                    </label>
+                                                    <span class="_1_wZ0r">+91</span>
+                                                    <a href="#" class="_2QKxJ- _2_DUc_" tabindex="-1" style="display: none;">
+                                                        <span>Change?</span>
+                                                    </a>
+                                                </div>
+                                                <div class="IVrJBP" style="display: none;">
+                                                    <span>OTP sent to Mobile</span>
+                                                    <a href="#" class="_2_DUc_ _2GmvEi" tabindex="-1">
+                                                        <span>Resend?</span>
+                                                    </a>
+                                                </div>
+                                                <div class="IiD88i _351hSN" style="display: none;">
+                                                    <input type="text" maxlength="6" autocomplete="on" class="_2IX_2- VJZDxU" value="">
+                                                    <span class="_36T8XR"></span>
+                                                    <label class="_1fqY3P">
+                                                        <span>Enter OTP</span>
+                                                    </label>
+                                                </div>
+                                                <div class="IiD88i _351hSN" style="display: none;">
+                                                    <input type="password" autocomplete="off" class="_2IX_2- VJZDxU" value="">
+                                                    <span class="_36T8XR"></span>
+                                                    <label class="_1fqY3P">
+                                                        <span>Set Password</span>
+                                                    </label>
+                                                </div>
+                                                <div class="IiD88i _351hSN">
+                                                    <input type="password" autocomplete="off" class="_2IX_2- _3mctLh VJZDxU" value="">
+                                                    <span class="_36T8XR"></span>
+                                                    <label class="_1fqY3P">
+                                                        <span>Enter Password</span>
+                                                    </label>
+                                                    <a class="_2QKxJ- _2_DUc_" tabindex="-1">
+                                                        <span>Forgot?</span>
+                                                    </a>
+                                                </div>
+                                                <div class="_1Ijv5h">
+                                                    By continuing, you agree to Shiv Factory
+                                                    <a class="_2ARnXM" target="_blank" href="#">Terms of Use</a> and
+                                                    <a class="_2ARnXM" target="_blank" href="#">Privacy Policy</a>.
+                                                </div>
+                                                <div class="_1D1L_j">
+                                                    <button class="_2KpZ6l _2HKlqd _3AWRsL" type="submit">
+                                                        <div class="_2YsvKq o8qAfl">
+                                                            <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
+                                                        </div>
+                                                        <span>Login</span>
+                                                    </button>
+                                                </div>
+                                                <div class="_1k3JO2">
+                                                    <div class="_2XlkPA">OR</div>
+                                                    <button class="_2KpZ6l _2HKlqd _3NgS1a">Request OTP</button>
+                                                </div>
+                                                <div class="_1En5li">
+                                                    <a class="_14Me7y" href="#">New to Shiv Factory? Create an account</a>
+                                                </div>
+                                            </form>
+                                            <div class="_210lwq" style="display: none;">
+                                                <div>Please enter the OTP sent to</div>
+                                                <div>
+                                                    <span class="_2eL2SZ">9057300762</span>
+                                                    <a class="_14Me7y" href="#">Change</a>
+                                                </div>
+                                                <form>
+                                                    <div class="HSKgdN">
+                                                        <div class="IiD88i _2EZ3Zp">
+                                                            <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
+                                                            <label class="_1fqY3P"></label>
+                                                        </div>
+                                                        <div class="IiD88i _2EZ3Zp">
+                                                            <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
+                                                            <label class="_1fqY3P"></label>
+                                                        </div>
+                                                        <div class="IiD88i _2EZ3Zp">
+                                                            <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
+                                                            <label class="_1fqY3P"></label>
+                                                        </div>
+                                                        <div class="IiD88i _2EZ3Zp">
+                                                            <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
+                                                            <label class="_1fqY3P"></label>
+                                                        </div>
+                                                        <div class="IiD88i _2EZ3Zp">
+                                                            <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
+                                                            <label class="_1fqY3P"></label>
+                                                        </div>
+                                                        <div class="IiD88i _2EZ3Zp">
+                                                            <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
+                                                            <label class="_1fqY3P"></label>
+                                                        </div>
+                                                    </div>
+                                                    <button class="_2KpZ6l _14EHzR _3dESVI" type="submit">Verify</button>
+                                                </form>
+                                                <div class="uhuX5T">
+                                                    Not received your code? <span class="_3Vt3BV">Resend code</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        @*<nav class="navbar navbar-expand-md navbar-dark bg-dark d-none d-lg-block shadow-sm">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
+        <div class="desktop-container destop-responsive">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-6 col-lg-6 col-md-4" style="margin: 0 auto;">
+                        <div class="widgets-wrap align-items-center justify-content-end"  id="navbarSupportedContent">
+                          
+
+
+
+
+                        </div>
                     </div>
                 </div>
-            </nav>*@
-        <header class="desktop-container">
-            <div class="desktop-bound">
-                <nav class="desktop-navbar">
-                    <div class="desktop-navLinks">
-                        <div class="desktop-navContent">
-                            <div class="desktop-navLink" id="home">
-                                <a href="#" style="border-bottom-color:#ee5f73;" class="desktop-main">Men</a>
-                                <div class="desktop-backdropStyle">
-                                    <div class="desktop-paneContent">
-                                        <div class="desktop-categoryContainer">
-                                            <li class="desktop-oddColumnContent">
-                                                <ul class="desktop-navBlock">
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Topwear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">T-Shirts</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Casual Shirts</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Formal Shirts</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sweatshirts</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sweaters</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Jackets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Blazers &amp; Coats</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Suits</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Rain Jackets</a>
-                                                    </li>
-                                                    <div class="desktop-hrLine" data-reactid="47"></div>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Indian &amp; Festive Wear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Kurtas &amp; Kurta Sets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sherwanis</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Nehru Jackets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Dhotis</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="desktop-evenColumnContent desktop-oddColumnContent">
-                                                <ul class="desktop-navBlock">
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Bottomwear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Jeans</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Casual Trousers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Formal Trousers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Shorts</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Track Pants &amp; Joggers</a>
-                                                    </li>
-                                                    <div class="desktop-hrLine"></div>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Innerwear &amp; Sleepwear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Briefs &amp; Trunks</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Boxers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Vests</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sleepwear &amp; Loungewear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Thermals</a>
-                                                    </li>
-                                                    <div class="desktop-hrLine"></div>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Plus Size</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="desktop-oddColumnContent">
-                                                <ul class="desktop-navBlock">
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Footwear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Casual Shoes</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sports Shoes</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Formal Shoes</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sneakers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sandals &amp; Floaters</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Flip Flops</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Socks</a>
-                                                    </li>
-                                                    <div class="desktop-hrLine"></div>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Personal Care &amp; Grooming</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Sunglasses &amp; Frames</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Watches</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="desktop-evenColumnContent desktop-oddColumnContent">
-                                                <ul class="desktop-navBlock">
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Sports &amp; Active Wear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sports Shoes</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sports Sandals</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Active T-Shirts</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Track Pants &amp; Shorts</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Tracksuits</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Jackets &amp; Sweatshirts</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sports Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Swimwear</a>
-                                                    </li>
-                                                    <div class="desktop-hrLine"></div>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Gadgets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Smart Wearables</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Fitness Gadgets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Headphones</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Speakers</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="desktop-oddColumnContent">
-                                                <ul class="desktop-navBlock">
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Fashion Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Wallets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Belts</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Perfumes &amp; Body Mists</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Trimmers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Deodorants</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Ties, Cufflinks &amp; Pocket Squares</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Accessory Gift Sets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Caps &amp; Hats</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Mufflers, Scarves &amp; Gloves</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Phone Cases</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Rings &amp; Wristwear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Helmets</a>
-                                                    </li>
-                                                    <div class="desktop-hrLine"></div>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Bags &amp; Backpacks</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Luggages &amp; Trolleys</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="desktop-navContent">
-                            <div class="desktop-navLink" id="home2">
-                                <a href="#" style="border-bottom-color:#ee5f73;" class="desktop-main">Women</a>
-                                <div class="desktop-backdropStyle">
-                                    <div class="desktop-paneContent">
-                                        <div class="desktop-categoryContainer">
-                                            <li class="desktop-oddColumnContent">
-                                                <ul class="desktop-navBlock">
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Indian & Fusion Wear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Kurtas & Suits</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Kurtis, Tunics & Tops</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Ethnic Wear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Leggings, Salwars & Churidars</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Skirts & Palazzos</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sarees</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Dress Materials</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Lehenga Cholis</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Dupattas & Shawls</a>
-                                                    </li>
-                                                    <div class="desktop-hrLine" data-reactid="47"></div>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Indian &amp; Festive Wear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Kurtas &amp; Kurta Sets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sherwanis</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Nehru Jackets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Dhotis</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="desktop-navContent">
-                            <div class="desktop-navLink" id="home3">
-                                <a href="#" style="border-bottom-color:#ee5f73;" class="desktop-main">Kids</a>
-                                <div class="desktop-backdropStyle">
-                                    <div class="desktop-paneContent">
-                                        <div class="desktop-categoryContainer">
-                                            <li class="desktop-oddColumnContent">
-                                                <ul class="desktop-navBlock">
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Boys Clothing</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">T-Shirts</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Shirts</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Shorts</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Jeans</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Trousers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Clothing Sets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Ethnic Wear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Track Pants & Pyjamas</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Jacket, Sweater & Sweatshirts</a>
-                                                    </li>
-                                                    <div class="desktop-hrLine" data-reactid="47"></div>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Indian &amp; Festive Wear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Kurtas &amp; Kurta Sets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sherwanis</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Nehru Jackets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Dhotis</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="desktop-navContent">
-                            <div class="desktop-navLink" id="home4">
-                                <a href="#" style="border-bottom-color:#ee5f73;" class="desktop-main">Home & Living</a>
-                                <div class="desktop-backdropStyle">
-                                    <div class="desktop-paneContent">
-                                        <div class="desktop-categoryContainer">
-                                            <li class="desktop-oddColumnContent">
-                                                <ul class="desktop-navBlock">
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Bed Linen & Furnishing</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Bedsheets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Bedding Sets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Blankets, Quilts & Dohars</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Pillows & Pillow Covers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Sweaters</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Jackets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Blazers &amp; Coats</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Suits</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Rain Jackets</a>
-                                                    </li>
-                                                    <div class="desktop-hrLine" data-reactid="47"></div>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Flooring</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Carpets</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Floor Mats & Dhurries</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Door Mats</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:;" class="desktop-categoryLink">Dhotis</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="desktop-navContent">
-                            <div class="desktop-navLink" id="home5">
-                                <a href="#" style="border-bottom-color:#ee5f73;" class="desktop-main">Offers</a>
-                                <div class="desktop-backdropStyle">
-                                    <div class="desktop-paneContent">
-                                        <div class="desktop-categoryContainer">
-                                            <li class="desktop-oddColumnContent">
-                                                <ul class="desktop-navBlock">
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Kurtas & Kurta Sets at Flat 60% Off</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Shoes at Min 50%</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">T-Shirts at Min 50%</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Jeans at Min 50%</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Heels & Flats Under 999</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" style="color:#ee5f73;" class="desktop-categoryName">Shirts at Min 50%</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </div>
-                                    </div>
-                                </div>
+            </div>
+            </div>
+
+          
+
+            @*<div class="desktop-container destop-responsive">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-6 col-lg-6 col-md-4" style="margin: 0 auto;">
+                            <div class="widgets-wrap align-items-center justify-content-end" id="navbarSupportedContent">
+
                             </div>
                         </div>
                     </div>
-                </nav>
-            </div>
-        </header>
-        @*<nav class="navbar navbar-expand-md navbar-dark bg-dark d-none d-lg-block shadow-sm">
+                </div>
+
+            </div>*@
+            @*<nav class="navbar navbar-expand-md navbar-dark bg-dark d-none d-lg-block shadow-sm">
                 <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     </div>
@@ -871,6 +564,7 @@
     <link href="~/Content/Website/css/owl.theme-min.css?ver=@version" rel="stylesheet" />
     <script src="~/Content/Website/js/owl.carousel.js?ver=@version"></script>
     <script src="~/Content/Website/js/script.js"></script>
+    <script src="~/Content/Website/js/script2.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 </body>

@@ -3,76 +3,63 @@
     ViewBag.Title = "CategoryPartialview";
 }
 
-<ul class="navbar-nav m-auto">
+
     @foreach (var a in Model)
     {
         if (a.SubCategory.Count == 0 || a.SubCategory == null)
         {
-            <li class="nav-item">
-                <a class="nav-link" href="~/Home/ProductListing?id=@a.Id">
-                    @*<div class="_1mkliO">
-                            <div class="CXW8mj" style="height: 64px; width: 64px;">
-                                <img class="_396cs4  _3exPp9" alt="Mobiles" src="@a.ImagePath">
-                            </div>
-                        </div>*@
-                    @a.Name
-                </a>
-            </li>
+           
         }
         else
         {
-            <li>
-                <div class="drop-hover">
-                    <ul>
-                        <li>
-                            <a class="nav-link dropdown-toggle" href="~/Home/ProductListing?id=@a.Id" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                @*<div class="_1mkliO">
-                                        <div class="CXW8mj" style="height: 64px; width: 64px;">
-                                            <img class="_396cs4  _3exPp9" alt="Mobiles" src="@a.ImagePath">
-                                        </div>
-                                    </div>*@
-                                @a.Name
-                            </a>
-                            <ul>
-                                @foreach (var b in a.SubCategory)
-                                {
-                                    string aarrowcls = b.MiniCategory != null && b.MiniCategory.Count > 0 ? "fa fa-angle-right" : "";
-                                    bool isParent = b.MiniCategory != null && b.MiniCategory.Count > 0 ? true : false;
-                                    <li>
-                                        <a href="~/Home/ProductListing?subId=@b.Id"> @b.Name <i class="@aarrowcls" aria-hidden="true"></i></a>
-                                        @if (isParent == true)
-                                        {
-                                            <ul>
-                                                @foreach (var c in b.MiniCategory)
-                                                {
-                                                    aarrowcls = c.MiniCategory != null && c.MiniCategory.Count > 0 ? "fa fa-angle-right" : "";
-                                                    isParent = c.MiniCategory != null && c.MiniCategory.Count > 0 ? true : false;
-                                                    <li><a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id">@c.Name<i class="@aarrowcls" aria-hidden="true"></i></a></li>
-                                                    if (isParent == true)
-                                                    {
-                                                        <ul>
-                                                            @foreach (var d in c.MiniCategory)
-                                                            {
-                                                                <li><a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id">deep 1</a></li>
-                                                            }
-                                                        </ul>
-                                                    }
-                                                }
-                                            </ul>
-                                        }
+            
+    <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
+        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
 
-                                    </li>
-                                }
-                            </ul>
+            <div class="nav-profile-text">
+                <p class="text">@a.Name </p>
+            </div>
+        </a>
+        <div>
+            @foreach (var b in a.SubCategory)
+            {
+                string aarrowcls = b.MiniCategory != null && b.MiniCategory.Count > 0 ? "fa fa-angle-right" : "";
+                bool isParent = b.MiniCategory != null && b.MiniCategory.Count > 0 ? true : false;
+                <li class="desktop-oddColumnContent">
+                    <ul class="desktop-navBlock">
+                        <li>
+                            <a href="~/Home/ProductListing?subId=@b.Id" style="color:#ee5f73;" class="desktop-categoryName">@b.Name </a>
                         </li>
+                        @foreach (var c in b.MiniCategory)
+                        {
+                            aarrowcls = c.MiniCategory != null && c.MiniCategory.Count > 0 ? "fa fa-angle-right" : "";
+                            isParent = c.MiniCategory != null && c.MiniCategory.Count > 0 ? true : false;
+                            <li>
+                                <a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id" style="color:;" class="desktop-categoryLink">@c.Name</a>
+                            </li>
+
+                        }
+                        <div class="desktop-hrLine" data-reactid="47"></div>
+
                     </ul>
-                </div>
-            </li>
+                </li>
+            }
+            </div>
+    </div>
+   
+                       
+                       
+                          
+                        
+            
+            
+            
+            
+        
         }
 
     }
 
-</ul>
 <script>
     $('.dropdown-toggle').click(function (e) {
         if ($(document).width() > 767) {
