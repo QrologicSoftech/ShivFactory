@@ -4,70 +4,48 @@
 }
 
 
-    @foreach (var a in Model)
+@foreach (var a in Model)
+{
+    if (a.SubCategory.Count == 0 || a.SubCategory == null)
     {
-        if (a.SubCategory.Count == 0 || a.SubCategory == null)
-        {
-           
-        }
-        else
-        {
-            
-    <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
-        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
-
-            <div class="nav-profile-text">
-                <p class="text">@a.Name </p>
-            </div>
-        </a>
-        <div>
-            @foreach (var b in a.SubCategory)
-            {
-                string aarrowcls = b.MiniCategory != null && b.MiniCategory.Count > 0 ? "fa fa-angle-right" : "";
-                bool isParent = b.MiniCategory != null && b.MiniCategory.Count > 0 ? true : false;
-                <li class="desktop-oddColumnContent">
-                    <ul class="desktop-navBlock">
-                        <li>
-                            <a href="~/Home/ProductListing?subId=@b.Id" style="color:#ee5f73;" class="desktop-categoryName">@b.Name </a>
-                        </li>
-                        @foreach (var c in b.MiniCategory)
-                        {
-                            aarrowcls = c.MiniCategory != null && c.MiniCategory.Count > 0 ? "fa fa-angle-right" : "";
-                            isParent = c.MiniCategory != null && c.MiniCategory.Count > 0 ? true : false;
-                            <li>
-                                <a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id" style="color:;" class="desktop-categoryLink">@c.Name</a>
-                            </li>
-
-                        }
-                        <div class="desktop-hrLine" data-reactid="47"></div>
-
-                    </ul>
-                </li>
-            }
-            </div>
-    </div>
-   
-                       
-                       
-                          
-                        
-            
-            
-            
-            
-        
-        }
 
     }
+    else
+    {
 
-<script>
-    $('.dropdown-toggle').click(function (e) {
-        if ($(document).width() > 767) {
-            e.preventDefault();
-            var url = $(this).attr('href');
-            if (url !== '#') {
-                window.location.href = url;
-            }
-        }
-    });
-</script>
+        <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
+            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
+
+                <div class="nav-profile-text">
+                    <p class="text">@a.Name</p>
+                </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <div class="arrow-up">
+                    <img src="img/arrow-up.png">
+                </div>
+                <div>
+                    <li class="desktop-oddColumnContent">
+                        <ul class="desktop-navBlock">
+
+                            @foreach (var b in a.SubCategory)
+                            {
+                                <li>
+                                    <a href="~/Home/ProductListing?subId=@b.Id" style="color:#ee5f73;" class="desktop-categoryName">@b.Name</a>
+                                </li>
+
+                                @foreach (var c in b.MiniCategory)
+                                {
+                                    <li>
+                                        <a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id" class="desktop-categoryName">@c.Name</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </div>
+    }
+
+}

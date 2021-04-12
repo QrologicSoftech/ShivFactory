@@ -5395,18 +5395,14 @@ a.close.disabled {
   background: no-repeat 50% / 100% 100%; }
 
 .carousel-control-prev-icon {
-  background-image: url("../img/right-arrow.png");
-  -webkit-transform: rotate( 
-180deg
- );
-    transform: rotate( 
-180deg
- );
+    background-image: url('../../AdminImg/right-arrow.png');
+    -webkit-transform: rotate( 180deg );
+    transform: rotate( 180deg );
     margin: 1px 0 0 1px;
-   }
+}
 
 .carousel-control-next-icon {
-  background-image: url("../img/right-arrow.png"); }
+  background-image: url('../../AdminImg/right-arrow.png'); }
 
 .carousel-indicators {
   position: absolute;

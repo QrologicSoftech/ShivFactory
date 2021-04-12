@@ -200,6 +200,11 @@
     <Content Include="App_Data\DefaultConnection_log.ldf">
       <DependentUpon>DefaultConnection.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\AdminImg\arrow-up.png" />
+    <Content Include="Content\AdminImg\next.png" />
+    <Content Include="Content\AdminImg\right-arrow.png" />
+    <Content Include="Content\AdminImg\shiv-factory-logo.png" />
+    <Content Include="Content\AdminImg\up-arrow.png" />
     <Content Include="Content\UploadedImages\Images\arrow-up.png" />
     <Content Include="Content\Website\css\stylecode.css" />
     <Content Include="Content\Website\js\script2.js" />
@@ -297,7 +302,6 @@
     <Content Include="Content\Icons\next.png" />
     <Content Include="Content\Icons\phone.png" />
     <Content Include="Content\Icons\products-sell.png" />
-    <Content Include="Content\AdminImg\shiv  factory logo.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
