@@ -6,16 +6,17 @@
 
 @foreach (var a in Model)
 {
+    var Totalb = a.SubCategory.Count;
+
     if (a.SubCategory.Count == 0 || a.SubCategory == null)
     {
 
     }
     else
     {
-
+        int sub = 0;
         <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
             <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
-
                 <div class="nav-profile-text">
                     <p class="text">@a.Name</p>
                 </div>
@@ -27,18 +28,39 @@
                 <div>
                     <li class="desktop-oddColumnContent">
                         <ul class="desktop-navBlock">
-
                             @foreach (var b in a.SubCategory)
                             {
-                                <li>
-                                    <a href="~/Home/ProductListing?subId=@b.Id" style="color:#ee5f73;" class="desktop-categoryName">@b.Name</a>
-                                </li>
+                                sub++;
+                                var Totalc = b.MiniCategory.Count;
+                                if (Totalc > 3|| sub > 4)
+                                {
+                                    <li class="desktop-evenColumnContent desktop-oddColumnContent">
+                                        <ul class="desktop-navBlock">
+                                            <li>
+                                                <a href="~/Home/ProductListing?subId=@b.Id" style="color:#ee5f73;" class="desktop-categoryName">@b.Name</a>
+                                            </li>
 
-                                foreach (var c in b.MiniCategory)
+                                            @foreach (var c in b.MiniCategory)
+                                            {
+                                                <li>
+                                                    <a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id" class="desktop-categoryLink">@c.Name</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                                else
                                 {
                                     <li>
-                                        <a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id" class="desktop-categoryName">@c.Name</a>
+                                        <a href="~/Home/ProductListing?subId=@b.Id" style="color:#ee5f73;" class="desktop-categoryName">@b.Name</a>
                                     </li>
+
+                                    foreach (var c in b.MiniCategory)
+                                    {
+                                        <li>
+                                            <a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id" class="desktop-categoryLink">@c.Name</a>
+                                        </li>
+                                    }
                                 }
                             }
                         </ul>
@@ -49,3 +71,24 @@
     }
 
 }
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".dropdown").hover(
+            function () {
+                const $this = $(this);
+                $this.addClass('show');
+                $this.find(".dropdown-toggle").attr("aria-expanded", "true");
+                $this.find(".dropdown-menu").addClass('show');
+            },
+            function () {
+                const $this = $(this);
+                $this.removeClass('show');
+                $this.find(".dropdown-toggle").attr("aria-expanded", "false");
+                $this.find(".dropdown-menu").removeClass('show');
+            }
+        );
+
+    });
+
+
+</script>
