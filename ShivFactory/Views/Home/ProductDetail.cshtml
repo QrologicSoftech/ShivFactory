@@ -149,7 +149,7 @@ catch (Exception e)
                         <li><a href="/Home/ProductListing?id=@Model.CategoryId.ToString().Trim()">@Model.CategoryName</a></li>
                         <li><a href="/Home/ProductListing?subId=@Model.SubCategoryId.ToString().Trim()">@Model.SubCategoryName </a></li>
                         <li><a href="/Home/ProductListing?subId=@Model.SubCategoryId.ToString().Trim()&minId=@Model.MiniCategoryId.ToString().Trim()">@Model.MiniCategoryName </a></li>
-                        <li><a>@Model.ProductName</a></li>
+                        <li><a>@Model.ProductName.Substring(0,Model.ProductName.Length/2)..</a></li>
                         <li><a href="#"><i class="fa fa-share" aria-hidden="true"></i> Share</a></li>
                     </ul>
                     <h3> <!--Brand Name--> </h3>
@@ -163,7 +163,7 @@ catch (Exception e)
                     <div class="star">
                         <span>4.5 <i class="fa fa-star" aria-hidden="true"></i></span>
                         <p>4 ratings and 0 reviews</p>
-                        <img src="img/flip.png">
+                        @*<img src="">*@
                     </div>
                     <h2>Available offers</h2>
                 </div>
@@ -205,7 +205,7 @@ catch (Exception e)
                                     <span>No Return Policy </span>
                                     }
                                 <div class="Bvquestion">
-                                    <span class="question">?</span>
+                                    <span class="question" title="return Policy">?</span>
                                 </div>
                                 </li>
                                 <li>
@@ -221,7 +221,7 @@ catch (Exception e)
                                         <span>Cash on delivery not available</span>
                                     }
                                     <div class="Bvquestion">
-                                        <span class="question">?</span>
+                                        <span class="question" title="return Policy">?</span>
                                     </div>
                                 </li>
                             </ul>

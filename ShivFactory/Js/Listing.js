@@ -152,10 +152,6 @@ var Listing = {
         common.HideLoader('#partialViewListing');
     },
 
-    GetDiscountPercentage: function (Price1, Price2) {
-        var discout = parseFloat(Price1) - parseFloat(Price2);
-        var percentage = discout / 100 * 100
-    },
     BindIndexPage: function () {
         common.ShowLoader();
 
@@ -172,7 +168,6 @@ var Listing = {
                 $("#carousel1_indicator div").html(bannerdiv);
 
                 //Bind Product slider
-
                 $.each(result.Data.Products, function (index, Value) {
                     productSlider += `<section class="padding-bottom-sm bg-white  mb-3 pb-3 pt-0">
     <div class=" container">
