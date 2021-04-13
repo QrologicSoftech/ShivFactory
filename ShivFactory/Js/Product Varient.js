@@ -208,7 +208,7 @@ var productVarient = {
             }
             console.log(JSON.stringify(jsonString));
         });
-      //  productVarient.SaveData(JSON.stringify(jsonString));
+        productVarient.SaveData(JSON.stringify(jsonString));
     },
 
     SaveData: function (jsonString) {
@@ -353,7 +353,6 @@ var productVarient = {
        
     },
     setVarientImageHidden: function (index) {
-        alert("setVarientImageHidden" + index);
         var tr = $('#tblProduct').find('tr').eq(index);
 
         if ($('#imagePreview').attr('src') == "" || $('#imagePreview').attr('src') == undefined) {
@@ -389,7 +388,6 @@ var productVarient = {
 
     BindVarientImagePopup: function (element) {
         var rowIndex = $(element).parent('td').parent('tr').index();
-        alert("row index " + rowIndex);
         var tr = $('#tblProduct').find('tr').eq(rowIndex);
         $("#imagePreview").attr("src", $(tr).find(('#Image1')).val());
         $("#imagePreview1").attr("src", $(tr).find(('#Image2')).val());
