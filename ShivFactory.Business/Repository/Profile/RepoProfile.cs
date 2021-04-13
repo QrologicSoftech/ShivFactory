@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ShivFactory.Business.Repository
 {
-   public class RepoProfile
+    public class RepoProfile
     {
         #region Parameters
         ShivFactoryEntities db = new ShivFactoryEntities();
@@ -37,7 +37,7 @@ namespace ShivFactory.Business.Repository
             }
             if (role == UserRoles.Vendor)
             {
-                var vendor = db.Vendors.Where(vndr => vndr.UserId == userId).FirstOrDefault();
+                               var vendor = db.Vendors.Where(vndr => vndr.UserId == userId).FirstOrDefault();
                 if (vendor != null)
                 {
                     userProfileResonse.FirmName = vendor.FirmName;
@@ -48,8 +48,8 @@ namespace ShivFactory.Business.Repository
                     userProfileResonse.PanNo = vendor.PanNo;
                     userProfileResonse.AddressProofImg = vendor.AddressProofImg;
                 }
-
-                var vendorbank = db.VendorBankDetails.Where(a => a.UserID == vendor.VendorId).FirstOrDefault();
+                int vendorId = vendor != null ? vendor.VendorId : 0;
+                var vendorbank = db.VendorBankDetails.Where(a => a.UserID == vendorId).FirstOrDefault();
                 if (vendorbank != null)
                 {
                     userProfileResonse.AccountHolderName = vendorbank.AccountHolderName;
@@ -57,7 +57,7 @@ namespace ShivFactory.Business.Repository
                     userProfileResonse.BankName = vendorbank.BankName;
                     userProfileResonse.IFSCCode = vendorbank.IFSCCode;
                     userProfileResonse.Branch = vendorbank.Branch;
-                  //  userProfileResonse.IsActiveBank = false; //vendorbank.IsActive; 
+                     userProfileResonse.IsActiveBank = vendorbank.IsActive==null? false : vendorbank.IsActive; 
                 }
             }
             return userProfileResonse;

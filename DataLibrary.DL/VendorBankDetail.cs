@@ -23,11 +23,13 @@ namespace DataLibrary.DL
         public string City { get; set; }
         public string State { get; set; }
         public string Branch { get; set; }
-        public Nullable<System.DateTime> IsActive { get; set; }
-        public Nullable<System.DateTime> IsDelete { get; set; }
         public Nullable<System.DateTime> AddUpdate { get; set; }
         public Nullable<System.DateTime> LastUpdate { get; set; }
         public string BankProofImg { get; set; }
         public string Narration { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<bool> IsDelete { get; set; }
+    
+        public virtual Vendor Vendor { get; set; }
     }
 }

@@ -35,7 +35,7 @@ namespace ShivFactory.Business.Repository
 		public string State { get; set; }
 		public string PanNo { get; set; }
 		public string AddressProofImg { get; set; }
-		public DateTime IsVendorActive { get; set; }
+		public bool IsVendorActive { get; set; }
 		public DateTime AddUpdate { get; set; }
 		public DateTime LastUpdateVendor { get; set; }
 		public string PIN { get; set; }
@@ -48,7 +48,7 @@ namespace ShivFactory.Business.Repository
 		public string BankName { get; set; }
 		public string IFSCCode { get; set; }
 		public string Branch { get; set; }
-		public bool IsActiveBank { get; set;  }
+		public bool? IsActiveBank { get; set;  }
 
 
 

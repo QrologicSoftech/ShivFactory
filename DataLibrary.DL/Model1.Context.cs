@@ -41,8 +41,6 @@ namespace DataLibrary.DL
         public virtual DbSet<MiniCategory> MiniCategories { get; set; }
         public virtual DbSet<SubCategory> SubCategories { get; set; }
         public virtual DbSet<Brand> Brands { get; set; }
-        public virtual DbSet<Vendor> Vendors { get; set; }
-        public virtual DbSet<VendorBankDetail> VendorBankDetails { get; set; }
         public virtual DbSet<Varient> Varients { get; set; }
         public virtual DbSet<ProductVarient> ProductVarients { get; set; }
         public virtual DbSet<VendorShippingArea> VendorShippingAreas { get; set; }
@@ -52,5 +50,7 @@ namespace DataLibrary.DL
         public virtual DbSet<TempOrderDetail> TempOrderDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<DeliveryAddress> DeliveryAddresses { get; set; }
+        public virtual DbSet<VendorBankDetail> VendorBankDetails { get; set; }
+        public virtual DbSet<Vendor> Vendors { get; set; }
     }
 }
