@@ -49,6 +49,7 @@ namespace ShivFactory.Business.Repository
 		public string IFSCCode { get; set; }
 		public string Branch { get; set; }
 		public bool? IsActiveBank { get; set;  }
+		public string BankProofImg { get; set; }
 
 
 

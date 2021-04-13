@@ -32,7 +32,7 @@ namespace ShivFactory.Business.Repository
                     Email = user.Email,
                     Mobile = user.Mobile,
                     Gender = user.Gender,
-                    UserImage = user.UserImage,
+                    UserImage = user.UserImage!=null ?user.UserImage.ImagePath(): "".ImagePath(),
                 };
             }
             if (role == UserRoles.Vendor)
@@ -46,7 +46,8 @@ namespace ShivFactory.Business.Repository
                     userProfileResonse.City = vendor.City;
                     userProfileResonse.State = vendor.State;
                     userProfileResonse.PanNo = vendor.PanNo;
-                    userProfileResonse.AddressProofImg = vendor.AddressProofImg;
+                    userProfileResonse.PIN = vendor.PIN;
+                    userProfileResonse.AddressProofImg = vendor.AddressProofImg!=null ?vendor.AddressProofImg.ImagePath():"".ImagePath();
                 }
                 int vendorId = vendor != null ? vendor.VendorId : 0;
                 var vendorbank = db.VendorBankDetails.Where(a => a.UserID == vendorId).FirstOrDefault();
@@ -57,7 +58,8 @@ namespace ShivFactory.Business.Repository
                     userProfileResonse.BankName = vendorbank.BankName;
                     userProfileResonse.IFSCCode = vendorbank.IFSCCode;
                     userProfileResonse.Branch = vendorbank.Branch;
-                     userProfileResonse.IsActiveBank = vendorbank.IsActive==null? false : vendorbank.IsActive; 
+                     userProfileResonse.IsActiveBank = vendorbank.IsActive==null? false : vendorbank.IsActive;
+                    userProfileResonse.BankProofImg = vendorbank.BankProofImg != null ? vendorbank.BankProofImg.ImagePath() : "".ImagePath(); 
                 }
             }
             return userProfileResonse;

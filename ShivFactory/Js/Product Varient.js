@@ -1,4 +1,5 @@
-﻿var quantity = 'Quantity', listPrice = 'ListPrice',salePrice = 'SalePrice',image ='Image'; 
+﻿var quantity = 'Quantity', listPrice = 'ListPrice', salePrice = 'SalePrice', image = 'Image';  
+
 var productVarient = {
   
     AddNewTextBox: function (element) {
@@ -153,7 +154,7 @@ var productVarient = {
                     if (product[0][j] == quantity || product[0][j] == salePrice || product[0][j] == listPrice) {
                         cell.html("<input type='number' class='form-control' value=" + product[i][j] + " />")
                     } else if (product[0][j] == image) {
-                        cell.html("<button type='button' onclick='productVarient.BindVarientImagePopup()' class='btn btn-primary'>View</button>&nbsp<button onclick='productVarient.UploadVarientsImage()' type='button' class='btn btn-primary'>Upload</button>\
+                        cell.html("<button type='button' onclick='productVarient.BindVarientImagePopup(this)' class='btn btn-primary'>View</button>&nbsp<button onclick='productVarient.UploadVarientsImage(this)' type='button' class='btn btn-primary'>Upload</button>\
         <input id = 'Image1' name = 'Image1' type = 'hidden' > <input id='Image2' name='Image2' type='hidden' ><input id='Image3' name='Image3' type='hidden' ><input id='Image4' name='Image4' type='hidden'><input id='Image5' name='Image5' type='hidden'><input id='Image6' name='Image6' type='hidden'>")
                     } else {
                         cell.html(product[i][j]);
@@ -188,28 +189,26 @@ var productVarient = {
                     else if ($(th).text() == listPrice) {
                         obj["ListPrice"] = $tds.eq(2).val();
                     }
+                    else if ($(th).text() == image) {
+                        
+                    }
                     else {
-                        var key = $(th).text(); 
-                        if (key == "Image") {
-                    obj["Image1"] = $("#Image1").val();
-                    obj["Image2"] = $("#Image2").val();
-                    obj["Image3"] = $("#Image3").val();
-                    obj["Image4"] = $("#Image4").val();
-                    obj["Image5"] = $("#Image5").val();
-                    obj["Image6"] = $("#Image6").val();
-                        } else {
+                        obj["Image1"] = $tds.eq(3).val();
+                        obj["Image2"] = $tds.eq(4).val();
+                        obj["Image3"] = $tds.eq(5).val();
+                        obj["Image4"] = $tds.eq(6).val();
+                        obj["Image5"] = $tds.eq(7).val();
+                        obj["Image6"] = $tds.eq(8).val();
                             obj[`VarientName${index + 1}`] = $(th).text();
                             obj[`VarientValue${index + 1}`] = $tdvarientValue.eq(index).html();
-                        } 
                     }
-                  
                 });
                 jsonString.push(obj);
                 console.log(JSON.stringify(obj));
             }
             console.log(JSON.stringify(jsonString));
         });
-        productVarient.SaveData(JSON.stringify(jsonString));
+      //  productVarient.SaveData(JSON.stringify(jsonString));
     },
 
     SaveData: function (jsonString) {
@@ -227,9 +226,10 @@ var productVarient = {
 
     },
 
-    UploadVarientsImage: function () {
+    UploadVarientsImage: function (element) {
         common.ShowLoader();
         var form;
+        var index = $(element).parent('td').parent('tr').index();
         form = `  <h4><b>Product Images</b> </h4>
                                         <p></p>
                                         <div class="row">
@@ -332,15 +332,12 @@ var productVarient = {
                                             </div>
 
                                         </div>
-                       
-
- 
                     <div class="modal-footer form-submit col-md-12 col-sm-12">
                         <div class="action-btn">
                             <span uif-append="submit" class="inline-block">
-                                <div class="" uif-fbtype="wrapper" uif-uqid="6462377d-bf38-793c-d2cf-820cae24a976">
+                                <div class="">
 
-                                    <button type="button" name="submit" onclick = "productVarient.setVarientImageHidden()"  class="btn submit-btn btn-primary" id="save" >SAVE</button>
+                                    <button type="button"  name="submit" onclick ="productVarient.setVarientImageHidden(`+ index +`)"   class="btn submit-btn btn-primary" id="save" >SAVE</button>
 
                                 </div>
                             </span>
@@ -348,13 +345,17 @@ var productVarient = {
                     </div>
                 </div>
             </div>`;
-        productVarient.BindVarientImagePopup();
+        productVarient.BindVarientImagePopup(element);
             common.HideLoader();
-            $('#Modal').children('div').children('div').html(form);
-            $('#Modal').show();
+        $('#Modal').children('div').children('div').html(form);
+        $('#Modal').show();
+       
        
     },
-    setVarientImageHidden: function () {
+    setVarientImageHidden: function (index) {
+        alert("setVarientImageHidden" + index);
+        var tr = $('#tblProduct').find('tr').eq(index);
+
         if ($('#imagePreview').attr('src') == "" || $('#imagePreview').attr('src') == undefined) {
             $('#imgspan').css('display', 'block');
                 return false;
@@ -373,26 +374,30 @@ var productVarient = {
         } else if ($('#imagePreview5').attr('src').length == 0 || $('#imagePreview5').attr('src') == undefined) {
             $('#imgspan5').css('display', 'block');
             return false;
-        }  else {
-            $("#Image1").val($('#imagePreview').attr('src'));
-            $("#Image2").val($('#imagePreview1').attr('src'));
-            $("#Image3").val($('#imagePreview2').attr('src'));
-            $("#Image4").val($('#imagePreview3').attr('src'));
-            $("#Image5").val($('#imagePreview4').attr('src'));
-            $("#Image6").val($('#imagePreview5').attr('src'));
-            commonFunction.HideModel('#Modal');
-        }
+        } else {
+        $(tr).find("#Image1").val($('#imagePreview').attr('src'));
+        $(tr).find("#Image2").val($('#imagePreview1').attr('src'));
+        $(tr).find("#Image3").val($('#imagePreview2').attr('src'));
+        $(tr).find("#Image4").val($('#imagePreview3').attr('src'));
+        $(tr).find("#Image5").val($('#imagePreview4').attr('src'));
+        $(tr).find("#Image6").val($('#imagePreview5').attr('src'));
+
+        commonFunction.HideModel('#Modal');
+    }
         
     },
 
-    BindVarientImagePopup: function () {
-       
-        $("#imagePreview").attr("src", $('#Image1').val());
-        $("#imagePreview1").attr("src", $('#Image2').val());
-        $("#imagePreview2").attr("src", $('#Image3').val());
-        $("#imagePreview3").attr("src", $('#Image4').val());
-        $("#imagePreview4").attr("src", $('#Image5').val());
-        $("#imagePreview5").attr("src", $('#Image6').val());
+    BindVarientImagePopup: function (element) {
+        var rowIndex = $(element).parent('td').parent('tr').index();
+        alert("row index " + rowIndex);
+        var tr = $('#tblProduct').find('tr').eq(rowIndex);
+        $("#imagePreview").attr("src", $(tr).find(('#Image1')).val());
+        $("#imagePreview1").attr("src", $(tr).find(('#Image2')).val());
+        $("#imagePreview2").attr("src", $(tr).find(('#Image3')).val());
+        $("#imagePreview3").attr("src", $(tr).find(('#Image4')).val());
+        $("#imagePreview4").attr("src", $(tr).find(('#Image5')).val());
+        $("#imagePreview5").attr("src", $(tr).find(('#Image6')).val());
+
         $('#Modal').show();
         
     },

@@ -20,7 +20,6 @@ var profile = {
                                 <div class="col-sm-7">
                                     <div>
       <input class="form-control"  id="FirstName" name="FirstName" placeholder="FirstName" type="text" value="${user.FirstName == null ? '' : user.FirstName}" />
-                                      
                                     </div>
                                 </div>
                             </div>
@@ -82,6 +81,7 @@ var profile = {
             </div>`;
             common.HideLoader();
             $('#Modal').children('div').children('div').html(form);
+            $("input[name='gender'][value='" + user.Gender + "']").prop('checked', true);
             $('#Modal').show();
         });
     },
@@ -226,7 +226,7 @@ var profile = {
 
                                 <div class="col-sm-7">
                                     <div>
-                          <input type="file" name="img[]" id="fileupload" onchange = "profile.readfile(this,'imagePreview')" />
+                          <input type="file" name="img[]" id="fileupload" onchange = "common.readfile(this,'imagePreview')" />
  <img id="imagePreview"   runat="server" style="border: 1px solid #eee3e3; @display;" height="100" width="100" />
                                     </div>
                                 </div>
@@ -248,11 +248,12 @@ var profile = {
             </div>`;
             common.HideLoader();
             $('#Modal').children('div').children('div').html(form);
+            $('#imagePreview').attr('src', user.AddressProofImg);
             $('#Modal').show();
         });
     },
     UpdateVendorDetails: function () {
-             if (profile.ValidateVendorDetail()) {
+        if (profile.ValidateVendorDetail()) {
             data = {
                 "FirmName": $('#FirmName').val(),
                 "GSTIN": $('#GST').val(),
@@ -262,7 +263,7 @@ var profile = {
                 "State": $('#State').val(),
                 "PIN": $('#PIN').val(),
                 "AddressProof": $('#imagePreview').attr('src')
-            }
+                 }
             ajax.doPostAjax(`/${homeController}/SaveCurrentVendorDetails`, data, function (result) {
                 common.ShowMessage(result);
                 if (result.ResultFlag) {
@@ -348,7 +349,7 @@ var profile = {
 
                                 <div class="col-sm-7">
                                     <div>
-                          <input type="file" name="img_bank" id="fileupload_bank" onchange = "profile.readfile(this,'imagePreviewbank')" />
+                          <input type="file" name="img_bank" id="fileupload_bank" onchange = "common.readfile(this,'imagePreviewbank')" />
  <img id="imagePreviewbank" style="border: 1px solid #eee3e3; @display;" height="100" width="100" />
                                     </div>
                                 </div>
@@ -371,6 +372,7 @@ var profile = {
             </div>`;
             common.HideLoader();
             $('#Modal').children('div').children('div').html(form);
+            $('#imagePreviewbank').attr('src', user.BankProofImg);
             $('#Modal').show();
         });
     },
@@ -416,7 +418,7 @@ var profile = {
                         <div class="form-group ">
                             <div class="row">
                                 <div class="col-sm-5">
-                                    <label class="control-label required" for="display_name">Account Number</label>
+                                    <label class="control-label required" for="display_name">Confirm Password</label>
                                 </div>
 
                                 <div class="col-sm-7">

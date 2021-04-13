@@ -44,7 +44,7 @@ namespace ShivFactory.Business.Repository
                 vendor.PanNo = model.PanNo;
                 vendor.City = model.City;
                 vendor.State = model.State;
-                vendor.AddressProofImg = model.FullAddress;
+                vendor.AddressProofImg = model.AddressProofImg;
                 vendor.PIN = model.PIN;
                 vendor.FullAddress = model.FullAddress;
                 vendor.LastUpdate = DateTime.Now; 
