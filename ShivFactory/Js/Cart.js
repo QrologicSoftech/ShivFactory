@@ -10,10 +10,24 @@
             "IsUserWishList": IsUserWishList,
         }
         ajax.doPostAjax(`/Home/AddToCart`, data, function (result) {
-                common.ShowMessage(result);
+                //common.ShowMessage(result);
         });
     },
-
+    AddToCartByHome: function (IsUserWishList, ProductID, ProductVarientId, VendorId, SalePrice, ProductName ) {
+        
+        var data = {
+            "ProductID": ProductID,
+            "ProductVarientId": ProductVarientId,
+            "ProductName": ProductName,
+            "Price": SalePrice,
+            "Quantity": 1,
+            "VendorId": VendorId,
+            "IsUserWishList": IsUserWishList,
+        }
+        ajax.doPostAjax(`/Home/AddToCart`, data, function (result) {
+            common.ShowMessage(result);
+        });
+    },
     UpdateCart: function (element) {
         let TempOrderDetailId = $(element).closest('tr').attr('Id');
         var data = {

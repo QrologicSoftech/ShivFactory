@@ -30,8 +30,8 @@ var Listing = {
 
                 $.each(varient, function (Value, varient) {
                     var html = `<article class="filter-group">\
-                        <h6 class="title" > <a href="#" class="dropdown-toggle"  data-toggle="collapse" data-target="#${varient.VarientName}"> ${varient.VarientName} </a> </h6 >\
-                            <div class="filter-content collapse" id="${varient.VarientName}" style="">\
+                        <h6 class="title" > <a href="#" onclick= "Listing.ToggleOrUntoggle()" class="dropdown-toggle"  data-toggle="collapse" data-target="#${varient.VarientName}"> ${varient.VarientName} </a> </h6 >\
+                            <div class="filter-content collapse"  id="${varient.VarientName}" style="">\
                                 <div class="inner">`;
 
                     varient.VarientValue.forEach((item) => {
@@ -40,7 +40,7 @@ var Listing = {
               <div class="custom-control-label">${item}</div>
               </label>`;
                     });
-                    html += `</div></div></article >`;
+                    html += `</div></div></article>`;
 
                     $("#partialViewFilter").append(html);
 
@@ -49,6 +49,10 @@ var Listing = {
             common.HideLoader();
         });
 
+    },
+
+    ToggleOrUntoggle: function () {
+        $(".filter-content collapse").toggleClass("show");
     },
 
     ApplyFilter: function () {
@@ -143,7 +147,7 @@ var Listing = {
                 <input type="hidden" id="ProductId" value="'+ dataval.ProductId +'" /><input type = "hidden" id = "ProductVarientId" value = "'+ dataval.ProductVarientId +'" />\
     <input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
     <input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
-                                    <a href ="" onclick="cart.AddToCart(false)"  alt='+ dataval.ProductName +' class="btn btn-outline-primary" val='+ dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
+                                    <a href ="" onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`)"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
                               </figure>\
                             </div >');
 

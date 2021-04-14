@@ -2,103 +2,109 @@
 @{
     ViewBag.Title = "ShowCart";
 }
-        @if (Model == null)
-        {
-    <h4 class="text-center">Cart is empty.Click on the link to <span style="color:cornflowerblue"><a href="/Home/">Shop Continue</a></span></h4>
-        }
-        else
-        {<aside class="col-lg-9">
-                    <div class="card">
-                        <div class="table-responsive">
-                            <table class="table table-borderless table-shopping-cart">
-                                <thead class="text-muted">
-                                    <tr class="small text-uppercase">
-                                        <th scope="col">Product</th>
-                                        <th scope="col" width="120">Quantity</th>
-                                        <th scope="col" width="120">Price</th>
-                                        <th scope="col" class="text-right d-none d-md-block" width="200"> </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.CartItems)
-                                    {
-                                        <tr id="@item.ID">
-                                            <td>
-                                                <figure class="itemside align-items-center">
-                                                    <div class="aside"><img src="@item.ImagePath" class="img-sm"></div>
-                                                    <figcaption class="info">
-                                                        <a href="#" class="title text-dark" id="ProductName">@item.ProductName</a>
-                                                        <input type="hidden" id="ProductId" value="@item.ProductID" />
-                                                        <input type="hidden" id="ProductVarientId" value="@item.ProductVarientID" />
-                                                        <input type="hidden" id="vendorId" value="@item.vendorId" />
-                                                        @*<p class="text-muted small">
-                                                            Matrix: 25 Mpx <br>
-                                                            Brand: Canon
-                                                        </p>*@
-                                                    </figcaption>
-                                                </figure>
-                                            </td>
-                                            <td>
-                                                <input type="number" min="1" id="Quantity" onkeyup="if(this.value<0)this.value=1"
-                                                       onblur="if(this.value<0)this.value=1" class="form-control Qty" value="@item.Quantity" onchange="cart.UpdateCart(this)" />
-                                            </td>
-                                            <td>
-                                                <div class="price-wrap"> <var class="price"><i class="fas fa-rupee-sign"></i>@item.NetAmt</var> <small class="text-muted"> <i class="fas fa-rupee-sign"></i> <span id="SalePrice">@item.Price</span> </small> </div>
-                                            </td>
-                                            <td class="text-right d-none d-md-block">
-                                                <a href="" onclick="cart.DeleteCart(@item.ID)" class="btn btn-light">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    }
+@if (Model == null || Model.CartItems.Count() == 0)
+{
+    <div class="center">
+     <img src="~/Content/UploadedImages/Images/emptycart.png" title="Continue shopping" alt="Continue Shopping" />
+     
+        <a  href="/Home/ProductListing" class="center btn btn-primary-light">Add Items</a>
+    </div>
+}
+else
+{
+    <aside class="col-lg-9">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-borderless table-shopping-cart">
+                    <thead class="text-muted">
+                        <tr class="small text-uppercase">
+                            <th scope="col">Product</th>
+                            <th scope="col" width="120">Quantity</th>
+                            <th scope="col" width="120">Price</th>
+                            <th scope="col" class="text-right d-none d-md-block" width="200"> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.CartItems)
+                        {
+                            <tr id="@item.ID">
+                                <td>
+                                    <figure class="itemside align-items-center">
+                                        <div class="aside"><img src="@item.ImagePath" class="img-sm"></div>
+                                        <figcaption class="info">
+                                            <a href="#" class="title text-dark" id="ProductName">@item.ProductName</a>
+                                            <input type="hidden" id="ProductId" value="@item.ProductID" />
+                                            <input type="hidden" id="ProductVarientId" value="@item.ProductVarientID" />
+                                            <input type="hidden" id="vendorId" value="@item.vendorId" />
+                                            @*<p class="text-muted small">
+                                                    Matrix: 25 Mpx <br>
+                                                    Brand: Canon
+                                                </p>*@
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                                <td>
+                                    <input type="number" min="1" id="Quantity" onkeyup="if(this.value<0)this.value=1"
+                                           onblur="if(this.value<0)this.value=1" class="form-control Qty" value="@item.Quantity" onchange="cart.UpdateCart(this)" />
+                                </td>
+                                <td>
+                                    <div class="price-wrap"> <var class="price"><i class="fas fa-rupee-sign"></i>@item.NetAmt</var> <small class="text-muted"> <i class="fas fa-rupee-sign"></i> <span id="SalePrice">@item.Price</span> </small> </div>
+                                </td>
+                                <td class="text-right d-none d-md-block">
+                                    @*/Home/DeleteCartItem*@
+                                    <a href="" onclick="cart.DeleteCart(@item.ID)" class="btn btn-light">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
 
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- table-responsive.// -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- table-responsive.// -->
 
-                        <div class="card-body border-top">
-                            <p class="icontext"><i class="icon text-success fa fa-truck"></i> Estimated delivery within 2-3 Days</p>
+            <div class="card-body border-top">
+                <a > <p class="icontext"><i class="icon text-success fa fa-truck"></i> Estimated delivery within 2-3 Days</p></a>
+                <a href="/Home/ProductListing"><p class="icontext"><i class="icon text-success fa fa-cart-plus"></i> Continue shopping</p></a>
 
+                @*<a href="/Customer/Checkout" style="float:right" type="button" class="btn btn-sm btn-warning btn-btom buttons"><i class="fa fa-shopping-cart" aria-hidden="true"></i> ADD MORE</a> &nbsp;&nbsp;*@
+                <a href="/Customer/Checkout" style="float:right" type="button" class="btn btn-sm btn-warning btn-btom buttons"><i class="fa fa-shopping-cart" aria-hidden="true"></i> CHECKOUT</a>
 
-                            <a href="/Customer/Checkout" style="float:right" type="button" class="btn btn-sm btn-warning btn-btom buttons"><i class="fa fa-shopping-cart" aria-hidden="true"></i> CHECKOUT</a>
+            </div>
 
-                        </div>
+            <!-- card-body.// -->
 
-                        <!-- card-body.// -->
+        </div>
+        <!-- card.// -->
 
-                    </div>
-                    <!-- card.// -->
+    </aside>
+    <!-- col.// -->
+    <aside class="col-md-3">
+        <!-- card .// -->
+        <div class="card">
+            <div class="card-body">
+                <dl class="dlist-align">
+                    <dt>Total price:</dt>
+                    <dd class="text-right"></dd>
+                </dl>
+                <dl class="dlist-align">
+                    <dt>Discount:</dt>
+                    <dd class="text-right">0.00</dd>
+                </dl>
+                <dl class="dlist-align">
+                    <dt>Total:</dt>
+                    <dd class="text-right  h5"><strong id="total-cart-val"><i class="fas fa-rupee-sign"></i> @Model.CartValue</strong></dd>
+                </dl>
+                <hr>
+                <p class="text-center mb-3">
+                    <img src="~/Content/UploadedImages/Images/payments.png" height="26">
+                </p>
+            </div>
+            <!-- card-body.// -->
+        </div>
+        <!-- card .// -->
+    </aside>
+    <!-- col.// -->
+}
 
-                </aside>
-                <!-- col.// -->
-                <aside class="col-md-3">
-                    <!-- card .// -->
-                    <div class="card">
-                        <div class="card-body">
-                            <dl class="dlist-align">
-                                <dt>Total price:</dt>
-                                <dd class="text-right"></dd>
-                            </dl>
-                            <dl class="dlist-align">
-                                <dt>Discount:</dt>
-                                <dd class="text-right">0.00</dd>
-                            </dl>
-                            <dl class="dlist-align">
-                                <dt>Total:</dt>
-                                <dd class="text-right  h5"><strong id="total-cart-val"><i class="fas fa-rupee-sign"></i> @Model.CartValue</strong></dd>
-                            </dl>
-                            <hr>
-                            <p class="text-center mb-3">
-                                <img src="~/Content/UploadedImages/Images/payments.png" height="26">
-                            </p>
-                        </div>
-                        <!-- card-body.// -->
-                    </div>
-                    <!-- card .// -->
-                </aside>
-                <!-- col.// -->
-         
-        }
-   
