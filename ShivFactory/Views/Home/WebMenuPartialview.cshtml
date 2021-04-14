@@ -6,14 +6,16 @@
 
 @foreach (var a in Model)
 {
-    var Totalb = a.SubCategory.Count;
-
     if (a.SubCategory.Count == 0 || a.SubCategory == null)
     {
 
     }
     else
     {
+        var Totalb = a.SubCategory.Count;
+        int countMin = a.SubCategory.SelectMany(c => c.MiniCategory).Count();
+
+        bool bindNewRow = false;
         int sub = 0;
         <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
             <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
@@ -26,35 +28,16 @@
                     <img src="~/Content/AdminImg/arrow-up.png">
                 </div>
                 <div>
-                    <li class="desktop-oddColumnContent">
-                        <ul class="desktop-navBlock">
-                            @foreach (var b in a.SubCategory)
-                            {
-                                sub++;
-                                var Totalc = b.MiniCategory.Count;
-                                if (Totalc > 3|| sub > 4)
+                    @if (Totalb < 4 || countMin < 4)
+                    {
+                        <li class="desktop-oddColumnContent">
+                            <ul class="desktop-navBlock">
+                                @foreach (var b in a.SubCategory)
                                 {
-                                    <li class="desktop-evenColumnContent desktop-oddColumnContent">
-                                        <ul class="desktop-navBlock">
-                                            <li>
-                                                <a href="~/Home/ProductListing?subId=@b.Id" style="color:#ee5f73;" class="desktop-categoryName">@b.Name</a>
-                                            </li>
 
-                                            @foreach (var c in b.MiniCategory)
-                                            {
-                                                <li>
-                                                    <a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id" class="desktop-categoryLink">@c.Name</a>
-                                                </li>
-                                            }
-                                        </ul>
-                                    </li>
-                                }
-                                else
-                                {
                                     <li>
                                         <a href="~/Home/ProductListing?subId=@b.Id" style="color:#ee5f73;" class="desktop-categoryName">@b.Name</a>
                                     </li>
-
                                     foreach (var c in b.MiniCategory)
                                     {
                                         <li>
@@ -62,9 +45,86 @@
                                         </li>
                                     }
                                 }
-                            }
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        foreach (var b in a.SubCategory)
+                        {
+                            <li class="desktop-evenColumnContent desktop-oddColumnContent">
+                                <ul class="desktop-navBlock">
+                                    <li>
+                                        <a href="~/Home/ProductListing?subId=@b.Id" style="color:#ee5f73;" class="desktop-categoryName">@b.Name</a>
+                                    </li>
+                                    @foreach (var c in b.MiniCategory)
+                                    {
+                                        <li>
+                                            <a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id" class="desktop-categoryLink">@c.Name</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    @*<li class="desktop-oddColumnContent">
+                            <ul class="desktop-navBlock">
+                                @foreach (var b in a.SubCategory.Take(2))
+                                {
+                                    sub++;
+                                    var Totalc = b.MiniCategory.Count;
+                                    if (Totalc > 3|| sub > 4)
+                                    {
+                                        sub = 0;
+                                        bindNewRow = true;
+                                        <li class="desktop-evenColumnContent desktop-oddColumnContent">
+                                            <ul class="desktop-navBlock">
+                                                <li>
+                                                    <a href="~/Home/ProductListing?subId=@b.Id" style="color:#ee5f73;" class="desktop-categoryName">@b.Name</a>
+                                                </li>
+
+                                                @foreach (var c in b.MiniCategory)
+                                                {
+                                                    <li>
+                                                        <a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id" class="desktop-categoryLink">@c.Name</a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a href="~/Home/ProductListing?subId=@b.Id" style="color:#ee5f73;" class="desktop-categoryName">@b.Name</a>
+                                        </li>
+
+                                        foreach (var c in b.MiniCategory)
+                                        {
+                                            <li>
+                                                <a href="~/Home/ProductListing?subId=@b.Id&minId=@c.Id" class="desktop-categoryLink">@c.Name</a>
+                                            </li>
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </li>*@
                 </div>
             </div>
         </div>

@@ -360,13 +360,103 @@ var Admin = {
                 "userId": userId
             }
             ajax.doPostAjax(`/${manageController}/BlockUser`, data, function (result) {
-                debugger;
                 if (result.ResultFlag) {
                     location.reload();
                 }
                 common.ShowMessage(result);
             });
         }
+    },
+
+    BindMenuOfCategory: function (divId) {
+        common.ShowLoader();
+        let html = '';
+        ajax.doGetAjax(`/${homeController}/GetWebMenuData`, function (result) {
+            if (result.ResultFlag) {
+
+               
+
+                result.Data.forEach((item) => {
+                    if (item.SubCategory.length == 0) { return false; }
+
+                    html += `<div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
+            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
+                <div class="nav-profile-text">
+                    <p class="text">${item.Name}</p>
+                </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <div class="arrow-up">
+                    <img src="../Content/AdminImg/arrow-up.png">
+                </div>
+                <div>`;
+                    var count = 0;
+                    html += `<li class="desktop-oddColumnContent">
+                            <ul class="desktop-navBlock">`;
+
+                    item.SubCategory.forEach((b) => {
+                        if (count >= 10) {
+                            count = 0;
+                            html += ` </ul>
+                                          </li>
+                                <li class="desktop-evenColumnContent desktop-oddColumnContent">
+                                <ul class="desktop-navBlock">`;
+                        }
+                        html += `<li>
+                                  <a href="../Home/ProductListing?subId=${b.Id}" style="color:#ee5f73;" class="desktop-categoryName">${b.Name}</a>
+                                 </li>`;
+                        count++;
+
+                        b.MiniCategory.forEach((c) => {
+                            if (count >= 10) {
+                                count = 0;
+                                html += ` </ul>
+                                          </li>
+                                <li class="desktop-evenColumnContent desktop-oddColumnContent">
+                                <ul class="desktop-navBlock">`;
+                            }
+
+                            html += `<li>
+                                            <a href="../Home/ProductListing?subId=${b.Id}&minId=${c.Id}" class="desktop-categoryLink">${c.Name}</a>
+                                        </li>`;
+                            count++;
+                        });
+                    });
+
+                    html += ` </ul></li>`;
+
+                    html += ` </div> </div> </div>`;
+
+
+                    html += `<script type="text/javascript">
+    $(document).ready(function () {
+        $(".dropdown").hover(
+            function () {
+                const $this = $(this);
+                $this.addClass('show');
+                $this.find(".dropdown-toggle").attr("aria-expanded", "true");
+                $this.find(".dropdown-menu").addClass('show');
+            },
+            function () {
+                const $this = $(this);
+                $this.removeClass('show');
+                $this.find(".dropdown-toggle").attr("aria-expanded", "false");
+                $this.find(".dropdown-menu").removeClass('show');
+            }
+        );
+
+    });
+
+
+</script>`;
+
+
+                });
+
+            }
+            $(divId).html(html);
+            common.HideLoader();
+        });
     },
 
 }

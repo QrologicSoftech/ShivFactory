@@ -201,6 +201,7 @@
       <DependentUpon>DefaultConnection.mdf</DependentUpon>
     </Content>
     <Content Include="Content\AdminImg\arrow-up.png" />
+    <Content Include="Content\AdminImg\logo-img.png" />
     <Content Include="Content\AdminImg\logo.png" />
     <Content Include="Content\AdminImg\next.png" />
     <Content Include="Content\AdminImg\right-arrow.png" />

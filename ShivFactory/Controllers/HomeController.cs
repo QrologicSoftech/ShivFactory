@@ -296,6 +296,32 @@ namespace ShivFactory.Controllers
             }
             return View(new MenuResponse());
         }
+        [HttpGet]
+        public ActionResult GetWebMenuData()
+        {
+            try
+            {
+                RepoMenu menu = new RepoMenu();
+                var menues = menu.GetAllMenues();
+                return Json(new ResultModel
+                {
+                    ResultFlag = menues.Count > 0,
+                    Data = menues,
+                    Message = menues.Count > 0 ? "Menu founds successfully!!" : "No records found."
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
         [HttpPost]
         public ActionResult ProductAutoComplete(string prefix)

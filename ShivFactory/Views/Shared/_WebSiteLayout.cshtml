@@ -853,6 +853,13 @@
                 common.HideLoader('#navbarSupportedContent');
                 $('#navbarSupportedContent').html(result);
             })
+            Admin.BindMenuOfCategory('#navbarSupportedContent');
+
+            //common.ShowLoader('#navbarSupportedContent');
+            //ajax.doGetAjax(`/Home/WebMenuPartialview`, function (result) {
+            //    common.HideLoader('#navbarSupportedContent');
+            //    $('#navbarSupportedContent').html(result);
+            //})
         });
     </script>
 
