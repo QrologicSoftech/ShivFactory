@@ -13,6 +13,7 @@
     var UserImage = repoUser.GetUserImage(util.GetCurrentUserId());
     RepoCart cart = new RepoCart();
     var cartCount = cart.GetUserCartCount();
+    var isUserLogIn = util.IsUserLogIn();
 }
 
 <script src="~/Content/Website/js/jquery-2.0.0.min.js?ver=@version"></script>
@@ -106,7 +107,7 @@
                                         <p class="text">More <i class="fa fa-angle-down" aria-hidden="true"></i></p>
                                     </div>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                <div class="dropdown-menu dropdown-menu-right margin-left-75" aria-labelledby="dropdownMenuButton">
                                     <div class="arrow-up">
                                         <img src="~/Content/UploadedImages/Images/arrow-up.png" />
                                     </div>
@@ -847,12 +848,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const myParam = urlParams.get('searchtext');
             $("#txtsearch-item").val(myParam);
-
-            common.ShowLoader('#navbarSupportedContent');
-            ajax.doGetAjax(`/Home/WebMenuPartialview`, function (result) {
-                common.HideLoader('#navbarSupportedContent');
-                $('#navbarSupportedContent').html(result);
-            })
+            
             Admin.BindMenuOfCategory('#navbarSupportedContent');
 
             //common.ShowLoader('#navbarSupportedContent');
