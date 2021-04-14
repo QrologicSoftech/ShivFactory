@@ -133,6 +133,8 @@
     <Compile Include="Repository\Color\RepoColor.cs" />
     <Compile Include="Repository\Common\Cookie.cs" />
     <Compile Include="Repository\Common\RepoCommon.cs" />
+    <Compile Include="Repository\DeliveryAddress\DeliveryAddress.cs" />
+    <Compile Include="Repository\DeliveryAddress\RepoDeliveryAddress.cs" />
     <Compile Include="Repository\Dimension\DimensionModel.cs" />
     <Compile Include="Repository\Dimension\DimensionResponse.cs" />
     <Compile Include="Repository\Dimension\RepoDimension.cs" />

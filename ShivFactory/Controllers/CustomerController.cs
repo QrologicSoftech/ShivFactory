@@ -19,7 +19,7 @@ namespace ShivFactory.Controllers
         public ActionResult Profile()
         {
             //Basic Details
-         
+
             RepoProfile repoProfile = new RepoProfile();
             var userProfiledetails = repoProfile.GetUserDetailsBYUserId(util.GetCurrentUserId());
             return View(userProfiledetails);
@@ -37,11 +37,11 @@ namespace ShivFactory.Controllers
         {
             RepoCart cart = new RepoCart();
             RepoCookie cooki = new RepoCookie();
-          //  var cartList = cart.GetUserCart(cooki.GetCookiesValue(CookieName.TempOrderId));
+            //  var cartList = cart.GetUserCart(cooki.GetCookiesValue(CookieName.TempOrderId));
             return View();
-         
-            
-           }
+
+
+        }
 
         [HttpPost]
         public ActionResult Orders(AddToCart model)
@@ -55,18 +55,28 @@ namespace ShivFactory.Controllers
         {
             RepoCheckout checkout = new RepoCheckout();
             var checkoutModel = checkout.GetCheckoutData();
-            if (checkoutModel != null) { 
-            return View(checkoutModel);
-        }else { 
-                return View(); 
+            if (checkoutModel != null) {
+                return View(checkoutModel);
+            } else {
+                return View();
             }
         }
 
         //[HttpPost]
         //public ActionResult Checkout()
         //{ 
-        
+
         //}
+
+        #endregion
+
+        #region Address
+        public ActionResult Address()
+        {
+            RepoDeliveryAddress repoaddress = new RepoDeliveryAddress();
+            var address = repoaddress.GetUserAddress(); 
+            return View(address); 
+        }
         #endregion
 
 

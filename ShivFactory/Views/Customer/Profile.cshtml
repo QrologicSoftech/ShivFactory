@@ -1,319 +1,315 @@
-﻿@model ShivFactory.Business.Repository.UserProfile 
+﻿@model ShivFactory.Business.Repository.UserProfile
 @{
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
+<script src="~/Js/UserProfile.js"></script>
 <div class="col-xl-9 col-lg-9 col-md-9">
-          <div class="personal">
-              <div class="profile-1 profile-2 hover-1" style="margin-top: 0px;">
-                  <div class="profile-page">
-                      <div class="profile-page-1">
-                          <div class="_1cyhik">
-                              <span class="_1mHr1S">Personal Information</span>
-                              <span class="oKZoMV">Edit</span>
-                          </div>
-                          <div class="card-body">
-                              <form method="POST">
-                                  <div class="row row-space">
-                                      <div class="col-4">
-                                          <div class="input-group">
-                                              <input class="input--style-4" type="text" name="first_name" placeholder="First name" value="@Model.FirstName">
-                                          </div>
-                                      </div>
-                                      <div class="col-4">
-                                          <div class="input-group">
-                                              <input class="input--style-4" type="text" name="last_name" placeholder="Last Name" value="@Model.LastName">
-                                          </div>
-                                      </div>
-                                  </div>
-                                  <div class="row row-space">
-                                      <div class="col-4">
-                                          <div class="input-group">
-                                              <label class="label">Your Gender</label>
-                                              <div class="p-t-10">
-                                                  <label class="radio-container m-r-45">
-                                                      Male
-                                                      <input type="radio" checked="checked" name="gender">
-                                                      <span class="checkmark"></span>
-                                                  </label>
-                                                  <label class="radio-container">
-                                                      Female
-                                                      <input type="radio" name="gender">
-                                                      <span class="checkmark"></span>
-                                                  </label>
-                                              </div>
-                                          </div>
-                                      </div>
-                                  </div> <br><br> <br>
-                                  <div class="row row-space">
-                                      <div class="col-5">
-                                          <div class="input-group">
-                                              <div class="_1cyhik">
-                                                  <span class="_1mHr1S">Email Address</span>
-                                                  <span class="oKZoMV">Edit</span>
-                                                  <span class="oKZoMV">Change Password</span>
-                                              </div>
-                                              <input class="input--style-4" type="email" name="email" placeholder="Email" value="@Model.Email">
-                                          </div>
-                                      </div>
-                                  </div> <br><br> <br>
-                                  <div class="row row-space">
-                                      <div class="col-4">
-                                          <div class="input-group">
-                                              <div class="_1cyhik">
-                                                  <span class="_1mHr1S">Mobile Number</span>
-                                                  <span class="oKZoMV">Edit</span>
-                                              </div>
-                                              <input class="input--style-4" type="text" name="phone" placeholder="Phone Number" value="@Model.Mobile">
-                                          </div>
-                                      </div>
-                                  </div>
-                              </form>
-                          </div>
-
-
-
-
-
-
-
-                      </div>
-                  </div>
-                  <div class="_2Q9A4t _3cEzE7">
-                      <div class="_2PTLbk">FAQs</div>
-                  </div>
-              </div>
-              <section class="frequently" id="faqs">
-                  <div class="_35va4c">
-                      <div class="asked">
-                          <div class="questions">
-                              <div class="panel-group qus" id="accordion" role="tablist" aria-multiselectable="true">
-                                  <div class="panel panel-default">
-
-<div style="position: relative;">
-    <a class="_3dshlq" href="#">
-        <div class="row ">
-            <div class="col-6-12">
-                <div class="row">
-                    <div class="col-3-12">
-                        <div class="_3hQhLv">
-                            <div class="CXW8mj" style="height: 75px; width: 75px;">
-                                <img class="_396cs4  _3exPp9" alt="" src="img/rockerz.jpeg">
-                            </div>
-                        </div>
+    <div class="personal">
+        <div class="profile-1 profile-2 hover-1" style="margin-top: 0px; background:white">
+            <div class="profile-page">
+                <div class="profile-page-1">
+                    <div class="_1cyhik">
+                        <span class="_1mHr1S">Personal Information</span>
+                        <span class="oKZoMV"><a onclick="userprofile.BindBasicDetail()"> Edit </a></span>
                     </div>
-                    <div class="col-8-12">
-                        <div class="_1hVBfR">
-                            <span class="row _1kkfO3 BqOr_g">boAt Rockerz 255F Bluetooth Headset</span>
-                            <div class="row _65ZkAB">
-                                <span class="_3dOR_a">
-                                    <span class="_65ZkAB">Color: </span>
-                                    <span class="-igymY">Black</span>
-                                </span>
-                                <span class="_3dOR_a">
-                                </span>
-                            </div>
-                            <div class="row _65ZkAB">
-                                <span class="_65ZkAB _1uABhR">Seller: </span>
-                                <span class="-igymY">SuperComNet</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2-12 _1_SN5_">₹1,498</div>
-            <div class="col-4-12 pq5Jer">
-                <div>
-                    <div class="_3SbeKb qU6Nxg">
-                    </div>
-                    <span class="AO0UbU">Returned</span>
-                    <div class="_30gI7w">Shipment is cancelled</div>
-                </div>
-                <div class="_18fmpV"></div>
-                <div class="_2yfTUY">
-
-                </div>
-            </div>
-        </div>
-    </a>
-    <div class="panel-heading " role="tab" id="headingOne">
-        <h4 class="panel-title">
-            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            </a>
-        </h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="">
-        <div class="_2GbJxj panel-body">
-            <div class="_1dKYOK">
-                <div class="-diO63">
-                    <span class="_1wU3kR G0VRC9">Refund Completed</span>
-                    <span class="_3tpFkF">
-                        &nbsp; (<span>Refund ID: </span>
-                        <span>12201796528397535084</span>)
-                    </span>
-                </div>
-                <div class="_315w16">
-                    <div class="_3EIC_i">
-                        <span>
-
-                        </span>
-                        <span>
-                            <ul>
-                                <div>
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="row row-space">
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <input class="input--style-4" type="text" name="first_name" placeholder="First name" value="@Model.FirstName">
+                                    </div>
                                 </div>
-                            </ul>
-                            <span class="_32oFS1">We have completed your request for refund. ₹1498.0 as refund is added to your ICICI VISA Credit Card 437551******0008 by Mar 12, 2020.  </span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="headingTwo-1">
-    <a class="_3dshlq" href="#">
-        <div class="row ">
-            <div class="col-6-12">
-                <div class="row">
-                    <div class="col-3-12">
-                        <div class="_3hQhLv">
-                            <div class="CXW8mj" style="height: 75px; width: 75px;">
-                                <img class="_396cs4  _3exPp9" alt="" src="img/women-tshit-s-hero.jpeg">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-8-12">
-                        <div class="_1hVBfR">
-                            <span class="row _1kkfO3 BqOr_g">Hero & Piyush Color Block Women Round Ne...</span>
-                            <div class="row _65ZkAB"><span class="_3dOR_a"><span class="_65ZkAB">Color: </span><span class="-igymY">Blue,White,Red</span></span><span class="_3dOR_a"><span class="_65ZkAB">Size: </span><span class="-igymY">S</span></span><span class="_3dOR_a"></span></div>
-                            <div class="row _65ZkAB"><span class="_65ZkAB _1uABhR">Seller: </span><span class="-igymY">ShreeDurgaEnterprises</span></div>
-                            <div class="row _65ZkAB">
-                                <span class="_65ZkAB _1uABhR">Seller: </span>
-                                <span class="-igymY">SuperComNet</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2-12 _1_SN5_">₹290</div>
-            <div class="col-4-12 pq5Jer">
-                <div>
-                    <div class="_3SbeKb qU6Nxg">
-                    </div>
-                    <span class="AO0UbU">Returned</span>
-                    <div class="_30gI7w">Shipment is cancelled</div>
-                </div>
-                <div class="_18fmpV"></div>
-                <div class="_2yfTUY">
-
-                </div>
-            </div>
-        </div>
-    </a>
-
-    <div class="panel-heading" role="tab" id="headingTwo">
-        <h4 class="panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            </a>
-        </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false">
-        <div class="_2GbJxj panel-body">
-            <div class="_1dKYOK">
-                <div class="-diO63">
-                    <span class="_1wU3kR G0VRC9">Refund Completed</span>
-                    <span class="_3tpFkF">
-                        &nbsp; (<span>Refund ID: </span>
-                        <span>12201796528397535084</span>)
-                    </span>
-                </div>
-                <div class="_315w16">
-                    <div class="_3EIC_i">
-                        <span>
-
-                        </span>
-                        <span>
-                            <ul>
-                                <div>
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <input class="input--style-4" type="text" name="last_name" placeholder="Last Name" value="@Model.LastName">
+                                    </div>
                                 </div>
-                            </ul>
-                            <span class="_32oFS1">We have completed your request for refund. ₹290 as refund is added to your ICICI VISA Credit Card 437551******0008 by Mar 12, 2020.  </span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="headingTwo-1">
-    <a class="_3dshlq" href="#">
-        <div class="row ">
-            <div class="col-6-12">
-                <div class="row">
-                    <div class="col-3-12">
-                        <div class="_3hQhLv">
-                            <div class="CXW8mj" style="height: 75px; width: 75px;">
-                                <img class="_396cs4  _3exPp9" alt="" src="img/blackcat-motorcycle-bike-alarm.jpeg">
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-8-12">
-                        <div class="_1hVBfR"><span class="row _1kkfO3 BqOr_g">Enfieldworks One-way Bike Alarm Kit</span><div class="row _65ZkAB"><span class="_65ZkAB _1uABhR">Seller: </span><span class="-igymY">ShopAnything</span></div></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2-12 _1_SN5_">₹835</div>
-            <div class="col-4-12 pq5Jer">
-                <div>
-                    <div class="_3SbeKb qU6Nxg">
-                    </div>
-                    <span class="AO0UbU">Returned</span>
-                    <div class="_30gI7w">Shipment is cancelled</div>
-                </div>
-                <div class="_18fmpV"></div>
-                <div class="_2yfTUY">
-
-                </div>
-            </div>
-        </div>
-    </a>
-
-    <div class="panel-heading" role="tab" id="headingfor">
-        <h4 class="panel-title">
-            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsefor" aria-expanded="false" aria-controls="collapsefor">
-            </a>
-        </h4>
-    </div>
-    <div id="collapsefor" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfor" aria-expanded="false">
-        <div class="_2GbJxj panel-body">
-            <div class="_1dKYOK">
-                <div class="-diO63">
-                    <span class="_1wU3kR G0VRC9">Refund Completed</span>
-                    <span class="_3tpFkF">
-                        &nbsp; (<span>Refund ID: </span>
-                        <span>12201796528397535084</span>)
-                    </span>
-                </div>
-                <div class="_315w16">
-                    <div class="_3EIC_i">
-                        <span>
-
-                        </span>
-                        <span>
-                            <ul>
-                                <div>
+                            <div class="row row-space">
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <label class="label">Your Gender</label>
+                                        <div class="p-t-10">
+                                            <label class="radio-container m-r-45">
+                                                Male
+                                                <input type="radio"  name="gender">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="radio-container">
+                                                Female
+                                                <input type="radio" name="gender">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </ul>
-                            <span class="_32oFS1">We have completed your request for refund. ₹835 as refund is added to your ICICI VISA Credit Card 437551******0008 by Mar 12, 2020.  </span>
-                        </span>
+                            </div> <br><br> <br>
+                            <div class="row row-space">
+                                <div class="col-5">
+                                    <div class="input-group">
+                                        <div class="_1cyhik">
+                                            <span class="_1mHr1S">Email Address</span>
+                                            <span class="oKZoMV"><a onclick="userprofile.BindEmailDetail()">Edit</a></span>
+                                            <span class="oKZoMV"><a onclick="userprofile.BindUserPasswordDetails()">Change Password </a></span>
+                                        </div>
+                                        <input class="input--style-4" type="email" name="email" placeholder="Email" value="@Model.Email">
+                                    </div>
+                                </div>
+                            </div> <br><br> <br>
+                            <div class="row row-space">
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="_1cyhik">
+                                            <span class="_1mHr1S">Mobile Number</span>
+                                            <span class="oKZoMV"><a onclick="userprofile.BindMobileDetail()">Edit</a></span>
+                                        </div>
+                                        <input class="input--style-4" type="text" name="phone" placeholder="Phone Number" value="@Model.Mobile">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
+
+
                 </div>
             </div>
+            <div class="_2Q9A4t _3cEzE7">
+                <div class="_2PTLbk">FAQs</div>
+            </div>
         </div>
-    </div>
-</div>
-</div>
+        <section class="frequently" id="faqs">
+            <div class="_35va4c">
+                <div class="asked">
+                    <div class="questions">
+                        <div class="panel-group qus" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+
+                                <div style="position: relative;">
+                                    <a class="_3dshlq" href="#">
+                                        <div class="row ">
+                                            <div class="col-6-12">
+                                                <div class="row">
+                                                    <div class="col-3-12">
+                                                        <div class="_3hQhLv">
+                                                            <div class="CXW8mj" style="height: 75px; width: 75px;">
+                                                                <img class="_396cs4  _3exPp9" alt="" src="img/rockerz.jpeg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8-12">
+                                                        <div class="_1hVBfR">
+                                                            <span class="row _1kkfO3 BqOr_g">boAt Rockerz 255F Bluetooth Headset</span>
+                                                            <div class="row _65ZkAB">
+                                                                <span class="_3dOR_a">
+                                                                    <span class="_65ZkAB">Color: </span>
+                                                                    <span class="-igymY">Black</span>
+                                                                </span>
+                                                                <span class="_3dOR_a">
+                                                                </span>
+                                                            </div>
+                                                            <div class="row _65ZkAB">
+                                                                <span class="_65ZkAB _1uABhR">Seller: </span>
+                                                                <span class="-igymY">SuperComNet</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-2-12 _1_SN5_">₹1,498</div>
+                                            <div class="col-4-12 pq5Jer">
+                                                <div>
+                                                    <div class="_3SbeKb qU6Nxg">
+                                                    </div>
+                                                    <span class="AO0UbU">Returned</span>
+                                                    <div class="_30gI7w">Shipment is cancelled</div>
+                                                </div>
+                                                <div class="_18fmpV"></div>
+                                                <div class="_2yfTUY">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="panel-heading " role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false" style="">
+                                        <div class="_2GbJxj panel-body">
+                                            <div class="_1dKYOK">
+                                                <div class="-diO63">
+                                                    <span class="_1wU3kR G0VRC9">Refund Completed</span>
+                                                    <span class="_3tpFkF">
+                                                        &nbsp; (<span>Refund ID: </span>
+                                                        <span>12201796528397535084</span>)
+                                                    </span>
+                                                </div>
+                                                <div class="_315w16">
+                                                    <div class="_3EIC_i">
+                                                        <span>
+
+                                                        </span>
+                                                        <span>
+                                                            <ul>
+                                                                <div>
+                                                                </div>
+                                                            </ul>
+                                                            <span class="_32oFS1">We have completed your request for refund. ₹1498.0 as refund is added to your ICICI VISA Credit Card 437551******0008 by Mar 12, 2020.  </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="headingTwo-1">
+                                    <a class="_3dshlq" href="#">
+                                        <div class="row ">
+                                            <div class="col-6-12">
+                                                <div class="row">
+                                                    <div class="col-3-12">
+                                                        <div class="_3hQhLv">
+                                                            <div class="CXW8mj" style="height: 75px; width: 75px;">
+                                                                <img class="_396cs4  _3exPp9" alt="" src="img/women-tshit-s-hero.jpeg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8-12">
+                                                        <div class="_1hVBfR">
+                                                            <span class="row _1kkfO3 BqOr_g">Hero & Piyush Color Block Women Round Ne...</span>
+                                                            <div class="row _65ZkAB"><span class="_3dOR_a"><span class="_65ZkAB">Color: </span><span class="-igymY">Blue,White,Red</span></span><span class="_3dOR_a"><span class="_65ZkAB">Size: </span><span class="-igymY">S</span></span><span class="_3dOR_a"></span></div>
+                                                            <div class="row _65ZkAB"><span class="_65ZkAB _1uABhR">Seller: </span><span class="-igymY">ShreeDurgaEnterprises</span></div>
+                                                            <div class="row _65ZkAB">
+                                                                <span class="_65ZkAB _1uABhR">Seller: </span>
+                                                                <span class="-igymY">SuperComNet</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-2-12 _1_SN5_">₹290</div>
+                                            <div class="col-4-12 pq5Jer">
+                                                <div>
+                                                    <div class="_3SbeKb qU6Nxg">
+                                                    </div>
+                                                    <span class="AO0UbU">Returned</span>
+                                                    <div class="_30gI7w">Shipment is cancelled</div>
+                                                </div>
+                                                <div class="_18fmpV"></div>
+                                                <div class="_2yfTUY">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="panel-heading" role="tab" id="headingTwo">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false">
+                                        <div class="_2GbJxj panel-body">
+                                            <div class="_1dKYOK">
+                                                <div class="-diO63">
+                                                    <span class="_1wU3kR G0VRC9">Refund Completed</span>
+                                                    <span class="_3tpFkF">
+                                                        &nbsp; (<span>Refund ID: </span>
+                                                        <span>12201796528397535084</span>)
+                                                    </span>
+                                                </div>
+                                                <div class="_315w16">
+                                                    <div class="_3EIC_i">
+                                                        <span>
+
+                                                        </span>
+                                                        <span>
+                                                            <ul>
+                                                                <div>
+                                                                </div>
+                                                            </ul>
+                                                            <span class="_32oFS1">We have completed your request for refund. ₹290 as refund is added to your ICICI VISA Credit Card 437551******0008 by Mar 12, 2020.  </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="headingTwo-1">
+                                    <a class="_3dshlq" href="#">
+                                        <div class="row ">
+                                            <div class="col-6-12">
+                                                <div class="row">
+                                                    <div class="col-3-12">
+                                                        <div class="_3hQhLv">
+                                                            <div class="CXW8mj" style="height: 75px; width: 75px;">
+                                                                <img class="_396cs4  _3exPp9" alt="" src="img/blackcat-motorcycle-bike-alarm.jpeg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8-12">
+                                                        <div class="_1hVBfR"><span class="row _1kkfO3 BqOr_g">Enfieldworks One-way Bike Alarm Kit</span><div class="row _65ZkAB"><span class="_65ZkAB _1uABhR">Seller: </span><span class="-igymY">ShopAnything</span></div></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-2-12 _1_SN5_">₹835</div>
+                                            <div class="col-4-12 pq5Jer">
+                                                <div>
+                                                    <div class="_3SbeKb qU6Nxg">
+                                                    </div>
+                                                    <span class="AO0UbU">Returned</span>
+                                                    <div class="_30gI7w">Shipment is cancelled</div>
+                                                </div>
+                                                <div class="_18fmpV"></div>
+                                                <div class="_2yfTUY">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                    <div class="panel-heading" role="tab" id="headingfor">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsefor" aria-expanded="false" aria-controls="collapsefor">
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapsefor" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingfor" aria-expanded="false">
+                                        <div class="_2GbJxj panel-body">
+                                            <div class="_1dKYOK">
+                                                <div class="-diO63">
+                                                    <span class="_1wU3kR G0VRC9">Refund Completed</span>
+                                                    <span class="_3tpFkF">
+                                                        &nbsp; (<span>Refund ID: </span>
+                                                        <span>12201796528397535084</span>)
+                                                    </span>
+                                                </div>
+                                                <div class="_315w16">
+                                                    <div class="_3EIC_i">
+                                                        <span>
+
+                                                        </span>
+                                                        <span>
+                                                            <ul>
+                                                                <div>
+                                                                </div>
+                                                            </ul>
+                                                            <span class="_32oFS1">We have completed your request for refund. ₹835 as refund is added to your ICICI VISA Credit Card 437551******0008 by Mar 12, 2020.  </span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -523,4 +519,11 @@
         </div>
     </div>
 
+   
 </div>
+<script>
+    $(document).ready(function () {
+        $("input[name='gender'][value='" + @Model.Gender + "']").prop('checked', true);
+    });
+</script>
+

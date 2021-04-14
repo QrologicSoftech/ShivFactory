@@ -225,6 +225,7 @@
     <Content Include="Content\UploadedImages\Images\emptycart.png" />
     <Content Include="Content\Website\css\stylecode.css" />
     <Content Include="Content\Website\js\script2.js" />
+    <Content Include="Js\UserProfile.js" />
     <Content Include="Views\Manage\ProductDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\UnApprovedProductPartialView.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\AddProduct.cshtml" />
@@ -609,6 +610,7 @@
     <Content Include="Views\Customer\Checkout.cshtml" />
     <Content Include="Views\Home\WebMenuPartialview - Copy.cshtml" />
     <Content Include="Views\Customer\Checkout_OLD - Copy.cshtml" />
+    <Content Include="Views\Customer\Address.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />

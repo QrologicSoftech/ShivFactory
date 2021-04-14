@@ -7,7 +7,7 @@
     Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
     var version = ConfigurationManager.AppSettings["jsversion"].ToString();
     RepoCookie repoCookie = new RepoCookie();
-    var UserFName = repoCookie.GetStringCookiesValue(CookieName.FirstName) ;
+    var UserFName = repoCookie.GetStringCookiesValue(CookieName.FirstName);
     var UserLName = repoCookie.GetStringCookiesValue(CookieName.LastName);
     var role = repoCookie.GetStringCookiesValue(CookieName.Role);
     Utility util = new Utility();
@@ -18,21 +18,21 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-3 col-lg-3 col-md-3">
-            
-                    <div class="_3E8aIl">
-                        <div class="nUdcwy row order-1">
-                            <img class="_3X2gOt" height="50px" width="50px" src="@UserImage">
-                            <div class="DxGiT2">
-                                <div class="_1ruvv2">
-                                    <div class="_14mvAI"><a href="/Customer/Profile/">Hello @UserFName</a></div>
-                                </div>
+
+                <div class="_3E8aIl">
+                    <div class="nUdcwy row order-1">
+                        <img class="_3X2gOt" height="50px" width="50px" src="@UserImage">
+                        <div class="DxGiT2">
+                            <div class="_1ruvv2">
+                                <div class="_14mvAI"><a href="/Customer/Profile/">Hello @UserFName</a></div>
                             </div>
                         </div>
                     </div>
-                
+                </div>
+
                 <div class="my-order">
                     <div class="my-order-1">
-                        <div class="my-order-2 order-2">
+                        <div class="my-order-2 ">
                             <i class="fa fa-first-order" aria-hidden="true"></i>
                             <a href="#">
                                 MY ORDERS
@@ -43,7 +43,7 @@
                     <hr>
                     <div>
                         <div class="my-order-1">
-                            <div class="my-order-2">
+                            <div class="my-order-2 order-2">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <a href="#" style="cursor: initial;">
                                     ACCOUNT SETTINGS
@@ -54,7 +54,7 @@
                             <a href="#">
                                 <div class="Information">Profile Information</div>
                             </a>
-                            <a href="#">
+                            <a href="/Customer/Address/">
                                 <div class="manage-addresses">Manage Addresses</div>
                             </a>
                         </div>
@@ -138,3 +138,44 @@
     </div>
 
 </section>
+<script type="text/javascript">
+    $(".frequently .goes").click(function () {
+        $('.frequently .panel').css('display', 'none');
+        $('.frequently .accordion').removeClass('active');
+        $(this).children('.panel').css('display', 'block');
+        $(this).children('.accordion').addClass('active');
+    });
+</script>
+<script>
+    jQuery(".order-1").click(function () {
+        jQuery('.profile-2').addClass("hover-1");
+    });
+    jQuery(".order-2").click(function () {
+        jQuery('.frequently').addClass("hover-2");
+    });
+    jQuery(".order-3").click(function () {
+        jQuery('.fullpage-1').addClass("hover-3");
+    });
+</script>
+<script>
+
+    jQuery(".order-2").click(function () {
+        jQuery('.profile-2').removeClass("hover-1");
+    });
+    jQuery(".order-3").click(function () {
+        jQuery('.frequently').removeClass("hover-2");
+    });
+    jQuery(".order-1").click(function () {
+        jQuery('.frequently ').removeClass("hover-2");
+    });
+
+    jQuery(".order-3").click(function () {
+        jQuery('.profile-2').removeClass("hover-1");
+    });
+    jQuery(".order-1").click(function () {
+        jQuery('.fullpage-1').removeClass("hover-3");
+    });
+    jQuery(".order-2").click(function () {
+        jQuery('.fullpage-1 ').removeClass("hover-3");
+    });
+</script>
