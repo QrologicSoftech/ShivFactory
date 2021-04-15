@@ -22,6 +22,7 @@ namespace ShivFactory.Business.Repository
 
         #endregion
         Utility utility = new Utility();
+        RepoCommon common = new RepoCommon();
 
         public bool AddToCart(AddToCart model)
         {
@@ -137,22 +138,25 @@ namespace ShivFactory.Business.Repository
             }).FirstOrDefault();
             if (data != null)
             {
-                data.CartItems = (from tod in db.TempOrderDetails
-                                  join p in db.Products
-                                  on tod.ProductId equals p.ProductId
-                                  where tod.TempOrderID == tempId && (tod.IsUserWishList == false)
-                                  select new AddToCart
-                                  {
-                                      ProductID = tod.ProductId != null ? tod.ProductId.Value : 0,
-                                      ProductName = tod.ProductName,
-                                      Price = tod.Price ?? 0,
-                                      Quantity = tod.Quantity ?? 0,
-                                      NetAmt = tod.NetAmt ?? 0,
-                                      ProductVarientID = tod.ProductVarientId ?? 0,
-                                      vendorId = tod.VendorId ?? 0,
-                                      ID = tod.ID,
-                                      ImagePath = p.MainImage
-                                  }).AsNoTracking().ToList();
+                var cartItems = (from tod in db.TempOrderDetails
+                                 join p in db.Products
+                                 on tod.ProductId equals p.ProductId
+                                 where tod.TempOrderID == tempId && (tod.IsUserWishList == false)
+                                 select new AddToCart
+                                 {
+                                     ProductID = tod.ProductId != null ? tod.ProductId.Value : 0,
+                                     ProductName = tod.ProductName,
+                                     Price = tod.Price ?? 0,
+                                     Quantity = tod.Quantity ?? 0,
+                                     NetAmt = tod.NetAmt ?? 0,
+                                     ProductVarientID = tod.ProductVarientId ?? 0,
+                                     vendorId = tod.VendorId ?? 0,
+                                     ID = tod.ID,
+                                     ImagePath = p.MainImage,
+                                     ListPrice = p.ListPrice ?? 0
+                                 }).AsNoTracking().ToList();
+                cartItems.ForEach(a => a.OfferPercentage = common.CalculateOff(a.ListPrice, a.Price));
+                data.CartItems = cartItems;
             }
             return data;
         }
@@ -182,8 +186,10 @@ namespace ShivFactory.Business.Repository
                                  ProductVarientID = tod.ProductVarientId ?? 0,
                                  vendorId = tod.VendorId ?? 0,
                                  ID = tod.ID,
-                                 ImagePath = p.MainImage
+                                 ImagePath = p.MainImage,
+                                 ListPrice = p.ListPrice ?? 0
                              }).AsNoTracking().ToList();
+                items.ForEach(a => a.OfferPercentage = common.CalculateOff(a.ListPrice, a.Price));
                 data.CartItems = items;
             }
             return data;

@@ -53,51 +53,57 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-7 order-2 col-7">
                         <div class="widgets-wrap float-md-right d-flex align-items-center justify-content-end">
-                            <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
-                                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
-                                    <div class="nav-profile-text">
-                                        <button type="button" class="btn btn-login click-open">Login</button>
-                                    </div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                    <div class="arrow-up">
-                                        <img src="~/Content/UploadedImages/Images/arrow-up.png" />
-                                    </div>
-                                    <ul class="new-customer-id">
-                                        <li>
-                                            <a href="user-register.html">New Customer?</a>
-                                        </li>
-                                        <li>
-                                            <a href="user-login.html" class="sing-up">Sing Up</a>
-                                        </li>
-                                    </ul>
-                                    <a class="dropdown-item" href="profile.html"><i class="fa fa-user-circle" aria-hidden="true"></i>My Profile</a>
-                                    <a class="dropdown-item" href="orders.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Orders</a>
-                                    <a class="dropdown-item" href="wishlist.html"><i class="fa fa-heart" aria-hidden="true"></i>Wishlist</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Notification</a>
-                                </div>
-                            </div>
-                            <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
-                                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
+                            @if (isUserLogIn)
+                            {
+                                <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
+                                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
 
-                                    <div class="nav-profile-text">
-                                        <p class="text">@UserName <i class="fa fa-angle-down" aria-hidden="true"></i></p>
+                                        <div class="nav-profile-text">
+                                            <p class="text">@UserName <i class="fa fa-angle-down" aria-hidden="true"></i></p>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                        <div class="arrow-up">
+                                            <img src="~/Content/UploadedImages/Images/arrow-up.png" />
+                                        </div>
+                                        <a class="dropdown-item" href="/Customer/Profile/"><i class="fa fa-user-circle" aria-hidden="true"></i>Profile</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i>My Account</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
+                                        <a class="dropdown-item" href="/Customer/Orders/"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Orders</a>
+                                        <a class="dropdown-item" href="/Home/Wishlist/"><i class="fa fa-heart" aria-hidden="true"></i>WishList</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
+                                        <a class="dropdown-item" href="/Account/LogOff"><i class="fa fa-bell" aria-hidden="true"></i>Logout</a>
                                     </div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                    <div class="arrow-up">
-                                        <img src="~/Content/UploadedImages/Images/arrow-up.png" />
-                                    </div>
-                                    <a class="dropdown-item" href="/Customer/Profile/"><i class="fa fa-user-circle" aria-hidden="true"></i>Profile</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i>My Account</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
-                                    <a class="dropdown-item" href="/Customer/Orders/"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Orders</a>
-                                    <a class="dropdown-item" href="/Home/Wishlist/"><i class="fa fa-heart" aria-hidden="true"></i>WishList</a>
-                                    <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
-                                    <a class="dropdown-item" href="/Account/LogOff"><i class="fa fa-bell" aria-hidden="true"></i>Logout</a>
                                 </div>
-                            </div>
+                            }
+                            else
+                            {
+                                <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
+                                    <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
+                                        <div class="nav-profile-text">
+                                            <button type="button" class="btn btn-login click-open">Login</button>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                        <div class="arrow-up">
+                                            <img src="~/Content/UploadedImages/Images/arrow-up.png" />
+                                        </div>
+                                        <ul class="new-customer-id">
+                                            <li>
+                                                <a href="user-register.html">New Customer?</a>
+                                            </li>
+                                            <li>
+                                                <a href="user-login.html" class="sing-up">Sing Up</a>
+                                            </li>
+                                        </ul>
+                                        <a class="dropdown-item" href="profile.html"><i class="fa fa-user-circle" aria-hidden="true"></i>My Profile</a>
+                                        <a class="dropdown-item" href="orders.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Orders</a>
+                                        <a class="dropdown-item" href="wishlist.html"><i class="fa fa-heart" aria-hidden="true"></i>Wishlist</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
+                                        <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Notification</a>
+                                    </div>
+                                </div>
+                            }
                             <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
 
 
@@ -848,7 +854,7 @@
             const urlParams = new URLSearchParams(window.location.search);
             const myParam = urlParams.get('searchtext');
             $("#txtsearch-item").val(myParam);
-            
+
             Admin.BindMenuOfCategory('#navbarSupportedContent');
 
             //common.ShowLoader('#navbarSupportedContent');

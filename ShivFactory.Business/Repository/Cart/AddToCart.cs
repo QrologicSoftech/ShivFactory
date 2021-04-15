@@ -19,6 +19,8 @@ namespace ShivFactory.Business.Repository
         public bool IsUserWishList { get; set; }
         public int vendorId { get; set; }
         public string ImagePath { get; set; }
+        public decimal ListPrice { get; set; }
+        public decimal OfferPercentage { get; set; }
     }
     public class CartModel
     {
