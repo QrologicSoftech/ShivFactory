@@ -114,10 +114,10 @@ var Listing = {
             pageIndex++;
         }
         ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
-            console.log(result)
             if (result.ResultFlag == true) {
                 Listing.OnSuccess(result.Data)
             }
+            common.HideLoader('#partialViewListing');
         });
 
 

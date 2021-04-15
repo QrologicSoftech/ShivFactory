@@ -369,9 +369,9 @@ namespace ShivFactory.Controllers
                 System.Threading.Thread.Sleep(100);
                 return Json(new ResultModel
                 {
-                    ResultFlag = list != null ? true : false,
+                    ResultFlag = list.Count>0 ? true : false,
                     Data = list,
-                    Message = list != null ? "Product find successfully!!" : "Failled to find Product!!"
+                    Message = list.Count > 0 ? "Product find successfully!!" : "Failled to find Product!!"
                 }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)

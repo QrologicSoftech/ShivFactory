@@ -226,6 +226,7 @@
     <Content Include="Content\UploadedImages\Images\emptycart.png" />
     <Content Include="Content\Website\css\stylecode.css" />
     <Content Include="Content\Website\js\script2.js" />
+    <Content Include="Js\Accounts.js" />
     <Content Include="Js\UserProfile.js" />
     <Content Include="Views\Manage\ProductDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\UnApprovedProductPartialView.cshtml" />
