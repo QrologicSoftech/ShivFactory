@@ -94,7 +94,7 @@ var commonFunction = {
                 columns.push({ "data": `${item}`, "name": `${item}`, "orderable": Isorderable });
             }
         });
-        
+
         if (ActionArray) {
             ActionArray.forEach((item) => {
                 if (item.ActionLink) {
@@ -136,9 +136,7 @@ var commonFunction = {
         bcgDiv.style.width = "100%";
         bcgDiv.style.display = "block";
         return false;
-    }
-
-
+    },
 }
 
 

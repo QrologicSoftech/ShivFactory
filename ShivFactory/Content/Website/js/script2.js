@@ -27,12 +27,12 @@ function myFunction() {
 }
 
 $(document).ready(function(){
-  $(".click-open").click(function(){
-    $("._2hriZF ").toggleClass("_2rbIyg");
-  });
-  $("._2doB4z").click(function(){
-    $("._2hriZF").removeClass("_2rbIyg");
-  });
+  //$(".click-open").click(function(){
+  //  $("._2hriZF ").toggleClass("_2rbIyg");
+  //});
+  //$("._2doB4z").click(function(){
+  //  $("._2hriZF").removeClass("_2rbIyg");
+  //});
 });
 
 $('.IiD88i input').keyup(function(){

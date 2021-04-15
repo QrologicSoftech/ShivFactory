@@ -9888,6 +9888,15 @@ ul {
     transition: all 0.2s;
 }
 
+.error-message {
+    color: red;
+    top: 45px;
+    border-right: 0px solid #000;
+    line-height: 15px;
+    z-index: 1;
+    opacity:1 !important;
+}
+
 .modile-responsive #container {
     position: fixed;
     width: 100%;

@@ -1,90 +1,118 @@
 ﻿@model ShivFactory.Business.Repository.LogInModel
 @{
     ViewBag.Title = "Login to your Account";
-    Layout = "~/Views/Shared/_Accounts_Layout.cshtml";
+    Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
 }
+<div class="modal" style="display:block;top: 90px;">
+    <div class="modal-header">
+        <div class="modal-body">
+            <div class="_2Sn47c">
+                <div class="_2hriZF _2rbIyg" tabindex="-1">
+                    <div class="_2QfC02">
+                        <a href="/Home/" class="_2KpZ6l _2doB4z">✕</a>
+                        <div class="_2MlkI1">
+                            <div class="_3wFoIb row">
+                                <div class="_3oBhRa col col-2-5 _4H6HH5">
+                                    <span class="_36KMOx">
+                                        <span>Login</span>
+                                    </span>
+                                    <p class="_1-pxlW">
+                                        <span>Get access to your Orders, Wishlist and Recommendations</span>
+                                    </p>
+                                </div>
+                                <div class="_36HLxm col col-3-5">
+                                    <div>
+                                        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "on", id = "login" }))
+                                        {
+                                            <div class="IiD88i _351hSN">
+                                                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "_2IX_2- VJZDxU enter-number _1Z69nn", @autocomplete = "off", @type = "text" })
+                                                <span class="_36T8XR"></span>
+                                                <label class="_1fqY3P">
+                                                    <span>Mobile number</span>
+                                                </label>
+                                                <span class="_1_wZ0r">+91</span>
+                                                <div class="_1_wZ0r error-message">
+                                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "" })
+                                                </div>
+                                            </div>
 
-<div class="sc-fzojmp kyojis">
-    <div class="sc-fzqbkg fckjvf">
-        <div class="sc-fzqpzz gliaon"> @ViewBag.Title</div>
-        <div class="sc-fzpkqz foxupi">
-
-            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", id = "login" }))
-            {
-                <div class="style-elementwrapper ijsebp wrapper">
-                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "styles-styledinput gezlls", @placeholder = "Enter Your UserName", @type = "text" })
-
-                    <div class="error-formerror myzbk form-error">
-                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "sc-fzqmdd fzqonm freebie" })
-                    </div>
-                </div>
-                <div class="style-elementwrapper ijsebp wrapper">
-                    @Html.TextBoxFor(m => m.Password, new { @class = "styles-styledinput gezlls", @placeholder = "Enter Your Password", @type = "password" })
-
-                    <div class="error-formerror myzbk form-error">
-                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "sc-fzqmdd fzqonm freebie" })
-                    </div>
-                    @*@Html.CheckBoxFor(m => m.RememberMe) @Html.Label("Remember Me")*@
-                </div>
-                @*<div class="sc-fzpiso jhqzjv">
-                  
-                 </div>*@
-                    <button class="basebutton primarybtn-primarybtndetails eazyuu save" type="submit" style=" height: 40px; padding-left: 15px; padding-right: 16px; text-transform: uppercase;">Login</button>
-
-                    }
-                    <div class="sc-fzpiso jhqzjv">
-                        <div class="sc-fzqaui eogdzk">
-                            Become a Seller? <a href="/Account/MobileVerify" class="baselink-sc tertiarylink-sc enzijk">Register Here</a>
+                                            <div class="IiD88i _351hSN">
+                                                @Html.TextBoxFor(m => m.Password, new { @class = "_2IX_2- _3mctLh VJZDxU", @autocomplete = "off", @type = "password" })
+                                                <span class="_36T8XR"></span>
+                                                <label class="_1fqY3P">
+                                                    <span>Enter Password</span>
+                                                </label>
+                                                <div class="_1_wZ0r error-message">
+                                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "" })
+                                                </div>
+                                            </div>
+                                            <div class="_1Ijv5h">
+                                                By continuing, you agree to Shiv Factory
+                                                <a class="_2ARnXM" target="_blank" href="#">Terms of Use</a> and
+                                                <a class="_2ARnXM" target="_blank" href="#">Privacy Policy</a>.
+                                            </div>
+                                            <div class="_1D1L_j">
+                                                <button class="_2KpZ6l _2HKlqd _3AWRsL" type="submit">
+                                                    <div class="_2YsvKq o8qAfl">
+                                                        <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
+                                                    </div>
+                                                    <span>Login</span>
+                                                </button>
+                                            </div>
+                                            <div class="_1k3JO2">
+                                                <div class="_2XlkPA">OR</div>
+                                                <button class="_2KpZ6l _2HKlqd _3NgS1a">Request OTP</button>
+                                            </div>
+                                            <div class="_1En5li">
+                                                <a class="_14Me7y" href="#">New to Shiv Factory? Create an account</a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-    <div class="sc-fazpkjw hctkjm">
-        <div>
-            <div class="sc-fzokki knkljw">Sell to crores of customers on Shiv Factory, right from your doorstep!</div>
-            <div class="sc-fzoyki hfpotr">All you need to sell on Shiv Factory is</div>
-            <div class="sc-fznzof jxqfab">
-                <div class="sc-fzoyhe gxatj">
-                    <div class="imp-icon">
-                        <img src="/Content/AdminImg/gstin.png">
-                        <div class="gstin-label">GSTIN*</div>
-                    </div>
-
-
-                </div>
-                <div class="sc-fzqmaw himzko">
-                </div>
-                <div class="sc-fzoyhe gxatj">
-                    <div class="imp-icon">
-                        <img src="/Content/AdminImg/bank-account.png">
-                        <div class="gstin-label">Bank Account</div>
-                    </div>
-
-                </div>
-                <div class="sc-fzqmaw himzko"></div>
-                <div class="sc-fzoyhe gxatj">
-                    <div class="imp-icon">
-                        <img src="/Content/AdminImg/products-sell.png">
-                        <div class="gstin-label">Products to sell</div>
-                    </div>
-                </div>
-            </div>
-            <span class="sc-fznmnq bivoqy">*GSTIN is not required for sellers who only sell books</span>
-            <div class="sc-fzoydu ctzjfv"></div>
-            <div class="sc-fzoyki hfpotr">How will this information be used?</div>
-            <div class="sc-fzqabl hculgs">
-                You can use your email address or mobile number as 'Username' to login to your  Seller Account.
-                Please note, the 'Username' and 'Password' used here are only to access your  Seller Account and can’t be used on ShivFactory shopping destination.
-            </div>
-            <div class="sc-fzoydu ctzjfv">
             </div>
         </div>
     </div>
 </div>
-
 <script>
     $(document).ready(function () {
-        common.Timer(120, 'timer', true);
+
+        function ReadyTextbox(element) {
+            if ($(element).val()) {
+                $(element).parent().find('._36T8XR').addClass("_3umUoc");
+            } else {
+                $(element).parent().find('._36T8XR').removeClass("_3umUoc");
+            }
+            if ($(element).val()) {
+                $(element).parent().find('._1fqY3P').addClass("_3umUoc");
+            } else {
+                $(element).parent().find('._1fqY3P').removeClass("_3umUoc");
+            }
+            if ($(element).val()) {
+                $(element).parent().find('.enter-number').addClass("_1Z69nn");
+            } else {
+                $(element).parent().find('.enter-number').removeClass("_1Z69nn");
+            }
+
+            if ($(element).val()) {
+                $(element).parent().find('._1_wZ0r').addClass("show-number");
+            } else {
+                $(element).parent().find('._1_wZ0r').removeClass("show-number");
+            }
+
+            if ($(element).val()) {
+                $(element).parent().find('._2_ryRS').addClass("_3_6wHc");
+            } else {
+                $(element).parent().find('._2_ryRS').removeClass("_3_6wHc");
+            }
+        }
+        ReadyTextbox('.IiD88i input');
+
+        $('.IiD88i input').keyup(function () {
+            ReadyTextbox(this);
+        });
     });
-</script> 
+</script>

@@ -66,11 +66,11 @@
                                         <div class="arrow-up">
                                             <img src="~/Content/UploadedImages/Images/arrow-up.png" />
                                         </div>
-                                        <a class="dropdown-item" href="/Customer/Profile/"><i class="fa fa-user-circle" aria-hidden="true"></i>Profile</a>
+                                        <a class="dropdown-item" href="/Customer/Profile"><i class="fa fa-user-circle" aria-hidden="true"></i>Profile</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i>My Account</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
-                                        <a class="dropdown-item" href="/Customer/Orders/"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Orders</a>
-                                        <a class="dropdown-item" href="/Home/Wishlist/"><i class="fa fa-heart" aria-hidden="true"></i>WishList</a>
+                                        <a class="dropdown-item" href="/Customer/Orders"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Orders</a>
+                                        <a class="dropdown-item" href="/Home/Wishlist"><i class="fa fa-heart" aria-hidden="true"></i>WishList</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
                                         <a class="dropdown-item" href="/Account/LogOff"><i class="fa fa-bell" aria-hidden="true"></i>Logout</a>
                                     </div>
@@ -81,7 +81,7 @@
                                 <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
                                     <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
                                         <div class="nav-profile-text">
-                                            <button type="button" class="btn btn-login click-open">Login</button>
+                                            <a href="/Account/Login" class="btn btn-login click-open" onclick="">Login</a>
                                         </div>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -96,9 +96,9 @@
                                                 <a href="user-login.html" class="sing-up">Sing Up</a>
                                             </li>
                                         </ul>
-                                        <a class="dropdown-item" href="profile.html"><i class="fa fa-user-circle" aria-hidden="true"></i>My Profile</a>
-                                        <a class="dropdown-item" href="orders.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Orders</a>
-                                        <a class="dropdown-item" href="wishlist.html"><i class="fa fa-heart" aria-hidden="true"></i>Wishlist</a>
+                                        <a class="dropdown-item" href="/Customer/Profile"><i class="fa fa-user-circle" aria-hidden="true"></i>My Profile</a>
+                                        <a class="dropdown-item" href="/Customer/Orders"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Orders</a>
+                                        <a class="dropdown-item" href="/Home/Wishlist"><i class="fa fa-heart" aria-hidden="true"></i>Wishlist</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Notification</a>
                                     </div>
@@ -137,122 +137,123 @@
                         </div>
                     </div>
                 </div>
-                <div class="_2Sn47c">
-                    <div class="_2hriZF" tabindex="-1">
-                        <div class="_2QfC02">
-                            <button class="_2KpZ6l _2doB4z">✕</button>
-                            <div class="_2MlkI1">
-                                <div class="_3wFoIb row">
-                                    <div class="_3oBhRa col col-2-5 _4H6HH5">
-                                        <span class="_36KMOx">
-                                            <span>Login</span>
-                                        </span>
-                                        <p class="_1-pxlW">
-                                            <span>Get access to your Orders, Wishlist and Recommendations</span>
-                                        </p>
-                                    </div>
-                                    <div class="_36HLxm col col-3-5">
-                                        <div>
-                                            <form autocomplete="on">
-                                                <div class="IiD88i _351hSN">
-                                                    <input type="text" autocomplete="off" class="_2IX_2- VJZDxU enter-number" maxlength="10" value="">
-                                                    <span class="_36T8XR"></span>
-                                                    <label class="_1fqY3P">
-                                                        <span>Enter Email/Mobile number</span>
-                                                    </label>
-                                                    <span class="_1_wZ0r">+91</span>
-                                                    <a href="#" class="_2QKxJ- _2_DUc_" tabindex="-1" style="display: none;">
-                                                        <span>Change?</span>
-                                                    </a>
-                                                </div>
-                                                <div class="IVrJBP" style="display: none;">
-                                                    <span>OTP sent to Mobile</span>
-                                                    <a href="#" class="_2_DUc_ _2GmvEi" tabindex="-1">
-                                                        <span>Resend?</span>
-                                                    </a>
-                                                </div>
-                                                <div class="IiD88i _351hSN" style="display: none;">
-                                                    <input type="text" maxlength="6" autocomplete="on" class="_2IX_2- VJZDxU" value="">
-                                                    <span class="_36T8XR"></span>
-                                                    <label class="_1fqY3P">
-                                                        <span>Enter OTP</span>
-                                                    </label>
-                                                </div>
-                                                <div class="IiD88i _351hSN" style="display: none;">
-                                                    <input type="password" autocomplete="off" class="_2IX_2- VJZDxU" value="">
-                                                    <span class="_36T8XR"></span>
-                                                    <label class="_1fqY3P">
-                                                        <span>Set Password</span>
-                                                    </label>
-                                                </div>
-                                                <div class="IiD88i _351hSN">
-                                                    <input type="password" autocomplete="off" class="_2IX_2- _3mctLh VJZDxU" value="">
-                                                    <span class="_36T8XR"></span>
-                                                    <label class="_1fqY3P">
-                                                        <span>Enter Password</span>
-                                                    </label>
-                                                    <a class="_2QKxJ- _2_DUc_" tabindex="-1">
-                                                        <span>Forgot?</span>
-                                                    </a>
-                                                </div>
-                                                <div class="_1Ijv5h">
-                                                    By continuing, you agree to Shiv Factory
-                                                    <a class="_2ARnXM" target="_blank" href="#">Terms of Use</a> and
-                                                    <a class="_2ARnXM" target="_blank" href="#">Privacy Policy</a>.
-                                                </div>
-                                                <div class="_1D1L_j">
-                                                    <button class="_2KpZ6l _2HKlqd _3AWRsL" type="submit">
-                                                        <div class="_2YsvKq o8qAfl">
-                                                            <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
-                                                        </div>
-                                                        <span>Login</span>
-                                                    </button>
-                                                </div>
-                                                <div class="_1k3JO2">
-                                                    <div class="_2XlkPA">OR</div>
-                                                    <button class="_2KpZ6l _2HKlqd _3NgS1a">Request OTP</button>
-                                                </div>
-                                                <div class="_1En5li">
-                                                    <a class="_14Me7y" href="#">New to Shiv Factory? Create an account</a>
-                                                </div>
-                                            </form>
-                                            <div class="_210lwq" style="display: none;">
-                                                <div>Please enter the OTP sent to</div>
-                                                <div>
-                                                    <span class="_2eL2SZ">9057300762</span>
-                                                    <a class="_14Me7y" href="#">Change</a>
-                                                </div>
-                                                <form>
-                                                    <div class="HSKgdN">
-                                                        <div class="IiD88i _2EZ3Zp">
-                                                            <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
-                                                            <label class="_1fqY3P"></label>
-                                                        </div>
-                                                        <div class="IiD88i _2EZ3Zp">
-                                                            <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
-                                                            <label class="_1fqY3P"></label>
-                                                        </div>
-                                                        <div class="IiD88i _2EZ3Zp">
-                                                            <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
-                                                            <label class="_1fqY3P"></label>
-                                                        </div>
-                                                        <div class="IiD88i _2EZ3Zp">
-                                                            <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
-                                                            <label class="_1fqY3P"></label>
-                                                        </div>
-                                                        <div class="IiD88i _2EZ3Zp">
-                                                            <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
-                                                            <label class="_1fqY3P"></label>
-                                                        </div>
-                                                        <div class="IiD88i _2EZ3Zp">
-                                                            <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
-                                                            <label class="_1fqY3P"></label>
-                                                        </div>
+                @*<div class="_2Sn47c">
+                        <div class="_2hriZF" tabindex="-1">
+                            <div class="_2QfC02">
+                                <button class="_2KpZ6l _2doB4z">✕</button>
+                                <div class="_2MlkI1">
+                                    <div class="_3wFoIb row">
+                                        <div class="_3oBhRa col col-2-5 _4H6HH5">
+                                            <span class="_36KMOx">
+                                                <span>Login</span>
+                                            </span>
+                                            <p class="_1-pxlW">
+                                                <span>Get access to your Orders, Wishlist and Recommendations</span>
+                                            </p>
+                                        </div>
+                                        <div class="_36HLxm col col-3-5">
+                                            <div>
+                                                <form autocomplete="on">
+                                                    <div class="IiD88i _351hSN">
+                                                        <input type="text" autocomplete="off" class="_2IX_2- VJZDxU enter-number" maxlength="10" value="">
+                                                        <span class="_36T8XR"></span>
+                                                        <label class="_1fqY3P">
+                                                            <span>Enter Email/Mobile number</span>
+                                                        </label>
+                                                        <span class="_1_wZ0r">+91</span>
+                                                        <a href="#" class="_2QKxJ- _2_DUc_" tabindex="-1" style="display: none;">
+                                                            <span>Change?</span>
+                                                        </a>
                                                     </div>
-                                                    <button class="_2KpZ6l _14EHzR _3dESVI" type="submit">Verify</button>
+                                                    <div class="IVrJBP" style="display: none;">
+                                                        <span>OTP sent to Mobile</span>
+                                                        <a href="#" class="_2_DUc_ _2GmvEi" tabindex="-1">
+                                                            <span>Resend?</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="IiD88i _351hSN" style="display: none;">
+                                                        <input type="text" maxlength="6" autocomplete="on" class="_2IX_2- VJZDxU" value="">
+                                                        <span class="_36T8XR"></span>
+                                                        <label class="_1fqY3P">
+                                                            <span>Enter OTP</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="IiD88i _351hSN" style="display: none;">
+                                                        <input type="password" autocomplete="off" class="_2IX_2- VJZDxU" value="">
+                                                        <span class="_36T8XR"></span>
+                                                        <label class="_1fqY3P">
+                                                            <span>Set Password</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="IiD88i _351hSN">
+                                                        <input type="password" autocomplete="off" class="_2IX_2- _3mctLh VJZDxU" value="">
+                                                        <span class="_36T8XR"></span>
+                                                        <label class="_1fqY3P">
+                                                            <span>Enter Password</span>
+                                                        </label>
+                                                        <a class="_2QKxJ- _2_DUc_" tabindex="-1">
+                                                            <span>Forgot?</span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="_1Ijv5h">
+                                                        By continuing, you agree to Shiv Factory
+                                                        <a class="_2ARnXM" target="_blank" href="#">Terms of Use</a> and
+                                                        <a class="_2ARnXM" target="_blank" href="#">Privacy Policy</a>.
+                                                    </div>
+                                                    <div class="_1D1L_j">
+                                                        <button class="_2KpZ6l _2HKlqd _3AWRsL" type="submit">
+                                                            <div class="_2YsvKq o8qAfl">
+                                                                <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
+                                                            </div>
+                                                            <span>Login</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="_1k3JO2">
+                                                        <div class="_2XlkPA">OR</div>
+                                                        <button class="_2KpZ6l _2HKlqd _3NgS1a">Request OTP</button>
+                                                    </div>
+                                                    <div class="_1En5li">
+                                                        <a class="_14Me7y" href="#">New to Shiv Factory? Create an account</a>
+                                                    </div>
                                                 </form>
-                                                <div class="uhuX5T">
-                                                    Not received your code? <span class="_3Vt3BV">Resend code</span>
+                                                <div class="_210lwq" style="display: none;">
+                                                    <div>Please enter the OTP sent to</div>
+                                                    <div>
+                                                        <span class="_2eL2SZ">9057300762</span>
+                                                        <a class="_14Me7y" href="#">Change</a>
+                                                    </div>
+                                                    <form>
+                                                        <div class="HSKgdN">
+                                                            <div class="IiD88i _2EZ3Zp">
+                                                                <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
+                                                                <label class="_1fqY3P"></label>
+                                                            </div>
+                                                            <div class="IiD88i _2EZ3Zp">
+                                                                <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
+                                                                <label class="_1fqY3P"></label>
+                                                            </div>
+                                                            <div class="IiD88i _2EZ3Zp">
+                                                                <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
+                                                                <label class="_1fqY3P"></label>
+                                                            </div>
+                                                            <div class="IiD88i _2EZ3Zp">
+                                                                <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
+                                                                <label class="_1fqY3P"></label>
+                                                            </div>
+                                                            <div class="IiD88i _2EZ3Zp">
+                                                                <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
+                                                                <label class="_1fqY3P"></label>
+                                                            </div>
+                                                            <div class="IiD88i _2EZ3Zp">
+                                                                <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
+                                                                <label class="_1fqY3P"></label>
+                                                            </div>
+                                                        </div>
+                                                        <button class="_2KpZ6l _14EHzR _3dESVI" type="submit">Verify</button>
+                                                    </form>
+                                                    <div class="uhuX5T">
+                                                        Not received your code? <span class="_3Vt3BV">Resend code</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -260,8 +261,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div>*@
             </div>
         </section>
 
