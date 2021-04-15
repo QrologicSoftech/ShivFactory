@@ -23,5 +23,6 @@ namespace ShivFactory.Business.Repository
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+        public string Role { get; set; }
     }
 }

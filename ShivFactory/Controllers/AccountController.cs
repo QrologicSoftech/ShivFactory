@@ -77,6 +77,7 @@ namespace ShivFactory.Controllers
                 ViewBag.ReturnUrl = returnUrl;
                 return View(model);
             }
+            model.Role = UserRoles.Customer;
             var result = await LogInApI(model);
             if (result.ResultFlag == true)
             {
@@ -91,6 +92,10 @@ namespace ShivFactory.Controllers
                 else if (result.Message.ToLower() == "invalid password.")
                 {
                     ModelState.AddModelError("Password", result.Message);
+                }
+                else
+                {
+                    ModelState.AddModelError("RememberMe", result.Message);
                 }
                 return View(model);
             }
@@ -727,9 +732,9 @@ namespace ShivFactory.Controllers
                             message = "Invalid login attempt.";
                             break;
                     }
-
                     if (result == SignInStatus.Success)
                     {
+                        var role = UserManager.GetRoles(user.Id).FirstOrDefault();
                         RepoUser ru = new RepoUser();
                         if (!user.EmailConfirmed)
                         {
@@ -739,12 +744,15 @@ namespace ShivFactory.Controllers
                         {
                             message = "Your accounts blocked, please contact administrator.";
                         }
+                        else if (!string.IsNullOrEmpty(model.Role) && model.Role != role)
+                        {
+                            message = $"You are not register as {model.Role}.";
+                        }
                         else
                         {
                             RepoCookie co = new RepoCookie();
                             int tempOrderId = co.GetIntCookiesValue(CookieName.TempOrderId);
                             var userDetails = ru.GetUserDetailsBYUserId(user.Id);
-                            var role = UserManager.GetRoles(user.Id).FirstOrDefault();
                             var token = UserManager.GenerateUserToken("", user.Id);
 
                             var res = new LogInResponse
