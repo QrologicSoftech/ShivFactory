@@ -80,7 +80,6 @@ var profile = {
                 </div>
             </div>`;
             common.HideLoader();
-            debugger;
             $('#Modal').children('div').children('div').html(form);
           
             $('#Modal').addClass('modal-profile');
@@ -374,6 +373,7 @@ var profile = {
                 </form>
             </div>`;
             common.HideLoader();
+            $('#Modal').addClass('modal-profile');
             $('#Modal').children('div').children('div').html(form);
             $('#imagePreviewbank').attr('src', user.BankProofImg);
             $('#Modal').show();
@@ -444,6 +444,7 @@ var profile = {
                 </div>
             </div>`;
         common.HideLoader();
+        $('#Modal').addClass('modal-profile');
         $('#Modal').children('div').children('div').html(form);
         $('#Modal').show();
 

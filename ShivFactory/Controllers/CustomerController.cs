@@ -94,7 +94,8 @@ namespace ShivFactory.Controllers
                     Phone = model.Phone, 
                     UserName = model.UserName,
                     Addresstype = model.Addresstype,
-                    UserId = util.GetCurrentUserId()
+                    UserId = util.GetCurrentUserId(),
+                    ID = model.ID!=null ? model.ID : 0 
                 };
                 bool isSaved = repoaddress.AddorUpdateAddress(deladdress);
                 return Json(new ResultModel
