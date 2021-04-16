@@ -330,32 +330,11 @@
 
         return true;
     },
-    SaveAddress: function () {
-        if (userprofile.ValidateAddressDetail()) {
-            var data = {
-                "UserName": $('#Name').val(),
-                "Phone": $('#Phone').val(),
-                "Pincode": $('#Pincode').val(),
-                "Address1": $('#AddressLine1').val(),
-                "Address2": $('#AddressLine2').val(),
-                "Address3": $('#Address3').val(),
-                "City": $('#City').val(),
-                "State": $('#state option:selected').text(),
-                "Addresstype": $('input[name="locationTypeTag"]:checked').val()
-            }
-            ajax.doPostAjax(`/Customer/Address`, data, function (result) {
-                common.ShowMessage(result);
-                if (result.ResultFlag) {
-                    commonFunction.HideModel('#Modal');
-                    common.ShowMessage(result);
-                }
-            });
-        }
-    },
+    
 
-    BindAddressDetails: function () {
+    BindAddressDetails: function (addressid) {
         common.ShowLoader();
-        ajax.doGetAjax(`/Customer/GetAddressByAddressID`, function (result) {
+        ajax.doGetAjax(`/Customer/GetAddressByAddressID?ID=`+ addressid, function (result) {
             if (result.ResultFlag = false) { common.ShowMessage(result); }
                 let address = result.Data;
                 var form = `  <div class="N5Ijry">
@@ -476,8 +455,7 @@
                                             </div>
                                         </div>
                                         <div class="l5QiYB _1hGj33">
-                                            <button class="_2KpZ6l _1JDhFS _3AWRsL" type="button" onclick="userprofile.SaveAddress()" tabindex="10">Save</button>
-                                            <button class="_2KpZ6l _8NNVow" type="button" tabindex="11">Cancel</button>
+                                            <button class="_2KpZ6l _1JDhFS _3AWRsL" type="button" onclick="userprofile.UpdateAddress('`+addressid+`')" tabindex="10">Save</button>
                                         </div>
                                     </div>
                                 </div>`;
@@ -488,5 +466,51 @@
             $('#Modal').children('div').children('div').html(form);
             $('#Modal').show();
         });
+    },
+
+    SaveAddress: function () {
+        if (userprofile.ValidateAddressDetail()) {
+            var data = {
+                "UserName": $('#Name').val(),
+                "Phone": $('#Phone').val(),
+                "Pincode": $('#Pincode').val(),
+                "Address1": $('#AddressLine1').val(),
+                "Address2": $('#AddressLine2').val(),
+                "Address3": $('#Address3').val(),
+                "City": $('#City').val(),
+                "State": $('#state option:selected').text(),
+                "Addresstype": $('input[name="locationTypeTag"]:checked').val()
+            }
+            ajax.doPostAjax(`/Customer/Address`, data, function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    commonFunction.HideModel('#Modal');
+                    common.ShowMessage(result);
+                }
+            });
         }
+    },
+    UpdateAddress: function (addressid) {
+        if (userprofile.ValidateAddressDetail()) {
+            var data = {
+                "UserName": $('#Name').val(),
+                "Phone": $('#Phone').val(),
+                "Pincode": $('#Pincode').val(),
+                "Address1": $('#AddressLine1').val(),
+                "Address2": $('#AddressLine2').val(),
+                "Address3": $('#Address3').val(),
+                "City": $('#City').val(),
+                "State": $('#state option:selected').text(),
+                "Addresstype": $('input[name="locationTypeTag"]:checked').val(),
+                "ID": addressid
+            }
+            ajax.doPostAjax(`/Customer/Address`, data, function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    commonFunction.HideModel('#Modal');
+                    common.ShowMessage(result);
+                }
+            });
+        }
+    }
 }

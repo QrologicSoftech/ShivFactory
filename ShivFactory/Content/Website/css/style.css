@@ -644,4 +644,5 @@ div#myresult {
     border: 1px solid rgb(0, 0, 0);
     height: 72%;
     background-color: white;
+    overflow-y: auto;
 }
