@@ -80,7 +80,10 @@ var profile = {
                 </div>
             </div>`;
             common.HideLoader();
+            debugger;
             $('#Modal').children('div').children('div').html(form);
+          
+            $('#Modal').addClass('modal-profile');
             $("input[name='gender'][value='" + user.Gender + "']").prop('checked', true);
             $('#Modal').show();
         });

@@ -81,7 +81,8 @@
                                 <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
                                     <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
                                         <div class="nav-profile-text">
-                                            <a href="/Account/Login" class="btn btn-login click-open" onclick="">Login</a>
+                                            @*<a href="/Account/Login" class="btn btn-login click-open" onclick="">Login</a>*@
+                                            <button class="btn btn-login click-open" onclick="Account.CustomerLogIn('')">Login</button>
                                         </div>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -96,9 +97,9 @@
                                                 <a href="user-login.html" class="sing-up">Sing Up</a>
                                             </li>
                                         </ul>
-                                        <a class="dropdown-item" href="/Customer/Profile"><i class="fa fa-user-circle" aria-hidden="true"></i>My Profile</a>
-                                        <a class="dropdown-item" href="/Customer/Orders"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Orders</a>
-                                        <a class="dropdown-item" href="/Home/Wishlist"><i class="fa fa-heart" aria-hidden="true"></i>Wishlist</a>
+                                        <a class="dropdown-item" href="#" onclick="Account.CustomerLogIn('/Customer/Profile');"><i class="fa fa-user-circle" aria-hidden="true"></i>My Profile</a>
+                                        <a class="dropdown-item" href="#" onclick="Account.CustomerLogIn('/Customer/Orders');"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Orders</a>
+                                        <a class="dropdown-item" href="#" onclick="Account.CustomerLogIn('/Home/Wishlist');"><i class="fa fa-heart" aria-hidden="true"></i>Wishlist</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Notification</a>
                                     </div>
@@ -820,6 +821,7 @@
     <script src="~/Js/Product.js?ver=@version"></script>
     <script src="~/Js/Profile.js?ver=@version"></script>
     <script src="~/Js/Listing.js?ver=@version"></script>
+    <script src="~/Js/Accounts.js?ver=@version"></script>
 
     <!-- ma5menu -->
 
@@ -857,7 +859,7 @@
 
             Admin.BindMenuOfCategory('#navbarSupportedContent');
 
-          
+
         });
     </script>
 

@@ -25,4 +25,9 @@ namespace ShivFactory.Business.Repository
         public bool RememberMe { get; set; }
         public string Role { get; set; }
     }
+    public class ErrorModel
+    {
+        public string Key { get; set; }
+        public List<string> Values { get; set; }
+    }
 }

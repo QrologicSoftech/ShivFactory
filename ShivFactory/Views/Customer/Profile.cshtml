@@ -33,12 +33,12 @@
                                         <div class="p-t-10">
                                             <label class="radio-container m-r-45">
                                                 Male
-                                                <input type="radio" name="gender" value="Male" >
+                                                @Html.RadioButtonFor(m => m.Gender, "Male")
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="radio-container">
                                                 Female
-                                                <input type="radio" name="gender" value="Female">
+                                                @Html.RadioButtonFor(m => m.Gender, "Female")
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
@@ -83,9 +83,4 @@
 
    
 </div>
-<script>
-    $(document).ready(function () {
-        $("input[name='gender'][value='" + @Model.Gender + "']").prop('checked', true);
-    });
-</script>
 

@@ -22,8 +22,9 @@
                                 </div>
                                 <div class="_36HLxm col col-3-5">
                                     <div>
-                                        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "on", id = "login" }))
-                                        {
+                                        @*@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "on", id = "login" }))
+                                        {*@
+                                            <input type="hidden" id="returnUrl" value="@ViewBag.ReturnUrl" />
                                             <div class="IiD88i _351hSN">
                                                 @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "_2IX_2- VJZDxU enter-number _1Z69nn", @autocomplete = "off", @type = "text" })
                                                 <span class="_36T8XR"></span>
@@ -53,7 +54,13 @@
                                                 <a class="_2ARnXM" target="_blank" href="#">Privacy Policy</a>.
                                             </div>
                                             <div class="_1D1L_j">
-                                                <button class="_2KpZ6l _2HKlqd _3AWRsL" type="submit">
+                                                @*<button class="_2KpZ6l _2HKlqd _3AWRsL" type="submit">
+                                                        <div class="_2YsvKq o8qAfl">
+                                                            <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
+                                                        </div>
+                                                        <span>Login</span>
+                                                    </button>*@
+                                                <button class="_2KpZ6l _2HKlqd _3AWRsL" onclick="Account.CustomerLogInPost();">
                                                     <div class="_2YsvKq o8qAfl">
                                                         <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
                                                     </div>
@@ -67,7 +74,7 @@
                                             <div class="_1En5li">
                                                 <a class="_14Me7y" href="/Account/Register">New to Shiv Factory? Create an account</a>
                                             </div>
-                                        }
+                                        @*}*@
                                     </div>
                                 </div>
                             </div>
@@ -84,6 +91,8 @@
         function ReadyTextbox(element) {
             if ($(element).val()) {
                 $(element).parent().find('._36T8XR').addClass("_3umUoc");
+                //remove error
+                $(element).parent().find(`span[data-valmsg-for|=${$(element).attr('Id')}]`).html("");
             } else {
                 $(element).parent().find('._36T8XR').removeClass("_3umUoc");
             }

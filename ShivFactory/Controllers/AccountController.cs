@@ -15,6 +15,7 @@ using ShivFactory.Business.Models.Other;
 using System.Security.Claims;
 using ShivFactory.Business.Repository.SMS;
 using ShivFactory.Business.Model.Common;
+using System.Collections.Generic;
 using System.Web.Security;
 
 namespace ShivFactory.Controllers
@@ -103,6 +104,64 @@ namespace ShivFactory.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> LogInCustomer(LogInModel model, string returnUrl)
+        {
+            try
+            {
+                List<ErrorModel> Errors = new List<ErrorModel>();
+                bool resultFlag = true;
+                if (!ModelState.IsValid)
+                {
+                    resultFlag = false;
+                }
+                else
+                {
+                    model.Role = UserRoles.Customer;
+                    var result = await LogInApI(model);
+                    if (result.ResultFlag == true)
+                    {
+                        //return RedirectToLocal(result.Data, returnUrl);
+                        RepoCookie co = new RepoCookie();
+                        co.AddCookiesValues(result.Data);
+                        if (!Url.IsLocalUrl(returnUrl))
+                        {
+                            returnUrl = "/Home/Index";
+                        }
+                    }
+                    else
+                    {
+                        if (result.Message.ToLower() == "invalid username")
+                        {
+                            ModelState.AddModelError("PhoneNumber", result.Message);
+                        }
+                        else if (result.Message.ToLower() == "invalid password.")
+                        {
+                            ModelState.AddModelError("Password", result.Message);
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("RememberMe", result.Message);
+                        }
+                        resultFlag = false;
+                    }
+                }
+                foreach (var modelStateKey in ViewData.ModelState.Keys)
+                {
+                    Errors.Add(new ErrorModel()
+                    {
+                        Key = modelStateKey,
+                        Values = ViewData.ModelState[modelStateKey].Errors.Select(e => e.ErrorMessage).ToList()
+                    });
+                }
+                return Json(new ResultModel { ResultFlag = resultFlag, Data = Errors, Message = returnUrl }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel { ResultFlag = false, Data = null, Message = ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
         #endregion
 
         #region VendorLogIn
