@@ -141,6 +141,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="UserName" Type="nvarchar" MaxLength="100" />
           <Property Name="Phone" Type="nvarchar" MaxLength="15" />
           <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="Addresstype" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="DimensionMaster">
           <Key>
@@ -1490,6 +1491,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="db_ShivFactoryModel.FK_DeliveryAddress_AspNetUsers" FromRole="DeliveryAddress" ToRole="AspNetUser" />
           <NavigationProperty Name="UserDetail" Relationship="db_ShivFactoryModel.FK_Address_UserDetails1" FromRole="DeliveryAddress" ToRole="UserDetail" />
+          <Property Name="Addresstype" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_DeliveryAddress_AspNetUsers">
           <End Type="db_ShivFactoryModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -2029,6 +2031,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySetMapping Name="DeliveryAddresses">
             <EntityTypeMapping TypeName="db_ShivFactoryModel.DeliveryAddress">
               <MappingFragment StoreEntitySet="DeliveryAddress">
+                <ScalarProperty Name="Addresstype" ColumnName="Addresstype" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />

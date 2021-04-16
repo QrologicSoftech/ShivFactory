@@ -181,5 +181,32 @@ namespace ShivFactory.Business.Repository
 
         }
         #endregion
+
+        #region update UserEmail ID 
+        public bool UpdateCurrentUserEmail(UserDetail model)
+        {
+            var user = db.UserDetails.Where(a => a.UserId == model.UserId).FirstOrDefault();
+            if (user != null)
+            {
+                user.Email  = model.Email;
+                user.LastUpdate = DateTime.Now;
+            }
+            return db.SaveChanges() > 0;
+        }
+        #endregion
+
+
+        #region update UserMobile ID 
+        public bool UpdateCurrentUserMobile(UserDetail model)
+        {
+                var user = db.UserDetails.Where(a => a.UserId == model.UserId).FirstOrDefault();
+                if (user != null)
+                {
+                    user.Mobile = model.Mobile;
+                    user.LastUpdate = DateTime.Now;
+                }
+                return db.SaveChanges() > 0;
+        }
+        #endregion
     }
 }

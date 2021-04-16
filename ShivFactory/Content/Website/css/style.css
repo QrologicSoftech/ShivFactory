@@ -634,3 +634,14 @@ div#myresult {
     cursor: pointer;
     padding-top: 8px;
 }
+
+.modal {
+    top: 140px;
+    display: none;
+    width: 46%;
+    left: 50%;
+    transform: translate(-50%, 0px);
+    border: 1px solid rgb(0, 0, 0);
+    height: 72%;
+    background-color: white;
+}

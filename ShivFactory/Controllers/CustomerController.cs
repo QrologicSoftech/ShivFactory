@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DataLibrary.DL;
 using static ShivFactory.FilterConfig;
 
 namespace ShivFactory.Controllers
@@ -76,6 +77,69 @@ namespace ShivFactory.Controllers
             RepoDeliveryAddress repoaddress = new RepoDeliveryAddress();
             var address = repoaddress.GetUserAddress(); 
             return View(address); 
+        }
+
+        [HttpPost]
+        public ActionResult Address(Business.Repository.DeliveryAddress model)
+        {
+            try {
+                RepoDeliveryAddress repoaddress = new RepoDeliveryAddress();
+                var deladdress = new DataLibrary.DL.DeliveryAddress()
+                {
+                    Address1 = model.Address1,
+                    Address2 = model.Address2,
+                    Address3 = model.Address3,
+                    State = model.State,
+                    Pincode = model.Pincode,
+                    Phone = model.Phone, 
+                    UserName = model.UserName,
+                    Addresstype = model.Addresstype,
+                    UserId = util.GetCurrentUserId()
+                };
+                bool isSaved = repoaddress.AddorUpdateAddress(deladdress);
+                return Json(new ResultModel
+                {
+                    ResultFlag = isSaved,
+                    Data = true,
+                    Message = "Saved Successfully!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = true,
+                    Message = e.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+          
+        }
+
+
+
+        public ActionResult GetAddressByAddressID(int ID)
+        {
+            try {
+                RepoDeliveryAddress repoAddress = new RepoDeliveryAddress();
+                var address = repoAddress.GetAddressByAddressID(ID);
+                return Json(new ResultModel
+                {
+                    ResultFlag = true,
+                    Data = address,
+                    Message = "Details feteched successfully"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = true,
+                    Data = null,
+                    Message = e.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+            
         }
         #endregion
 

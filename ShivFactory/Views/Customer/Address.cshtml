@@ -11,141 +11,138 @@
                 <div class="profile-page-1">
                     <div class="_1cyhik">
                         <span class="_1mHr1S">Address Information</span>
-                        <span class="oKZoMV"><a onclick="userprofile.BindBasicDetail()"> Edit </a></span>
+                        <span class="oKZoMV"></span>
                     </div>
                     <div class="card-body">
-                        @if (Model != null && Model.addresseList.Count == 0)
+                        @using (Html.BeginForm("Address", "Home", FormMethod.Post, new { id = "myform", @class = "forms-sample" }))
                         {
-                            <div class="N5Ijry">
+                                <div class="N5Ijry">
 
-                                <div class="yLyjMK">
-                                    <div class="_1hGj33">
-                                        <div class="_1lRtwc _1Jqgld">
-                                            <input type="text" class="_1w3ZZo _2mFmU7" name="name" required="" autocomplete="name" tabindex="1" value="Vikas"><label for="name" class="_1osQq7 -FxG57">Name</label>
-                                        </div>
-                                        <div class="_1lRtwc _1Jqgld">
-                                            <input type="text" class="_1w3ZZo _2mFmU7" name="phone" required="" maxlength="10" autocomplete="tel" tabindex="2" value="7062701219">
-                                            <label for="phone" class="_1osQq7 -FxG57">10-digit mobile number</label>
-                                        </div>
-                                    </div>
-                                    <div class="_1hGj33">
-                                        <div class="_1lRtwc _1Jqgld">
-                                            <input type="text" class="_1w3ZZo _2mFmU7" name="pincode" required="" maxlength="6" autocomplete="postal-code" tabindex="3" value="303805">
-                                            <label for="pincode" class="_1osQq7 -FxG57">Pincode</label>
-                                        </div>
-                                        <div class="_1lRtwc _1Jqgld">
-                                            <input type="text" class="_1w3ZZo _2mFmU7" required="" name="addressLine2" tabindex="4" value="UCO Bank .morija">
-                                            <label for="addressLine2" class="_1osQq7 -FxG57">Locality</label>
-                                        </div>
-                                    </div>
-                                    <div class="_1hGj33 _3kco7L">
-                                        <div class="GTbXbG _2kJObl">
-                                            <div class="_1Y2dIb _1Jqgld">
-                                                <textarea class="_1sQQBU _1w3ZZo _1TO48q" name="addressLine1" rows="2" cols="10" tabindex="5" required="" autocomplete="street-address">38</textarea>
-                                                <label for="addressLine1" class="_1osQq7 -FxG57">Address (Area and Street)</label>
+                                    <div class="yLyjMK">
+                                        <div class="_1hGj33">
+                                            <div class="_1lRtwc _1Jqgld">
+                                                <input type="text" class="_1w3ZZo _2mFmU7" id="Name" required="true" autocomplete="name" tabindex="1" value=""><label for="name" class="_1osQq7 -FxG57">Name</label>
                                             </div>
-                                            <div class="_1fa_Yn _18Y7Fu"></div>
-                                        </div>
-                                    </div>
-                                    <div class="_1hGj33">
-                                        <div class="GTbXbG _1lRtwc _3kco7L">
-                                            <div class="_1Y2dIb _1Jqgld">
-                                                <input type="text" class="_1w3ZZo _2mFmU7" name="city" required="" autocomplete="city" tabindex="6" value="Jaipur District">
-                                                <label for="city" class="_1osQq7 -FxG57">City/District/Town</label>
+                                            <div class="_1lRtwc _1Jqgld">
+                                                <input type="text" class="_1w3ZZo _2mFmU7" id="Phone" required="" maxlength="10" autocomplete="tel" tabindex="2" value="">
+                                                <label for="phone" class="_1osQq7 -FxG57">10-digit mobile number</label>
                                             </div>
-                                            <div class="_1fa_Yn _18Y7Fu"></div>
                                         </div>
-                                        <div>
-                                            <div class="_1fB71V _3kco7L">
-                                                <div class="MnyFPx ">State</div>
-                                                <div class="_1cpOwe _1lRtwc jE2jGc">
-                                                    <select class="_1EDlbo _1lRtwc jE2jGc _2gIrb5" name="state" required="" tabindex="7">
-                                                        <option value="" disabled="">--Select State--</option>
-                                                        <option value="Andaman &amp; Nicobar Islands">Andaman &amp; Nicobar Islands</option>
-                                                        <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                                        <option value="Assam">Assam</option>
-                                                        <option value="Bihar">Bihar</option>
-                                                        <option value="Chandigarh">Chandigarh</option>
-                                                        <option value="Chhattisgarh">Chhattisgarh</option>
-                                                        <option value="Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu">Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu</option>
-                                                        <option value="Delhi">Delhi</option>
-                                                        <option value="Goa">Goa</option>
-                                                        <option value="Gujarat">Gujarat</option>
-                                                        <option value="Haryana">Haryana</option>
-                                                        <option value="Himachal Pradesh">Himachal Pradesh</option>
-                                                        <option value="Jammu &amp; Kashmir">Jammu &amp; Kashmir</option>
-                                                        <option value="Jharkhand">Jharkhand</option>
-                                                        <option value="Karnataka">Karnataka</option>
-                                                        <option value="Kerala">Kerala</option>
-                                                        <option value="Ladakh">Ladakh</option>
-                                                        <option value="Lakshadweep">Lakshadweep</option>
-                                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                                        <option value="Maharashtra">Maharashtra</option>
-                                                        <option value="Manipur">Manipur</option>
-                                                        <option value="Meghalaya">Meghalaya</option>
-                                                        <option value="Mizoram">Mizoram</option>
-                                                        <option value="Nagaland">Nagaland</option>
-                                                        <option value="Odisha">Odisha</option>
-                                                        <option value="Puducherry">Puducherry</option>
-                                                        <option value="Punjab">Punjab</option>
-                                                        <option value="Rajasthan">Rajasthan</option>
-                                                        <option value="Sikkim">Sikkim</option>
-                                                        <option value="Tamil Nadu">Tamil Nadu</option>
-                                                        <option value="Telangana">Telangana</option>
-                                                        <option value="Tripura">Tripura</option>
-                                                        <option value="Uttarakhand">Uttarakhand</option>
-                                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                                        <option value="West Bengal">West Bengal</option>
-                                                    </select>
-                                                    <span class="_2NY3xT kYuoGH"></span>
+                                        <div class="_1hGj33">
+                                            <div class="_1lRtwc _1Jqgld">
+                                                <input type="text" class="_1w3ZZo _2mFmU7" id="Pincode" required="" maxlength="6" autocomplete="postal-code" tabindex="3" value="">
+                                                <label for="pincode" class="_1osQq7 -FxG57">Pincode</label>
+                                            </div>
+                                            <div class="_1lRtwc _1Jqgld">
+                                                <input type="text" class="_1w3ZZo _2mFmU7" required="" id="AddressLine2" tabindex="4" value="">
+                                                <label for="addressLine2" class="_1osQq7 -FxG57">Locality</label>
+                                            </div>
+                                        </div>
+                                        <div class="_1hGj33 _3kco7L">
+                                            <div class="GTbXbG _2kJObl">
+                                                <div class="_1Y2dIb _1Jqgld">
+                                                    <textarea class="_1sQQBU _1w3ZZo _1TO48q" id="AddressLine1" rows="2" cols="10" tabindex="5" required="" autocomplete="street-address"></textarea>
+                                                    <label for="addressLine1" class="_1osQq7 -FxG57">Address (Area and Street)</label>
+                                                </div>
+                                                <div class="_1fa_Yn _18Y7Fu"></div>
+                                            </div>
+                                        </div>
+                                        <div class="_1hGj33">
+                                            <div class="GTbXbG _1lRtwc _3kco7L">
+                                                <div class="_1Y2dIb _1Jqgld">
+                                                    <input type="text" class="_1w3ZZo _2mFmU7" id="City" required="" autocomplete="City" tabindex="6" value="">
+                                                    <label for="city" class="_1osQq7 -FxG57">City/District/Town</label>
+                                                </div>
+                                                <div class="_1fa_Yn _18Y7Fu"></div>
+                                            </div>
+                                            <div>
+                                                <div class="_1fB71V _3kco7L">
+                                                    <div class="MnyFPx ">State</div>
+                                                    <div class="_1cpOwe _1lRtwc jE2jGc">
+                                                        <select class="_1EDlbo _1lRtwc jE2jGc _2gIrb5" id="state" required="" tabindex="7">
+                                                            <option value="" selected="">--Select State--</option>
+                                                            <option value="Andaman &amp; Nicobar Islands">Andaman &amp; Nicobar Islands</option>
+                                                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                            <option value="Assam">Assam</option>
+                                                            <option value="Bihar">Bihar</option>
+                                                            <option value="Chandigarh">Chandigarh</option>
+                                                            <option value="Chhattisgarh">Chhattisgarh</option>
+                                                            <option value="Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu">Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu</option>
+                                                            <option value="Delhi">Delhi</option>
+                                                            <option value="Goa">Goa</option>
+                                                            <option value="Gujarat">Gujarat</option>
+                                                            <option value="Haryana">Haryana</option>
+                                                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                            <option value="Jammu &amp; Kashmir">Jammu &amp; Kashmir</option>
+                                                            <option value="Jharkhand">Jharkhand</option>
+                                                            <option value="Karnataka">Karnataka</option>
+                                                            <option value="Kerala">Kerala</option>
+                                                            <option value="Ladakh">Ladakh</option>
+                                                            <option value="Lakshadweep">Lakshadweep</option>
+                                                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                            <option value="Maharashtra">Maharashtra</option>
+                                                            <option value="Manipur">Manipur</option>
+                                                            <option value="Meghalaya">Meghalaya</option>
+                                                            <option value="Mizoram">Mizoram</option>
+                                                            <option value="Nagaland">Nagaland</option>
+                                                            <option value="Odisha">Odisha</option>
+                                                            <option value="Puducherry">Puducherry</option>
+                                                            <option value="Punjab">Punjab</option>
+                                                            <option value="Rajasthan">Rajasthan</option>
+                                                            <option value="Sikkim">Sikkim</option>
+                                                            <option value="Tamil Nadu">Tamil Nadu</option>
+                                                            <option value="Telangana">Telangana</option>
+                                                            <option value="Tripura">Tripura</option>
+                                                            <option value="Uttarakhand">Uttarakhand</option>
+                                                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                            <option value="West Bengal">West Bengal</option>
+                                                        </select>
+                                                        <span class="_2NY3xT kYuoGH"></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="_1hGj33">
-                                        <div class="_1lRtwc _1Jqgld">
-                                            <input type="text" class="_1w3ZZo _2mFmU7" name="landmark" autocomplete="off" tabindex="8" maxlength="200" value="Morija">
-                                            <label for="landmark" class="_1osQq7 -FxG57">Landmark (Optional)</label>
-                                        </div>
-                                        <div class="_1lRtwc _1Jqgld">
-                                            <input type="text" class="_1w3ZZo _2mFmU7" name="alternatePhone" autocomplete="off" tabindex="9" maxlength="10" value="7615963260">
-                                            <label for="alternatePhone" class="_1osQq7 -FxG57">Alternate Phone (Optional)</label>
-                                        </div>
-                                    </div>
-                                    <div class="yI40P1">
-                                        <p class="_2tiHgk">Address Type</p>
-                                        <div class="_3TMnFu">
-                                            <div>
-                                                <label for="HOME" class="_2Fn-Ln _3iI7Qn _3L7Pww">
-                                                    <input type="radio" class="_3DAmyP" name="locationTypeTag" readonly="" id="HOME" value="on">
-                                                    <div class="_1XFPmK"></div>
-                                                    <div class="_2jIO64">
-                                                        <span>Home (All day delivery)</span>
-                                                    </div>
-                                                </label>
-                                                <label for="WORK" class="_2Fn-Ln _3iI7Qn">
-                                                    <input type="radio" class="_3DAmyP" name="locationTypeTag" readonly="" id="WORK" value="on">
-                                                    <div class="_1XFPmK"></div>
-                                                    <div class="_2jIO64">
-                                                        <span>Work (Delivery between 10 AM - 5 PM)</span>
-                                                    </div>
-                                                </label>
+                                        <div class="_1hGj33">
+                                            <div class="_1lRtwc _1Jqgld">
+                                                <input type="text" class="_1w3ZZo _2mFmU7" id="Address3" autocomplete="off" tabindex="8" maxlength="200" value="">
+                                                <label for="landmark" class="_1osQq7 -FxG57">Landmark (Optional)</label>
+                                            </div>
+                                            <div class="_1lRtwc _1Jqgld">
+                                                <input type="text" class="_1w3ZZo _2mFmU7" id="Phone" autocomplete="off" tabindex="9" maxlength="10" value="">
+                                                <label for="alternatePhone" class="_1osQq7 -FxG57">Alternate Phone (Optional)</label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="l5QiYB _1hGj33">
-                                        <button class="_2KpZ6l _1JDhFS _3AWRsL" type="button" tabindex="10">Save and Deliver Here</button>
-                                        <button class="_2KpZ6l _8NNVow" type="button" tabindex="11">Cancel</button>
+                                        <div class="yI40P1">
+                                            <p class="_2tiHgk">Address Type</p>
+                                            <div class="_3TMnFu">
+                                                <div>
+                                                    <label for="HOME" class="_2Fn-Ln _3iI7Qn _3L7Pww">
+                                                        <input type="radio" class="_3DAmyP" name="locationTypeTag" readonly="" id="HOME" value="HOME">
+                                                        <div class="_1XFPmK"></div>
+                                                        <div class="_2jIO64">
+                                                            <span>Home (All day delivery)</span>
+                                                        </div>
+                                                    </label>
+                                                    <label for="WORK" class="_2Fn-Ln _3iI7Qn">
+                                                        <input type="radio" class="_3DAmyP" name="locationTypeTag" readonly="" id="WORK" value="WORK">
+                                                        <div class="_1XFPmK"></div>
+                                                        <div class="_2jIO64">
+                                                            <span>Work (Delivery between 10 AM - 5 PM)</span>
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="l5QiYB _1hGj33">
+                                            <button class="_2KpZ6l _1JDhFS _3AWRsL" type="button" onclick="userprofile.SaveAddress()" tabindex="10">Save</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
                         }
 
-                      
 
-                    </div>
+                        </div>
                 </div>
 
             </div>
@@ -164,50 +161,47 @@
                                     {
                                         foreach (var adress in Model.addresseList)
                                         {
-                                    <div class="_3dshlq" href="#">
-                                       
+                                        <div class="_3dshlq" href="#">
                                         <div class="row ">
                                             <div class="col-6-12">
                                                 <div class="row">
                                                     <div class="col-3-12">
                                                         <div class="_3hQhLv">
                                                             <div class="CXW8mj" style="height: 75px; width: 75px;">
-                                                                <img class="_396cs4  _3exPp9" alt="" src="img/rockerz.jpeg">
+                                                                <img class="_396cs4  _3exPp9" alt="" src="#">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-8-12">
                                                         <div class="_1hVBfR">
-                                                            <span class="row _1kkfO3 BqOr_g">
-                                                            @{@adress.Address1== null ? "": @adress.Address1;}
-                                                                </span> <span class="row _1kkfO3 BqOr_g">@{@adress.Address2== null ?"": @adress.Address2;} </span>
+                                                            <span class="row _1kkfO3 BqOr_g">@adress.Address1</span> <span class="row _1kkfO3 BqOr_g">@adress.Address2</span>
                                                             <div class="row _65ZkAB">
                                                                 <span class="_3dOR_a">
-                                                                    <span class="_65ZkAB">@{@adress.Pincode== null ? "":  @adress.Pincode;} </span>
-                                                                    <span class="-igymY">@{@adress.State== null ? "": @adress.State;}</span>
+                                                                    <span class="_65ZkAB">@adress.Pincode </span>
+                                                                    <span class="-igymY">@adress.State</span>
                                                                 </span>
                                                                 <span class="_3dOR_a">
                                                                 </span>
                                                             </div>
-                                                            <div class="row _65ZkAB">
+                                                            @*<div class="row _65ZkAB">
                                                                 <span class="_65ZkAB _1uABhR">Seller: </span>
                                                                 <span class="-igymY">SuperComNet</span>
-                                                            </div>
+                                                            </div>*@
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-2-12 _1_SN5_">₹1,498</div>
+                                            <div class="col-2-12 _1_SN5_">Mobile : </div>
                                             <div class="col-4-12 pq5Jer">
                                                 <div>
                                                     <div class="_3SbeKb qU6Nxg">
                                                     </div>
-                                                    <span class="AO0UbU"><a onclick="userprofile.BindBasicDetail()">Edit</a></span>
-                                                    <div class="_30gI7w">Shipment is cancelled</div>
+                                                    <span class="AO0UbU"><a onclick="userprofile.BindAddressDetails(@adress.ID)">Edit</a></span>
+                                                    <div class="_30gI7w"></div>
                                                 </div>
-                                                <div class="_18fmpV">d</div>
+                                                <div class="_18fmpV"></div>
                                                 <div class="_2yfTUY">
-                                                    sss
+
                                                 </div>
                                             </div>
                                         </div>

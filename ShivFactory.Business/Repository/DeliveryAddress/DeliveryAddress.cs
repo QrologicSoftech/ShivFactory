@@ -18,6 +18,8 @@ namespace ShivFactory.Business.Repository
         public int userDetailId { get; set; }
         public string UserName { get; set; }
         public string Phone { get; set; }
+        public string Addresstype { get; set; }
+        public string UserId { get; set; }
 
         public List<DeliveryAddress> addresseList { get; set;  }
     }

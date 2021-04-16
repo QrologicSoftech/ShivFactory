@@ -25,6 +25,7 @@ namespace DataLibrary.DL
         public string UserName { get; set; }
         public string Phone { get; set; }
         public string UserId { get; set; }
+        public string Addresstype { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual UserDetail UserDetail { get; set; }

@@ -1,4 +1,5 @@
 ﻿using DataLibrary.DL;
+using Microsoft.AspNet.Identity;
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Model.Common;
 using ShivFactory.Business.Repository;
@@ -7,6 +8,7 @@ using ShivFactory.Business.Repository.Website;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Mvc;

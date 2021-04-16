@@ -43,20 +43,20 @@
                     <hr>
                     <div>
                         <div class="my-order-1">
-                            <div class="my-order-2 order-2">
+                            <div class="my-order-2 ">
                                 <i class="fa fa-user" aria-hidden="true"></i>
-                                <a href="#" style="cursor: initial;">
-                                    ACCOUNT SETTINGS
+                                <a href="/Customer/Address/" style="cursor: initial;">
+                                    ADDRESS SETTINGS
                                 </a>
                             </div>
                         </div>
                         <div>
                             <a href="#">
-                                <div class="Information">Profile Information</div>
+                                <div class="Information">Add New Address</div>
                             </a>
-                            <a href="/Customer/Address/">
-                                <div class="manage-addresses">Manage Addresses</div>
-                            </a>
+                           
+                                <div class="manage-addresses order-2-1">Manage Addresses</div>
+                            
                         </div>
                     </div>
                     <hr>
@@ -155,6 +155,12 @@
     });
     jQuery(".order-3").click(function () {
         jQuery('.fullpage-1').addClass("hover-3");
+    });
+    jQuery(".order-2-1").click(function () {
+        jQuery('.frequently').addClass("hover-2");
+    });
+    jQuery(".order-2-1").click(function () {
+        jQuery('.profile-2 ').removeClass("hover-1");
     });
 </script>
 <script>

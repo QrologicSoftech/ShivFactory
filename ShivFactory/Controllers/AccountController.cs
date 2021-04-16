@@ -15,6 +15,7 @@ using ShivFactory.Business.Models.Other;
 using System.Security.Claims;
 using ShivFactory.Business.Repository.SMS;
 using ShivFactory.Business.Model.Common;
+using System.Web.Security;
 
 namespace ShivFactory.Controllers
 {
@@ -1015,9 +1016,76 @@ namespace ShivFactory.Controllers
         }
         #endregion
 
+        #region Update User Email and Mobile 
+        public ActionResult UpdateCurrentUserEmail(clsUserBasicDetails model)
+        {
+            try
+            {
+                UserDetail userDetail = new UserDetail();
+                bool isUpdate = false; 
+                Utility util = new Utility();
+                RepoUser repoUser = new RepoUser();
+                var userByemail  = UserManager.FindByEmail(model.Email);
+                if (userByemail == null)
+                {
+                     MembershipUser user = Membership.GetUser(User.Identity.Name);
+                    user.Email = model.Email;
+                    Membership.UpdateUser(user);
+                    isUpdate = true; 
+                }
+                return Json(new ResultModel
+                {
+                    ResultFlag = isUpdate,
+                    Data = "",
+                    Message = isUpdate == true ? "User email update successfully!" : "Email already exist!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
 
-
-
+        public async Task<ActionResult> UpdateCurrentUserMobile(clsUserBasicDetails model)
+        {
+            try
+            {
+                UserDetail userDetail = new UserDetail();
+                bool isUpdate = false;
+                var user = UserManager.FindByName(model.Mobile);
+                if (user == null)
+                {
+                    Utility util = new Utility();
+                    RepoUser repoUser = new RepoUser();
+                    isUpdate = repoUser.UpdateCurrentUserMobile(new UserDetail()
+                    {
+                        Email = model.Mobile,
+                        UserId = util.GetCurrentUserId()
+                    });
+                }
+                return Json(new ResultModel
+                {
+                    ResultFlag = isUpdate,
+                    Data = "",
+                    Message = isUpdate == true ? "Username Update successfully!" : "Mobile number already exist!"
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
 
 
     }
