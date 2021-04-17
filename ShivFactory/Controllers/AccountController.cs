@@ -1076,7 +1076,7 @@ namespace ShivFactory.Controllers
         #endregion
 
         #region Update User Email and Mobile 
-        public ActionResult UpdateCurrentUserEmail(clsUserBasicDetails model)
+        public async Task<ActionResult> UpdateCurrentUserEmail(clsUserBasicDetails model)
         {
             try
             {
@@ -1087,10 +1087,15 @@ namespace ShivFactory.Controllers
                 var userByemail  = UserManager.FindByEmail(model.Email);
                 if (userByemail == null)
                 {
-                     MembershipUser user = Membership.GetUser(User.Identity.Name);
-                    user.Email = model.Email;
-                    Membership.UpdateUser(user);
-                    isUpdate = true; 
+                    var current_user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+                    current_user.Email = model.Email;
+                    var result = await UserManager.UpdateAsync(current_user);
+                    if (result.Succeeded)
+                    {
+                        RepoUser repouser = new RepoUser();
+                        isUpdate = repouser.UpdateCurrentUserEmail(model.Email, util.GetCurrentUserId());
+                    }
                 }
                 return Json(new ResultModel
                 {
@@ -1119,13 +1124,17 @@ namespace ShivFactory.Controllers
                 var user = UserManager.FindByName(model.Mobile);
                 if (user == null)
                 {
+                    var current_user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+                    current_user.UserName = model.Mobile;
+
                     Utility util = new Utility();
-                    RepoUser repoUser = new RepoUser();
-                    isUpdate = repoUser.UpdateCurrentUserMobile(new UserDetail()
+                    var result =  await UserManager.UpdateAsync(current_user);
+                    if (result.Succeeded)
                     {
-                        Email = model.Mobile,
-                        UserId = util.GetCurrentUserId()
-                    });
+                        RepoUser repouser = new RepoUser();
+                     isUpdate = repouser.UpdateCurrentUserMobile(model.Mobile, util.GetCurrentUserId());
+                    }
                 }
                 return Json(new ResultModel
                 {

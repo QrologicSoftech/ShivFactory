@@ -31,7 +31,8 @@ namespace ShivFactory.Business.Repository
                 State = row.State,
                 Pincode = row.Pincode,
                 UserName = row.UserName,
-                userDetailId = row.userDetailId ?? 0
+                userDetailId = row.userDetailId ?? 0,
+                Addresstype =row.Addresstype ==null? "HOME":row.Addresstype
             }).OrderBy(row => row.ID).ToList();
 
             return address;

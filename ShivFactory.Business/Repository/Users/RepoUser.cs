@@ -183,12 +183,12 @@ namespace ShivFactory.Business.Repository
         #endregion
 
         #region update UserEmail ID 
-        public bool UpdateCurrentUserEmail(UserDetail model)
+        public bool UpdateCurrentUserEmail(string email,string userid)
         {
-            var user = db.UserDetails.Where(a => a.UserId == model.UserId).FirstOrDefault();
+            var user = db.UserDetails.Where(a => a.UserId == userid).FirstOrDefault();
             if (user != null)
             {
-                user.Email  = model.Email;
+                user.Email  = email;
                 user.LastUpdate = DateTime.Now;
             }
             return db.SaveChanges() > 0;
@@ -197,12 +197,12 @@ namespace ShivFactory.Business.Repository
 
 
         #region update UserMobile ID 
-        public bool UpdateCurrentUserMobile(UserDetail model)
+        public bool UpdateCurrentUserMobile(string mobile,string userid)
         {
-                var user = db.UserDetails.Where(a => a.UserId == model.UserId).FirstOrDefault();
+                var user = db.UserDetails.Where(a => a.UserId == userid).FirstOrDefault();
                 if (user != null)
                 {
-                    user.Mobile = model.Mobile;
+                    user.Mobile = mobile;
                     user.LastUpdate = DateTime.Now;
                 }
                 return db.SaveChanges() > 0;

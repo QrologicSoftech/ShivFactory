@@ -15,7 +15,7 @@
                             <div class="row offset-3">
                                 <div class="col-sm-6">
                                     <div>
-      <label class="control-label required" for="display_name">First Name</label> <input class="form-control"  id="FirstName" name="FirstName" placeholder="FirstName" type="text" value="${user.FirstName == null ? '' : user.FirstName}" />
+      <label class="control-label required" for="display_name">First Name</label> <input class="form-control"  id="m_FirstName" name="FirstName" placeholder="FirstName" type="text" value="${user.FirstName == null ? '' : user.FirstName}" />
                                     </div>
                                 </div>
                             </div>
@@ -26,7 +26,7 @@
 
                                 <div class="col-sm-6">
                                     <div>
-                               <label class="control-label required" for="display_name">Enter Last Name</label>     <input class="form-control" id="LastName" name="LastName" placeholder="LastName" type="text" value="${user.LastName == null ? '' : user.LastName}" />
+                               <label class="control-label required" for="display_name">Enter Last Name</label>     <input class="form-control" id="m_LastName" name="LastName" placeholder="LastName" type="text" value="${user.LastName == null ? '' : user.LastName}" />
                                     </div>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
 
                                 <div class="col-sm-6">
                                     <div>
-                    <label class="control-label required" for="display_name">Gender</label>                 <input type="radio" class="form-radio-input" id="male" name="gender" value="Male" >Male</input>  &nbsp; &nbsp;&nbsp; <input type="radio" id="female" name="gender" value="Female">Female</input> 
+                    <label class="control-label required" for="display_name">Gender</label>                 <input type="radio" class="form-radio-input" id="male" name="m_gender" value="Male" >Male</input>  &nbsp; &nbsp;&nbsp; <input type="radio" id="female" name="m_gender" value="Female">Female</input> 
                                     </div>
                                 </div>
                             </div>
@@ -60,21 +60,21 @@
             common.HideLoader();
             $('#Modal').addClass('modal-profile');
             $('#Modal').children('div').children('div').html(form);
-            $("input[name='gender'][value='" + user.Gender + "']").prop('checked', true);
+            $("input[name='m_gender'][value='" + user.Gender + "']").prop('checked', true);
             $('#Modal').show();
         });
     },
     UpdateBasicDetails: function () {
         if (userprofile.ValidateBasicDetail()) {
             data = {
-                "FirstName": $('#FirstName').val(),
-                "LastName": $('#LastName').val(),
-                "Gender": $('input[name="gender"]:checked').val(),
+                "FirstName": $('#m_FirstName').val(),
+                "LastName": $('#m_LastName').val(),
+                "Gender": $('input[name="m_gender"]:checked').val(),
             }
             ajax.doPostAjax(`/Home/SaveCurrentUserBasicDetails`, data, function (result) {
                 common.ShowMessage(result);
                 if (result.ResultFlag) {
-                    commonFunction.HideModel('#Modal');
+                    location.reload();
                 }
             });
         }
@@ -108,7 +108,7 @@
                         <div class="action-btn">
                             <span uif-append="submit" class="inline-block">
                                 <div >
-                                    <button type="submit" name="submit" onclick="profile.UpdateMobileDetail();" class="btn submit-btn btn-primary" id="save" >SAVE</button>
+                                    <button type="submit" name="submit" onclick="userprofile.UpdateMobileDetail();" class="btn submit-btn btn-primary" id="save" >SAVE</button>
                                 </div>
                             </span>
                         </div>
@@ -122,7 +122,7 @@
         });
     },
     UpdateMobileDetail: function () {
-        if (userprofile.ValidateUserMobileDetail()) {
+        if (userprofile.ValidateMobileDetail()) {
             data = {
                 "Mobile": $('#Mobile').val(),
             }
@@ -162,7 +162,7 @@
                         <div class="action-btn">
                             <span uif-append="submit" class="inline-block">
                                 <div >
-                                    <button type="submit" name="submit" onclick="profile.UpdateEmailDetail();" class="btn submit-btn btn-primary" id="save" >SAVE</button>
+                                    <button type="submit" name="submit" onclick="userprofile.UpdateEmailDetail();" class="btn submit-btn btn-primary" id="save" >SAVE</button>
                                 </div>
                             </span>
                         </div>
@@ -185,6 +185,7 @@
                 common.ShowMessage(result);
                 if (result.ResultFlag) {
                     commonFunction.HideModel('#Modal');
+                    location.reload();
                 }
             });
         }
@@ -276,10 +277,10 @@
         return true;
     },
     ValidateBasicDetail: function () {
-        if ($('#FirstName').val() == null || $('#FirstName').val() == 'undefined' || $('#FirstName').val().length == '0') {
+        if ($('#m_FirstName').val() == null || $('#m_FirstName').val() == 'undefined' || $('#m_FirstName').val().length == '0') {
             toastr.error('Enter First Name!');
             return false;
-        } else if ($('#LastName').val() == null || $('#LastName').val() == 'undefined' || $('#LastName').val().length == '0') {
+        } else if ($('#m_LastName').val() == null || $('#m_LastName').val() == 'undefined' || $('#m_LastName').val().length == '0') {
             toastr.error('Enter Last Name!');
             return false;
         }
@@ -302,7 +303,6 @@
     },
 
     ValidateAddressDetail: function () {
-        debugger;
         if ($('#Name').val() == null || $('#Name').val() == 'undefined' || $('#Name').val().length == '0') {
             toastr.error('Enter Name!');
             return false;
@@ -318,10 +318,7 @@
         } else if ($('#AddressLine2').val() == null || $('#AddressLine2').val() == 'undefined' || $('#AddressLine2').val().length == '0') {
             toastr.error('Enter address line 2');
             return false;
-        } else if ($('#Address3').val() == null || $('#Address3').val() == 'undefined' || $('#Address3').val().length == '0') {
-            toastr.error('Enter address line 3');
-            return false;
-        } else if ($('#City').val() == null || $('#City').val() == 'undefined' || $('#City').val().length == '0') {
+        }  else if ($('#City').val() == null || $('#City').val() == 'undefined' || $('#City').val().length == '0') {
             toastr.error('Enter City !');
             return false;
         } else if ($('#state option:selected').val() == null || $('#state option:selected').val() == 'undefined' || $('#state option:selected').val().length == '0') {
@@ -336,7 +333,6 @@
     },
 
     ValidateAddressModalDetail: function () {
-        debugger;
         if ($('#m_Name').val() == null || $('#m_Name').val() == 'undefined' || $('#m_Name').val().length == '0') {
             toastr.error('Enter Name!');
             return false;
@@ -352,10 +348,7 @@
         } else if ($('#m_AddressLine2').val() == null || $('#m_AddressLine2').val() == 'undefined' || $('#m_AddressLine2').val().length == '0') {
             toastr.error('Enter address line 2');
             return false;
-        } else if ($('#m_Address3').val() == null || $('#m_Address3').val() == 'undefined' || $('#m_Address3').val().length == '0') {
-            toastr.error('Enter address line 3');
-            return false;
-        } else if ($('#m_City').val() == null || $('#m_City').val() == 'undefined' || $('#m_City').val().length == '0') {
+        }  else if ($('#m_City').val() == null || $('#m_City').val() == 'undefined' || $('#m_City').val().length == '0') {
             toastr.error('Enter City !');
             return false;
         } else if ($('#m_state option:selected').val() == null || $('#m_state option:selected').val() == 'undefined' || $('#m_state option:selected').val().length == '0') {
@@ -418,7 +411,7 @@
                                                     <div class="MnyFPx ">State</div>
                                                     <div class="_1cpOwe _1lRtwc jE2jGc">
                                                         <select class="_1EDlbo _1lRtwc jE2jGc _2gIrb5" id="m_state" required="" tabindex="7">
-                                                            <option value="" selected="">--Select State--</option>
+                                                            <option value="">--Select State--</option>
                                                             <option value="Andaman &amp; Nicobar Islands">Andaman &amp; Nicobar Islands</option>
                                                             <option value="Andhra Pradesh">Andhra Pradesh</option>
                                                             <option value="Arunachal Pradesh">Arunachal Pradesh</option>
@@ -470,33 +463,26 @@
                                         </div>
                                         <div class="yI40P1">
                                             <p class="_2tiHgk">Address Type</p>
-                                            <div class="_3TMnFu">
-                                                <div>
-                                                    <label for="HOME" class="_2Fn-Ln _3iI7Qn _3L7Pww">
-                                                        <input type="radio" class="_3DAmyP" name="m_locationTypeTag" value="HOME">
-                                                        <div class="_1XFPmK"></div>
-                                                        <div class="_2jIO64">
-                                                            <span>Home (All day delivery)</span>
+<div class="_3TMnFu">
+<div>
+
+                                              <input type="radio" name="m_locationTypeTag" value="HOME"><span>Home (All day delivery)</span>
                                                         </div>
-                                                    </label>
-                                                    <label for="WORK" class="_2Fn-Ln _3iI7Qn">
-                                                        <input type="radio" class="_3DAmyP" name="locationTypeTag"  value="HOME">
-                                                        <div class="_1XFPmK"></div>
-                                                        <div class="_2jIO64">
-                                                            <span>Work (Delivery between 10 AM - 5 PM)</span>
+
+<div class="_2jIO64"><input type="radio" name="m_locationTypeTag" value="WORK"><span>Work</span>
                                                         </div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+ </div>
+</div> 
+
+                                    </div>
                                         <div class="l5QiYB _1hGj33">
                                             <button class="_2KpZ6l _1JDhFS _3AWRsL" type="button" onclick="userprofile.UpdateAddress('`+addressid+`')" tabindex="10">Save</button>
                                         </div>
                                     </div>
                                 </div>`;
             $('#Modal').addClass('modal-profile');
-            $("input[name='m_locationTypeTag'][value='" + address.Addresstype + "']").prop('checked', true);
-            $("#m_state").val(address.State == null ? "" : address.State).change();
+            $("input[name='m_locationTypeTag'][value='` + address.Addresstype + `']").prop('checked', true);
+            $('#m_state').find(`option[value='` + address.State + `']`).attr('selected', 'select');
             common.HideLoader();
             $('#Modal').children('div').children('div').html(form);
             $('#Modal').show();
@@ -519,8 +505,16 @@
             ajax.doPostAjax(`/Customer/Address`, data, function (result) {
                 common.ShowMessage(result);
                 if (result.ResultFlag) {
-                    commonFunction.HideModel('#Modal');
                     common.ShowMessage(result);
+                    $('.yLyjMK').find('input:text').val('');
+                    location.reload();
+                    //$('#Name').val('');
+                    //$('#Phone').val('');
+                    //$('#Pincode').val('');
+                    //$('#AddressLine1').val('');
+                    //$('#AddressLine2').val('');
+                    //$('#Address3').val('');
+                    //$('#City').val('');
                 }
             });
         }
@@ -540,10 +534,11 @@
                 "ID": addressid
             }
             ajax.doPostAjax(`/Customer/Address`, data, function (result) {
-                common.ShowMessage(result);
-                if (result.ResultFlag) {
+                   if (result.ResultFlag) {
                     commonFunction.HideModel('#Modal');
-                    common.ShowMessage(result);
+                       common.ShowMessage(result);
+                       location.reload();
+
                 }
             });
         }
