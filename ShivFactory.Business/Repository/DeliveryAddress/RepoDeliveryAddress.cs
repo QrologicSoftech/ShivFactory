@@ -32,7 +32,9 @@ namespace ShivFactory.Business.Repository
                 Pincode = row.Pincode,
                 UserName = row.UserName,
                 userDetailId = row.userDetailId ?? 0,
-                Addresstype =row.Addresstype ==null? "HOME":row.Addresstype
+                Addresstype =row.Addresstype ==null? "HOME":row.Addresstype,
+                isChecked = row.isChecked ==null ? false : row.isChecked
+                
             }).OrderBy(row => row.ID).ToList();
 
             return address;

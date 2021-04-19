@@ -635,14 +635,15 @@ div#myresult {
     padding-top: 8px;
 }
 
-.modal-profile {
-    top: 140px;
+/*.modal-profile {
+    top: 90px;
     display: none;
     width: 46%;
     left: 50%;
     transform: translate(-50%, 0px);
     border: 1px solid rgb(0, 0, 0);
-    height: 72%;
-    background-color: white;
+   height: calc(100vh - 200px);*/
+    /* height: 72%;*/
+    /*background-color: white;
     overflow-y: auto;
-}
+}*/

@@ -20,6 +20,7 @@ namespace ShivFactory.Business.Repository
         public string Phone { get; set; }
         public string Addresstype { get; set; }
         public string UserId { get; set; }
+        public bool? isChecked { get; set; }
 
         public List<DeliveryAddress> addresseList { get; set;  }
     }
