@@ -39,7 +39,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xl-3 col-lg-4 col-md-5 mobile-order-1 col-5">
-                        <a href="index.html" class="brand-wrap"><img class="logo" src="/Content/AdminImg/logo.png"> </a>
+                        <a href="#" class="brand-wrap"><img class="logo" src="/Content/AdminImg/logo.png"> </a>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-6 mobile-order-3">
                         <form action="#" class="search-header">
@@ -66,7 +66,7 @@
                                         <div class="arrow-up">
                                             <img src="~/Content/UploadedImages/Images/arrow-up.png" />
                                         </div>
-                                        <a class="dropdown-item" href="/Customer/Profile"><i class="fa fa-user-circle" aria-hidden="true"></i>Profile</a>
+                                        <a class="dropdown-item" href="/Customer/CustomerProfile"><i class="fa fa-user-circle" aria-hidden="true"></i>Profile</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i>My Account</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-cog" aria-hidden="true"></i>Settings</a>
                                         <a class="dropdown-item" href="/Customer/Orders"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Orders</a>
@@ -81,8 +81,7 @@
                                 <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
                                     <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
                                         <div class="nav-profile-text">
-                                            @*<a href="/Account/Login" class="btn btn-login click-open" onclick="">Login</a>*@
-                                            <button class="btn btn-login click-open" onclick="Account.CustomerLogIn('')">Login</button>
+                                            <input type="button" class="btn btn-login click-open" onclick="Account.CustomerLogIn('')" value="Login"/>@*Login</input>*@
                                         </div>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -91,10 +90,10 @@
                                         </div>
                                         <ul class="new-customer-id">
                                             <li>
-                                                <a href="user-register.html">New Customer?</a>
+                                                <a href="#">New Customer?</a>
                                             </li>
                                             <li>
-                                                <a href="user-login.html" class="sing-up">Sing Up</a>
+                                                <a href="/Account/Register" class="sing-up">Sign Up</a>
                                             </li>
                                         </ul>
                                         <a class="dropdown-item" href="#" onclick="Account.CustomerLogIn('/Customer/Profile');"><i class="fa fa-user-circle" aria-hidden="true"></i>My Profile</a>

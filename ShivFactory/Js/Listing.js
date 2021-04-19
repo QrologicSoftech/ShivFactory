@@ -30,7 +30,7 @@ var Listing = {
 
                 $.each(varient, function (Value, varient) {
                     var html = `<article class="filter-group">\
-                        <h6 class="title" > <a href="#" onclick= "Listing.ToggleOrUntoggle()" class="dropdown-toggle"  data-toggle="collapse" data-target="#${varient.VarientName}"> ${varient.VarientName} </a> </h6 >\
+                        <h6 class="title" > <a onclick= "Listing.ToggleOrUntoggle()" class="dropdown-toggle"  data-toggle="collapse" data-target="#${varient.VarientName}"> ${varient.VarientName} </a> </h6 >\
                             <div class="filter-content collapse"  id="${varient.VarientName}" style="">\
                                 <div class="inner">`;
 
@@ -52,6 +52,7 @@ var Listing = {
     },
 
     ToggleOrUntoggle: function () {
+        debugger;
         $(".filter-content collapse").toggleClass("show");
     },
 

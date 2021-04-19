@@ -180,6 +180,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="bin\Release\" />
     <Folder Include="Factory\Services\" />
     <Folder Include="Factory\Utility\" />
   </ItemGroup>

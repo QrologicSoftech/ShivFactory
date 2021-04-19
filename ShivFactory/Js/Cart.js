@@ -25,7 +25,7 @@
             "IsUserWishList": IsUserWishList,
         }
         ajax.doPostAjax(`/Home/AddToCart`, data, function (result) {
-            common.ShowMessage(result);
+          //  common.ShowMessage(result);
         });
     },
     UpdateCart: function (element) {

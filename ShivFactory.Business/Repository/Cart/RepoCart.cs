@@ -119,8 +119,7 @@ namespace ShivFactory.Business.Repository
             if (cooki.GetStringCookiesValue(CookieName.TempOrderId) != "")
             {
                 int tempId = Convert.ToInt32(cooki.GetStringCookiesValue(CookieName.TempOrderId));
-
-                var items = db.TempOrderDetails.Where(row => row.TempOrderID == tempId);
+                var items = db.TempOrderDetails.Where(row => row.TempOrderID == tempId && row.IsUserWishList == false);
                 return items.Count();
             }
             else

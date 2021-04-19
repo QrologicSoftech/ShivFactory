@@ -17,7 +17,7 @@ namespace ShivFactory.Controllers
     {
         #region Profile
         Utility util = new Utility();
-        public ActionResult Profile()
+        public ActionResult  CustomerProfile()
         {
             //Basic Details
 
@@ -26,7 +26,7 @@ namespace ShivFactory.Controllers
             return View(userProfiledetails);
         }
         [HttpPost]
-        public ActionResult Profile(UserProfile model)
+        public ActionResult CustomerProfile(UserProfile model)
         {
             return View(model);
         }
@@ -69,6 +69,11 @@ namespace ShivFactory.Controllers
 
         //}
 
+
+        public ActionResult CustomerCheckout()
+        { 
+        
+        }
         #endregion
 
         #region Address
