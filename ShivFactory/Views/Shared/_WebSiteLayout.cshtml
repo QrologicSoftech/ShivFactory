@@ -17,7 +17,7 @@
 }
 
 <script src="~/Content/Website/js/jquery-2.0.0.min.js?ver=@version"></script>
-@*<script src="~/Content/Website/js/bootstrap.bundle.min.js?ver=@version"></script>*@
+
 <link href="~/Content/Website/css/bootstrap.css?ver=@version" rel="stylesheet" />
 <link href="~/Content/Website/fonts/fontawesome/css/all.min.css?ver=@version" rel="stylesheet" />
 <link href="~/Content/Website/fonts/Pe-icon-7-stroke.css?ver=@version" rel="stylesheet" />
@@ -81,7 +81,7 @@
                                 <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
                                     <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
                                         <div class="nav-profile-text">
-                                            <input type="button" class="btn btn-login click-open" onclick="Account.CustomerLogIn('')" value="Login"/>@*Login</input>*@
+                                            <input type="button" class="btn btn-login click-open" onclick="Account.CustomerLogIn('')" value="Login" />@*Login</input>*@
                                         </div>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -914,14 +914,14 @@
             });
         });
     </script>
-
+    <script src="~/Content/Website/js/bootstrap.bundle.min.js?ver=@version"></script>
     <link href="~/Content/Website/css/owl.theme-min.css?ver=@version" rel="stylesheet" />
     <script src="~/Content/Website/js/owl.carousel.js?ver=@version"></script>
     <script src="~/Content/Website/js/script2.js"></script>
     <script src="~/Content/Website/js/script.js"></script>
     @*<link href="~/Content/CSS/ModelPopup.css?ver=@version" rel="stylesheet" />*@
-    
-    <div id="Modal" class="modal" >
+
+    <div id="Modal" class="modal">
         <div class="modal-header">
             <button class="modal-close" onclick="commonFunction.HideModel('#Modal');"><i class="fa fa-times" aria-hidden="true"></i></button>
             <div class="modal-body"></div>

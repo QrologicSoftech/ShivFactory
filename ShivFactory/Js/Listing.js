@@ -30,7 +30,7 @@ var Listing = {
 
                 $.each(varient, function (Value, varient) {
                     var html = `<article class="filter-group">\
-                        <h6 class="title" > <a onclick= "Listing.ToggleOrUntoggle()" class="dropdown-toggle"  data-toggle="collapse" data-target="#${varient.VarientName}"> ${varient.VarientName} </a> </h6 >\
+                        <h6 class="title" > <a href="#" class="dropdown-toggle"  data-toggle="collapse" data-target="#${varient.VarientName}"> ${varient.VarientName} </a> </h6 >\
                             <div class="filter-content collapse"  id="${varient.VarientName}" style="">\
                                 <div class="inner">`;
 
@@ -51,19 +51,14 @@ var Listing = {
 
     },
 
-    ToggleOrUntoggle: function () {
-        debugger;
-        $(".filter-content collapse").toggleClass("show");
-    },
+   
 
     ApplyFilter: function () {
-
+           
         for (var a = 0; a < 10; a++) {
             ProductFilter["VarientName" + parseInt(a)] = '';
             ProductFilter["VarientName" + parseInt(a)] = '';
         }
-
-
         common.ShowLoader();
         var varientsName = $("#partialViewFilter").find('.filter-group a').map(function () {
             return $(this).html().trim()
@@ -85,36 +80,49 @@ var Listing = {
                 index++;
             }
         };
-
         common.HideLoader();
+        Listing.GetRecords();
     },
 
     GetRecords: function () {
         common.ShowLoader('#partialViewListing');
-        var data
+        var data;
+        ProductFilter["CategoryId"] = $('#CategoryId').val();
+        ProductFilter["SubCategoryId"] = $('#SubCategoryId').val();
+        ProductFilter["MiniCategoryId"] = $('#MiniCategoryId').val();
+        ProductFilter["SearchText"] = ''; 
         if (pageIndex > pageCount) {
             common.ShowLoader('#partialViewListing');
-            data = {
-                "CategoryId": $('#CategoryId').val(),
-                "SubCategoryId": $('#SubCategoryId').val(),
-                "MiniCategoryId": $('#MiniCategoryId').val(),
-                "SearchText": '',
-                "PageIndex": pageIndex,
-                "PageSize": 10
-            }
+            
+            ProductFilter["PageIndex"] = pageIndex; 
+            ProductFilter["PageSize"] = 10; 
+            //data = {
+            //    "CategoryId": $('#CategoryId').val(),
+            //    "SubCategoryId": $('#SubCategoryId').val(),
+            //    "MiniCategoryId": $('#MiniCategoryId').val(),
+            //    "SearchText": '',
+            //    "PageIndex": pageIndex,
+            //    "PageSize": 10
+            //}
             pageIndex++;
         } else {
-            data = {
-                "CategoryId": $('#CategoryId').val(),
-                "SubCategoryId": $('#SubCategoryId').val(),
-                "MiniCategoryId": $('#MiniCategoryId').val(),
-                "SearchText": '',
-                "PageIndex": 1,
-                "PageSize": 10
-            }
+            ProductFilter["PageIndex"] = 1;
+            ProductFilter["PageSize"] = 10; 
+            //data = {
+            //    "CategoryId": $('#CategoryId').val(),
+            //    "SubCategoryId": $('#SubCategoryId').val(),
+            //    "MiniCategoryId": $('#MiniCategoryId').val(),
+            //    "SearchText": '',
+            //    "PageIndex": 1,
+            //    "PageSize": 10
+            //}
+            data = ProductFilter; 
             pageIndex++;
+            
         }
+        debugger;
         ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
+            alert(result.ResultFlag);
             if (result.ResultFlag == true) {
                 Listing.OnSuccess(result.Data)
             }
@@ -126,6 +134,9 @@ var Listing = {
 
     OnSuccess: function (response) {
         var itemcount = $("#itemcount");
+        $('#CategoryId').val(response[0].CategoryId);
+        $('#SubCategoryId').val(response[0].SubCategoryId);
+        $('#MiniCategoryId').val(response[0].MiniCategoryId);
         itemcount.text(response.length + " items found");
         $('#categoryName').append(response[0].CategoryName);
         $('#categoryName').attr('href', '/Home/ProductListing?Id=' + response[0].CategoryId);

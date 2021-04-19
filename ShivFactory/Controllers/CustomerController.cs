@@ -70,10 +70,10 @@ namespace ShivFactory.Controllers
         //}
 
 
-        public ActionResult CustomerCheckout()
-        { 
+        //public ActionResult CustomerCheckout()
+        //{ 
         
-        }
+        //}
         #endregion
 
         #region Address
