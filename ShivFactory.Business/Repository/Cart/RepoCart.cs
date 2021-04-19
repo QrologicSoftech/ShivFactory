@@ -49,7 +49,7 @@ namespace ShivFactory.Business.Repository
                 }
 
                 var orderDetails = db.TempOrderDetails.Where(a => a.ProductVarientId == model.ProductVarientID && a.TempOrderID == tempOrderId).FirstOrDefault();
-                if (orderDetails != null)
+                if (orderDetails != null)  
                 {
                     orderDetails.Quantity = orderDetails.Quantity + model.Quantity; //orderDetails.Quantity ?? 0 + m
                     orderDetails.NetAmt = orderDetails.Quantity * model.Price;

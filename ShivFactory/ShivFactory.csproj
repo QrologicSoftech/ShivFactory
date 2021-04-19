@@ -200,6 +200,10 @@
     <Content Include="App_Data\DefaultConnection_log.ldf">
       <DependentUpon>DefaultConnection.mdf</DependentUpon>
     </Content>
+    <Content Include="bin\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.xml" />
+    <Content Include="bin\System.Web.Http.dll" />
+    <Content Include="bin\System.Web.Http.xml" />
     <Content Include="Content\AdminImg\arrow-up.png" />
     <Content Include="Content\AdminImg\logo-img.png" />
     <Content Include="Content\AdminImg\logo.png" />
@@ -228,6 +232,9 @@
     <Content Include="Content\Website\js\script2.js" />
     <Content Include="Js\Accounts.js" />
     <Content Include="Js\UserProfile.js" />
+    <Content Include="Properties\PublishProfiles\FolderProfile.pubxml.user" />
+    <Content Include="Properties\PublishProfiles\FolderProfile1.pubxml.user" />
+    <Content Include="Properties\serviceDependencies.local.json.user" />
     <Content Include="Views\Manage\ProductDetails.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\UnApprovedProductPartialView.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\AddProduct.cshtml" />
@@ -235,14 +242,8 @@
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\DataLibrary.DL.dll" />
     <Content Include="bin\DataLibrary.DL.pdb" />
-    <Content Include="bin\Docker.DotNet.dll" />
-    <Content Include="bin\Docker.DotNet.pdb" />
-    <Content Include="bin\DocumentFormat.OpenXml.dll" />
-    <Content Include="bin\DocumentFormat.OpenXml.xml" />
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\EntityFramework.SqlServer.dll" />
-    <Content Include="bin\Microsoft.AspNet.FriendlyUrls.dll" />
-    <Content Include="bin\Microsoft.AspNet.FriendlyUrls.xml" />
     <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
     <Content Include="bin\Microsoft.AspNet.Identity.Owin.dll" />
@@ -303,9 +304,6 @@
     <Content Include="bin\ShivFactory.Business.pdb" />
     <Content Include="bin\ShivFactory.dll" />
     <Content Include="bin\ShivFactory.pdb" />
-    <Content Include="bin\System.Buffers.dll" />
-    <Content Include="bin\System.Buffers.xml" />
-    <Content Include="bin\System.Linq.Dynamic.dll" />
     <Content Include="bin\System.Web.Helpers.dll" />
     <Content Include="bin\System.Web.Mvc.dll" />
     <Content Include="bin\System.Web.Optimization.dll" />
@@ -545,6 +543,10 @@
     <Content Include="Areas\Vendor\Views\Vendor\AddShippingArea.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\VendorShippingAreaPartialView.cshtml" />
     <Content Include="Areas\Vendor\Views\Vendor\VarientPartialView.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <Content Include="Properties\serviceDependencies.json" />
+    <Content Include="Properties\serviceDependencies.local.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

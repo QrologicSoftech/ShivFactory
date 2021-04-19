@@ -2,8 +2,7 @@
 
 var Account = {
     CustomerLogIn: function (returnUrl) {
-        common.ShowLoader();
-
+        common.ShowLoader();        
         ajax.doGetAjax(`/${accountController}/LogIn?returnUrl=${returnUrl}`, function (result) {
             if (result) {
                 $('#Modal').children('div').children('div').html(result);
