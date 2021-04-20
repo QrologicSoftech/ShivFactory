@@ -35,5 +35,6 @@ namespace ShivFactory.Business.Repository
         public string VarientName10 { get; set; }
         public string VarientValue10 { get; set; }
 
+
     }
 }

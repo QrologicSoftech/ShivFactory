@@ -18,13 +18,26 @@ namespace ShivFactory.Business.Repository
         {
             List<ClsProduct> product = new List<ClsProduct>();
             List<SqlParameter> parameters = new List<SqlParameter>();
+            string varinetName = model.VarientName1 + "," + model.VarientName2 + "," + model.VarientName3 + "," + model.VarientName4 + "," + model.VarientName5 + "," + model.VarientName6 + "," + model.VarientName7 + "," + model.VarientName8 + "," + model.VarientName9 + "," + model.VarientName10;
+            string varinetValue = model.VarientValue1 + "," + model.VarientValue2 + "," + model.VarientValue3 + "," + model.VarientValue4 + "," + model.VarientValue5 + "," + model.VarientValue6 + "," + model.VarientValue7 + "," + model.VarientValue8 + "," + model.VarientValue9 + "," + model.VarientValue10;
+            if (model.VarientName1 == null && model.VarientName2 == null && model.VarientName3 == null && model.VarientName4 == null && model.VarientName5 == null && model.VarientName6 == null && model.VarientName7 == null && model.VarientName8 == null && model.VarientName9 == null && model.VarientName10 == null)
+            {
+                parameters.Add(new SqlParameter("@ACTION", "Listing"));
+            } else {
+                parameters.Add(new SqlParameter("@ACTION", "VarientFilter"));
+            }
+            
             parameters.Add(new SqlParameter("@PageIndex", model.PageIndex));
             parameters.Add(new SqlParameter("@PageSize", model.PageSize));
             parameters.Add(new SqlParameter("@CategoryId", model.CategoryId));
             parameters.Add(new SqlParameter("@SubCategoryId", model.SubCategoryId));
             parameters.Add(new SqlParameter("@MiniCategoryId", model.MiniCategoryId));
             parameters.Add(new SqlParameter("@SearchText", model.SearchText));
-            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, "GetProductsPageWise", parameters.ToArray());
+            parameters.Add(new SqlParameter("@VarientName", varinetName));
+            parameters.Add(new SqlParameter("@VarientValue", varinetValue));
+
+
+            DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, CommandType.StoredProcedure, "GetProductsPageWise", parameters.ToArray());
             if (ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0)
             {
                 RepoCommon repoCommon = new RepoCommon();

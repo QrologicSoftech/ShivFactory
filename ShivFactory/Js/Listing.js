@@ -5,9 +5,11 @@
     "VarientName7": '', "VarientValue7": '', "VarientName8": '', "VarientValue8": '', "VarientName9": '', "VarientValue9": '',
     "VarientName10": '', "VarientValue10": ''
 };
+var action = "Listing"; 
 
 var Listing = {
     OnPageLoad: function () {
+        action = "Listing";
         ProductFilter.CategoryId = $('#CategoryId').val();
         ProductFilter.SubCategoryId = $('#SubCategoryId').val();
         ProductFilter.MiniCategoryId = $('#MiniCategoryId').val();
@@ -54,7 +56,7 @@ var Listing = {
    
 
     ApplyFilter: function () {
-           
+        action = "Filter";
         for (var a = 0; a < 10; a++) {
             ProductFilter["VarientName" + parseInt(a)] = '';
             ProductFilter["VarientName" + parseInt(a)] = '';
@@ -87,44 +89,30 @@ var Listing = {
     GetRecords: function () {
         common.ShowLoader('#partialViewListing');
         var data;
-        ProductFilter["CategoryId"] = $('#CategoryId').val();
-        ProductFilter["SubCategoryId"] = $('#SubCategoryId').val();
-        ProductFilter["MiniCategoryId"] = $('#MiniCategoryId').val();
+       
         ProductFilter["SearchText"] = ''; 
         if (pageIndex > pageCount) {
             common.ShowLoader('#partialViewListing');
+
+            ProductFilter["PageIndex"] = 1; 
+            ProductFilter["PageSize"] = 10;
             
-            ProductFilter["PageIndex"] = pageIndex; 
-            ProductFilter["PageSize"] = 10; 
-            //data = {
-            //    "CategoryId": $('#CategoryId').val(),
-            //    "SubCategoryId": $('#SubCategoryId').val(),
-            //    "MiniCategoryId": $('#MiniCategoryId').val(),
-            //    "SearchText": '',
-            //    "PageIndex": pageIndex,
-            //    "PageSize": 10
-            //}
             pageIndex++;
         } else {
             ProductFilter["PageIndex"] = 1;
-            ProductFilter["PageSize"] = 10; 
-            //data = {
-            //    "CategoryId": $('#CategoryId').val(),
-            //    "SubCategoryId": $('#SubCategoryId').val(),
-            //    "MiniCategoryId": $('#MiniCategoryId').val(),
-            //    "SearchText": '',
-            //    "PageIndex": 1,
-            //    "PageSize": 10
-            //}
+            ProductFilter["PageSize"] = 10;
             data = ProductFilter; 
             pageIndex++;
-            
-        }
-        debugger;
-        ajax.doPostAjax(`/Home/GetProducts`, data, function (result) {
-            alert(result.ResultFlag);
+
+        } console.log(data);
+        ajax.doPostAjax(`/Home/GetProducts`, ProductFilter, function (result) {
+            //alert(result.ResultFlag);
             if (result.ResultFlag == true) {
-                Listing.OnSuccess(result.Data)
+                if (action == "Filter") {
+                    Listing.OnSuccessFilter(result.Data);
+                } else {
+                    Listing.OnSuccess(result.Data);
+                }
             }
             common.HideLoader('#partialViewListing');
         });
@@ -134,14 +122,11 @@ var Listing = {
 
     OnSuccess: function (response) {
         var itemcount = $("#itemcount");
-        $('#CategoryId').val(response[0].CategoryId);
-        $('#SubCategoryId').val(response[0].SubCategoryId);
-        $('#MiniCategoryId').val(response[0].MiniCategoryId);
         itemcount.text(response.length + " items found");
-        $('#categoryName').append(response[0].CategoryName);
-        $('#categoryName').attr('href', '/Home/ProductListing?Id=' + response[0].CategoryId);
-        $('#subcategoryName').append(response[0].SubCategoryName);
-        $('#subcategoryName').attr('href', '/Home/ProductListing?subId=' + response[0].SubCategoryId);
+        //$('#categoryName').append(response[0].CategoryName);
+        //$('#categoryName').attr('href', '/Home/ProductListing?Id=' + response[0].CategoryId);
+        //$('#subcategoryName').append(response[0].SubCategoryName);
+        //$('#subcategoryName').attr('href', '/Home/ProductListing?subId=' + response[0].SubCategoryId);
         $.each(response, function (j, dataval) {
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
                         <figure class="card card-product-grid" >\
@@ -157,6 +142,41 @@ var Listing = {
                                         <div class="label-rating">2/10</div>\
                                     </div>\
                 <input type="hidden" id="ProductId" value="'+ dataval.ProductId +'" /><input type = "hidden" id = "ProductVarientId" value = "'+ dataval.ProductVarientId +'" />\
+    <input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
+    <input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
+                                    <a href ="" onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`)"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
+                              </figure>\
+                            </div >');
+
+            pageCount = dataval.PageCount;
+        });
+        common.HideLoader('#partialViewListing');
+    },
+
+    OnSuccessFilter: function (response) {
+        var itemcount = $("#itemcount");
+        itemcount.text(response.length + " items found");
+        //$('#categoryName').append(response[0].CategoryName);
+        //$('#categoryName').attr('href', '/Home/ProductListing?Id=' + response[0].CategoryId);
+        //$('#subcategoryName').append(response[0].SubCategoryName);
+        //$('#subcategoryName').attr('href', '/Home/ProductListing?subId=' + response[0].SubCategoryId);
+        $.each(response, function (j, dataval) {
+            var node = document.getElementById("partialViewListing");
+            node.querySelectorAll('*').forEach(n => n.remove());
+            $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
+                        <figure class="card card-product-grid" >\
+                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '" alt=' + dataval.ProductName + '><img src="' + dataval.MainImage + '"></a> </div>\
+                                <figcaption class="info-wrap"> <a id="ProductName" href="#" class="title mb-2">' + dataval.ProductName + '</a>\
+                                    <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
+                                    <!-- price-wrap.// -->\
+                                  <div class="rating-wrap mb-2">\
+                                        <ul class="rating-stars">\
+                                            <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
+                                            <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
+                                        </ul>\
+                                        <div class="label-rating">2/10</div>\
+                                    </div>\
+                <input type="hidden" id="ProductId" value="'+ dataval.ProductId + '" /><input type = "hidden" id = "ProductVarientId" value = "' + dataval.ProductVarientId + '" />\
     <input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
     <input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
                                     <a href ="" onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`)"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
