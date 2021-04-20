@@ -2,15 +2,22 @@
 
 var Account = {
     CustomerLogIn: function (returnUrl) {
-        common.ShowLoader();        
-        ajax.doGetAjax(`/${accountController}/LogIn?returnUrl=${returnUrl}`, function (result) {
-            if (result) {
-                $('#Modal').children('div').children('div').html(result);
-                $('#Modal').show();
-            }
+        common.ShowLoader();
+        $('#LoginModal').css('display','block');
             common.HideLoader();
-        });
+       
     },
+    //CustomerLogIn: function (returnUrl) {
+    //    common.ShowLoader();
+    //    ajax.doGetAjax(`/${accountController}/LogIn?returnUrl=${returnUrl}`, function (result) {
+    //        if (result) {
+    //            // alert(result);
+    //            $('#Modal').children('div').children('div').html(result);
+    //            $('#Modal').show();
+    //        }
+    //        common.HideLoader();
+    //    });
+    //},
     CustomerLogInPost: function () {
         common.ShowLoader();
         data = {
