@@ -156,13 +156,10 @@ var Listing = {
     OnSuccessFilter: function (response) {
         var itemcount = $("#itemcount");
         itemcount.text(response.length + " items found");
-        //$('#categoryName').append(response[0].CategoryName);
-        //$('#categoryName').attr('href', '/Home/ProductListing?Id=' + response[0].CategoryId);
-        //$('#subcategoryName').append(response[0].SubCategoryName);
-        //$('#subcategoryName').attr('href', '/Home/ProductListing?subId=' + response[0].SubCategoryId);
+        var node = document.getElementById("partialViewListing");
+        node.querySelectorAll('*').forEach(n => n.remove());
+       
         $.each(response, function (j, dataval) {
-            var node = document.getElementById("partialViewListing");
-            node.querySelectorAll('*').forEach(n => n.remove());
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
                         <figure class="card card-product-grid" >\
                             <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '" alt=' + dataval.ProductName + '><img src="' + dataval.MainImage + '"></a> </div>\

@@ -149,7 +149,14 @@ namespace ShivFactory.Controllers
         }
         #endregion
 
-
+        #region WishList
+        public ActionResult Wishlist()
+        {
+            RepoCart cart = new RepoCart();
+            var cartList = cart.GetWishlist();
+            return View(cartList);
+        }
+        #endregion
     }
 
 }

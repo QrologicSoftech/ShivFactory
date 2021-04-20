@@ -1011,7 +1011,7 @@
     <Content Include="Views\Customer\CustomerProfile.cshtml" />
     <Content Include="Views\Customer\Orders.cshtml" />
     <Content Include="Views\Home\ShowCart.cshtml" />
-    <Content Include="Views\Home\Wishlist.cshtml" />
+    <Content Include="Views\Customer\Wishlist.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Customer\Checkout.cshtml" />
     <Content Include="Views\Home\WebMenuPartialview - Copy.cshtml" />

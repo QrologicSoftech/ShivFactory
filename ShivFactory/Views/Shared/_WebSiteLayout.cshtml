@@ -39,7 +39,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xl-3 col-lg-4 col-md-5 mobile-order-1 col-5">
-                        <a href="#" class="brand-wrap"><img class="logo" src="/Content/AdminImg/logo.png"> </a>
+                        <a href="/Home/ProductListing/" class="brand-wrap"><img class="logo" src="/Content/AdminImg/logo.png"> </a>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-6 mobile-order-3">
                         <form action="#" class="search-header">
@@ -684,7 +684,12 @@
 
 
 
-
+    <div id="Modal" class="modal">
+        <div class="modal-header">
+            <button class="modal-close" onclick="commonFunction.HideModel('#Modal');"><i class="fa fa-times" aria-hidden="true"></i></button>
+            <div class="modal-body"></div>
+        </div>
+    </div>
 
     <div class="container footer-text1 mb-5 mt-3">
         <h5>jaipurdecor.com: Shop Anytime, Anywhere!</h5>
@@ -921,11 +926,6 @@
     <script src="~/Content/Website/js/script.js"></script>
     @*<link href="~/Content/CSS/ModelPopup.css?ver=@version" rel="stylesheet" />*@
 
-    <div id="Modal" class="modal">
-        <div class="modal-header">
-            <button class="modal-close" onclick="commonFunction.HideModel('#Modal');"><i class="fa fa-times" aria-hidden="true"></i></button>
-            <div class="modal-body"></div>
-        </div>
-    </div>
+
 </body>
 </html>

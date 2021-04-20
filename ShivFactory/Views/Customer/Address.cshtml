@@ -6,15 +6,21 @@
 <script src="~/Js/UserProfile.js"></script>
 <div class="col-xl-9 col-lg-9 col-md-9">
     <div class="personal">
+        
         <section class="profile-1 profile-2 hover-1" id="faqs" style="margin-top: 0px; background:white">
-                <div class="_35va4c">
+            <div class="col-md-12" style="padding: 20px 0px;">
+                <span style="font-size: 25px;font-weight: bold; margin-left: 50px;">
+                    Manage  Address <button style="float:right;margin-right:10px"  class="btn btn-md btn-warning btn-btom button" onclick="userprofile.ShowAddressForm();"><i class="fa fa-address-card"></i>Add New </button>
+                </span>
+            </div>
+            <div class="_35va4c">
                 <div class="asked">
                     <div class="questions">
                         <div class="panel-group qus" id="addressList" role="tablist" aria-multiselectable="true">
                             <div class="panel panel-default">
-                                <div class="_18fmpV">
-                                    <button  type="button" onclick="userprofile.ShowAddressForm();" class="btn btn-sm btn-warning btn-btom buttons"><i class="fa fa-address-card"></i> ADD NEW ADDRESS</button>
-                                </div>
+                                @*<div class="_18fmpV">
+                                    <button type="button" style="float:right" onclick="userprofile.ShowAddressForm();" class="btn btn-sm btn-warning btn-btom buttons"><i class="fa fa-address-card"></i> ADD NEW ADDRESS</button>
+                                </div>*@
                                 <div style="position: relative;">
 
                                     @if (Model.addresseList.Count() > 0)
@@ -38,10 +44,13 @@
                                                                         }
                                                                     </div>
                                                                     <div class="CXW8mj" style="height: 75px; width: 50px;">
-                                                                        @if(adress.isChecked!=null && adress.isChecked ==true){
-                                                                        <input type="checkbox" name="isChecked" value="@adress.ID" checked />
-                                                                        }else {
-                                                                        <input type="checkbox" name="isChecked" value="@adress.ID" />
+                                                                        @if (adress.isChecked != null && adress.isChecked == true)
+                                                                        {
+                                                                            <input type="checkbox" name="isChecked" value="@adress.ID" checked />
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <input type="checkbox" name="isChecked" value="@adress.ID" />
                                                                         }
                                                                     </div>
                                                                 </div>
@@ -58,9 +67,9 @@
                                                                         </span>
                                                                     </div>
                                                                     @*<div class="row _65ZkAB">
-                                                <span class="_65ZkAB _1uABhR">Seller: </span>
-                                                <span class="-igymY">SuperComNet</span>
-                                            </div>*@
+                                                                    <span class="_65ZkAB _1uABhR">Seller: </span>
+                                                                    <span class="-igymY">SuperComNet</span>
+                                                                </div>*@
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -83,7 +92,7 @@
                                         }
                                     }
                                     <script>
-                                        
+
                                     </script>
 
                                 </div>
@@ -93,7 +102,7 @@
                         <!--ADD NEW ADDRESS -->
 
                         <div class="card-body" id="addressform" style="display:none">
-                           
+
                             <div class="N5Ijry">
 
                                 <div class="yLyjMK">
@@ -186,7 +195,7 @@
                                             <input type="text" class="_1w3ZZo _2mFmU7" id="Address3" autocomplete="off" tabindex="8" maxlength="200" value="">
                                             <label for="landmark" class="_1osQq7 -FxG57">Landmark (Optional)</label>
                                         </div>
-                                      
+
                                     </div>
                                     <div class="yI40P1">
                                         <p class="_2tiHgk">Address Type</p>
@@ -225,6 +234,7 @@
             </div>
         </section>
 
+    </div>
     </div>
 <script>
     $("input:checkbox").on('click', function () {
