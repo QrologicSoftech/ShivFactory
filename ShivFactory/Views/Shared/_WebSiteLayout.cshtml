@@ -7,6 +7,7 @@
     var version = ConfigurationManager.AppSettings["jsversion"].ToString();
     RepoCookie repoCookie = new RepoCookie();
     var UserName = repoCookie.GetStringCookiesValue(CookieName.FirstName) + " " + repoCookie.GetStringCookiesValue(CookieName.LastName);
+    if (UserName.Trim().Length == 0) { UserName = "Hello "; }
     var role = repoCookie.GetStringCookiesValue(CookieName.Role);
     Utility util = new Utility();
     RepoUser repoUser = new RepoUser();
@@ -1030,7 +1031,7 @@
                                     <div class="_36HLxm col col-3-5">
                                         <div>
                                             @*@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "on", id = "login" }))
-                        {*@
+        {*@
                                             <input type="hidden" id="returnUrl" value="@ViewBag.ReturnUrl" />
                                             <div class="IiD88i _351hSN">
                                                 <input type="text" class="_2IX_2- VJZDxU enter-number _1Z69nn" autocomplete="off" id="PhoneNumberSignUp" />
@@ -1045,56 +1046,62 @@
                                             </div>
 
                                             <div class="IiD88i _351hSN">
-                            <input type="text" class="_2IX_2- VJZDxU enter-number _1Z69nn" autocomplete="off" id="EmailSignUp" />
-                            <span class="_36T8XR"></span>
-                            <label class="_1fqY3P">
-                                <span>Email</span>
-                            </label>
-                            <span class="_1_wZ0r">+91</span>
-                            <div class="_1_wZ0r error-message">
-                                <span class="field-validation-valid " data-valmsg-for="EmailSignUp" data-valmsg-replace="true"></span>
-                            </div>
-                        </div>
-                                            <div class="IiD88i _351hSN">
-                                                <input type="text" class="_2IX_2- VJZDxU enter-number _1Z69nn" autocomplete="off" id="PasswordSignUp" />
+                                                <input type="email" class="_2IX_2- _3mctLh" autocomplete="off" id="EmailIdSignUp" />
+
                                                 <span class="_36T8XR"></span>
                                                 <label class="_1fqY3P">
-                                                    <span>Password</span>
+                                                    <span>Email</span>
                                                 </label>
-                                                <span class="_1_wZ0r">+91</span>
                                                 <div class="_1_wZ0r error-message">
-                                                    <span class="field-validation-valid " data-valmsg-for="PasswordSignUp" data-valmsg-replace="true"></span>
+                                                    <span class="field-validation-valid " data-valmsg-for="EmailIdSignUp" data-valmsg-replace="true"></span>
+                                                    @*@Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "" })*@
+
                                                 </div>
                                             </div>
+                                            <div class="IiD88i _351hSN">
+                                                <input type="password" class="_2IX_2- _3mctLh " autocomplete="off" id="PasswordSignUp" />
+                                                @*@Html.TextBoxFor(m => m.Password, new { @class = "_2IX_2- _3mctLh VJZDxU", @autocomplete = "off", @type = "password" })*@
+                                                <span class="_36T8XR"></span>
+                                                <label class="_1fqY3P">
+                                                    <span>Enter Password</span>
+                                                </label>
+                                                <div class="_1_wZ0r error-message">
+                                                    <span class="field-validation-valid " data-valmsg-for="PasswordSignUp" data-valmsg-replace="true"></span>
+                                                    @*@Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "" })*@
 
+                                                </div>
+                                            </div>
+                                            
+                                                <span style="color:red" class="field-validation-valid " data-valmsg-for="SignUp" data-valmsg-replace="true"></span>
+                                                
+                                                <div class="_1Ijv5h">
 
-                                            <div class="_1Ijv5h">
-                                                By continuing, you agree to Shiv Factory
-                                                <a class="_2ARnXM" target="_blank" href="#">Terms of Use</a> and
-                                                <a class="_2ARnXM" target="_blank" href="#">Privacy Policy</a>.
-                                            </div>
-                                            <div class="_1D1L_j">
-                                                @*<button class="_2KpZ6l _2HKlqd _3AWRsL" type="submit">
-                                <div class="_2YsvKq o8qAfl">
-                                    <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
-                                </div>
-                                <span>Login</span>
-                            </button>*@
-                                                <button class="_2KpZ6l _2HKlqd _3AWRsL" onclick="Account.CustomerSignUpPost();">
-                                                    <div class="_2YsvKq o8qAfl">
-                                                        <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
-                                                    </div>
-                                                    <span>Continue</span>
-                                                </button>
-                                            </div>
-                                            <div class="_1k3JO2">
-                                                <div class="_2XlkPA">OR</div>
-                                                <button class="_2KpZ6l _2HKlqd _3NgS1a" onclick="Account.CustomerLogIn('')">Existing User? Log in</button>
-                                            </div>
+                                                    By continuing, you agree to Shiv Factory
+                                                    <a class="_2ARnXM" target="_blank" href="#">Terms of Use</a> and
+                                                    <a class="_2ARnXM" target="_blank" href="#">Privacy Policy</a>.
+                                                </div>
+                                                <div class="_1D1L_j">
+                                                    @*<button class="_2KpZ6l _2HKlqd _3AWRsL" type="submit">
+                    <div class="_2YsvKq o8qAfl">
+                        <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
+                    </div>
+                    <span>Login</span>
+                </button>*@
+                                                    <button class="_2KpZ6l _2HKlqd _3AWRsL" onclick="Account.CustomerSignUpPost();">
+                                                        <div class="_2YsvKq o8qAfl">
+                                                            <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
+                                                        </div>
+                                                        <span>Continue</span>
+                                                    </button>
+                                                </div>
+                                                <div class="_1k3JO2">
+                                                    <div class="_2XlkPA">OR</div>
+                                                    <button class="_2KpZ6l _2HKlqd _3NgS1a" onclick="Account.CustomerLogIn('')">Existing User? Log in</button>
+                                                </div>
 
-                                            @*}*@
+                                                @*}*@
+                                            </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>

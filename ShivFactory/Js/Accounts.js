@@ -46,6 +46,7 @@ var Account = {
                 });
             }
             else {
+             
                 window.location.href = result.Message;
             }
             common.HideLoader();
@@ -54,10 +55,11 @@ var Account = {
 
     CustomerSignUpPost: function () {
         common.ShowLoader();
+        $(`span[data-valmsg-for|='${'SignUp'}']`).html(null);
         data = {
             "PhoneNumber": $('#PhoneNumberSignUp').val(),
             "Password": $('#PasswordSignUp').val(),
-            "Email": $('#EmailSignUp').val()
+            "Emailid": $('#EmailIdSignUp').val()
         }
         ajax.doPostAjax(`/${accountController}/Register?returnUrl=${$('#returnUrl').val()}`, data, function (result) {
             if (result.ResultFlag == false) {
@@ -65,13 +67,13 @@ var Account = {
                 result.Data.forEach((item) => {
                     console.log(item);
                     if (item.Values.length > 0) {
-                        $(`span[data-valmsg-for|='${item.Key}']`).html(item.Values[0]);
+                        $(`span[data-valmsg-for|='${item.Key +'SignUp'}']`).html(item.Values[0]);
                     }
-                    else { $(`span[data-valmsg-for|='${item.Key}']`).html(null); }
+                    else { $(`span[data-valmsg-for|='${item.Key +'SignUp'}']`).html(null); }
                 });
             }
             else {
-                debugger;
+              
                 window.location.href = result.Message;
             }
             common.HideLoader();
@@ -79,6 +81,11 @@ var Account = {
     },
 
     HideLoginSignUpModal: function () {
+        $('#PhoneNumber').val() = '';
+        $('#Password').val() = ''; 
+        $('#PhoneNumberSignUp').val() = '';
+        $('#PasswordSignUp').val() = '';
+        $('#EmailIdSignUp').val() = '';
         $('#LoginModal').css('display', 'none');
     },
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity;
 using ShivFactory.Business.Model;
 using ShivFactory.Business.Model.Common;
+using ShivFactory.Business.Models.Other;
 using ShivFactory.Business.Repository;
 using ShivFactory.Business.Repository.ChangeProfileImage;
 using ShivFactory.Business.Repository.Website;
@@ -158,7 +159,12 @@ namespace ShivFactory.Controllers
                     Gender = model.Gender,
                     UserId = util.GetCurrentUserId()
                 });
-
+                if (isUpdate == true)
+                {
+                    RepoCookie cooki = new RepoCookie();
+                    cooki.AddCookiesValue(CookieName.FirstName, model.FirstName);
+                    cooki.AddCookiesValue(CookieName.LastName, model.LastName);
+                }
                 return Json(new ResultModel
                 {
                     ResultFlag = isUpdate,

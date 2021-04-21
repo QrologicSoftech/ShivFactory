@@ -265,19 +265,31 @@ namespace ShivFactory.Controllers
             bool resultFlag = true;
             if (!ModelState.IsValid)
             {
-                resultFlag = false; 
-            }
-
-            var res = await CustomerRegister(model);
-            if (res.ResultFlag == true)
-            {
-                // add cookie data after login 
-                return RedirectToAction("Index","Home");
+                resultFlag = false;
             }
             else
             {
-                ModelState.AddModelError("", res.Message);
-               // return View(model);
+                var res = await CustomerRegister(model);
+                if (res.ResultFlag == true)
+                {
+                    // add cookie data after login 
+                    LogInModel login = new LogInModel();
+                    login.Role = UserRoles.Customer;
+                    login.PhoneNumber = model.PhoneNumber;
+                    login.Password = model.Password; 
+                    var result = await LogInApI(login);
+                    if (result.ResultFlag == true)
+                    {
+                       // return RedirectToLocal(result.Data, "/Home/Index");
+                    }
+                    
+                }
+                else
+                {
+                    resultFlag = res.ResultFlag;
+                    ModelState.AddModelError("", res.Message);
+                    // return View(model);
+                }
             }
             foreach (var modelStateKey in ViewData.ModelState.Keys)
             {
@@ -288,7 +300,6 @@ namespace ShivFactory.Controllers
                 });
             }
             return Json(new ResultModel { ResultFlag = resultFlag, Data = Errors, Message = "/Home/Index" }, JsonRequestBehavior.AllowGet);
-
 
 
             // If we got this far, something failed, redisplay form
