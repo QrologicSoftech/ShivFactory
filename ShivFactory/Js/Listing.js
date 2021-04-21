@@ -53,10 +53,7 @@ var Listing = {
 
     },
 
-   
-
     ApplyFilter: function () {
-        action = "Filter";
         for (var a = 0; a < 10; a++) {
             ProductFilter["VarientName" + parseInt(a)] = '';
             ProductFilter["VarientName" + parseInt(a)] = '';
@@ -83,6 +80,19 @@ var Listing = {
             }
         };
         common.HideLoader();
+        debugger;
+        if (ProductFilter["VarientName1"] != null ||
+            ProductFilter["VarientName2"] != null ||
+            ProductFilter["VarientName3"] != null ||
+            ProductFilter["VarientName4"] != null ||
+            ProductFilter["VarientName5"] != null ||
+            ProductFilter["VarientName6"] != null ||
+            ProductFilter["VarientName7"] != null ||
+            ProductFilter["VarientName8"] != null ||
+            ProductFilter["VarientName9"] != null ||
+            ProductFilter["VarientName10"] != null) {
+            action = "Filter"; 
+        }
         Listing.GetRecords();
     },
 
@@ -108,6 +118,7 @@ var Listing = {
         ajax.doPostAjax(`/Home/GetProducts`, ProductFilter, function (result) {
             //alert(result.ResultFlag);
             if (result.ResultFlag == true) {
+                debugger;
                 if (action == "Filter") {
                     Listing.OnSuccessFilter(result.Data);
                 } else {

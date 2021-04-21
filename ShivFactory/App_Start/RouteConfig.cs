@@ -33,6 +33,22 @@ namespace ShivFactory
 
             );
 
+            routes.MapRoute(
+               name: "Vendor",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Account", action = "VendorLogin", id = UrlParameter.Optional },
+                 new[] { "ShivFactory.Controllers.Account" } // Insert area namespace here
+
+           );
+
+            routes.MapRoute(
+               name: "Admin",
+               url: "{controller}/{action}/{id}",
+               defaults: new { controller = "Account", action = "VendorLogin", id = UrlParameter.Optional },
+                 new[] { "ShivFactory.Controllers.Account" } // Insert area namespace here
+
+           );
+
         }
     }
 }

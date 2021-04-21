@@ -17,8 +17,8 @@ namespace ShivFactory.Business.Repository
     public class RepoCart
     {
         #region Parameters
-        ShivFactoryEntities db = new ShivFactoryEntities();
-        RepoCookie cooki = new RepoCookie();
+         ShivFactoryEntities db = new ShivFactoryEntities();
+         RepoCookie cooki = new RepoCookie();
 
         #endregion
         Utility utility = new Utility();
