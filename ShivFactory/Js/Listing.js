@@ -5,7 +5,7 @@
     "VarientName7": '', "VarientValue7": '', "VarientName8": '', "VarientValue8": '', "VarientName9": '', "VarientValue9": '',
     "VarientName10": '', "VarientValue10": ''
 };
-var action = "Listing"; 
+var action = "Listing";
 
 var Listing = {
     OnPageLoad: function () {
@@ -58,7 +58,7 @@ var Listing = {
             ProductFilter["VarientName" + parseInt(a)] = '';
             ProductFilter["VarientName" + parseInt(a)] = '';
         }
-        common.ShowLoader();
+        // common.ShowLoader();
         var varientsName = $("#partialViewFilter").find('.filter-group a').map(function () {
             return $(this).html().trim()
         }).get()
@@ -78,7 +78,7 @@ var Listing = {
                 index++;
             }
         };
-        common.HideLoader();
+        // common.HideLoader();
         if (ProductFilter["VarientName1"] != null ||
             ProductFilter["VarientName2"] != null ||
             ProductFilter["VarientName3"] != null ||
@@ -89,41 +89,39 @@ var Listing = {
             ProductFilter["VarientName8"] != null ||
             ProductFilter["VarientName9"] != null ||
             ProductFilter["VarientName10"] != null) {
-            action = "Filter"; 
+            action = "Filter";
         }
         Listing.GetRecords();
     },
 
     GetRecords: function () {
-        common.ShowLoader('#partialViewListing');
+        //common.ShowLoader('#partialViewListing');
         var data;
-       
-        ProductFilter["SearchText"] = ''; 
-        if (pageIndex > pageCount) {
-            common.ShowLoader('#partialViewListing');
 
-            ProductFilter["PageIndex"] = 1; 
+        ProductFilter["SearchText"] = '';
+        if (pageIndex > pageCount) {
+            ProductFilter["PageIndex"] = 1;
             ProductFilter["PageSize"] = 10;
-            
+
             pageIndex++;
         } else {
             ProductFilter["PageIndex"] = 1;
             ProductFilter["PageSize"] = 10;
-            data = ProductFilter; 
+            data = ProductFilter;
             pageIndex++;
 
         } console.log(data);
         ajax.doPostAjax(`/Home/GetProducts`, ProductFilter, function (result) {
             //alert(result.ResultFlag);
             if (result.ResultFlag == true) {
-                debugger;
+
                 if (action == "Filter") {
                     Listing.OnSuccessFilter(result.Data);
                 } else {
                     Listing.OnSuccess(result.Data);
                 }
             }
-            common.HideLoader('#partialViewListing');
+            //common.HideLoader('#partialViewListing');
         });
 
 
@@ -139,7 +137,7 @@ var Listing = {
         $.each(response, function (j, dataval) {
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
                         <figure class="card card-product-grid" >\
-                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '&Name=' + dataval.ProductName + '" alt='+dataval.ProductName+'><img src="' + dataval.MainImage + '"></a> </div>\
+                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '&Name=' + dataval.ProductName + '" alt=' + dataval.ProductName + '><img src="' + dataval.MainImage + '"></a> </div>\
                                 <figcaption class="info-wrap"> <a id="ProductName" href="#" class="title mb-2">' + dataval.ProductName + '</a>\
                                     <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
                                     <!-- price-wrap.// -->\
@@ -150,7 +148,7 @@ var Listing = {
                                         </ul>\
                                         <div class="label-rating">2/10</div>\
                                     </div>\
-                <input type="hidden" id="ProductId" value="'+ dataval.ProductId +'" /><input type = "hidden" id = "ProductVarientId" value = "'+ dataval.ProductVarientId +'" />\
+                <input type="hidden" id="ProductId" value="'+ dataval.ProductId + '" /><input type = "hidden" id = "ProductVarientId" value = "' + dataval.ProductVarientId + '" />\
     <input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
     <input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
                                     <a href ="" onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`)"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
@@ -167,7 +165,7 @@ var Listing = {
         itemcount.text(response.length + " items found");
         var node = document.getElementById("partialViewListing");
         node.querySelectorAll('*').forEach(n => n.remove());
-       
+
         $.each(response, function (j, dataval) {
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
                         <figure class="card card-product-grid" >\
@@ -218,15 +216,15 @@ var Listing = {
         </header>
         <div class="card-deal px-1">
             <div class="allitem-slider owl-carousel owl-button"><div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2010px;">`;
-                    
+
                     $.each(Value.SubCategory, function (a, b) {
-                    
+
                         productSlider += `<div class="owl-item active" style="width: 236.2px; margin-right: 15px;"><div class="item">
                     <figure class="card-product-grid card-sm">
                         <a href="/Home/ProductListing?subId=${b.SubCategoryId}" class="img-wrap"> <img src="${b.ImagePath}"> </a>
                         <div class="text-center">
                             <div class="price mt-1"><a href='#'>`+ b.SubCategoryName + `</a></div>
-                            <div class="price mt-1">`+ b.price +`  <s class="old-rrice"> `+ b.ListPrice+`</s></div>
+                            <div class="price mt-1">`+ b.price + `  <s class="old-rrice"> ` + b.ListPrice + `</s></div>
                             <div class="add-cart pt-1"></div>
                             <span class="badge badge-danger"> -20% </span>
                         </div>
@@ -236,11 +234,11 @@ var Listing = {
                     productSlider += `</div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span><i class="fa fa-angle-right"></i></span></button><button type="button" role="presentation" class="owl-next"><span><i class="fa fa-angle-left"></i></span></button></div></div></div></div></div></section>`;
 
                 });
-               $("#Product-slider").html(productSlider);
+                $("#Product-slider").html(productSlider);
 
             }
             common.HideLoader();
-         
+
         });
 
     },
@@ -255,11 +253,11 @@ var Listing = {
                 $('#lblDeliery').text("Delivery is not available for area");
                 $('#lblDeliery').css("color", "Red");
                 $('#deliverytime').css('display', 'none');
-            
+
             }
-    });
+        });
         common.HideLoader();
     },
 
-   
+
 }
