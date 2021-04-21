@@ -139,7 +139,7 @@ var Listing = {
         $.each(response, function (j, dataval) {
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
                         <figure class="card card-product-grid" >\
-                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '" alt='+dataval.ProductName+'><img src="' + dataval.MainImage + '"></a> </div>\
+                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '&Name=' + dataval.ProductName + '" alt='+dataval.ProductName+'><img src="' + dataval.MainImage + '"></a> </div>\
                                 <figcaption class="info-wrap"> <a id="ProductName" href="#" class="title mb-2">' + dataval.ProductName + '</a>\
                                     <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
                                     <!-- price-wrap.// -->\
@@ -171,7 +171,7 @@ var Listing = {
         $.each(response, function (j, dataval) {
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
                         <figure class="card card-product-grid" >\
-                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '" alt=' + dataval.ProductName + '><img src="' + dataval.MainImage + '"></a> </div>\
+                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '&Name=' + dataval.ProductName + '" alt=' + dataval.ProductName + '><img src="' + dataval.MainImage + '"></a> </div>\
                                 <figcaption class="info-wrap"> <a id="ProductName" href="#" class="title mb-2">' + dataval.ProductName + '</a>\
                                     <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
                                     <!-- price-wrap.// -->\
