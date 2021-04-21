@@ -66,6 +66,11 @@ namespace ShivFactory.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (returnUrl.Equals("/Account/VendorLogin") || returnUrl.Equals("/vendor"))
+            {
+                //return RedirectToAction("VendorLogin","Account");
+                return View("VendorLogin");
+            }
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -165,7 +170,7 @@ namespace ShivFactory.Controllers
         #endregion
 
         #region VendorLogIn
-        [AllowAnonymous]
+       // [AllowAnonymous]
         public ActionResult VendorLogin(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;

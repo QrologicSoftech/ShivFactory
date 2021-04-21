@@ -255,7 +255,6 @@ namespace ShivFactory.Controllers
         }
         #endregion
 
-
         #region GetVarients Filter
         public ActionResult GetVarientsFilter(ProductListingPagination model)
         {
@@ -560,6 +559,11 @@ namespace ShivFactory.Controllers
         }
         #endregion
 
-       
+        public ActionResult Vendor()
+        {
+            return RedirectToAction("VendorLogin", "Account");
+        }
+
+
     }
 }

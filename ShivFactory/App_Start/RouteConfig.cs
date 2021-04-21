@@ -25,21 +25,22 @@ namespace ShivFactory
             //     new[] { "ShivFactory.Areas.Admin.Controllers" } // Insert area namespace here
             //);
 
+              
+
             routes.MapRoute(
-                name: "Default",
+                name: "Home",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                   new[] { "ShivFactory.Controllers" } // Insert area namespace here
-
             );
 
             routes.MapRoute(
-               name: "Vendor",
-               url: "{controller}/{action}/{id}",
-               defaults: new { controller = "Account", action = "VendorLogin", id = UrlParameter.Optional },
-                 new[] { "ShivFactory.Controllers.Account" } // Insert area namespace here
+                 name: "Vendor",
+                 url: "{controller}/{action}/{id}",
+                 defaults: new { controller = "Home", action = "Vendor", id = UrlParameter.Optional },
+                   new[] { "ShivFactory.Controllers" } // Insert area namespace here
 
-           );
+             );
 
             routes.MapRoute(
                name: "Admin",
