@@ -88,12 +88,12 @@
                                         <div class="arrow-up">
                                             <img src="~/Content/UploadedImages/Images/arrow-up.png" />
                                         </div>
-                                        <ul class="new-customer-id">
+                                        <ul class="new-customer-id" onclick="Account.CustomerSignUp('')">
                                             <li>
                                                 <a href="#">New Customer?</a>
                                             </li>
                                             <li>
-                                                <a href="/Account/Register" class="sing-up">Sign Up</a>
+                                                <a href="#" class="sing-up">Sign Up</a>
                                             </li>
                                         </ul>
                                         <a class="dropdown-item" href="#" onclick="Account.CustomerLogIn('/Customer/Profile');"><i class="fa fa-user-circle" aria-hidden="true"></i>My Profile</a>
@@ -684,17 +684,12 @@
 
 
 
-
-
-
-
-
-    @*<div id="Modal" class="modal">
+    <div id="Modal" class="modal">
         <div class="modal-header">
             <button class="modal-close" onclick="commonFunction.HideModel('#Modal');"><i class="fa fa-times" aria-hidden="true"></i></button>
             <div class="modal-body"></div>
         </div>
-    </div>*@
+    </div>    
 
 
 
@@ -937,10 +932,10 @@
     <div  id ="LoginModal" class="modal" style="display:none;top: 90px;">
         <div class="modal-header">
             <div class="modal-body">
-                <div class="_2Sn47c">
+                <div class="_2Sn47c signIn" id="signIn">
                     <div class="_2hriZF _2rbIyg" tabindex="-1">
                         <div class="_2QfC02">
-                            <a href="/Home/" class="_2KpZ6l _2doB4z">✕</a>
+                            <a onclick="Account.HideLoginSignUpModal()" class="_2KpZ6l _2doB4z">✕</a>
                             <div class="_2MlkI1">
                                 <div class="_3wFoIb row">
                                     <div class="_3oBhRa col col-2-5 _4H6HH5">
@@ -954,7 +949,7 @@
                                     <div class="_36HLxm col col-3-5">
                                         <div>
                                             @*@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "on", id = "login" }))
-                                                {*@
+                                    {*@
                                             <input type="hidden" id="returnUrl" value="@ViewBag.ReturnUrl" />
                                             <div class="IiD88i _351hSN">
                                                 <input type="text" class="_2IX_2- VJZDxU enter-number _1Z69nn" autocomplete="off" id="PhoneNumber" />
@@ -965,7 +960,7 @@
                                                 </label>
                                                 <span class="_1_wZ0r">+91</span>
                                                 <div class="_1_wZ0r error-message">
-                                                    @*@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "" })*@
+                                                    <span class="field-validation-valid " data-valmsg-for="PhoneNumber" data-valmsg-replace="true"></span>
                                                 </div>
                                             </div>
 
@@ -977,7 +972,7 @@
                                                     <span>Enter Password</span>
                                                 </label>
                                                 <div class="_1_wZ0r error-message">
-                                                    @*@Html.ValidationMessageFor(model => model.Password, "", new { @class = "" })*@
+                                                    <span class="field-validation-valid " data-valmsg-for="Password" data-valmsg-replace="true"></span>
                                                     @*@Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "" })*@
                                                     <input type="checkbox" value="" checked />
                                                 </div>
@@ -989,11 +984,11 @@
                                             </div>
                                             <div class="_1D1L_j">
                                                 @*<button class="_2KpZ6l _2HKlqd _3AWRsL" type="submit">
-                                                        <div class="_2YsvKq o8qAfl">
-                                                            <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
-                                                        </div>
-                                                        <span>Login</span>
-                                                    </button>*@
+                                            <div class="_2YsvKq o8qAfl">
+                                                <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
+                                            </div>
+                                            <span>Login</span>
+                                        </button>*@
                                                 <button class="_2KpZ6l _2HKlqd _3AWRsL" onclick="Account.CustomerLogInPost();">
                                                     <div class="_2YsvKq o8qAfl">
                                                         <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
@@ -1006,7 +1001,7 @@
                                                 <button class="_2KpZ6l _2HKlqd _3NgS1a">Request OTP</button>
                                             </div>
                                             <div class="_1En5li">
-                                                <a class="_14Me7y" href="/Account/Register">New to Shiv Factory? Create an account</a>
+                                                <a class="_14Me7y" href="" onclick="Account.CustomerSignUp('')">New to Shiv Factory? Create an account</a>
                                             </div>
                                             @*}*@
                                         </div>
@@ -1016,6 +1011,96 @@
                         </div>
                     </div>
                 </div>
+
+                <!---signUp-->
+                <div class="_2Sn47c" id="signUp">
+                    <div class="_2hriZF _2rbIyg" tabindex="-1">
+                        <div class="_2QfC02">
+                            <a onclick="Account.HideLoginSignUpModal()" class="_2KpZ6l _2doB4z">✕</a>
+                            <div class="_2MlkI1">
+                                <div class="_3wFoIb row">
+                                    <div class="_3oBhRa col col-2-5 _4H6HH5">
+                                        <span class="_36KMOx">
+                                            <span>Looks like you're new here!</span>
+                                        </span>
+                                        <p class="_1-pxlW">
+                                            <span>Sign up with your mobile number to get started</span>
+                                        </p>
+                                    </div>
+                                    <div class="_36HLxm col col-3-5">
+                                        <div>
+                                            @*@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "on", id = "login" }))
+                        {*@
+                                            <input type="hidden" id="returnUrl" value="@ViewBag.ReturnUrl" />
+                                            <div class="IiD88i _351hSN">
+                                                <input type="text" class="_2IX_2- VJZDxU enter-number _1Z69nn" autocomplete="off" id="PhoneNumberSignUp" />
+                                                <span class="_36T8XR"></span>
+                                                <label class="_1fqY3P">
+                                                    <span>Mobile number</span>
+                                                </label>
+                                                <span class="_1_wZ0r">+91</span>
+                                                <div class="_1_wZ0r error-message">
+                                                    <span class="field-validation-valid " data-valmsg-for="PhoneNumberSignUp" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="IiD88i _351hSN">
+                            <input type="text" class="_2IX_2- VJZDxU enter-number _1Z69nn" autocomplete="off" id="EmailSignUp" />
+                            <span class="_36T8XR"></span>
+                            <label class="_1fqY3P">
+                                <span>Email</span>
+                            </label>
+                            <span class="_1_wZ0r">+91</span>
+                            <div class="_1_wZ0r error-message">
+                                <span class="field-validation-valid " data-valmsg-for="EmailSignUp" data-valmsg-replace="true"></span>
+                            </div>
+                        </div>
+                                            <div class="IiD88i _351hSN">
+                                                <input type="text" class="_2IX_2- VJZDxU enter-number _1Z69nn" autocomplete="off" id="PasswordSignUp" />
+                                                <span class="_36T8XR"></span>
+                                                <label class="_1fqY3P">
+                                                    <span>Password</span>
+                                                </label>
+                                                <span class="_1_wZ0r">+91</span>
+                                                <div class="_1_wZ0r error-message">
+                                                    <span class="field-validation-valid " data-valmsg-for="PasswordSignUp" data-valmsg-replace="true"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="_1Ijv5h">
+                                                By continuing, you agree to Shiv Factory
+                                                <a class="_2ARnXM" target="_blank" href="#">Terms of Use</a> and
+                                                <a class="_2ARnXM" target="_blank" href="#">Privacy Policy</a>.
+                                            </div>
+                                            <div class="_1D1L_j">
+                                                @*<button class="_2KpZ6l _2HKlqd _3AWRsL" type="submit">
+                                <div class="_2YsvKq o8qAfl">
+                                    <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
+                                </div>
+                                <span>Login</span>
+                            </button>*@
+                                                <button class="_2KpZ6l _2HKlqd _3AWRsL" onclick="Account.CustomerSignUpPost();">
+                                                    <div class="_2YsvKq o8qAfl">
+                                                        <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
+                                                    </div>
+                                                    <span>Continue</span>
+                                                </button>
+                                            </div>
+                                            <div class="_1k3JO2">
+                                                <div class="_2XlkPA">OR</div>
+                                                <button class="_2KpZ6l _2HKlqd _3NgS1a" onclick="Account.CustomerLogIn('')">Existing User? Log in</button>
+                                            </div>
+
+                                            @*}*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--SignUp-->
             </div>
         </div>
     </div>

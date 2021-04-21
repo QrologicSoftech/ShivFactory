@@ -261,27 +261,38 @@ namespace ShivFactory.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> Register(CustomerRegister model)
         {
+            List<ErrorModel> Errors = new List<ErrorModel>();
+            bool resultFlag = true;
             if (!ModelState.IsValid)
             {
-                return View(model);
+                resultFlag = false; 
             }
 
             var res = await CustomerRegister(model);
-            // var res = await VendorRegister(model); 
             if (res.ResultFlag == true)
             {
-                return RedirectToAction("Login");
+                // add cookie data after login 
+                return RedirectToAction("Index","Home");
             }
             else
             {
                 ModelState.AddModelError("", res.Message);
-                return View(model);
+               // return View(model);
             }
+            foreach (var modelStateKey in ViewData.ModelState.Keys)
+            {
+                Errors.Add(new ErrorModel()
+                {
+                    Key = modelStateKey,
+                    Values = ViewData.ModelState[modelStateKey].Errors.Select(e => e.ErrorMessage).ToList()
+                });
+            }
+            return Json(new ResultModel { ResultFlag = resultFlag, Data = Errors, Message = "/Home/Index" }, JsonRequestBehavior.AllowGet);
 
 
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            // return View(model);
         }
 
         //
@@ -691,9 +702,9 @@ namespace ShivFactory.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
-                {
 
+                //if (ModelState.IsValid)
+                //{
                     var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId, EmailConfirmed = true };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
@@ -719,33 +730,25 @@ namespace ShivFactory.Controllers
                         RepoUser ru = new RepoUser();
                         var isSaved = ru.AddOrUpdateUserDetails(userDetails);
 
-                        return new ResultModel
-                        {
-                            ResultFlag = isSaved,
-                            Data = "",
-                            Message = "User successfully Register !!"
-                        };
-                    }
+                    return new ResultModel
+                    {
+                        ResultFlag = isSaved,
+                        Data = "",
+                        Message = "User successfully Register !!"
+                    };
+
+                }
                     else
                     {
-                        return new ResultModel
-                        {
-                            ResultFlag = false,
-                            Data = "",
-                            Message = result.Errors.FirstOrDefault()
-                        };
-                    }
-                }
-                else
-                {
                     return new ResultModel
                     {
                         ResultFlag = false,
                         Data = "",
-                        Message = "Please enter all required fields."
+                        Message = result.Errors.FirstOrDefault()
                     };
                 }
             }
+                     
             catch (Exception ex)
             {
                 return new ResultModel

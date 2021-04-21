@@ -31,10 +31,10 @@ namespace ShivFactory.Business.Repository
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string EmailId { get; set; }
 
-        [Required(ErrorMessage = "FirstName Required!")]
+        //[Required(ErrorMessage = "FirstName Required!")]
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        [Required(ErrorMessage = "Gender Required!")]
+      //  [Required(ErrorMessage = "Gender Required!")]
         public string Gender { get; set; }
         public string Address { get; set; }
     }

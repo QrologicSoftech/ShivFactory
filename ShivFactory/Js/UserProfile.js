@@ -1,6 +1,7 @@
 ﻿var userprofile = {
 
     BindBasicDetail: function () {
+        debugger;
         common.ShowLoader();
         var form;
         ajax.doGetAjax(`/Home/GetCurrentUserDetails`, function (result) {
@@ -58,6 +59,7 @@
                 </div>
             </div>`;
             common.HideLoader();
+            debugger;
             $('#Modal').addClass('modal-profile');
             $('#Modal').children('div').children('div').html(form);
             $("input[name='m_gender'][value='" + user.Gender + "']").prop('checked', true);

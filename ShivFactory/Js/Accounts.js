@@ -3,9 +3,20 @@
 var Account = {
     CustomerLogIn: function (returnUrl) {
         common.ShowLoader();
-        $('#LoginModal').css('display','block');
+        debugger;
+        $('#LoginModal').css('display', 'block');
+        $('#signIn').css('display', 'block');
+        $('#signUp').css('display', 'none');
+        
             common.HideLoader();
-       
+    },
+
+    CustomerSignUp: function () {
+        common.ShowLoader();
+        $('#LoginModal').css('display', 'block');
+        $('#signIn').css('display', 'none');
+        $('#signUp').css('display', 'block');
+        common.HideLoader();
     },
     //CustomerLogIn: function (returnUrl) {
     //    common.ShowLoader();
@@ -27,6 +38,7 @@ var Account = {
         ajax.doPostAjax(`/${accountController}/LogInCustomer?returnUrl=${$('#returnUrl').val()}`, data, function (result) {
             if (result.ResultFlag == false) {
                 result.Data.forEach((item) => {
+                    console.log(item);
                     if (item.Values.length > 0) {
                         $(`span[data-valmsg-for|='${item.Key}']`).html(item.Values[0]);
                     }
@@ -38,5 +50,34 @@ var Account = {
             }
             common.HideLoader();
         });
+    },
+
+    CustomerSignUpPost: function () {
+        common.ShowLoader();
+        data = {
+            "PhoneNumber": $('#PhoneNumberSignUp').val(),
+            "Password": $('#PasswordSignUp').val(),
+            "Email": $('#EmailSignUp').val()
+        }
+        ajax.doPostAjax(`/${accountController}/CustomerRegister`, data, function (result) {
+            if (result.ResultFlag == false) {
+                result.Data.forEach((item) => {
+                    console.log(item);
+                    if (item.Values.length > 0) {
+                        $(`span[data-valmsg-for|='${item.Key}']`).html(item.Values[0]);
+                    }
+                    else { $(`span[data-valmsg-for|='${item.Key}']`).html(null); }
+                });
+            }
+            else {
+                debugger;
+                window.location.href = result.Message;
+            }
+            common.HideLoader();
+        });
+    },
+
+    HideLoginSignUpModal: function () {
+        $('#LoginModal').css('display', 'none');
     },
 }
