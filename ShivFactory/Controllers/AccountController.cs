@@ -259,7 +259,7 @@ namespace ShivFactory.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> Register(CustomerRegister model)
+        public async Task<ActionResult> Register(CustomerRegister model ,string returnUrl)
         {
             List<ErrorModel> Errors = new List<ErrorModel>();
             bool resultFlag = true;
@@ -703,8 +703,6 @@ namespace ShivFactory.Controllers
             try
             {
 
-                //if (ModelState.IsValid)
-                //{
                     var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId, EmailConfirmed = true };
                     var result = await UserManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
@@ -730,23 +728,24 @@ namespace ShivFactory.Controllers
                         RepoUser ru = new RepoUser();
                         var isSaved = ru.AddOrUpdateUserDetails(userDetails);
 
-                    return new ResultModel
-                    {
-                        ResultFlag = isSaved,
-                        Data = "",
-                        Message = "User successfully Register !!"
-                    };
+                        return new ResultModel
+                        {
+                            ResultFlag = isSaved,
+                            Data = "",
+                            Message = "User successfully Register !!"
+                        };
 
-                }
+                    }
                     else
                     {
-                    return new ResultModel
-                    {
-                        ResultFlag = false,
-                        Data = "",
-                        Message = result.Errors.FirstOrDefault()
-                    };
-                }
+                        return new ResultModel
+                        {
+                            ResultFlag = false,
+                            Data = "",
+                            Message = result.Errors.FirstOrDefault()
+                        };
+                    }
+                
             }
                      
             catch (Exception ex)

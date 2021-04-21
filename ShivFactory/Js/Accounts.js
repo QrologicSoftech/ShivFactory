@@ -59,8 +59,9 @@ var Account = {
             "Password": $('#PasswordSignUp').val(),
             "Email": $('#EmailSignUp').val()
         }
-        ajax.doPostAjax(`/${accountController}/CustomerRegister`, data, function (result) {
+        ajax.doPostAjax(`/${accountController}/Register?returnUrl=${$('#returnUrl').val()}`, data, function (result) {
             if (result.ResultFlag == false) {
+                debugger;
                 result.Data.forEach((item) => {
                     console.log(item);
                     if (item.Values.length > 0) {
