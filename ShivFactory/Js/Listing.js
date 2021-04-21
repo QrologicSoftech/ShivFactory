@@ -72,7 +72,6 @@ var Listing = {
 
                 var parameter = "VarientName" + parseInt(index);
                 var value = "VarientValue" + parseInt(index);
-
                 ProductFilter[parameter] = varientsName[i];
                 ProductFilter[value] = varientVal.toString();
 
@@ -80,7 +79,6 @@ var Listing = {
             }
         };
         common.HideLoader();
-        debugger;
         if (ProductFilter["VarientName1"] != null ||
             ProductFilter["VarientName2"] != null ||
             ProductFilter["VarientName3"] != null ||
