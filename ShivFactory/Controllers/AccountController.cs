@@ -66,7 +66,7 @@ namespace ShivFactory.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if (returnUrl.Equals("/Account/VendorLogin") || returnUrl.Equals("/vendor"))
+            if (returnUrl.Equals("/Account/VendorLogin") || returnUrl.ToUpper().Equals("/VENDOR"))
             {
                 //return RedirectToAction("VendorLogin","Account");
                 return View("VendorLogin");
