@@ -62,7 +62,7 @@ namespace ShivFactory
 
             // Configure user lockout defaults
             manager.UserLockoutEnabledByDefault = true;
-            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
+            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromDays(30);
             manager.MaxFailedAccessAttemptsBeforeLockout = 50;
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
