@@ -88,7 +88,6 @@ namespace ShivFactory.Areas.Admin.Controllers
                     var category = repoCategory.GetCategoryByCategoryId(Convert.ToInt32(id));
                     return View(category);
                 }
-
             }
             catch (Exception ex)
             {
