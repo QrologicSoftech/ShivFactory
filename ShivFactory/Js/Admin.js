@@ -369,7 +369,7 @@ var Admin = {
     },
 
     BindMenuOfCategory: function (divId) {
-        common.ShowLoader();
+       // common.ShowLoader();
         let html = '';
         ajax.doGetAjax(`/${homeController}/GetWebMenuData`, function (result) {
             if (result.ResultFlag) {
@@ -455,7 +455,7 @@ var Admin = {
 
             }
             $(divId).html(html);
-            common.HideLoader();
+          //  common.HideLoader();
         });
     },
 

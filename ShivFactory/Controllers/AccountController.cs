@@ -85,7 +85,7 @@ namespace ShivFactory.Controllers
                 return View(model);
             }
             model.Role = UserRoles.Customer;
-            var result = await LogInApI(model);
+            var result = await LogInApI(model);   
             if (result.ResultFlag == true)
             {
                 return RedirectToLocal(result.Data, returnUrl);
@@ -1113,6 +1113,11 @@ namespace ShivFactory.Controllers
                     {
                         RepoUser repouser = new RepoUser();
                         isUpdate = repouser.UpdateCurrentUserEmail(model.Email, util.GetCurrentUserId());
+                        if (isUpdate)
+                        {
+                            RepoCookie cookie = new RepoCookie();
+                            cookie.AddCookiesValue(CookieName.EmailId, model.Email);
+                        }
                     }
                 }
                 return Json(new ResultModel
@@ -1152,6 +1157,12 @@ namespace ShivFactory.Controllers
                     {
                         RepoUser repouser = new RepoUser();
                      isUpdate = repouser.UpdateCurrentUserMobile(model.Mobile, util.GetCurrentUserId());
+                        if (isUpdate)
+                        {
+                            RepoCookie cookie = new RepoCookie();
+                            cookie.AddCookiesValue(CookieName.Mobile, model.Mobile);
+                            cookie.AddCookiesValue(CookieName.UserName, model.Mobile);
+                        }
                     }
                 }
                 return Json(new ResultModel

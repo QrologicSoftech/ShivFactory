@@ -3,7 +3,6 @@
 var Account = {
     CustomerLogIn: function (returnUrl) {
         common.ShowLoader();
-        debugger;
         $('#LoginModal').css('display', 'block');
         $('#signIn').css('display', 'block');
         $('#signUp').css('display', 'none');
@@ -18,19 +17,8 @@ var Account = {
         $('#signUp').css('display', 'block');
         common.HideLoader();
     },
-    //CustomerLogIn: function (returnUrl) {
-    //    common.ShowLoader();
-    //    ajax.doGetAjax(`/${accountController}/LogIn?returnUrl=${returnUrl}`, function (result) {
-    //        if (result) {
-    //            // alert(result);
-    //            $('#Modal').children('div').children('div').html(result);
-    //            $('#Modal').show();
-    //        }
-    //        common.HideLoader();
-    //    });
-    //},
     CustomerLogInPost: function () {
-        common.ShowLoader();
+        //common.ShowLoader();
         data = {
             "PhoneNumber": $('#PhoneNumber').val(),
             "Password": $('#Password').val()
@@ -49,7 +37,7 @@ var Account = {
              
                 window.location.href = result.Message;
             }
-            common.HideLoader();
+            //common.HideLoader();
         });
     },
 
@@ -63,7 +51,6 @@ var Account = {
         }
         ajax.doPostAjax(`/${accountController}/Register?returnUrl=${$('#returnUrl').val()}`, data, function (result) {
             if (result.ResultFlag == false) {
-                debugger;
                 result.Data.forEach((item) => {
                     console.log(item);
                     if (item.Values.length > 0) {

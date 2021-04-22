@@ -19,7 +19,7 @@ var Listing = {
     },
 
     BindVarientByCategoryId: function () {
-        common.ShowLoader();
+     //   common.ShowLoader();
         var data = {
             "CategoryId": ProductFilter.CategoryId,
             "SubCategoryId": ProductFilter.SubCategoryId,
@@ -48,7 +48,7 @@ var Listing = {
 
                 });
             }
-            common.HideLoader();
+          //  common.HideLoader();
         });
 
     },
@@ -157,7 +157,7 @@ var Listing = {
 
             pageCount = dataval.PageCount;
         });
-        common.HideLoader('#partialViewListing');
+       // common.HideLoader('#partialViewListing');
     },
 
     OnSuccessFilter: function (response) {
@@ -189,11 +189,11 @@ var Listing = {
 
             pageCount = dataval.PageCount;
         });
-        common.HideLoader('#partialViewListing');
+       // common.HideLoader('#partialViewListing');
     },
 
     BindIndexPage: function () {
-        common.ShowLoader();
+        //common.ShowLoader();
 
         var bannerli = "", bannerdiv = "", productSlider = '';
 
@@ -237,13 +237,13 @@ var Listing = {
                 $("#Product-slider").html(productSlider);
 
             }
-            common.HideLoader();
+           // common.HideLoader();
 
         });
 
     },
     CheckPincodeAvailibity: function () {
-        common.ShowLoader();
+     //   common.ShowLoader();
         var pincod = $('#pincode').val();
         var vendorId = $('#vendorId').val();
         ajax.doPostAjax(`/Home/CheckPincodeAvailibity?pincode=` + pincod + `&vendorId=` + vendorId, null, function (result) {
@@ -256,7 +256,7 @@ var Listing = {
 
             }
         });
-        common.HideLoader();
+       // common.HideLoader();
     },
 
 

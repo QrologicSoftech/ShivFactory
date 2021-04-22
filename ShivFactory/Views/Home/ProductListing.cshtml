@@ -23,18 +23,18 @@
         <!-- ============================ FILTER TOP END.// ================================= -->
 
         <div class="row">
-            <aside class="col-md-3 filter-mobile">
+            <aside class="col-md-2 filter-mobile">
                 <a type="button" class="slide-toggle close-filter d-md-none d-lg-none d-xl-none"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
                 <div id="partialViewFilter">
 
                 </div>
             </aside>
 
-            <main class="col-md-9 right-list">
-                <section class="rech-section">
+            <main class="col-md-10 right-list">
+                @*<section class="rech-section">
                     <div class="top-rech">
-                        <div class="container">
-                            <div class="bg-color">
+                        <div class="container">*@
+                            @*<div class="bg-color">
                                 <ul class="nav nav-tabs tbb">
                                     <li>Sort By </li>
                                     <li class="active">
@@ -63,33 +63,33 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </div>
+                            </div>*@
                             <div class="tab-content">
                                 <div id="home" class="tab-pane fade active  in">
                                     <section>
-                                        <header class="mb-3">
-                                            <div class="form-inline">
-                                                <strong class="mr-md-auto">
-                                                    <button class="btn btn-google d-md-none d-lg-none d-xl-none mr-2 latest-button slide-toggle">Search Filter <i class="fas fa-filter"></i></button>
-                                                    <span class="d-none d-md-block"><label id="itemcount"></label></span>
-                                                </strong>
-                                                <form class="form-inline">
-                                                    <select class="custom-select latest-button " id="inlineFormCustomSelectPref">
-                                                        <option>Latest items</option>
-                                                        <option>Trending</option>
-                                                        <option>Most Popular</option>
-                                                        <option>Cheapest</option>
-                                                    </select>
-                                                </form>
-                                            </div>
-                                        </header>
+                                        @*<header class="mb-3">
+            <div class="form-inline">
+                <strong class="mr-md-auto">
+                    <button class="btn btn-google d-md-none d-lg-none d-xl-none mr-2 latest-button slide-toggle">Search Filter <i class="fas fa-filter"></i></button>
+                    <span class="d-none d-md-block"><label id="itemcount"></label></span>
+                </strong>
+                <form class="form-inline">
+                    <select class="custom-select latest-button " id="inlineFormCustomSelectPref">
+                        <option>Latest items</option>
+                        <option>Trending</option>
+                        <option>Most Popular</option>
+                        <option>Cheapest</option>
+                    </select>
+                </form>
+            </div>
+        </header>*@
 
                                         <article class="card-product-list">
-                                            <div id="ListScroll" style="height: 1000px; overflow: auto; width: 100%" > 
-                                            <div class="row" id="partialViewListing">
+                                            <div id="ListScroll" style="height: 1000px; overflow: auto; width: 100%">
+                                                <div class="row" id="partialViewListing">
 
 
-                                            </div>
+                                                </div>
                                             </div>
                                             <!-- row.// -->
                                         </article>
@@ -97,9 +97,9 @@
                                     </section>
                                 </div>
                             </div>
-                        </div>
+                        @*</div>
                     </div>
-                </section>
+                </section>*@
 
             </main>
         </div>
