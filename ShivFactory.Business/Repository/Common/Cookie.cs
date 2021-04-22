@@ -105,6 +105,10 @@ namespace ShivFactory.Business.Repository
             HttpCookie mobile = new HttpCookie(CookieName.Mobile, null);
             mobile.Expires = DateTime.Now.AddDays(-1);
             HttpContext.Current.Response.Cookies.Add(mobile);
+
+            HttpCookie tempOrder = new HttpCookie(CookieName.TempOrderId, "0");
+            tempOrder.Expires = DateTime.Now.AddDays(-1);
+            HttpContext.Current.Response.Cookies.Add(tempOrder);
         }
 
     }

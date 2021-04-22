@@ -3,6 +3,8 @@
 var Account = {
     CustomerLogIn: function (returnUrl) {
         common.ShowLoader();
+        $('#returnUrl').val(returnUrl);
+        $('#LoginModal').find(`span[data-valmsg-for]`).html(null);
         $('#LoginModal').css('display', 'block');
         $('#signIn').css('display', 'block');
         $('#signUp').css('display', 'none');

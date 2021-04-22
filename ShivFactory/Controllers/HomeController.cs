@@ -541,6 +541,30 @@ namespace ShivFactory.Controllers
             }
 
         }
+
+        public ActionResult GetCartItems()
+        {
+            try
+            {
+                RepoCart cart = new RepoCart();
+                var cartCount = cart.GetUserCartCount();
+                return Json(new ResultModel
+                {
+                    ResultFlag = true,
+                    Data = cartCount
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = "",
+                    Message = e.Message.ToString()
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
         #endregion
 
         #region Check Pincode Availibity 
