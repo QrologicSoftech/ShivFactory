@@ -1,0 +1,542 @@
+﻿@model ShivFactory.Business.Repository.CheckoutModel
+@{
+    ViewBag.Title = "Checkout";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        $.noConflict();
+        jQuery(document).ready(function ($) {
+            // Code that uses jQuery's $ can follow here.
+        });
+        // Code that uses other library's $ can follow here.
+    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Payment Account | Form Wizard</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" crossorigin="anonymous">
+    <!-- Plugin Custom Stylesheet -->
+    <link href="~/Content/Website/checkoutassets/wizard-blue.css" rel="stylesheet" />
+    <link href="~/Content/Website/css/stylecode.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+    <!-- main content -->
+
+    <section class="form-box">
+        <div class="container">
+            <div class="form-wizard form-header-classic form-body-classic">
+                <form role="form" action="" method="post">
+                    <img src="~/Content/UploadedImages/Images/logo-color.png" width="170" />
+                    <p>Fill all form field to go next step</p>
+
+                    <!-- Form progress -->
+                    <div class="form-wizard-steps form-wizard-tolal-steps-4">
+                        <div class="form-wizard-progress">
+                            <div class="form-wizard-progress-line" data-now-value="12.25" data-number-of-steps="4" style="width: 12.25%;"></div>
+                        </div>
+                        <!-- Step 1 -->
+                        @*<div class="form-wizard-step active">
+                <div class="form-wizard-step-icon"><i class="fa fa-unlock-alt" aria-hidden="true"></i></div>
+                <p>Login</p>
+            </div>*@
+                        <!-- Step 1 -->
+                        <!-- Step 2 -->
+                        <div class="form-wizard-step">
+                            <div class="form-wizard-step-icon"><i class="fa fa-location-arrow" aria-hidden="true"></i></div>
+                            <p>Delivery Adresss</p>
+                        </div>
+                        <!-- Step 2 -->
+                        <!-- Step 3 -->
+                        <div class="form-wizard-step">
+                            <div class="form-wizard-step-icon"><i class="fa fa-file-text" aria-hidden="true"></i></div>
+                            <p>Order Summary</p>
+                        </div>
+                        <!-- Step 3 -->
+                        <!-- Step 4 -->
+                        <div class="form-wizard-step">
+                            <div class="form-wizard-step-icon"><i class="fa  fa-credit-card" aria-hidden="true"></i></div>
+                            <p>Payment Method</p>
+                        </div>
+                        <!-- Step 4 -->
+                    </div>
+                    <!-- Form progress -->
+                    <!-- Form Step 1 -->
+                    <!--<fieldset>-->
+                    <!-- Progress Bar -->
+                    <!--<div class="progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%"> </div>
+    </div>-->
+                    <!-- Progress Bar -->
+                    <!--<h4>Account Information: <span>Step 1 - 4</span></h4>
+        <div class="form-group">
+            <label>Email: <span>*</span></label>
+            <input type="email" name="Email" placeholder="Email" class="form-control required">
+        </div>
+        <div class="form-group">
+            <label>Password: <span>*</span></label>
+            <input type="password" name="Password" placeholder="User Password" class="form-control required">
+        </div>
+        <div class="form-wizard-buttons">
+            <button type="button" class="btn btn-next">Next</button>
+        </div>
+    </fieldset>-->
+                    <!-- Form Step 1 -->
+                    <!-- Form Step 2 -->
+                    @if (Model.DeliveryAddress != null && Model.DeliveryAddress.Count() == 1)
+                    {
+                        <fieldset>
+                            <!-- Progress Bar -->
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"> </div>
+                            </div>
+                            <!-- Progress Bar -->
+                            <h4>Delivery Adresss Information : <span>Step 2 - 4</span></h4>
+                            <div class="rvsx1l rvsx1l-1">
+                                <div class="_3E8aIl gGqMBW">
+                                    <div class="_2uTwDJ">
+                                        <h3 class="_2-K-ro">
+                                            <span class="_3ENQxz">2</span>
+                                        </h3>
+                                        <div class="RiK_Dp">
+                                            <div class="_1aULyb">
+                                                Delivery Address
+                                                <svg height="10" width="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="_1t8m48"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" stroke="#2974f0"></path></svg>
+                                            </div>
+                                            <div class="_1QFLA6">
+                                                <span>
+                                                    <span class="npYOZI">Vikas </span>
+                                                    <span>38, UCO Bank .morija, Jaipur District, Rajasthan - <span class="_2dQV-8">303805</span></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <button class="_32l7f0">Change</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rvsx1l information-1 information">
+                                <div class="_3E8aIl gGqMBW">
+                                    <h3 class="_1hUz_t _2-K-ro">
+                                        <span class="_3ENQxz">2</span>
+                                        <span class="_1aULyb">Delivery Address</span>
+                                    </h3>
+                                    <div class="cQZ0Lf cQZ0Lf-1 information">
+                                        <div>
+                                            <div>
+                                                <label for="CNTCT89307AA992BA41918CEEAC52E" class="_2Fn-Ln _1TW9af j0Sqdz _18Z3T6 _3L7Pww">
+                                                    <input type="radio" class="_3DAmyP" name="address" readonly="" id="CNTCT89307AA992BA41918CEEAC52E" value="on">
+                                                    <div class="_1XFPmK"></div>
+                                                    <div class="_2jIO64">
+                                                        <div class="_2SkKgB">
+                                                            <div id="CNTCT89307AA992BA41918CEEAC52E" class="tDHRfA _3a5__h">
+                                                                <p class="rPNEXT">
+                                                                    <span class="_2dQV-8">Vikas</span>
+                                                                    <span class="_2XilLp">HOME</span>
+                                                                    <span class="_3mmRDy _2dQV-8">7062701219</span>
+                                                                </p>
+                                                                <span class="rPNEXT Br27Zz">
+                                                                    38, UCO Bank .morija, Jaipur District, Rajasthan - <span class="_2dQV-8">303805</span>
+                                                                </span>
+                                                                <button class="_2KpZ6l RLM7ES _3AWRsL">Deliver Here</button>
+                                                            </div>
+                                                            <div class="_1AXmWp">
+                                                                <button type="button" class="_1MM7ZD">EDIT</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                                <div>
+                                                    <div class="_3sa025"></div>
+                                                    <div class="_1P2-0f">
+                                                        <img height="14" width="14" src="img/edit.svg" class="_2oAAg8">Add a new address
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="cQZ0Lf cQZ0Lf-2 information">
+                                        <div>
+                                            <div>
+                                                <label for="CNTCT89307AA992BA41918CEEAC52E" class="_2Fn-Ln _1TW9af j0Sqdz _18Z3T6 _3L7Pww">
+                                                    <input type="radio" class="_3DAmyP" name="address" readonly="" id="ADDRESS" value="on">
+                                                    <div class="_1XFPmK"></div>
+                                                    <div class="_2jIO64">
+                                                        <div>
+                                                            <form>
+                                                                <span class="_1bYJzd">EDIT ADDRESS</span>
+                                                                <div class="N5Ijry">
+                                                                    <div class="yLyjMK">
+                                                                        <div class="_1hGj33">
+                                                                            <div class="_1lRtwc _1Jqgld">
+                                                                                <input type="text" class="_1w3ZZo _2mFmU7" name="name" required="" autocomplete="name" tabindex="1" value="Vikas"><label for="name" class="_1osQq7 -FxG57">Name</label>
+                                                                            </div>
+                                                                            <div class="_1lRtwc _1Jqgld">
+                                                                                <input type="text" class="_1w3ZZo _2mFmU7" name="phone" required="" maxlength="10" autocomplete="tel" tabindex="2" value="7062701219">
+                                                                                <label for="phone" class="_1osQq7 -FxG57">10-digit mobile number</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="_1hGj33">
+                                                                            <div class="_1lRtwc _1Jqgld">
+                                                                                <input type="text" class="_1w3ZZo _2mFmU7" name="pincode" required="" maxlength="6" autocomplete="postal-code" tabindex="3" value="303805">
+                                                                                <label for="pincode" class="_1osQq7 -FxG57">Pincode</label>
+                                                                            </div>
+                                                                            <div class="_1lRtwc _1Jqgld">
+                                                                                <input type="text" class="_1w3ZZo _2mFmU7" required="" name="addressLine2" tabindex="4" value="UCO Bank .morija">
+                                                                                <label for="addressLine2" class="_1osQq7 -FxG57">Locality</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="_1hGj33 _3kco7L">
+                                                                            <div class="GTbXbG _2kJObl">
+                                                                                <div class="_1Y2dIb _1Jqgld">
+                                                                                    <textarea class="_1sQQBU _1w3ZZo _1TO48q" name="addressLine1" rows="2" cols="10" tabindex="5" required="" autocomplete="street-address">38</textarea>
+                                                                                    <label for="addressLine1" class="_1osQq7 -FxG57">Address (Area and Street)</label>
+                                                                                </div>
+                                                                                <div class="_1fa_Yn _18Y7Fu"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="_1hGj33">
+                                                                            <div class="GTbXbG _1lRtwc _3kco7L">
+                                                                                <div class="_1Y2dIb _1Jqgld">
+                                                                                    <input type="text" class="_1w3ZZo _2mFmU7" name="city" required="" autocomplete="city" tabindex="6" value="Jaipur District">
+                                                                                    <label for="city" class="_1osQq7 -FxG57">City/District/Town</label>
+                                                                                </div>
+                                                                                <div class="_1fa_Yn _18Y7Fu"></div>
+                                                                            </div>
+                                                                            <div>
+                                                                                <div class="_1fB71V _3kco7L">
+                                                                                    <div class="MnyFPx ">State</div>
+                                                                                    <div class="_1cpOwe _1lRtwc jE2jGc">
+                                                                                        <select class="_1EDlbo _1lRtwc jE2jGc _2gIrb5" name="state" required="" tabindex="7">
+                                                                                            <option value="" disabled="">--Select State--</option>
+                                                                                            <option value="Andaman &amp; Nicobar Islands">Andaman &amp; Nicobar Islands</option>
+                                                                                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                                                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                                                            <option value="Assam">Assam</option>
+                                                                                            <option value="Bihar">Bihar</option>
+                                                                                            <option value="Chandigarh">Chandigarh</option>
+                                                                                            <option value="Chhattisgarh">Chhattisgarh</option>
+                                                                                            <option value="Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu">Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu</option>
+                                                                                            <option value="Delhi">Delhi</option>
+                                                                                            <option value="Goa">Goa</option>
+                                                                                            <option value="Gujarat">Gujarat</option>
+                                                                                            <option value="Haryana">Haryana</option>
+                                                                                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                                                            <option value="Jammu &amp; Kashmir">Jammu &amp; Kashmir</option>
+                                                                                            <option value="Jharkhand">Jharkhand</option>
+                                                                                            <option value="Karnataka">Karnataka</option>
+                                                                                            <option value="Kerala">Kerala</option>
+                                                                                            <option value="Ladakh">Ladakh</option>
+                                                                                            <option value="Lakshadweep">Lakshadweep</option>
+                                                                                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                                                            <option value="Maharashtra">Maharashtra</option>
+                                                                                            <option value="Manipur">Manipur</option>
+                                                                                            <option value="Meghalaya">Meghalaya</option>
+                                                                                            <option value="Mizoram">Mizoram</option>
+                                                                                            <option value="Nagaland">Nagaland</option>
+                                                                                            <option value="Odisha">Odisha</option>
+                                                                                            <option value="Puducherry">Puducherry</option>
+                                                                                            <option value="Punjab">Punjab</option>
+                                                                                            <option value="Rajasthan">Rajasthan</option>
+                                                                                            <option value="Sikkim">Sikkim</option>
+                                                                                            <option value="Tamil Nadu">Tamil Nadu</option>
+                                                                                            <option value="Telangana">Telangana</option>
+                                                                                            <option value="Tripura">Tripura</option>
+                                                                                            <option value="Uttarakhand">Uttarakhand</option>
+                                                                                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                                                            <option value="West Bengal">West Bengal</option>
+                                                                                        </select>
+                                                                                        <span class="_2NY3xT kYuoGH"></span>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="_1hGj33">
+                                                                            <div class="_1lRtwc _1Jqgld">
+                                                                                <input type="text" class="_1w3ZZo _2mFmU7" name="landmark" autocomplete="off" tabindex="8" maxlength="200" value="Morija">
+                                                                                <label for="landmark" class="_1osQq7 -FxG57">Landmark (Optional)</label>
+                                                                            </div>
+                                                                            <div class="_1lRtwc _1Jqgld">
+                                                                                <input type="text" class="_1w3ZZo _2mFmU7" name="alternatePhone" autocomplete="off" tabindex="9" maxlength="10" value="7615963260">
+                                                                                <label for="alternatePhone" class="_1osQq7 -FxG57">Alternate Phone (Optional)</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="yI40P1">
+                                                                            <p class="_2tiHgk">Address Type</p>
+                                                                            <div class="_3TMnFu">
+                                                                                <div>
+                                                                                    <label for="HOME" class="_2Fn-Ln _3iI7Qn _3L7Pww">
+                                                                                        <input type="radio" class="_3DAmyP" name="locationTypeTag" readonly="" id="HOME" value="on">
+                                                                                        <div class="_1XFPmK"></div>
+                                                                                        <div class="_2jIO64">
+                                                                                            <span>Home (All day delivery)</span>
+                                                                                        </div>
+                                                                                    </label>
+                                                                                    <label for="WORK" class="_2Fn-Ln _3iI7Qn">
+                                                                                        <input type="radio" class="_3DAmyP" name="locationTypeTag" readonly="" id="WORK" value="on">
+                                                                                        <div class="_1XFPmK"></div>
+                                                                                        <div class="_2jIO64">
+                                                                                            <span>Work (Delivery between 10 AM - 5 PM)</span>
+                                                                                        </div>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="l5QiYB _1hGj33">
+                                                                            <button class="_2KpZ6l _1JDhFS _3AWRsL" type="button" tabindex="10">Save and Deliver Here</button>
+                                                                            <button class="_2KpZ6l _8NNVow" type="button" tabindex="11">Cancel</button>
+                                                                        </div>
+                                                                    </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <div class="_3sa025"></div>
+                                                <div class="_1P2-0f">
+                                                    <img height="14" width="14" src="img/edit.svg" class="_2oAAg8">Add a new address
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="new-addres information"><label for="newAddressForm" class="_2Fn-Ln UGhNn3 _1ECf9B _1iOyqh _3L7Pww"><input type="radio" class="_3DAmyP" name="address" readonly="" id="newAddressForm" value="on"><div class="_1XFPmK"></div><div class="_2jIO64"><div><form><span class="_1bYJzd">ADD A NEW ADDRESS</span><div class="N5Ijry"><div class="yLyjMK"><button class="_2KpZ6l _3JSQZW _3dESVI" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" class="_3bKK5G"><g fill="none" fill-rule="evenodd"><path d="M0 0h16v16H0z"></path><path class="" fill="#fff" d="M8 5.3a2.7 2.7 0 1 0 0 5.4 2.7 2.7 0 1 0 0-5.4zm6 2A6 6 0 0 0 8.7 2V.7H7.3V2A6 6 0 0 0 2 7.3H.7v1.4H2A6 6 0 0 0 7.3 14v1.3h1.4V14A6 6 0 0 0 14 8.7h1.3V7.3H14zm-6 5.4A4.7 4.7 0 0 1 3.3 8 4.7 4.7 0 0 1 8 3.3 4.7 4.7 0 0 1 12.7 8 4.7 4.7 0 0 1 8 12.7z"></path></g></svg>Use my current location</button></div><div class="_1hGj33"><div class="_1lRtwc _1Jqgld"><input type="text" class="_1w3ZZo _2mFmU7" name="name" required="" autocomplete="name" tabindex="1" value=""><label for="name" class="_1osQq7">Name</label></div><div class="_1lRtwc _1Jqgld"><input type="text" class="_1w3ZZo _2mFmU7" name="phone" required="" maxlength="10" autocomplete="tel" tabindex="2" value=""><label for="phone" class="_1osQq7">10-digit mobile number</label></div></div><div class="_1hGj33"><div class="_1lRtwc _1Jqgld"><input type="text" class="_1w3ZZo _2mFmU7" name="pincode" required="" maxlength="6" autocomplete="postal-code" tabindex="3" value=""><label for="pincode" class="_1osQq7">Pincode</label></div><div class="_1lRtwc _1Jqgld"><input type="text" class="_1w3ZZo _2mFmU7" required="" name="addressLine2" tabindex="4" value=""><label for="addressLine2" class="_1osQq7">Locality</label></div></div><div class="_1hGj33 _3kco7L"><div class="GTbXbG _2kJObl"><div class="_1Y2dIb _1Jqgld"><textarea class="_1sQQBU _1w3ZZo _1TO48q" name="addressLine1" rows="4" cols="10" tabindex="5" required="" autocomplete="street-address"></textarea><label for="addressLine1" class="_1osQq7">Address (Area and Street)</label></div><div class="_1fa_Yn _18Y7Fu"></div></div></div><div class="_1hGj33"><div class="GTbXbG _1lRtwc _3kco7L"><div class="_1Y2dIb _1Jqgld"><input type="text" class="_1w3ZZo _2mFmU7" name="city" required="" autocomplete="city" tabindex="6" value=""><label for="city" class="_1osQq7">City/District/Town</label></div><div class="_1fa_Yn _18Y7Fu"></div></div><div><div class="_1fB71V"><div class="MnyFPx">State</div><div class="_1cpOwe _1lRtwc jE2jGc"><select class="_1EDlbo _1lRtwc jE2jGc _2gIrb5" name="state" required="" tabindex="7"><option value="" disabled="">--Select State--</option><option value="Andaman &amp; Nicobar Islands">Andaman &amp; Nicobar Islands</option><option value="Andhra Pradesh">Andhra Pradesh</option><option value="Arunachal Pradesh">Arunachal Pradesh</option><option value="Assam">Assam</option><option value="Bihar">Bihar</option><option value="Chandigarh">Chandigarh</option><option value="Chhattisgarh">Chhattisgarh</option><option value="Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu">Dadra &amp; Nagar Haveli &amp; Daman &amp; Diu</option><option value="Delhi">Delhi</option><option value="Goa">Goa</option><option value="Gujarat">Gujarat</option><option value="Haryana">Haryana</option><option value="Himachal Pradesh">Himachal Pradesh</option><option value="Jammu &amp; Kashmir">Jammu &amp; Kashmir</option><option value="Jharkhand">Jharkhand</option><option value="Karnataka">Karnataka</option><option value="Kerala">Kerala</option><option value="Ladakh">Ladakh</option><option value="Lakshadweep">Lakshadweep</option><option value="Madhya Pradesh">Madhya Pradesh</option><option value="Maharashtra">Maharashtra</option><option value="Manipur">Manipur</option><option value="Meghalaya">Meghalaya</option><option value="Mizoram">Mizoram</option><option value="Nagaland">Nagaland</option><option value="Odisha">Odisha</option><option value="Puducherry">Puducherry</option><option value="Punjab">Punjab</option><option value="Rajasthan">Rajasthan</option><option value="Sikkim">Sikkim</option><option value="Tamil Nadu">Tamil Nadu</option><option value="Telangana">Telangana</option><option value="Tripura">Tripura</option><option value="Uttarakhand">Uttarakhand</option><option value="Uttar Pradesh">Uttar Pradesh</option><option value="West Bengal">West Bengal</option></select><span class="_2NY3xT kYuoGH"></span></div></div></div></div><div class="_1hGj33"><div class="_1lRtwc _1Jqgld"><input type="text" class="_1w3ZZo _2mFmU7" name="landmark" autocomplete="off" tabindex="8" maxlength="200" value=""><label for="landmark" class="_1osQq7">Landmark (Optional)</label></div><div class="_1lRtwc _1Jqgld"><input type="text" class="_1w3ZZo _2mFmU7" name="alternatePhone" autocomplete="off" tabindex="9" maxlength="10" value=""><label for="alternatePhone" class="_1osQq7">Alternate Phone (Optional)</label></div></div><div class="yI40P1"><p class="_2tiHgk">Address Type</p><div class="_3TMnFu"><div><label for="HOME" class="_2Fn-Ln _3iI7Qn"><input type="radio" class="_3DAmyP" name="locationTypeTag" readonly="" id="HOME" value="on"><div class="_1XFPmK"></div><div class="_2jIO64"><span>Home (All day delivery)</span></div></label><label for="WORK" class="_2Fn-Ln _3iI7Qn"><input type="radio" class="_3DAmyP" name="locationTypeTag" readonly="" id="WORK" value="on"><div class="_1XFPmK"></div><div class="_2jIO64"><span>Work (Delivery between 10 AM - 5 PM)</span></div></label></div></div></div><div class="l5QiYB _1hGj33"><button class="_2KpZ6l _1JDhFS _3AWRsL" type="button" tabindex="10">Save and Deliver Here</button><button class="_2KpZ6l _8NNVow" type="button" tabindex="11">Cancel</button></div></div></form></div></div></label></div>
+                                </div>
+                                <div class="row" style="display: none;">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>First Name: <span>*</span></label>
+                                            <input type="text" name="First Name" placeholder="First Name" class="form-control required">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Phone: <span>*</span></label>
+                                            <input type="text" name="Phone" placeholder="Phone" class="form-control required">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Zip Code: <span>*</span></label>
+                                            <input type="text" name="Zip Code" placeholder="Zip Code" class="form-control required">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Locality: <span>*</span></label>
+                                            <input type="text" name="Locality" placeholder="Locality" class="form-control required">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label>Address: <span>*</span></label>
+                                            <input type="text" name="Locality" placeholder="Address" class="form-control required">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>State: <span>*</span></label>
+                                            <select class=" required form-control  ">
+                                                <option data-subtext=""> State</option>
+                                                <option data-subtext="">Delhi </option>
+                                                <option data-subtext="">Bangalore </option>
+                                                <option data-subtext="">Hyderabad </option>
+                                                <option data-subtext="">Chennai </option>
+                                                <option data-subtext="">Kolkata </option>
+                                                <option data-subtext="">Surat </option>
+                                                <option data-subtext="">Pune </option>
+                                                <option data-subtext="">Jaipur </option>
+                                                <option data-subtext="">Lucknow </option>
+                                                <option data-subtext="">Kanpur </option>
+                                                <option data-subtext="">Nagpur </option>
+                                                <option data-subtext="">Indore </option>
+                                                <option data-subtext="">Thane </option>
+                                                <option data-subtext="">Bhopal </option>
+                                                <option data-subtext="">Visakhapatnam </option>
+                                                <option data-subtext="">Pimpri & Chinchwad </option>
+                                                <option data-subtext="">Patna</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Select City: <span>*</span></label>
+                                            <select class="  form-control required">
+                                                <option data-subtext=""> Select City</option>
+                                                <option data-subtext="">Delhi </option>
+                                                <option data-subtext="">Bangalore </option>
+                                                <option data-subtext="">Hyderabad </option>
+                                                <option data-subtext="">Chennai </option>
+                                                <option data-subtext="">Kolkata </option>
+                                                <option data-subtext="">Surat </option>
+                                                <option data-subtext="">Pune </option>
+                                                <option data-subtext="">Jaipur </option>
+                                                <option data-subtext="">Lucknow </option>
+                                                <option data-subtext="">Kanpur </option>
+                                                <option data-subtext="">Nagpur </option>
+                                                <option data-subtext="">Indore </option>
+                                                <option data-subtext="">Thane </option>
+                                                <option data-subtext="">Bhopal </option>
+                                                <option data-subtext="">Visakhapatnam </option>
+                                                <option data-subtext="">Pimpri & Chinchwad </option>
+                                                <option data-subtext="">Patna</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Landmark: <span>*</span></label>
+                                            <input type="text" name="Landmark" placeholder="Landmark" class="form-control required">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Alternate Mobile: <span>*</span></label>
+                                            <input type="text" name="Alternate Mobile" placeholder="Alternate Mobile" class="form-control required">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="radio-inline">
+                                                <input type="radio" name="Gender" value="option1" checked="checked">
+                                                Home(All day delivery)
+                                            </label>
+                                            <br>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="Gender" value="option2">
+                                                Work(Delivery between 10AM - 5PM)
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-wizard-buttons">
+                                    <button type="button" class="btn btn-previous">Previous</button>
+                                    <button type="button" class="btn btn-next">Next</button>
+                                </div>
+                        </fieldset>
+                    }
+                    <!-- Form Step 3 -->
+                    <!-- Form Step 4 -->
+                    <fieldset>
+                        <!-- Progress Bar -->
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"> </div>
+                        </div>
+                        <!-- Progress Bar -->
+                        <h4>Payment Method: <span>Step 4 - 4</span></h4>
+                        <div style="clear:both;"></div>
+                        <div class="form-group">
+                            <label>Payment Type : </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="Payment" value="option1" checked="checked">
+                                Master Card
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="Payment" value="option2">
+                                Visa Card
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Holder Name: <span>*</span></label>
+                            <input type="text" name="Holder Name" placeholder="Holder Name" class="form-control required">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-xs-6">
+                                <div class="form-group ">
+                                    <label>Card Number: <span>*</span></label>
+                                    <input type="text" name="Card Number" placeholder="Card Number" class="form-control required">
+                                </div>
+                            </div>
+                            <div class=" col-md-6 col-xs-6">
+                                <div class="form-group">
+                                    <label>CVC: <span>*</span></label>
+                                    <input type="text" name="CVC" placeholder="CVC" class="form-control required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-md-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Expiry Date: </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-6">
+                                <div class="form-group ">
+                                    <label>Month: </label>
+                                    <select class="form-control">
+                                        <option>Jan</option>
+                                        <option>Feb</option>
+                                        <option>Mar</option>
+                                        <option>Apr</option>
+                                        <option>May</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-xs-6">
+                                <div class="form-group ">
+                                    <label>Year: </label>
+                                    <select class="form-control">
+                                        <option>2017</option>
+                                        <option>2018</option>
+                                        <option>2019</option>
+                                        <option>2020</option>
+                                        <option>2021</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-wizard-buttons">
+                            <button type="button" class="btn btn-previous">Previous</button>
+                            <button type="submit" class="btn btn-submit">Submit</button>
+                        </div>
+                    </fieldset>
+                    <!-- Form Step 4 -->
+
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- main content -->
+    <!-- Jquery JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- bootStrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Plugin Custom JS -->
+    <script src="~/Content/Website/checkoutassets/form-wizard.js"></script>
+    <script src="~/Content/Website/js/script2.js" type="text/javascript"></script>
+    <!-- Plugin Custom JS -->
+
+    <script type="text/javascript">
+        $('#classic').click(function () {
+            $('.form-wizard').addClass("form-header-classic").removeClass("form-header-stylist form-header-modarn");
+        });
+
+        $('#modarn').click(function () {
+            $('.form-wizard').addClass("form-header-modarn").removeClass("form-header-classic form-header-stylist");
+        });
+
+        $('#stylist').click(function () {
+            $('.form-wizard').addClass("form-header-stylist").removeClass("form-header-classic form-header-modarn");
+        });
+    </script>
+    <script type="text/javascript">
+        $('#classic-body').click(function () {
+            $('.form-wizard').addClass("form-body-classic").removeClass("form-body-stylist form-body-material");
+        });
+
+        $('#material-body').click(function () {
+            $('.form-wizard').addClass("form-body-material").removeClass("form-body-classic form-body-stylist");
+        });
+
+        $('#stylist-body').click(function () {
+            $('.form-wizard').addClass("form-body-stylist").removeClass("form-body-classic form-body-material");
+        });
+    </script>
+</body>
+</html>
