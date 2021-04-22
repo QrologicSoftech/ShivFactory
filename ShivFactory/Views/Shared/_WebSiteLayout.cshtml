@@ -950,7 +950,7 @@
                                     <div class="_36HLxm col col-3-5">
                                         <div>
                                             @*@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", autocomplete = "on", id = "login" }))
-                                    {*@
+        {*@
                                             <input type="hidden" id="returnUrl" value="@ViewBag.ReturnUrl" />
                                             <div class="IiD88i _351hSN">
                                                 <input type="text" class="_2IX_2- VJZDxU enter-number _1Z69nn" autocomplete="off" id="PhoneNumber" />
@@ -975,7 +975,7 @@
                                                 <div class="_1_wZ0r error-message">
                                                     <span class="field-validation-valid " data-valmsg-for="Password" data-valmsg-replace="true"></span>
                                                     @*@Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "" })*@
-                                                 
+
                                                 </div>
                                             </div>
                                             <div class="_1Ijv5h">
@@ -985,11 +985,11 @@
                                             </div>
                                             <div class="_1D1L_j">
                                                 @*<button class="_2KpZ6l _2HKlqd _3AWRsL" type="submit">
-                                            <div class="_2YsvKq o8qAfl">
-                                                <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
-                                            </div>
-                                            <span>Login</span>
-                                        </button>*@
+                <div class="_2YsvKq o8qAfl">
+                    <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
+                </div>
+                <span>Login</span>
+            </button>*@
                                                 <button class="_2KpZ6l _2HKlqd _3AWRsL" onclick="Account.CustomerLogInPost();">
                                                     <div class="_2YsvKq o8qAfl">
                                                         <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
@@ -1005,6 +1005,7 @@
                                                 <a class="_14Me7y" href="#" onclick="Account.CustomerSignUp('')">New to Shiv Factory? Create an account</a>
                                             </div>
                                             @*}*@
+                                           
                                         </div>
                                     </div>
                                 </div>

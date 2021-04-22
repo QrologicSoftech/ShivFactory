@@ -631,6 +631,7 @@
     <Content Include="Content\UploadedImages\Images\dashboard-circle.svg" />
     <Content Include="Content\UploadedImages\Images\emptycart.png" />
     <Content Include="Content\UploadedImages\Images\ImageUpload.png" />
+    <Content Include="Content\UploadedImages\Images\imgNoProduct.png" />
     <Content Include="Content\UploadedImages\Images\map.svg" />
     <Content Include="Content\Website\css\stylecode.css" />
     <Content Include="Content\Website\js\script2.js" />
@@ -1013,9 +1014,9 @@
     <Content Include="Views\Home\ShowCart.cshtml" />
     <Content Include="Views\Customer\Wishlist.cshtml" />
     <Content Include="Views\Home\Cart.cshtml" />
-    <Content Include="Views\Customer\Checkout1.cshtml" />
-    <Content Include="Views\Home\WebMenuPartialview - Copy.cshtml" />
     <Content Include="Views\Customer\Checkout.cshtml" />
+    <Content Include="Views\Home\WebMenuPartialview - Copy.cshtml" />
+    <Content Include="Views\Customer\Checkout2.cshtml" />
     <Content Include="Views\Customer\Address.cshtml" />
   </ItemGroup>
   <ItemGroup>

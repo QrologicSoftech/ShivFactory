@@ -119,68 +119,39 @@ var Listing = {
                 //}
             }
             //common.HideLoader('#partialViewListing');
+            Listing.NoDataFound(pageIndex); 
         });
 
 
     },
 
-    OnSuccess: function (response) {
-        var itemName = $("#itemName");
-        itemName.html(response[0].SubCategoryName);
-      
-        if (response.length == 0) {
+    NoDataFound: function (pageIndex) {
+        if (pageIndex <=1) {
             $("#partialViewListing").append(`<div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8 offset-2">
                     <div class="error-template">
-                        <h1>
-                            Oops!</h1>
-                        <h2>
-                            404 Not Found</h2>
-                        <div class="error-details">
-                            Sorry, an error has occured, Requested page not found!
+                       
+                        <div class="error-details text-center ">
+                             <img src="/Content/UploadedImages/Images/imgNoProduct.png" />
                 </div>
-                        <div class="error-actions">
-                            <a href="#" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
-                        Take Me Home </a><a href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+                        <div class="error-actions text-center">
+                            <a href="/Home" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                       Continue Shopping </a>
                         </div>
                     </div>
                 </div>
             </div>`);
         }
-        //$('#categoryName').append(response[0].CategoryName);
-        //$('#categoryName').attr('href', '/Home/ProductListing?Id=' + response[0].CategoryId);
-        //$('#subcategoryName').append(response[0].SubCategoryName);
-        //$('#subcategoryName').attr('href', '/Home/ProductListing?subId=' + response[0].SubCategoryId);
-        $.each(response, function (j, dataval) {
-            $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
-                        <figure class="card card-product-grid" >\
-                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '&Name=' + dataval.ProductName + '" alt=' + dataval.ProductName + '><img src="' + dataval.MainImage + '"></a> </div>\
-                                <figcaption class="info-wrap"> <a id="ProductName" href="#" class="title mb-2">' + dataval.ProductName + '</a>\
-                                    <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
-                                    <!-- price-wrap.// -->\
-                                  <div class="rating-wrap mb-2">\
-                                        <ul class="rating-stars">\
-                                            <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
-                                            <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i  class="fa fa-star"></i> </li>\
-                                        </ul>\
-                                        <div class="label-rating">4/10</div>\
-                                    </div>\
-                <input type="hidden" id="ProductId" value="'+ dataval.ProductId + '" /><input type = "hidden" id = "ProductVarientId" value = "' + dataval.ProductVarientId + '" />\
-    <input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
-    <input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
-                                    <a href ="" onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`)"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
-                              </figure>\
-                            </div >');
-
-            pageCount = dataval.PageCount;
-        });
-       // common.HideLoader('#partialViewListing');
     },
+
+    
 
     OnSuccessFilter: function (response) {
         var node = document.getElementById("partialViewListing");
         node.querySelectorAll('*').forEach(n => n.remove());
-
+        var itemName = $("#itemName");
+        itemName.html(response[0].SubCategoryName);
+        
         $.each(response, function (j, dataval) {
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
                         <figure class="card card-product-grid" >\
