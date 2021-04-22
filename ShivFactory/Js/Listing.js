@@ -171,7 +171,7 @@ var Listing = {
                 <input type="hidden" id="ProductId" value="'+ dataval.ProductId + '" /><input type = "hidden" id = "ProductVarientId" value = "' + dataval.ProductVarientId + '" />\
     <input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
     <input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
-                                    <a href ="" onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`)"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
+                                    <button onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`);"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </button> </figcaption>\
                               </figure>\
                             </div >');
 
