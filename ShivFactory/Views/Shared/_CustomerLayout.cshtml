@@ -14,6 +14,7 @@
     RepoUser repoUser = new RepoUser();
     var UserImage = repoUser.GetUserImage(util.GetCurrentUserId());
 }
+<script src="~/Js/UserProfile.js"></script>
 <section class="profile" >
     <div class="personal">
         <div class="container">
@@ -124,7 +125,7 @@
                         </div>
                         <div>
                             <span class="_2YCxI1"><a href="/Home/">Home</a></span>
-                            <span class="_2YCxI1">Change Password</span>
+                            <span class="_2YCxI1" onclick="userprofile.BindUserPasswordDetails();">Change Password</span>
                             <span class="_2YCxI1">Track Order</span>
                             <span class="_2YCxI1">Help Center</span>
                         </div>
