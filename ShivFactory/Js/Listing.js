@@ -114,7 +114,6 @@ var Listing = {
         ajax.doPostAjax(`/Home/GetProducts`, ProductFilter, function (result) {
             //alert(result.ResultFlag);
             if (result.ResultFlag == true) {
-
                 if (action == "Filter") {
                     Listing.OnSuccessFilter(result.Data);
                 } else {
@@ -129,7 +128,28 @@ var Listing = {
 
     OnSuccess: function (response) {
         var itemcount = $("#itemcount");
-        itemcount.text(response.length + " items found");
+        var itemName = $("#itemName");
+        itemName.html(response[0].SubCategoryName)
+        itemcount.text( "Showing  " + response.length + "  Products of 25");
+        if (response.length == 0) {
+            $("#partialViewListing").append(`<div class="row">
+                <div class="col-md-12">
+                    <div class="error-template">
+                        <h1>
+                            Oops!</h1>
+                        <h2>
+                            404 Not Found</h2>
+                        <div class="error-details">
+                            Sorry, an error has occured, Requested page not found!
+                </div>
+                        <div class="error-actions">
+                            <a href="#" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                        Take Me Home </a><a href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+                        </div>
+                    </div>
+                </div>
+            </div>`);
+        }
         //$('#categoryName').append(response[0].CategoryName);
         //$('#categoryName').attr('href', '/Home/ProductListing?Id=' + response[0].CategoryId);
         //$('#subcategoryName').append(response[0].SubCategoryName);
@@ -144,9 +164,9 @@ var Listing = {
                                   <div class="rating-wrap mb-2">\
                                         <ul class="rating-stars">\
                                             <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
-                                            <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
+                                            <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i  class="fa fa-star"></i> </li>\
                                         </ul>\
-                                        <div class="label-rating">2/10</div>\
+                                        <div class="label-rating">4/10</div>\
                                     </div>\
                 <input type="hidden" id="ProductId" value="'+ dataval.ProductId + '" /><input type = "hidden" id = "ProductVarientId" value = "' + dataval.ProductVarientId + '" />\
     <input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
