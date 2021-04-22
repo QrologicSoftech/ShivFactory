@@ -94,7 +94,6 @@ namespace ShivFactory.Business.Repository
                         ProductId = row["ProductId"] != DBNull.Value ? Convert.ToInt32(row["ProductId"]) : 0,
                         ProductVarientId = row["VarientId"] != DBNull.Value ? Convert.ToInt32(row["VarientId"]) : 0,
                         ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
-
                         SalePrice = row["SalePrice"] != DBNull.Value ? row["SalePrice"].ToString() : "0.00",
                         ListPrice = row["ListPrice"] != DBNull.Value ? row["ListPrice"].ToString() : "0.00",
                         MainImage = repoCommon.checkfile(row["MainImage"].ToString()),
@@ -103,6 +102,7 @@ namespace ShivFactory.Business.Repository
                         CategoryId = row["CategoryId"] != DBNull.Value ? row["CategoryId"].ToString() : "0",
                         SubCategoryId = row["SubCategoryId"] != DBNull.Value ? row["SubCategoryId"].ToString() : "0",
                         VendorId = row["vendorId"] != DBNull.Value ? Convert.ToInt32(row["vendorId"]) : 0,
+                        Stock = row["Stock"] != DBNull.Value ? Convert.ToInt32(row["Stock"]) : 0,
 
                     });
                 }

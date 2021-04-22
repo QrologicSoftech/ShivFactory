@@ -98,6 +98,11 @@ namespace ShivFactory.Business.Repository
                 }
 
                 var orderDetails = db.TempOrderDetails.Where(a => a.ID == model.TempOrderDetailId).FirstOrDefault();
+                RepoProduct repoProduct = new RepoProduct();
+                int stock = repoProduct.GetProductStock(orderDetails.ProductVarientId);
+                if (stock < model.Quantity) {
+                    return false;
+                }
                 if (orderDetails != null)
                 {
                     orderDetails.Quantity = model.Quantity;

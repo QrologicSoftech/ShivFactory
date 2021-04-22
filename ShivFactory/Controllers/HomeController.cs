@@ -528,7 +528,7 @@ namespace ShivFactory.Controllers
                     ResultFlag = IsAddToCart,
                     Data = model,
                     Message = IsAddToCart == true ? "Cart updated successfully" : " Unable to Add Item in cart "
-                }, JsonRequestBehavior.AllowGet); ;
+                }, JsonRequestBehavior.AllowGet); 
             }
             catch (Exception ex)
             {
