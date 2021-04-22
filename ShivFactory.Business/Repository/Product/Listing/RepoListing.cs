@@ -13,8 +13,9 @@ namespace ShivFactory.Business.Repository
     public class RepoListing
     {
         #region GetAllProductList
-        public List<ClsProduct> GetallProductlist(ProductListingPagination model)
+        public List<ClsProduct> GetallProductlist(ProductListingPagination model, out int totalRecords)
         {
+            totalRecords = 0;
             List<ClsProduct> product = new List<ClsProduct>();
             List<SqlParameter> parameters = new List<SqlParameter>();
             string varinetName = "";
@@ -84,6 +85,7 @@ namespace ShivFactory.Business.Repository
             if (ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0)
             {
                 RepoCommon repoCommon = new RepoCommon();
+                totalRecords = Convert.ToInt32(ds.Tables[0].Rows[0]["TotalRow"].ToString());
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     product.Add(new ClsProduct()

@@ -13,7 +13,6 @@ var Listing = {
         ProductFilter.CategoryId = $('#CategoryId').val();
         ProductFilter.SubCategoryId = $('#SubCategoryId').val();
         ProductFilter.MiniCategoryId = $('#MiniCategoryId').val();
-
         Listing.BindVarientByCategoryId();
         Listing.GetRecords();
     },
@@ -94,31 +93,30 @@ var Listing = {
         Listing.GetRecords();
     },
 
-    GetRecords: function () {
+    GetRecords: function (pageIndex = 1) {
         //common.ShowLoader('#partialViewListing');
-        var data;
-
+        var PageSize = 12;
+        $('#Current-Page').val(pageIndex);
         ProductFilter["SearchText"] = '';
-        if (pageIndex > pageCount) {
-            ProductFilter["PageIndex"] = 1;
-            ProductFilter["PageSize"] = 10;
+        ProductFilter["PageIndex"] = pageIndex;
+        ProductFilter["PageSize"] = PageSize;
 
-            pageIndex++;
-        } else {
-            ProductFilter["PageIndex"] = 1;
-            ProductFilter["PageSize"] = 10;
-            data = ProductFilter;
-            pageIndex++;
-
-        } console.log(data);
         ajax.doPostAjax(`/Home/GetProducts`, ProductFilter, function (result) {
             //alert(result.ResultFlag);
             if (result.ResultFlag == true) {
-                if (action == "Filter") {
-                    Listing.OnSuccessFilter(result.Data);
-                } else {
-                    Listing.OnSuccess(result.Data);
+                $("#itemcount").text("Showing  " + result.Data.length + " Products out of " + result.TotalRecords + "");
+                if (pageIndex == 1) {
+                    rem = result.TotalRecords % PageSize;
+                    let TotalPage = parseInt(result.TotalRecords / PageSize);
+                    if (rem > 0) { TotalPage += 1; }
+                    $('#Total-Pages').val(TotalPage);
                 }
+                Listing.OnSuccessFilter(result.Data);
+                //if (action == "Filter") {
+                //    Listing.OnSuccessFilter(result.Data);
+                //} else {
+                //    Listing.OnSuccess(result.Data);
+                //}
             }
             //common.HideLoader('#partialViewListing');
         });
@@ -127,10 +125,9 @@ var Listing = {
     },
 
     OnSuccess: function (response) {
-        var itemcount = $("#itemcount");
         var itemName = $("#itemName");
         itemName.html(response[0].SubCategoryName)
-        itemcount.text( "Showing  " + response.length + "  Products of 25");
+      
         if (response.length == 0) {
             $("#partialViewListing").append(`<div class="row">
                 <div class="col-md-12">
@@ -181,8 +178,6 @@ var Listing = {
     },
 
     OnSuccessFilter: function (response) {
-        var itemcount = $("#itemcount");
-        itemcount.text(response.length + " items found");
         var node = document.getElementById("partialViewListing");
         node.querySelectorAll('*').forEach(n => n.remove());
 
