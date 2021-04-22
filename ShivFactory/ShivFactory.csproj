@@ -1015,7 +1015,7 @@
     <Content Include="Views\Home\Cart.cshtml" />
     <Content Include="Views\Customer\Checkout.cshtml" />
     <Content Include="Views\Home\WebMenuPartialview - Copy.cshtml" />
-    <Content Include="Views\Customer\Checkoutold.cshtml" />
+    <Content Include="Views\Customer\Checkout0.cshtml" />
     <Content Include="Views\Customer\Address.cshtml" />
   </ItemGroup>
   <ItemGroup>
