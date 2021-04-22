@@ -81,11 +81,11 @@ var Account = {
     },
 
     HideLoginSignUpModal: function () {
-        $('#PhoneNumber').val() = '';
-        $('#Password').val() = ''; 
-        $('#PhoneNumberSignUp').val() = '';
-        $('#PasswordSignUp').val() = '';
-        $('#EmailIdSignUp').val() = '';
+        $('#PhoneNumber').val(''); 
+        $('#Password').val('') ; 
+        $('#PhoneNumberSignUp').val('');
+        $('#PasswordSignUp').val('') ;
+        $('#EmailIdSignUp').val('');
         $('#LoginModal').css('display', 'none');
     },
 }
