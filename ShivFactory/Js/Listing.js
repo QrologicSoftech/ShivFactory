@@ -126,7 +126,7 @@ var Listing = {
 
     OnSuccess: function (response) {
         var itemName = $("#itemName");
-        itemName.html(response[0].SubCategoryName)
+        itemName.html(response[0].SubCategoryName);
       
         if (response.length == 0) {
             $("#partialViewListing").append(`<div class="row">
