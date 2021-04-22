@@ -18,7 +18,7 @@ var Listing = {
     },
 
     BindVarientByCategoryId: function () {
-     //   common.ShowLoader();
+        //   common.ShowLoader();
         var data = {
             "CategoryId": ProductFilter.CategoryId,
             "SubCategoryId": ProductFilter.SubCategoryId,
@@ -47,7 +47,7 @@ var Listing = {
 
                 });
             }
-          //  common.HideLoader();
+            //  common.HideLoader();
         });
 
     },
@@ -112,21 +112,19 @@ var Listing = {
                     $('#Total-Pages').val(TotalPage);
                 }
                 Listing.OnSuccessFilter(result.Data);
-                //if (action == "Filter") {
-                //    Listing.OnSuccessFilter(result.Data);
-                //} else {
-                //    Listing.OnSuccess(result.Data);
-                //}
+            }
+            else {
+                Listing.NoDataFound(pageIndex);
             }
             //common.HideLoader('#partialViewListing');
-            Listing.NoDataFound(pageIndex); 
+
         });
 
 
     },
 
     NoDataFound: function (pageIndex) {
-        if (pageIndex <=1) {
+        if (pageIndex <= 1) {
             $("#partialViewListing").append(`<div class="row">
                 <div class="col-md-8 offset-2">
                     <div class="error-template">
@@ -144,14 +142,18 @@ var Listing = {
         }
     },
 
-    
+
 
     OnSuccessFilter: function (response) {
-        var node = document.getElementById("partialViewListing");
-        node.querySelectorAll('*').forEach(n => n.remove());
-        var itemName = $("#itemName");
-        itemName.html(response[0].SubCategoryName);
-        
+        //var node = document.getElementById("partialViewListing");
+        //node.querySelectorAll('*').forEach(n => n.remove());       
+
+        if ($('#Current-Page').val() == 1) {
+            var itemName = $("#itemName");
+            itemName.html(response[0].SubCategoryName);
+            $("#partialViewListing").html();
+        }
+
         $.each(response, function (j, dataval) {
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
                         <figure class="card card-product-grid" >\
@@ -175,7 +177,7 @@ var Listing = {
 
             pageCount = dataval.PageCount;
         });
-       // common.HideLoader('#partialViewListing');
+        // common.HideLoader('#partialViewListing');
     },
 
     BindIndexPage: function () {
@@ -223,13 +225,13 @@ var Listing = {
                 $("#Product-slider").html(productSlider);
 
             }
-           // common.HideLoader();
+            // common.HideLoader();
 
         });
 
     },
     CheckPincodeAvailibity: function () {
-     //   common.ShowLoader();
+        //   common.ShowLoader();
         var pincod = $('#pincode').val();
         var vendorId = $('#vendorId').val();
         ajax.doPostAjax(`/Home/CheckPincodeAvailibity?pincode=` + pincod + `&vendorId=` + vendorId, null, function (result) {
@@ -242,7 +244,7 @@ var Listing = {
 
             }
         });
-       // common.HideLoader();
+        // common.HideLoader();
     },
 
 
