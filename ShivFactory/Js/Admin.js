@@ -403,7 +403,7 @@ var Admin = {
                                 <ul class="desktop-navBlock">`;
                         }
                         html += `<li>
-                                  <a href="../Home/ProductListing?subId=${b.Id}" style="color:#ee5f73;" class="desktop-categoryName">${b.Name}</a>
+                                  <a href="/Home/ProductListing?subId=${b.Id}" style="color:#ee5f73;" class="desktop-categoryName">${b.Name}</a>
                                  </li>`;
                         count++;
 
@@ -417,7 +417,7 @@ var Admin = {
                             }
 
                             html += `<li>
-                                            <a href="../Home/ProductListing?subId=${b.Id}&minId=${c.Id}" class="desktop-categoryLink">${c.Name}</a>
+                                            <a href="/Home/ProductListing?subId=${b.Id}&minId=${c.Id}" class="desktop-categoryLink">${c.Name}</a>
                                         </li>`;
                             count++;
                         });
