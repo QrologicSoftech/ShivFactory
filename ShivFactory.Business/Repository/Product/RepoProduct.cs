@@ -235,6 +235,17 @@ namespace ShivFactory.Business.Repository
         }
 
         #endregion
+
+        #region
+        public int GetProductStock(int? productvarientID)
+        {
+            var  stock = db.ProductVarients.Where(row => row.ProductVarientId == productvarientID).Select(row => row.Stock==null ?0:row.Stock);
+            int v = Convert.ToInt32(stock);
+            return v; 
+        }
+        #endregion
+
+
     }
 }
 

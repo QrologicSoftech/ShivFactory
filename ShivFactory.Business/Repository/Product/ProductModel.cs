@@ -27,6 +27,7 @@ namespace ShivFactory.Business.Repository
         public string MainImage { get; set; }
         public int VendorId { get; set; }
         public int ProductVarientId { get; set; }
+        public int Stock { get; set; }
     }
     public class ClsProduct1
     {

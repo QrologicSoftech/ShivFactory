@@ -10,6 +10,7 @@
             "IsUserWishList": IsUserWishList,
         }
         ajax.doPostAjax(`/Home/AddToCart`, data, function (result) {
+            cart.BindCartCounts();
                 //common.ShowMessage(result);
         });
     },
@@ -26,6 +27,7 @@
         }
         ajax.doPostAjax(`/Home/AddToCart`, data, function (result) {
           //  common.ShowMessage(result);
+            cart.BindCartCounts();
         });
     },
     UpdateCart: function (element) {
@@ -62,12 +64,22 @@
         });
     },
 
-    DeleteCart: function (id) {
+    DeleteCart: function (element,id) {
         var data = {
             "id": id,
         }
          ajax.doPostAjax(`/Home/DeleteCartItem`, data, function (result) {
+             if (result.ResultFlag == true) {
+                 $(element).closest('tr').remove();
+                 cart.CalculateCart();
+                 cart.BindCartCounts();
+            }
+        });
+    },
+    BindCartCounts: function () {
+        ajax.doGetAjax(`/Home/GetCartItems`, function (result) {
             if (result.ResultFlag == true) {
+                $('.icon-area .notify').html(result.Data);
             }
         });
     }

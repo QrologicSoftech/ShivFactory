@@ -13,13 +13,12 @@ var Listing = {
         ProductFilter.CategoryId = $('#CategoryId').val();
         ProductFilter.SubCategoryId = $('#SubCategoryId').val();
         ProductFilter.MiniCategoryId = $('#MiniCategoryId').val();
-
         Listing.BindVarientByCategoryId();
         Listing.GetRecords();
     },
 
     BindVarientByCategoryId: function () {
-     //   common.ShowLoader();
+        //   common.ShowLoader();
         var data = {
             "CategoryId": ProductFilter.CategoryId,
             "SubCategoryId": ProductFilter.SubCategoryId,
@@ -48,7 +47,7 @@ var Listing = {
 
                 });
             }
-          //  common.HideLoader();
+            //  common.HideLoader();
         });
 
     },
@@ -94,77 +93,66 @@ var Listing = {
         Listing.GetRecords();
     },
 
-    GetRecords: function () {
+    GetRecords: function (pageIndex = 1) {
         //common.ShowLoader('#partialViewListing');
-        var data;
-
+        var PageSize = 12;
+        $('#Current-Page').val(pageIndex);
         ProductFilter["SearchText"] = '';
-        if (pageIndex > pageCount) {
-            ProductFilter["PageIndex"] = 1;
-            ProductFilter["PageSize"] = 10;
+        ProductFilter["PageIndex"] = pageIndex;
+        ProductFilter["PageSize"] = PageSize;
 
-            pageIndex++;
-        } else {
-            ProductFilter["PageIndex"] = 1;
-            ProductFilter["PageSize"] = 10;
-            data = ProductFilter;
-            pageIndex++;
-
-        } console.log(data);
         ajax.doPostAjax(`/Home/GetProducts`, ProductFilter, function (result) {
             //alert(result.ResultFlag);
             if (result.ResultFlag == true) {
-
-                if (action == "Filter") {
-                    Listing.OnSuccessFilter(result.Data);
-                } else {
-                    Listing.OnSuccess(result.Data);
+                $("#itemcount").text("Showing  " + result.Data.length + " Products out of " + result.TotalRecords + "");
+                if (pageIndex == 1) {
+                    rem = result.TotalRecords % PageSize;
+                    let TotalPage = parseInt(result.TotalRecords / PageSize);
+                    if (rem > 0) { TotalPage += 1; }
+                    $('#Total-Pages').val(TotalPage);
                 }
+                Listing.OnSuccessFilter(result.Data);
+            }
+            else {
+                Listing.NoDataFound(pageIndex);
             }
             //common.HideLoader('#partialViewListing');
+
         });
 
 
     },
 
-    OnSuccess: function (response) {
-        var itemcount = $("#itemcount");
-        itemcount.text(response.length + " items found");
-        //$('#categoryName').append(response[0].CategoryName);
-        //$('#categoryName').attr('href', '/Home/ProductListing?Id=' + response[0].CategoryId);
-        //$('#subcategoryName').append(response[0].SubCategoryName);
-        //$('#subcategoryName').attr('href', '/Home/ProductListing?subId=' + response[0].SubCategoryId);
-        $.each(response, function (j, dataval) {
-            $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
-                        <figure class="card card-product-grid" >\
-                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '&Name=' + dataval.ProductName + '" alt=' + dataval.ProductName + '><img src="' + dataval.MainImage + '"></a> </div>\
-                                <figcaption class="info-wrap"> <a id="ProductName" href="#" class="title mb-2">' + dataval.ProductName + '</a>\
-                                    <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
-                                    <!-- price-wrap.// -->\
-                                  <div class="rating-wrap mb-2">\
-                                        <ul class="rating-stars">\
-                                            <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
-                                            <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
-                                        </ul>\
-                                        <div class="label-rating">2/10</div>\
-                                    </div>\
-                <input type="hidden" id="ProductId" value="'+ dataval.ProductId + '" /><input type = "hidden" id = "ProductVarientId" value = "' + dataval.ProductVarientId + '" />\
-    <input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
-    <input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
-                                    <a href ="" onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`)"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
-                              </figure>\
-                            </div >');
-
-            pageCount = dataval.PageCount;
-        });
-       // common.HideLoader('#partialViewListing');
+    NoDataFound: function (pageIndex) {
+        if (pageIndex <= 1) {
+            $("#partialViewListing").append(`<div class="row">
+                <div class="col-md-8 offset-2">
+                    <div class="error-template">
+                       
+                        <div class="error-details text-center ">
+                             <img src="/Content/UploadedImages/Images/imgNoProduct.png" />
+                </div>
+                        <div class="error-actions text-center">
+                            <a href="/Home" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+                       Continue Shopping </a>
+                        </div>
+                    </div>
+                </div>
+            </div>`);
+        }
     },
+
+
 
     OnSuccessFilter: function (response) {
-        var itemcount = $("#itemcount");
-        itemcount.text(response.length + " items found");
-        var node = document.getElementById("partialViewListing");
-        node.querySelectorAll('*').forEach(n => n.remove());
+        //var node = document.getElementById("partialViewListing");
+        //node.querySelectorAll('*').forEach(n => n.remove());       
+
+        if ($('#Current-Page').val() == 1) {
+            var itemName = $("#itemName");
+            itemName.html(response[0].SubCategoryName);
+            $("#partialViewListing").html();
+        }
 
         $.each(response, function (j, dataval) {
             $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
@@ -183,13 +171,13 @@ var Listing = {
                 <input type="hidden" id="ProductId" value="'+ dataval.ProductId + '" /><input type = "hidden" id = "ProductVarientId" value = "' + dataval.ProductVarientId + '" />\
     <input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
     <input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
-                                    <a href ="" onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`)"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </a> </figcaption>\
+                                    <button onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`);"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </button> </figcaption>\
                               </figure>\
                             </div >');
 
             pageCount = dataval.PageCount;
         });
-       // common.HideLoader('#partialViewListing');
+        // common.HideLoader('#partialViewListing');
     },
 
     BindIndexPage: function () {
@@ -237,13 +225,13 @@ var Listing = {
                 $("#Product-slider").html(productSlider);
 
             }
-           // common.HideLoader();
+            // common.HideLoader();
 
         });
 
     },
     CheckPincodeAvailibity: function () {
-     //   common.ShowLoader();
+        //   common.ShowLoader();
         var pincod = $('#pincode').val();
         var vendorId = $('#vendorId').val();
         ajax.doPostAjax(`/Home/CheckPincodeAvailibity?pincode=` + pincod + `&vendorId=` + vendorId, null, function (result) {
@@ -256,7 +244,7 @@ var Listing = {
 
             }
         });
-       // common.HideLoader();
+        // common.HideLoader();
     },
 
 

@@ -17,8 +17,8 @@ namespace ShivFactory.Business.Repository
     public class RepoCart
     {
         #region Parameters
-         ShivFactoryEntities db = new ShivFactoryEntities();
-         RepoCookie cooki = new RepoCookie();
+        ShivFactoryEntities db = new ShivFactoryEntities();
+        RepoCookie cooki = new RepoCookie();
 
         #endregion
         Utility utility = new Utility();
@@ -49,7 +49,7 @@ namespace ShivFactory.Business.Repository
                 }
 
                 var orderDetails = db.TempOrderDetails.Where(a => a.ProductVarientId == model.ProductVarientID && a.TempOrderID == tempOrderId).FirstOrDefault();
-                if (orderDetails != null)  
+                if (orderDetails != null)
                 {
                     orderDetails.Quantity = orderDetails.Quantity + model.Quantity; //orderDetails.Quantity ?? 0 + m
                     orderDetails.NetAmt = orderDetails.Quantity * model.Price;
@@ -98,6 +98,12 @@ namespace ShivFactory.Business.Repository
                 }
 
                 var orderDetails = db.TempOrderDetails.Where(a => a.ID == model.TempOrderDetailId).FirstOrDefault();
+                RepoProduct repoProduct = new RepoProduct();
+                int stock = repoProduct.GetProductStock(orderDetails.ProductVarientId);
+                if (stock < model.Quantity)
+                {
+                    return false;
+                }
                 if (orderDetails != null)
                 {
                     orderDetails.Quantity = model.Quantity;
@@ -254,6 +260,18 @@ namespace ShivFactory.Business.Repository
                 TotalCartAmount(temporderID);
                 retval = true;
             }
+
+            if (db.TempOrderDetails.Where(row => row.ID == temporderID).Count() == 0)
+            {
+                var tempOrder = db.TempOrders.Where(a => a.ID == temporderID).FirstOrDefault();
+                if (tempOrder != null)
+                {
+                    db.TempOrders.Remove(tempOrder);
+                    db.SaveChanges();
+                    RemoveTempOrder();
+                    retval = true;
+                }
+            }
             return retval;
 
         }
@@ -270,6 +288,15 @@ namespace ShivFactory.Business.Repository
                 retval = true;
             }
             return retval;
+        }
+
+        public bool RemoveTempOrder()
+        {
+            RepoCookie co = new RepoCookie();
+            co.AddCookiesValue(CookieName.TempOrderId, "0");
+            RepoUser ru = new RepoUser();
+            ru.UpdateTempOrder();
+            return true;
         }
 
     }

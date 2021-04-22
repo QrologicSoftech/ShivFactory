@@ -537,7 +537,6 @@ namespace ShivFactory.Controllers
             RepoCookie co = new RepoCookie();
             co.ClearCookiesValues();
             Session.Abandon();
-
             return RedirectToAction("Index", "Home");
         }
         #endregion

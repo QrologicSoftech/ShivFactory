@@ -371,22 +371,25 @@ namespace ShivFactory.Controllers
         {
             try
             {
+                int totalRecords = 0;
                 RepoListing repoListing = new RepoListing();
-                List<ClsProduct> list = repoListing.GetallProductlist(model);
+                List<ClsProduct> list = repoListing.GetallProductlist(model, out totalRecords);
                 System.Threading.Thread.Sleep(100);
-                return Json(new ResultModel
+                return Json(new
                 {
-                    ResultFlag = list.Count>0 ? true : false,
+                    TotalRecords = totalRecords,
+                    ResultFlag = list.Count > 0 ? true : false,
                     Data = list,
                     Message = list.Count > 0 ? "Product find successfully!!" : "Failled to find Product!!"
                 }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e)
             {
-                return Json(new ResultModel
+                return Json(new
                 {
+                    TotalRecords = 0,
                     ResultFlag = false,
-                    Data = null,
+                    Data = "",
                     Message = e.Message.ToString()
                 }, JsonRequestBehavior.AllowGet);
             }
@@ -429,16 +432,19 @@ namespace ShivFactory.Controllers
                 string message = "";
                 RepoCart cart = new RepoCart();
                 bool IsAddToCart = cart.AddToCart(model);
-                if (model.IsUserWishList == true) {
+                if (model.IsUserWishList == true)
+                {
                     message = "Add to wishlist successfully";
-                } else {
+                }
+                else
+                {
                     message = "Add to cart successfully";
                 }
                 return Json(new ResultModel
                 {
                     ResultFlag = IsAddToCart,
                     Data = model,
-                    Message = IsAddToCart == true ? message :" Unable to Add Item"
+                    Message = IsAddToCart == true ? message : " Unable to Add Item"
                 }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -464,12 +470,12 @@ namespace ShivFactory.Controllers
         {
             try
             {
-                bool retval = false; 
+                bool retval = false;
                 if (Id > 0)
                 {
                     RepoCart cart = new RepoCart();
-                     retval = cart.DeleteCartItemById((int)Id);
-                    
+                    retval = cart.DeleteCartItemById((int)Id);
+
                 }
 
                 return Json(new ResultModel
@@ -483,7 +489,7 @@ namespace ShivFactory.Controllers
                 return Json(new ResultModel
                 {
                     ResultFlag = false,
-                    Message ="Unable to remove item"
+                    Message = "Unable to remove item"
                 }, JsonRequestBehavior.AllowGet);
             }
 
@@ -522,7 +528,7 @@ namespace ShivFactory.Controllers
                     ResultFlag = IsAddToCart,
                     Data = model,
                     Message = IsAddToCart == true ? "Cart updated successfully" : " Unable to Add Item in cart "
-                }, JsonRequestBehavior.AllowGet); ;
+                }, JsonRequestBehavior.AllowGet); 
             }
             catch (Exception ex)
             {
@@ -531,6 +537,30 @@ namespace ShivFactory.Controllers
                     ResultFlag = false,
                     Data = null,
                     Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        public ActionResult GetCartItems()
+        {
+            try
+            {
+                RepoCart cart = new RepoCart();
+                var cartCount = cart.GetUserCartCount();
+                return Json(new ResultModel
+                {
+                    ResultFlag = true,
+                    Data = cartCount
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = "",
+                    Message = e.Message.ToString()
                 }, JsonRequestBehavior.AllowGet);
             }
 
