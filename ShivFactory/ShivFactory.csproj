@@ -198,10 +198,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\DefaultConnection.mdf" />
-    <Content Include="App_Data\DefaultConnection_log.ldf">
-      <DependentUpon>DefaultConnection.mdf</DependentUpon>
-    </Content>
     <Content Include="bin\Microsoft.Owin.Security.Facebook.dll" />
     <Content Include="bin\System.Net.Http.Formatting.dll" />
     <Content Include="bin\System.Web.Http.dll" />
@@ -1014,6 +1010,7 @@
     <Content Include="Views\Customer\Address.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Vendor\Data\" />
     <Folder Include="Properties\" />
