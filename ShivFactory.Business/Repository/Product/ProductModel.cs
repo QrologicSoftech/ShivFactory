@@ -71,7 +71,7 @@ namespace ShivFactory.Business.Repository
         public int? CategoryId { get; set; }
         [Required(ErrorMessage = "Please select SubCategory!")]
         public int? SubCategoryId { get; set; }
-        [Required(ErrorMessage = "Please select MiniCategory!")]
+        //[Required(ErrorMessage = "Please select MiniCategory!")]
         public int? MiniCategoryId { get; set; }
         public bool IsActive { get; set; }
         public string ProductColors { get; set; }

@@ -175,7 +175,7 @@ namespace ShivFactory.Controllers
         #endregion
 
         #region VendorLogIn
-        // [AllowAnonymous]
+         [AllowAnonymous]
         public ActionResult VendorLogin(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
