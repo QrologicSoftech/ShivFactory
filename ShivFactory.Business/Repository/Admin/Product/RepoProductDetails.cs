@@ -194,19 +194,7 @@ namespace ShivFactory.Business.Repository.Admin
             }
             return false;
         }
-        #endregion
-
-        #region Update Varient Quantity
-        public bool UpdateVarientQuantity(int varientId, int qty)
-        {
-            var product = db.ProductVarients.Where(x => x.ProductVarientId == varientId).FirstOrDefault();
-            if (product != null)
-            {
-                product.Stock = qty;
-                return db.SaveChanges() > 0;
-            }
-            return false;
-        }
-        #endregion
+        #endregion        
+       
     }
 }

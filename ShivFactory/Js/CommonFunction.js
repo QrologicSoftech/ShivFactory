@@ -137,6 +137,10 @@ var commonFunction = {
         bcgDiv.style.display = "block";
         return false;
     },
+    ReloadCallback: function (callback) {
+        location.reload();
+        return callback();
+    },
 }
 
 

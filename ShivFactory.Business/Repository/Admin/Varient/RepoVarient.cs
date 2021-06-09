@@ -63,7 +63,7 @@ namespace ShivFactory.Business.Repository
             return Varient;
 
         }
-        #endregion
+        #endregion        
 
         #region Delete Varient By Id
         public bool DeleteVarientById(int id)

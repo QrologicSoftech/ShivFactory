@@ -161,6 +161,7 @@
     <Compile Include="Repository\Users\LogInResponse.cs" />
     <Compile Include="Repository\Users\RepoUser.cs" />
     <Compile Include="Repository\Vendor\ProductVarient\clsProductVarient.cs" />
+    <Compile Include="Repository\Vendor\ProductVarient\RepoProductVarient.cs" />
     <Compile Include="Repository\Vendor\RepoVendor\RepoVendor.cs" />
     <Compile Include="Repository\Vendor\RepoVendor\Vendor.cs" />
     <Compile Include="Repository\Vendor\RepoVendor\VendorBankDetail.cs" />

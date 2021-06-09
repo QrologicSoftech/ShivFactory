@@ -103,13 +103,43 @@ namespace ShivFactory.Areas.Vendor.Controllers
             return View(varients);
         }
         #endregion
+
+        #region Delete ProductVarient
+        [HttpPost]
+        public ActionResult DeleteProductVarient(int id)
+        {
+
+            try
+            {
+                RepoProductVarient varient = new RepoProductVarient();
+                var isDelete = varient.DeleteProductVarientById(id);
+
+                return Json(new ResultModel
+                {
+                    ResultFlag = isDelete,
+                    Data = null,
+                    Message = isDelete ? "Product deleted successfully!!" : "Failled to delete product."
+                }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new ResultModel
+                {
+                    ResultFlag = false,
+                    Data = null,
+                    Message = ex.Message
+                }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        #endregion
+
         #region  UpdateVarientQty
         public ActionResult UpdateVarientQty(int varientId, int qty)
         {
             try
             {
-                RepoProductDetails productDetails = new RepoProductDetails();
-                var isApproved = productDetails.UpdateVarientQuantity(varientId, qty);
+                RepoProductVarient varient = new RepoProductVarient();
+                var isApproved = varient.UpdateVarientQuantity(varientId, qty);
                 return Json(new ResultModel
                 {
                     ResultFlag = isApproved,

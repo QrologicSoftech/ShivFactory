@@ -41,10 +41,9 @@ var Vendor = {
         location.replace(`/Vendor/Vendor/VarientPartialView/${productId}`);
     },
     ShowVarientQty: function (element) {
-        debugger;
         let qty = $(element).html();
 
-        if (confirm("Are you sure want to reject this product?")) {
+        if (confirm("Are you sure want to update Qty this product?")) {
             let varientId = $(element).closest('tr').attr('Id');
             let qty = $(element).html();
             if (varientId == undefined || varientId == null) { return false; }
@@ -97,6 +96,29 @@ var Vendor = {
             common.ShowMessage(result);
             common.HideLoader();
         });
+    },
+    DeleteProductVarient: function (id) {
+
+        if (confirm("Are you sure want to delete this product?")) {
+            data = {
+                "id": id
+            }
+            ajax.doPostAjax(`/${vendorArea}/${vendorController}/DeleteProductVarient`, data, function (result) {
+                common.ShowMessage(result);
+                if (result.ResultFlag) {
+                    location.reload();
+                }
+            });
+        }
+        //else {
+            
+        //    commonFunction.ReloadCallback(function () {
+        //        $(document).ready(function () {
+        //            setTimeout(function () { toastr.success('Lokesh Choudhary'); }, 5000);
+                    
+        //        });
+        //    });
+        //}
     },
     UpdateProductColors: function () {
        
