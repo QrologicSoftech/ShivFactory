@@ -66,10 +66,15 @@ namespace ShivFactory.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            if (returnUrl.Equals("/Account/VendorLogin") || returnUrl.ToUpper().Equals("/VENDOR"))
+            if (!string.IsNullOrEmpty(returnUrl) && (returnUrl.Equals("/Account/VendorLogin") || returnUrl.ToUpper().Contains("/VENDOR")))
             {
                 //return RedirectToAction("VendorLogin","Account");
-                return View("VendorLogin");
+                return View("VendorLogin", returnUrl);
+            }
+            if (!string.IsNullOrEmpty(returnUrl) && (returnUrl.Equals("/Account/AdminLogin") || returnUrl.ToUpper().Contains("/ADMIN")))
+            {
+                //return RedirectToAction("VendorLogin","Account");
+                return View("VendorLogin", returnUrl);
             }
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -85,7 +90,7 @@ namespace ShivFactory.Controllers
                 return View(model);
             }
             model.Role = UserRoles.Customer;
-            var result = await LogInApI(model);   
+            var result = await LogInApI(model);
             if (result.ResultFlag == true)
             {
                 return RedirectToLocal(result.Data, returnUrl);
@@ -170,7 +175,7 @@ namespace ShivFactory.Controllers
         #endregion
 
         #region VendorLogIn
-       // [AllowAnonymous]
+        // [AllowAnonymous]
         public ActionResult VendorLogin(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
@@ -259,7 +264,7 @@ namespace ShivFactory.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> Register(CustomerRegister model ,string returnUrl)
+        public async Task<ActionResult> Register(CustomerRegister model, string returnUrl)
         {
             List<ErrorModel> Errors = new List<ErrorModel>();
             bool resultFlag = true;
@@ -276,13 +281,13 @@ namespace ShivFactory.Controllers
                     LogInModel login = new LogInModel();
                     login.Role = UserRoles.Customer;
                     login.PhoneNumber = model.PhoneNumber;
-                    login.Password = model.Password; 
+                    login.Password = model.Password;
                     var result = await LogInApI(login);
                     if (result.ResultFlag == true)
                     {
-                       // return RedirectToLocal(result.Data, "/Home/Index");
+                        // return RedirectToLocal(result.Data, "/Home/Index");
                     }
-                    
+
                 }
                 else
                 {
@@ -713,51 +718,51 @@ namespace ShivFactory.Controllers
             try
             {
 
-                    var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId, EmailConfirmed = true };
-                    var result = await UserManager.CreateAsync(user, model.Password);
-                    if (result.Succeeded)
+                var user = new ApplicationUser { UserName = model.PhoneNumber, Email = model.EmailId, EmailConfirmed = true };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    UserManager.AddToRole(user.Id, UserRoles.Customer);
+
+                    var userDetails = new UserDetail()
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                        UserManager.AddToRole(user.Id, UserRoles.Customer);
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        Gender = model.Gender,
+                        Address = model.Address,
+                        Email = model.EmailId,
+                        Password = model.Password,
+                        Mobile = model.PhoneNumber,
+                        AddDate = DateTime.Now,
+                        IsActive = true,
+                        IsDelete = false,
+                        UserId = user.Id
+                    };
 
-                        var userDetails = new UserDetail()
-                        {
-                            FirstName = model.FirstName,
-                            LastName = model.LastName,
-                            Gender = model.Gender,
-                            Address = model.Address,
-                            Email = model.EmailId,
-                            Password = model.Password,
-                            Mobile = model.PhoneNumber,
-                            AddDate = DateTime.Now,
-                            IsActive = true,
-                            IsDelete = false,
-                            UserId = user.Id
-                        };
+                    RepoUser ru = new RepoUser();
+                    var isSaved = ru.AddOrUpdateUserDetails(userDetails);
 
-                        RepoUser ru = new RepoUser();
-                        var isSaved = ru.AddOrUpdateUserDetails(userDetails);
-
-                        return new ResultModel
-                        {
-                            ResultFlag = isSaved,
-                            Data = "",
-                            Message = "User successfully Register !!"
-                        };
-
-                    }
-                    else
+                    return new ResultModel
                     {
-                        return new ResultModel
-                        {
-                            ResultFlag = false,
-                            Data = "",
-                            Message = result.Errors.FirstOrDefault()
-                        };
-                    }
-                
+                        ResultFlag = isSaved,
+                        Data = "",
+                        Message = "User successfully Register !!"
+                    };
+
+                }
+                else
+                {
+                    return new ResultModel
+                    {
+                        ResultFlag = false,
+                        Data = "",
+                        Message = result.Errors.FirstOrDefault()
+                    };
+                }
+
             }
-                     
+
             catch (Exception ex)
             {
                 return new ResultModel
@@ -1098,10 +1103,10 @@ namespace ShivFactory.Controllers
             try
             {
                 UserDetail userDetail = new UserDetail();
-                bool isUpdate = false; 
+                bool isUpdate = false;
                 Utility util = new Utility();
                 RepoUser repoUser = new RepoUser();
-                var userByemail  = UserManager.FindByEmail(model.Email);
+                var userByemail = UserManager.FindByEmail(model.Email);
                 if (userByemail == null)
                 {
                     var current_user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
@@ -1151,11 +1156,11 @@ namespace ShivFactory.Controllers
                     current_user.UserName = model.Mobile;
 
                     Utility util = new Utility();
-                    var result =  await UserManager.UpdateAsync(current_user);
+                    var result = await UserManager.UpdateAsync(current_user);
                     if (result.Succeeded)
                     {
                         RepoUser repouser = new RepoUser();
-                     isUpdate = repouser.UpdateCurrentUserMobile(model.Mobile, util.GetCurrentUserId());
+                        isUpdate = repouser.UpdateCurrentUserMobile(model.Mobile, util.GetCurrentUserId());
                         if (isUpdate)
                         {
                             RepoCookie cookie = new RepoCookie();
