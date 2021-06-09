@@ -119,6 +119,10 @@ namespace ShivFactory.Business.Repository
         #region Convert Base64 to image 
         public string Base64ToImage(string base64String)
         {
+            if (string.IsNullOrEmpty(base64String))
+            {
+                return "";
+            }
             string[] strings = base64String.Split(',');
             string extension;
             switch (strings[0])
