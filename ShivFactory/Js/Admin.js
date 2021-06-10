@@ -3,9 +3,9 @@
 var Admin = {
 
     RenderPartialView: function (PartialView) {
-        common.ShowLoader('.partialView');
+        //common.ShowLoader('.partialView');
         ajax.doGetAjax(`/${adminArea}/${adminController}/${PartialView}`, function (result) {
-            common.HideLoader('.partialView');
+          //  common.HideLoader('.partialView');
             $('.partialView').html(result);
         })
     },
