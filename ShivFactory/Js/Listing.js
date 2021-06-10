@@ -187,44 +187,46 @@ var Listing = {
 
         ajax.doPostAjax(`/Home/GetIndexData`, '', function (result) {
             console.log(result);
-            if (result.ResultFlag == true) {
-                $.each(result.Data.Banners, function (index, Value) {
-                    bannerli += `<li data-target="#carousel1_indicator" data-slide-to="${index}" class="${index == 0 ? "active" : ""}"></li>`;
-                    bannerdiv += `<div class="carousel-item ${index == 0 ? "active" : ""}"> <img src="${Value.ImagePath}" alt=""> </div>`;
-                });
-                $("#carousel1_indicator ol").html(bannerli);
-                $("#carousel1_indicator div").html(bannerdiv);
+            $("#carousel").html(result);
+            $('#carousel').carousel();
+    //        if (result.ResultFlag == true) {
+    //            $.each(result.Data.Banners, function (index, Value) {
+    //                bannerli += `<li data-target="#carousel1_indicator" data-slide-to="${index}" class="${index == 0 ? "active" : ""}"></li>`;
+    //                bannerdiv += `<div class="carousel-item ${index == 0 ? "active" : ""}"> <img src="${Value.ImagePath}" alt=""> </div>`;
+    //            });
+    //            $("#carousel1_indicator ol").html(bannerli);
+    //            $("#carousel1_indicator div").html(bannerdiv);
 
-                //Bind Product slider
-                $.each(result.Data.Products, function (index, Value) {
-                    productSlider += `<section class="padding-bottom-sm bg-white  mb-3 pb-3 pt-0">
-    <div class=" container">
-        <header class="section-heading pt-3 pb-2">
-            <h3 class="section-title text-left">${Value.Title} </h3>
-        </header>
-        <div class="card-deal px-1">
-            <div class="allitem-slider owl-carousel owl-button"><div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2010px;">`;
+    //            //Bind Product slider
+    //            $.each(result.Data.Products, function (index, Value) {
+    //                productSlider += `<section class="padding-bottom-sm bg-white  mb-3 pb-3 pt-0">
+    //<div class=" container">
+    //    <header class="section-heading pt-3 pb-2">
+    //        <h3 class="section-title text-left">${Value.Title} </h3>
+    //    </header>
+    //    <div class="card-deal px-1">
+    //        <div class="allitem-slider owl-carousel owl-button"><div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2010px;">`;
 
-                    $.each(Value.SubCategory, function (a, b) {
+    //                $.each(Value.SubCategory, function (a, b) {
 
-                        productSlider += `<div class="owl-item active" style="width: 236.2px; margin-right: 15px;"><div class="item">
-                    <figure class="card-product-grid card-sm">
-                        <a href="/Home/ProductListing?subId=${b.SubCategoryId}" class="img-wrap"> <img src="${b.ImagePath}"> </a>
-                        <div class="text-center">
-                            <div class="price mt-1"><a href='#'>`+ b.SubCategoryName + `</a></div>
-                            <div class="price mt-1">`+ b.price + `  <s class="old-rrice"> ` + b.ListPrice + `</s></div>
-                            <div class="add-cart pt-1"></div>
-                            <span class="badge badge-danger"> -20% </span>
-                        </div>
-                    </figure>
-                </div></div>`;
-                    })
-                    productSlider += `</div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span><i class="fa fa-angle-right"></i></span></button><button type="button" role="presentation" class="owl-next"><span><i class="fa fa-angle-left"></i></span></button></div></div></div></div></div></section>`;
+    //                    productSlider += `<div class="owl-item active" style="width: 236.2px; margin-right: 15px;"><div class="item">
+    //                <figure class="card-product-grid card-sm">
+    //                    <a href="/Home/ProductListing?subId=${b.SubCategoryId}" class="img-wrap"> <img src="${b.ImagePath}"> </a>
+    //                    <div class="text-center">
+    //                        <div class="price mt-1"><a href='#'>`+ b.SubCategoryName + `</a></div>
+    //                        <div class="price mt-1">`+ b.price + `  <s class="old-rrice"> ` + b.ListPrice + `</s></div>
+    //                        <div class="add-cart pt-1"></div>
+    //                        <span class="badge badge-danger"> -20% </span>
+    //                    </div>
+    //                </figure>
+    //            </div></div>`;
+    //                })
+    //                productSlider += `</div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span><i class="fa fa-angle-right"></i></span></button><button type="button" role="presentation" class="owl-next"><span><i class="fa fa-angle-left"></i></span></button></div></div></div></div></div></section>`;
 
-                });
-                $("#Product-slider").html(productSlider);
-
-            }
+    //            });
+    //            $("#Product-slider").html(productSlider);
+               
+    //        }
             // common.HideLoader();
 
         });

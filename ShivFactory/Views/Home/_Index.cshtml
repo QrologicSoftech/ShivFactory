@@ -1,0 +1,72 @@
+﻿@model ShivFactory.Business.Repository.Website.HomePageResponse
+
+<div class="mt-lg-5 pt-0">
+
+    <div id="carousel1_indicator" class="slider-home-banner carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+        </ol>
+        <div class="carousel-inner">
+            @{
+                int i = 0;
+                foreach (var banner in Model.Banners)
+                {
+                    string _class = i == 0 ? "active" : ""; 
+                    <div class="carousel-item @_class "> <img src="@banner.ImagePath" alt=""> </div>
+                    i = i + 1;
+                }
+            }
+        </div>
+        <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carousel1_indicator" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+    </div>
+</div>
+<div class="container py-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="bg-light FreeInsllation text-center">
+                <p>FREE DELIVERY &amp; Installation</p>
+                across all major cities
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="bg-light FreeInsllation text-center">
+                <p>Get Extra 20% OFF on all products </p>
+                use coupon code MONSOON
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="bg-light FreeInsllation text-center">
+                <p>Large Experience Store Network</p>
+                20+ Stores across India
+            </div>
+        </div>
+    </div>
+</div>
+@foreach (var item in Model.Products)
+{
+    <section class="padding-bottom-sm bg-white  mb-3 pb-3 pt-0">
+        <div class=" container">
+            <header class="section-heading pt-3 pb-2">
+                <h3 class="section-title">@item.Title</h3>
+            </header>
+            <div class="card-deal px-1">
+                <div class="allitem-slider owl-carousel owl-button">
+                    @foreach (var subCat in item.SubCategory)
+                    {
+                        <div class="item">
+                            <figure class="card-product-grid card-sm">
+                                <a href="/Home/ProductListing?subId=@subCat.SubCategoryId" class="img-wrap"> <img src="@subCat.ImagePath"> </a>                               
+                                <div class="text-wrap">
+                                    <div class="price mt-1"><a href='#'>@subCat.SubCategoryName</a></div>
+                                    <div class="price mt-1">@subCat.price<s class="old-rrice">@subCat.ListPrice</s></div>
+                                    <div class="add-cart pt-1"></div>
+                                    <span class="badge badge-danger"> -20% </span>
+                                </div>
+                            </figure>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}
+

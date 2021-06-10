@@ -20,7 +20,9 @@ namespace ShivFactory.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            RepoHomePage home = new RepoHomePage();
+            var index = home.GetHomePageData();
+            return View(index);
         }
 
         #region Get Index Data
@@ -30,12 +32,13 @@ namespace ShivFactory.Controllers
             {
                 RepoHomePage home = new RepoHomePage();
                 var index = home.GetHomePageData();
-                return Json(new ResultModel
-                {
-                    ResultFlag = true,
-                    Data = index,
-                    Message = "Data found successfully!!"
-                }, JsonRequestBehavior.AllowGet);
+                //return Json(new ResultModel
+                //{
+                //    ResultFlag = true,
+                //    Data = index,
+                //    Message = "Data found successfully!!"
+                //}, JsonRequestBehavior.AllowGet);
+                return PartialView("Partial_IndexProduct", index);
             }
             catch (Exception ex)
             {
