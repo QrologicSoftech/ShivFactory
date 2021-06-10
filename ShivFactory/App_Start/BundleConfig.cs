@@ -34,6 +34,27 @@ namespace ShivFactory
                                                                 "~/Content/toastr.css"));
 
 
+            // Bundling For WebSite Layout           
+            //On Top page
+           
+            bundles.Add(new StyleBundle("~/_WebSiteLayout/css").Include(
+               // "~/Content/Website/css/bootstrap.css",
+                "~/Content/Website/fonts/fontawesome/css/all.min.css",
+                "~/Content/Website/fonts/Pe-icon-7-stroke.css"
+                //"~/Content/Website/css/ui.css",
+                //"~/Content/Website/css/stylecode.css",
+                //"~/Content/Website/css/responsive.css"
+                ));
+
+            var CssCdnPath = "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+            bundles.Add(new ScriptBundle("~/_WebSiteLayout/css", CssCdnPath).Include("~/Scripts/jquery-{version}.js"
+               // "~/Content/Website/css/style.css"
+                ));
+            //the following creates bundles in debug mode;
+            //BundleTable.EnableOptimizations = true;
+
+
+
         }
     }
 }
