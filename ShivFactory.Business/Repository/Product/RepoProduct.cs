@@ -239,7 +239,7 @@ namespace ShivFactory.Business.Repository
         #region
         public int GetProductStock(int? productvarientID)
         {
-            var  stock = db.ProductVarients.Where(row => row.ProductVarientId == productvarientID).Select(row => row.Stock==null ?0:row.Stock);
+            var  stock = db.ProductVarients.Where(row => row.ProductVarientId == productvarientID).Select(row => row.Stock).FirstOrDefault();
             int v = Convert.ToInt32(stock);
             return v; 
         }

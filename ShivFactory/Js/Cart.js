@@ -68,11 +68,14 @@
         var data = {
             "id": id,
         }
-         ajax.doPostAjax(`/Home/DeleteCartItem`, data, function (result) {
+        ajax.doPostAjax(`/Home/DeleteCartItem`, data, function (result) {
+            console.log(result);
              if (result.ResultFlag == true) {
+                 
                  $(element).closest('tr').remove();
                  cart.CalculateCart();
-                 cart.BindCartCounts();
+                 cart.BindCartCounts();                 
+
             }
         });
     },

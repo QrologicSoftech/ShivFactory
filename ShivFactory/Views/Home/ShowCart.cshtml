@@ -50,9 +50,8 @@ else
                                 <td>
                                     <div class="price-wrap"> <var class="price"><i class="fas fa-rupee-sign"></i>@item.NetAmt</var> <small class="text-muted"> <i class="fas fa-rupee-sign"></i> <span id="SalePrice">@item.Price</span> </small> </div>
                                 </td>
-                                <td class="text-right d-none d-md-block">
-                                    @*/Home/DeleteCartItem*@
-                                    <button onclick="cart.DeleteCart(this,@item.ID);" class="btn btn-light"> <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                <td class="text-right d-none d-md-block">                                    
+                                    <a onclick="cart.DeleteCart(this,@item.ID);" class="btn btn-light"> <i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                         }
