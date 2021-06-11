@@ -9936,3 +9936,13 @@ ul {
     z-index: 1000;
     background: url('//i.stack.imgur.com/FhHRx.gif') no-repeat center center;
 }
+
+
+
+#top-header-menu .widget-header {
+    margin-right: 20px !important;
+    margin: 0px 20px;
+}
+#top-header-menu .widget-header .widget-view {
+        padding: 0px 0px;
+    }
