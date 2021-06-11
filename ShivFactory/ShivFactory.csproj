@@ -1008,7 +1008,7 @@
     <Content Include="Views\Home\WebMenuPartialview - Copy.cshtml" />
     <Content Include="Views\Customer\Checkout2.cshtml" />
     <Content Include="Views\Customer\Address.cshtml" />
-    <Content Include="Views\Home\_Index.cshtml" />
+    <Content Include="Views\Home\Partial_IndexProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

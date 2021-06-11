@@ -38,7 +38,7 @@ namespace ShivFactory.Controllers
                 //    Data = index,
                 //    Message = "Data found successfully!!"
                 //}, JsonRequestBehavior.AllowGet);
-                return PartialView("_Index", index);
+                return PartialView("Partial_IndexProduct", index);
             }
             catch (Exception ex)
             {

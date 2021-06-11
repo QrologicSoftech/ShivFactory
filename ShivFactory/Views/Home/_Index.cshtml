@@ -47,7 +47,6 @@
         <div class=" container">
             <header class="section-heading pt-3 pb-2">
                 <h3 class="section-title">@item.Title</h3>
-
             </header>
             <div class="card-deal px-1">
                 <div class="allitem-slider owl-carousel owl-button">
@@ -56,7 +55,7 @@
                         <div class="item">
                             <figure class="card-product-grid card-sm">
                                 <a href="/Home/ProductListing?subId=@subCat.SubCategoryId" class="img-wrap"> <img src="@subCat.ImagePath"> </a>                               
-                                <div class="text-center">
+                                <div class="text-wrap">
                                     <div class="price mt-1"><a href='#'>@subCat.SubCategoryName</a></div>
                                     <div class="price mt-1">@subCat.price<s class="old-rrice">@subCat.ListPrice</s></div>
                                     <div class="add-cart pt-1"></div>
