@@ -63,7 +63,9 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff; }
-
+body {
+    background-color: #f1f3f6 !important;
+}
 [tabindex="-1"]:focus {
   outline: 0 !important; }
 
@@ -5382,9 +5384,7 @@ a.close.disabled {
   .carousel-control-next:hover,
   .carousel-control-next:focus {
     color: #fff;
-    text-decoration: none;
-    outline: 0;
-    opacity: 0.9; }
+    text-decoration: none; }
 
 .carousel-control-prev {
     left: 0px;

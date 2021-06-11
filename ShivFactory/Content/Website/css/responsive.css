@@ -74,6 +74,17 @@ aside.col-md.col-6 {
       .destop-responsive{
         display: none;
       }
+	.banner-pt {
+		margin: 0 auto;
+		min-width: 100%;
+		max-width: 100%;
+		padding: 0px;
+	}
+	.carousel-control-prev, .carousel-control-next {
+		top: calc(18% - 0px);
+		width: 24px;
+		height: 50px;
+	}
       /*.ma5menu__toggle.top-toggle {
   display: block;
 }*/

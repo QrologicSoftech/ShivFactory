@@ -5410,7 +5410,7 @@ body {
     font-family: 'Nunito Sans', sans-serif;
     font-size: 14px;
     background: #fff;
-    padding-top: 60px;
+    padding-top: 43px;
 }
 
 a:hover {
@@ -9946,3 +9946,11 @@ ul {
 #top-header-menu .widget-header .widget-view {
         padding: 0px 0px;
     }
+
+
+.banner-pt {
+    margin: 0 auto;
+    min-width: 978px;
+    max-width: 1680px;
+    padding: 8px;
+}
