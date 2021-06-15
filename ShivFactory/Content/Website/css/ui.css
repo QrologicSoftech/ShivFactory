@@ -5414,7 +5414,7 @@ body {
 }
 
 a:hover {
-    color: #3098ff;
+    color: unset;
     text-decoration: underline;
 }
 
@@ -6786,14 +6786,15 @@ a[class*='card'] {
     margin-bottom: 0;
     line-height: 1.5;
 }
-
+#partialViewFilter {
+    position: relative;
+    background: #fff;
+    box-shadow: 0 1px 8px 0 rgb(0 0 0 / 6%);
+}
 .filter-group {
-    border-bottom: 1px solid #e5e7ea;
-    margin-top: 10px;
-    padding-bottom: 10px;
-    background: #FFF;
-    padding: 13px;
     font-size: 13px;
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
 }
 
     .filter-group .title {
@@ -8279,10 +8280,10 @@ s.allitem-slider .item .card-product-grid {
     width: calc(100% - 34px);
 }
 
-._2Q9A4t, ._3879cV {
+/*._2Q9A4t, ._3879cV {
     font-size: 14px;
     padding: 24px 32px;
-}
+}*/
 
 .profile-page ._3cEzE7 {
     padding-bottom: 24px;
