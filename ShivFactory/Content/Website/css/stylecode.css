@@ -12541,7 +12541,9 @@
 
 .CXW8mj {
     position: relative;
-    margin: 0 auto
+    margin: 0 auto;
+        height: 200px;
+    width: 200px;
 }
 
 ._396cs4 {
@@ -12581,7 +12583,8 @@
     overflow: hidden;
     position: relative;
     -webkit-filter: none !important;
-    filter: none !important
+    filter: none !important;
+        height: 280px;
 }
 
     ._1bEAQy ._2OHU_q, ._1bEAQy .kJjFO0 {
@@ -15526,7 +15529,10 @@
             ._3ZYowz ._2hKRMr ._3YgSsQ, ._3ZYowz ._2kgArB {
                 display: -webkit-flex;
                 display: -ms-flexbox;
-                display: flex
+                display: flex;
+            }
+            ._3YgSsQ{
+                width: 232px;
             }
 
         ._3ZYowz ._2kgArB {
@@ -21379,7 +21385,9 @@ li {
     display: flex;
     -webkit-flex-flow: row wrap;
     -ms-flex-flow: row wrap;
-    flex-flow: row wrap
+    flex-flow: row wrap;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .col, .row {

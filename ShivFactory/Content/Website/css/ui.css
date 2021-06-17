@@ -9688,6 +9688,7 @@ ul {
     border-color: #e5e7ea00;
     color: #fff;
     padding: 5px 35px;
+    font-weight:800;
 }
 
     .btn-login:hover {
@@ -10054,4 +10055,39 @@ ul {
     ._6WQwDJ ._3khuHA {
         opacity: .6;
         padding-top: 7px;
+    }
+
+._2GoDe3 .tab-content .fade:not(.show) {
+    opacity: 0;
+    display: none !important;
+}
+.active.show {
+    color: #2874f0;
+    cursor: default;
+    border-bottom: 2px solid #2874f0 !important;
+    font-weight: 500;
+}
+._10pg75 {
+    height: 200px;
+}
+
+
+._1xHGtK._373qXS:hover ._2B099V {
+    transform: translate3d(0px, -36px, 0px) !important;
+}
+
+._1WLic9 {
+    font-size: 24px !important;
+    line-height: 1.33;
+    padding-left: 32px !important;
+    text-transform: capitalize !important;
+    font-weight: 500;
+    padding-bottom: 32px;
+}
+._3yAaJf {
+    margin-top: 8px;
+    
+}
+    ._3yAaJf .KdL3Vb._1Zogjd ._1oHPGm {
+        width: calc(100% - 0px);
     }
