@@ -5951,7 +5951,8 @@ p:last-child {
     width: 100%;
     /*box-shadow: 0 0 10px #0003;*/
     background-color: #fff;
-    top: 0;
+    top: 0px;
+    left:0px;
 }
 
 .brand-wrap .logo, .navbar-brand .logo {
@@ -7751,9 +7752,10 @@ s.allitem-slider .item .card-product-grid {
     border-radius: 0;
     top: 111%;
     box-shadow: 0 0 15px #0003;
-    left: 0%;
-    transform: translate(0%, 0%);
+    left: 50%;
+    transform: translate(-50%, 0%);
 }
+
 
     .dropdown-menu a {
         font-size: 13px;
@@ -9821,7 +9823,7 @@ ul {
         z-index: 0;
     }
 
-.sticky {
+/*.sticky {
     position: fixed;
     top: 0;
     width: 100%;
@@ -9830,7 +9832,7 @@ ul {
     padding: 10px;
     margin: 0;
     box-shadow: 0 0 6px #0003;
-}
+}*/
 
 .arrow-up {
     position: absolute;
@@ -9926,9 +9928,9 @@ ul {
     width: 50%;
     text-align: center;
 }
-.margin-left-75 {
+/*.margin-left-75 {
     margin-left: -76px;
-}
+}*/
 .loader-spinner {
     position: fixed;
     left: 0;
@@ -10090,4 +10092,52 @@ ul {
 }
     ._3yAaJf .KdL3Vb._1Zogjd ._1oHPGm {
         width: calc(100% - 0px);
+    }
+
+
+.mobile-product.owl-carousel .owl-item img {
+    max-width: 100%;
+    max-height: 100%;
+    width: unset;
+}
+
+.ma5menu__container {
+    display: none;
+}
+.ma5menu__toggle.top-toggle {
+    display: none;
+}
+
+.invoice-page {
+    background-color: #fff;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.border-bottom-invoice h4 {
+    font-size: 14px;
+    font-weight: 600;
+    
+}
+.border-bottom-invoice {
+    border-bottom: 1px solid #333;
+    margin: 10px 0px 15px;
+}
+.vertical {
+    margin: 20px 0px;
+}
+.vertical-center {
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-style: dashed;
+    text-align: center;
+    width: 250px;
+}
+.vertical-center h6{
+    margin-bottom: 0px;
+    font-size: 12px;
+    font-weight: 500;
+}
+    .vertical-center h6 strong {
+        font-weight: 700;
     }

@@ -36,29 +36,237 @@
 </head>
 <body style="background-color: #ffffff;" class="ListScroll">
     <div id="loader" class="center"></div>
-    <header class="section-header">
-
-        <section class="header-main destop-responsive" data-toggle="affix">
+    <header class="section-header" id="myHeader">
+        <section class="header-main" data-toggle="affix">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-xl-2 col-lg-4 col-md-5 mobile-order-1 col-5">
-                        <a href="/Home/" class="brand-wrap"><img class="logo" src="/Content/AdminImg/logo.png"> </a>
+                    <div class="col-xl-2 col-lg-2 col-md-4 mobile-order-1 col-8">
+                        <div class="mobile-logo">
+                            <button class="ma5menu__toggle top-toggle modile-responsive" type="button">
+                                <span class="ma5menu__icon-toggle">
+                                    <i class="fa fa-bars" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <a href="/Home/" class="brand-wrap"><img class="logo" src="/Content/AdminImg/logo.png"> </a>
+                        </div>
+                        <div id="mySidenav" class="sidenav">
+                            <a href="javascript:void(0)" class="closebtn"><img class="logo" src="images/close.png" style="width: 30px;"></a>
+                            <a href="#" class="login-profile"><i class="fa fa-user" aria-hidden="true"></i>Login &amp; Signup</a>
+                            <div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/supercoin.png">
+                                                    <span>SuperCoin Zone</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/Flipkart-Plus-Zone.png">
+                                                    <span>Flipkart Plus Zone</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="line"></div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/All-Categories.png">
+                                                    <span>All Categories</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/More-on-Flipkart.jpg">
+                                                    <span>More on Flipkart</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="line"></div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/Choose-Language.png">
+                                                    <span>Choose Language</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="line"></div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/Offer-Zone.png">
+                                                    <span>Offer Zone</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/Sell-on-Flipkart.png">
+                                                    <span>Sell on Flipkart</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="line"></div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/My-Orders.png">
+                                                    <span>My Orders</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/My-Coupons.png">
+                                                    <span>My Coupons</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/My-Cart.png">
+                                                    <span>My Cart</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/My-Wishlist.png">
+                                                    <span>My Wishlist</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/My-Account.png">
+                                                    <span>My Account</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/My-Notifications.png">
+                                                    <span>My Notifications</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <img src="img/menu-img/My-Chats.png">
+                                                    <span>My Chats</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="line"></div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <span>Help Centre</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="menu-item">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                                <div class="menu-titel">
+                                                    <span>Legal</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-xl-5 col-lg-4 col-md-6 mobile-order-3">
+                    <div class="col-xl-5 col-lg-5 col-md-12 mobile-order-3 modile-res-search">
                         <form action="#" class="search-header">
                             <div class="input-group w-100">
-                                <input type="text" id="txtsearch-item" class="form-control" placeholder="Search for products, brands and more">
-                                <div class="input-group-append">
+                                <input type="text" id="txtsearch-item" class="form-control mobile-order-2" placeholder="Search for products, brands and more">
+                                <div class="input-group-append mobile-order-1">
                                     <button class="btn btn-primary" type="submit"> <i class="fa fa-search"></i> </button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <div class="col-xl-5 col-lg-4 col-md-7 order-2 col-7">
-                        <div class="widgets-wrap float-md-right d-flex align-items-center justify-content-end"  id="top-header-menu">
+                    <div class="col-xl-5 col-lg-5 col-md-8 mobile-order-2  col-4">
+                        <div class="widgets-wrap float-md-right d-flex align-items-center justify-content-end" id="top-header-menu">
                             @if (isUserLogIn)
                             {
-                                <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
+                                <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin mobile-order-2">
                                     <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
 
                                         <div class="nav-profile-text">
@@ -81,7 +289,7 @@
                             }
                             else
                             {
-                                <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
+                                <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin mobile-order-2">
                                     <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
                                         <div class="nav-profile-text">
                                             <input type="button" class="btn btn-login click-open" onclick="Account.CustomerLogIn('')" value="Login" />@*Login</input>*@
@@ -99,7 +307,7 @@
                                                 <a href="#" class="sing-up">Sign Up</a>
                                             </li>
                                         </ul>
-                                        <a class="dropdown-item" href="#" onclick="Account.CustomerLogIn('/Customer/CustomerProfile');"><i class="fa fa-user-circle" aria-hidden="true"></i>My Profile</a>
+                                        <a class="dropdown-item" href="#" onclick="Account.CustomerLogIn('/Customer/Profile');"><i class="fa fa-user-circle" aria-hidden="true"></i>My Profile</a>
                                         <a class="dropdown-item" href="#" onclick="Account.CustomerLogIn('/Customer/Orders');"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Orders</a>
                                         <a class="dropdown-item" href="#" onclick="Account.CustomerLogIn('/Home/Wishlist');"><i class="fa fa-heart" aria-hidden="true"></i>Wishlist</a>
                                         <a class="dropdown-item" href="#"><i class="fa fa-bell" aria-hidden="true"></i>Rewards</a>
@@ -107,7 +315,7 @@
                                     </div>
                                 </div>
                             }
-                            <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin">
+                            <div class="dropdown widget-header mr-1 mr-lg-0 profilelogin destop-responsive">
 
 
                                 <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="widget-view dropdown-toggle">
@@ -128,7 +336,7 @@
 
 
                             </div>
-                            <div class="widget-header mr-1 mr-lg-0">
+                            <div class="widget-header mr-1 mr-lg-0 mobile-order-1">
                                 <a href="/Home/Cart" class="widget-view">
                                     <div class="icon-area"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="notify">@cartCount</span></div>
                                     <small class="text d-none d-md-block d-lg-block"> Cart </small>
@@ -140,131 +348,6 @@
                         </div>
                     </div>
                 </div>
-                @*<div class="_2Sn47c">
-                        <div class="_2hriZF" tabindex="-1">
-                            <div class="_2QfC02">
-                                <button class="_2KpZ6l _2doB4z">✕</button>
-                                <div class="_2MlkI1">
-                                    <div class="_3wFoIb row">
-                                        <div class="_3oBhRa col col-2-5 _4H6HH5">
-                                            <span class="_36KMOx">
-                                                <span>Login</span>
-                                            </span>
-                                            <p class="_1-pxlW">
-                                                <span>Get access to your Orders, Wishlist and Recommendations</span>
-                                            </p>
-                                        </div>
-                                        <div class="_36HLxm col col-3-5">
-                                            <div>
-                                                <form autocomplete="on">
-                                                    <div class="IiD88i _351hSN">
-                                                        <input type="text" autocomplete="off" class="_2IX_2- VJZDxU enter-number" maxlength="10" value="">
-                                                        <span class="_36T8XR"></span>
-                                                        <label class="_1fqY3P">
-                                                            <span>Enter Email/Mobile number</span>
-                                                        </label>
-                                                        <span class="_1_wZ0r">+91</span>
-                                                        <a href="#" class="_2QKxJ- _2_DUc_" tabindex="-1" style="display: none;">
-                                                            <span>Change?</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="IVrJBP" style="display: none;">
-                                                        <span>OTP sent to Mobile</span>
-                                                        <a href="#" class="_2_DUc_ _2GmvEi" tabindex="-1">
-                                                            <span>Resend?</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="IiD88i _351hSN" style="display: none;">
-                                                        <input type="text" maxlength="6" autocomplete="on" class="_2IX_2- VJZDxU" value="">
-                                                        <span class="_36T8XR"></span>
-                                                        <label class="_1fqY3P">
-                                                            <span>Enter OTP</span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="IiD88i _351hSN" style="display: none;">
-                                                        <input type="password" autocomplete="off" class="_2IX_2- VJZDxU" value="">
-                                                        <span class="_36T8XR"></span>
-                                                        <label class="_1fqY3P">
-                                                            <span>Set Password</span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="IiD88i _351hSN">
-                                                        <input type="password" autocomplete="off" class="_2IX_2- _3mctLh VJZDxU" value="">
-                                                        <span class="_36T8XR"></span>
-                                                        <label class="_1fqY3P">
-                                                            <span>Enter Password</span>
-                                                        </label>
-                                                        <a class="_2QKxJ- _2_DUc_" tabindex="-1">
-                                                            <span>Forgot?</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="_1Ijv5h">
-                                                        By continuing, you agree to Shiv Factory
-                                                        <a class="_2ARnXM" target="_blank" href="#">Terms of Use</a> and
-                                                        <a class="_2ARnXM" target="_blank" href="#">Privacy Policy</a>.
-                                                    </div>
-                                                    <div class="_1D1L_j">
-                                                        <button class="_2KpZ6l _2HKlqd _3AWRsL" type="submit">
-                                                            <div class="_2YsvKq o8qAfl">
-                                                                <svg class="_2LJFE8" viewBox="25 25 50 50"><circle stroke="#fff" class="_2XJHnB" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"></circle></svg>
-                                                            </div>
-                                                            <span>Login</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="_1k3JO2">
-                                                        <div class="_2XlkPA">OR</div>
-                                                        <button class="_2KpZ6l _2HKlqd _3NgS1a">Request OTP</button>
-                                                    </div>
-                                                    <div class="_1En5li">
-                                                        <a class="_14Me7y" href="#">New to Shiv Factory? Create an account</a>
-                                                    </div>
-                                                </form>
-                                                <div class="_210lwq" style="display: none;">
-                                                    <div>Please enter the OTP sent to</div>
-                                                    <div>
-                                                        <span class="_2eL2SZ">9057300762</span>
-                                                        <a class="_14Me7y" href="#">Change</a>
-                                                    </div>
-                                                    <form>
-                                                        <div class="HSKgdN">
-                                                            <div class="IiD88i _2EZ3Zp">
-                                                                <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
-                                                                <label class="_1fqY3P"></label>
-                                                            </div>
-                                                            <div class="IiD88i _2EZ3Zp">
-                                                                <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
-                                                                <label class="_1fqY3P"></label>
-                                                            </div>
-                                                            <div class="IiD88i _2EZ3Zp">
-                                                                <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
-                                                                <label class="_1fqY3P"></label>
-                                                            </div>
-                                                            <div class="IiD88i _2EZ3Zp">
-                                                                <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
-                                                                <label class="_1fqY3P"></label>
-                                                            </div>
-                                                            <div class="IiD88i _2EZ3Zp">
-                                                                <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
-                                                                <label class="_1fqY3P"></label>
-                                                            </div>
-                                                            <div class="IiD88i _2EZ3Zp">
-                                                                <input type="text" maxlength="1" autocomplete="off" class="_2IX_2- _1WRfas" value="" required=""><span class="_36T8XR"></span>
-                                                                <label class="_1fqY3P"></label>
-                                                            </div>
-                                                        </div>
-                                                        <button class="_2KpZ6l _14EHzR _3dESVI" type="submit">Verify</button>
-                                                    </form>
-                                                    <div class="uhuX5T">
-                                                        Not received your code? <span class="_3Vt3BV">Resend code</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@
             </div>
         </section>
 
@@ -272,7 +355,7 @@
         <div class="desktop-container destop-responsive">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-xl-6 col-lg-6 col-md-4" style="margin: 0 auto;">
+                    <div class="col-xl-8 col-lg-8 col-md-4" style="margin: 0 auto;">
                         <div class="widgets-wrap align-items-center justify-content-end" id="navbarSupportedContent">
 
 
@@ -311,382 +394,25 @@
 
 
     </header>
-    <header class="section-header">
-        <section class="header-main modile-responsive" data-toggle="affix">
-            <div class="container">
-                <div class="clear">
-                    <div class="mobile-logo">
-                        <button class="ma5menu__toggle top-toggle" type="button">
-                            <span class="ma5menu__icon-toggle">
-                                <i class="fa fa-bars" aria-hidden="true"></i>
-                            </span>
-                        </button>
-                        <a href="index.html" class="brand-wrap"><img class="logo" src="~/Content/AdminImg/logo.png"> </a>
-                    </div>
-                    <div id="mySidenav" class="sidenav">
-                        <a href="javascript:void(0)" class="closebtn"><img class="logo" src="/Content/UploadedImages/Images//close.png" style="width: 30px;"></a>
-                        <a href="#" class="login-profile"><i class="fa fa-user" aria-hidden="true"></i>Login & Signup</a>
 
-                        <div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/supercoin.png">
-                                                <span>SuperCoin Zone</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/Flipkart-Plus-Zone.png">
-                                                <span>Flipkart Plus Zone</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="line"></div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/All-Categories.png">
-                                                <span>All Categories</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/More-on-Flipkart.jpg">
-                                                <span>More on Flipkart</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="line"></div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/Choose-Language.png">
-                                                <span>Choose Language</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="line"></div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/Offer-Zone.png">
-                                                <span>Offer Zone</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
 
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/Sell-on-Flipkart.png">
-                                                <span>Sell on Flipkart</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="line"></div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/My-Orders.png">
-                                                <span>My Orders</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/My-Coupons.png">
-                                                <span>My Coupons</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/My-Cart.png">
-                                                <span>My Cart</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/My-Wishlist.png">
-                                                <span>My Wishlist</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/My-Account.png">
-                                                <span>My Account</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/My-Notifications.png">
-                                                <span>My Notifications</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <img src="~/Content/Icons/My-Chats.png">
-                                                <span>My Chats</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="line"></div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <span>Help Centre</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="menu-item">
-                                <ul>
-                                    <li>
-                                        <a href="#">
-                                            <div class="menu-titel">
-                                                <span>Legal</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="widgets-wrap float-md-right d-flex align-items-center justify-content-end">
-                            <div class="widget-header mr-1 mr-lg-0">
-                                <a href="#" class="widget-view">
-                                    <div class="icon-area"> <i class="fa fa-shopping-cart" aria-hidden="true"></i></div>
-                                    <button type="button" class="btn mobile-btn">Login</button>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mobile-form" id="myHeader">
-                        <form action="#" class="search-header">
-                            <div class="input-group w-100">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="submit"> <i class="fa fa-search"></i> </button>
-                                </div>
-                                <input type="text" class="form-control" placeholder="Search for products, brands and more">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div id="container" style="overflow: initial;">
-                <div style="height:100%" data-reactroot="">
-                    <div>
-                        <div class="_1NRtrG" style="background-color:#2874f0">
-                            <button class="_1ELwxS">
-                                <img src="~/Content/Icons/close.svg">
-                            </button>
-                            <img class="_2y5YMp" src="~/Content/AdminImg/logo.png" />
-                            <div class="_31Iy_0"></div>
-                        </div>
-                        <div>
-                            <div style="background-color: rgb(255, 255, 255); margin: 0px;">
-                                <section class="o-qhvG">
-                                    <div class="_3AUfTb" style="padding-left: 0px;">Log in to get started</div>
-                                    <div class="_2hAI3w">Experience the all new Shiv Factory!</div>
-                                    <div class="_3xj6pt Lf3LAi _1F6bE0" style="margin-top: 2rem;">
-                                        <button>
-                                            <div style="display: flex; font-size: 14px; margin-left: 12px;">
-                                                +91
-                                                <img src="~/Content/Icons/arrow-d.svg" style="margin-left: 2px;">
-                                            </div>
-                                        </button>
-                                        <input type="number" autocomplete="on" class="_1i5zkb" value="" id="1">
-                                        <div class="_2_ryRS">
-                                            <div class="_2pjAov"></div>
-                                            <div class="qY1HRB" style="width: 69.75px;">
-                                                <label class="_1cbrzd" for="1" style="top: 21.5px;">Phone Number</label>
-                                            </div>
-                                            <div class="iaNJNK"></div>
-                                        </div>
-                                    </div>
-                                    <div class="_1WSrpT beSD4Q">
-                                        <p></p>
-                                    </div>
-                                    <div class="_RrmKw">
-                                        <span class="_3ZN6CT _P1NtA">Use Email-ID</span>
-                                    </div>
-                                </section>
-                                <div class="_2STfmj" style="display: none;">
-                                    <div class="_1eMDnO">
-                                        Please enter OTP we've sent you on +91-9057300762
-                                        <span class="_3ZN6CT _P1NtA _23Y84b">Edit</span>
-                                    </div>
-                                    <div class="_3-3NCn">
-                                        <div class="_1wiGwR">
-                                            <div>
-                                                <div class="JRwvMp">
-                                                    <input class="b62cxd" type="number" autocomplete="" value="">
-                                                    <label class="rK1hG6 undefined"></label>
-                                                    <span class="_1ahCAZ _3yGPnY"></span>
-                                                    <span class="_2y7Zq5"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="_1wiGwR">
-                                            <div>
-                                                <div class="JRwvMp">
-                                                    <input class="b62cxd" type="number" autocomplete="" value="">
-                                                    <label class="rK1hG6"></label>
-                                                    <span class="_1ahCAZ _3yGPnY"></span>
-                                                    <span class="_2y7Zq5"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="_1wiGwR">
-                                            <div>
-                                                <div class="JRwvMp">
-                                                    <input class="b62cxd" type="number" autocomplete="" value="">
-                                                    <label class="rK1hG6"></label>
-                                                    <span class="_1ahCAZ _3yGPnY"></span>
-                                                    <span class="_2y7Zq5"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="_1wiGwR">
-                                            <div>
-                                                <div class="JRwvMp">
-                                                    <input class="b62cxd" type="number" autocomplete="" value="">
-                                                    <label class="rK1hG6"></label>
-                                                    <span class="_1ahCAZ _3yGPnY"></span>
-                                                    <span class="_2y7Zq5"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="_1wiGwR">
-                                            <div>
-                                                <div class="JRwvMp">
-                                                    <input class="b62cxd" type="number" autocomplete="" value="">
-                                                    <label class="rK1hG6"></label>
-                                                    <span class="_1ahCAZ _3yGPnY"></span>
-                                                    <span class="_2y7Zq5"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="_1wiGwR">
-                                            <div>
-                                                <div class="JRwvMp">
-                                                    <input class="b62cxd" type="number" autocomplete="" value="">
-                                                    <label class="rK1hG6"></label>
-                                                    <span class="_1ahCAZ _3yGPnY"></span>
-                                                    <span class="_2y7Zq5"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="_2hxc_a">
-                                        <span class="_3ZN6CT _P1NtA">Use Password</span>
-                                        <span class="_3ZN6CT _P1NtA">Resend OTP</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="background-color: rgb(255, 255, 255); margin: 0px;">
-                                <div class="_1Y9H1r _16f6bp _3_1Dzz">
-                                    <button disabled="" class="_2iUM2T _3zCnq2 LuQr2v _2Pv-4h">Send OTP</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="_2-LWwB"></div>
-                    <div class="_2-LWwB"></div>
-                    <div class="_2-LWwB">
-                        <div class="_1QQpsu">
-                            <div class="mvW8vq">
-                                <div class="_1U-Jli"></div>
-                                <div class="FqIVIZ">Please rotate your device</div>
-                                <div class="_1wxP6t">We don't support landscape mode yet. Please go back to portrait mode for the best experience</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="_2-LWwB"></div>
-                    <div class="_2-LWwB"></div>
-                </div>
-            </div>
-        </section>
-    </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @RenderBody()
-
-
-
     <div id="Modal" class="modal">
         <div class="modal-header">
             <button class="modal-close" onclick="commonFunction.HideModel('#Modal');"><i class="fa fa-times" aria-hidden="true"></i></button>
@@ -924,7 +650,7 @@
                 minLength: 1
             });
         });
-       
+
     </script>
     <script src="~/Content/Website/js/bootstrap.bundle.min.js?ver=@version"></script>
     <link href="~/Content/Website/css/owl.theme-min.css?ver=@version" rel="stylesheet" />
@@ -1144,13 +870,13 @@
             });
 
             $('#mYI3GX-1 #slider-a-1').click(function () {
-                debugger;
+
                 $('#mYI3GX-1 ._37K3-p').css("transform", "translateX(-670px)");
                 $('#mYI3GX-1 ._35l9rN').removeClass("_1tKnHb");
                 $("#mYI3GX-1 ._31Mq1b").addClass("_1tKnHb");
             });
             $('#mYI3GX-1 #slider-a-2').click(function () {
-                debugger;
+
                 $('#mYI3GX-1 ._37K3-p').css("transform", "translateX(0px)");
                 $('#mYI3GX-1 ._35l9rN').addClass("_1tKnHb");
                 $("#mYI3GX-1 ._31Mq1b").removeClass("_1tKnHb");
@@ -1159,85 +885,85 @@
 
 
             $('#mYI3GX-2 #slider-a-1').click(function () {
-                debugger;
+
                 $('#mYI3GX-2 ._37K3-p').css("transform", "translateX(-422px)");
                 $('#mYI3GX-2 ._35l9rN').removeClass("_1tKnHb");
                 $("#mYI3GX-2 ._31Mq1b").addClass("_1tKnHb");
             });
             $('#mYI3GX-2 #slider-a-2').click(function () {
-                debugger;
+
                 $('#mYI3GX-2 ._37K3-p').css("transform", "translateX(0px)");
                 $('#mYI3GX-2 ._35l9rN').addClass("_1tKnHb");
                 $("#mYI3GX-2 ._31Mq1b").removeClass("_1tKnHb");
             });
 
             $('#mYI3GX-3 #slider-a-1').click(function () {
-                debugger;
+
                 $('#mYI3GX-3 ._37K3-p').css("transform", "translateX(-422px)");
                 $('#mYI3GX-3 ._35l9rN').removeClass("_1tKnHb");
                 $("#mYI3GX-3 ._31Mq1b").addClass("_1tKnHb");
             });
             $('#mYI3GX-3 #slider-a-2').click(function () {
-                debugger;
+
                 $('#mYI3GX-3 ._37K3-p').css("transform", "translateX(0px)");
                 $('#mYI3GX-3 ._35l9rN').addClass("_1tKnHb");
                 $("#mYI3GX-3 ._31Mq1b").removeClass("_1tKnHb");
             });
 
             $('#mYI3GX-4 #slider-a-1').click(function () {
-                debugger;
+
                 $('#mYI3GX-4 ._37K3-p').css("transform", "translateX(-422px)");
                 $('#mYI3GX-4 ._35l9rN').removeClass("_1tKnHb");
                 $("#mYI3GX-4 ._31Mq1b").addClass("_1tKnHb");
             });
             $('#mYI3GX-4 #slider-a-2').click(function () {
-                debugger;
+
                 $('#mYI3GX-4 ._37K3-p').css("transform", "translateX(0px)");
                 $('#mYI3GX-4 ._35l9rN').addClass("_1tKnHb");
                 $("#mYI3GX-4 ._31Mq1b").removeClass("_1tKnHb");
             });
 
             $('#mYI3GX-5 #slider-a-1').click(function () {
-                debugger;
+
                 $('#mYI3GX-5 ._37K3-p').css("transform", "translateX(-422px)");
                 $('#mYI3GX-5 ._35l9rN').removeClass("_1tKnHb");
                 $("#mYI3GX-5 ._31Mq1b").addClass("_1tKnHb");
             });
             $('#mYI3GX-5 #slider-a-2').click(function () {
-                debugger;
+
                 $('#mYI3GX-5 ._37K3-p').css("transform", "translateX(0px)");
                 $('#mYI3GX-5 ._35l9rN').addClass("_1tKnHb");
                 $("#mYI3GX-5 ._31Mq1b").removeClass("_1tKnHb");
             });
 
             $('#mYI3GX-6 #slider-a-1').click(function () {
-                debugger;
+
                 $('#mYI3GX-6 ._37K3-p').css("transform", "translateX(-422px)");
                 $('#mYI3GX-6 ._35l9rN').removeClass("_1tKnHb");
                 $("#mYI3GX-6 ._31Mq1b").addClass("_1tKnHb");
             });
             $('#mYI3GX-6 #slider-a-2').click(function () {
-                debugger;
+
                 $('#mYI3GX-6 ._37K3-p').css("transform", "translateX(0px)");
                 $('#mYI3GX-6 ._35l9rN').addClass("_1tKnHb");
                 $("#mYI3GX-6 ._31Mq1b").removeClass("_1tKnHb");
-            }); 
+            });
 
             $('#mYI3GX-7 #slider-a-1').click(function () {
-                debugger;
+
                 $('#mYI3GX-7 ._37K3-p').css("transform", "translateX(-422px)");
                 $('#mYI3GX-7 ._35l9rN').removeClass("_1tKnHb");
                 $("#mYI3GX-7 ._31Mq1b").addClass("_1tKnHb");
             });
             $('#mYI3GX-7 #slider-a-2').click(function () {
-                debugger;
+
                 $('#mYI3GX-7 ._37K3-p').css("transform", "translateX(0px)");
                 $('#mYI3GX-7 ._35l9rN').addClass("_1tKnHb");
                 $("#mYI3GX-7 ._31Mq1b").removeClass("_1tKnHb");
             });
 
             //$('#LCHFXQWAGHRZAG9K-1 ._1xHGtK').hover(function () {
-            //    debugger;
+            //
             //    $('#LCHFXQWAGHRZAG9K-1 ._2B099V').css("transform", "translate3d(0px, -36px, 0px)");
             //    $('#LCHFXQWAGHRZAG9K-1 .e30oNt').toggleClass("_1tKnHb");
             //    $("#LCHFXQWAGHRZAG9K-1 .e30oNt").removeClass("_1tKnHb");
@@ -1247,9 +973,103 @@
 
         });
         function Slider() {
-            
+
         }
     </script>
+    <script type="text/javascript">
+
+        (function ($) {
+            var $window = $(window),
+                $html = $('html ._37K3-p');
+
+            $window.resize(function resize() {
+                if ($window.width() < 767) {
+                    return $html.addClass('slider owl-carousel mobile-product');
+                }
+
+                $html.removeClass('slider owl-carousel mobile-product');
+            }).trigger('resize');
+        })(jQuery);
+    </script>
+    <script>
+        $(".mYI3GX-slider .owl-carousel").owlCarousel({
+            items: 10,
+            loop: true,
+            margin: 10,
+            lazyLoad: true,
+            merge: true,
+            video: true,
+            responsive: {
+                480: {
+                    items: 8
+                },
+
+                678: {
+                    items: 7
+                },
+
+                960: {
+                    items: 5
+                }
+            }
+        });
+
+    </script>
+    <script>
+        $(".mYI3GX-slider-product .owl-carousel").owlCarousel({
+            items: 9,
+            loop: true,
+            margin: 10,
+            lazyLoad: true,
+            merge: true,
+            video: true,
+            responsive: {
+                320: {
+                    items: 8
+                },
+                480: {
+                    items: 8
+                },
+
+                678: {
+                    items: 8
+                },
+
+                960: {
+                    items: 5
+                }
+            }
+        });
+
+    </script>
+    <script>
+        $(".mYI3GX-slider-product-1 .owl-carousel").owlCarousel({
+            items: 16,
+            loop: true,
+            margin: 10,
+            lazyLoad: true,
+            merge: true,
+            video: true,
+            responsive: {
+                320: {
+                    items: 9
+                },
+                480: {
+                    items: 8
+                },
+
+                678: {
+                    items: 14
+                },
+
+                960: {
+                    items: 5
+                }
+            }
+        });
+
+    </script>
+
 
 </body>
 </html>

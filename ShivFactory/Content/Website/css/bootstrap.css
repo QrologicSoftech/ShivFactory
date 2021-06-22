@@ -3098,7 +3098,7 @@ input[type="button"].btn-block {
   .input-group-prepend .btn,
   .input-group-append .btn {
     position: relative;
-    z-index: 2; }
+    z-index: -1; }
     .input-group-prepend .btn:focus,
     .input-group-append .btn:focus {
       z-index: 3; }
@@ -5798,9 +5798,9 @@ button.bg-gray:focus {
 
   .d-md-inline-block {
     display: inline-block !important; }
-
+/*
   .d-md-block {
-    display: block !important; }
+    display: block !important; }*/
 
   .d-md-table {
     display: table !important; }
