@@ -273,6 +273,26 @@ body{
 	.ma5menu__toggle.top-toggle {
 		display: inline-block;
 	}
+	._1YokD2._3Mn1Gg.mobile-size {
+		display: none;
+	}
+	.mobile-size{
+		display:none !important;
+	}
+	.destop-size {
+		display: block !important;
+	}
+	._6t1WkM {
+		min-width: 100% !important;
+		max-width: 100% !important;
+		margin-top: 107px !important;
+		padding: 0px !important;
+	}
+	.W_R1IA {
+		background: #fff;
+		padding: 0px 16px 0 !important;
+		min-height: 48px !important;
+	}
        }
 @media all and (max-width: 767px) {
   .nav-home-aside {

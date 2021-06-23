@@ -10141,3 +10141,36 @@ ul {
     .vertical-center h6 strong {
         font-weight: 700;
     }
+
+._5THWM1._2rbIyg-1 {
+    display: block !important;
+    position: fixed;
+    left: 0px;
+    z-index: 9;
+    bottom: 0px;
+    background-color: #fff;
+    width: 100%;
+    padding-bottom: 24px;
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+}
+    ._5THWM1._2rbIyg-1 ._2i7N3j {
+        display: block !important;
+        color: rgba(135,135,135,1.00);
+        font-size: 14px;
+        margin: 0px 0px;
+        border-bottom: 1px solid #ddd !important;
+        padding: 8px 12px !important;
+    }
+.W_R1IA ._5THWM1._2rbIyg-1 ._10UF8M {
+    padding: 8px 0 4px;
+    margin: 0 10px;
+    cursor: pointer;
+    display: block;
+}
+
+
+
+
+
