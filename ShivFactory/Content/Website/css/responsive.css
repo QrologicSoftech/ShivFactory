@@ -67,8 +67,10 @@ aside.col-md.col-6 {
     .card-deal .col-heading {
       min-width: 280px; }
 
-  .slider-home-banner {
-    margin-bottom: 20px; }
+	.slider-home-banner {
+		margin-bottom: 10px;
+		margin-top: 116px;
+	}
     .slider-home-banner .carousel-item img {
       max-height: 350px; }
       .destop-responsive{
@@ -81,7 +83,7 @@ aside.col-md.col-6 {
 		padding: 0px;
 	}
 	.carousel-control-prev, .carousel-control-next {
-		top: calc(18% - 0px);
+		top: calc(40% - 0px);
 		width: 24px;
 		height: 50px;
 	}
@@ -317,9 +319,17 @@ body{
 }
   .list-inline-item {
     margin-bottom: 10px; }
+	.carousel-control-prev, .carousel-control-next {
+		top: calc(38% - 0px);
+		width: 24px;
+		height: 50px;
+	}
 
   .slider-home-banner {
-    margin-bottom: 20px; }
+    margin-bottom: 0px; }
+	._1bEAQy {
+		height: 233px;
+	}
     .slider-home-banner .carousel-item img {
       max-height: 250px; }
 
@@ -491,10 +501,14 @@ body{
 	@media all and (max-width: 479px) {
 		.slider-home-banner {
 			margin-bottom: 4px;
+			margin-top: 112px;
 		}
 		._1bEAQy {
 			height: 170px;
-			margin-top: 112px;
+			/*margin-top: 112px;*/
+		}
+		.carousel-control-prev, .carousel-control-next {
+			top: calc(35% - 0px);
 		}
 	.slider-home-banner .carousel-item img {
 	height:170px;
