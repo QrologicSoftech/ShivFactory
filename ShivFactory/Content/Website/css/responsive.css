@@ -495,6 +495,17 @@ body{
 	.mobile-sell {
 		padding: 0px 0px 0px 0px !important;
 	}
+	/*form autocomplete textbox */
+	.ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all {
+		position: absolute;
+		top: 66px;
+		left: 7px;
+		display: block;
+		z-index: 9 !important;
+		margin-top: 52px;
+		margin-left: 0px;
+		width: 275.812px !important;
+	}
 }
 	
 	

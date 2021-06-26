@@ -17,6 +17,15 @@
     var isUserLogIn = util.IsUserLogIn();
 } 
 
+<style>
+    /*form autocomplete textbox */
+    .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all {        
+        z-index: 9 !important;
+        margin-top: 52px;
+        margin-left: 271px;
+    }
+
+</style>
 <script src="~/Content/Website/js/jquery-2.0.0.min.js?ver=@version"></script>
 
 <link href="~/Content/Website/css/bootstrap.css?ver=@version" rel="stylesheet" />
@@ -368,49 +377,7 @@
             </div>
         </div>
 
-
-
-        @*<div class="desktop-container destop-responsive">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-xl-6 col-lg-6 col-md-4" style="margin: 0 auto;">
-                            <div class="widgets-wrap align-items-center justify-content-end" id="navbarSupportedContent">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>*@
-        @*<nav class="navbar navbar-expand-md navbar-dark bg-dark d-none d-lg-block shadow-sm">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                    </div>
-                </div>
-            </nav>*@
-
-
-
     </header>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @RenderBody()
     <div id="Modal" class="modal">
@@ -423,19 +390,7 @@
 
 
 
-    @*<div class="container footer-text1 mb-5 mt-3">
-            <h5>jaipurdecor.com: Shop Anytime, Anywhere!</h5>
-
-            <p>
-                Online shopping is taking over the market faster than one can comprehend. That being said, no one else knows or understands the retail market better than Shoppers Stop. Being one of India’s finest retailers for more than 20 years, we are at the forefront when it comes to retail development. We are expanding our reach over retail stores and the digital market with one of the best online shopping sites. Shopping online can sometimes be tedious and difficult, however with an attractive design, our online fashion destination is easy to navigate making your experience delightful. One can browse through exclusive offers and bag some of the best deals available for themselves. Best deals on top categories, free shipping* and options like cash on delivery to provide you with a hassle free online experience to ‘Shop Anytime Anywhere’.
-            </p>
-            <p>
-                jaipurdecor.com is a one stop destination for your family's fashion needs. We give you the opportunity to give your wardrobe a makeover with the latest collections from our top brands. jaipurdecor.com aims at ensuring nothing but the best for your closet. Find everything in one place, whether it is women’s ethnic wear from W & Biba, or salwar & churidar sets from exclusive brands like Haute Curry & Global Desi. The most desired dresses or the latest styles in tops and tees is no more a challenge to find. Choose from an enviable collection of women’s watches to make a style impact. To enhance your style further, you can choose from our massive collection of handbags that can directly make way through your go-to collection for all occasions.
-            </p>
-            <p>
-                Mothers can find everything for their little ones right from birth to teenage. The wide range of apparels, toys, games & other accessories for your kids ensures you have an unmatched experience while shopping for your kids. For the homemakers who want to redesign their abode, we offer easy and attractive home décor solutions. Turn your living room or bedroom into a lively space with upholstery from brands like Tangerine, Ivy, Portico, etc. Choose your kitchen appliances from trusted companies like Bajaj or Phillips at the click of a button. Reinventing homes was never easier.
-            </p>
-        </div>*@
+    
 
     <div style="display: none;">
 
@@ -595,7 +550,6 @@
 
             Admin.BindMenuOfCategory('#navbarSupportedContent');
 
-
         });
     </script>
 
@@ -611,7 +565,7 @@
                         dataType: "json",
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
-                        success: function (res) {
+                        success: function (res) {                            
                             if (res.ResultFlag) {
                                 response($.map(res.Data, function (item) {
                                     //return { label: item.Value, value: item.Id };
@@ -868,106 +822,6 @@
             $('.IiD88i input').keyup(function () {
                 ReadyTextbox(this);
             });
-
-            //$('#mYI3GX-1 #slider-a-1').click(function () {
-
-            //    $('#mYI3GX-1 ._37K3-p').css("transform", "translateX(-670px)");
-            //    $('#mYI3GX-1 ._35l9rN').removeClass("_1tKnHb");
-            //    $("#mYI3GX-1 ._31Mq1b").addClass("_1tKnHb");
-            //});
-            //$('#mYI3GX-1 #slider-a-2').click(function () {
-
-            //    $('#mYI3GX-1 ._37K3-p').css("transform", "translateX(0px)");
-            //    $('#mYI3GX-1 ._35l9rN').addClass("_1tKnHb");
-            //    $("#mYI3GX-1 ._31Mq1b").removeClass("_1tKnHb");
-            //});
-
-
-
-            //$('#mYI3GX-2 #slider-a-1').click(function () {
-
-            //    $('#mYI3GX-2 ._37K3-p').css("transform", "translateX(-422px)");
-            //    $('#mYI3GX-2 ._35l9rN').removeClass("_1tKnHb");
-            //    $("#mYI3GX-2 ._31Mq1b").addClass("_1tKnHb");
-            //});
-            //$('#mYI3GX-2 #slider-a-2').click(function () {
-
-            //    $('#mYI3GX-2 ._37K3-p').css("transform", "translateX(0px)");
-            //    $('#mYI3GX-2 ._35l9rN').addClass("_1tKnHb");
-            //    $("#mYI3GX-2 ._31Mq1b").removeClass("_1tKnHb");
-            //});
-
-            //$('#mYI3GX-3 #slider-a-1').click(function () {
-
-            //    $('#mYI3GX-3 ._37K3-p').css("transform", "translateX(-422px)");
-            //    $('#mYI3GX-3 ._35l9rN').removeClass("_1tKnHb");
-            //    $("#mYI3GX-3 ._31Mq1b").addClass("_1tKnHb");
-            //});
-            //$('#mYI3GX-3 #slider-a-2').click(function () {
-
-            //    $('#mYI3GX-3 ._37K3-p').css("transform", "translateX(0px)");
-            //    $('#mYI3GX-3 ._35l9rN').addClass("_1tKnHb");
-            //    $("#mYI3GX-3 ._31Mq1b").removeClass("_1tKnHb");
-            //});
-
-            //$('#mYI3GX-4 #slider-a-1').click(function () {
-
-            //    $('#mYI3GX-4 ._37K3-p').css("transform", "translateX(-422px)");
-            //    $('#mYI3GX-4 ._35l9rN').removeClass("_1tKnHb");
-            //    $("#mYI3GX-4 ._31Mq1b").addClass("_1tKnHb");
-            //});
-            //$('#mYI3GX-4 #slider-a-2').click(function () {
-
-            //    $('#mYI3GX-4 ._37K3-p').css("transform", "translateX(0px)");
-            //    $('#mYI3GX-4 ._35l9rN').addClass("_1tKnHb");
-            //    $("#mYI3GX-4 ._31Mq1b").removeClass("_1tKnHb");
-            //});
-
-            //$('#mYI3GX-5 #slider-a-1').click(function () {
-
-            //    $('#mYI3GX-5 ._37K3-p').css("transform", "translateX(-422px)");
-            //    $('#mYI3GX-5 ._35l9rN').removeClass("_1tKnHb");
-            //    $("#mYI3GX-5 ._31Mq1b").addClass("_1tKnHb");
-            //});
-            //$('#mYI3GX-5 #slider-a-2').click(function () {
-
-            //    $('#mYI3GX-5 ._37K3-p').css("transform", "translateX(0px)");
-            //    $('#mYI3GX-5 ._35l9rN').addClass("_1tKnHb");
-            //    $("#mYI3GX-5 ._31Mq1b").removeClass("_1tKnHb");
-            //});
-
-            //$('#mYI3GX-6 #slider-a-1').click(function () {
-
-            //    $('#mYI3GX-6 ._37K3-p').css("transform", "translateX(-422px)");
-            //    $('#mYI3GX-6 ._35l9rN').removeClass("_1tKnHb");
-            //    $("#mYI3GX-6 ._31Mq1b").addClass("_1tKnHb");
-            //});
-            //$('#mYI3GX-6 #slider-a-2').click(function () {
-
-            //    $('#mYI3GX-6 ._37K3-p').css("transform", "translateX(0px)");
-            //    $('#mYI3GX-6 ._35l9rN').addClass("_1tKnHb");
-            //    $("#mYI3GX-6 ._31Mq1b").removeClass("_1tKnHb");
-            //});
-
-            //$('#mYI3GX-7 #slider-a-1').click(function () {
-
-            //    $('#mYI3GX-7 ._37K3-p').css("transform", "translateX(-422px)");
-            //    $('#mYI3GX-7 ._35l9rN').removeClass("_1tKnHb");
-            //    $("#mYI3GX-7 ._31Mq1b").addClass("_1tKnHb");
-            //});
-            //$('#mYI3GX-7 #slider-a-2').click(function () {
-
-            //    $('#mYI3GX-7 ._37K3-p').css("transform", "translateX(0px)");
-            //    $('#mYI3GX-7 ._35l9rN').addClass("_1tKnHb");
-            //    $("#mYI3GX-7 ._31Mq1b").removeClass("_1tKnHb");
-            //});
-
-            //$('#LCHFXQWAGHRZAG9K-1 ._1xHGtK').hover(function () {
-            //
-            //    $('#LCHFXQWAGHRZAG9K-1 ._2B099V').css("transform", "translate3d(0px, -36px, 0px)");
-            //    $('#LCHFXQWAGHRZAG9K-1 .e30oNt').toggleClass("_1tKnHb");
-            //    $("#LCHFXQWAGHRZAG9K-1 .e30oNt").removeClass("_1tKnHb");
-            //});
 
 
 
