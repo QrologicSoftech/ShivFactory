@@ -1,13 +1,13 @@
 ﻿@using System.Configuration;
 @using ShivFactory.Business.Repository;
 @using ShivFactory.Business.Models.Other;
-@using ShivFactory.Business.Model.Common
+@using ShivFactory.Business.Model.Common;
 @{
     Layout = null;
     var version = ConfigurationManager.AppSettings["jsversion"].ToString();
     RepoCookie repoCookie = new RepoCookie();
     var UserName = repoCookie.GetStringCookiesValue(CookieName.FirstName) + " " + repoCookie.GetStringCookiesValue(CookieName.LastName);
-    if (UserName.Trim().Length == 0) { UserName = "Hello              "; }
+    if (UserName.Trim().Length == 0) { UserName = "Hello"; }
     var role = repoCookie.GetStringCookiesValue(CookieName.Role);
     Utility util = new Utility();
     RepoUser repoUser = new RepoUser();
@@ -15,33 +15,32 @@
     RepoCart cart = new RepoCart();
     var cartCount = cart.GetUserCartCount();
     var isUserLogIn = util.IsUserLogIn();
-} 
+}
 
 <style>
     /*form autocomplete textbox */
-    .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all {        
+    .ui-autocomplete.ui-menu.ui-widget.ui-widget-content.ui-corner-all {
         z-index: 9 !important;
         margin-top: 52px;
         margin-left: 271px;
     }
-
 </style>
 <script src="~/Content/Website/js/jquery-2.0.0.min.js?ver=@version"></script>
 
 <link href="~/Content/Website/css/bootstrap.css?ver=@version" rel="stylesheet" />
-        @*<link href="~/Content/Website/fonts/fontawesome/css/all.min.css?ver=@version" rel="stylesheet" />
-        <link href="~/Content/Website/fonts/Pe-icon-7-stroke.css?ver=@version" rel="stylesheet" />*@
-    <link href="~/Content/Website/css/ui.css?ver=@version" rel="stylesheet" />
-    <link href="~/Content/Website/css/stylecode.css?ver=@version" rel="stylesheet" />
-    <link href="~/Content/Website/css/responsive.css?ver=@version" rel="stylesheet" />
-    <link href="~/Content/Website/css/listing.css" rel="stylesheet" />
-    @*<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">*@
-    <link href="~/Content/Website/css/style.css?ver=@version" rel="stylesheet" />
+@*<link href="~/Content/Website/fonts/fontawesome/css/all.min.css?ver=@version" rel="stylesheet" />
+    <link href="~/Content/Website/fonts/Pe-icon-7-stroke.css?ver=@version" rel="stylesheet" />*@
+<link href="~/Content/Website/css/ui.css?ver=@version" rel="stylesheet" />
+<link href="~/Content/Website/css/stylecode.css?ver=@version" rel="stylesheet" />
+<link href="~/Content/Website/css/responsive.css?ver=@version" rel="stylesheet" />
+<link href="~/Content/Website/css/listing.css" rel="stylesheet" />
+@*<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">*@
+<link href="~/Content/Website/css/style.css?ver=@version" rel="stylesheet" />
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ShivFactory</title>
-    @Scripts.Render("~/_WebSiteLayout/css");
+    @Scripts.Render("~/_WebSiteLayout/css")
 </head>
 <body style="background-color: #ffffff;" class="ListScroll">
     <div id="loader" class="center"></div>
@@ -59,7 +58,7 @@
                             <a href="/Home/" class="brand-wrap"><img class="logo" src="/Content/AdminImg/logo.png"> </a>
                         </div>
                         <div id="mySidenav" class="sidenav">
-                            <a href="javascript:void(0)" class="closebtn"><img class="logo" src="images/close.png" style="width: 30px;"></a>
+                            <a href="javascript:void(0)" class="closebtn"><img class="logo" src="~/Content/UploadedImages/Images/close.jpg" style="width: 30px;"></a>
                             <a href="#" class="login-profile"><i class="fa fa-user" aria-hidden="true"></i>Login &amp; Signup</a>
                             <div>
                                 <div class="menu-item">
@@ -364,13 +363,8 @@
         <div class="desktop-container destop-responsive">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-xl-8 col-lg-8 col-md-4" style="margin: 0 auto;">
+                    <div class="col-xl-8 col-lg-8 col-md-4" style="margin: 5px auto 0;min-height: 37px;">
                         <div class="widgets-wrap align-items-center justify-content-end" id="navbarSupportedContent">
-
-
-
-
-
                         </div>
                     </div>
                 </div>
@@ -390,7 +384,7 @@
 
 
 
-    
+
 
     <div style="display: none;">
 
@@ -565,7 +559,7 @@
                         dataType: "json",
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
-                        success: function (res) {                            
+                        success: function (res) {
                             if (res.ResultFlag) {
                                 response($.map(res.Data, function (item) {
                                     //return { label: item.Value, value: item.Id };

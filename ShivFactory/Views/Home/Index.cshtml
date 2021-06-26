@@ -42,7 +42,6 @@
                     </div>
                 </a>
             </div>
-
         </div>
         <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carousel1_indicator" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
     </div>
@@ -55,11 +54,11 @@
         <div class="_1YokD2 _2GoDe3">
             <div class="_1AtVbE" style="flex-grow: 1; overflow: auto; padding: 0px 0px 10px;">
                 <div class="_3E8aIl KdL3Vb _1Zogjd">
-                    <div class="_2JQgSY" style="        background-image: url('@item.SubcategoryImages.LastOrDefault()');background-position: center bottom;   background-size: 170px 106px;">
+                    <div class="_2JQgSY" style="background-image: url('@item.SubcategoryImages.LastOrDefault()');background-position: center bottom;background-size: 170px 106px;">
                         <div class="_2CIhCB">
                             <h2 class="_2cAig-" style="max-height: 191px; overflow: scroll;">@item.Title</h2>
                             <div class="_30kJiF">
-                                <a class="_2KpZ6l _3dESVI" href="/Home/ProductListing?Id=@item.Id">VIEW ALL</a>
+                                <a class="_2KpZ6l _3dESVI" title="@item.Title" href="/Home/ProductListing?Id=@item.Id">VIEW ALL</a>
                             </div>
                         </div>
                     </div>
@@ -73,7 +72,7 @@
                                         {
                                             <div class="_3YgSsQ">
                                                 <div class="">
-                                                    <a title="From ₹@subCat.price" class="_6WQwDJ T88g6k" href="/Home/ProductListing?subId=@subCat.SubCategoryId">
+                                                    <a title="From @subCat.price" class="_6WQwDJ T88g6k" href="/Home/ProductListing?subId=@subCat.SubCategoryId">
                                                         <div class="_10pg75">
                                                             <div class="CXW8mj">
                                                                 <img class="_396cs4 _3exPp9" alt="Top @subCat.SubCategoryName (From @subCat.price)" src="@subCat.ImagePath">
