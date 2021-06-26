@@ -948,9 +948,11 @@
                             <div class="_1MR4o5 mobile-size">
                                 <div class="_3GIHBu">
                                     <a class="_2whKao" href="/">Home</a>
+                                    <svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="_39X-Og"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" class="DpXnhQ"></path></svg>
                                 </div>
                                 <div class="_3GIHBu">
                                     <a class="_2whKao" href="/Home/ProductListing">View All</a>
+                                    <svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="_39X-Og"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" class="DpXnhQ"></path></svg>
                                 </div>
                                 @{int i = 1;}
                                 @foreach (var bread in Model)
@@ -959,9 +961,10 @@
                                     if (i == 1) { url = "/Home/ProductListing?id=" + bread.Id; }
                                     else if (i == 2) { url = "/Home/ProductListing?subId=" + bread.Id; }
                                     else if (i == 3) { url = "/Home/ProductListing?minId=" + bread.Id; }
-                                    
+
                                     <div class="_3GIHBu">
                                         <a class="_2whKao" href="@url">@bread.Value</a>
+                                        <svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="_39X-Og"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" class="DpXnhQ"></path></svg>
                                     </div>
                                     i++;
                                 }
