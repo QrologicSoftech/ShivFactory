@@ -68,13 +68,13 @@ namespace ShivFactory.Controllers
         {
             if (!string.IsNullOrEmpty(returnUrl) && (returnUrl.Equals("/Account/VendorLogin") || returnUrl.ToUpper().Contains("/VENDOR")))
             {
-                //return RedirectToAction("VendorLogin","Account");
-                return View("VendorLogin", returnUrl);
+                return RedirectToAction("VendorLogin","Account", returnUrl);
+                //return View("VendorLogin", returnUrl);
             }
             if (!string.IsNullOrEmpty(returnUrl) && (returnUrl.Equals("/Account/AdminLogin") || returnUrl.ToUpper().Contains("/ADMIN")))
             {
-                //return RedirectToAction("VendorLogin","Account");
-                return View("VendorLogin", returnUrl);
+                return RedirectToAction("VendorLogin","Account", returnUrl);
+                //return View("VendorLogin", returnUrl);
             }
             ViewBag.ReturnUrl = returnUrl;
             return View();

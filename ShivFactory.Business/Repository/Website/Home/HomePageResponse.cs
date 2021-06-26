@@ -11,7 +11,7 @@ namespace ShivFactory.Business.Repository.Website
         public List<HomeCategoryResponse> Products { get; set; }
         public List<Images> Banners { get; set; }
 
-        public CartModel cartModel { get; set;  }
+        public CartModel cartModel { get; set; }
     }
 
     public class HomeCategoryResponse
@@ -19,7 +19,8 @@ namespace ShivFactory.Business.Repository.Website
         public string Title { get; set; }
         public int Id { get; set; }
         public List<Images> SubCategory { get; set; }
-        
+        public List<string> SubcategoryImages { get; set; }
+
     }
     public class Images
     {

@@ -4,38 +4,122 @@
     Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
 }
 
-@Html.Partial("_Index", Model);
-@*<div id="Product-slider"></div>*@
+@*@Html.Partial("_Index", Model);*@
+<script type="text/javascript">
 
-@*<section class="padding-bottom-sm bg-white  mb-3 pb-3 pt-0">
-        <div class=" container">
-            <header class="section-heading pt-3 pb-2">
-                <h3 class="section-title text-center">Bedsheet </h3>
-            </header>
-            <div class="card-deal px-1">
-                <div class="allitem-slider owl-carousel owl-button">
+    function sliderNext(element) {
+        var maindiv = $(element).parent('div').parent('div');
+        maindiv.find('._37K3-p').css("transform", "translateX(-670px)");
+        maindiv.find('._35l9rN').removeClass("_1tKnHb");
+        maindiv.find('._31Mq1b').addClass("_1tKnHb");
+    };
+    function sliderBack(element) {
+        var maindiv = $(element).parent('div').parent('div');
+        maindiv.find('._37K3-p').css("transform", "translateX(0px)");
+        maindiv.find('._35l9rN').addClass("_1tKnHb");
+        maindiv.find('._31Mq1b').removeClass("_1tKnHb");
+    };
 
+</script>
 
-                    <div class="item">
-                        <figure class="card-product-grid card-sm">
-                            <a href="#" class="img-wrap"> <img src="images/items/9.jpg"> </a>
-                            <div class="text-wrap">
-                                <a href="#" class="title">Ferguson Bed With Storage</a>
-                                <div class="price mt-1"><i class="fas fa-rupee-sign"></i> 179.00 <s class="old-rrice"><i class="fas fa-rupee-sign"></i> 200</s></div>
-                                <div class="add-cart pt-1"></div>
-                                <span class="badge badge-danger"> -20% </span>
-                            </div>
-                        </figure>
+<div class="banner-pt">
+    <div id="carousel1_indicator" class="slider-home-banner carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+        </ol>
+        <div class="carousel-inner">
+            <div class="_1ve3GO">
+                <a class="_2a3TMW" target="" href="#">
+                    <div class="_1bEAQy" style="width:100%;">
+                        @{
+                            int i = 0;
+                            foreach (var banner in Model.Banners)
+                            {
+                                string _class = i == 0 ? "active" : "";
+                                <div class="carousel-item @_class "> <img height="280" src="@banner.ImagePath" alt=""> </div>
+                                i = i + 1;
+                            }
+                        }
                     </div>
+                </a>
+            </div>
 
+        </div>
+        <a class="carousel-control-prev" href="#carousel1_indicator" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a> <a class="carousel-control-next" href="#carousel1_indicator" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+    </div>
+</div>
 
+@foreach (var item in Model.Products)
+{
+
+    <div class="banner-pt">
+        <div class="_1YokD2 _2GoDe3">
+            <div class="_1AtVbE" style="flex-grow: 1; overflow: auto; padding: 0px 0px 10px;">
+                <div class="_3E8aIl KdL3Vb _1Zogjd">
+                    <div class="_2JQgSY" style="        background-image: url('@item.SubcategoryImages.LastOrDefault()');background-position: center bottom;   background-size: 170px 106px;">
+                        <div class="_2CIhCB">
+                            <h2 class="_2cAig-" style="max-height: 191px; overflow: scroll;">@item.Title</h2>
+                            <div class="_30kJiF">
+                                <a class="_2KpZ6l _3dESVI" href="/Home/ProductListing?Id=@item.Id">VIEW ALL</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="_1oHPGm">
+                        <div class="_3ZYowz _2CfYpZ" style="">
+                            <div class="mYI3GX mYI3GX-slider" id="mYI3GX-@item.Id">
+                                <div class="_2hKRMr _2CfYpZ" style="width: 1866px;">
+                                    <div class="_37K3-p" style="transform: translateX(0px);">
+
+                                        @foreach (var subCat in item.SubCategory)
+                                        {
+                                            <div class="_3YgSsQ">
+                                                <div class="">
+                                                    <a title="From ₹@subCat.price" class="_6WQwDJ T88g6k" href="/Home/ProductListing?subId=@subCat.SubCategoryId">
+                                                        <div class="_10pg75">
+                                                            <div class="CXW8mj">
+                                                                <img class="_396cs4 _3exPp9" alt="Top @subCat.SubCategoryName (From @subCat.price)" src="@subCat.ImagePath">
+                                                            </div>
+                                                        </div>
+                                                        <div class="_3LU4EM">@subCat.SubCategoryName</div>
+                                                        <div class="_2tDhp2">@{var price = subCat.price != "" ? "From " + subCat.price : subCat.price;}@price</div>
+                                                        <div class="_3khuHA"><s class="old-rrice">@subCat.ListPrice</s></div>
+                                                        <div class="_2LaGin"></div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="_35l9rN rek5UH _1tKnHb">
+                                    <div class="_2kgArB _3y7w9p" id="slider-a-2" onclick="sliderBack(this);">
+                                        <svg width="14.6" height="24" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class=""><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" class="_23HYg_"></path></svg>
+                                    </div>
+                                </div>
+                                <div class="_35l9rN _31Mq1b">
+                                    <div class="_2kgArB _2CP_Bu" id="slider-a-1" onclick="sliderNext(this);">
+                                        <svg width="14.6" height="24" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="_1xtBwk"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" class="_23HYg_"></path></svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>*@
 
-<script type="text/javascript">
-    //$(document).ready(function () {
-    //    Listing.BindIndexPage();        
-    //});
-</script>
+        <div class="_1AtVbE  _1AtVbE-1 col-12-12" style="padding:0px 0px 10px 0px">
+            <div class="_2_b_Xk row">
+                @foreach (var image in item.SubcategoryImages)
+                {
+                    <div class="_2LURSF col col-4-12">
+                        <div class="_1AcS-S">
+                            <div class="_1bEAQy" style="padding-top:53.646%;width:100%">
+                                <img class="_2OHU_q aA9eLq" alt="category" src="@image">
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
