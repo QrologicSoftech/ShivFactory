@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ShivFactory.Business.Repository.AutoCompleteResponse>
+@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_WebSiteLayout.cshtml";
 }
@@ -937,61 +938,72 @@
                     </div>
                 </div>
             </div>
+
+
+
             <div class="_1YokD2 _3Mn1Gg" style="flex-grow: 1; overflow: auto;">
                 <div class="_1YokD2 _2GoDe3 col-12-12" style="background-color: rgb(255, 255, 255); align-items: flex-end;">
-            <div class="_1AtVbE" style="flex-grow: 1; overflow: auto;">
-                <div class="W_R1IA">
-                    <div class="_1MR4o5 mobile-size">
-                        <div class="_3GIHBu">
-                            <a class="_2whKao" href="/">Home</a>
-                            <svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="_39X-Og"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" class="DpXnhQ"></path></svg>
-                        </div>
-                        <div class="_3GIHBu">
-                            <a class="_2whKao" href="#">Clothing and Accessories</a>
-                            <svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="_39X-Og"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" class="DpXnhQ"></path></svg>
-                        </div>
-                        <div class="_3GIHBu">
-                            <a class="_2whKao" href="#">Lehenga Cholis</a>
-                            <svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="_39X-Og"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" class="DpXnhQ"></path></svg>
-                        </div>
-                        <div class="_3GIHBu">
-                            <a class="_2whKao" href="#">Women's Lehenga Cholis</a>
-                            <svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="_39X-Og"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" class="DpXnhQ"></path></svg>
-                        </div>
-                    </div>
-                    <span class="_10Ermr mobile-size">Showing 1 – 40 of 3,555 results for "<span>embroidered semi stitched lehenga choli red</span>"</span>
-                    <span class="_2IfVM8 mobile-size">Show results for <a data-query="Embroidered Semi Stitched Lehenga Choli  (Red, Yellow)" class="YfzaL8" href="#">Embroidered Semi Stitched Lehenga Choli  (Red, Yellow)</a> instead</span>
-                    <div class="_5THWM1 nav mobile-size">
-                            <span class="_2i7N3j mobile-size">Sort By</span>
-                            <div class="_10UF8M active show" data-toggle="tab" href="#home">Relevance</div>
-                            <div class="_10UF8M" data-toggle="tab" href="#menu1">Popularity</div>
-                            <div class="_10UF8M" data-toggle="tab" href="#menu2">Price -- Low to High</div>
-                            <div class="_10UF8M" data-toggle="tab" href="#menu3">Price -- High to Low</div>
-                            <div class="_10UF8M" data-toggle="tab" href="#menu4">Newest First</div>
-                    </div>
-                    <div class="css-1dbjc4n r-1awozwy r-13awgt0 r-18u37iz r-h3s6tt r-1777fci destop-size https://static-assets-web.flixcart.com/www/linchpin/batman-returns/images/fk-default-image-75ff340b.png?q=90">
-                        <div class="row">
-                            <div class="col-md-6 col-6" style="padding:0px;margin: 0 auto;">
-                                <div class="short-1" style="margin: 0 auto; width: 50%; margin-top: 18px;">
-                                    <div style="display:flex;position:relative;margin-right:8px;resize-mode:contain;height:24px;width:24px;display: inline-block;float: left;">
-                                        <img src="https://rukminim1.flixcart.com/www/80/80/promos/10/04/2019/d775ea02-5588-4cda-95ad-1ae03bb67e17.png?q=90" style="width:100%;height:100%;margin:auto;object-fit:contain;opacity:1" loading="lazy" alt="">
-                                    </div>
-                                    <div dir="auto" class="css-901oao r-op4f77 r-1wbh5a2 r-1vgyyaa r-1b43r93 r-1rsjblm" style="color: #000;font-size: 14px;font-weight: 500; padding-top: 4px;">Sort</div>
+                    <div class="_1AtVbE" style="flex-grow: 1; overflow: auto;">
+                        <div class="W_R1IA">
+                            <div class="_1MR4o5 mobile-size">
+                                <div class="_3GIHBu">
+                                    <a class="_2whKao" href="/">Home</a>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-6" style="padding:0px;margin: 0 auto;">
-                                <div class="short-2" style="margin: 0 auto;width: 50%;margin-top: 18px;">
-                                    <div style="display:flex;position:relative;margin-right:8px;resize-mode:contain;height:24px;width:24px;display: inline-block;float: left;">
-                                        <img src="https://rukminim1.flixcart.com/www/80/80/promos/10/04/2019/62f36a1e-caf6-4433-a848-2adb7e164a4d.png?q=90" style="width:100%;height:100%;margin:auto;object-fit:contain;opacity:1" loading="lazy" alt="">
+                                <div class="_3GIHBu">
+                                    <a class="_2whKao" href="/Home/ProductListing">View All</a>
+                                </div>
+                                @{int i = 1;}
+                                @foreach (var bread in Model)
+                                {
+                                    var url = "#";
+                                    if (i == 1) { url = "/Home/ProductListing?id=" + bread.Id; }
+                                    else if (i == 2) { url = "/Home/ProductListing?subId=" + bread.Id; }
+                                    else if (i == 3) { url = "/Home/ProductListing?minId=" + bread.Id; }
+                                    
+                                    <div class="_3GIHBu">
+                                        <a class="_2whKao" href="@url">@bread.Value</a>
                                     </div>
-                                    <div dir="auto" class="css-901oao r-op4f77 r-1wbh5a2 r-1vgyyaa r-1b43r93 r-1rsjblm" style="color: #000;font-size: 14px;font-weight: 500; padding-top: 4px;">Filter</div>
+                                    i++;
+                                }
+
+
+
+                            </div>
+
+
+                            <span class="_10Ermr mobile-size">Showing 1 – 40 of 3,555 results for "<span>embroidered semi stitched lehenga choli red</span>"</span>
+                            <span class="_2IfVM8 mobile-size">Show results for <a data-query="Embroidered Semi Stitched Lehenga Choli  (Red, Yellow)" class="YfzaL8" href="#">Embroidered Semi Stitched Lehenga Choli  (Red, Yellow)</a> instead</span>
+                            <div class="_5THWM1 nav mobile-size">
+                                <span class="_2i7N3j mobile-size">Sort By</span>
+                                <div class="_10UF8M active show" data-toggle="tab" href="#home">Relevance</div>
+                                <div class="_10UF8M" data-toggle="tab" href="#menu1">Popularity</div>
+                                <div class="_10UF8M" data-toggle="tab" href="#menu2">Price -- Low to High</div>
+                                <div class="_10UF8M" data-toggle="tab" href="#menu3">Price -- High to Low</div>
+                                <div class="_10UF8M" data-toggle="tab" href="#menu4">Newest First</div>
+                            </div>
+                            <div class="css-1dbjc4n r-1awozwy r-13awgt0 r-18u37iz r-h3s6tt r-1777fci destop-size https://static-assets-web.flixcart.com/www/linchpin/batman-returns/images/fk-default-image-75ff340b.png?q=90">
+                                <div class="row">
+                                    <div class="col-md-6 col-6" style="padding:0px;margin: 0 auto;">
+                                        <div class="short-1" style="margin: 0 auto; width: 50%; margin-top: 18px;">
+                                            <div style="display:flex;position:relative;margin-right:8px;resize-mode:contain;height:24px;width:24px;display: inline-block;float: left;">
+                                                <img src="https://rukminim1.flixcart.com/www/80/80/promos/10/04/2019/d775ea02-5588-4cda-95ad-1ae03bb67e17.png?q=90" style="width:100%;height:100%;margin:auto;object-fit:contain;opacity:1" loading="lazy" alt="">
+                                            </div>
+                                            <div dir="auto" class="css-901oao r-op4f77 r-1wbh5a2 r-1vgyyaa r-1b43r93 r-1rsjblm" style="color: #000;font-size: 14px;font-weight: 500; padding-top: 4px;">Sort</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-6" style="padding:0px;margin: 0 auto;">
+                                        <div class="short-2" style="margin: 0 auto;width: 50%;margin-top: 18px;">
+                                            <div style="display:flex;position:relative;margin-right:8px;resize-mode:contain;height:24px;width:24px;display: inline-block;float: left;">
+                                                <img src="https://rukminim1.flixcart.com/www/80/80/promos/10/04/2019/62f36a1e-caf6-4433-a848-2adb7e164a4d.png?q=90" style="width:100%;height:100%;margin:auto;object-fit:contain;opacity:1" loading="lazy" alt="">
+                                            </div>
+                                            <div dir="auto" class="css-901oao r-op4f77 r-1wbh5a2 r-1vgyyaa r-1b43r93 r-1rsjblm" style="color: #000;font-size: 14px;font-weight: 500; padding-top: 4px;">Filter</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
                 <div class="tab-content">
                     <div class="_1AtVbE col-12-12">
                         <div class="_13oc-S row tab-pane fade active show" id="home">
@@ -1857,6 +1869,10 @@
                     </div>
                 </div>
             </div>
+
+
+
+
         </div>
     </div>
 </section>
@@ -1873,15 +1889,27 @@
         <input type="hidden" id="SubCategoryId" value="@ViewBag.SubCategoryId" />
         <input type="hidden" id="MiniCategoryId" value="@ViewBag.MiniCategoryId" />
         <!-- ============================  FILTER TOP  ================================= -->
-        @*<div class="card mb-3 breadcrumb-min  bg-transparent border-0">
-                <div class="card-body bg-transparent pl-0">
-                    <ol class="breadcrumb float-left">
-                        <li class="breadcrumb-item"><a href="/Home/">Home</a></li>
-                        <li class="breadcrumb-item"><a id="categoryName" href="/Home/ProductListing">View All </a></li>
+        <div class="card mb-3 breadcrumb-min  bg-transparent border-0">
+            <div class="card-body bg-transparent pl-0">
+                <ol class="breadcrumb float-left">
+                    <li class="breadcrumb-item"><a href="/Home/">Home</a></li>
+                    <li class="breadcrumb-item"><a id="categoryName" href="/Home/ProductListing">View All </a></li>
+                    @{int ii = 1;}
+                    @foreach (var bread in Model)
+                    {
+                        var url = "#";
+                        if (ii == 1) { url = "/Home/ProductListing?id=" + bread.Id; }
+                        else if (ii == 2) { url = "/Home/ProductListing?subId=" + bread.Id; }
+                        else if (ii == 3) { url = "/Home/ProductListing?minId=" + bread.Id; }
 
-                    </ol>
-                </div>
-            </div>*@
+                        <li class="breadcrumb-item"><a href="@url">@bread.Value</a></li>
+                        ii++;
+                    }
+
+
+                </ol>
+            </div>
+        </div>
         <!-- card.// -->
         <!-- ============================ FILTER TOP END.// ================================= -->
 

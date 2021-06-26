@@ -1,8 +1,10 @@
 ﻿using Dapper;
+using DataLibrary.DL;
 using ShivFactory.Business.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,116 @@ namespace ShivFactory.Business.Repository
 {
     public class RepoListing
     {
+        #region Parameters
+        ShivFactoryEntities db = new ShivFactoryEntities();
+        #endregion
+
+        #region GetBreadCrumbForListing
+        public List<AutoCompleteResponse> GetBreadCrumbForListing(int? id, int? subId, int? minId, string searchtext)
+        {
+            List<AutoCompleteResponse> data = new List<AutoCompleteResponse>();
+            if (!string.IsNullOrEmpty(searchtext))
+            {
+                var products = db.Products.Where(a => a.ProductName.StartsWith(searchtext) || a.Description.StartsWith(searchtext) || a.Category.CategoryName.StartsWith(searchtext) || a.SubCategory.SubCategoryName.StartsWith(searchtext) || a.MiniCategory.MiniCategoryName.StartsWith(searchtext)).Select(a => new
+                {
+                    ProductId = a.ProductId,
+                    ProductName = a.ProductName,
+                    MiniCategoryId = a.MiniCategoryId,
+                    MiniCategoryName = a.MiniCategoryId != null ? a.MiniCategory.MiniCategoryName : "",
+                    SubCategoryId = a.SubCategoryId,
+                    SubCategoryName = a.SubCategory != null ? a.SubCategory.SubCategoryName : "",
+                    CategoryId = a.CategoryId,
+                    CategoryName = a.Category != null ? a.Category.CategoryName : "",
+                }).AsNoTracking().FirstOrDefault();
+                if (products != null)
+                {
+                    data.Add(new AutoCompleteResponse()
+                    {
+                        Id = products.CategoryId ?? 0,
+                        Value = products.CategoryName
+                    });
+                    if (products.SubCategoryId > 0)
+                    {
+                        data.Add(new AutoCompleteResponse()
+                        {
+                            Id = products.SubCategoryId ?? 0,
+                            Value = products.SubCategoryName
+                        });
+                    }
+                    if (products.MiniCategoryId > 0)
+                    {
+                        data.Add(new AutoCompleteResponse()
+                        {
+                            Id = products.MiniCategoryId ?? 0,
+                            Value = products.MiniCategoryName
+                        });
+                    }
+                    if (products.ProductId > 0)
+                    {
+                        data.Add(new AutoCompleteResponse()
+                        {
+                            Id = products.ProductId,
+                            Value = products.ProductName
+                        });
+                    }
+                }
+            }
+            else if (minId > 0)
+            {
+                var min = db.MiniCategories.Where(a => a.ID == minId).Include(a => a.SubCategory).AsNoTracking().FirstOrDefault();
+
+                data.Add(new AutoCompleteResponse()
+                {
+                    Id = min.ID,
+                    Value = min.MiniCategoryName
+                });
+                if (min.SubCategoryId > 0)
+                {
+                    data.Add(new AutoCompleteResponse()
+                    {
+                        Id = min.SubCategoryId ?? 0,
+                        Value = min.SubCategory?.SubCategoryName
+                    });
+                    if (min.SubCategory != null)
+                    {
+                        data.Add(new AutoCompleteResponse()
+                        {
+                            Id = min.SubCategory.CategoryID ?? 0,
+                            Value = min.SubCategory.Category?.CategoryName
+                        });
+                    }
+                }
+            }
+            else if (subId > 0)
+            {
+                var sub = db.SubCategories.Where(a => a.ID == subId).Include(a => a.Category).AsNoTracking().FirstOrDefault();
+
+                data.Add(new AutoCompleteResponse()
+                {
+                    Id = sub.ID,
+                    Value = sub.SubCategoryName
+                });
+                if (sub.CategoryID > 0)
+                {
+                    data.Add(new AutoCompleteResponse()
+                    {
+                        Id = sub.CategoryID ?? 0,
+                        Value = sub.Category?.CategoryName
+                    });
+                }
+            }
+            else if (id > 0)
+            {
+                data.Add(db.Categories.Where(a => a.ID == id).Select(a => new AutoCompleteResponse()
+                {
+                    Id = a.ID,
+                    Value = a.CategoryName
+                }).AsNoTracking().FirstOrDefault());
+            }
+            return data;
+        }
+        #endregion
+
         #region GetAllProductList
         public List<ClsProduct> GetallProductlist(ProductListingPagination model, out int totalRecords)
         {
@@ -111,7 +223,6 @@ namespace ShivFactory.Business.Repository
             return product;
         }
         #endregion
-
 
         #region GetProductDetail
         public ProductDetail GetProductDetail(int productId, string VarientName, string VarientValue)

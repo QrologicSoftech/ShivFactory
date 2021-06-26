@@ -632,6 +632,7 @@
     <Content Include="Content\UploadedImages\Images\430ed42b64108015.jpg" />
     <Content Include="Content\UploadedImages\Images\ac.jpeg" />
     <Content Include="Content\UploadedImages\Images\arrow-up.png" />
+    <Content Include="Content\UploadedImages\Images\close.jpg" />
     <Content Include="Content\UploadedImages\Images\close.png" />
     <Content Include="Content\UploadedImages\Images\dashboard-circle.svg" />
     <Content Include="Content\UploadedImages\Images\ecf53c70cb4a73b1.jpg" />
@@ -643,9 +644,6 @@
     <Content Include="Content\UploadedImages\Images\ImageUpload.png" />
     <Content Include="Content\UploadedImages\Images\imgNoProduct.png" />
     <Content Include="Content\UploadedImages\Images\laptop.jpeg" />
-    <Content Include="Content\UploadedImages\Images\Layers-blue.jpg" />
-    <Content Include="Content\UploadedImages\Images\Layers-pink.jpg" />
-    <Content Include="Content\UploadedImages\Images\Layers.jpg" />
     <Content Include="Content\UploadedImages\Images\led.jpeg" />
     <Content Include="Content\UploadedImages\Images\lenovo-za5g0047in-original-imafp4w7qvpnprv5.jpeg" />
     <Content Include="Content\UploadedImages\Images\m-praw20pn004a-provogue-original-imafxs39zfg4ge4e.jpeg" />
@@ -1042,7 +1040,6 @@
     <Content Include="Views\Customer\Checkout2.cshtml" />
     <Content Include="Views\Customer\Address.cshtml" />
     <Content Include="Views\Home\Partial_IndexProduct.cshtml" />
-    <Content Include="Views\Home\_Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

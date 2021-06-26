@@ -368,7 +368,10 @@ namespace ShivFactory.Controllers
             ViewBag.CategoryId = id;
             ViewBag.SubCategoryId = subId;
             ViewBag.MiniCategoryId = minId;
-            return View();
+
+            RepoListing repoListing = new RepoListing();
+            var breadcrumb = repoListing.GetBreadCrumbForListing(id,subId,minId,searchtext);
+            return View(breadcrumb);
         }
         public ActionResult GetProducts(ProductListingPagination model)
         {
