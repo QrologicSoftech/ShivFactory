@@ -14,7 +14,7 @@ var Listing = {
         ProductFilter.SubCategoryId = $('#SubCategoryId').val();
         ProductFilter.MiniCategoryId = $('#MiniCategoryId').val();
         Listing.BindVarientByCategoryId();
-        Listing.GetRecords();
+        Listing.GetRecords(1);
     },
 
     BindVarientByCategoryId: function () {
@@ -29,42 +29,113 @@ var Listing = {
             if (result.ResultFlag == true) {
                 varient = result.Data;
 
+                var html = `<section class="JWMl0H _2hbLCH">
+                                <div class="_2ssEMF">
+                                    <div class="_3V8rao"><span>Filters</span></div>
+                                    <div class="_2id1nE"><span onclick="Listing.ClearFilter();">Clear all</span></div>
+                                </div>
+                            </section>`;
+
+
+
                 $.each(varient, function (Value, varient) {
-                    var html = `<article class="filter-group">\
-                        <h6 class="title" > <a href="#" class="dropdown-toggle"  data-toggle="collapse" data-target="#${varient.VarientName}"> ${varient.VarientName} </a> </h6 >\
-                            <div class="filter-content collapse"  id="${varient.VarientName}" style="">\
-                                <div class="inner">`;
+                    html += `<section class="_167Mu3 _2hbLCH">
+                                <div class="_213eRC _2ssEMF" data-toggle="collapse" data-target="#${varient.VarientName}" aria-expanded="true">
+                                    <div class="_2gmUFU _3V8rao" title="filter-product">${varient.VarientName}</div>
+                                    <svg width="16" height="27" viewBox="0 0 16 27" xmlns="http://www.w3.org/2000/svg" class="ttx38n _3DyGEM"><path d="M16 23.207L6.11 13.161 16 3.093 12.955 0 0 13.161l12.955 13.161z" fill="#fff" class="IIvmWM"></path></svg>
+                                </div>
+                                <div class="_3FPh42 collapse" id="${varient.VarientName}" style="">
+                                    <div class="_2d0we9">
+                                        <div class="_2pBqj6">
+                                            <svg width="20" height="20" viewBox="0 0 17 18" class="_3WAvPc" xmlns="http://www.w3.org/2000/svg"><g fill="#2874F1" fill-rule="evenodd"><path class="-OwdlC" d="m11.618 9.897l4.225 4.212c.092.092.101.232.02.313l-1.465 1.46c-.081.081-.221.072-.314-.02l-4.216-4.203"></path><path class="-OwdlC" d="m6.486 10.901c-2.42 0-4.381-1.956-4.381-4.368 0-2.413 1.961-4.369 4.381-4.369 2.42 0 4.381 1.956 4.381 4.369 0 2.413-1.961 4.368-4.381 4.368m0-10.835c-3.582 0-6.486 2.895-6.486 6.467 0 3.572 2.904 6.467 6.486 6.467 3.582 0 6.486-2.895 6.486-6.467 0-3.572-2.904-6.467-6.486-6.467"></path></g></svg>
+                                            <input type="text" class="_34uFYj" placeholder="Search ${varient.VarientName}" value="" onkeyup="Listing.FilterVarients(this)">
+                                        </div>`;
 
                     varient.VarientValue.forEach((item) => {
-                        html += ` <label class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" name="${item}" onchange="Listing.ApplyFilter();">
-              <div class="custom-control-label">${item}</div>
-              </label>`;
+                        html += `<div class="_4921Z t0pPfW" title="${item}">
+                                            <div class="_1Y4Vhm _4FO7b6">
+                                                <label class="_2iDkf8 t0pPfW">
+                                                    <input type="checkbox" value="${item}" class="_30VH1S" onchange="Listing.ApplyFilter();">
+                                                    <div class="_24_Dny"></div>
+                                                    <div class="_3879cV">${item}</div>
+                                                </label>
+                                            </div>
+                                        </div>`;
                     });
-                    html += `</div></div></article>`;
 
-                    $("#partialViewFilter").append(html);
+                    html += `</div>
+                                </div>
+                            </section>`;
+
+                    $("#product-Filter").html(html);
 
                 });
+
+                //  $.each(varient, function (Value, varient) {
+                //      var html = `<article class="filter-group">\
+                //          <h6 class="title" > <a href="#" class="dropdown-toggle"  data-toggle="collapse" data-target="#${varient.VarientName}"> ${varient.VarientName} </a> </h6 >\
+                //              <div class="filter-content collapse"  id="${varient.VarientName}" style="">\
+                //                  <div class="inner">`;
+
+                //      varient.VarientValue.forEach((item) => {
+                //          html += ` <label class="custom-control custom-checkbox">
+                //<input type="checkbox" class="custom-control-input" name="${item}" onchange="Listing.ApplyFilter();">
+                //<div class="custom-control-label">${item}</div>
+                //</label>`;
+                //      });
+                //      html += `</div></div></article>`;
+
+                //      $("#partialViewFilter").append(html);
+
+                //  });
             }
             //  common.HideLoader();
         });
 
     },
+    FilterVarients: function (element) {
+
+        var filter, div, a, i, txtValue;
+        filter = element.value.toUpperCase();
+
+        div = $(element).parent('div').parent().find("._4921Z");
+        for (i = 0; i < div.length; i++) {
+            a = div[i].getElementsByTagName("input")[0];
+            txtValue = a.value || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                div[i].style.display = "";
+            } else {
+                div[i].style.display = "none";
+            }
+        }
+
+
+    },
+
+
+    ClearFilter: function () {
+
+         $('#product-Filter ._167Mu3 ._3FPh42').find('._2iDkf8 input').each(function () {
+            $(this).prop("checked", false);
+        })
+        Listing.ApplyFilter();
+    },
 
     ApplyFilter: function () {
+      
         for (var a = 0; a < 10; a++) {
             ProductFilter["VarientName" + parseInt(a)] = '';
             ProductFilter["VarientName" + parseInt(a)] = '';
         }
-        // common.ShowLoader();
-        var varientsName = $("#partialViewFilter").find('.filter-group a').map(function () {
+        // common.ShowLoader();        
+        var varientsName = $("#product-Filter ._167Mu3").find('[title="filter-product"]').map(function () {
             return $(this).html().trim()
         }).get()
+
         index = 1;
         for (var i = 0; i < varientsName.length; i++) {
-            varientVal = $(`#${varientsName[i]} input:checked`).map(function () {
-                return $(this).attr('name').trim()
+            var varientVal = $(`#product-Filter #${varientsName[i]} ._4921Z  input:checked`).map(function () {
+                return $(this).attr('value').trim()
             }).get();
 
             if (varientVal.length > 0) {
@@ -90,7 +161,7 @@ var Listing = {
             ProductFilter["VarientName10"] != null) {
             action = "Filter";
         }
-        Listing.GetRecords();
+        Listing.GetRecords(1);
     },
 
     GetRecords: function (pageIndex = 1) {
@@ -147,11 +218,11 @@ var Listing = {
     OnSuccessFilter: function (response) {
         //var node = document.getElementById("partialViewListing");
         //node.querySelectorAll('*').forEach(n => n.remove());       
-
+       
         if ($('#Current-Page').val() == 1) {
             var itemName = $("#itemName");
             itemName.html(response[0].SubCategoryName);
-            $("#partialViewListing").html();
+            $("#partialViewListing").html('');
         }
 
         $.each(response, function (j, dataval) {
@@ -189,44 +260,44 @@ var Listing = {
             console.log(result);
             $("#carousel").html(result);
             $('#carousel').carousel();
-    //        if (result.ResultFlag == true) {
-    //            $.each(result.Data.Banners, function (index, Value) {
-    //                bannerli += `<li data-target="#carousel1_indicator" data-slide-to="${index}" class="${index == 0 ? "active" : ""}"></li>`;
-    //                bannerdiv += `<div class="carousel-item ${index == 0 ? "active" : ""}"> <img src="${Value.ImagePath}" alt=""> </div>`;
-    //            });
-    //            $("#carousel1_indicator ol").html(bannerli);
-    //            $("#carousel1_indicator div").html(bannerdiv);
+            //        if (result.ResultFlag == true) {
+            //            $.each(result.Data.Banners, function (index, Value) {
+            //                bannerli += `<li data-target="#carousel1_indicator" data-slide-to="${index}" class="${index == 0 ? "active" : ""}"></li>`;
+            //                bannerdiv += `<div class="carousel-item ${index == 0 ? "active" : ""}"> <img src="${Value.ImagePath}" alt=""> </div>`;
+            //            });
+            //            $("#carousel1_indicator ol").html(bannerli);
+            //            $("#carousel1_indicator div").html(bannerdiv);
 
-    //            //Bind Product slider
-    //            $.each(result.Data.Products, function (index, Value) {
-    //                productSlider += `<section class="padding-bottom-sm bg-white  mb-3 pb-3 pt-0">
-    //<div class=" container">
-    //    <header class="section-heading pt-3 pb-2">
-    //        <h3 class="section-title text-left">${Value.Title} </h3>
-    //    </header>
-    //    <div class="card-deal px-1">
-    //        <div class="allitem-slider owl-carousel owl-button"><div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2010px;">`;
+            //            //Bind Product slider
+            //            $.each(result.Data.Products, function (index, Value) {
+            //                productSlider += `<section class="padding-bottom-sm bg-white  mb-3 pb-3 pt-0">
+            //<div class=" container">
+            //    <header class="section-heading pt-3 pb-2">
+            //        <h3 class="section-title text-left">${Value.Title} </h3>
+            //    </header>
+            //    <div class="card-deal px-1">
+            //        <div class="allitem-slider owl-carousel owl-button"><div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 2010px;">`;
 
-    //                $.each(Value.SubCategory, function (a, b) {
+            //                $.each(Value.SubCategory, function (a, b) {
 
-    //                    productSlider += `<div class="owl-item active" style="width: 236.2px; margin-right: 15px;"><div class="item">
-    //                <figure class="card-product-grid card-sm">
-    //                    <a href="/Home/ProductListing?subId=${b.SubCategoryId}" class="img-wrap"> <img src="${b.ImagePath}"> </a>
-    //                    <div class="text-center">
-    //                        <div class="price mt-1"><a href='#'>`+ b.SubCategoryName + `</a></div>
-    //                        <div class="price mt-1">`+ b.price + `  <s class="old-rrice"> ` + b.ListPrice + `</s></div>
-    //                        <div class="add-cart pt-1"></div>
-    //                        <span class="badge badge-danger"> -20% </span>
-    //                    </div>
-    //                </figure>
-    //            </div></div>`;
-    //                })
-    //                productSlider += `</div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span><i class="fa fa-angle-right"></i></span></button><button type="button" role="presentation" class="owl-next"><span><i class="fa fa-angle-left"></i></span></button></div></div></div></div></div></section>`;
+            //                    productSlider += `<div class="owl-item active" style="width: 236.2px; margin-right: 15px;"><div class="item">
+            //                <figure class="card-product-grid card-sm">
+            //                    <a href="/Home/ProductListing?subId=${b.SubCategoryId}" class="img-wrap"> <img src="${b.ImagePath}"> </a>
+            //                    <div class="text-center">
+            //                        <div class="price mt-1"><a href='#'>`+ b.SubCategoryName + `</a></div>
+            //                        <div class="price mt-1">`+ b.price + `  <s class="old-rrice"> ` + b.ListPrice + `</s></div>
+            //                        <div class="add-cart pt-1"></div>
+            //                        <span class="badge badge-danger"> -20% </span>
+            //                    </div>
+            //                </figure>
+            //            </div></div>`;
+            //                })
+            //                productSlider += `</div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span><i class="fa fa-angle-right"></i></span></button><button type="button" role="presentation" class="owl-next"><span><i class="fa fa-angle-left"></i></span></button></div></div></div></div></div></section>`;
 
-    //            });
-    //            $("#Product-slider").html(productSlider);
-               
-    //        }
+            //            });
+            //            $("#Product-slider").html(productSlider);
+
+            //        }
             // common.HideLoader();
 
         });
