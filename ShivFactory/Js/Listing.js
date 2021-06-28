@@ -115,14 +115,14 @@ var Listing = {
 
     ClearFilter: function () {
 
-         $('#product-Filter ._167Mu3 ._3FPh42').find('._2iDkf8 input').each(function () {
+        $('#product-Filter ._167Mu3 ._3FPh42').find('._2iDkf8 input').each(function () {
             $(this).prop("checked", false);
         })
         Listing.ApplyFilter();
     },
 
     ApplyFilter: function () {
-      
+
         for (var a = 0; a < 10; a++) {
             ProductFilter["VarientName" + parseInt(a)] = '';
             ProductFilter["VarientName" + parseInt(a)] = '';
@@ -218,7 +218,7 @@ var Listing = {
     OnSuccessFilter: function (response) {
         //var node = document.getElementById("partialViewListing");
         //node.querySelectorAll('*').forEach(n => n.remove());       
-       
+
         if ($('#Current-Page').val() == 1) {
             var itemName = $("#itemName");
             itemName.html(response[0].SubCategoryName);
@@ -226,25 +226,90 @@ var Listing = {
         }
 
         $.each(response, function (j, dataval) {
-            $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
-                        <figure class="card card-product-grid" >\
-                            <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '&Name=' + dataval.ProductName + '" alt=' + dataval.ProductName + '><img src="' + dataval.MainImage + '"></a> </div>\
-                                <figcaption class="info-wrap"> <a id="ProductName" href="#" class="title mb-2">' + dataval.ProductName + '</a>\
-                                    <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
-                                    <!-- price-wrap.// -->\
-                                  <div class="rating-wrap mb-2">\
-                                        <ul class="rating-stars">\
-                                            <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
-                                            <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
-                                        </ul>\
-                                        <div class="label-rating">2/10</div>\
-                                    </div>\
-                <input type="hidden" id="ProductId" value="'+ dataval.ProductId + '" /><input type = "hidden" id = "ProductVarientId" value = "' + dataval.ProductVarientId + '" />\
-    <input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
-    <input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
-                                    <button onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`);"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </button> </figcaption>\
-                              </figure>\
-                            </div >');
+
+            $("#partialViewListing").append(`<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6" data-id="LCHFXQWAGHRZAG9K" id="LCHFXQWAGHRZAG9K-1">
+                                <div class="_1xHGtK _373qXS e30oNt" data-tkid="a03e7e77-aae2-4bae-a994-d4b172f3bd24.LCHFXQWAGHRZAG9K.SEARCH">
+<a class="_2UzuFa" target="_blank" rel="noopener noreferrer" href="/Home/ProductDetail?productId=${dataval.ProductId}&Name=${dataval.ProductName}">
+                                        <div>
+                                            <div>
+                                                <div class="_3ywSr_" style="padding-top: 120%;">
+                                                    <div class="_312yBx SFzpgZ" style="padding-top: 120%;">
+                                                        <img class="_2r_T1I" alt="" src="${dataval.MainImage}" style="height: 281px;" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+</a>
+                                        <div class="_3kGRXm" style="bottom: 40px;"></div>
+                                        <div class="_2hVSre _1DmLJ5 -o7Q4n">
+                                            <div class="_36FSn5">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="_1l0elc" width="28" height="28" viewBox="0 0 20 16"><path d="M8.695 16.682C4.06 12.382 1 9.536 1 6.065 1 3.219 3.178 1 5.95 1c1.566 0 3.069.746 4.05 1.915C10.981 1.745 12.484 1 14.05 1 16.822 1 19 3.22 19 6.065c0 3.471-3.06 6.316-7.695 10.617L10 17.897l-1.305-1.215z" fill="#2874F0" class="eX72wL" stroke="#FFF" fill-rule="evenodd" opacity=".9"></path></svg>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="_2B099V" style="transform: translate3d(0px, 0px, 0px);">
+                                        <div class="_2WkVRV">${dataval.SubCategoryName}</div>
+                                        <a class="IRpwTa" title="${dataval.ProductName}" target="_blank" rel="noopener noreferrer" href="#">${dataval.ProductName}</a>
+                                        <div class="_1a8UBa">
+                                            <img height="18" src="/Content/UploadedImages/Images/small-logo.png" class="_3U-Vxu">
+                                        </div>
+                                        <a class="_3bPFwb" target="_blank" rel="noopener noreferrer" href="#">
+                                            <div class="_25b18c">
+                                                <div class="_30jeq3">₹${dataval.SalePrice}</div>
+                                                <div class="_3I9_wc">₹${dataval.SalePrice}</div>
+                                                <div class="_3Ay6Sb"><span>${dataval.SalePrice}% off</span></div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>`);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //        $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
+            //                    <figure class="card card-product-grid" >\
+            //                        <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '&Name=' + dataval.ProductName + '" alt=' + dataval.ProductName + '><img src="' + dataval.MainImage + '"></a> </div>\
+            //                            <figcaption class="info-wrap"> <a id="ProductName" href="#" class="title mb-2">' + dataval.ProductName + '</a>\
+            //                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
+            //                                <!-- price-wrap.// -->\
+            //                              <div class="rating-wrap mb-2">\
+            //                                    <ul class="rating-stars">\
+            //                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
+            //                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
+            //                                    </ul>\
+            //                                    <div class="label-rating">2/10</div>\
+            //                                </div>\
+            //            <input type="hidden" id="ProductId" value="'+ dataval.ProductId + '" /><input type = "hidden" id = "ProductVarientId" value = "' + dataval.ProductVarientId + '" />\
+            //<input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
+            //<input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
+            //                                <button onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`);"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </button> </figcaption>\
+            //                          </figure>\
+            //                        </div >');
 
             pageCount = dataval.PageCount;
         });
