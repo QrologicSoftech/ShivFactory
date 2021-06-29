@@ -110,7 +110,7 @@ body{
 .full-img-2{
 	width: 100%;
     position: relative;
-    padding-top: 120.00%;
+    padding-top: 95.00%;
 }
 .images-1{
     width: 100%;
@@ -261,7 +261,7 @@ body{
 
 }
 .sunglas ul li:last-child {
-    float: right;
+    /*float: right;*/
 }
 .sunglas ul li:last-child a{
     color: #000;
