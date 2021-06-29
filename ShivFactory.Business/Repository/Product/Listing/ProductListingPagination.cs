@@ -14,6 +14,7 @@ namespace ShivFactory.Business.Repository
         public string SearchText { get; set; }
         public int? PageIndex { get; set; }
         public int? PageSize { get; set; }
+        public string OrderBy { get; set; }
         public string VarientName1 { get; set; }
         public string VarientValue1 { get; set; }
         public string VarientName2 { get; set; }
@@ -33,8 +34,7 @@ namespace ShivFactory.Business.Repository
         public string VarientName9 { get; set; }
         public string VarientValue9 { get; set; }
         public string VarientName10 { get; set; }
-        public string VarientValue10 { get; set; }
-
+        public string VarientValue10 { get; set; }        
 
     }
 }

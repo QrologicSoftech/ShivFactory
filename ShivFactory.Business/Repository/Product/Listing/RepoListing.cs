@@ -72,19 +72,9 @@ namespace ShivFactory.Business.Repository
             {
                 var min = db.MiniCategories.Where(a => a.ID == minId).Include(a => a.SubCategory).AsNoTracking().FirstOrDefault();
 
-                data.Add(new AutoCompleteResponse()
-                {
-                    Id = min.ID,
-                    Value = min.MiniCategoryName
-                });
                 if (min.SubCategoryId > 0)
                 {
-                    data.Add(new AutoCompleteResponse()
-                    {
-                        Id = min.SubCategoryId ?? 0,
-                        Value = min.SubCategory?.SubCategoryName
-                    });
-                    if (min.SubCategory != null)
+                    if (min.SubCategory != null && min.SubCategory.CategoryID > 0)
                     {
                         data.Add(new AutoCompleteResponse()
                         {
@@ -92,17 +82,22 @@ namespace ShivFactory.Business.Repository
                             Value = min.SubCategory.Category?.CategoryName
                         });
                     }
+                    data.Add(new AutoCompleteResponse()
+                    {
+                        Id = min.SubCategoryId ?? 0,
+                        Value = min.SubCategory?.SubCategoryName
+                    });
                 }
+                data.Add(new AutoCompleteResponse()
+                {
+                    Id = min.ID,
+                    Value = min.MiniCategoryName
+                });
+
             }
             else if (subId > 0)
             {
                 var sub = db.SubCategories.Where(a => a.ID == subId).Include(a => a.Category).AsNoTracking().FirstOrDefault();
-
-                data.Add(new AutoCompleteResponse()
-                {
-                    Id = sub.ID,
-                    Value = sub.SubCategoryName
-                });
                 if (sub.CategoryID > 0)
                 {
                     data.Add(new AutoCompleteResponse()
@@ -111,6 +106,12 @@ namespace ShivFactory.Business.Repository
                         Value = sub.Category?.CategoryName
                     });
                 }
+                data.Add(new AutoCompleteResponse()
+                {
+                    Id = sub.ID,
+                    Value = sub.SubCategoryName
+                });
+
             }
             else if (id > 0)
             {
@@ -192,6 +193,24 @@ namespace ShivFactory.Business.Repository
             parameters.Add(new SqlParameter("@SearchText", model.SearchText));
             parameters.Add(new SqlParameter("@VarientName", varinetName));
             parameters.Add(new SqlParameter("@VarientValue", varinetValue));
+            if (!string.IsNullOrEmpty(model.OrderBy))
+            {
+                var sort = "";
+                if (model.OrderBy.ToUpper() == "NEW")
+                {
+                    sort = "p.AddDate Desc";
+                }
+                else if (model.OrderBy.ToUpper() == "PLH")
+                {
+                    sort = "SalePrice asc";
+                }
+                else if (model.OrderBy.ToUpper() == "PHL")
+                {
+                    sort = "SalePrice Desc";
+                }
+
+                parameters.Add(new SqlParameter("@Orderby", sort));
+            }
 
             DataSet ds = SqlHelper.ExecuteDataset(Connection.ConnectionString, CommandType.StoredProcedure, "GetProductsPageWise", parameters.ToArray());
             if (ds.Tables[0] != null && ds.Tables[0].Rows.Count > 0)
@@ -200,14 +219,16 @@ namespace ShivFactory.Business.Repository
                 totalRecords = Convert.ToInt32(ds.Tables[0].Rows[0]["TotalRow"].ToString());
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
+                    var listprice = row["ListPrice"] != DBNull.Value ? Convert.ToDecimal(row["ListPrice"]) : 0;
+                    var saleprice = row["SalePrice"] != DBNull.Value ? Convert.ToDecimal(row["SalePrice"]) : 0;
                     product.Add(new ClsProduct()
                     {
                         SrNo = row["SrNo"] != DBNull.Value ? Convert.ToInt32(row["SrNo"]) : 0,
                         ProductId = row["ProductId"] != DBNull.Value ? Convert.ToInt32(row["ProductId"]) : 0,
                         ProductVarientId = row["VarientId"] != DBNull.Value ? Convert.ToInt32(row["VarientId"]) : 0,
                         ProductName = row["ProductName"] != DBNull.Value ? row["ProductName"].ToString() : "",
-                        SalePrice = row["SalePrice"] != DBNull.Value ? row["SalePrice"].ToString() : "0.00",
-                        ListPrice = row["ListPrice"] != DBNull.Value ? row["ListPrice"].ToString() : "0.00",
+                        SalePrice = saleprice.PriceFormat(),
+                        ListPrice = listprice.PriceFormat(),
                         MainImage = repoCommon.checkfile(row["MainImage"].ToString()),
                         SubCategoryName = row["SubCategoryName"] != DBNull.Value ? row["SubCategoryName"].ToString() : "",
                         CategoryName = row["CategoryName"] != DBNull.Value ? row["CategoryName"].ToString() : "",
@@ -215,7 +236,7 @@ namespace ShivFactory.Business.Repository
                         SubCategoryId = row["SubCategoryId"] != DBNull.Value ? row["SubCategoryId"].ToString() : "0",
                         VendorId = row["vendorId"] != DBNull.Value ? Convert.ToInt32(row["vendorId"]) : 0,
                         Stock = row["Stock"] != DBNull.Value ? Convert.ToInt32(row["Stock"]) : 0,
-
+                        DiscountPercentage = repoCommon.CalculateOff(listprice, saleprice),
                     });
                 }
 

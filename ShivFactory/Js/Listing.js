@@ -3,7 +3,7 @@
     "VarientName1": '', "VarientValue1": '', "VarientName2": '', "VarientValue2": '', "VarientName3": '', "VarientValue3": '',
     "VarientName4": '', "VarientValue4": '', "VarientName5": '', "VarientValue5": '', "VarientName6": '', "VarientValue6": '',
     "VarientName7": '', "VarientValue7": '', "VarientName8": '', "VarientValue8": '', "VarientName9": '', "VarientValue9": '',
-    "VarientName10": '', "VarientValue10": ''
+    "VarientName10": '', "VarientValue10": '', "OrderBy": ''
 };
 var action = "Listing";
 
@@ -70,24 +70,6 @@ var Listing = {
                     $("#product-Filter").html(html);
 
                 });
-
-                //  $.each(varient, function (Value, varient) {
-                //      var html = `<article class="filter-group">\
-                //          <h6 class="title" > <a href="#" class="dropdown-toggle"  data-toggle="collapse" data-target="#${varient.VarientName}"> ${varient.VarientName} </a> </h6 >\
-                //              <div class="filter-content collapse"  id="${varient.VarientName}" style="">\
-                //                  <div class="inner">`;
-
-                //      varient.VarientValue.forEach((item) => {
-                //          html += ` <label class="custom-control custom-checkbox">
-                //<input type="checkbox" class="custom-control-input" name="${item}" onchange="Listing.ApplyFilter();">
-                //<div class="custom-control-label">${item}</div>
-                //</label>`;
-                //      });
-                //      html += `</div></div></article>`;
-
-                //      $("#partialViewFilter").append(html);
-
-                //  });
             }
             //  common.HideLoader();
         });
@@ -164,8 +146,18 @@ var Listing = {
         Listing.GetRecords(1);
     },
 
+    ApplySorting: function (element) {
+
+        var OrderBy = $(element).attr('sort');
+        if (OrderBy != null && OrderBy != undefined) {
+            ProductFilter["OrderBy"] = OrderBy;
+            Listing.GetRecords(1);
+        }
+    },
+
     GetRecords: function (pageIndex = 1) {
-        //common.ShowLoader('#partialViewListing');
+        //common.ShowLoader('#partialViewListing');        
+
         var PageSize = 12;
         $('#Current-Page').val(pageIndex);
         ProductFilter["SearchText"] = '';
@@ -175,7 +167,7 @@ var Listing = {
         ajax.doPostAjax(`/Home/GetProducts`, ProductFilter, function (result) {
             //alert(result.ResultFlag);
             if (result.ResultFlag == true) {
-                $("#itemcount").text("Showing  " + result.Data.length + " Products out of " + result.TotalRecords + "");
+                $("#itemcount").text("Showing  " + parseInt((PageSize * (pageIndex - 1)) + result.Data.length) + " Products out of " + result.TotalRecords + "");
                 if (pageIndex == 1) {
                     rem = result.TotalRecords % PageSize;
                     let TotalPage = parseInt(result.TotalRecords / PageSize);
@@ -216,8 +208,6 @@ var Listing = {
 
 
     OnSuccessFilter: function (response) {
-        //var node = document.getElementById("partialViewListing");
-        //node.querySelectorAll('*').forEach(n => n.remove());       
 
         if ($('#Current-Page').val() == 1) {
             var itemName = $("#itemName");
@@ -226,6 +216,9 @@ var Listing = {
         }
 
         $.each(response, function (j, dataval) {
+            var offclass = "";
+            if (dataval.DiscountPercentage > 0) { offclass = 'style="color:red;"'; }
+            var off = dataval.DiscountPercentage <= 0 ? dataval.DiscountPercentage * -1 + ' % off' : dataval.DiscountPercentage + ' %';
 
             $("#partialViewListing").append(`<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6" data-id="LCHFXQWAGHRZAG9K" id="LCHFXQWAGHRZAG9K-1">
                                 <div class="_1xHGtK _373qXS e30oNt" data-tkid="a03e7e77-aae2-4bae-a994-d4b172f3bd24.LCHFXQWAGHRZAG9K.SEARCH">
@@ -239,77 +232,29 @@ var Listing = {
                                                 </div>
                                             </div>
                                         </div>
-</a>
                                         <div class="_3kGRXm" style="bottom: 40px;"></div>
                                         <div class="_2hVSre _1DmLJ5 -o7Q4n">
                                             <div class="_36FSn5">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="_1l0elc" width="28" height="28" viewBox="0 0 20 16"><path d="M8.695 16.682C4.06 12.382 1 9.536 1 6.065 1 3.219 3.178 1 5.95 1c1.566 0 3.069.746 4.05 1.915C10.981 1.745 12.484 1 14.05 1 16.822 1 19 3.22 19 6.065c0 3.471-3.06 6.316-7.695 10.617L10 17.897l-1.305-1.215z" fill="#2874F0" class="eX72wL" stroke="#FFF" fill-rule="evenodd" opacity=".9"></path></svg>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </div>                                    
                                     <div class="_2B099V" style="transform: translate3d(0px, 0px, 0px);">
                                         <div class="_2WkVRV">${dataval.SubCategoryName}</div>
-                                        <a class="IRpwTa" title="${dataval.ProductName}" target="_blank" rel="noopener noreferrer" href="#">${dataval.ProductName}</a>
+                                        <span class="IRpwTa" title="${dataval.ProductName}" rel="noopener noreferrer">${dataval.ProductName}</span>
                                         <div class="_1a8UBa">
                                             <img height="18" src="/Content/UploadedImages/Images/small-logo.png" class="_3U-Vxu">
                                         </div>
-                                        <a class="_3bPFwb" target="_blank" rel="noopener noreferrer" href="#">
+                                        <div class="_3bPFwb" rel="noopener noreferrer">
                                             <div class="_25b18c">
-                                                <div class="_30jeq3">₹${dataval.SalePrice}</div>
-                                                <div class="_3I9_wc">₹${dataval.SalePrice}</div>
-                                                <div class="_3Ay6Sb"><span>${dataval.SalePrice}% off</span></div>
+                                                <div class="_30jeq3">${dataval.SalePrice}</div>
+                                                <div class="_3I9_wc">${dataval.ListPrice}</div>
+                                                <div class="_3Ay6Sb" ${offclass}><span>${off}</span></div>
                                             </div>
-                                        </a>
+                                        </div>
                                     </div>
+                                    </a>
                                 </div>
                             </div>`);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //        $("#partialViewListing").append('<div class="col-6 col-md-4 col-lg-3" >\
-            //                    <figure class="card card-product-grid" >\
-            //                        <div class="img-wrap">  <a href="/Home/ProductDetail?productId='+ dataval.ProductId + '&Name=' + dataval.ProductName + '" alt=' + dataval.ProductName + '><img src="' + dataval.MainImage + '"></a> </div>\
-            //                            <figcaption class="info-wrap"> <a id="ProductName" href="#" class="title mb-2">' + dataval.ProductName + '</a>\
-            //                                <div class="price-wrap"> <span class="price"><i class="fas fa-rupee-sign"></i>'+ dataval.SalePrice + '</span> &nbsp;<small class="text-muted"><s><i class="fas fa-rupee-sign"></i>' + dataval.ListPrice + '</s></small> </div>\
-            //                                <!-- price-wrap.// -->\
-            //                              <div class="rating-wrap mb-2">\
-            //                                    <ul class="rating-stars">\
-            //                                        <li class="stars-active"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
-            //                                        <li> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </li>\
-            //                                    </ul>\
-            //                                    <div class="label-rating">2/10</div>\
-            //                                </div>\
-            //            <input type="hidden" id="ProductId" value="'+ dataval.ProductId + '" /><input type = "hidden" id = "ProductVarientId" value = "' + dataval.ProductVarientId + '" />\
-            //<input type="hidden" id="vendorId" value="'+ dataval.VendorId + '" />\
-            //<input type="hidden" id="Quantity" value="1" /><span style="display:none" id="SalePrice">'+ dataval.SalePrice + '</span>\
-            //                                <button onclick="cart.AddToCartByHome(false,`'+ dataval.ProductId + '`,`' + dataval.ProductVarientId + '`,`' + dataval.VendorId + '`,`' + dataval.SalePrice + '`,`' + dataval.ProductName + '`);"  alt=' + dataval.ProductName + ' class="btn btn-outline-primary" val=' + dataval.ProductId + '> <i class="fas fa-cart-plus"></i> Add to cart </button> </figcaption>\
-            //                          </figure>\
-            //                        </div >');
 
             pageCount = dataval.PageCount;
         });

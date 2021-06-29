@@ -28,6 +28,7 @@ namespace ShivFactory.Business.Repository
         public int VendorId { get; set; }
         public int ProductVarientId { get; set; }
         public int Stock { get; set; }
+        public decimal DiscountPercentage { get; set; }
     }
     public class ClsProduct1
     {

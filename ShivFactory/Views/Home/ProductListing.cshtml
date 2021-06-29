@@ -27,7 +27,7 @@
             </div>
             <!-- ============================ FILTER Side END.// ================================= -->
 
-            
+
             <div class="_1YokD2 _3Mn1Gg" style="flex-grow: 1; overflow: auto;">
                 <!-- ============================  Bread Crumb START  ================================= -->
                 <div class="_1YokD2 _2GoDe3 col-12-12" style="background-color: rgb(255, 255, 255); align-items: flex-end;">
@@ -61,16 +61,16 @@
 
                             </div>
 
-                            
+
                             <span class="_10Ermr mobile-size"><span id="itemcount"></span> results for "<span id="itemName"></span>"</span>
-                            
+
                             <div class="_5THWM1 nav mobile-size">
                                 <span class="_2i7N3j mobile-size">Sort By</span>
-                                <div class="_10UF8M active show" data-toggle="tab" href="#home">Relevance</div>
-                                <div class="_10UF8M" data-toggle="tab" href="#menu1">Popularity</div>
-                                <div class="_10UF8M" data-toggle="tab" href="#menu2">Price -- Low to High</div>
-                                <div class="_10UF8M" data-toggle="tab" href="#menu3">Price -- High to Low</div>
-                                <div class="_10UF8M" data-toggle="tab" href="#menu4">Newest First</div>
+                                <div class="_10UF8M active show" data-toggle="tab" onclick="Listing.ApplySorting(this)">Relevance</div>
+                                <div class="_10UF8M" data-toggle="tab" onclick="Listing.ApplySorting(this)">Popularity</div>
+                                <div class="_10UF8M" sort="PLH" data-toggle="tab" onclick="Listing.ApplySorting(this)">Price -- Low to High</div>
+                                <div class="_10UF8M" sort="PHL" data-toggle="tab" onclick="Listing.ApplySorting(this)">Price -- High to Low</div>
+                                <div class="_10UF8M" sort="NEW" data-toggle="tab" onclick="Listing.ApplySorting(this)">Newest First</div>
                             </div>
 
 
@@ -102,50 +102,9 @@
 
 
                 <div class="tab-content">
-                    <div class="_1AtVbE col-12-12" id="ListScroll" style="height: 1000px; overflow: auto; width: 100%">
+                    <div class="_1AtVbE col-12-12" id="ListScroll" style="max-height: 1000px; overflow: auto; width: 100%">
                         <div class="_13oc-S row tab-pane fade active show" id="partialViewListing">
-                            @*<div class="col-xl-3 col-lg-3 col-md-3 col-sm-4 col-6" data-id="LCHFXQWAGHRZAG9K" id="LCHFXQWAGHRZAG9K-1">
-                                <div class="_1xHGtK _373qXS e30oNt" data-tkid="a03e7e77-aae2-4bae-a994-d4b172f3bd24.LCHFXQWAGHRZAG9K.SEARCH">
-                                    <a class="_2UzuFa" target="_blank" rel="noopener noreferrer" href="#">
-                                        <div>
-                                            <div>
-                                                <div class="_3ywSr_" style="padding-top: 120%;">
-                                                    <div class="_312yBx SFzpgZ" style="padding-top: 120%;">
-                                                        <img class="_2r_T1I" alt="" src="https://rukminim1.flixcart.com/image/660/792/k4ehnrk0/lehenga-choli/5/s/j/free-boutique-4-kedar-fab-original-imafnbdthbfpb8pp.jpeg?q=50">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="_3kGRXm" style="bottom: 40px;"></div>
-                                        <div class="_2hVSre _1DmLJ5 -o7Q4n">
-                                            <div class="_36FSn5">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="_1l0elc" width="28" height="28" viewBox="0 0 20 16"><path d="M8.695 16.682C4.06 12.382 1 9.536 1 6.065 1 3.219 3.178 1 5.95 1c1.566 0 3.069.746 4.05 1.915C10.981 1.745 12.484 1 14.05 1 16.822 1 19 3.22 19 6.065c0 3.471-3.06 6.316-7.695 10.617L10 17.897l-1.305-1.215z" fill="#2874F0" class="eX72wL" stroke="#FFF" fill-rule="evenodd" opacity=".9"></path></svg>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <div class="_2B099V" style="transform: translate3d(0px, 0px, 0px);">
-                                        <div class="_2WkVRV">Kedar Fab</div>
-                                        <a class="IRpwTa" title="Embroidered Semi Stitched Lehenga Choli" target="_blank" rel="noopener noreferrer" href="#">Embroidered Semi Stitched Lehenga Choli</a>
-                                        <div class="_3eWWd-">Red</div>
-                                        <div class="_1a8UBa">
-                                            <img height="18" src="/Content/UploadedImages/Images/small-logo.png" class="_3U-Vxu">
-                                        </div>
-                                        <a class="_3bPFwb" target="_blank" rel="noopener noreferrer" href="#">
-                                            <div class="_25b18c">
-                                                <div class="_30jeq3">₹639</div>
-                                                <div class="_3I9_wc">₹3,999</div>
-                                                <div class="_3Ay6Sb"><span>84% off</span></div>
-                                            </div>
-                                            <div class="rcweVK"><div class="Lia2vD"></div><div><span class="_376u-U">Size</span>&nbsp;Free</div></div>
-                                        </a>
-                                        <div class="rcweVK">
-                                            <div class="Lia2vD"></div>
-                                            <div><span class="_376u-U">Size</span>&nbsp;Free</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>*@
-                            
+
                         </div>
                     </div>
                 </div>
@@ -157,15 +116,15 @@
 
 
 
-<section class="section-content padding-y">
+<!--<section class="section-content padding-y">
 
 
     <div class="banner-pt">
-       
+
 
 
         <div class="row">
-           
+
 
             <main class="col-md-10 right-list">
                 <div class="tab-content">
@@ -173,15 +132,15 @@
                         <section>
                             <article class="card-product-list">
                                 <div class="mr-md-auto">
-                                   
+
                                 </div>
                                 <div id="ListScroll" style="height: 1000px; overflow: auto; width: 100%">
                                     <div class="row" id="partialViewListing">
 
                                     </div>
-                                </div>
-                                <!-- row.// -->
-                            </article>
+                                </div>-->
+<!-- row.// -->
+<!--</article>
 
                         </section>
                     </div>
@@ -189,7 +148,7 @@
             </main>
         </div>
     </div>
-</section>
+</section>-->
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -198,6 +157,7 @@
 
     $('#ListScroll').bind('scroll', function () {
         if ($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+           
             var pageIndex = $('#Current-Page').val();
             if (pageIndex == 0) { pageIndex = 1; } else { pageIndex++; }
             let totalPage = $('#Total-Pages').val();

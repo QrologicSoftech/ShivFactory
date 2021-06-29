@@ -187,8 +187,6 @@ namespace ShivFactory.Business.Repository
 
         #endregion
 
-
-
     }
 
     #region Extension Methods
