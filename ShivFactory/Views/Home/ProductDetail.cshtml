@@ -77,7 +77,6 @@
                                     <div class="images-1 _37K3-p">
                                         <img id="image-container" src="@MainimgPath" data-zoom-image="@MainimgPath" class="img-responsive hover-1">
                                         <!--<div data-thumb="@MainimgPath">-->
-                                        @*<img id="image-container" src="@MainimgPath" data-imagezoom="true" class="img-responsive hover-1">*@
                                         <!--<img id="image-container" src="@MainimgPath" data-zoom-image="@MainimgPath" class="img-responsive hover-1">
                                         </div>-->
                                     </div>
@@ -108,9 +107,8 @@
                                 <li><a href="/Home/ProductListing?subId=@Model.SubCategoryId.ToString().Trim()">@Model.SubCategoryName </a></li>
                                 <li><a href="/Home/ProductListing?subId=@Model.SubCategoryId.ToString().Trim()&minId=@Model.MiniCategoryId.ToString().Trim()">@Model.MiniCategoryName </a></li>
                                 <li><a>@Model.ProductName.Substring(0, Model.ProductName.Length / 2)..</a></li>
-                                @*<li><a href="#"><i class="fa fa-share" aria-hidden="true"></i> Share</a></li>*@
                             </ul>
-                            <h3> <!--Brand Name--> </h3>
+                            <h3> <!--Product Name--> </h3>
                             <p id="ProductName">@Model.ProductName</p>
                             <div class="offer">
                                 <div class="offer-1" id="ddd"><span>₹</span><span id="SalePrice"> @Model.SalePrice</span></div>

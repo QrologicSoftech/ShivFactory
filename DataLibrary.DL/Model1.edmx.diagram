@@ -51,6 +51,8 @@
         <AssociationConnector Association="db_ShivFactoryModel.FK_TempOrderDetails_Vendors" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_VendorBankDetails_Vendors" />
         <AssociationConnector Association="db_ShivFactoryModel.FK_VendorShippingArea_Vendors" />
+        <EntityTypeShape EntityType="db_ShivFactoryModel.Rating" Width="1.5" PointX="7.5" PointY="13.25" />
+        <AssociationConnector Association="db_ShivFactoryModel.FK__Ratings__VendorI__32767D0B" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

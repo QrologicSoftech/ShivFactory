@@ -15,7 +15,7 @@ namespace ShivFactory.Business.Repository.Website
         RepoCommon common = new RepoCommon();
         #endregion
 
-        #region Add Or Update SubCategory
+        #region GetHomePageData
         public HomePageResponse GetHomePageData()
         {
             HomePageResponse response = new HomePageResponse();

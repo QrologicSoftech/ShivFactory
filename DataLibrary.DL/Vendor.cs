@@ -21,6 +21,7 @@ namespace DataLibrary.DL
             this.TempOrderDetails = new HashSet<TempOrderDetail>();
             this.VendorBankDetails = new HashSet<VendorBankDetail>();
             this.VendorShippingAreas = new HashSet<VendorShippingArea>();
+            this.Ratings = new HashSet<Rating>();
         }
     
         public int VendorId { get; set; }
@@ -49,5 +50,7 @@ namespace DataLibrary.DL
         public virtual ICollection<VendorBankDetail> VendorBankDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VendorShippingArea> VendorShippingAreas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Rating> Ratings { get; set; }
     }
 }

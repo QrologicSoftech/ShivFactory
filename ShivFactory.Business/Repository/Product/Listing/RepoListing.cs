@@ -299,6 +299,8 @@ namespace ShivFactory.Business.Repository
                 }
             }
 
+            // add ratings for this products
+
             return productDetail;
         }
         #endregion

@@ -309,6 +309,18 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <Property Name="Image4" Type="nvarchar(max)" />
           <Property Name="Image5" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="Ratings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="VarientId" Type="int" />
+          <Property Name="VendorId" Type="int" />
+          <Property Name="Rating" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Reviews" Type="nvarchar(max)" />
+          <Property Name="Adddate" Type="datetime" />
+        </EntityType>
         <EntityType Name="SubCategory">
           <Key>
             <PropertyRef Name="ID" />
@@ -492,6 +504,20 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Principal>
             <Dependent Role="ProductVarient">
               <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ratings__VendorI__32767D0B">
+          <End Role="Vendors" Type="Self.Vendors" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendors">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="VendorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -720,6 +746,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductVarient" EntityType="Self.ProductVarient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TempOrder" EntityType="Self.TempOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TempOrderDetails" EntityType="Self.TempOrderDetails" Schema="dbo" store:Type="Tables" />
@@ -755,6 +782,10 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <AssociationSet Name="FK__ProductVa__Produ__57DD0BE4" Association="Self.FK__ProductVa__Produ__57DD0BE4">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductVarient" EntitySet="ProductVarient" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ratings__VendorI__32767D0B" Association="Self.FK__Ratings__VendorI__32767D0B">
+            <End Role="Vendors" EntitySet="Vendors" />
+            <End Role="Ratings" EntitySet="Ratings" />
           </AssociationSet>
           <AssociationSet Name="FK__SubCatego__Categ__6383C8BA" Association="Self.FK__SubCatego__Categ__6383C8BA">
             <End Role="Category" EntitySet="Category" />
@@ -1104,6 +1135,11 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <AssociationSet Name="FK_VendorShippingArea_Vendors" Association="db_ShivFactoryModel.FK_VendorShippingArea_Vendors">
             <End Role="Vendor" EntitySet="Vendors" />
             <End Role="VendorShippingArea" EntitySet="VendorShippingAreas" />
+          </AssociationSet>
+          <EntitySet Name="Ratings" EntityType="db_ShivFactoryModel.Rating" />
+          <AssociationSet Name="FK__Ratings__VendorI__32767D0B" Association="db_ShivFactoryModel.FK__Ratings__VendorI__32767D0B">
+            <End Role="Vendor" EntitySet="Vendors" />
+            <End Role="Rating" EntitySet="Ratings" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="DimensionMaster">
@@ -1565,6 +1601,7 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
           <NavigationProperty Name="TempOrderDetails" Relationship="db_ShivFactoryModel.FK_TempOrderDetails_Vendors" FromRole="Vendor" ToRole="TempOrderDetail" />
           <NavigationProperty Name="VendorBankDetails" Relationship="db_ShivFactoryModel.FK_VendorBankDetails_Vendors" FromRole="Vendor" ToRole="VendorBankDetail" />
           <NavigationProperty Name="VendorShippingAreas" Relationship="db_ShivFactoryModel.FK_VendorShippingArea_Vendors" FromRole="Vendor" ToRole="VendorShippingArea" />
+          <NavigationProperty Name="Ratings" Relationship="db_ShivFactoryModel.FK__Ratings__VendorI__32767D0B" FromRole="Vendor" ToRole="Rating" />
         </EntityType>
         <Association Name="FK__VendorBus__UserI__66603565">
           <End Type="db_ShivFactoryModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
@@ -1627,6 +1664,33 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
             </Principal>
             <Dependent Role="VendorShippingArea">
               <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="VarientId" Type="Int32" />
+          <Property Name="VendorId" Type="Int32" />
+          <Property Name="Rating1" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Reviews" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Adddate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Vendor" Relationship="db_ShivFactoryModel.FK__Ratings__VendorI__32767D0B" FromRole="Rating" ToRole="Vendor" />
+        </EntityType>
+        <Association Name="FK__Ratings__VendorI__32767D0B">
+          <End Type="db_ShivFactoryModel.Vendor" Role="Vendor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="db_ShivFactoryModel.Rating" Role="Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="VendorId" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="VendorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2089,6 +2153,19 @@ warning 6002: The table/view 'db_ShivFactory.dbo.BankerMaster' does not have a p
                 <ScalarProperty Name="FirmName" ColumnName="FirmName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="db_ShivFactoryModel.Rating">
+              <MappingFragment StoreEntitySet="Ratings">
+                <ScalarProperty Name="Adddate" ColumnName="Adddate" />
+                <ScalarProperty Name="Reviews" ColumnName="Reviews" />
+                <ScalarProperty Name="Rating1" ColumnName="Rating" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="VarientId" ColumnName="VarientId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

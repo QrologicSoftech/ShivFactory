@@ -39,6 +39,13 @@ namespace ShivFactory.Business.Repository
         public int vendorId { get; set; }
 
         public string EstimateDeliveryTime { get; set;  }
+
+
+
+        public decimal? RatingAverage { get; set; }
+        public decimal? SellerRatingAverage { get; set; }
+        public int? TotalRatings { get; set; }
+        public int? TotalReviews { get; set; }
     }
 
     public class ProductVariations
