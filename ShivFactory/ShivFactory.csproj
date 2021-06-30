@@ -814,7 +814,7 @@
     <Content Include="Content\Website\fonts\Pe-icon-7-stroke.svg" />
     <Content Include="Content\Website\js\bootstrap.bundle.min.js" />
     <Content Include="Content\Website\js\imagezoom.js" />
-    <Content Include="Content\Website\js\img-zoom.js" />
+    <Content Include="Content\Website\js\ImageZoomFunction.js" />
     <Content Include="Content\Website\js\jquery-2.0.0.min.js" />
     <Content Include="Content\Website\js\jquery.flexslider.js" />
     <Content Include="Content\Website\js\jquery.min.js" />
